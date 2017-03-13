@@ -1,0 +1,99 @@
+{template Head}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">寻找处置方管理</a>
+                </li>
+                <li class="active position">处置方匹配管理</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel breadcrumb">
+                <div class="panel-body">
+                    <span style="float: left;line-height: 38px;margin-left: -10px;padding-right: 10px">搜索：</span>
+                    <form class="form-inline" role="form" action="/index.php?Module=DisposalMatch&Action=DisposalMatchLists" method="get">
+                        <input type="hidden" name="Module" value="DisposalMatch">
+                        <input type="hidden" name="Action" value="DisposalMatchLists">
+                        <input type="text" class="form-control" placeholder="债务编号/债务ID/债务人身份证号/债务人姓名" name="keyword" value="{$keyword}" width="500px">
+                        当前状态：
+                        <select name="Status" id="Status"  class="form-control">
+                            <option style="width:100px;"  value="{$Status}">{if !$StatusInfo[$Status]}请选择状态{else}{$StatusInfo[$Status]}{/if}</option>
+                            <option  value="">全部</option>
+                            {loop $StatusInfo $key $value}
+                            <option  value="{$key}">{$value}</option>
+                            {/loop}
+                        </select>
+                        <button class="btn btn-info">搜索</button>
+                    </form>
+                </div>
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>债务ID</th>
+                            <th>债务编号</th>
+                            <th>债务人姓名</th>
+                            <th class="numeric">债务人地区</th>
+                            <th class="numeric">债务金额</th>
+                            <th class="numeric">发布时间</th>
+                            <th class="numeric">债权人数量</th>
+                            <th class="numeric">当前状态</th>
+                            <th class="numeric">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $Data[Data] $lists}
+                        <tr height="35" align="center">
+                            <td nowrap="nowrap">{$lists[DebtID]}</td>
+                            <td nowrap="nowrap">{$lists[DebtNum]}</td>
+                            <td nowrap="nowrap">{$lists[name]}</td>
+                            <td nowrap="nowrap">{if $lists[province]!=''}{$lists[province]}-{$lists[city]}-{$lists[area]}{/if}</td>
+                            <td nowrap="nowrap">{$lists[money]}</td>
+                            <td nowrap="nowrap">{$lists[AddTime]}</td>
+                            <td nowrap="nowrap">{$lists[BondsNum]}</td>
+                            <td nowrap="nowrap">{$StatusInfo[$lists[Status]]}</td>
+                            <td>
+                                <a class="getinfo" href="/index.php?Module=DisposalMatch&Action=DisposalMatchEdit&DebtID={$lists[DebtID]}">查看详情</a>
+                                <a href="javascript:void(0)" class="del" data-id="{$lists[DebtID]}">删除</a>
+                            </td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </section>
+                <div class="text-center">
+                    <ul class="pagination" data-id="{$Page}">
+                        <li><a href="/index.php?Module=DisposalMatch&Action=DisposalMatchLists&Page=1">首页</a></li>
+                        {loop $Data[PageNums] $page}
+                        <li><a href="/index.php?Module=DisposalMatch&Action=DisposalMatchLists&Page={$page}">{$page}</a></li>
+                        {/loop}
+                        <li><a href="/index.php?Module=DisposalMatch&Action=DisposalMatchLists&Page={$Data[PageCount]}">尾页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Foot}
+<script>
+    $('.del').click(function () {
+        var tjid = $(this).attr('data-id');
+        var text = $(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
+        layer.confirm('您确定要删除债务编号<span style="color: red">'+text+'</span>？', {
+            title: '删除提示',
+            btn: ['确定','取消'] //按钮
+        }, function(index){
+            window.location.href='/index.php?Module=DisposalMatch&Action=DisposalMatchDelete&DisposalMatchID='+tjid;
+            layer.close(index);
+        });
+    })
+</script>

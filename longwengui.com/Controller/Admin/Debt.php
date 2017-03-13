@@ -11,7 +11,7 @@ class Debt {
      */
     public function DebtLists() {
         $MemberDebtInfoModule = new MemberDebtInfoModule();
-        $StatusInfo = $MemberDebtInfoModule->NStatus;
+        $StatusInfo = $MemberDebtInfoModule->Status;
         $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
