@@ -1,0 +1,138 @@
+.icon-tri_arrow_down_b {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -141px -107px;
+  width: 14px;
+  height: 9px;
+}
+.index .block-about {
+  width: 100%;
+  background-color: #fff;
+}
+.index .block-about .wrap {
+  padding-top: 76px;
+  width: 1180px;
+  margin: 0 auto;
+}
+.index .block-about .wrap .about-us {
+  min-height: 300px;
+  margin-top: 74px;
+  margin-bottom: 80px;
+}
+.index .block-about .wrap .about-us .left {
+  padding: 0 35px;
+  float: left;
+  width: 520px;
+  text-align: center;
+}
+.index .block-about .wrap .about-us .right {
+  width: 550px;
+  float: left;
+  padding-right: 35px;
+}
+.index .block-about .wrap .about-us .right p {
+  color: #666666;
+  margin: 22px 0;
+  line-height: 24px;
+}
+.index .block {
+  height: 450px;
+  width: 100%;
+}
+.index .block .wrap {
+  padding-top: 76px;
+  width: 1180px;
+  margin: 0 auto;
+}
+.index .block .wrap .func-wrap {
+  margin-top: 76px;
+}
+.index .block .wrap .func-wrap .func-content {
+  width: 236px;
+  float: left;
+  text-align: center;
+}
+.index .block .wrap .func-wrap .func-content .img-wrap {
+  height: 110px;
+}
+.index .block .wrap .func-wrap .func-content span {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #666666;
+}
+.index .block .wrap .func-1 .left {
+  width: 490px;
+  padding-left: 140px;
+  float: left;
+}
+.index .block .wrap .func-1 .left p {
+  margin: 12px 0;
+}
+.index .block .wrap .func-1 .left p:nth-child(1) {
+  color: #666666;
+  font-size: 36px;
+  padding-bottom: 30px;
+}
+.index .block .wrap .func-1 .left p:nth-child(n+2) {
+  color: #999999;
+  font-size: 16px;
+}
+.index .block .wrap .func-1 .left .btn-more {
+  padding-top: 26px;
+}
+.index .block .wrap .func-1 .left .btn-more .btn {
+  width: 142px;
+  line-height: 40px;
+  background-color: #35bdfc;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.index .block .wrap .func-1 .right {
+  width: 515px;
+  float: left;
+  text-align: center;
+}
+.index .block .wrap .func-1::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.index .block .wrap .func-2::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.index .block .wrap .func-2 .left {
+  float: left;
+  width: 515px;
+  padding-left: 130px;
+}
+.index .block .wrap .func-2 .right {
+  float: left;
+  width: 525px;
+}
+.index .block .wrap .func-2 .right p {
+  margin: 12px 0;
+}
+.index .block .wrap .func-2 .right p:nth-child(1) {
+  color: #666666;
+  font-size: 36px;
+  padding-bottom: 30px;
+}
+.index .block .wrap .func-2 .right p:nth-child(n+2) {
+  color: #999999;
+  font-size: 16px;
+}
+.index .block .wrap .func-2 .right .btn-more {
+  padding-top: 26px;
+}
+.index .block .wrap .func-2 .right .btn-more .btn {
+  width: 142px;
+  line-height: 40px;
+  background-color: #35bdfc;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}

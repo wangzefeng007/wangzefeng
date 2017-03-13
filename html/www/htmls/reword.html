@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="描述">
+    <meta name="keywords" content="催收平台,催收系统，债务清算,债务追讨,欠款催收,债务案源">
+    <title>隆文贵</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/reword.css">
+    <!--[if (gte IE 6)&(lte IE 8)]>
+      <script type="text/javascript" src="../js/selectivizr.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <div class="top">
+        <div class="wrap">
+          <span>您好 , 欢迎访问 隆文贵 ！</span>
+          <span>服务热线 : 13960658585</span>
+          <span onclick="go('./login.html')">登录</span>
+          <span onclick="go('./reg.html')">注册</span>
+        </div>
+      </div>
+      <div class="header">
+        <div class="wrap">
+          <a href="./index.html"><img src="../imgs/logo.png" alt=""></a>
+          <div class="nav-wrap">
+            <a href="./index.html"><li>首页</li></a>
+            <a href="./collection.html"><li>债务催收</li></a>
+            <a href="./debtTrans.html"><li>债权转让</li></a>
+            <a href="./reword.html"><li class="nav-active">线索悬赏</li></a>
+            <a href="./solver.html"><li>寻找处置方</li></a>
+            <a href="./debtorSearch.html"><li>查询老赖</li></a>
+          </div>
+        </div>
+      </div>
+      <div class="reword">
+        <div class="wrap">
+          <div class="filt-parm">
+            <div class="line">
+              <span>悬赏方式 :</span>
+              <span class="sel" id="way_all">全部</span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="way" value="1">
+                    <i></i>
+                    找人
+                  </label>
+                </div>
+              </span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="way" value="2">
+                    <i></i>
+                    找财产
+                  </label>
+                </div>
+              </span>
+            </div>
+            <div class="line">
+              <span>催收地区 :</span>
+              <span class="sel" id="area_all">全部</span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1001">
+                    <i></i>
+                    北京市
+                  </label>
+                </div>
+              </span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1002">
+                    <i></i>
+                    上海市
+                  </label>
+                </div>
+              </span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1003">
+                    <i></i>
+                    深圳市
+                  </label>
+                </div>
+              </span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1004">
+                    <i></i>
+                    广州市
+                  </label>
+                </div>
+              </span>
+              <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1005">
+                    <i></i>
+                    厦门市
+                  </label>
+                </div>
+              </span>
+              <!-- <span>其他城市<img src="../imgs/tri_arrow_down.png" alt=""></span> -->
+            </div>
+            <div class="search">
+              <span>债务搜索 :</span>
+              <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
+              <button type="button" id="btn_search" name="search">
+                搜索
+              </button>
+              <div class="pub-wrap">
+                <img src="../imgs/edit.png" alt="">
+                <button type="button" name="pub">
+                  发布悬赏
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="alert-warn">
+            <img src="../imgs/a_warn.png" alt="">
+            <span>平台警告：平台不承担任何线索担保，请用户自己核实提供的信息是否属实!!!</span>
+          </div>
+          <div class="box-wrap" id="reword_info"></div>
+          <div class="pagination-wrap">
+            <div class="pagination fl-r" id="reword_page_pagination"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="wrap">
+          <div class="content">
+            <div class="b1">
+              <p>联系我们</p>
+              <div class="c">
+                <img src="../imgs/hot_line.png" alt="">
+                <p>服务热线：</p>
+                <p>13960658585</p>
+              </div>
+            </div>
+            <div class="b2">
+              <div class="c">
+                <img src="../imgs/email.png" alt="">
+                <p>电子邮件：</p>
+                <p>904732986@qq.com</p>
+              </div>
+            </div>
+            <div class="coop">
+              <p>商务合作</p>
+              <div class="c">
+                <img src="../imgs/phone.png" alt="">
+                <p>联系电话：</p>
+                <p>13960658585</p>
+              </div>
+            </div>
+            <div class="wetchat-img">
+              <img src="../imgs/wximg.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copy-right">
+        <div class="wrap">
+          <span>版权所有：隆文贵 Copyright2017</span>
+          <span>闽ICP备16032488号-1</span>
+          <img src="../imgs/copyRight.png" alt="">
+        </div>
+      </div>
+      <script id="reword_box" type="text/x-jquery-tmpl">
+        <div class="box">
+          <div class="content">
+            <div class="left">
+              <div class="main-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+            </div>
+            <div class="right">
+              <div class="line">
+                <div class="t">债务人姓名 : </div>
+                <div class="c">${DebtName}</div>
+              </div>
+              <div class="line">
+                <div class="t">债务人电话 : </div>
+                <div class="c">${DebtPhone}</div>
+              </div>
+              <div class="line">
+                <div class="t">债务人地区 : </div>
+                <div class="c">${Province}-${City}-${Area}</div>
+              </div>
+              <div class="line">
+                <div class="t">债务人身份证 : </div>
+                <div class="c">${DebtCard}</div>
+              </div>
+              <div class="line">
+                <div class="t">详细地址 : </div>
+                <div class="c">${Address}</div>
+              </div>
+              <div class="ower-contact">
+                <div class="t">
+                  债权人联系方式 :
+                </div>
+                <div class="c">
+                  ${CreditorsPhone}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{if Status == 4}}
+            <div class="done">
+              <img src="../imgs/done.png" alt="">
+            </div>
+          {{/if}}
+        </div>
+      </script>
+      <script src='../lib/jquery/jquery.min.js'></script>
+      <script src='../lib/jquery-tmpl/dist/jquery.tmpl.min.js'></script>
+      <script src='../lib/layer/src/layer.js'></script>
+      <script src='../js/common.js'></script>
+      <script src='../js/reword.js'></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+.icon-tri_arrow_down_b {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -141px -107px;
+  width: 14px;
+  height: 9px;
+}
+.solver {
+  width: 100%;
+}
+.solver .wrap {
+  width: 1180px;
+  margin: 0 auto;
+  padding: 60px 0 84px 0;
+}
+.solver .wrap .sel-block {
+  height: 330px;
+  margin-top: 50px;
+  padding: 90px 0 70px 0;
+  border: 1px solid #e6e6e6;
+  -moz-box-shadow: 0 0 2px #e6e6e6;
+  box-shadow: 0 0 2px #e6e6e6;
+}
+.solver .wrap .sel-block .left,
+.solver .wrap .sel-block .right {
+  float: left;
+  width: 589px;
+  text-align: center;
+}
+.solver .wrap .sel-block .left .img-wrap,
+.solver .wrap .sel-block .right .img-wrap {
+  height: 250px;
+  padding-bottom: 40px;
+}
+.solver .wrap .sel-block .left button,
+.solver .wrap .sel-block .right button {
+  border: 0;
+  padding: 10px 32px;
+  background-color: #35bdfc;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #35bdfc;
+  border-radius: 5px;
+}
