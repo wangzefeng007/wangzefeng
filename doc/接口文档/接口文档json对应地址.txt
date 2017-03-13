@@ -1,0 +1,28 @@
+国内参团
+出发地		/Home/AreaOut.json
+途径城市热门	/Home/HotCitys.json
+途径城市所有	/Home/Citys/A.json(以此类推)
+特色主题	/Home/Subject.json
+行程天数	/Home/Days.json
+
+当地参团
+出发城市	/Local/AreaOut.json
+结束城市	/Local/AreaEnter.json
+途径城市热门	/Local/HotCitys.json
+途径城市所有	/Local/Citys/A.json(以此类推)
+特色主题	/Local/Subject.json
+行程天数	/Local/Days.json
+
+一日游
+出发地		/Daily/AreaOut.json
+特色主题	/Daily/Subject.json
+
+特色体验
+目的地		/Feature/AreaEnter.json
+特色主题	/Feature/Subject.json
+
+票务
+目的地		/Ticket/AreaEnter.json
+类型		/Ticket/Types.json
+特色主题	/Ticket/Subject.json
+价格		/Ticket/Prices.json

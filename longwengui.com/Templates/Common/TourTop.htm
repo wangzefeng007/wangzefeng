@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{$Title}</title>
+  <meta name="keywords" content="{$Keywords}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+  <meta name="description" content="{$Description}">
+  <link href="{echo CssURL}/common/reset.css" rel="stylesheet" type="text/css" />
+  <link href="{echo CssURL}/common/TourPublic.css" rel="stylesheet" type="text/css" />
+  <script src="{echo JsURL}/base/jquery/1.10.2/jquery.min.js"></script>
+  <script src="{echo JsURL}/base/base.js"></script>
+</head>
+<body>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<div class="wrap">
+  {template 'Common/TopLoginStatus',1}
+  {template 'Common/RightNav',1}
+  <div class="InHeader">
+    <div class="w1200 cf">
+      <div class="Insearch mt20 fr">
+        <form action="/so.html" method="post" target="_blank">
+          <input type="" name="keyword" id="keyword" value="" class="input" autocomplete="off" placeholder="搜索国家、城市、产品" />
+          <input type="submit" id="" value="" class="IsearchBtn" />
+          <input id="t" name="t"  value="{$TagNav}"  type="hidden"/>
+        </form>
+      </div>
+      <a href="{echo WEB_MAIN_URL}" class="NewsLogo" title="57美国网">57美国网</a> </div>
+  </div>
+  <div class="TourMenu">
+    <ul class="w1200 cf">
+      <li> <a href="{echo WEB_TOUR_URL}" class="FirstA">首页</a> </li>
+      <li> <a href="{echo WEB_TOUR_URL}/dingzhi/#/question/" class="FirstA">高端定制<em class="HotIcon"></em></a> </li>
+      <li> <a href="{echo WEB_TOUR_URL}/group/local/" class="FirstA">跟团游<i></i></a>
+        <div class="SecondUl" style="width: 180px;margin-left: -90px;"> <em></em> <a href="{echo WEB_TOUR_URL}/group/local/">当地参团</a> <a href="{echo WEB_TOUR_URL}/group/home/">国内参团</a> </div>
+      </li>
+      <li> <a href="{echo WEB_TOUR_URL}/play/feature/" class="FirstA">当地玩乐<i></i></a>
+        <div class="SecondUl" style="width: 165px; margin-left: -82px;"> <em></em> <a href="{echo WEB_TOUR_URL}/play/feature/">特色体验</a> <a href="{echo WEB_TOUR_URL}/play/daily/">一日游</a> </div>
+      </li>
+      <li> <a href="{echo WEB_TOUR_URL}/play/ticket/" class="FirstA">门票</a> </li>
+      <li> <a href="{echo WEB_HOTEL_URL}" class="FirstA">酒店</a> </li>
+      <li> <a href="http://zuche.57us.com/" class="FirstA">租车</a> </li>
+      <li> <a href="{echo WEB_VISA_URL}" class="FirstA">签证</a> </li>
+      <!--<li> <a href="{echo WEB_TOUR_URL}/tour/topica/" class="FirstA">活动专区<em class="HotIcon"></em></a> </li>-->
+      <li> <a href="{echo WEB_MAIN_URL}/tour/" class="FirstA" target="_blank">旅游资讯</a> </li>
+      <li> <a href="{echo WEB_TOUR_URL}/city/" class="FirstA" target="_blank">城市专题</a> </li>
+      <!--<li> <a href="{echo WEB_TOUR_URL}/ask/" class="FirstA" target="_blank">问答专区</a> </li>-->
+
+    </ul>
+  </div>

@@ -1,0 +1,5 @@
+2016-11-21
+ALTER TABLE `study_consultant_info`
+ADD COLUMN `OneCondition`  int(11) NULL COMMENT '符合一个条件' AFTER `Serviced`,
+ADD COLUMN `TwoCondition`  int(11) NULL COMMENT '符合两个条件' AFTER `OneCondition`,
+ADD COLUMN `ThreeCondition`  int(11) NULL COMMENT '符合三个条件' AFTER `TwoCondition`;

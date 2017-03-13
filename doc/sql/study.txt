@@ -1,0 +1,86 @@
+20160922
+(会员中心基本信息表整理)
+ALTER TABLE `member_user_info`
+DROP COLUMN `CountIntegral`,
+DROP COLUMN `Integral`,
+DROP COLUMN `Level`,
+DROP COLUMN `IndexRecommend`,
+DROP COLUMN `RecommendSort`,
+DROP COLUMN `Serviced`,
+COMMENT='会员基础信息表';
+(顾问基本信息表整理study_consultant_info)
+ALTER TABLE `study_consultant_info`
+ADD COLUMN `IndexRecommend`  tinyint(4) NULL DEFAULT 0 COMMENT '是否留学首页推荐:0-否1-是' AFTER `IsZZRecommend`,
+ADD COLUMN `RecommendSort`  tinyint(4) NULL DEFAULT 0 COMMENT '推荐排序' AFTER `IndexRecommend`,
+ADD COLUMN `Serviced`  int(11) NULL COMMENT '服务过的数量（虚拟数据）' AFTER `RecommendSort`,
+COMMENT='顾问基本信息表';
+(教师基本信息表整理study_teacher_info)
+ALTER TABLE `study_teacher_info`
+ADD COLUMN `IndexRecommend`  tinyint(4) NULL DEFAULT 0 COMMENT '是否留学首页推荐:0-否1-是' AFTER `IsZZRecommend`,
+ADD COLUMN `RecommendSort`  tinyint(4) NULL DEFAULT 0 COMMENT '推荐排序' AFTER `IndexRecommend`,
+ADD COLUMN `Serviced`  int(11) NULL COMMENT '服务过的数量（虚拟数据）' AFTER `RecommendSort`,
+COMMENT='教师基本信息表';
+（顾问案例表study_consultant_case）
+ALTER TABLE `study_consultant_case`
+DROP COLUMN `StudentSex`,
+DROP COLUMN `StudentNameIsOpen`,
+DROP COLUMN `GraduatedEducation`,
+DROP COLUMN `AdmissionEducation`,
+DROP COLUMN `WholeStoryTime`,
+DROP COLUMN `Description`,
+DROP COLUMN `StudyProfession`,
+DROP COLUMN `SchoolTendency`,
+DROP COLUMN `ApplyStrategy`,
+DROP COLUMN `ApplyResult`,
+DROP COLUMN `AddTime`,
+DROP COLUMN `Image`,
+MODIFY COLUMN `AdmissionSchool`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '录取院校（以逗号隔开，有可能多个）' AFTER `StudentName`,
+MODIFY COLUMN `AdmissionSpecialty`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '录取学校专业（以逗号隔开，有可能多个）' AFTER `AdmissionSchool`,
+MODIFY COLUMN `GPA`  double(11,2) NOT NULL DEFAULT 0.00 COMMENT '平均分' AFTER `AdmissionSpecialty`,
+MODIFY COLUMN `TOEFL`  int(11) NOT NULL DEFAULT 0 COMMENT '托福分数' AFTER `GPA`,
+MODIFY COLUMN `IETLS`  float(11,1) NOT NULL DEFAULT 0.0 COMMENT '雅思分数' AFTER `TOEFL`,
+MODIFY COLUMN `GRE`  int(11) NULL DEFAULT NULL AFTER `IETLS`,
+MODIFY COLUMN `GMAT`  int(11) NULL DEFAULT NULL AFTER `GRE`,
+MODIFY COLUMN `SAT`  int(11) NOT NULL AFTER `GMAT`,
+CHANGE COLUMN `SAA` `SSAT`  int(11) NOT NULL AFTER `SAT`,
+CHANGE COLUMN `PTE` `ACT`  int(11) NULL DEFAULT NULL AFTER `SSAT`,
+MODIFY COLUMN `GraduatedSpecialty`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '毕业专业' AFTER `GraduatedSchool`,
+ADD COLUMN `AttendSchool`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '就读学校' AFTER `AdmissionSpecialty`,
+ADD COLUMN `Scholarship`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '奖学金' AFTER `AttendSchool`,
+ADD COLUMN `ApplySchool`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '申请学校（有可能多个，以逗号隔开）' AFTER `ACT`,
+ADD COLUMN `StudentImage`  varchar(255) NULL COMMENT '学生头像（或录取学校的校徽）' AFTER `CaseName`,
+ADD COLUMN `OfferImage`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT 'offer图片' AFTER `StudentImage`,
+ADD COLUMN `ApplySummary`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '申请总结' AFTER `Disadvantage`,
+ADD COLUMN `AddTime`  int(11) NULL COMMENT '添加时间' AFTER `Status`;
+(顾问基础信息表study_consultant_info)
+ALTER TABLE `study_consultant_info`
+DROP COLUMN `WorkAddress`,
+DROP COLUMN `ENIntroduction`,
+DROP COLUMN `EduBackground`,
+DROP COLUMN `GraduatedSchool`,
+DROP COLUMN `Profession`,
+MODIFY COLUMN `ID`  int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID' FIRST ,
+MODIFY COLUMN `UserID`  int(11) NOT NULL COMMENT '会员ID（顾问）' AFTER `ID`,
+MODIFY COLUMN `WorkingAge`  tinyint(3) NOT NULL DEFAULT 0 COMMENT '从业经验' AFTER `UserID`,
+MODIFY COLUMN `Introduction`  text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '自我介绍（中英文不限）' AFTER `WorkingAge`,
+MODIFY COLUMN `PastExperience`  text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '从业经历 StartTime EndTime Content Title' AFTER `Introduction`,
+MODIFY COLUMN `Grade`  tinyint(1) NOT NULL DEFAULT 1 COMMENT '顾问等级' AFTER `PastExperience`,
+MODIFY COLUMN `TutorialObject`  tinyint(1) NULL DEFAULT NULL COMMENT '辅导对象  1-中学 2-大学 3-硕士 4-桥梁 5-双保录 6-预科' AFTER `Grade`,
+ADD COLUMN `ServiceDeclaration`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '服务宣言' AFTER `UserID`,
+ADD COLUMN `Tags`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '标签' AFTER `ServiceDeclaration`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

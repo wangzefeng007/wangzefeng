@@ -1,0 +1,51 @@
+{template Head}
+<div class="wrapper">
+  <div class="row">
+    <div class="col-md-12">
+      <!--breadcrumbs start -->
+      <ul class="breadcrumb panel">
+        <li>
+          <a href="#"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="#">管理员管理</a>
+        </li>
+        <li>
+          <a href="/index.php?Module=AdminManage&Action=Lists" class="position">管理员列表</a>
+        </li>
+        <li class="active" id="modify">{if $AdminID}编辑{else}添加{/if}管理员</li>
+      </ul>
+      <!--breadcrumbs end -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
+          <form action='/index.php?Module=AdminManage&Action=AddAdmin'  method='post' >
+            <table width="100%" class="table table-bordered table-striped table-hover">
+              <tbody>
+              <tr>
+                <td  width="150px" height="35" align="right" nowrap="nowrap">管理员账号：</td>
+                <td><input width="250px"  type="text" name="Name" value="{$AdminInfo[AdminName]}" style="width:200px;"/>&nbsp;（注：英文字母组成不能与现有账号重复）</td>
+              </tr>
+              <tr>
+                <td  width="150px" height="35" align="right" nowrap="nowrap">管理员密码：</td>
+                <td><input width="250px"  type="password" name="Pass" value="" style="width:200px;"/>&nbsp;</td>
+              </tr>
+              <tr id="MaterialRequested">
+                <td width="150px" align="right"></td>
+                <td>
+                  <input type="hidden" name="ID" id="ID" value="{$AdminInfo[AdminID]}" />
+                  <input class="btn btn-danger" type='submit' value='提交保存'/>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Foot}

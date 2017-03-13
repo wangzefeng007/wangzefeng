@@ -1,0 +1,74 @@
+.debtorSearch {
+  width: 100%;
+  background: url('../imgs/debtor_search_bg.png') 0 center no-repeat;
+  min-height: 814px;
+  padding-top: 74px;
+}
+.debtorSearch .wrap {
+  width: 1180px;
+  margin: 0 auto;
+}
+.debtorSearch .wrap .sercher {
+  height: 94px;
+  width: 600px;
+  margin: 0 auto;
+}
+.debtorSearch .wrap .sercher .left {
+  float: left;
+  width: 500px;
+}
+.debtorSearch .wrap .sercher .left .line:nth-child(1) {
+  margin-bottom: 10px;
+}
+.debtorSearch .wrap .sercher .left .line:nth-child(1) input {
+  line-height: 40px;
+  height: 40px;
+  border: 1px solid #94dafb;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: 320px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+.debtorSearch .wrap .sercher .left .line:nth-child(1) .m-dropdown {
+  display: inline-block;
+  line-height: 40px;
+  width: 120px;
+  border: 1px solid #94dafb;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.debtorSearch .wrap .sercher .left .line:nth-child(1) .m-dropdown span {
+  color: #a9a9a9;
+}
+.debtorSearch .wrap .sercher .left .line:nth-child(1) .m-dropdown img {
+  float: right;
+  margin-top: 17px;
+}
+.debtorSearch .wrap .sercher .left .line:nth-child(2) input {
+  width: 478px;
+  line-height: 40px;
+  height: 40px;
+  border: 1px solid #94dafb;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: transparent;
+}
+.debtorSearch .wrap .sercher .right {
+  float: left;
+  margin-left: 10px;
+}
+.debtorSearch .wrap .sercher .right button {
+  width: 90px;
+  line-height: 90px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.debtorSearch .wrap .map {
+  text-align: center;
+  margin-top: 40px;
+}

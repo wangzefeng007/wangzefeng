@@ -1,0 +1,9 @@
+ErrorDocument 404 /404.html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^index.html$ /Index.php [QSA]
+
+RewriteRule ^debtlists(|\/)$ /Index.php?Module=Debt&Action=DebtLists [QSA]
+RewriteRule ^ajax.html$ /Index.php?Module=Ajax&Action=Index [QSA]
+
+</IfModule>

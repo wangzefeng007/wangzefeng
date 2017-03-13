@@ -1,0 +1,93 @@
+lALTER TABLE `tbl_tour`
+ADD COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 1 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_immigration`
+ADD COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 1 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_study_abroad`
+ADD COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 1 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_travels`
+ADD COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 1 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_tour`
+MODIFY COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 0 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_immigration`
+MODIFY COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 0 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_study_abroad`
+MODIFY COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 0 AFTER `TopicRecommend`;
+
+ALTER TABLE `tbl_travels`
+MODIFY COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 0 AFTER `TopicRecommend`;
+
+ALTER TABLE `tour_product_line`
+ADD COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 0 AFTER `UpdateTime`;
+
+ALTER TABLE `tour_product_play_base`
+ADD COLUMN `HasPushBaidu`  tinyint(1) NOT NULL DEFAULT 0 AFTER `UpdateTime`;
+
+
+#2016-11-04(以下正式和测试数据库已经添加)
+ALTER TABLE `tbl_tour`
+ADD COLUMN `M1`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站首页推荐  不推荐-0  推荐-1' AFTER `HasPushBaidu`,
+ADD COLUMN `M2`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站旅游、留学、移民首页推荐  不推荐-0  推荐-1' AFTER `M1`,
+ADD COLUMN `M3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站专题页推荐  不推荐-0  推荐-1' AFTER `M2`;
+
+
+ALTER TABLE `tbl_study_abroad`
+ADD COLUMN `M1`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站首页推荐  不推荐-0  推荐-1' AFTER `HasPushBaidu`,
+ADD COLUMN `M2`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站旅游、留学、移民首页推荐  不推荐-0  推荐-1' AFTER `M1`,
+ADD COLUMN `M3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站专题页推荐  不推荐-0  推荐-1' AFTER `M2`;
+
+ALTER TABLE `tbl_immigration`
+ADD COLUMN `M1`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站首页推荐  不推荐-0  推荐-1' AFTER `HasPushBaidu`,
+ADD COLUMN `M2`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站旅游、留学、移民首页推荐  不推荐-0  推荐-1' AFTER `M1`,
+ADD COLUMN `M3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站专题页推荐  不推荐-0  推荐-1' AFTER `M2`;
+
+
+ALTER TABLE `caiji_tbl_tour`
+ADD COLUMN `M1`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站首页推荐  不推荐-0  推荐-1' AFTER `PraiseNum`,
+ADD COLUMN `M2`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站旅游、留学、移民首页推荐  不推荐-0  推荐-1' AFTER `M1`,
+ADD COLUMN `M3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站专题页推荐  不推荐-0  推荐-1' AFTER `M2`;
+
+
+ALTER TABLE `caiji_tbl_study_abroad`
+ADD COLUMN `M1`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站首页推荐  不推荐-0  推荐-1' AFTER `PraiseNum`,
+ADD COLUMN `M2`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站旅游、留学、移民首页推荐  不推荐-0  推荐-1' AFTER `M1`,
+ADD COLUMN `M3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站专题页推荐  不推荐-0  推荐-1' AFTER `M2`;
+
+ALTER TABLE `caiji_tbl_immigration`
+ADD COLUMN `M1`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站首页推荐  不推荐-0  推荐-1' AFTER `PraiseNum`,
+ADD COLUMN `M2`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站旅游、留学、移民首页推荐  不推荐-0  推荐-1' AFTER `M1`,
+ADD COLUMN `M3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站专题页推荐  不推荐-0  推荐-1' AFTER `M2`;
+
+
+
+#2016-11-09(以下正式和测试数据库已经添加)
+ALTER TABLE `tour_product_line`
+ADD COLUMN `R4`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站跟团游页面推荐特价产品' AFTER `HasPushBaidu`,
+ADD COLUMN `S4`  tinyint(1) NOT NULL DEFAULT 0 AFTER `R4`,
+ADD COLUMN `R5`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站跟团游页面推荐热门产品' AFTER `S4`,
+ADD COLUMN `S5`  tinyint(1) NOT NULL DEFAULT 0 AFTER `R5`;
+
+#2016-11-10(以下正式和测试数据库已经添加)
+ALTER TABLE `tour_product_play_base`
+ADD COLUMN `R3`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站当地玩乐页面推荐特价产品' AFTER `HasPushBaidu`,
+ADD COLUMN `S3`  tinyint(1) NOT NULL DEFAULT 0 AFTER `R3`,
+ADD COLUMN `R4`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机站当地玩乐页面推荐热门产品' AFTER `S3`,
+ADD COLUMN `S4`  tinyint(1) NOT NULL DEFAULT 0 AFTER `R4`;
+
+//增加填写客户信息字段
+ALTER TABLE `tour_product_line`
+ADD COLUMN `IsNeedHotel`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否需要酒店信息  1-需要  0-不需要' AFTER `S5`,
+ADD COLUMN `IsNeedGiveAirport`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否需要接机信息  1-需要  0-不需要' AFTER `IsNeedHotel`,
+ADD COLUMN `IsNeedSendAirport`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否需要送机信息  1-需要  0-不需要' AFTER `IsNeedGiveAirport`;
+
+
+ALTER TABLE `tour_product_play_sku`
+ADD COLUMN `IsNeedHotel`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否需要酒店信息  1-需要  0-不需要' AFTER `IsClose`,
+ADD COLUMN `IsNeedGiveAirport`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否需要接机信息  1-需要  0-不需要' AFTER `IsNeedHotel`,
+ADD COLUMN `IsNeedSendAirport`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否需要送机信息  1-需要  0-不需要' AFTER `IsNeedGiveAirport`;
+

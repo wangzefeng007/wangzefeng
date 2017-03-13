@@ -1,0 +1,44 @@
+<div class="MtopBar">
+  <div class="w1200 cf">
+    <div class="fl">欢迎来到57美国网{if strpos('http://'.$_SERVER['HTTP_HOST'],WEB_STUDY_URL)!==false}留学平台!{elseif strpos('http://'.$_SERVER['HTTP_HOST'],WEB_MEMBER_URL)!==false}!{else}旅游平台!{/if}</div>
+    <div class="fr">|{if strpos('http://'.$_SERVER['HTTP_HOST'],WEB_STUDY_URL)!==false}<a href="{echo WEB_MAIN_URL}/about/studyzhiyin.html" target="_blank">帮助中心</a>{else}<a href="{echo WEB_MAIN_URL}/about/zhifu.html" target="_blank">帮助中心</a>{/if}</div>
+    {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
+    <div class="fr">
+      <div class="UserStatus fr">
+        <div class="UserLogin">
+          <div class="UserMain"> <a href="{echo WEB_MEMBER_URL}"> <img src="{echo WriteTopPicture($_SESSION['Avatar'])}"> <span id="" class="UserName">{$_SESSION[NickName]}</span> </a>
+            <div class="UserList">
+            	<b class="ico"></b>
+            	<div class="UserListM">
+            		<table border="0" cellspacing="0" cellpadding="0">
+	                <tbody>
+	                  <!--<tr>
+	                        <th width="80">全部订单</th>
+	                        <td><a href="">旅游订单</a><a href="">租车订单</a><a href="">酒店订单</a><a href="">签证订单</a></td>
+	                </tr>-->
+	                  <tr>
+	                    <th width="80">账户管理</th>
+	                    <td><a href="{echo WEB_MEMBER_URL}">个人中心</a><a href="{echo WEB_MEMBER_URL}/member/securitycenter/">安全中心</a><a href="{echo WEB_MEMBER_URL}/tourmember/address/">收货地址</a><a href="{echo WEB_MEMBER_URL}/member/signout/">安全退出</a></td>
+	                  </tr>
+	                </tbody>
+	              </table>
+            	</div>
+            </div>
+          </div>
+          {if strpos('http://'.$_SERVER['HTTP_HOST'],WEB_STUDY_URL)!==false}
+          <a id="" class="letter" href="{echo WEB_STUDY_URL}/messagelist/"></a>
+          {else}
+          <a id="" class="letter" href="{echo WEB_MEMBER_URL}/member/messagelist/"></a>
+          {/if}
+          <span id="">|</span><a href="{echo WEB_MEMBER_URL}/member/signout/">退出</a> </div>
+      </div>
+    </div>
+    {else}
+    <div class="fr">
+      <div class="UserStatus fr">
+        <div class="UserLogin"> <a href="{echo WEB_MEMBER_URL}/member/login/">登录</a><span id="">|</span> <a href="{echo WEB_MEMBER_URL}/member/register/">免费注册</a> </div>
+      </div>
+    </div>
+    {/if}
+  </div>
+</div>

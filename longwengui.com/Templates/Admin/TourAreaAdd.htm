@@ -1,0 +1,223 @@
+{template Head}
+
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.all.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="wrapper">
+  <div class="row">
+    <div class="col-md-12">
+      <!--breadcrumbs start -->
+      <ul class="breadcrumb panel">
+        <li>
+          <a href="#"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="#">旅游产品管理</a>
+        </li>
+        <li>
+          <a href="/index.php?Module=TourArea&Action=TourAreaList">地区管理</a>
+        </li>
+        <li class="active">编辑地区信息</li>
+      </ul>
+      <span class="position hidden">地区管理</span>
+      <!--breadcrumbs end -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
+          <form action='/index.php?Module=TourArea&Action=Add'  method='post'  enctype="multipart/form-data">
+            <table class="table table-bordered table-striped table-hover">
+              <tbody>
+              <tr>
+                <td colspan="2" class="t-h">
+                  地区基础信息
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r" style="width: 150px"> 父级区域：</td>
+                <td>
+                  <div class="col-sm-2">
+                    <select name="ParentID" id="ParentID" class="form-control" onchange="GetNewAreaID(this.value)">
+                      <option style="width:300px;"  value="{if $TourParent[CnName]}{$TourParent[AreaID]}{else}0{/if}">{if $TourParent[CnName]}{$TourParent[CnName]}{else}-- Top --{/if}</option>
+                      {loop $TourAreaLists $Lists}
+                      <option value="{$Lists[AreaID]}">{$Lists[CnName]} </option>
+                      {loop $Lists[Province] $PLists}
+                      <option value="{$PLists[AreaID]}">&nbsp;&nbsp;|- {$PLists[CnName]} </option>
+                      {loop $PLists[City] $CLists}
+                      <option value="{$CLists[AreaID]}">&nbsp;&nbsp;&nbsp;&nbsp;|--{$CLists[CnName]}</option>
+                      {/loop}
+                      {/loop}
+                      {/loop}
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">城市类别：</td>
+                <td>
+                  <div class="col-sm-2">
+                    <select class="form-control" name="CityCategory" id="CityCategory" onchange="GetNewAreaID(this.value)">
+                      {if isset($TourAreaDetails[CityCategory])}
+                      <option style="width:300px;"  value="0">其他地区</option>
+                      {elseif $TourAreaDetails[CityCategory] == 1}
+                      <option value="1"> 美东地区 </option>
+                      {elseif  $TourAreaDetails[CityCategory] == 2}
+                      <option value="2"> 美西地区 </option>
+                      {elseif  empty($TourAreaDetails[CityCategory])}
+                      <option  value="" style="width:300px;">-- Top --</option>
+                      {/if}
+                      <option style="width:300px;"  value="0">其他地区</option>
+                      <option value="1"> 美东地区 </option>
+                      <option value="2"> 美西地区 </option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">中文名：</td>
+                <td>
+                  <div class="col-sm-2">
+                    <input type="text" name="CnName" value="{$TourAreaDetails[CnName]}" class="form-control"/>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">英文名：</td>
+                <td>
+                  <div class="col-sm-2">
+                    <input type="text" name="EnName" value="{$TourAreaDetails[EnName]}" class="form-control"/>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">完整中文名：</td>
+                <td>
+                  <div class="col-sm-2">
+                    <input type="text" name="FullName" value="{$TourAreaDetails[FullName]}" class="form-control"/>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">英文缩写:</td>
+                <td>
+                  <div class="col-sm-2">
+                    <input type="text" name="ShorEnName" value="{$TourAreaDetails[ShorEnName]}" class="form-control"/>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">拼音:</td>
+                <td>
+                  <div class="col-sm-2">
+                    <input name="Alias" type="text" id="Alias" value="{$TourAreaDetails[Alias]}" class="form-control">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">描述:</td>
+                <td>
+                  <div class="col-sm-4">
+                    <textarea name="Description" rows="5" class="form-control">{$TourAreaDetails[Description]}</textarea>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered table-striped table-hover">
+              <tbody>
+              <tr>
+                <td colspan="2" class="t-h">高端定制设置</td>
+              </tr>
+              <tr>
+                <td class="t-r" style="width: 150px">地区图片:</td>
+                <td>
+                  <div class="col-sm-5" style="padding-top: 8px">
+                    <input type="file" name="Image[]"/>
+                    {if $TourAreaDetails[Image]}
+                    <a href="{echo LImageURL}{$TourAreaDetails[Image]}" target="_blank"><img src="{echo ImageURLP2}{$TourAreaDetails[Image]}"/></a>
+                    {/if}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="t-r">推荐选择：</td>
+                <td>
+                  <div class="col-sm-9 t-d">
+                    <input name="R2" type="checkbox" id="R2" value="1" {if $TourAreaDetails[R2]==1}checked="checked"{/if}>
+                    高端定制地区推荐
+                    <input type="text" name="S2" value="{if $TourAreaDetails[S2]}{$TourAreaDetails[S2]}{else}0{/if}">
+                    （注意：推荐后面跟随着本推荐排序，排序数值越高越靠前。）
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered table-striped table-hover">
+              <tbody>
+              <tr>
+                <td colspan="2" class="t-h">旅游主站推荐</td>
+              </tr>
+              <tr>
+                <td width="150" class="t-r">推荐选择：</td>
+                <td >
+                  <div class="col-sm-9 t-d">
+                    <input name="R1" type="checkbox" id="R1" value="1" {if $TourAreaDetails[R1]==1}checked="checked"{/if}>
+                    旅游首页地区推荐
+                    <input type="text" name="S1" value="{if $TourAreaDetails[S1]}{$TourAreaDetails[S1]}{else}0{/if}">
+                    <br>
+                    <input name="R3" type="checkbox" id="R3" value="1" {if $TourAreaDetails[R3]==1}checked="checked"{/if}>
+                    国内出发列表出发地目的地推荐
+                    <input type="text" name="S3" value="{if $TourAreaDetails[S3]}{$TourAreaDetails[S3]}{else}0{/if}">
+                    <br>
+                    <input name="R4" type="checkbox" id="R4" value="1" {if $TourAreaDetails[R4]==1}checked="checked"{/if}>
+                    当地玩乐列表出发地目的地推荐
+                    <input type="text" name="S4" value="{if $TourAreaDetails[S4]}{$TourAreaDetails[S4]}{else}0{/if}">
+                    <br>
+                    <input name="R5" type="checkbox" id="R5" value="1" {if $TourAreaDetails[R5]==1}checked="checked"{/if}>
+                    一日游列表出发地目的地推荐
+                    <input type="text" name="S5" value="{if $TourAreaDetails[S5]}{$TourAreaDetails[S5]}{else}0{/if}">
+                    <br>
+                    <input name="R6" type="checkbox" id="R6" value="1" {if $TourAreaDetails[R6]==1}checked="checked"{/if}>
+                    特色旅游列表出发地目的地推荐
+                    <input type="text" name="S6" value="{if $TourAreaDetails[S6]}{$TourAreaDetails[S6]}{else}0{/if}">
+                    <br>
+                    <input name="R7" type="checkbox" id="R7" value="1" {if $TourAreaDetails[R7]==1}checked="checked"{/if}>
+                    票务列表出发地目的地推荐
+                    <input type="text" name="S7" value="{if $TourAreaDetails[S7]}{$TourAreaDetails[S7]}{else}0{/if}">
+                    <br>
+                    <input name="R9" type="checkbox" id="R9" value="1" {if $TourAreaDetails[R9]==1}checked="checked"{/if}>
+                    WiFi出发地目的地推荐
+                    <input type="text" name="S9" value="{if $TourAreaDetails[S9]}{$TourAreaDetails[S9]}{else}0{/if}">
+                    <br>
+                    <input name="R10" type="checkbox" id="R10" value="1" {if $TourAreaDetails[R10]==1}checked="checked"{/if}>
+                    接送机出发地目的地推荐
+                    <input type="text" name="S10" value="{if $TourAreaDetails[S10]}{$TourAreaDetails[S10]}{else}0{/if}">
+                    <br>
+                    （注意：推荐后面跟随着本推荐排序，排序数值越高越靠前。）
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered table-striped table-hover">
+              <tbody>
+              <tr id="MaterialRequested">
+                <td width="150" class="t-h"></td>
+                <td>
+                  <div class="col-sm-2">
+                    <input type="hidden" name="AreaID" id="AreaID" value="{$TourAreaDetails[AreaID]}" />
+                    <input class="btn btn-danger" type='submit' name='submit' value='提交保存'/>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Foot}

@@ -1,0 +1,85 @@
+{template Head}
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="/index.php?Module=User&Action=UserLists">会员管理</a>
+                </li>
+                <span class="position hidden">会员管理</span>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel breadcrumb">
+                <div class="panel-body">
+                    <span style="float: left;line-height: 36px;margin-left: -10px;padding-right: 10px">用户ID：</span>
+                    <form class="form-inline" role="form" action="/index.php?Module=User&Action=UserLists" method="GET">
+                        <input type="text" class="form-control" name="Title" placeholder="用户ID" value="{$Title}" style="width:300px;">
+                        <input type="hidden" name="Module" value="User">
+                        <input type="hidden" name="Action" value="UserLists">
+                        <button class="btn btn-info">搜索</button>
+                    </form>
+                </div>
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr  align="center">
+                            <th>用户ID</th>
+                            <th>昵称</th>
+                            <th>真实姓名</th>
+                            <th>手机</th>
+                            <th>身份</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $Data[Data] $lists}
+                        <tr height="35" align="center">
+                            <td>{$lists[UserID]}</td>
+                            <td>{$lists[NickName]}</td>
+                            <td>{$lists[RealName]}</td>
+                            <td>{$lists[Mobile]}</td>
+                            <td>{$Identity[$lists[Identity]]}</td>
+                            <td>{$IdentityStatus[$lists[IdentityState]]}</td>
+                            <td>&nbsp;<a href="/index.php?Module=User&Action=UserDetail&UserID={$lists[UserID]}">详情</a>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                    <form action="/index.php?Module=User&Action=UserLists{$PageUrl}" method="POST">
+                        <div class="text-center">
+                            <ul class="pagination" data-id="{$Page}">
+                                <li><a href="/index.php?Module=User&Action=UserLists&Page=1{$PageUrl}">首页</a></li>
+                                {if $Previous}
+                                <li><a href="/index.php?Module=User&Action=UserLists&Page={$Previous}{$PageUrl}">上一页</a></li>
+                                {/if}
+                                {loop $Data[PageNums] $page}
+                                <li><a href="/index.php?ModuleUser&Action=UserLists&Page={$page}{$PageUrl}" {if $Page==$page}class="on"{/if}>{$page}</a></li>
+                                {/loop}
+                                {if $Next}
+                                <li><a href="/index.php?Module=User&Action=UserLists&Page={$Next}{$PageUrl}">下一页</a></li>
+                                {/if}
+                                <li><a href="/index.php?Module=User&Action=UserLists&Page={$Data[PageCount]}{$PageUrl}">尾页</a></li>
+                                <span style="line-height: 27px;margin-right: 10px">第{$Page}页&nbsp;&nbsp;共{$Data[PageCount]}页&nbsp;&nbsp;到<input type="text" name ='Page' value ='' style="width:30px;height: 27px;line-height: 27px;margin: 0px 8px 0px 8px">页</span>
+                                <button class="btn btn-info" style="background-color: #65CEA7;border-color: #65CEA7;color: #fff;">确定</button>
+                            </ul>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{template Foot}-->
+<script type="text/javascript" src="/Plugins/rili/calendar.js"></script>
