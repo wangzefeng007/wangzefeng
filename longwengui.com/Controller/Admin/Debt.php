@@ -1,7 +1,8 @@
 <?php
-
+/**
+ * @desc  债务信息管理
+ */
 class Debt {
-//债务信息
     public function __construct() {
         IsLogin();
     }
