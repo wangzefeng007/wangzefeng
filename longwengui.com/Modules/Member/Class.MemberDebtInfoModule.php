@@ -9,7 +9,7 @@ Class MemberDebtInfoModule extends CommonModule {
     public $TableName = 'member_debt_info';
 
     /**
-     * @desc 后台订单状态
+     * @desc 前台订单状态
      * @var array
      */
     public $NStatus = [
@@ -23,7 +23,7 @@ Class MemberDebtInfoModule extends CommonModule {
         '8' => '待审核',
     ];
     /**
-     * @desc 前台订单状态
+     * @desc 后台订单状态
      * @var array
      */
     public $Status = [
