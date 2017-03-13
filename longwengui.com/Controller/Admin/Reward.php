@@ -27,9 +27,17 @@ class Reward
           $MemberRewardInfoModule = new MemberRewardInfoModule();
         include template('RewardLists');
     }
+     /**
+     * @desc  悬赏信息详情
+     */
+    public function RewardDetail()
+    {
+          $MemberRewardInfoModule = new MemberRewardInfoModule();
+        include template('RewardLists');
+    }
 
     /**
-     * @desc  悬赏信息
+     * @desc  悬赏信息删除
      */
     public function Delete()
     {
