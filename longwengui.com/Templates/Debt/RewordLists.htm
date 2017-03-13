@@ -1,0 +1,154 @@
+{template Header}
+<link rel="stylesheet" href="../css/reword.css">
+<div class="reword">
+    <div class="wrap">
+        <div class="filt-parm">
+            <div class="line">
+                <span>悬赏方式 :</span>
+                <span class="sel" id="way_all">全部</span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="way" value="1">
+                    <i></i>
+                    找人
+                  </label>
+                </div>
+              </span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="way" value="2">
+                    <i></i>
+                    找财产
+                  </label>
+                </div>
+              </span>
+            </div>
+            <div class="line">
+                <span>催收地区 :</span>
+                <span class="sel" id="area_all">全部</span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1001">
+                    <i></i>
+                    北京市
+                  </label>
+                </div>
+              </span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1002">
+                    <i></i>
+                    上海市
+                  </label>
+                </div>
+              </span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1003">
+                    <i></i>
+                    深圳市
+                  </label>
+                </div>
+              </span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1004">
+                    <i></i>
+                    广州市
+                  </label>
+                </div>
+              </span>
+                <span>
+                <div class="m-checkbox">
+                  <label type="checkbox">
+                    <input type="checkbox" name="area" value="1005">
+                    <i></i>
+                    厦门市
+                  </label>
+                </div>
+              </span>
+                <!-- <span>其他城市<img src="../imgs/tri_arrow_down.png" alt=""></span> -->
+            </div>
+            <div class="search">
+                <span>债务搜索 :</span>
+                <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
+                <button type="button" id="btn_search" name="search">
+                    搜索
+                </button>
+                <div class="pub-wrap">
+                    <img src="../imgs/edit.png" alt="">
+                    <button type="button" name="pub">
+                        发布悬赏
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="alert-warn">
+            <img src="../imgs/a_warn.png" alt="">
+            <span>平台警告：平台不承担任何线索担保，请用户自己核实提供的信息是否属实!!!</span>
+        </div>
+        <div class="box-wrap" id="reword_info"></div>
+        <div class="pagination-wrap">
+            <div class="pagination fl-r" id="reword_page_pagination"></div>
+        </div>
+    </div>
+</div>
+<script id="reword_box" type="text/x-jquery-tmpl">
+        <div class="box">
+          <div class="content">
+            <div class="left">
+              <div class="main-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+              <div class="det-i"></div>
+            </div>
+            <div class="right">
+              <div class="line">
+                <div class="t">债务人姓名 : </div>
+                <div class="c">${DebtName}</div>
+              </div>
+              <div class="line">
+                <div class="t">债务人电话 : </div>
+                <div class="c">${DebtPhone}</div>
+              </div>
+              <div class="line">
+                <div class="t">债务人地区 : </div>
+                <div class="c">${Province}-${City}-${Area}</div>
+              </div>
+              <div class="line">
+                <div class="t">债务人身份证 : </div>
+                <div class="c">${DebtCard}</div>
+              </div>
+              <div class="line">
+                <div class="t">详细地址 : </div>
+                <div class="c">${Address}</div>
+              </div>
+              <div class="ower-contact">
+                <div class="t">
+                  债权人联系方式 :
+                </div>
+                <div class="c">
+                  ${CreditorsPhone}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{if Status == 4}}
+            <div class="done">
+              <img src="../imgs/done.png" alt="">
+            </div>
+          {{/if}}
+        </div>
+      </script>
+{template Footer}
+<script src='../js/reword.js'></script>
+

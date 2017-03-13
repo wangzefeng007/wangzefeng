@@ -402,9 +402,20 @@ template {
 [hidden] {
   display: none;
 }
+ol,
+ul,
+li {
+  list-style: none;
+}
 /**
   * common css
   */
+.icon-tri_arrow_down_b {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -141px -107px;
+  width: 14px;
+  height: 9px;
+}
 * {
   font-family: "微软雅黑", serif;
 }
@@ -610,9 +621,16 @@ template {
   margin-left: -10px;
 }
 .pagination {
-  min-width: 312px;
   line-height: 34px;
   height: 34px;
+}
+.pagination .s-elipse {
+  line-height: 36px;
+  float: left;
+  width: 24px;
+  color: #666;
+  text-align: center;
+  margin-right: 5px;
 }
 .pagination .b {
   cursor: pointer;
@@ -650,71 +668,108 @@ template {
 }
 .m-radio {
   vertical-align: middle;
-  position: relative;
   display: inline-block;
+  min-width: 20px;
+  height: 25px;
+  line-height: 20px;
+}
+.m-radio label i {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -2px;
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -107px -52px;
   width: 20px;
   height: 20px;
 }
-.m-radio input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  outline: 0;
-  cursor: pointer;
+.m-radio label input[type="radio"] {
+  display: none;
 }
-.m-radio input[type="radio"] {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: -1px;
-  left: 0;
+.m-radio label input[type="radio"]:checked + i {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -82px -52px;
   width: 20px;
   height: 20px;
-  background: url('http://www.longwengui.net/Uploads/Debt/imgs/radio_off.png') 0 no-repeat;
-}
-.m-radio input[type="radio"]:checked {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: url('http://www.longwengui.net/Uploads/Debt/imgs/radio_on.png') 0 no-repeat;
 }
 .m-checkbox {
   vertical-align: middle;
-  position: relative;
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  height: 25px;
+  line-height: 20px;
 }
-.m-checkbox input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  outline: 0;
+.m-checkbox label i {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -2px;
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -41px -109px;
+  width: 16px;
+  height: 16px;
+}
+.m-checkbox label input[type="checkbox"] {
+  display: none;
+}
+.m-checkbox label input[type="checkbox"]:checked + i {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -20px -109px;
+  width: 16px;
+  height: 16px;
+}
+.m-dropdown {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #94dafb;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.m-dropdown label {
+  color: #a9a9a9;
+}
+.m-dropdown label i {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  float: right;
+  margin-top: 17px;
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -141px -107px;
+  width: 14px;
+  height: 9px;
+}
+.m-dropdown label input[type="checkbox"] {
+  display: none;
+}
+.m-dropdown label ul {
+  display: none;
+  width: 140px;
+  position: absolute;
+  top: 44px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  text-align: center;
+  background-color: #f5f5f5;
+  overflow-y: scroll;
+  height: 300px;
+  border: 1px solid #94dafb;
+}
+.m-dropdown label ul li {
+  line-height: 30px;
   cursor: pointer;
 }
-.m-checkbox input[type="checkbox"] {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: -2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background: url('http://www.longwengui.net/Uploads/Debt/imgs/cb_off.png') 0 no-repeat;
+.m-dropdown label ul li:hover {
+  background-color: #e5e5e5;
 }
-.m-checkbox input[type="checkbox"]:checked {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: -2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background: url('http://www.longwengui.net/Uploads/Debt/imgs/cb_on.png') 0 no-repeat;
+.m-dropdown label input[type="checkbox"]:checked + ul {
+  display: block;
 }
 .pop-login {
   position: fixed;

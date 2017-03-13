@@ -79,7 +79,7 @@ class Reward
             $ID = intval($_POST['ID']);
             $result = $MemberRewardInfoModule->UpdateInfoByWhere($Data, ' ID= ' . $ID);
             if ($result) {
-                alertandgotopage('操作成功!', '/index.php?Module=Reward&Action=RewardDetail&UserID=' . $ID);
+                alertandgotopage('操作成功!', '/index.php?Module=Reward&Action=RewardDetail&ID=' . $ID);
             } elseif ($result === 0) {
                 alertandback('状态未发生改变!');
             } else {
