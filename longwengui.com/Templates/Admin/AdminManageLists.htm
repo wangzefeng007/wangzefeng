@@ -45,7 +45,7 @@
             <tr height="35" align="center">
               <td nowrap="nowrap" width="20px">{$lists[AdminID]}</td>
               <td nowrap="nowrap" width="50px">{$lists[AdminName]}</td>
-              <td nowrap="nowrap" width="100px">{if $lists[GroupID]==2}普通管理员{else}无{/if}</td>
+              <td nowrap="nowrap" width="100px">{if $lists[GroupID]==1}普通管理员{else}无{/if}</td>
               <td nowrap="nowrap" width="100px">{$lists[LastLogin]}</td>
               <td nowrap="nowrap" width="100px">{$lists[LoginIP]}</td>
               <td nowrap="nowrap" width="50px"><a href="/index.php?Module=AdminManage&Action=AddAdmin&ID={$lists[AdminID]}">修改</a>&nbsp;&nbsp;&nbsp; <a href="/index.php?Module=AdminManage&Action=DelAdmin&ID={$lists[AdminID]}" onclick="return confirm('确定要删除该管理员？');">删除</a>&nbsp;&nbsp;&nbsp;

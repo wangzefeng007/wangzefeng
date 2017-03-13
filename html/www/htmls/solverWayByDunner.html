@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="描述">
+    <meta name="keywords" content="催收平台,催收系统，债务清算,债务追讨,欠款催收,债务案源">
+    <title>隆文贵</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/solverWayByDunner.css">
+    <!--[if (gte IE 6)&(lte IE 8)]>
+      <script type="text/javascript" src="../js/selectivizr.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <div class="top">
+        <div class="wrap">
+          <span>您好 , 欢迎访问 隆文贵 ！</span>
+          <span>服务热线 : 13960658585</span>
+          <span onclick="go('./login.html')">登录</span>
+          <span onclick="go('./reg.html')">注册</span>
+        </div>
+      </div>
+      <div class="header">
+        <div class="wrap">
+          <a href="./index.html"><img src="../imgs/logo.png" alt=""></a>
+          <div class="nav-wrap">
+            <a href="./index.html"><li>首页</li></a>
+            <a href="./collection.html"><li>债务催收</li></a>
+            <a href="./debtTrans.html"><li>债权转让</li></a>
+            <a href="./reword.html"><li>线索悬赏</li></a>
+            <a href="./solver.html"><li class="nav-active">寻找处置方</li></a>
+            <a href="./debtorSearch.html"><li>查询老赖</li></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="wayByDunner">
+        <div class="wrap">
+          <div class="current-loc">
+            <img src="../imgs/current_loc.png" alt="">
+            <span>当前位置 : <a href="./solver.html">寻找处置方</a> > 催收团队</span>
+          </div>
+          <div class="form-wrap">
+            <div class="box">
+              <div class="t">
+                <img src="../imgs/user.png" alt="">
+                <span>债权人信息</span>
+                <div class="opt">
+                  <img src="../imgs/add_b.png" alt="">
+                  添加
+                </div>
+              </div>
+
+              <div class="c">
+                <div class="blo">
+                  <div class="line">
+                    <div class="info">
+                      债权人信息 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="name" placeholder="*姓名">
+                      <input type="text" name="idNum" placeholder="身份证号">
+                      <input type="text" name="phoneNumber" placeholder="联系电话">
+                    </div>
+                  </div>
+                  <div class="line">
+                    <div class="info">
+                      债权人地区 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="province" placeholder="*所在省份">
+                      <input type="text" name="city" placeholder="*所在城市">
+                      <input type="text" name="county" placeholder="*所在区县/市">
+                    </div>
+                  </div>
+                  <div class="line">
+                    <div class="info">
+                      债权金额 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="debt_money" placeholder="请输入债权金额">元
+                    </div>
+                  </div>
+                </div>
+
+                <div class="blo">
+                  <div class="line">
+                    <div class="info">
+                      债权人信息 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="name" placeholder="*姓名">
+                      <input type="text" name="idNum" placeholder="身份证号">
+                      <input type="text" name="phoneNumber" placeholder="联系电话">
+                    </div>
+                  </div>
+                  <div class="line">
+                    <div class="info">
+                      债权人地区 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="province" placeholder="*所在省份">
+                      <input type="text" name="city" placeholder="*所在城市">
+                      <input type="text" name="county" placeholder="*所在区县/市">
+                    </div>
+                  </div>
+                  <div class="line">
+                    <div class="info">
+                      债权金额 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="debt_money" placeholder="请输入债权金额">元
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="t">
+                <img src="../imgs/to_sel.png" alt="">
+                <span>是否有前期费用 : </span>
+                <div class="m-radio ml-10">
+                  <label type="radio">
+                    <input type="radio" name="fee" value="1" checked>
+                    <i></i>
+                    是
+                  </label>
+                </div>
+                <div class="m-radio ml-10">
+                  <label type="radio">
+                    <input type="radio" name="fee" value="1">
+                    <i></i>
+                    否
+                  </label>
+                </div>
+              </div>
+
+              <div class="c pb-30"></div>
+            </div>
+
+            <div class="box">
+              <div class="t">
+                <img src="../imgs/user.png" alt="">
+                <span>债务人基本信息</span>
+                <div class="opt">
+                  <img src="../imgs/add_b.png" alt="">
+                  添加
+                </div>
+              </div>
+
+              <div class="c">
+                <div class="blo">
+                  <div class="line">
+                    <div class="info">
+                      债务人信息 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="name" placeholder="*姓名">
+                      <input type="text" name="idNum" placeholder="身份证号">
+                      <input type="text" name="phoneNumber" placeholder="联系电话">
+                    </div>
+                  </div>
+                  <div class="line">
+                    <div class="info">
+                      债务人地区 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="province" placeholder="*所在省份">
+                      <input type="text" name="city" placeholder="*所在城市">
+                      <input type="text" name="county" placeholder="*所在区县/市">
+                    </div>
+                  </div>
+                  <div class="line">
+                    <div class="info">
+                      债权金额 :
+                    </div>
+                    <div class="details">
+                      <input type="text" name="debt_money" placeholder="请输入债权金额">元
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="t">
+                <img src="../imgs/to_sel.png" alt="">
+                <span>债务人是否随时能寻找到 : </span>
+                <div class="m-radio ml-10">
+                  <label type="radio">
+                    <input type="radio" name="searchedAnytime" value="1" checked>
+                    <i></i>
+                    是
+                  </label>
+                </div>
+                <div class="m-radio ml-10">
+                  <label type="radio">
+                    <input type="radio" name="searchedAnytime" value="1">
+                    <i></i>
+                    否
+                  </label>
+                </div>
+              </div>
+              <div class="c"></div>
+
+              <div class="t">
+                <img src="../imgs/to_sel.png" alt="">
+                <span>债务人是否有还款能力 : </span>
+                <div class="m-radio ml-10">
+                  <label type="radio">
+                    <input type="radio" name="abilityDebt" value="1" checked>
+                    <i></i>
+                    是
+                  </label>
+                </div>
+                <div class="m-radio ml-10">
+                  <label type="radio">
+                    <input type="radio" name="abilityDebt" value="1">
+                    <i></i>
+                    否
+                  </label>
+                </div>
+              </div>
+              <div class="c"></div>
+
+              <div class="t">
+                <img src="../imgs/gou_b.png" alt="">
+                <span>有保证人</span>
+                <div class="opt">
+                  <img src="../imgs/add_b.png" alt="">
+                  添加
+                </div>
+              </div>
+              <div class="c">
+                <div class="c">
+                  <div class="blo">
+                    <div class="line">
+                      <div class="info">
+                        保证人信息 :
+                      </div>
+                      <div class="m-dropdown">
+                        <span>个人</span>
+                        <img src="../imgs/tri_arrow_bl.png" alt="">
+                      </div>
+                      <div class="details">
+                        <input type="text" name="name" placeholder="保证人名称">
+                        <input type="text" name="idNum" placeholder="身份证号">
+                        <input type="text" name="phoneNumber" placeholder="联系方式">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="t">
+                <img src="../imgs/gou_b.png" alt="">
+                <span>有保证物</span>
+                <div class="opt">
+                  <img src="../imgs/add_b.png" alt="">
+                  添加
+                </div>
+              </div>
+              <div class="c">
+                <div class="c">
+                  <div class="blo">
+                    <div class="line">
+                      <div class="info">
+                        保证物信息 :
+                      </div>
+                      <div class="details">
+                        <input type="text" name="name" placeholder="保证物名称">
+                      </div>
+                    </div>
+                    <div class="line">
+                      <div class="info"></div>
+                      <div class="details">
+                        <textarea name="good_detail" rows="8" cols="80" placeholder="保证物详情(最多可输入150字)"></textarea>
+                      </div>
+                    </div>
+                    <div class="comfirm-btns">
+                      <button type="button" name="button">开始匹配</button>
+                      <button type="button" name="button">重置</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="t">
+                <img src="../imgs/info.png" alt="">
+                <span>处置方信息</span>
+                <span class="fl-r c-warn">
+                  <img src="../imgs/info_red.png" alt="">
+                  注：申请处置方不能超过3个
+                </span>
+              </div>
+
+              <div class="c">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>名称</th>
+                        <th>地区</th>
+                        <th>佣金</th>
+                        <th>联系方式</th>
+                        <th>提交申请</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>厦门雄鸡催收公司</td>
+                        <td>福建省-厦门市-思明区</td>
+                        <td>10%</td>
+                        <td>1352465****</td>
+                        <td>
+                          <button type="button" name="button">申请</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>厦门雄鸡催收公司</td>
+                        <td>福建省-厦门市-思明区</td>
+                        <td>10%</td>
+                        <td>1352465****</td>
+                        <td>
+                          <button type="button" name="button">申请</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>厦门雄鸡催收公司</td>
+                        <td>福建省-厦门市-思明区</td>
+                        <td>10%</td>
+                        <td>1352465****</td>
+                        <td>
+                          <button type="button" name="button">申请</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination-wrap">
+                  <div class="pagination fl-r">
+                    <div class="b">首页</div>
+                    <div class="b"><</div>
+                    <div class="b sel">1</div>
+                    <div class="b">2</div>
+                    <div class="b">3</div>
+                    <div class="b">4</div>
+                    <div class="b">5</div>
+                    <div class="b">></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="wrap">
+          <div class="content">
+            <div class="b1">
+              <p>联系我们</p>
+              <div class="c">
+                <img src="../imgs/hot_line.png" alt="">
+                <p>服务热线：</p>
+                <p>13960658585</p>
+              </div>
+            </div>
+            <div class="b2">
+              <div class="c">
+                <img src="../imgs/email.png" alt="">
+                <p>电子邮件：</p>
+                <p>904732986@qq.com</p>
+              </div>
+            </div>
+            <div class="coop">
+              <p>商务合作</p>
+              <div class="c">
+                <img src="../imgs/phone.png" alt="">
+                <p>联系电话：</p>
+                <p>13960658585</p>
+              </div>
+            </div>
+            <div class="wetchat-img">
+              <img src="../imgs/wximg.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copy-right">
+        <div class="wrap">
+          <span>版权所有：隆文贵 Copyright2017</span>
+          <span>闽ICP备16032488号-1</span>
+          <img src="../imgs/copyRight.png" alt="">
+        </div>
+      </div>
+      <script src='../lib/jquery/jquery.min.js'></script>
+      <script src='../js/common.js'></script>
+  </body>
+</html>

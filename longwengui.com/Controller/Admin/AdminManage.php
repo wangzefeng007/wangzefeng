@@ -22,7 +22,7 @@ class AdminManage
         $Page = intval($_GET['Page']);
         $Page = $Page ? $Page : 1;
         $PageSize = 20;
-        $MysqlWhere = " and AdminName like '%$Keywords%' and GroupID=2 order by AdminID asc";
+        $MysqlWhere = " and AdminName like '%$Keywords%' and GroupID=1 order by AdminID asc";
         $Rscount = $AdminModule->GetListsNum($MysqlWhere);
         if ($Rscount ['Num']) {
             $Data = array();
@@ -49,7 +49,7 @@ class AdminManage
         if (empty($_POST)) {
             $AdminID = intval($_GET['ID']);
             if ($AdminID) {
-                $AdminInfo = $AdminModule->GetInfoByWhere(" and AdminID=$AdminID and GroupID=2");
+                $AdminInfo = $AdminModule->GetInfoByWhere(" and AdminID=$AdminID and GroupID=1");
             }
             include template('AdminManageAddAdmin');
         } else {
@@ -71,7 +71,7 @@ class AdminManage
                     alertandgotopage("账号已经存在", WEB_ADMIN_URL . '/index.php?Module=AdminManage&Action=Lists');
                     exit;
                 } else {
-                    $Data['GroupID'] = 2;
+                    $Data['GroupID'] = 1;
                     $Data['LastLogin'] = date('Y-m-d H:i:s');
                     $result = $AdminModule->InsertInfo($Data);
                 }
@@ -91,7 +91,7 @@ class AdminManage
     {
         $AdminModule = new MemberAdminModule();
         $AdminID = intval($_GET['ID']);
-        $result = $AdminModule->DeleteByWhere(" and AdminID=$AdminID and GroupID=2");
+        $result = $AdminModule->DeleteByWhere(" and AdminID=$AdminID and GroupID=1");
         if ($result) {
             alertandgotopage("删除成功", $_SERVER['HTTP_REFERER']);
         } else {
