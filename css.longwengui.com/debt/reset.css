@@ -1,3 +1,9 @@
+.icon-tri_arrow_down_b {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -141px -107px;
+  width: 14px;
+  height: 9px;
+}
 .reset .form-reset {
   width: 464px;
   height: 432px;
