@@ -1,0 +1,78 @@
+{template Header}
+<link rel="stylesheet" href="../css/debtorSearch.css">
+<div class="debtorSearch">
+    <div class="wrap">
+        <div class="sercher">
+            <div class="left">
+                <div class="line">
+                    <input type="text" id="keyword" placeholder="*名字/名称">
+                    <div class="m-dropdown">
+                        <label type="checked">
+                            <span id="area_sel">全国</span>
+                            <i></i>
+                            <input type="checkbox" name="area" value="">
+                            <ul>
+                                <li data-name="">全国</li>
+                                <li data-name="北京">北京</li>
+                                <li data-name="天津">天津</li>
+                                <li data-name="河北">河北</li>
+                                <li data-name="山西">山西</li>
+                                <li data-name="内蒙古">内蒙古</li>
+                                <li data-name="吉林">吉林</li>
+                                <li data-name="黑龙江">黑龙江</li>
+                                <li data-name="上海">上海</li>
+                                <li data-name="江苏">江苏</li>
+                                <li data-name="浙江">浙江</li>
+                                <li data-name="安徽">安徽</li>
+                                <li data-name="福建">福建</li>
+                                <li data-name="江西">江西</li>
+                                <li data-name="山东">山东</li>
+                                <li data-name="河北">河北</li>
+                                <li data-name="湖北">湖北</li>
+                                <li data-name="湖南">湖南</li>
+                                <li data-name="广东">广东</li>
+                                <li data-name="广西">广西</li>
+                                <li data-name="海南">海南</li>
+                                <li data-name="重庆">重庆</li>
+                                <li data-name="四川">四川</li>
+                                <li data-name="贵州">贵州</li>
+                                <li data-name="云南">云南</li>
+                                <li data-name="西藏">西藏</li>
+                                <li data-name="陕西">陕西</li>
+                                <li data-name="甘肃">甘肃</li>
+                                <li data-name="青海">青海</li>
+                                <li data-name="宁夏">宁夏</li>
+                                <li data-name="新疆">新疆</li>
+                                <li data-name="香港">香港</li>
+                                <li data-name="澳门">澳门</li>
+                                <li data-name="台湾">台湾</li>
+                            </ul>
+                        </label>
+                    </div>
+                </div>
+                <div class="line">
+                    <input type="text" id="id_num" placeholder="身份证号/组织机构代码">
+                </div>
+            </div>
+            <div class="right">
+                <button type="button" id="search">搜索</button>
+            </div>
+        </div>
+        <div class="map">
+            <img src="../imgs/map.png" alt="">
+        </div>
+        <div class="result">
+            <div class="current-loc">
+                <img src="../imgs/current_loc.png" alt="">
+                <span>当前位置 : 查询老赖 > <span class="cur">查询结果列表</span></span>
+            </div>
+            <div class="tbl-wrap" id="result">
+            </div>
+        </div>
+        <div class="pagination-wrap">
+            <div class="pagination fl-r" id="search_result_pagination"></div>
+        </div>
+    </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/debtorSearch.js'></script>
