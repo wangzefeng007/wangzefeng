@@ -1,0 +1,214 @@
+<?php
+/*
+ NL's Template Compiler 2.0.0(necylus@126.com)
+compiled from Index.htm on 2017-03-13 17:21:10
+*/
+?><?php include template('Header'); ?><div class="bk-1">
+    <img src="/Uploads/Debt/imgs/b1.png" alt="">
+</div>
+<div class="pop-login" style="display:none;">
+    <div class="form-login">
+        <div class="hd">
+            会员登录
+        </div>
+        <div class="cont">
+            <div class="line">
+                <div class="info">
+                    手机
+                </div>
+                <div class="det">
+                    <input type="text" name="" class="input-1" placeholder="请输入您的手机号">
+                </div>
+            </div>
+            <div class="line">
+                <div class="info">
+                    密码
+                </div>
+                <div class="det">
+                    <input type="text" name="" class="input-1" placeholder="请输入密码">
+                </div>
+                <!-- <div class="error-hint">
+                  您输入的验证码有误！
+                </div> -->
+            </div>
+            <div class="forget-pass">
+                <span>忘记密码？</span>
+            </div>
+            <div class="line">
+                <div class="info">
+                </div>
+                <div class="det">
+                    <button type="button" class="btn-login" name="button">登 录</button>
+                </div>
+            </div>
+            <div class="hav">
+                还没有账号 <span>立即注册</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index">
+    <div class="block bc-fff">
+        <div class="wrap">
+            <div class="block-t">
+                <div class="line"></div>
+                <div class="t-wrap">
+                    <span>核心业务</span><br><span>Core Business</span>
+                </div>
+                <div class="line"></div>
+            </div>
+            <div class="func-wrap">
+                <div class="func-content">
+                    <div class="img-wrap">
+                        <img src="/Uploads/Debt/imgs/func1.png" alt="">
+                    </div>
+                    <br><span>债务催收</span>
+                </div>
+                <div class="func-content">
+                    <div class="img-wrap">
+                        <img src="/Uploads/Debt/imgs/func2.png" alt="">
+                    </div>
+                    <br><span>债权转让</span>
+                </div>
+                <div class="func-content">
+                    <div class="img-wrap">
+                        <img src="/Uploads/Debt/imgs/func3.png" alt="">
+                    </div>
+                    <br><span>线索悬赏</span>
+                </div>
+                <div class="func-content">
+                    <div class="img-wrap">
+                        <img src="/Uploads/Debt/imgs/func4.png" alt="">
+                    </div>
+                    <br><span>寻找处置方</span>
+                </div>
+                <div class="func-content">
+                    <div class="img-wrap">
+                        <img src="/Uploads/Debt/imgs/func5.png" alt="">
+                    </div>
+                    <br><span>老赖查询</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block bc-f5">
+        <div class="wrap">
+            <div class="func-1">
+                <div class="left">
+                    <p>债务催收</p>
+                    <p>平台提供自助催收和委托催收。</p>
+                    <p>1.自助催收：通过电话催收和把债务人信息推送给各大金融机构等对</p>
+                    <p>债务人形成巨大的心理压力（建议金额1万以下）</p>
+                    <p>2.委托催收：用户先选择律师或催收团队然后发布债务，律师或催收</p>
+                    <p>团队会提出自己的优势和报价，由用户自己选择其中一家进行处置。</p>
+                    <div class="btn-more">
+                        <div class="btn">
+                            查看更多>>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <img src="/Uploads/Debt/imgs/func1_process.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block bc-fff">
+        <div class="wrap">
+            <div class="func-2">
+                <div class="left">
+                    <img src="/Uploads/Debt/imgs/func5_logo.png" alt="">
+                </div>
+                <div class="right">
+                    <p>债权转让</p>
+                    <p>债权人和债务人达成协议，由债权人发布债务人名下资</p>
+                    <p>产或名下公司股权进行打折出售，让出部分利益，实现</p>
+                    <p>快速回笼资金。</p>
+                    <div class="btn-more">
+                        <div class="btn">
+                            查看更多>>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block bc-f5">
+        <div class="wrap">
+            <div class="func-1">
+                <div class="left">
+                    <p>线索悬赏</p>
+                    <p>债务人失去联系或者隐藏其名下财产，通过我们平台发</p>
+                    <p>布悬赏，由数万催客来帮助您一起寻找债务人或者其名</p>
+                    <p>下财产。</p>
+                    <div class="btn-more">
+                        <div class="btn">
+                            查看更多>>
+                        </div>
+                    </div>
+                </div>
+                <div class="right tx-l">
+                    <img src="/Uploads/Debt/imgs/func2_logo.png" class="pl-130" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block bc-fff">
+        <div class="wrap">
+            <div class="func-2">
+                <div class="left">
+                    <img src="/Uploads/Debt/imgs/func3_logo.png" alt="">
+                </div>
+                <div class="right">
+                    <p>寻找处置方</p>
+                    <p>用户先选择律师或催收团队，然后匹配处置方，</p>
+                    <p>由债权人向匹配后的处置方进行申请处置。</p>
+                    <div class="btn-more">
+                        <div class="btn">
+                            查看更多>>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block bc-f5">
+        <div class="wrap">
+            <div class="func-1">
+                <div class="left">
+                    <p>老赖查询</p>
+                    <p>通过身份证手机号，查询借款人是否有不良信息</p>
+                    <p>记录，让更多的老赖无钱可借。</p>
+                    <div class="btn-more">
+                        <div class="btn">
+                            查看更多>>
+                        </div>
+                    </div>
+                </div>
+                <div class="right tx-l">
+                    <img src="/Uploads/Debt/imgs/func4_logo.png" class="pl-130" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block-about">
+    <div class="wrap">
+        <div class="block-t">
+            <div class="line"></div>
+            <div class="t-wrap">
+                <span>关于我们</span><br><span>About Us</span>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="about-us">
+            <div class="left">
+                <img src="/Uploads/Debt/imgs/about_us.png" alt="">
+            </div>
+            <div class="right">
+                <p>隆文贵是国内首家不良资产处置服务平台，通过互联网和大数据，为委托方和处置方提供一站式不良资产处置撮合服务，并提供更多优质服务和产品提高回款率，快速建立品牌效应。</p>
+                <p>我们的宗旨是让不良资产处置变得简单。让不良资产处置标准化、高效化、系统化，成为不良资产接盘侠和终结者、互联网金融的“安全卫士”，打造资产处置服务第一品牌。我们愿与全国的银行、P2P、消费金融、小额信贷等金融信贷企业和专业处置服务公司、资产管理服务公司、有处置服务的律师事务所等处置服务机构，携手合作、开启共赢！</p>
+            </div>
+        </div>
+    </div>
+</div><?php include template('Footer'); ?>

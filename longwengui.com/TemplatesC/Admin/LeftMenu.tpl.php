@@ -1,0 +1,85 @@
+<?php
+/*
+ NL's Template Compiler 2.0.0(necylus@126.com)
+compiled from LeftMenu.htm on 2017-03-13 17:22:07
+*/
+?><!-- 左边 start-->
+<div class="left-side sticky-left-side">
+
+    <!--logo srtat-->
+    <div class="logo">
+        <a href="index.html"><img src="/Templates/Admin//Images/Admin/logo.png" alt=""></a>
+    </div>
+
+    <div class="logo-icon text-center">
+        <a href="index.html"><img src="/Templates/Admin//Images/Admin/logo_icon.png" alt=""></a>
+    </div>
+    <!--logo end-->
+
+    <div class="left-side-inner">
+
+        <!-- 可见的小型设备 -->
+        <div class="visible-xs hidden-sm hidden-md hidden-lg">
+            <div class="media logged-user">
+                <img alt="" src="/Templates/Admin//Images/Admin/photos/" class="media-object">
+                <div class="media-body">
+                    <h4><a href="javascript:void(0)">Aministrator</a></h4>
+                    <span>"Hello There..."</span>
+                </div>
+            </div>
+
+            <h5 class="left-nav-title">Account Information</h5>
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="#"><i class="fa fa-user"></i> <span>个人资料</span></a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
+                <li><a href="#"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+            </ul>
+        </div>
+        <!--侧边栏导航 start-->
+        <ul class="nav nav-pills nav-stacked custom-nav">
+            <li class="menu-list "><a href="index.html"><i class="fa fa-usd"></i> <span>债务信息管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=Debt&Action=DebtLists">债务管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href=""><i class="fa fa-gavel"></i> <span>债权转让管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=AssetTransfer&Action=AssetTransferLists">资产转让管理</a></li>
+                    <li><a href="/index.php?Module=EquityTransfer&Action=EquityTransferLists">股权转让管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href=""><i class="fa fa-rmb"></i> <span>悬赏信息管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=Reward&Action=RewardLists">悬赏列表</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href=""><i class="fa fa-tags"></i> <span>寻找处置方管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=DisposalMatch&Action=DisposalMatchLists">处置方匹配管理</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-list"><a href=""><i class="fa fa-user"></i> <span>会员中心管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=User&Action=UserLists">会员管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href=""><i class="fa fa-users"></i> <span>代理信息管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=Proxy&Action=ProxyLists">代理管理</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href=""><i class="fa fa-phone-square"></i> <span>投诉中心管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceLists">投诉建议管理</a></li>
+                </ul>
+            </li>
+            <?php if($_SESSION[AdminGroup]==1) { ?>            <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>管理员管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/index.php?Module=AdminManage&Action=Lists">管理员列表</a></li>
+                </ul>
+            </li>
+            <?php } ?>        </ul>
+        <!--侧边栏导航  end-->
+    </div>
+</div>
