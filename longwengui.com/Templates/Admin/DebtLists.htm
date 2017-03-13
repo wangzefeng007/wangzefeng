@@ -27,12 +27,12 @@
 						当前状态：
 						<select name="Status" id="Status"  class="form-control">
 							<option style="width:100px;"  value="{$Status}">{if !$StatusInfo[$Status]}请选择状态{else}{$StatusInfo[$Status]}{/if}</option>
-                                                        <option  value="">全部</option>
-                                                        {loop $StatusInfo $key $value}
-                                                        <option  value="{$key}">{$value}</option>
-                                                        {/loop}
-                                                </select>
-                                                <button class="btn btn-info">搜索</button>
+							<option  value="">全部</option>
+							{loop $StatusInfo $key $value}
+							<option  value="{$key}">{$value}</option>
+							{/loop}
+						</select>
+						<button class="btn btn-info">搜索</button>
 					</form>
 				</div>
 				<section id="unseen">
