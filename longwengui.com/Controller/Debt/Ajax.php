@@ -102,56 +102,32 @@ class Ajax
         EchoResult($Data);
     }
     public function GetMysqlWhere($Intention = ''){
+        $MemberAreaModule = new MemberAreaModule();
         if ($Intention=='GetDebtList'){
             $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
-            $AP = $_POST['AP']; //AP数量
-            if($AP[0]!='All'){
-                $MysqlWhere.=' and (';
-                foreach($AP as $val){
-                    if ($val=='0-10'){
-                        $MysqlWhere .='(AP<= 10) or ';
-                    }elseif ($val=='10-15'){
-                        $MysqlWhere .='(AP >= 10 and AP <= 15) or ';
-                    }elseif ($val=='15-20'){
-                        $MysqlWhere .='(AP >= 15 and AP <= 20) or ';
-                    }elseif ($val=='20-All'){
-                        $MysqlWhere .='(AP >= 20) or ';
-                    }
-                }
-                $MysqlWhere=rtrim($MysqlWhere,' or ').')';
+            col_way:["1","2"]
+col_area:["1002","1003"]
+col_money:["3-10","10-50","50-100"]
+col_day:["61-180","181-365","1096-All"]
+Page:1
+Keyword:EWR
+            $Type = $_POST['col_way']; //催收方式
+            if($Type[0]!=''){
+                $MysqlWhere ='';
             }
-            $AnnualCost = $_POST['AnnualCost'];//天数
-            if($AnnualCost[0]!='All'){
-                $MysqlWhere.=' and (';
-                foreach($AnnualCost as $val){
-                    if ($val=='0-30000'){
-                        $MysqlWhere .='(Cost<= 30000) or ';
-                    }elseif ($val=='30000-40000'){
-                        $MysqlWhere .='(Cost >= 30000 and Cost <= 40000) or ';
-                    }elseif ($val=='40000-50000'){
-                        $MysqlWhere .='(Cost >= 40000 and Cost <= 50000) or ';
-                    }elseif ($val=='50000-All'){
-                        $MysqlWhere .='(Cost >= 50000) or ';
-                    }
-                }
-                $MysqlWhere=rtrim($MysqlWhere,' or ').')';
+            $Area = $_POST['col_area']; //催收地区
+            if($Area[0]!=''){
+            foreach ($Area as $value){
+                $MemberAreaModule->GetInfoByKeyID($value);
             }
-            $AccommodationMode = $_POST['AccommodationMode'];//住宿方式
-            if($AccommodationMode[0]!='All'){
-                $MysqlWhere.=' and (';
-                foreach($AccommodationMode as $val){
-                    if ($val ==1){
-                        $Stay='寄宿家庭';
+            }
 
-                    }elseif ($val ==2){
-                        $Stay='学校宿舍';
-                    }elseif($val ==3){
-                        $Stay='两者都提供';
-                    }
-                    $MysqlWhere .="Stay ='$Stay' or ";
-                }
-                $MysqlWhere=rtrim($MysqlWhere,' or ').')';
+            $Money = $_POST['col_money'];//催收金额
+            if($Money[0]!=''){
+            }
+            $Day = $_POST['col_day'];//催收天数
+            if($Day[0]!=''){
             }
 
             $Location = $_POST['Location'];
