@@ -919,3 +919,38 @@ li {
   color: #fff;
   cursor: pointer;
 }
+.layer-err {
+  border-radius: 5px;
+}
+.layer-err .hd {
+  background-color: #35bdfc;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+.layer-err .cont {
+  width: 300px;
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 70px;
+}
+.page-404 {
+  width: 100%;
+  margin-top: 150px;
+  text-align: center;
+  color: #666;
+}
+.page-404 .go-home {
+  margin-top: 40px;
+}
+.page-404 .go-home button {
+  min-width: 148px;
+  line-height: 50px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
