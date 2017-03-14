@@ -1,0 +1,76 @@
+{template Head}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">投诉中心管理</a>
+                </li>
+                <li>
+                    <a href="/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceDetail">投诉建议管理</a>
+                </li>
+                <li class="active" id="modify">投诉建议详情</li>
+            </ul>
+             <span class="position hidden">投诉建议管理</span>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <td colspan="3" class="t-h">投诉建议详情：</td>
+                        </tr>
+                        <tr>
+                            <td>用户ID：{$UserInfo[ID]}</td>
+                            <td>投诉人姓名：{$UserInfo[RewardNum]}</td>
+                             <td>身份：{$UserInfo[Address]}</td>
+                        </tr>
+                        <tr>
+                            <td>发布时间：{$UserInfo['AddTime']}</td>
+                            <td>投诉人证件号码：{$UserInfo[CreditorsPhone]}</td>
+                            <td>性别：{if $UserInfo[Type]==0}找人{elseif $UserInfo[Type]==1}找财产{/if}</td>
+                        </tr>
+                        <tr>
+                            <td>投诉人地区：{$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}</td>
+                            <td>详细地址：{$UserInfo[Address]}</td>
+                            <td>建议内容：{$UserInfo[Address]}</td>
+                           
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-striped table-hover">
+                        <form action='/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceDetail'  method='post'  enctype="multipart/form-data">
+                            <tbody>
+                            <tr>
+                                <td class="t-r" width="150">审核状态：</td>
+                                <td>
+                                    <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
+                                        <option value="1" {if $UserInfo[Status] == 1}selected="selected"{/if}>未提交审核</option>
+                                        <option value="2" {if $UserInfo[Status] == 2}selected="selected"{/if}>审核中</option>
+                                        <option value="3" {if $UserInfo[Status] == 3}selected="selected"{/if}>悬赏中</option>
+                                        <option value="4" {if $UserInfo[Status] == 4}selected="selected"{/if}>已完成</option>
+                                    </select>
+                                    <input type="hidden" name="ID" value="{$ID}" />
+                                    <input class="btn btn-danger" type="submit" name="submit" value="修改">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                    <tr>
+                        <td><a class="right" href="/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceLists">返回列表</a></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+<!--{template Foot}-->
+

@@ -16,6 +16,23 @@ class ComplaintAdvice
     public function  ComplaintAdviceDetail()
     {
         $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        if ($_POST['ID']) {
+            $Data['Status'] = intval($_POST['Status']);
+            $ID = intval($_POST['ID']);
+            $result = $MemberComplaintAdviceModule->UpdateInfoByWhere($Data, ' ID= ' . $ID);
+            if ($result) {
+                alertandgotopage('操作成功!', '/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceDetail&ID=' . $ID);
+            } elseif ($result === 0) {
+                alertandback('状态未发生改变!');
+            } else {
+                alertandback('操作失败!');
+            }
+        }
+        if ($_GET['ID']) {
+            $ID = $_GET['ID'];
+            $UserInfo = $MemberComplaintAdviceModule->GetInfoByKeyID($ID);
+            $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
+        }
         include template('ComplaintAdviceDetail');
     }
 
