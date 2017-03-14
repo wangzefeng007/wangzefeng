@@ -190,11 +190,41 @@
         <div class="table">
             <div class="t">催收列表分类 :</div>
             <div id="collection_info">
-
+                <table>
+                    <thead>
+                    <tr>
+                        <th>债务编号</th>
+                        <th>债务人名称</th>
+                        <th>债务地区</th>
+                        <th>债务金额</th>
+                        <th>逾期时间</th>
+                        <th>发布时间</th>
+                        <th>当前状态</th>
+                        <th>查看债务</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {loop $Data['Data'] $lists}
+                    <tr>
+                        <td>{$lists[DebtNum]}</td>
+                        <td>{$lists[Name]}</td>
+                        <td>{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</td>
+                        <td class="m-c">￥{$lists[DebtAmount]}</td>
+                        <td>{$lists[Overduetime]}</td>
+                        <td>{echo date("Y-m-d",$lists[AddTime])}</td>
+                        <td class="sta-{}">{$NStatus[$lists[Status]]}</td>
+                        <td class="det">查看详情></td>
+                    </tr>
+                    {/loop}
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="pagination-wrap">
-            <div class="pagination fl-r" id="collection_page_pagination"></div>
+            <div class="pagination fl-r" id="collection_page_pagination">
+            <a href="/debtlists/"><div class="b sel">首页</div></a>
+            {$ShowPage}
+            </div>
         </div>
     </div>
 </div>

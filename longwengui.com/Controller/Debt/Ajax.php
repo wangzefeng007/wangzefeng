@@ -106,12 +106,6 @@ class Ajax
         if ($Intention=='GetDebtList'){
             $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
-            col_way:["1","2"]
-col_area:["1002","1003"]
-col_money:["3-10","10-50","50-100"]
-col_day:["61-180","181-365","1096-All"]
-Page:1
-Keyword:EWR
             $Type = $_POST['col_way']; //催收方式
             if($Type[0]!=''){
                 $MysqlWhere ='';
@@ -122,7 +116,6 @@ Keyword:EWR
                 $MemberAreaModule->GetInfoByKeyID($value);
             }
             }
-
             $Money = $_POST['col_money'];//催收金额
             if($Money[0]!=''){
             }
@@ -135,23 +128,10 @@ Keyword:EWR
                 $Location=implode(',', $Location);
                 $MysqlWhere .=" and Province in ($Location)";
             }
-
-            $Sort = trim($_POST['Sort']);
             $Page = trim($_POST['Page']);
-
             if ($Keyword != '') {
                 $MysqlWhere .= " and (HighSchoolName like '%$Keyword%' or HighSchoolNameEng like '%$Keyword%')";
             }
-            if ($Sort =='APAsce'){
-                $MysqlWhere .=' order by AP ASC';
-            }elseif ($Sort =='APDown'){
-                $MysqlWhere .=' order by AP DESC';
-            }elseif($Sort =='ExpensesAsce'){
-                $MysqlWhere .=' order by Cost ASC';
-            }elseif ($Sort =='ExpensesDown'){
-                $MysqlWhere .=' order by Cost DESC';
-            }
-
             return $MysqlWhere;
         }
     }
