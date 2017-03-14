@@ -18,7 +18,6 @@ class Debt
 
     public function DebtLists(){
         $Nav='debtlists';
-        echo 111;
         include template('DebtLists');
     }
 }

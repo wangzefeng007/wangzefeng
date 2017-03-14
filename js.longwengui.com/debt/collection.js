@@ -35,7 +35,7 @@ $(function(){
     var Keyword = $('#keyword').val();
 
     $.ajax({
-          type: "get",	//提交类型
+          type: "post",	//提交类型
           dataType: "json",	//提交数据类型
           url: '../data/collection.json',  //提交地址
           data: {
