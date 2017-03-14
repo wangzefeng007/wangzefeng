@@ -16,6 +16,7 @@ class ComplaintAdvice
     public function  ComplaintAdviceDetail()
     {
         $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
         if ($_POST['ID']) {
             $Data['Status'] = intval($_POST['Status']);
             $ID = intval($_POST['ID']);
@@ -30,8 +31,9 @@ class ComplaintAdvice
         }
         if ($_GET['ID']) {
             $ID = $_GET['ID'];
-            $UserInfo = $MemberComplaintAdviceModule->GetInfoByKeyID($ID);
-            $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
+            $AdviceInfo = $MemberComplaintAdviceModule->GetInfoByKeyID($ID);
+            $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AdviceInfo['UserID']);
+            $AdviceInfo['AddTime'] = !empty($AdviceInfo['AddTime']) ? date('Y-m-d H:i:s', $AdviceInfo['AddTime']) : '';
         }
         include template('ComplaintAdviceDetail');
     }
@@ -50,7 +52,7 @@ class ComplaintAdvice
         $PageUrl = '';
         $keyword = trim($_GET['keyword']);
         if ($keyword != '') {
-            $SqlWhere .= ' and (RewardNum=\'' . $keyword . '\' or concat(DebtName) like \'%' . $keyword . '%\')';
+            $SqlWhere .= ' and concat(Content) like \'%' . $keyword . '%\'';
             $PageUrl .= '&keyword=' . $keyword;
         }
         // 跳转到该页面
