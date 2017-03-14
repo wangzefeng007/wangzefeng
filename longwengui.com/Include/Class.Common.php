@@ -2,8 +2,8 @@
 // -------------------------------- 主站公共调用 ----------------------------------------//
 /**
  * 主站获取广告
- * 
- * @param $Key 广告关键字            
+ *
+ * @param $Key 广告关键字
  */
 function NewsGetAdInfo($Key)
 {
@@ -553,7 +553,7 @@ function WriteTopPicture($Picture = '')
 {
     if ($Picture == '')
         return ImageURL . '/img/study/man3.0.png';
-    else 
+    else
         if (strpos($Picture, 'http://') !== false) {
             return $Picture;
         } else {
@@ -577,9 +577,9 @@ function SendToImgServ($Img, $ImgText)
 
 /**
  * 文件上传图片服务器
- * 
- * @param $FileName 文件名称            
- * @param $File 文件（进制文件）            
+ *
+ * @param $FileName 文件名称
+ * @param $File 文件（进制文件）
  * @return bool|mixed
  */
 function SendToFileServ($FileName, $File)
@@ -628,10 +628,10 @@ function ImageAPIVerify($para)
 
 /**
  * 处理内容图片地址问题
- * 
- * @param string $String            
- * @param string $Title            
- * @param string $Type            
+ *
+ * @param string $String
+ * @param string $Title
+ * @param string $Type
  * @return mixed|string
  */
 function StrReplaceImages($String = '', $Title = '', $Type = 'l')
@@ -706,4 +706,3 @@ function DoEditorContent($String = '')
     }
     return $String;
 }
-	
