@@ -204,7 +204,7 @@ class Page
                 if ($_page < 1) continue;
                 $_pagelist .= ' <a class="b" href="' . $this->url . $this->html .'p='. $_page  . '">' . $_page . '</a> ';
             }
-            $_pagelist .= ' <a href="' . $this->url .'p='.$this->page . $this->html . '" class="' . $this->class . '">' . $this->page . '</a> ';
+            $_pagelist .= ' <a  href="' . $this->url .'p='.$this->page . $this->html . '" class="' . $this->class . '">' . $this->page . '</a> ';
             for ($i = 1; $i <= $this->bothnum; $i++) {
                 $_page = $this->page + $i;
                 if ($_page > $this->pagenum) break;
@@ -233,9 +233,9 @@ class Page
             return ' <a href="' . $this->url . '1' . $this->html . '">1</a> ...';
         }elseif ($this->page > $this->bothnum + 1 && $this->type==3){
             if ($this->page - $this->bothnum == 2) {
-                return ' <a href="' . $this->url .'p='. '1' . $this->html . '">1</a>';
+                return ' <a class ="b" href="' . $this->url .'p='. '1' . $this->html . '">1</a>';
             }
-            return ' <a href="' . $this->url .'p='. '1' . $this->html . '">1</a> ...';
+            return ' <a class ="b" href="' . $this->url .'p='. '1' . $this->html . '">1</a> ...';
         }
         else{
 

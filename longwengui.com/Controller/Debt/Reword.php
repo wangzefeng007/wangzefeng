@@ -39,14 +39,17 @@ class Reword
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
+                $Data['Data'][$key]['DebtCard'] = strlen($value['DebtCard']) ? substr_replace($value['DebtCard'], '****', 10, 4) : '';
                $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['ID'],true);
-               if ($RewardImage['IsDefault']=1){
-                   $Data['Data'][$key]['DefaultImage'] = $RewardImage['ImageUrl'];
-               }else{
-                   $Data['Data'][$key]['Image'][] = $RewardImage['ImageUrl'];
+               foreach ($RewardImage as $K=>$V){
+                if ($V['IsDefault']==1){
+                    $Data['Data'][$key]['DefaultImage'] = $V['ImageUrl'];
+                }else{
+                    $Data['Data'][$key]['Image'][] = $V['ImageUrl'];
+                }
                }
+
             }
-            var_dump($Data['Data']);
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
