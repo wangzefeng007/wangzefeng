@@ -25,7 +25,7 @@ class Reward
     public function RewardLists()
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
-        $StatusInfo = $MemberRewardInfoModule->Status;
+        $StatusInfo = $MemberRewardInfoModule->NStatus;
         $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
