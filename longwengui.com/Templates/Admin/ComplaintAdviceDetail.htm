@@ -8,14 +8,14 @@
                     <a href="#"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li>
-                    <a href="#">悬赏信息管理</a>
+                    <a href="#">投诉中心管理</a>
                 </li>
                 <li>
-                    <a href="/index.php?Module=Reward&Action=RewardLists">悬赏列表</a>
+                    <a href="/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceDetail">投诉建议管理</a>
                 </li>
-                <li class="active" id="modify">悬赏详情</li>
+                <li class="active" id="modify">投诉建议详情</li>
             </ul>
-             <span class="position hidden">悬赏列表</span>
+             <span class="position hidden">投诉建议管理</span>
             <!--breadcrumbs end -->
         </div>
     </div>
@@ -25,37 +25,27 @@
                 <div class="panel-body">
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td colspan="3" class="t-h">悬赏详情：</td>
+                            <td colspan="3" class="t-h">投诉建议详情：</td>
                         </tr>
                         <tr>
-                            <td>ID：{$UserInfo[ID]}</td>
-                            <td>悬赏编号：{$UserInfo[RewardNum]}</td>
-                            <td>用户ID：{$UserInfo[UserID]}</td>
+                            <td>用户ID：{$UserInfo[ID]}</td>
+                            <td>投诉人姓名：{$UserInfo[RewardNum]}</td>
+                             <td>身份：{$UserInfo[Address]}</td>
                         </tr>
                         <tr>
                             <td>发布时间：{$UserInfo['AddTime']}</td>
-                            <td>债权人电话：{$UserInfo[CreditorsPhone]}</td>
-                            <td>类型：{if $UserInfo[Type]==0}找人{elseif $UserInfo[Type]==1}找财产{/if}</td>
+                            <td>投诉人证件号码：{$UserInfo[CreditorsPhone]}</td>
+                            <td>性别：{if $UserInfo[Type]==0}找人{elseif $UserInfo[Type]==1}找财产{/if}</td>
                         </tr>
                         <tr>
-                            <td>债务人姓名：{$UserInfo[DebtName]}</td>
-                            <td>债务人身份证：{$UserInfo[DebtCard]}</td>
-                            <td>债务人电话：{$UserInfo[DebtPhone]}</td>
-                        </tr>
-                        <tr>
-                            <td>债务人地区：{$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}</td>
+                            <td>投诉人地区：{$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}</td>
                             <td>详细地址：{$UserInfo[Address]}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" class="t-h"><h5>&nbsp;&nbsp;债务人照片：</h5> </td>
-
-                        </tr>
-                        <tr>
-                            <td>:<a href="{$UserInfo[ImageJson]}" target="_blank"><img src="{$UserInfo[ImageJson]}" height="150px" width="150px" title="点击显示大图"></a></td>
+                            <td>建议内容：{$UserInfo[Address]}</td>
+                           
                         </tr>
                     </table>
                     <table class="table table-bordered table-striped table-hover">
-                        <form action='/index.php?Module=Reward&Action=RewardDetail'  method='post'  enctype="multipart/form-data">
+                        <form action='/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceDetail'  method='post'  enctype="multipart/form-data">
                             <tbody>
                             <tr>
                                 <td class="t-r" width="150">审核状态：</td>
@@ -74,7 +64,7 @@
                         </form>
                     </table>
                     <tr>
-                        <td><a class="right" href="/index.php?Module=Reward&Action=RewardLists">返回列表</a></td>
+                        <td><a class="right" href="/index.php?Module=ComplaintAdvice&Action=ComplaintAdviceLists">返回列表</a></td>
                     </tr>
                 </div>
             </div>

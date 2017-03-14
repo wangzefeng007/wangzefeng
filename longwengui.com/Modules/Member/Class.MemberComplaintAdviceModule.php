@@ -7,5 +7,10 @@ Class MemberComplaintAdviceModule extends CommonModule {
 
     public $KeyID = 'ID';
     public $TableName = 'member_complaint_advice';
+    
+        public $Status = [
+        '0' => '不公开',
+        '1' => '公开',
+    ];
 
 }

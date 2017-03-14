@@ -61,7 +61,7 @@
 							<td nowrap="nowrap">{$StatusInfo[$lists[Status]]}</td>
 							<td>
 								<a class="getinfo" href="/index.php?Module=Reward&Action=RewardDetail&ID={$lists[ID]}">查看详情</a>
-								<a href="javascript:void(0)" class="del" data-id="{$lists[ID]}">删除</a>
+								<a href="javascript:void(0)" class="del" data-id="{$lists[ID]}"data-num="{$lists[RewardNum]}" >删除</a>
 							</td>
 						</tr>
 						{/loop}
@@ -85,7 +85,7 @@
 <script>
     $('.del').click(function () {
         var tjid = $(this).attr('data-id');
-        var text = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+        var text = $(this).attr('data-num');
         layer.confirm('您确定要删除悬赏编号<span style="color: red">'+text+'</span>？', {
             title: '删除提示',
             btn: ['确定','取消'] //按钮
