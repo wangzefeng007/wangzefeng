@@ -15,7 +15,9 @@ class Debt
         $Nav='index';
         include template('Index');
     }
-
+    /**
+     * @desc  债务催收列表
+     */
     public function DebtLists(){
         $Nav='debtlists';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
@@ -57,4 +59,6 @@ class Debt
         $Description="债权人在隆文贵不良资产处置平台发布单笔或多笔债权信息后，债务信息展现在隆文贵不良资产处置债务催收栏目版块，执业律师或催收公司在此页面可根据地域分布和佣金比例等因素选择接单，进行催收，从而赚取佣金。";
         include template('DebtLists');
     }
+
+
 }

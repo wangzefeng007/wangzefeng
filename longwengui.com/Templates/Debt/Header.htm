@@ -29,10 +29,10 @@
     <div class="wrap">
         <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/logo.png" alt=""></a>
         <div class="nav-wrap">
-            <a href="{echo WEB_MAIN_URL}"><li  class="nav-active">首页</li></a>
-            <a href="/debtlists/"><li>债务催收</li></a>
+            <a href="{echo WEB_MAIN_URL}"><li {if $Nav=='index'}class="nav-active"{/if}>首页</li></a>
+            <a href="/debtlists/"><li {if $Nav=='debtlists'}class="nav-active"{/if}>债务催收</li></a>
             <a href="javascript:void(0)"><li>债权转让</li></a>
-            <a href="./reword.html"><li>线索悬赏</li></a>
+            <a href="/reword/"><li {if $Nav =='rewordlists'}class="nav-active"{/if}>线索悬赏</li></a>
             <a href="javascript:void(0)"><li>寻找处置方</li></a>
             <a href="./debtorSearch.html"><li>查询老赖</li></a>
         </div>

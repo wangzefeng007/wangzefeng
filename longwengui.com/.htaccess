@@ -2,8 +2,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule ^index.html$ /Index.php [QSA]
-
+#债务催收列表
 RewriteRule ^debtlists(|\/)$ /Index.php?Module=Debt&Action=DebtLists [QSA]
+#线索悬赏
+RewriteRule ^reword(|\/)$ /Index.php?Module=Reword&Action=Index [QSA]
 RewriteRule ^ajax.html$ /Index.php?Module=Ajax&Action=Index [QSA]
 
 </IfModule>
