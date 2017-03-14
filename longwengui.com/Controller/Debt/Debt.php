@@ -12,6 +12,7 @@ class Debt
 
     }
     public function Index(){
+        $Title ='隆文贵不良资产处置';
         $Nav='index';
         include template('Index');
     }
