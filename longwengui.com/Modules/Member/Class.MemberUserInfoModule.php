@@ -31,4 +31,18 @@ Class MemberUserInfoModule extends CommonModule  {
         '3' => '公司会员',
         '4' => '律师企业会员',
     ];
+    	/**
+	 * @desc  根据keyID查询单条数据详情
+	 * @param string $KeyID
+	 * @return array|int
+	 */
+    public function GetInfoByUserID($UserID = '') {
+
+        global $DB;
+        if ($UserID == '')
+            return 0;
+        $sql = 'select * from ' . $this->TableName . ' where  UserID = ' . $UserID;
+        return $DB->getone ( $sql );
+    }
+
 }
