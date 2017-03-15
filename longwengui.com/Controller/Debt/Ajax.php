@@ -77,26 +77,6 @@ class Ajax
             } else {
                 $Data['ResultCode'] = 200;
             }
-        }else{
-            //搜索无数据，返回6所热门高中院校
-            $MysqlWhere =' and HotRecommend = 1 ';
-            $Lists = $MemberDebtInfoModule->GetLists($MysqlWhere,0,6);
-            foreach ($Lists as $key=>$value){
-                $Data['Data'][$key]['Study_name'] = $value['HighSchoolName'];
-                $Data['Data'][$key]['StudyID'] = $value['HighSchoolID'];
-                $Data['Data'][$key]['StudyLocation'] = $value['Location'];
-                $Data['Data'][$key]['StudySAT'] = $value['SAT'];
-                $Data['Data'][$key]['StudyAP'] = $value['AP'];
-                $Data['Data'][$key]['StudyAnnualCost'] = $value['Cost'];
-                $Data['Data'][$key]['StudyAccommodationMode'] = $value['Stay'];
-                $Data['Data'][$key]['StudyImg'] = $value['Icon'];
-                $Data['Data'][$key]['StudyUrl'] = "/highschool/".$value['HighSchoolID'].'.html';
-            }
-            if ($Keyword != '') {
-                $Data['ResultCode'] = 102;
-            } else {
-                $Data['ResultCode'] = 101;
-            }
         }
         unset($Lists);
         EchoResult($Data);
