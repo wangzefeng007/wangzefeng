@@ -11,6 +11,8 @@ class Debt {
      */
     public function DebtLists() {
         $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $StatusInfo = $MemberDebtInfoModule->Status;
         $SqlWhere = '';
         // 搜索条件
@@ -42,18 +44,16 @@ class Debt {
             $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
-
             if ($Page > $Data['PageCount'])
                 $page = $Data['PageCount'];
-                
             $Data['Data'] = $MemberDebtInfoModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
-                $value['DebtInfo'] = json_decode($value['DebtInfo'], ture);
-                $Data['Data'][$key]['name'] = $value['DebtInfo'][0]['name'];
-                $Data['Data'][$key]['province'] = $value['DebtInfo'][0]['province'];
-                $Data['Data'][$key]['city'] = $value['DebtInfo'][0]['city'];
-                $Data['Data'][$key]['area'] = $value['DebtInfo'][0]['area'];
-                $Data['Data'][$key]['money'] = $value['DebtInfo'][0]['money'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
+                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
+                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
             }
 

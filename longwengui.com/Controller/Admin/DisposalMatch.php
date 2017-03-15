@@ -15,6 +15,7 @@ class DisposalMatch
     public function DisposalMatchLists()
     {
         $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $StatusInfo = $MemberFindDisposalDebtModule->NStatus;
         $SqlWhere = '';
         // 搜索条件
@@ -50,12 +51,12 @@ class DisposalMatch
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberFindDisposalDebtModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
-                $value['DebtInfo'] = json_decode($value['DebtInfo'],ture);
-                $Data['Data'][$key]['name'] = $value['DebtInfo'][0]['name'];
-                $Data['Data'][$key]['province'] = $value['DebtInfo'][0]['province'];
-                $Data['Data'][$key]['city'] = $value['DebtInfo'][0]['city'];
-                $Data['Data'][$key]['area'] = $value['DebtInfo'][0]['area'];
-                $Data['Data'][$key]['money'] = $value['DebtInfo'][0]['money'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
+                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
+                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
             }
 
