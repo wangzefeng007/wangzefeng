@@ -65,7 +65,31 @@ class Debt
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberDebtImageModule = new MemberDebtImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
         $ID = intval($_GET['ID']);
+        //债务信息
+        $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($ID);
+        //保证人信息
+        if ($DebtInfo['Warrantor']){
+            $WarrantorInfo = json_decode($DebtInfo['WarrantorInfo'],true);
+            foreach ($WarrantorInfo as $key=>$value){
+                $WarrantorInfo[$key]['card'] = strlen($value['card']) ? substr_replace($value['card'], '****', 10, 4) : '';
+                $WarrantorInfo[$key]['phone'] = strlen($value['phone']) ? substr_replace($value['phone'], '****', 7, 4) : '';
+            }
+        }
+        //抵押物信息
+        if ($DebtInfo['Guarantee']){
+            $GuaranteeInfo = json_decode($DebtInfo['GuaranteeInfo'],true);
+        }
+        //发布人信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $DebtInfo['UserID']);
+        //债务人信息
+        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$ID,true);
+        foreach ($DebtorsInfo as $key=>$value){
+            $DebtorsInfo[$key]['Card'] = strlen($value['Card']) ? substr_replace($value['Card'], '****', 10, 4) : '';
+        }
+        //债务人图片
+        $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$ID,true);
         include template('DebtDetails');
     }
 }
