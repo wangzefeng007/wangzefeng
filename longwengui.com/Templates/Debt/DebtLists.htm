@@ -213,9 +213,9 @@
                         <td>{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</td>
                         <td class="m-c">￥{$lists[DebtAmount]}</td>
                         <td>{$lists[Overduetime]}</td>
-                        <td>{echo date("Y-m-d",$lists[AddTime])}</td>
+                        <td>{$lists[AddTime]}</td>
                         <td class="sta-{}">{$NStatus[$lists[Status]]}</td>
-                        <td class="det">查看详情></td>
+                        <td class="det"><a href="/debt/{$lists[DebtID]}.html" target="_blank">查看详情></a></td>
                     </tr>
                     {/loop}
                     </tbody>

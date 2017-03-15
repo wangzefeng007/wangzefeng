@@ -11,7 +11,6 @@ class Debt {
      */
     public function DebtLists() {
         $MemberDebtInfoModule = new MemberDebtInfoModule();
-        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $StatusInfo = $MemberDebtInfoModule->Status;
         $SqlWhere = '';
@@ -76,7 +75,6 @@ class Debt {
         }
     }
     /**
-     * {"0":{"name":"赵武","card":"350623199212156666","phone":"18850595545","province":"福建省","city":"厦门市","area":"湖里区","address":"软件园2期望海路57号","money":"100000"},"1":{"name":"shi","card":"350623199212156666","phone":"18850595545","province":"福建省","city":"厦门市","area":"湖里区","address":"软件园2期望海路57号","money":"100000"}}
      * @desc 债务管理详情编辑
      */
     public function DebtEdit() {
