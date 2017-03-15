@@ -407,6 +407,10 @@ ul,
 li {
   list-style: none;
 }
+a{
+  text-decoration: none;
+  color: #666;
+}
 /**
   * common css
   */
@@ -991,4 +995,43 @@ li {
 .slide-container .bd li img{
   width: 100%;
   height: 560px;
+}
+.layer-verf {
+  padding-left: 55px;
+  padding-top: 10px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+.layer-verf .line {
+  line-height: 30px;
+  height: 30px;
+  margin-top: 24px;
+}
+.layer-verf .line input {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+}
+.layer-verf .line img {
+  vertical-align: middle;
+  margin-top: -5px;
+  margin-left: 12px;
+  width: 80px;
+  height: 30px;
+}
+.layer-verf .line .confirm-btn {
+  margin-left: 12px;
+  display: inline-block;
+}
+.layer-verf .line .confirm-btn button {
+  min-width: 80px;
+  line-height: 30px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
 }

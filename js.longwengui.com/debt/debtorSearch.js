@@ -10,8 +10,75 @@ $(function(){
 
   //添加搜索事件
   $("#search").click(function(){
-    ajax(1);
+    getImgVerification();
   });
+  function　getImgVerification(){
+    //获取验证码图片
+    $.ajax({
+      type: "get",
+      url: "../data/imgVerification.json", //提交的地址
+      beforeSend: function () { //加载过程效果
+          showLoading();
+      },
+      success: function(data){
+        var ly_img_code = layer.open({
+          type: 1,
+          title: 0,
+          closeBtn: 0,
+          offset: '160px',
+          area: ["400px", "100px"],
+          shadeClose: true,
+          content:    "<div class='layer-verf'>"
+                    +   "<div class='line'>"
+                    +     "<input type='text' id='img_code' maxlength='4' placeholder='验证码'>"
+                    +     "<img src='" + data.Data.url + "' alt='' />"
+                    +     "<div class='confirm-btn'>"
+                    +        "<button type='button' id='to_verf'>确定</button>"
+                    +     "</div>"
+                    +   "</div>"
+                    + "</div>"
+        });
+        $('#to_verf').click(function(){
+          var img_code = JSON.stringify($('#img_code').val());
+          if(img_code == "" || img_code.length < 4){
+            layer.msg('请输入正确的验证码',{
+              offset: '240px'
+            });
+            return;
+          }
+          //验证图片
+          $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "../data/vericatImg.json", //提交的图片验证
+            data: {
+              'img_code': img_code
+            },
+            beforeSend: function () { //加载过程效果
+                showLoading();
+            },
+            success: function(data){
+              if(data.ResultCode == 200){
+                layer.close(ly_img_code);
+                ajax(1);
+              }else{
+                layer.msg('验证码输入错误', {
+                  offset: '240px'
+                });
+              }
+            },
+            complete: function () { //加载完成提示
+                closeLoading();
+            }
+          });
+        })
+      },
+      complete: function () { //加载完成提示
+          closeLoading();
+      }
+    });
+  }
+
 
   //请求数据
   function ajax(Page){
