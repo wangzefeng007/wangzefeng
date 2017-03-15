@@ -74,5 +74,53 @@
         </div>
     </div>
 </div>
+<script id="search_result" type="text/x-jquery-tmpl">
+            <div class="bx">
+              <div class="hd-wrap">
+                <div class="i-1">
+                  ${name}
+                </div>
+                <div class="i-2">
+                  ${cardNum}
+                </div>
+                <div class="i-3">
+                  ${areaName}
+                </div>
+                <div class="i-4">
+                  ${publishDate}
+                </div>
+                <div class="i-5">
+                  展开详情 <img src="../imgs/db_arrow_right.png" data-show="0" alt="">
+                </div>
+              </div>
+              <div class="cont">
+                <div class="l-1">
+                  <div class="tl">
+                    执行法院： ${details.courtName}
+                  </div>
+                  <div class="det">
+                    案号： ${details.caseCode}
+                  </div>
+                </div>
+                <div class="l-1">
+                  <div class="tl">
+                    被执行人的履行情况： ${details.performance}
+                  </div>
+                  <div class="det">
+                    ${details.disruptTypeName}
+                  </div>
+                </div>
+                <div class="l-2">
+                  <div class="tl">
+                    生效法律文书确定的义务：
+                  </div>
+                  <div class="det">
+                    ${details.duty}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      </script>
 {template Footer}
 <script src='{echo JsURL}/debt/debtorSearch.js'></script>
