@@ -528,7 +528,27 @@ function curl_postsend($url, $data = array())
     }
     return $output;
 }
-
+function curl_getsend($Url = '')
+{
+    $ch = curl_init();
+    // 设置选项，包括URL
+    curl_setopt($ch, CURLOPT_URL, $Url);
+    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // 去除SSL证书验证
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); // 去除SSL证书验证
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30); // 定义超时3秒钟
+    // 执行并获取url地址的内容
+    $output = curl_exec($ch);
+    $errorCode = curl_errno($ch);
+    // 释放curl句柄
+    curl_close($ch);
+    if (0 !== $errorCode) {
+        return false;
+    }
+    return $output;
+}
 // 分页函数
 function MultiPage(&$multipages, $n = 10)
 {
