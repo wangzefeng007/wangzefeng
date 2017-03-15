@@ -38,7 +38,6 @@ class MultiUpload{
 					$file['ext']  = $this->getExt($filename);
 					$file['size'] = $_FILES[$this->field]['size'][$i];
 	                $file['tmp_name']  = $tmp_name;
-
 					if($this->check($file,$i)){	
 			                $saveName = $this->getSaveName($filename);
 			                $savedPath = $this->savePath.$saveName;
@@ -100,7 +99,7 @@ class MultiUpload{
                     $preStr = $array[0];
                 }
 				//生成一个唯一的字符串。
-               return date("YmdHis").rand(1000,9999).'.'.strtolower($array[count($array)-1]);
+                return date("YmdHis").rand(1000,9999).'.'.strtolower($array[count($array)-1]);
     }
     private function check($file,$file_number) {
         //文件上传成功，进行自定义规则检查

@@ -16,6 +16,8 @@ class Reward
     public function Publish()
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
+        $code = 'XS';
         if ($_POST) {
             $Data['CreditorsPhone'] = trim($_POST['CreditorsPhone']);
             $Data['DebtName'] = trim($_POST['DebtName']);
@@ -23,14 +25,28 @@ class Reward
             $Data['DebtPhone'] = trim($_POST['DebtPhone']);
             $Data['Address'] = trim($_POST['Address']);
             $Data['Type'] = intval($_POST['Type']);
-            $Data['AddTime'] = date('Y-m-d H:i:s', time());
+            $Data['AddTime'] = time();
+            $Data['RewardNum'] = $code.time();
             
-            if ($Data['CreditorsPhone'] == '' || $Data['DebtName'] == '' || $_POST['DebtPhone'] == ''|| $_POST['DebtPhone'] == ''|| $_POST['Address'] == '') {
+                        // 上传图片
+            include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
+            if ($_FILES['Image']['size'][0] > 0) {
+
+                    $Upload = new MultiUpload('Image');
+                $File = $Upload->upload();
+                $Picture = $File[0] ? $File[0] : '';
+                $ImageInfo['ImageUrl'] = $Picture;
+                $ImageInfo['IsDefault'] = 1;
+                $ImageInfo['RewardID'] = 1;
+            }
+            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == ''|| $_POST['DebtPhone'] == ''|| $_POST['Address'] == '') {
                 alertandback('信息填写不完整');
             }
             $result = $MemberRewardInfoModule->InsertInfo($Data);
-            if ($result) {
+            $uploadImage = $MemberRewardImageModule->InsertInfo($ImageInfo);
+            if ($result && $uploadImage) {
                 alertandgotopage("操作成功", '/index.php?Module=Reward&Action=RewardLists');
+ 
             } else {
                 alertandgotopage("操作失败", '/index.php?Module=Reward&Action=RewardLists');
             }
