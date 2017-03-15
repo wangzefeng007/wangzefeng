@@ -20,7 +20,7 @@ class Debt
      * @desc  债务催收列表
      */
     public function DebtLists(){
-        $Nav='debtlists';
+        $Nav='debt';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $NStatus = $MemberDebtInfoModule->NStatus;
@@ -62,6 +62,7 @@ class Debt
         include template('DebtLists');
     }
     public function DebtDetails(){
+        $Nav='debt';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberDebtImageModule = new MemberDebtImageModule();
