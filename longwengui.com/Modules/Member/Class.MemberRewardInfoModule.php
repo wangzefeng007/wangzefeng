@@ -14,8 +14,9 @@ class MemberRewardInfoModule extends CommonModule {
      * @var array
      */
     public $NStatus = [
-        '1' => '审核中',
-        '2' => '悬赏中',
-        '3' => '已完成',
+        '1' => '未提交审核',
+        '2' => '审核中',
+        '3' => '悬赏中',
+        '4' => '已完成',
     ];
 }
