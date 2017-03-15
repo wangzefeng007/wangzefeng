@@ -19,7 +19,7 @@ class Reword
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
-        $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 desc',true);var_dump($AreaList);
+        $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 desc',true);
         $MysqlWhere ='';
         //分页查询开始-------------------------------------------------
         $MysqlWhere ='';
