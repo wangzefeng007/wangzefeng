@@ -1,0 +1,74 @@
+{template Head}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">代理信息管理</a>
+                </li>
+                <li>
+                    <a href="/index.php?Module=Proxy&Action=ProxyLists">代理管理</a>
+                </li>
+                <li class="active" id="modify">代理管理详情</li>
+            </ul>
+             <span class="position hidden">代理管理</span>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <td colspan="3" class="t-h">代理管理详情：</td>
+                        </tr>
+                        <tr>
+                            <td>代理人ID：{$UserInfo[ApplyID]}</td>
+                            <td>用户ID：{$UserInfo[UserID]}</td>
+                            <td>代理人姓名：{$UserInfo[Name]}</td>
+                        </tr>
+                        <tr>
+                            <td>添加时间：{$UserInfo['AddTime']}</td>
+                            <td>代理人电话：{$UserInfo[Phone]}</td>
+                            <td>审核状态：{if $UserInfo[Status]==1}未提交审核{elseif $UserInfo[Status]==2}审核中{elseif $UserInfo[Status]==3}审核通过{/if}</td>
+                        </tr>
+                        <tr>
+                            <td>代理人地区：{$UserInfo[Province]}-{$UserInfo[City]}</td>
+                            <td>代理人身份证：{$UserInfo[Card]}</td>
+                            <td>上次登录IP地址：{$UserInfo[IP]}</td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-striped table-hover">
+                        <form action='/index.php?Module=Proxy&Action=ProxyDetail'  method='post'  enctype="multipart/form-data">
+                            <tbody>
+                            <tr>
+                                <td class="t-r" width="150">审核状态：</td>
+                                <td>
+                                    <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
+                                        <option value="1" {if $UserInfo[Status] == 1}selected="selected"{/if}>未提交审核</option>
+                                        <option value="2" {if $UserInfo[Status] == 2}selected="selected"{/if}>审核中</option>
+                                        <option value="3" {if $UserInfo[Status] == 3}selected="selected"{/if}>审核通过</option>
+                                    </select>
+                                    <input type="hidden" name="ApplyID" value="{$ApplyID}" />
+                                    <input class="btn btn-danger" type="submit" name="submit" value="修改">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                    <tr>
+                        <td><a class="right" href="/index.php?Module=Proxy&Action=ProxyLists">返回列表</a></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+<!--{template Foot}-->
+
