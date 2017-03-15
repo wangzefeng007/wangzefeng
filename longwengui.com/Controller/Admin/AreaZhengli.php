@@ -1,16 +1,14 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: admin
- * Date: 2017/3/15
- * Time: 12:02
+ * 数据整理
  */
 class AreaZhengli
 {
 
     public function __construct()
     {
+        set_time_limit(0);
     }
     public function Area(){
         global $DB;
@@ -37,13 +35,11 @@ class AreaZhengli
             $cityInfo = $DB->select('SELECT * FROM cities WHERE cityid='.$value['cityid']);
             $ProvinceInfo = $DB->select('SELECT * FROM provinces WHERE provinceid='.$cityInfo[0]['provinceid']);
             $province = $DB->select('SELECT * FROM member_area WHERE CnName = \''.$ProvinceInfo['0']['province'].'\'');
-            $Areacity = $DB->select('SELECT * FROM member_area WHERE ParentID = '.$province[0]['AreaID'].' and CnName = \''.$cityInfo['city'].'\'');
-            var_dump($province);
-            var_dump($cityInfo,$ProvinceInfo,$Areacity);exit;
-
-            if (!$Areacity){
-                $city = '\''.$value['area'].'\''.','.$AreacityInfo[0]['AreaID'].',3';
-                $DB->select("INSERT INTO member_area (CnName, ParentID,Level) VALUES ($city)");
+            $Areacity = $DB->select('SELECT * FROM member_area WHERE ParentID = '.$province[0]['AreaID'].' and CnName = \''.$cityInfo[0]['city'].'\'');
+            $areanum = $DB->select('SELECT * FROM member_area WHERE ParentID = '.$Areacity[0]['AreaID'].' and CnName = \''.$value['area'].'\'');
+            if (!$areanum){
+                $citys = '\''.$value['area'].'\''.','.$Areacity[0]['AreaID'].',3';
+                $DB->select("INSERT INTO member_area (CnName, ParentID,Level) VALUES ($citys)");
             }
         }
         var_dump($cities);exit;
