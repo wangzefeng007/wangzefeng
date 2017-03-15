@@ -78,7 +78,7 @@
             <div class="bx">
               <div class="hd-wrap">
                 <div class="i-1">
-                  ${name}
+                  ${iname}
                 </div>
                 <div class="i-2">
                   ${cardNum}
@@ -90,24 +90,24 @@
                   ${publishDate}
                 </div>
                 <div class="i-5">
-                  展开详情 <img src="../imgs/db_arrow_right.png" data-show="0" alt="">
+                  展开详情 <img src="/Uploads/Debt/imgs/db_arrow_right.png" data-show="0" alt="">
                 </div>
               </div>
               <div class="cont">
                 <div class="l-1">
                   <div class="tl">
-                    执行法院： ${details.courtName}
+                    执行法院： ${courtName}
                   </div>
                   <div class="det">
-                    案号： ${details.caseCode}
+                    案号： ${caseCode}
                   </div>
                 </div>
                 <div class="l-1">
                   <div class="tl">
-                    被执行人的履行情况： ${details.performance}
+                    被执行人的履行情况： ${performance}
                   </div>
                   <div class="det">
-                    ${details.disruptTypeName}
+                    ${disruptTypeName}
                   </div>
                 </div>
                 <div class="l-2">
@@ -115,7 +115,7 @@
                     生效法律文书确定的义务：
                   </div>
                   <div class="det">
-                    ${details.duty}
+                    ${duty}
                   </div>
                 </div>
               </div>
