@@ -64,6 +64,7 @@ class Debt
     public function DebtDetails(){
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberDebtImageModule = new MemberDebtImageModule();
         $ID = intval($_GET['ID']);
         include template('DebtDetails');
     }
