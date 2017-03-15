@@ -1,0 +1,134 @@
+{template Head}
+<script src="<?php echo JsURL;?>/admin/distpicker.data.js" type="text/javascript"></script>
+<script src="<?php echo JsURL;?>/admin/distpicker.js" type="text/javascript"></script>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#"> 悬赏信息管理 </a>
+                </li>
+                <li>
+                    <a href="/index.php?Module=Reward&Action=RewardLists">悬赏列表</a>
+                </li>
+                <li class="active">发布悬赏</li>
+            </ul>
+            <span class="hidden position">悬赏列表</span>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <form action='/index.php?Module=Reward&Action=Publish'  method='post'  enctype="multipart/form-data">
+            <table class="table table-bordered table-striped table-hover">
+                <tbody>
+                <tr>
+                    <td colspan="2" class="t-h">发布悬赏信息</td>
+                </tr>
+                <tr>
+                    <td class="t-r"><span class="red">*</span>&nbsp;债权人电话：</td>
+                    <td>
+                        <div class="col-sm-4">
+                            <input type="text" name="CreditorsPhone" value="" class="form-control"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r"><span class="red">*</span>&nbsp;债务人姓名：</td>
+                    <td>
+                        <div class="col-sm-4">
+                            <input type="text" name="DebtName" value="" class="form-control"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r"><span class="red">*</span>&nbsp;债务人电话：</td>
+                    <td>
+                        <div class="col-sm-4">
+                            <input type="text" name="DebtPhone" value="" class="form-control"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r"><span class="red">*</span>&nbsp;债务人身份证：</td>
+                    <td>
+                        <div class="col-sm-4">
+                            <input type="text" name="DebtCard" value="" class="form-control"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r"><span class="red">*</span>&nbsp;债务人地区：</td>
+                    <td>
+                        <div id="citySelect" class="col-sm-2" >
+                            <select name="province" id="province"   onchange="sech(this.id)" class="form-control" >
+                                <option style="width:100px;"  value="province">请选择省份</option>
+                            </select>
+                            <select name="city" id="city"   onchange="sech(this.id)" class="form-control" >
+                                <option style="width:100px;"  value="city">请选择市区</option>
+                            </select>
+                            <select name="area" id="area"   onchange="sech(this.id)" class="form-control" >
+                                <option style="width:100px;"  value="area">请选择县乡</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r"><span class="red">*</span>&nbsp;债务人详细地址：</td>
+                    <td>
+                        <div class="col-sm-4">
+                            <input type="text" name="Address" value="" class="form-control"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r" style="width: 150px">债务人图片:</td>
+                    <td>
+                        <div class="col-sm-5" style="padding-top: 8px">
+                            <input type="file" name="Image[]"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-r">悬赏类型：</td>
+                    <td>
+                        <div class="col-sm-4" style="padding-top: 7px">
+                            <input name="Type" type="radio" id="Status" value="1" {if $ProductInfo[Status]==1}checked="checked"{/if}/>
+                            找人
+                            <input type="radio" name="Type" id="Status2" value="2" {if $ProductInfo[Status]==2}checked="checked"{/if}/>
+                            找财产
+                        </div>
+                    </td>
+                </tr>
+                <tr id="MaterialRequested">
+                    <td class="t-r"></td>
+                    <td>
+                        <div class="col-sm-5">
+                            <input type="hidden" name="TourProductID" value="{$ProductInfo[TourProductID]}"/>
+                            <input class="btn btn-danger" type='submit' name='submit' value='提交保存'/>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<script>
+$("#distpicker").distpicker({
+  province: '---- 所在省 ----',
+  city: '---- 所在市 ----',
+  district: '---- 所在区 ----'
+});
+</script>
+{template Foot}
+
