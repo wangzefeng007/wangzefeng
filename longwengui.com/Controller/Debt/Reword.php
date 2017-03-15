@@ -19,11 +19,23 @@ class Reword
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
+        $MysqlWhere ='';
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 desc',true);
-        $MysqlWhere ='';
+        $MyUrl = WEB_MAIN_URL.'/reword/';
+        $SoUrl = $_GET['SoUrl'];
+        if (strstr ( $SoUrl, 'a1' )){
+            $Type = 'a1';
+            $MysqlWhere .= ' and Type =1 ';
+        }elseif (strstr ( $SoUrl, 'a2' )){
+            $Type = 'a2';
+            $MysqlWhere .= ' and Type =2 ';
+        }
+        $Area = $this->GetArea($SoUrl);
+        if ($Area>0){
+            $AreaInfo = $MemberAreaModule->GetInfoByKeyID($Area);
+            $MysqlWhere .= ' and City =\''.$AreaInfo['CnName'].'\'';
+        }
         //分页查询开始-------------------------------------------------
-        $MysqlWhere ='';
-        //关键字
         $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
@@ -50,12 +62,25 @@ class Reword
                     $Data['Data'][$key]['Image'][] = $V['ImageUrl'];
                 }
                }
-
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
         include template('RewordLists');
+    }
+    private function GetArea($SoUrl = '') {
+        if ($SoUrl == '')
+            return '';
+        $Area ='';
+        if (strstr ( $SoUrl, '1153' ))
+            $Area = '1153';
+        if (strstr ( $SoUrl, '1236' ))
+            $Area = '1236';
+        if (strstr ( $SoUrl, '1009' ))
+            $Area = '1009';
+        if (strstr ( $SoUrl, '1001' ))
+            $Area = '1001';
+        return $Area;
     }
 
 }
