@@ -11,12 +11,31 @@ class Reward
     }
 
     /**
-     * @desc  添加或更新悬赏信息
+     * @desc  发布悬赏信息
      */
-    public function Add()
+    public function Publish()
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
-        include template('RewardAdd');
+        if ($_POST) {
+            $Data['CreditorsPhone'] = trim($_POST['CreditorsPhone']);
+            $Data['DebtName'] = trim($_POST['DebtName']);
+            $Data['DebtCard'] = trim($_POST['DebtCard']);
+            $Data['DebtPhone'] = trim($_POST['DebtPhone']);
+            $Data['Address'] = trim($_POST['Address']);
+            $Data['Type'] = intval($_POST['Type']);
+            $Data['AddTime'] = date('Y-m-d H:i:s', time());
+            
+            if ($Data['CreditorsPhone'] == '' || $Data['DebtName'] == '' || $_POST['DebtPhone'] == ''|| $_POST['DebtPhone'] == ''|| $_POST['Address'] == '') {
+                alertandback('信息填写不完整');
+            }
+            $result = $MemberRewardInfoModule->InsertInfo($Data);
+            if ($result) {
+                alertandgotopage("操作成功", '/index.php?Module=Reward&Action=RewardLists');
+            } else {
+                alertandgotopage("操作失败", '/index.php?Module=Reward&Action=RewardLists');
+            }
+        }
+        include template('RewardPublish');
     }
 
     /**

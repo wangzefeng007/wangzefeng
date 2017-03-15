@@ -33,6 +33,7 @@
                                                         {/loop}
                                                 </select>
                                                 <button class="btn btn-info">搜索</button>
+                                                <input onclick="location.href='/index.php?Module=Reward&Action=Publish'" value="发布悬赏" class="btn btn-danger" style="margin-left: 650px" type="button">
 					</form>
 				</div>
 				<section id="unseen">
@@ -59,9 +60,9 @@
 							<td nowrap="nowrap">{$lists[DebtPhone]}</td>
 							<td nowrap="nowrap">{$lists[AddTime]}</td>
 							<td nowrap="nowrap">{$StatusInfo[$lists[Status]]}</td>
-							<td>
-								<a class="getinfo" href="/index.php?Module=Reward&Action=RewardDetail&ID={$lists[ID]}">查看详情</a>
-								<a href="javascript:void(0)" class="del" data-id="{$lists[ID]}"data-num="{$lists[RewardNum]}" >删除</a>
+                                                        <td>
+                                                            <a class="getinfo" href="/index.php?Module=Reward&Action=RewardDetail&ID={$lists[ID]}">查看详情</a>
+                                                            <a href="javascript:void(0)" class="del" data-id="{$lists[ID]}"data-num="{$lists[RewardNum]}" >删除</a>
 							</td>
 						</tr>
 						{/loop}
