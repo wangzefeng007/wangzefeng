@@ -151,6 +151,13 @@ function　calcPageNums(pageCount, page){
   return _arr;
 }
 
+//错误提示窗
+function showMsg(text){
+  layer.msg(text, {
+    offset: '240px'
+  });
+}
+
 
 //分页操作
 function pageChange(dataId, Page, PageCount){

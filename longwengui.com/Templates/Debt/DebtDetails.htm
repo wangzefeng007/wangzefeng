@@ -8,7 +8,7 @@
         </div>
         <div class="info-wrap">
             <div class="hd">
-                <button type="button" name="button">关注</button>
+                <!-- <button type="button" name="button">关注</button> -->
                 债务编号：{$DebtInfo[DebtNum]}--处置方偏向：律师团队
             </div>
             <div class="pubman-info">
@@ -86,7 +86,7 @@
                             债务近况：{$lists[DebtRecent]}
                         </div>
                     </div>
-                    <div class="line-img">
+                    <div class="line-img" id="debt_imgs">
                         <span>借款凭证 :</span>
                         {loop $DebtImage $lists}
                         <img src="{$lists[ImageUrl]}" alt="">
@@ -147,21 +147,32 @@
                     <div class="l">
                         处置方报价:
                     </div>
-                    <input type="text" name="" value="">
+                    <input type="number" id="percent_money" name="" value="">
                     %(人民币)
                 </div>
                 <div class="line">
                     <div class="l">
                         处置方优势:
                     </div>
-                    <textarea name="name" rows="3" cols="80" placeholder="处置方优势填写150字内"></textarea>
+                    <textarea name="name" id="detail_info" maxlength="150" rows="3" cols="80" placeholder="处置方优势填写150字内"></textarea>
                 </div>
                 <div class="sub-btn">
-                    <button type="button" name="button">申请接单</button>
+                    <button type="button" onclick="ajax()" name="button">申请接单</button>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+<script id="slide-tmpl" type="text/x-jquery-tmpl">
+  <div class="prev"><img src="/Uploads/Debt/imgs/left.png" alt=""></div>
+  <div class="bd">
+    {{each(i, img) imgs}}
+      <li><img src="{{= img}}" alt=""></li>
+    {{/each}}
+  </div>
+  <div class="next"><img src="/Uploads/Debt/imgs/right.png" alt=""></div>
+</script>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/SuperSlide/jquery.SuperSlide.2.1.1.js'></script>
+<script src='{echo JsURL}/debt/debtDetails.js'></script>
