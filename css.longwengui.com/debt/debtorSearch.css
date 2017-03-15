@@ -1,12 +1,12 @@
 .icon-tri_arrow_down_b {
-  background-image: url("../imgs/spriteIcon.png");
+  background-image: url("/Uploads/Debt/imgs/spriteIcon.png");
   background-position: -141px -107px;
   width: 14px;
   height: 9px;
 }
 .debtorSearch {
   width: 100%;
-  background: url('../imgs/debtor_search_bg.png') 0 center no-repeat;
+  background: url('/Uploads/Debt/imgs/debtor_search_bg.png') 0 center no-repeat;
   min-height: 664px;
   padding-top: 74px;
   padding-bottom: 70px;

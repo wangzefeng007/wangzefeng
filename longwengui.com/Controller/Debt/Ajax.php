@@ -13,7 +13,7 @@ class Ajax
 
     public function Index()
     {
-        $Intention = trim($_POST ['Intention']);
+        $Intention = trim($_GET ['Intention']);
         if ($Intention == '') {
             $json_result = array(
                 'ResultCode' => 500,
@@ -25,6 +25,9 @@ class Ajax
         }
         $this->$Intention ();
     }
+    /**
+     * @desc 债务催收信息
+     */
     public function GetDebtList(){
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtInfoModule->GetLists();
@@ -114,5 +117,42 @@ class Ajax
             }
             return $MysqlWhere;
         }
+    }
+    /**
+     * @desc 老赖信息
+     */
+    public function debtorSearch(){
+        $Time = time();
+        $Num = rand(100, 999);
+        $iname =trim($_GET['iname']);
+        $cardNum =trim($_GET['cardNum']);
+        $areaName =trim($_GET['areaName']);
+        if ($areaName=='全国'){
+            $areaName='';
+        }
+        if ($iname==='' && $cardNum===''){
+            $json_result = array(
+                'ResultCode' => 102,
+                'Message' => '请输入必填',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
+        $Html = curl_getsend('https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?resource_id=6899&query=%E5%A4%B1%E4%BF%A1%E8%A2%AB%E6%89%A7%E8%A1%8C%E4%BA%BA%E5%90%8D%E5%8D%95&cardNum='.$cardNum.'&iname='.$iname.'&areaName='.$areaName.'&ie=utf-8&oe=utf-8&format=json&_='.$Time.$Num);
+        $Html = json_decode($Html,true);
+        if (empty($Html['data'])){
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '未找到相关失信被执行人',
+            );
+        }else{
+            $json_result = array(
+                'ResultCode' => 200,
+                'Message' => '返回成功',
+            );
+            $json_result['data'] =  $Html['data'][0]['result'];
+        }
+        echo stripslashes(json_encode($json_result,JSON_UNESCAPED_UNICODE));
+        exit;
     }
 }

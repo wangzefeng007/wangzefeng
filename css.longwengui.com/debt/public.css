@@ -230,7 +230,7 @@
   left: 0;
   width: 20px;
   height: 20px;
-  background: url('../imgs/radio_off.png') 0 no-repeat center;
+  background: url('/Uploads/Debt/imgs/radio_off.png') 0 no-repeat center;
 }
 .m-radio input[type="radio"]:checked {
   content: '';
@@ -240,7 +240,7 @@
   left: 0;
   width: 20px;
   height: 20px;
-  background: url('../imgs/radio_on.png') 0 no-repeat center;
+  background: url('/Uploads/Debt/imgs/radio_on.png') 0 no-repeat center;
 }
 .m-checkbox {
   vertical-align: middle;
@@ -264,7 +264,7 @@
   left: 2px;
   width: 20px;
   height: 20px;
-  background: url('../imgs/cb_off.png') 0 no-repeat center;
+  background: url('/Uploads/Debt/imgs/cb_off.png') 0 no-repeat center;
 }
 .m-checkbox input[type="checkbox"]:checked {
   content: '';
@@ -1149,7 +1149,7 @@
 }
 .debtorSearch {
   width: 100%;
-  background: url('../imgs/debtor_search_bg.png') 0 center no-repeat;
+  background: url('http://www.longwengui.net/Uploads/Debt/imgs/debtor_search_bg.png') 0 center no-repeat;
   min-height: 814px;
   padding-top: 74px;
 }

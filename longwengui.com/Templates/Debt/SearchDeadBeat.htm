@@ -1,5 +1,5 @@
 {template Header}
-<link rel="stylesheet" href="../css/debtorSearch.css">
+<link rel="stylesheet" href="{echo CssURL}/debt/debtorSearch.css">
 <div class="debtorSearch">
     <div class="wrap">
         <div class="sercher">
@@ -12,7 +12,7 @@
                             <i></i>
                             <input type="checkbox" name="area" value="">
                             <ul>
-                                <li data-name="">全国</li>
+                                <li data-name="all">全国</li>
                                 <li data-name="北京">北京</li>
                                 <li data-name="天津">天津</li>
                                 <li data-name="河北">河北</li>
@@ -59,11 +59,11 @@
             </div>
         </div>
         <div class="map">
-            <img src="../imgs/map.png" alt="">
+            <img src="/Uploads/Debt/imgs/map.png" alt="">
         </div>
         <div class="result">
             <div class="current-loc">
-                <img src="../imgs/current_loc.png" alt="">
+                <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
                 <span>当前位置 : 查询老赖 > <span class="cur">查询结果列表</span></span>
             </div>
             <div class="tbl-wrap" id="result">
