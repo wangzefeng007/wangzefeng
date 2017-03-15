@@ -202,6 +202,29 @@ function adaptIE8_forEach(){
   }
 }
 
+//显示提示
+function showTip(id, text){
+  layer.tips(text, '#' + id, {
+    tips: [1, '#35bdfc'] //还可配置颜色
+  });
+}
+
+//错误提示
+function showErr(text){
+  layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content:    "<div class='layer-err'>"
+              +  "<div class='hd'>错误提示</div>"
+              +   "<div class='cont'>"
+              +     text
+              +   "</div>"
+              + "</div>"
+  });
+}
+
 //判断是否ie8
 function isIE8(){
   var _r = false;
@@ -213,6 +236,23 @@ function isIE8(){
       var ie_version;
       if (Sys.ie.indexOf("8") > -1) {
           ie_version = 8;
+          _r = true;
+      }
+  }
+  return _r;
+}
+
+//判断是否ie9
+function isIE9(){
+  var _r = false;
+   var Sys = {};
+  var ua = navigator.userAgent.toLowerCase();
+  if (window.ActiveXObject) {
+      Sys.ie = ua.match(/msie ([\d.]+)/)[1];
+      //获取版本
+      var ie_version;
+      if (Sys.ie.indexOf("9") > -1) {
+          ie_version = 9;
           _r = true;
       }
   }

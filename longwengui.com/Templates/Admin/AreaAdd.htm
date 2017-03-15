@@ -1,0 +1,86 @@
+{template Head}
+
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.all.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">旅游产品管理</a>
+                </li>
+                <li>
+                    <a href="/index.php?Module=TourArea&Action=TourAreaList">地区管理</a>
+                </li>
+                <li class="active">编辑地区信息</li>
+            </ul>
+            <span class="position hidden">地区管理</span>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <form action='/index.php?Module=TourArea&Action=Add'  method='post'  enctype="multipart/form-data">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tbody>
+                            <tr>
+                                <td colspan="2" class="t-h">
+                                    地区基础信息
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="t-r" style="width: 150px"> 父级区域：</td>
+                                <td>
+                                    <div class="col-sm-2">
+                                        <select name="ParentID" id="ParentID" class="form-control" onchange="GetNewAreaID(this.value)">
+                                            <option style="width:300px;"  value="{if $TourParent[CnName]}{$TourParent[AreaID]}{else}0{/if}">{if $TourParent[CnName]}{$TourParent[CnName]}{else}-- Top --{/if}</option>
+                                            {loop $AreaLists $Lists}
+                                            <option value="{$Lists[AreaID]}">{$Lists[CnName]} </option>
+                                            {loop $Lists[Province] $PLists}
+                                            <option value="{$PLists[AreaID]}">&nbsp;&nbsp;|- {$PLists[CnName]} </option>
+                                            {loop $PLists[City] $CLists}
+                                            <option value="{$CLists[AreaID]}">&nbsp;&nbsp;&nbsp;&nbsp;|--{$CLists[CnName]}</option>
+                                            {/loop}
+                                            {/loop}
+                                            {/loop}
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="t-r">中文名：</td>
+                                <td>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="CnName" value="{$AreaDetails[CnName]}" class="form-control"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-striped table-hover">
+                            <tbody>
+                            <tr id="MaterialRequested">
+                                <td width="150" class="t-h"></td>
+                                <td>
+                                    <div class="col-sm-2">
+                                        <input type="hidden" name="AreaID" id="AreaID" value="{$AreaDetails[AreaID]}" />
+                                        <input class="btn btn-danger" type='submit' name='submit' value='提交保存'/>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Foot}

@@ -1,0 +1,70 @@
+{template Head}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">地区管理</a>
+                </li>
+                <li class="active position">地区列表</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel breadcrumb">
+                <div class="panel-body">
+                    <span style="float: left;line-height: 38px;margin-left: -10px;padding-right: 10px">地区：</span>
+                    <form class="form-inline" role="form" action="/index.php" method="get">
+                        <input type="hidden" name="Module" value="TourArea">
+                        <input type="hidden" name="Action" value="TourAreaList">
+                        <input type="text" class="form-control" placeholder="中文名" name="PName" value="{$PName}">
+                        <button class="btn btn-info">搜索</button>
+                        <input type="button" onClick="location.href='/index.php?Module=TourArea&Action=AreaAdd'" value="添加" class="btn btn-danger">
+                    </form>
+                </div>
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>中文名</th>
+                            <th class="numeric">地区级别</th>
+                            <th class="numeric">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $AreaLists $list}
+                        <tr height="35" align="center">
+                            <td nowrap="nowrap">{$list[AreaID]}</td>
+                            <td nowrap="nowrap"align="left">{$list[CnName]}</td>
+                            <td nowrap="nowrap">省份</td>
+                            <td nowrap="nowrap">
+                                <a class="getinfo" href="/index.php?Module=TourArea&Action=AreaAdd&AreaID={$list[AreaID]}">编辑</a>
+                                <!--<a class="getinfo"  href="/index.php?Module=TourArea&Action=Delete&AreaID={$list[AreaID]}">删除</a>-->
+                            </td>
+                        </tr>
+                        {loop $list[Province] $PList}
+                        <tr height="35" align="center">
+                            <td nowrap="nowrap">{$PList[AreaID]}</td>
+                            <td nowrap="nowrap" style="text-indent:1em" align="left">|-{$PList[CnName]}
+                            </td>
+                            <td nowrap="nowrap">城市</td>
+                            <td nowrap="nowrap">
+                                <a class="getinfo" href="/index.php?Module=TourArea&Action=AreaAdd&AreaID={$PList[AreaID]}">编辑</a>
+                            </td>
+                        </tr>
+                      {/loop} {/loop}
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{template Foot}
