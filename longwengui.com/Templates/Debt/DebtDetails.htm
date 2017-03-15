@@ -4,71 +4,67 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a href="./collection.html">债务催收</a> > <span class="cur">查看详情</span></span>
+            <span>当前位置 : <a href="/debtlists/">债务催收</a> > <span class="cur">查看详情</span></span>
         </div>
         <div class="info-wrap">
             <div class="hd">
                 <button type="button" name="button">关注</button>
-                债务编号：201702280001--处置方偏向：律师团队
+                债务编号：{$DebtInfo[DebtNum]}--处置方偏向：律师团队
             </div>
             <div class="pubman-info">
-                <span>发布人: 陈一</span>
-                发布时间: 2017-02-26
+                <span>发布人: {$UserInfo[RealName]}</span>
+                发布时间: {echo date("Y-m-d",$DebtInfo[AddTime])}
             </div>
             <div class="debt-det">
+                {loop $DebtorsInfo $lists}
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            债务人姓名: 苏某某
+                            债务人姓名: {$lists[Name]}
                         </div>
-                        债务人身份证: 3605151985****2145
+                        债务人身份证: {$lists[Card]}
                     </div>
                     <div class="line">
                         <div class="l">
-                            债务人地区: 福建省-厦门市-思明区
+                            债务人地区: {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
                         </div>
-                        详细地址: 莲前街道莲前东路100号
+                        详细地址: {$lists[Address]}
+                    </div>
+                </div>
+                {/loop}
+                <div class="bx">
+                    <div class="line">
+                        <div class="l">
+                            债务金额（元）：￥{$DebtInfo[DebtAmount]}
+                        </div>
+                        逾期时间：{$DebtInfo[Overduetime]}
                     </div>
                 </div>
 
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            债务人姓名: 苏某某
-                        </div>
-                        债务人身份证: 3605151985****2145
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            债务人地区: 福建省-厦门市-思明区
-                        </div>
-                        详细地址: 莲前街道莲前东路100号
-                    </div>
-                </div>
-
-                <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            债务金额（元）：￥5000000.00
-                        </div>
-                        逾期时间：2017-05-10
-                    </div>
-                </div>
-
-                <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            是否有前期费用：有
+                            是否有前期费用：{if $DebtInfo[EarlyCost]==1}有{else}无{/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            是否有保证人：有<span>个人</span><span>李某某</span><span>3506151978****451</span><span>1354445****</span>
+                            是否有保证人：{if $DebtInfo[Warrantor]==1}有{else}无{/if}
+                            {if $DebtInfo[Warrantor]==1}
+                            {loop $WarrantorInfo $lists}
+                            <span>{$lists[type]}</span><span>{$lists[name]}</span><span>{$lists[card]}</span><span>{$lists[phone]}</span>
+                            {/loop}
+                            {/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            是否有抵押物：有<span>汽车</span><span>保时捷卡宴2012款3.0T无事故车</span>
+                            是否有抵押物：{if $DebtInfo[Guarantee]==1}有{else}无{/if}
+                            {if $DebtInfo[Guarantee]==1}
+                            {loop $GuaranteeInfo $lists}
+                            <span>{$lists[name]}</span><span>{$lists[content]}</span>
+                            {/loop}
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -76,27 +72,25 @@
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            债务人是否随时能寻找到：否
+                            债务人是否随时能寻找到：{if $DebtInfo[FindDebtor]==1}是{else}否{/if}
                         </div>
-                        债务人是否有还款能力：是
+                        债务人是否有还款能力：{if $DebtInfo[RepaymentDebtor]==1}是{else}否{/if}
                     </div>
                     <div class="line">
                         <div class="l">
-                            借款原因：公司运营资金周转不开，向本人借款用作公司运转
+                            借款原因：{$lists[ReasonsBorrowing]}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            债务近况：公司已经倒闭，但是公司资产还能用于抵押，有偿还能力。
+                            债务近况：{$lists[DebtRecent]}
                         </div>
                     </div>
                     <div class="line-img">
                         <span>借款凭证 :</span>
-                        <img src="/Uploads/Debt/imgs/about_us.png" alt="">
-                        <img src="/Uploads/Debt/imgs/about_us.png" alt="">
-                        <img src="/Uploads/Debt/imgs/about_us.png" alt="">
-                        <img src="/Uploads/Debt/imgs/about_us.png" alt="">
-                        <img src="/Uploads/Debt/imgs/about_us.png" alt="">
+                        {loop $DebtImage $lists}
+                        <img src="{$lists[ImageUrl]}" alt="">
+                        {/loop}
                     </div>
                 </div>
             </div>
