@@ -6,18 +6,14 @@ function go(url){
 //loading显示隐藏
 var loading;
 function showLoading(){
-  if(!loading){
-    loading = layer.load(1, {
-      shade: [0.5,'#666'],
-      area: ['10px', '40px']
-    });
-  }
+  loading = layer.load(1, {
+    shade: [0.5,'#666'],
+    area: ['10px', '40px']
+  });
   return loading;
 };
 function closeLoading(){
-  if(loading){
-    layer.close(loading);
-  }
+  layer.close(loading);
 };
 
 //跟据name返回checkbox选中的值，数组形式返回

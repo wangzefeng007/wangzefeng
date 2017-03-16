@@ -23,8 +23,9 @@ class Debt
         $Nav='debt';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
-        $NStatus = $MemberDebtInfoModule->NStatus;
         $MemberAreaModule = new MemberAreaModule();
+        $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
+        $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
         $MysqlWhere ='';
         //关键字

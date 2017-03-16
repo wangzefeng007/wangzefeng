@@ -8,8 +8,8 @@
  */
 class Ajax
 {    public function __construct()
-    {
-    }
+{
+}
 
     public function Index()
     {
@@ -31,7 +31,8 @@ class Ajax
     public function GetDebtList(){
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
-
+        $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberDebtInfoModule->NStatus;
         if (!$_POST) {
             $Data['ResultCode'] = 100;
             EchoResult($Data);exit;
@@ -41,10 +42,6 @@ class Ajax
         $MysqlWhere = '';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
-            $Sort = trim($_POST['Sort']);
-            if ($Sort=='Default'){
-                $MysqlWhere .=' order by HighSchoolID ASC';
-            }
         }
         $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         $PageSize = 7;
@@ -70,10 +67,15 @@ class Ajax
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
-                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
-                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
+                $Province = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Province']);
+                $Data['Data'][$key]['Province'] = $Province['CnName'];
+                $City = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['City']);
+                $Data['Data'][$key]['City'] = $City['CnName'];
+                $Area = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['Area'] = $Area['CnName'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
+                $Data['Data'][$key]['Status'] = $value['Status'];
+                $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];
             }
             MultiPage($Data, 5);
             if ($Keyword != '') {
@@ -86,31 +88,94 @@ class Ajax
         EchoResult($Data);exit;
     }
     public function GetMysqlWhere($Intention = ''){
-        $MemberAreaModule = new MemberAreaModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         if ($Intention=='GetDebtList'){
-            $MysqlWhere =''; var_dump($_POST);
+            $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
-            $Type = $_POST['col_way']; //催收方式
-            if($Type[0]!=''){
-                $MysqlWhere ='';
+            $Type = trim($_POST['col_way']); //催收方式
+            if($Type!=''){
+                $MysqlWhere .=" and CollectionType IN ($Type)";
             }
-            $Area =$_POST['col_area']; //催收地区
-            if($Area[0]!=''){
-            foreach ($Area as $value){
-                $MemberAreaModule->GetInfoByKeyID($value);
+            $Area =trim($_POST['col_area']); //催收地区
+            if($Area!=''){
+                $AreaWhere = " and City IN ($Area)";
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
+                if ($DebtorsInfo){
+                    foreach ($DebtorsInfo  as $key=>$value){
+                        $data[]=$value['DebtID'];
+                    }
+                    $data=implode(',',array_unique($data));
+                    $MysqlWhere .= " and DebtID IN ($data)";
+                }
             }
+            $DebtAmount = $_POST['col_money'];//债务金额
+            if($DebtAmount!=''){
+                if ($DebtAmount=='0-3'){
+                    $MysqlWhere .= ' and DebtAmount <= 30000 ';
+                }elseif ($DebtAmount=='3-10'){
+                    $MysqlWhere .= ' and DebtAmount >= 30000 and DebtAmount <=100000 ';
+                }elseif ($DebtAmount=='10-50'){
+                    $MysqlWhere .= ' and DebtAmount >= 100000 and DebtAmount <=500000 ';
+                }elseif ($DebtAmount=='50-100'){
+                    $MysqlWhere .= ' and DebtAmount >= 500000 and DebtAmount <=1000000 ';
+                }elseif ($DebtAmount=='100-All'){
+                    $MysqlWhere .= ' and DebtAmount >= 1000000 ';
+                }
+                if (strstr($DebtAmount,',')){
+                    $MysqlWhere .='and (';
+                    if (strstr($DebtAmount,'0-3') && $DebtAmount!='0-3'){
+                        $MysqlWhere .= ' or (DebtAmount <= 100000) ';
+                    }
+                    if (strstr($DebtAmount,'3-10') && $DebtAmount!='3-10'){
+                        $MysqlWhere .= ' or (DebtAmount >= 30000 and DebtAmount <=100000) ';
+                    }
+                    if (strstr($DebtAmount,'10-50') && $DebtAmount!='10-50'){
+                        $MysqlWhere .= ' or (DebtAmount >= 100000 and DebtAmount <=500000) ';
+                    }
+                    if (strstr($DebtAmount,'50-100') && $DebtAmount!='50-100'){
+                        $MysqlWhere .= ' or (DebtAmount >= 500000 and DebtAmount <=1000000) ';
+                    }
+                    if (strstr($DebtAmount,'100-All') && $DebtAmount!='100-All'){
+                        $MysqlWhere .= ' or (DebtAmount >= 1000000) ';
+                    }
+                      $MysqlWhere .=')';
+                }
+                $MysqlWhere =preg_replace('/or/','',$MysqlWhere,1);
             }
-            $Money = $_POST['col_money'];//催收金额
-            if($Money[0]!=''){
-            }
-            $Day = $_POST['col_day'];//催收天数
-            if($Day[0]!=''){
-            }
-
-            $Location = $_POST['Location'];
-            if($Location[0]!='All'){
-                $Location=implode(',', $Location);
-                $MysqlWhere .=" and Province in ($Location)";
+            $Overduetime = $_POST['col_day'];//逾期时间
+            if($Overduetime!=''){
+                if ($Overduetime=='0-60'){
+                    $MysqlWhere .= ' and Overduetime <= 60 ';
+                }elseif ($Overduetime=='61-180'){
+                    $MysqlWhere .= ' and Overduetime >= 61 and Overduetime <=180 ';
+                }elseif ($Overduetime=='181-365'){
+                    $MysqlWhere .= ' and Overduetime >= 181 and Overduetime <=365 ';
+                }elseif ($Overduetime=='366-1095'){
+                    $MysqlWhere .= ' and Overduetime >= 366 and Overduetime <=1095 ';
+                }elseif ($Overduetime=='1096-All'){
+                    $MysqlWhere .= ' and Overduetime >= 1096 ';
+                }
+                if (strstr($Overduetime,',')){
+                    $OverduetimeWhere =' and (';
+                    if (strstr($Overduetime,'0-60') && $Overduetime!='0-60'){
+                        $OverduetimeWhere .= ' or (Overduetime <= 60) ';
+                    }
+                    if (strstr($Overduetime,'61-180') && $Overduetime!='61-180'){
+                        $OverduetimeWhere .= ' or (Overduetime >= 61 and Overduetime <=180) ';
+                    }
+                    if (strstr($Overduetime,'181-365') && $Overduetime!='181-365'){
+                        $OverduetimeWhere .= ' or (Overduetime >= 181 and Overduetime <=365) ';
+                    }
+                    if (strstr($Overduetime,'366-1095') && $Overduetime!='366-1095'){
+                        $OverduetimeWhere .= ' or (Overduetime >= 366 and Overduetime <=1095) ';
+                    }
+                    if (strstr($Overduetime,'1096-All') && $Overduetime!='1096-All'){
+                        $OverduetimeWhere .= ' or (Overduetime >= 1096) ';
+                    }
+                    $OverduetimeWhere .=')';
+                    $OverduetimeWhere =preg_replace('/or/','',$OverduetimeWhere,1);
+                }
+                $MysqlWhere .= $OverduetimeWhere;
             }
             $Page = trim($_POST['Page']);
             if ($Keyword != '') {
@@ -125,9 +190,9 @@ class Ajax
     public function debtorSearch(){
         $Time = time();
         $Num = rand(100, 999);
-        $iname =trim($_GET['iname']);
-        $cardNum =trim($_GET['cardNum']);
-        $areaName =trim($_GET['areaName']);
+        $iname =trim($_POST['iname']);
+        $cardNum =trim($_POST['cardNum']);
+        $areaName =trim($_POST['areaName']);
         if ($areaName=='全国'){
             $areaName='';
         }
