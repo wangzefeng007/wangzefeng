@@ -1,0 +1,407 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/applySolver.css">
+<div class="wayByLawer">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="../imgs/current_loc.png" alt="">
+      <!-- 根据页面参数判断是哪种类型的处置方 type = 1 律师团队 type = 2 催收公司-->
+      <span>当前位置 : <a href="./solver.html">寻找处置方</a> > 律师团队</span>
+    </div>
+    <div class="form-wrap">
+      <div class="box">
+        <div class="t">
+          <img src="../imgs/user.png" alt="">
+          <span>债权人信息</span>
+          <div class="opt" onclick="addDom('debtor_owner_info', 'debtor_owner_info_temp')">
+            <img src="../imgs/add_b.png" alt="">
+            添加
+          </div>
+        </div>
+
+        <div class="c" id="debtor_owner_info">
+          <div class="blo">
+            <div class="to-del" onclick="removeParentDom(this, 'blo')">
+              <img src="../imgs/close_grey.png" alt="">
+            </div>
+            <div class="line">
+              <div class="info">
+                债权人信息 :
+              </div>
+              <div class="details">
+                <input type="text" name="name" placeholder="*姓名">
+                <input type="text" name="idNum" placeholder="身份证号">
+                <input type="text" name="phoneNumber" placeholder="联系电话">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                债权人地区 :
+              </div>
+              <div class="details">
+                <input type="text" name="province" placeholder="*所在省份">
+                <input type="text" name="city" placeholder="*所在城市">
+                <input type="text" name="county" placeholder="*所在区县/市">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                债权金额 :
+              </div>
+              <div class="details">
+                <input type="number" name="debt_money" placeholder="请输入债权金额">元
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t">
+          <img src="../imgs/to_sel.png" alt="">
+          <span>是否有前期费用 : </span>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="fee" value="1">
+              <i></i>
+              是
+            </label>
+          </div>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="fee" value="0" checked>
+              <i></i>
+              否
+            </label>
+          </div>
+        </div>
+
+        <div class="c pb-30"></div>
+      </div>
+
+      <div class="box">
+        <div class="t">
+          <img src="../imgs/user.png" alt="">
+          <span>债务人基本信息</span>
+          <div class="opt" onclick="addDom('debtor_info', 'debtor_info_temp')">
+            <img src="../imgs/add_b.png" alt="">
+            添加
+          </div>
+        </div>
+
+        <div class="c" id="debtor_info">
+          <div class="blo">
+            <div class="to-del" onclick="removeParentDom(this, 'blo')">
+              <img src="../imgs/close_grey.png" alt="">
+            </div>
+            <div class="line">
+              <div class="info">
+                债务人信息 :
+              </div>
+              <div class="details">
+                <input type="text" name="name" placeholder="*姓名">
+                <input type="text" name="idNum" placeholder="身份证号">
+                <input type="text" name="phoneNumber" placeholder="联系电话">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                债务人地区 :
+              </div>
+              <div class="details">
+                <input type="text" name="province" placeholder="*所在省份">
+                <input type="text" name="city" placeholder="*所在城市">
+                <input type="text" name="county" placeholder="*所在区县/市">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                债务金额 :
+              </div>
+              <div class="details">
+                <input type="text" name="debt_money" placeholder="请输入债务金额">元
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t">
+          <img src="../imgs/to_sel.png" alt="">
+          <span>债务人是否随时能寻找到 : </span>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="searchedAnytime" value="1">
+              <i></i>
+              是
+            </label>
+          </div>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="searchedAnytime" value="0" checked>
+              <i></i>
+              否
+            </label>
+          </div>
+        </div>
+        <div class="c"></div>
+
+        <div class="t">
+          <img src="../imgs/to_sel.png" alt="">
+          <span>债务人是否有还款能力 : </span>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="abilityDebt" value="1">
+              <i></i>
+              是
+            </label>
+          </div>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="abilityDebt" value="0" checked>
+              <i></i>
+              否
+            </label>
+          </div>
+        </div>
+        <div class="c"></div>
+
+        <div class="t">
+          <img src="../imgs/gou_b_off.png" id="bonds_man_info_btn" style="cursor: pointer;" data-checked="0" alt="">
+          <span>有保证人</span>
+          <div class="opt" onclick="addBondsMan()" style="display: none;">
+            <img src="../imgs/add_b.png" alt="">
+            添加
+          </div>
+        </div>
+        <div class="c" id="bonds_man_info">
+          <div class="blo"  style="display: none;">
+            <div class="to-del" onclick="removeParentDom(this, 'blo')">
+              <img src="../imgs/close_grey.png" alt="">
+            </div>
+            <div class="line">
+              <div class="info">
+                保证人信息 :
+              </div>
+              <div class="m-dropdown">
+                <label type="checkbox">
+                  <span>个人</span>
+                  <i></i>
+                  <input type="checkbox" name="bonds_man_role" value="">
+                  <ul>
+                    <li data-name="个人">个人</li>
+                    <li data-name="企业">企业</li>
+                  </ul>
+                </label>
+              </div>
+              <div class="details">
+                <input type="text" name="name" placeholder="*保证人名称">
+                <input type="text" name="idNum" placeholder="身份证号">
+                <input type="text" name="phoneNumber" placeholder="联系方式">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t">
+          <img src="../imgs/gou_b_off.png" id="bonds_good_info_btn" style="cursor: pointer;" data-checked="0" alt="">
+          <span>有抵押物</span>
+          <div class="opt" onclick="addDom('bonds_good_info', 'bonds_good_tepl')"  style="display: none;">
+            <img src="../imgs/add_b.png" alt="">
+            添加
+          </div>
+        </div>
+        <div class="c" id="bonds_good_info">
+          <div class="blo"  style="display: none;">
+            <div class="to-del" onclick="removeParentDom(this, 'blo')">
+              <img src="../imgs/close_grey.png" alt="">
+            </div>
+            <div class="line">
+              <div class="info">
+                抵押物信息 :
+              </div>
+              <div class="details">
+                <input type="text" name="name" placeholder="*抵押物名称">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info"></div>
+              <div class="details">
+                <textarea name="good_detail" rows="8" cols="80" placeholder="抵押物详情(最多可输入150字)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comfirm-btns">
+          <button type="button" id="match" name="button">开始匹配</button>
+          <button type="button" id="reset" onclick="javascript:window.location.reload();" name="button">重置</button>
+        </div>
+
+        <div id="result_data" style="display: none;">
+          <div class="t">
+            <img src="../imgs/info.png" alt="">
+            <span>处置方信息</span>
+            <span class="fl-r c-warn">
+              <img src="../imgs/info_red.png" alt="">
+              注：申请处置方不能超过3个
+            </span>
+          </div>
+
+          <div class="c">
+            <div class="table-wrap" id="result_tbl"></div>
+            <div class="pagination-wrap">
+              <div class="pagination fl-r" id="result_tbl_pagination">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/x-jquery-tmpl" id="debtor_owner_info_temp">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="../imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        债权人信息 :
+      </div>
+      <div class="details">
+        <input type="text" name="name" placeholder="*姓名">
+        <input type="text" name="idNum" placeholder="身份证号">
+        <input type="text" name="phoneNumber" placeholder="联系电话">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债权人地区 :
+      </div>
+      <div class="details">
+        <input type="text" name="province" placeholder="*所在省份">
+        <input type="text" name="city" placeholder="*所在城市">
+        <input type="text" name="county" placeholder="*所在区县/市">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债权金额 :
+      </div>
+      <div class="details">
+        <input type="number" name="debt_money" placeholder="请输入债权金额">元
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-jquery-tmpl" id="debtor_info_temp">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="../imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        债务人信息 :
+      </div>
+      <div class="details">
+        <input type="text" name="name" placeholder="*姓名">
+        <input type="text" name="idNum" placeholder="身份证号">
+        <input type="text" name="phoneNumber" placeholder="联系电话">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债务人地区 :
+      </div>
+      <div class="details">
+        <input type="text" name="province" placeholder="*所在省份">
+        <input type="text" name="city" placeholder="*所在城市">
+        <input type="text" name="county" placeholder="*所在区县/市">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债务金额 :
+      </div>
+      <div class="details">
+        <input type="text" name="debt_money" placeholder="请输入债务金额">元
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-jquery-tmpl" id="bonds_man_tmpl">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="../imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        保证人信息 :
+      </div>
+      <div class="m-dropdown">
+        <label type="checkbox">
+          <span>个人</span>
+          <i></i>
+          <input type="checkbox" name="bonds_man_role" value="">
+          <ul>
+            <li data-name="个人">个人</li>
+            <li data-name="企业">企业</li>
+          </ul>
+        </label>
+      </div>
+      <div class="details">
+        <input type="text" name="name" placeholder="*保证人名称">
+        <input type="text" name="idNum" placeholder="身份证号">
+        <input type="text" name="phoneNumber" placeholder="联系方式">
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-jquery-tmpl" id="bonds_good_tepl">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="../imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        抵押物信息 :
+      </div>
+      <div class="details">
+        <input type="text" name="name" placeholder="*抵押物名称">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info"></div>
+      <div class="details">
+        <textarea name="good_detail" rows="8" cols="80" placeholder="抵押物详情(最多可输入150字)"></textarea>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-jquery-tmpl" id="result_data_tmpl">
+  <table>
+    <thead>
+      <tr>
+        <th>名称</th>
+        <th>地区</th>
+        <th>佣金(元)</th>
+        <th>联系方式</th>
+        <th>提交申请</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{each(i, v) resData}}
+      <tr>
+        <td>{{= v.CompanyName}}</td>
+        <td>{{= v.province}}-{{= v.city}}-{{= v.area}}</td>
+        <td>￥{{= v.fee}}</td>
+        <td>{{= v.phoneNumber}}</td>
+        <td>
+          <button type="button" onclick="applyToSearch(${v.UserID})" name="button">申请</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</script>
+{template Footer}
+
+<script src='{echo JsURL}/debt/applySolver.js'></script>
