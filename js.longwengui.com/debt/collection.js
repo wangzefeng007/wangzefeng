@@ -57,9 +57,9 @@ $(function(){
                    cur_page = data.Page;
 
                    //注入分页
-                   injectPagination('#collection_page_pagination', cur_page, data.PageSize, function(){
+                   injectPagination('#collection_page_pagination', cur_page, data.PageCount, function(){
                      $('#collection_page_pagination').find('.b').click(function(){
-                       var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageSize);
+                       var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
                        if(changeTo){
                          ajax(changeTo);
                        }
@@ -67,6 +67,7 @@ $(function(){
                    });
               }else{
                   layer.msg(data.Message);
+                    //后续添加无数据返回结果页面
               }
           },
           complete: function () { //加载完成提示
