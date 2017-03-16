@@ -5,17 +5,17 @@
         <div class="filt-parm">
             <div class="line">
                 <span >悬赏方式 :</span>
-                <span id="way_all" class="sel" >全部</span>
-                <span>找人</span>
-                <span>找财产</span>
+                <span id="way_all" {if empty($Type)}class="sel"{/if}>全部</span>
+                <span {if $Type=='a1'}class="sel"{/if}><a href="{$MyUrl}{$Area}a1/">找人</a></span>
+                <span {if $Type=='a2'}class="sel"{/if}><a href="{$MyUrl}{$Area}a2/">找财产</a></span>
             </div>
             <div class="line">
                 <span>催收地区 :</span>
-                <span class="sel" id="area_all">全部</span>
+                <span {if empty($Area)}class="sel"{/if} id="area_all">全部</span>
                 {loop $AreaList $lists}
-                <span>
+                <span {if $Area==$lists['AreaID']}class="sel"{/if}>
                 <div class="m-checkbox">
-                  <label type="checkbox"><input type="checkbox" name="area" value="{$lists[AreaID]}">{$lists[CnName]}</label>
+                  <label type="checkbox"><input type="checkbox" name="area" value="{$lists[AreaID]}"> <a href="{$MyUrl}{$lists[AreaID]}{$Type}/">{$lists[CnName]}</a></label>
                 </div>
               </span>
                 {/loop}
@@ -88,12 +88,14 @@
                 </div>
                 {/if}
             </div>
-           {/loop}
+            {/loop}
         </div>
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="reword_page_pagination">
-            <a href="/reword/?p=1" class="b sel">首页</a>
-            {if $ShowPage}{$ShowPage}{/if}
+                {if $ShowPage}
+                <a href="/reword/?p=1" class="b sel">首页</a>
+                {$ShowPage}
+                {/if}
             </div>
         </div>
     </div>

@@ -150,7 +150,7 @@ class Ajax
                 'ResultCode' => 200,
                 'Message' => '返回成功',
             );
-            $json_result['data'] =  $Html['data'][0]['result'];
+            $json_result['Data'] =  $Html['data'][0]['result'];
         }
         echo stripslashes(json_encode($json_result,JSON_UNESCAPED_UNICODE));
         exit;

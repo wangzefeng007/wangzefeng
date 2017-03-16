@@ -148,6 +148,7 @@ function　calcPageNums(pageCount, page){
     _arr.push(0);
     _arr.push(pageCount);
   }
+  console.log(_arr)
   return _arr;
 }
 
