@@ -11,7 +11,7 @@ RewriteRule ^reword(|\/)$ /Index.php?Module=Reword&Action=Index [QSA]
 RewriteRule ^reword/([a-z0-9]+)(|\/)$ /Index.php?Module=Reword&Action=Index&SoUrl=$1 [QSA]
 #寻找处置方
 RewriteRule ^choicefind(|\/)$ /Index.php?Module=Find&Action=ChoiceFind [QSA]
-RewriteRule ^team/([0-9]+).html$ /Index.php?Module=Find&Action=Team&ID=$1 [QSA]
+RewriteRule ^team/([0-9]+)(|\/)$ /Index.php?Module=Find&Action=Team&T=$1 [QSA]
 #搜索老赖
 RewriteRule ^deadbeat(|\/)$ /Index.php?Module=DeadBeat&Action=Index [QSA]
 RewriteRule ^ajax.html$ /Index.php?Module=Ajax&Action=Index [QSA]

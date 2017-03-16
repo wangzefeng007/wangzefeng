@@ -16,6 +16,7 @@ class Find
     }
     public function Team(){
         $Nav ='find';
+        $Type = $_GET['T'];
         include template('DebtFindTeam');
     }
 }

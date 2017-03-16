@@ -5,7 +5,7 @@
     <div class="current-loc">
       <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
       <!-- 根据页面参数判断是哪种类型的处置方 type = 1 律师团队 type = 2 催收公司-->
-      <span>当前位置 : <a href="./solver.html">寻找处置方</a> > 律师团队</span>
+      <span>当前位置 : <a href="./solver.html">寻找处置方</a> >{if $Type ==1}律师团队{elseif $Type==2}催收公司{/if}</span>
     </div>
     <div class="form-wrap">
       <div class="box">

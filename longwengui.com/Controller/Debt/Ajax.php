@@ -275,6 +275,21 @@ class Ajax
         }
         echo json_encode($json_result);
         exit;
+    }
+
+    /**
+     * @desc 寻找处置方(找律师团队和催收公司)
+     */
+
+    public function FindTeam(){
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
+        $debtorInfos = $AjaxData['debtorInfos'];
+        foreach ($debtOwnerInfos as $key=>$value){
+            $value['']
+        }
+        var_dump($AjaxData);
+             var_dump($_POST);exit;
 
     }
 }

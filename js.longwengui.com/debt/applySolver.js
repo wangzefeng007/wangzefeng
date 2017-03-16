@@ -219,9 +219,12 @@ $(function(){
     }
 
     $.ajax({
-      type: "get",
-      url: "../data/searchSolverWay.json",
-      data: JSON.stringify(submitData),
+      type: "post",
+      url: "/ajax.html",
+        data: {
+            "Intention":"FindTeam",
+            "AjaxJSON":JSON.stringify(submitData),
+        },
       beforeSend: function () { //加载过程效果
           showLoading();
       },
@@ -294,7 +297,7 @@ function applyToSearch(UserID){
       {
         type: "get",
         dataType: "json",
-        url: "../data/applyDebtSolver.json",
+        url: "/data/applyDebtSolver.json",
         data: {
           "uid": uid //提交处置方userid
         },
