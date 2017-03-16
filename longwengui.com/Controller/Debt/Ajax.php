@@ -7,9 +7,11 @@
  * Time: 16:42
  */
 class Ajax
-{    public function __construct()
 {
-}
+    public function __construct()
+    {
+        $_SESSION ['UserID']=1;
+    }
 
     public function Index()
     {
@@ -145,7 +147,7 @@ class Ajax
                     if (strstr($DebtAmount,'100-All') && $DebtAmount!='100-All'){
                         $MysqlWhere .= ' or (DebtAmount >= 1000000) ';
                     }
-                      $MysqlWhere .=')';
+                    $MysqlWhere .=')';
                 }
                 $MysqlWhere =preg_replace('/or/','',$MysqlWhere,1);
             }
@@ -227,5 +229,52 @@ class Ajax
         }
         echo stripslashes(json_encode($json_result,JSON_UNESCAPED_UNICODE));
         exit;
+    }
+    /**
+     * @desc 处置方接单申请
+     */
+    public function ApplyOrder(){
+
+        $_POST['DebtID']=1;
+        $Data['DebtID'] = trim($_POST['DebtID']);
+        $Data['Money'] = trim($_POST['percent_money']);
+        $Data['AdvantageInfo'] =trim($_POST['detail_info']);
+        $Data['MandatorID'] = $_SESSION ['UserID'];//委托人用户ID
+        $Data['DelegateTime'] = time();//委托时间
+        if ( $Data['Money']==='' && $Data['AdvantageInfo']===''){
+            $json_result = array(
+                'ResultCode' => 102,
+                'Message' => '请输入必填',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
+
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and MandatorID = '.$Data['MandatorID']);
+        if (!$ClaimsDisposal){
+           $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
+        }else{
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '您已申请此债务订单，请勿重复提交',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
+        if ($Result){
+            $json_result = array(
+                'ResultCode' => 200,
+                'Message' => '申请成功',
+            );
+        }else{
+            $json_result = array(
+                'ResultCode' => 103,
+                'Message' => '申请失败',
+            );
+        }
+        echo json_encode($json_result);
+        exit;
+
     }
 }
