@@ -28,51 +28,14 @@
             <div class="line">
                 <span>催收地区 :</span>
                 <span class="sel" id="area_all">全部</span>
+                {loop $AreaList $lists}
                 <span>
                 <div class="m-checkbox">
                   <label type="checkbox">
-                    <input type="checkbox" name="area" value="1001">
-                    <i></i>
-                    北京市
-                  </label>
+                    <input type="checkbox" name="area" value="{$lists[AreaID]}"><i></i>{$lists[CnName]}</label>
                 </div>
               </span>
-                <span>
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="area" value="1002">
-                    <i></i>
-                    上海市
-                  </label>
-                </div>
-              </span>
-                <span>
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="area" value="1003">
-                    <i></i>
-                    深圳市
-                  </label>
-                </div>
-              </span>
-                <span>
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="area" value="1004">
-                    <i></i>
-                    广州市
-                  </label>
-                </div>
-              </span>
-                <span>
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="area" value="1005">
-                    <i></i>
-                    厦门市
-                  </label>
-                </div>
-              </span>
+                {/loop}
                 <!-- <span>其他城市<img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span> -->
             </div>
             <div class="line">
@@ -81,7 +44,7 @@
                 <span>
                 <div class="m-checkbox">
                   <label type="checkbox">
-                    <input type="checkbox" name="money" value="1-3">
+                    <input type="checkbox" name="money" value="0-3">
                     <i></i>
                     3万以下
                   </label>
