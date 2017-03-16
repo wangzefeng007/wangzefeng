@@ -206,18 +206,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {loop $Data['Data'] $lists}
-                    <tr>
-                        <td>{$lists[DebtNum]}</td>
-                        <td>{$lists[Name]}</td>
-                        <td>{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</td>
-                        <td class="m-c">￥{$lists[DebtAmount]}</td>
-                        <td>{$lists[Overduetime]}</td>
-                        <td>{$lists[AddTime]}</td>
-                        <td class="sta-">{$NStatus[$lists[Status]]}</td>
-                        <td class="det"><a href="/debt/{$lists[DebtID]}.html" target="_blank">查看详情></a></td>
-                    </tr>
-                    {/loop}
+                    <!--{loop $Data['Data'] $lists}-->
+                    <!--<tr>-->
+                        <!--<td>{$lists[DebtNum]}</td>-->
+                        <!--<td>{$lists[Name]}</td>-->
+                        <!--<td>{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</td>-->
+                        <!--<td class="m-c">￥{$lists[DebtAmount]}</td>-->
+                        <!--<td>{$lists[Overduetime]}</td>-->
+                        <!--<td>{$lists[AddTime]}</td>-->
+                        <!--<td class="sta-">{$NStatus[$lists[Status]]}</td>-->
+                        <!--<td class="det"><a href="/debt/{$lists[DebtID]}.html" target="_blank">查看详情></a></td>-->
+                    <!--</tr>-->
+                    <!--{/loop}-->
                     </tbody>
                 </table>
             </div>
@@ -233,10 +233,10 @@
 <script id="collection_table_body" type="text/x-jquery-tmpl">
         <tr>
           <td>${DebtNum}</td>
-          <td>${DebtInfo.name}</td>
-          <td>${DebtInfo.province}-${DebtInfo.city}-${DebtInfo.area}</td>
-          <td class="m-c">￥${DebtInfo.money}</td>
-          <td>${DebtInfo.Overduetime}天</td>
+          <td>${Name}</td>
+          <td>${Province}-${City}-${Area}</td>
+          <td class="m-c">￥${DebtAmount}</td>
+          <td>${Overduetime}天</td>
           <td>${AddTime}</td>
           {{if Status == 1}}
             <td class="sta-1">未接单</td>
@@ -277,3 +277,4 @@
       </script>
 {template Footer}
 <script src='{echo JsURL}/debt/collection.js'></script>
+

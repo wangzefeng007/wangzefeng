@@ -22,12 +22,16 @@ function closeLoading(){
 
 //跟据name返回checkbox选中的值，数组形式返回
 function getCheckboxSelectedByName(name){
-  var _arr = [];
+  var _arr = '';
   var  _targets = $('input[name="' + name + '"]:checked');
   for(var i=0; i<_targets.length; i++){
-    _arr.push(_targets[i].value)
+    if(_arr == ''){
+      _arr += _targets[i].value;
+    }else{
+      _arr += ',' + _targets[i].value;
+    }
   }
-  return JSON.stringify(_arr);
+  return _arr;
 };
 
 //添加全选按钮点击事件
@@ -148,7 +152,6 @@ function　calcPageNums(pageCount, page){
     _arr.push(0);
     _arr.push(pageCount);
   }
-  console.log(_arr)
   return _arr;
 }
 

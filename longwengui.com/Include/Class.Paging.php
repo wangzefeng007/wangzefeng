@@ -202,13 +202,13 @@ class Page
             for ($i = $this->bothnum; $i >= 1; $i--) {
                 $_page = $this->page - $i;
                 if ($_page < 1) continue;
-                $_pagelist .= ' <a class="b" href="' . $this->url . $this->html .'p='. $_page  . '">' . $_page . '</a> ';
+                $_pagelist .= ' <span class ="b" ><a href="' . $this->url . $this->html .'p='. $_page  . '">' . $_page . '</a></span>';
             }
             $_pagelist .= ' <a  href="' . $this->url .'p='.$this->page . $this->html . '" class="' . $this->class . '">' . $this->page . '</a> ';
             for ($i = 1; $i <= $this->bothnum; $i++) {
                 $_page = $this->page + $i;
                 if ($_page > $this->pagenum) break;
-                $_pagelist .= ' <a class="b" href="'.$this->url.$this->html.'p='.$_page.'">' . $_page . '</a> ';
+                $_pagelist .= ' <span class ="b" ><a href="'.$this->url.$this->html.'p='.$_page.'">' . $_page . '</a></span>';
             }
         }
         return $_pagelist;
@@ -233,9 +233,9 @@ class Page
             return ' <a href="' . $this->url . '1' . $this->html . '">1</a> ...';
         }elseif ($this->page > $this->bothnum + 1 && $this->type==3){
             if ($this->page - $this->bothnum == 2) {
-                return ' <a class ="b" href="' . $this->url .'p='. '1' . $this->html . '">1</a>';
+                return ' <span class ="b" ><a href="' . $this->url .'p='. '1' . $this->html . '">1</a></span>';
             }
-            return ' <a class ="b" href="' . $this->url .'p='. '1' . $this->html . '">1</a> ...';
+            return ' <span class ="b" ><a  href="' . $this->url .'p='. '1' . $this->html . '">1</a></span><span class="s-elipse">...</span>';
         }
         else{
 
@@ -259,7 +259,7 @@ class Page
             return ' <a href="' . $this->url.$this->html.'page='.($this->page-1) . '">上一页</a> ';
         }elseif($this->type == 3){
 
-            return ' <a class ="b" href="' . $this->url.$this->html.'p='.($this->page-1) . '"><</a> ';
+            return '<span class ="b" ><a href="' . $this->url.$this->html.'p='.($this->page-1) . '"><</a></span>';
         }
     }
 
@@ -278,7 +278,7 @@ class Page
         elseif($this->type == 2){
             return ' <a href="' . $this->url.$this->html.'page='.($this->page+1) . '">下一页</a> ';
         }elseif($this->type == 3){
-            return ' <a class ="b" href="' . $this->url.$this->html.'p='.($this->page+1) . '">></a> ';
+            return '<span class ="b" ><a href="' . $this->url.$this->html.'p='.($this->page+1) . '">></a></span> ';
         }
     }
 
@@ -298,7 +298,7 @@ class Page
                 if ($this->page + $this->bothnum == $this->pagenum - 1) {
                     return ' <a class="b" href="' . $this->url . $this->html .'p='. $this->pagenum . '">' . $this->pagenum . '</a> ';
                 }
-                return ' ...<a class="b" href="' . $this->url . $this->html .'p='. $this->pagenum . '">' . $this->pagenum . '</a> ';
+                return ' <span class="s-elipse">...</span><span class="b"><a  href="' . $this->url . $this->html .'p='. $this->pagenum . '">' . $this->pagenum . '</a> </span>';
             }else{
                 if ($this->page + $this->bothnum == $this->pagenum - 1) {
                     return ' <a href="' . $this->url . $this->html .'page='. $this->pagenum . '">' . $this->pagenum . '</a> ';

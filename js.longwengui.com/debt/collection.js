@@ -37,8 +37,9 @@ $(function(){
     $.ajax({
           type: "post",	//提交类型
           dataType: "json",	//提交数据类型
-          url: '../data/collection.json',  //提交地址
+          url: '/ajax.html',  //提交地址
           data: {
+              'Intention':'GetDebtList',//提交方法
               'col_way': col_way, //催收方式 1-选择律师债权 2-选择催收团队债权
               'col_area': col_area, //催收地区 1-北京市 2-上海市 3-深圳市 4-广州市 5-厦门市
               'col_money': col_money, //催收金额 1- <3w; 2- 3~10w; 3- 10~50w; 4- 50~100w; 5- >100w
@@ -67,11 +68,11 @@ $(function(){
               });
 
               if(data.ResultCode == "200"){
-                  // DataSuccess(data);
+                   DataSuccess(data);
               }else if(data.ResultCode == "100"){
                   layer.msg('加载出错，请刷新页面重新选择!');
               }else if(data.ResultCode == "101"){
-                  // DataFailure(data);
+                  //DataFailure(data);
               }else if(data.ResultCode == "102"){     //搜索有内容
                   // $("#Position").empty();
                   // $("#Search").hide();

@@ -411,6 +411,9 @@ a{
   text-decoration: none;
   color: #666;
 }
+.sel a{
+  color: #fff;
+}
 /**
   * common css
   */
