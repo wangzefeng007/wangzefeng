@@ -81,6 +81,8 @@ class Debt {
         //查询数据
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         //编辑当前状态
 
         if ($_POST['DebtID']) {
@@ -97,6 +99,8 @@ class Debt {
         }
         $DebtID = intval($_GET ['DebtID']);
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($DebtID);
+        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$DebtID);
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$DebtID);
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
