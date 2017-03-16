@@ -94,8 +94,7 @@ class Ajax
             if($Type[0]!=''){
                 $MysqlWhere ='';
             }
-            $Area =json_decode($_POST['col_area'],true); //催收地区
-            var_dump($_POST['col_area'],$Area);exit;
+            $Area =$_POST['col_area']; //催收地区
             if($Area[0]!=''){
             foreach ($Area as $value){
                 $MemberAreaModule->GetInfoByKeyID($value);
