@@ -14,8 +14,8 @@ class Find
         $Nav ='find';
         include template('DebtChoiceFind');
     }
-    public function Lawyer(){
+    public function Team(){
         $Nav ='find';
-        echo 1;exit;
+        include template('DebtFindTeam');
     }
 }

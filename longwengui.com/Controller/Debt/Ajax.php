@@ -249,7 +249,7 @@ class Ajax
             echo json_encode($json_result);
             exit;
         }
-
+        $_POST['Type']=1;//1-普通债务申请
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and MandatorID = '.$Data['MandatorID']);
         if (!$ClaimsDisposal){
