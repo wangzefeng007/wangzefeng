@@ -169,18 +169,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!--{loop $Data['Data'] $lists}-->
-                    <!--<tr>-->
-                        <!--<td>{$lists[DebtNum]}</td>-->
-                        <!--<td>{$lists[Name]}</td>-->
-                        <!--<td>{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</td>-->
-                        <!--<td class="m-c">￥{$lists[DebtAmount]}</td>-->
-                        <!--<td>{$lists[Overduetime]}</td>-->
-                        <!--<td>{$lists[AddTime]}</td>-->
-                        <!--<td class="sta-">{$NStatus[$lists[Status]]}</td>-->
-                        <!--<td class="det"><a href="/debt/{$lists[DebtID]}.html" target="_blank">查看详情></a></td>-->
-                    <!--</tr>-->
-                    <!--{/loop}-->
+                     {loop $Data['Data'] $lists}
+                    <tr>
+                        <td>{$lists[DebtNum]}</td>
+                        <td>{$lists[Name]}</td>
+                        <td>{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</td>
+                        <td class="m-c">￥{$lists[DebtAmount]}</td>
+                        <td>{$lists[Overduetime]}</td>
+                        <td>{$lists[AddTime]}</td>
+                        <td class="sta-">{$NStatus[$lists[Status]]}</td>
+                        <td class="det"><a href="/debt/{$lists[DebtID]}.html" target="_blank">查看详情></a></td>
+                    </tr>
+                    {/loop}
                     </tbody>
                 </table>
             </div>
@@ -194,50 +194,35 @@
     </div>
 </div>
 <script id="collection_table_body" type="text/x-jquery-tmpl">
-        <tr>
-          <td>${DebtNum}</td>
-          <td>${Name}</td>
-          <td>${Province}-${City}-${Area}</td>
-          <td class="m-c">￥${DebtAmount}</td>
-          <td>${Overduetime}天</td>
-          <td>${AddTime}</td>
-          {{if Status == 1}}
-            <td class="sta-1">未接单</td>
-          {{else Status == 2}}
-            <td class="sta-2">催收中</td>
-          {{else Status == 3}}
-            <td class="sta-3">未回收</td>
-          {{else Status == 4}}
-            <td class="sta-3">部分回收</td>
-          {{else Status == 5}}
-            <td class="sta-3">全部回收</td>
-          {{else Status == 6}}
-            <td class="sta-3">未曝光</td>
-          {{else Status == 7}}
-            <td class="sta-3">已曝光</td>
-          {{/if}}
-          <td class="det">查看详情>></td>
-        </tr>
-      </script>
+  <tr>
+    <td>${DebtNum}</td>
+    <td>${Name}</td>
+    <td>${Province}-${City}-${Area}</td>
+    <td class="m-c">￥${DebtAmount}</td>
+    <td>${Overduetime}天</td>
+    <td>${AddTime}</td>
+    <td class="sta-{{= whichState(Status)}}">${StatusName}</td>
+    <td class="det">查看详情>></td>
+  </tr>
+</script>
 <script id="collection_table_head" type="text/x-jquery-tmpl">
-        <table>
-          <thead>
-            <tr>
-              <th>债务编号</th>
-              <th>债务人名称</th>
-              <th>债务地区</th>
-              <th>债务金额</th>
-              <th>逾期时间</th>
-              <th>发布时间</th>
-              <th>当前状态</th>
-              <th>查看债务</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{tmpl($data) '#collection_table_body'}}
-          </tbody>
-        </table>
-      </script>
+  <table>
+    <thead>
+      <tr>
+        <th>债务编号</th>
+        <th>债务人名称</th>
+        <th>债务地区</th>
+        <th>债务金额</th>
+        <th>逾期时间</th>
+        <th>发布时间</th>
+        <th>当前状态</th>
+        <th>查看债务</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{tmpl($data) '#collection_table_body'}}
+    </tbody>
+  </table>
+</script>
 {template Footer}
 <script src='{echo JsURL}/debt/collection.js'></script>
-
