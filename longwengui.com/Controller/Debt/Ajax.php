@@ -189,9 +189,9 @@ class Ajax
     public function debtorSearch(){
         $Time = time();
         $Num = rand(100, 999);
-        $iname =trim($_GET['iname']);
-        $cardNum =trim($_GET['cardNum']);
-        $areaName =trim($_GET['areaName']);
+        $iname =trim($_POST['iname']);
+        $cardNum =trim($_POST['cardNum']);
+        $areaName =trim($_POST['areaName']);
         if ($areaName=='全国'){
             $areaName='';
         }

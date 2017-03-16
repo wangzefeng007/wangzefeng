@@ -7,6 +7,8 @@ $RouteArr=array(
     'debt@debtdetails'=>'Debt@DebtDetails',
     //线索悬赏
     'reword@index'=>'Reword@Index',
+    //寻找处置方
+    'find@choicefind'=>'Find@ChoiceFind',
     //搜索老赖
     'deadbeat@index'=>'DeadBeat@Index',
     //普通会员中心

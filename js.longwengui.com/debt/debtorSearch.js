@@ -20,7 +20,7 @@ $(function(){
     var id_num = $("#id_num").val();
 
     $.ajax({
-          type: "get",	//提交类型
+          type: "post",	//提交类型
           dataType: "json",	//提交数据类型
           url: '/ajax.html',  //提交地址
           data: {
