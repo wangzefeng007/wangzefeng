@@ -13,14 +13,14 @@ class Ajax
 
     public function Index()
     {
-        $Intention = trim($_GET ['Intention']);
+        $Intention = trim($_POST ['Intention']);
         if ($Intention == '') {
             $json_result = array(
                 'ResultCode' => 500,
                 'Message' => '系統錯誤',
                 'Url' => ''
             );
-            echo $json_result;
+            EchoResult($json_result);
             exit;
         }
         $this->$Intention ();
@@ -30,11 +30,11 @@ class Ajax
      */
     public function GetDebtList(){
         $MemberDebtInfoModule = new MemberDebtInfoModule();
-        $MemberDebtInfoModule->GetLists();
-        $StatusInfo = $MemberDebtInfoModule->Status;
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+
         if (!$_POST) {
             $Data['ResultCode'] = 100;
-            EchoResult($Data);
+            EchoResult($Data);exit;
         }
         $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
@@ -47,7 +47,7 @@ class Ajax
             }
         }
         $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
-        $PageSize = 10;
+        $PageSize = 7;
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
             $Data = array();
@@ -64,15 +64,16 @@ class Ajax
             }
             $Lists = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
             foreach ($Lists as $key=>$value){
-                $Data['Data'][$key]['Study_name'] = $value['HighSchoolName'];
-                $Data['Data'][$key]['StudyID'] = $value['HighSchoolID'];
-                $Data['Data'][$key]['StudyLocation'] = $value['Location'];
-                $Data['Data'][$key]['StudySAT'] = $value['SAT'];
-                $Data['Data'][$key]['StudyAP'] = $value['AP'];
-                $Data['Data'][$key]['StudyAnnualCost'] = $value['Cost'];
-                $Data['Data'][$key]['StudyAccommodationMode'] = $value['Stay'];
-                $Data['Data'][$key]['StudyImg'] = $value['Icon'];
-                $Data['Data'][$key]['StudyUrl'] = "/highschool/".$value['HighSchoolID'].'.html';
+                $Data['Data'][$key]['DebtNum'] = $value['DebtNum'];
+                $Data['Data'][$key]['DebtAmount'] = $value['DebtAmount'];
+                $Data['Data'][$key]['Overduetime'] = $value['Overduetime'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
+                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
+                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
+                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
             }
             MultiPage($Data, 5);
             if ($Keyword != '') {
@@ -82,18 +83,19 @@ class Ajax
             }
         }
         unset($Lists);
-        EchoResult($Data);
+        EchoResult($Data);exit;
     }
     public function GetMysqlWhere($Intention = ''){
         $MemberAreaModule = new MemberAreaModule();
         if ($Intention=='GetDebtList'){
-            $MysqlWhere ='';
+            $MysqlWhere =''; var_dump($_POST);
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
             $Type = $_POST['col_way']; //催收方式
             if($Type[0]!=''){
                 $MysqlWhere ='';
             }
-            $Area = $_POST['col_area']; //催收地区
+            $Area =json_decode($_POST['col_area'],true); //催收地区
+            var_dump($_POST['col_area'],$Area);exit;
             if($Area[0]!=''){
             foreach ($Area as $value){
                 $MemberAreaModule->GetInfoByKeyID($value);
