@@ -14,10 +14,8 @@
                 <span {if empty($Area)}class="sel"{/if} id="area_all"><a href="{$MyUrl}{$Type}">全部</a></span>
                 {loop $AreaList $lists}
                 <span {if $Area==$lists['AreaID']}class="sel"{/if}>
-                <div class="m-checkbox">
-                  <label type="checkbox"><input type="checkbox" name="area" value="{$lists[AreaID]}"> <a href="{$MyUrl}{$lists[AreaID]}{$Type}/">{$lists[CnName]}</a></label>
-                </div>
-              </span>
+                  <a href="{$MyUrl}{$lists[AreaID]}{$Type}/">{$lists[CnName]}</a>
+                </span>
                 {/loop}
             </div>
             <div class="search">
