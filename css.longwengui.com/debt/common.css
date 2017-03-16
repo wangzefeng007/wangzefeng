@@ -647,7 +647,7 @@ a{
   color: #666;
   border-radius: 5px;
   text-align: center;
-  float: left;
+  display: inline-block;
   margin-right: 5px;
   font-size: 12px;
   border: 1px solid #e6e6e6;
