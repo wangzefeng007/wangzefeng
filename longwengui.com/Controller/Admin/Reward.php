@@ -31,19 +31,32 @@ class Reward
             $Data['AddTime'] = time();
             $Data['RewardNum'] = $code . time();
 
-            // 上传图片
-            include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
-            if ($_FILES['Image']['size'][0] > 0) {
-                $Upload = new MultiUpload('Image');
-                $File = $Upload->upload();
-                $Picture = $File[0] ? $File[0] : '';
-                $ImageInfo['ImageUrl'] = $Picture;
-                $ImageInfo['IsDefault'] = 1;
-                $ImageInfo['RewardID'] = 1;
-            }
-//            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == ''|| $_POST['DebtPhone'] == ''|| $_POST['Address'] == '') {
+//            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == '' || $_POST['DebtPhone'] == '' || $_POST['Address'] == '') {
 //                alertandback('信息填写不完整');
 //            }
+            // 上传图片
+            include SYSTEM_ROOTPATH . '/Include/fileupload.class.php';
+            $up = new fileupload;
+      
+            //设置属性(上传的位置， 大小， 类型， 名是是否要随机生成)
+            $SavePath = 'Uploads/Reword/'.date('Ymd').'/';
+            $up->set("path",$SavePath);
+            $up->set("maxsize", 2000000);
+            $up->set("allowtype", array("gif", "png", "jpg", "jpeg"));
+            $up->set("israndname", true);
+//            http://www.jb51.net/article/57510.htm
+            //使用对象中的upload方法， 就可以上传文件， 方法需要传一个上传表单的名子 pic, 如果成功返回true, 失败返回false
+            if ($up->upload("image")) {
+                $ImageInfo['ImageUrl'] = $SavePath;
+                $ImageInfo['IsDefault'] = 1;
+                $ImageInfo['RewardID'] = 1;
+            } else {
+                echo '<pre>';
+                //获取上传失败以后的错误提示
+                var_dump($up->getErrorMsg());
+                echo '</pre>';
+            }
+        
             $result = $MemberRewardInfoModule->InsertInfo($Data);
             $uploadImage = $MemberRewardImageModule->InsertInfo($ImageInfo);
             if ($result && $uploadImage) {

@@ -94,9 +94,13 @@
                 <tr>
                     <td class="t-r" style="width: 150px">债务人图片:</td>
                     <td>
-                        <div class="col-sm-5" style="padding-top: 8px">
-                            <input type="file" name="Image[]"/>
-                        </div>
+                        <form action="/index.php?Module=Reward&Action=Publish" method="post" enctype="multipart/form-data" >
+                            <div class="col-sm-5" style="padding-top: 8px">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                <input type="file" name="image[]" value=""><br>
+                                <input type="file" name="image[]" value=""><br>
+                            </div>
+                        </form>
                     </td>
                 </tr>
                 <tr>

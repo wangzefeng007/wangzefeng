@@ -30,7 +30,7 @@ class MultiUpload{
 //    die();
     }
     public function upload(){
-                $this->checkSavePath();
+//                $this->checkSavePath();
                 for($i=0;$i<$this->count;$i++){
 	                $filename = $_FILES[$this->field]["name"][$i];
 					$filename = mb_convert_encoding ( $filename, "GBK", "UTF-8" );
@@ -41,11 +41,6 @@ class MultiUpload{
 					if($this->check($file,$i)){	
 			                $saveName = $this->getSaveName($filename);
 			                $savedPath = $this->savePath . $saveName;
-//                                        本地上传图片
-                                        if (is_dir($this->savePath)) {
-                                        mkdir(iconv("UTF-8", "GBK", $this->savePath), 0777, true);
-                                          }
-                                                         
 //			                if(!$this->uploadReplace && file_exists($savedPath)){
 //			                     $this->error[] = 'File already exists!';
 //			                     return false;
