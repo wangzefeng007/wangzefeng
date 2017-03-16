@@ -75,6 +75,7 @@ class Ajax
                 $Data['Data'][$key]['Area'] = $Area['CnName'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
                 $Data['Data'][$key]['Status'] = $value['Status'];
+                $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];
             }
             MultiPage($Data, 5);
             if ($Keyword != '') {

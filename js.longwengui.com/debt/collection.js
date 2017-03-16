@@ -51,43 +51,22 @@ $(function(){
               showLoading();
           },
           success: function(data) {	//函数回调
-              //注入列表
-              dataSuccess(data.Data);
-
-              //获得当前页
-              cur_page = data.Page;
-
-              //注入分页
-              injectPagination('#collection_page_pagination', cur_page, data.LastPage, function(){
-                $('#collection_page_pagination').find('.b').click(function(){
-                  var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageSize);
-                  if(changeTo){
-                    ajax(changeTo);
-                  }
-                });
-              });
-
               if(data.ResultCode == "200"){
-                   DataSuccess(data);
-              }else if(data.ResultCode == "100"){
-                  layer.msg('加载出错，请刷新页面重新选择!');
-              }else if(data.ResultCode == "101"){
-                  //DataFailure(data);
-              }else if(data.ResultCode == "102"){     //搜索有内容
-                  // $("#Position").empty();
-                  // $("#Search").hide();
-                  // $("#Position").append('> 搜索<span  style="color:red">'+'“'+Keyword+'”'+'</span>结果');
-                  // DataSuccess(data);
-              }else if(data.ResultCode == "103"){ //搜索无内容
-                  // $("#Position").empty();
-                  // $("#Position").append('> 搜索<span  style="color:red">'+'“'+Keyword+'”'+'</span>结果');
-                  // $("#Search").hide();
-                  // $("#Nosearch").empty();
-                  // $("#Nosearch").append('很抱歉，暂时无法找到符合您要求的产品。');
-                  // $("#Filter").hide();
-                  // $("#conditionpanel").hide();
-                  // $(".Sequence").hide();
-                  // DataFailure(data);
+                   dataSuccess(data.Data);
+                   //获得当前页
+                   cur_page = data.Page;
+
+                   //注入分页
+                   injectPagination('#collection_page_pagination', cur_page, data.PageSize, function(){
+                     $('#collection_page_pagination').find('.b').click(function(){
+                       var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageSize);
+                       if(changeTo){
+                         ajax(changeTo);
+                       }
+                     });
+                   });
+              }else{
+                  layer.msg(data.Message);
               }
           },
           complete: function () { //加载完成提示
@@ -105,3 +84,14 @@ $(function(){
     $('#collection_table_head').tmpl(_arr).appendTo('#collection_info');
   };
 });
+
+//判断属于哪种情况
+function whichState(status){
+  if(status == 1){
+    return 1;
+  }else if(status == 2){
+    return 2;
+  }else{
+    return 3;
+  }
+}
