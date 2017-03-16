@@ -64,12 +64,18 @@
                 <tr>
                     <td class="t-r"><span class="red">*</span>&nbsp;债务人地区：</td>
                     <td>
-                        <div id="citySelect" class="col-sm-2" >
+                        <div id="citySelect" class="col-sm-2  selectList" >
                             <select name="province" id="province"   onchange="sech(this.id)" class="form-control" >
-                                <option style="width:100px;"  value="province">请选择省份</option>
+                                <option style="width:100px;"  value="">请选择省份</option>
+                                {loop $ProvinceLists $PLists}
+                                <option  style="width:100px;"  value="{$PLists[AreaID]}">{$PLists[CnName]}</option>
+                                {/loop}
                             </select>
                             <select name="city" id="city"   onchange="sech(this.id)" class="form-control" >
-                                <option style="width:100px;"  value="city">请选择市区</option>
+                                <option style="width:100px;"  value="">请选择市区</option>
+                                {loop $AreaAddprovince $CLists}
+                                <option style="width:100px;"  value="{$CLists[CnName]}">{$CLists[CnName]}</option>
+                                {/loop}
                             </select>
                             <select name="area" id="area"   onchange="sech(this.id)" class="form-control" >
                                 <option style="width:100px;"  value="area">请选择县乡</option>
@@ -121,5 +127,6 @@
 </div>
 </div>
 </div>
+
 {template Foot}
 

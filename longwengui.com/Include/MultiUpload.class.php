@@ -20,7 +20,7 @@ class MultiUpload{
     public $savedName =array();
     public $sourceFileName=1;
     function __construct($fieldName){
-        $this->savePath='/Uploads/Reword/'.date('Ymd').'/';
+        $this->savePath='Uploads/Reword/'.date('Ymd').'/';
         if(!empty($fieldName)){$this->field=$fieldName;}
         foreach ($_FILES[$this->field]['size'] as $filename){
             $this->count++;
@@ -40,7 +40,12 @@ class MultiUpload{
 	                $file['tmp_name']  = $tmp_name;
 					if($this->check($file,$i)){	
 			                $saveName = $this->getSaveName($filename);
-			                $savedPath = $this->savePath.$saveName;
+			                $savedPath = $this->savePath . $saveName;
+//                                        本地上传图片
+                                        if (is_dir($this->savePath)) {
+                                        mkdir(iconv("UTF-8", "GBK", $this->savePath), 0777, true);
+                                          }
+                                                         
 //			                if(!$this->uploadReplace && file_exists($savedPath)){
 //			                     $this->error[] = 'File already exists!';
 //			                     return false;
@@ -92,15 +97,16 @@ class MultiUpload{
     }
     private function getSaveName($filename)
     {
-               $preStr='';
-               if($this->sourceFileName){
-                    $array =array();
-                    $array = explode('.',$filename);
-                    $preStr = $array[0];
-                }
-				//生成一个唯一的字符串。
-                return date("YmdHis").rand(1000,9999).'.'.strtolower($array[count($array)-1]);
+        $preStr = '';
+        if ($this->sourceFileName) {
+            $array = array();
+            $array = explode('.', $filename);
+            $preStr = $array[0];
+        }
+        //生成一个唯一的字符串。
+        return date("YmdHis") . rand(1000, 9999) . '.' . strtolower($array[count($array) - 1]);
     }
+
     private function check($file,$file_number) {
         //文件上传成功，进行自定义规则检查
         //检查文件大小

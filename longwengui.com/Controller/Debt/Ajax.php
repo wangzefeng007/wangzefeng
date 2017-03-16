@@ -7,9 +7,11 @@
  * Time: 16:42
  */
 class Ajax
-{    public function __construct()
 {
-}
+    public function __construct()
+    {
+        $_SESSION ['UserID']=1;
+    }
 
     public function Index()
     {
@@ -76,6 +78,7 @@ class Ajax
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
                 $Data['Data'][$key]['Status'] = $value['Status'];
                 $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];
+                $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
             }
             MultiPage($Data, 5);
             if ($Keyword != '') {
@@ -83,7 +86,13 @@ class Ajax
             } else {
                 $Data['ResultCode'] = 200;
             }
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
+
+            EchoResult($Data);exit;
         }
+
         unset($Lists);
         EchoResult($Data);exit;
     }
@@ -138,7 +147,7 @@ class Ajax
                     if (strstr($DebtAmount,'100-All') && $DebtAmount!='100-All'){
                         $MysqlWhere .= ' or (DebtAmount >= 1000000) ';
                     }
-                      $MysqlWhere .=')';
+                    $MysqlWhere .=')';
                 }
                 $MysqlWhere =preg_replace('/or/','',$MysqlWhere,1);
             }
@@ -220,5 +229,52 @@ class Ajax
         }
         echo stripslashes(json_encode($json_result,JSON_UNESCAPED_UNICODE));
         exit;
+    }
+    /**
+     * @desc 处置方接单申请
+     */
+    public function ApplyOrder(){
+
+        $_POST['DebtID']=1;
+        $Data['DebtID'] = trim($_POST['DebtID']);
+        $Data['Money'] = trim($_POST['percent_money']);
+        $Data['AdvantageInfo'] =trim($_POST['detail_info']);
+        $Data['MandatorID'] = $_SESSION ['UserID'];//委托人用户ID
+        $Data['DelegateTime'] = time();//委托时间
+        if ( $Data['Money']==='' && $Data['AdvantageInfo']===''){
+            $json_result = array(
+                'ResultCode' => 102,
+                'Message' => '请输入必填',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
+
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and MandatorID = '.$Data['MandatorID']);
+        if (!$ClaimsDisposal){
+           $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
+        }else{
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '您已申请此债务订单，请勿重复提交',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
+        if ($Result){
+            $json_result = array(
+                'ResultCode' => 200,
+                'Message' => '申请成功',
+            );
+        }else{
+            $json_result = array(
+                'ResultCode' => 103,
+                'Message' => '申请失败',
+            );
+        }
+        echo json_encode($json_result);
+        exit;
+
     }
 }

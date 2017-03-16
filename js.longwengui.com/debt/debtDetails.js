@@ -45,8 +45,9 @@ function ajax(){
   $.ajax({
     type: "post",
     dataType: "json",
-    url: '../data/debtDetails.json',
+    url: '/ajax.html',
     data: {
+      "Intention":"ApplyOrder",
       "percent_money": percent_money,
       "detail_info":　detail_info
     },
@@ -54,7 +55,7 @@ function ajax(){
         showLoading();
     },
     success: function(data){
-      if(data.ResultCode){
+      if(data.ResultCode=='200'){
         showMsg('申请成功');
       }else{
         showMsg(data.Message)
