@@ -1,6 +1,6 @@
 <?php
 /**
- * @desc  债权处置表
+ * @desc  处置接单表
  * Class MemberClaimsDisposalModule
  */
 Class MemberClaimsDisposalModule extends CommonModule {
