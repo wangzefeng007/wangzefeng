@@ -65,7 +65,7 @@
                                 <li><a href="/index.php?Module=User&Action=UserLists&Page={$Previous}{$PageUrl}">上一页</a></li>
                                 {/if}
                                 {loop $Data[PageNums] $page}
-                                <li><a href="/index.php?ModuleUser&Action=UserLists&Page={$page}{$PageUrl}" {if $Page==$page}class="on"{/if}>{$page}</a></li>
+                                <li><a href="/index.php?Module=User&Action=UserLists&Page={$page}{$PageUrl}" {if $Page==$page}class="on"{/if}>{$page}</a></li>
                                 {/loop}
                                 {if $Next}
                                 <li><a href="/index.php?Module=User&Action=UserLists&Page={$Next}{$PageUrl}">下一页</a></li>

@@ -33,45 +33,39 @@
                             <td>债务曝光：{if $DebtInfo[DebtExposure]==0}隐藏{elseif $DebtInfo[DebtExposure]==1}曝光{/if}</td>
                         </tr>
                         <tr>
-                            <td>逾期时间：{$DebtInfo[Overduetime]}</td>
-                            <td>委托数量：{$DebtInfo[EntrustNum]}</td>
+                            <td>逾期时间：{$DebtInfo[Overduetime]}天</td>
+                            <td>债务人数量：{$DebtInfo[DebtorNum]}</td>
                             <td>债权人数量：{$DebtInfo[BondsNum]}</td>
-                        </tr>
-                        <tr>
-                            <td>借款原因：{$DebtInfo[ReasonsBorrowing]}</td>
-                            <td>债务近况：{$DebtInfo[DebtRecent]}</td>
-                            <td>联系电话：{$DebtInfo[DebtInfo][0]['phone']}</td>
                         </tr>
                         <tr>
                             <td>债务人有无还款能力：{if $DebtInfo[RepaymentDebtor]==0}否{elseif $DebtInfo[RepaymentDebtor]==1}是{/if}</td>
                             <td>债务人是否随时找得到：{if $DebtInfo[FindDebtor]==0}否{elseif $DebtInfo[FindDebtor]==1}是{/if}</td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td colspan="3" class="t-h">债务人详情信息：</td>
                         </tr>
                         <tr>
-                            <td>债务人名字：{$DebtInfo[DebtInfo][0][name]}</td>
-                            <td>债务人身份证：{$DebtInfo[DebtInfo][0]['card']}</td>
-                            <td>金额：{$DebtInfo[DebtInfo][0]['money']}</td>
+                            <td>债务人名字：{$DebtorsInfo[Name]}</td>
+                            <td>债务人身份证：{$DebtorsInfo[Card]}</td>
+                            <td>金额：{$DebtorsInfo[Money]}</td>
                         </tr>
                         <tr>
-                            <td>地区：{$DebtInfo[DebtInfo][0]['province']}-{$DebtInfo[DebtInfo][0]['city']}-{$DebtInfo[DebtInfo][0]['area']}</td>
-                            <td>详细地址：{$DebtInfo[DebtInfo][0]['address']}</td>
+                            <td>地区：{$DebtorsInfo[Province]}-{$DebtorsInfo[City]}-{$DebtorsInfo[City]}</td>
+                            <td>详细地址：{$DebtorsInfo[Address]}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="3" class="t-h">债权人信息：</td>
                         </tr>
                         <tr>
-                            <td>债权人姓名：{$DebtInfo[CreditorsInfo][0]['name']}</td>
-                            <td>债权人身份证：{$DebtInfo[CreditorsInfo][0]['card']}</td>
-                            <td>联系电话：{$DebtInfo[CreditorsInfo][0]['phone']}</td>
+                            <td>债权人姓名：{$CreditorsInfo[Name]}</td>
+                            <td>债权人身份证：{$CreditorsInfo[Card]}</td>
+                            <td>联系电话：{$CreditorsInfo[Phone]}</td>
                         </tr>
                         <tr>
-                            <td>地区：{$DebtInfo[CreditorsInfo][0]['province']}-{$DebtInfo[CreditorsInfo][0]['city']}-{$DebtInfo[CreditorsInfo][0]['area']}</td>
-                            <td>详细地址：{$DebtInfo[CreditorsInfo][0]['address']}</td>
-                            <td>债权金额：{$DebtInfo[CreditorsInfo][0]['money']}</td>
+                            <td>地区：{$CreditorsInfo[Province]}-{$CreditorsInfo[City]}-{$CreditorsInfo[City]}</td>
+                            <td>详细地址：{$CreditorsInfo[Address]}</td>
+                            <td>债权金额：{$CreditorsInfo[Money]}</td>
                         </tr>
                         <tr>
                             <td colspan="3" class="t-h">保证人信息：</td>
@@ -94,7 +88,7 @@
                         <tr>
                             <td>会员ID：</td>
                             <td>真实姓名：</td>
-                            <td></td>
+                            <td>有无前期费用：{if $DebtInfo[EarlyCost]==0}无{elseif $DebtInfo[EarlyCost]==1}有{/if}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered table-striped table-hover">

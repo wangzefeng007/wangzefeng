@@ -51,8 +51,8 @@ class DisposalMatch
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberFindDisposalDebtModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
-                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
-                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Money'] = $DebtorsInfo['Money'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
                 $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
@@ -69,9 +69,10 @@ class DisposalMatch
      */
     public function DisposalMatchEdit()
     {
-        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         //编辑当前状态
         if ($_POST['DebtID']) {
             $Data['Status'] = intval($_POST['Status']);
@@ -87,6 +88,8 @@ class DisposalMatch
         }
         $DebtID = intval($_GET ['DebtID']);
         $DebtInfo = $MemberFindDisposalDebtModule->GetInfoByKeyID($DebtID);
+        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID);
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID);
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
