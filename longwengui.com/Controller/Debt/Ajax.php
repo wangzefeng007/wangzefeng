@@ -83,7 +83,13 @@ class Ajax
             } else {
                 $Data['ResultCode'] = 200;
             }
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
+
+            EchoResult($Data);exit;
         }
+
         unset($Lists);
         EchoResult($Data);exit;
     }

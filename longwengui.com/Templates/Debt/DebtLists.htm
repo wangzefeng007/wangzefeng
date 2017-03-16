@@ -177,7 +177,7 @@
                         <td class="m-c">￥{$lists[DebtAmount]}</td>
                         <td>{$lists[Overduetime]}</td>
                         <td>{$lists[AddTime]}</td>
-                        <td class="sta-">{$NStatus[$lists[Status]]}</td>
+                        <td class="sta-{$lists[Status]}">{$NStatus[$lists[Status]]}</td>
                         <td class="det"><a href="/debt/{$lists[DebtID]}.html" target="_blank">查看详情></a></td>
                     </tr>
                     {/loop}
@@ -187,7 +187,7 @@
         </div>
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="collection_page_pagination">
-            <a href="/debtlists/"><div class="b sel">首页</div></a>
+            <a href="/debtlists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
             {$ShowPage}
             </div>
         </div>
