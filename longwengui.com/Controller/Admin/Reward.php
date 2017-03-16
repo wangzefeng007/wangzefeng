@@ -31,8 +31,7 @@ class Reward
                         // 上传图片
             include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
             if ($_FILES['Image']['size'][0] > 0) {
-
-                    $Upload = new MultiUpload('Image');
+                $Upload = new MultiUpload('Image');
                 $File = $Upload->upload();
                 $Picture = $File[0] ? $File[0] : '';
                 $ImageInfo['ImageUrl'] = $Picture;

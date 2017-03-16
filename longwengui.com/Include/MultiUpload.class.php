@@ -30,7 +30,7 @@ class MultiUpload{
 //    die();
     }
     public function upload(){
-                //$this->checkSavePath();
+                $this->checkSavePath();
                 for($i=0;$i<$this->count;$i++){
 	                $filename = $_FILES[$this->field]["name"][$i];
 					$filename = mb_convert_encoding ( $filename, "GBK", "UTF-8" );
