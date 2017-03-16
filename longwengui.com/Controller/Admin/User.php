@@ -80,6 +80,7 @@ class User
             $UserID = $_GET['UserID'];
             $UserInfo = $MemberUserInfoModule->GetInfoByKeyID($UserID);
             $UserInfo['LastLogin'] = !empty($UserInfo['LastLogin'])? date('Y-m-d H:i:s',$UserInfo['LastLogin']): '';
+            $UserInfo['AnnualDueDate'] = !empty($UserInfo['AnnualDueDate'])? date('Y-m-d H:i:s',$UserInfo['AnnualDueDate']): '';
             $User = $MemberUserModule->GetInfoByKeyID($UserID);
         }
 

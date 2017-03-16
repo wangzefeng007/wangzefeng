@@ -17,7 +17,10 @@ class Reward
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $ProvinceLists = $MemberAreaModule->GetInfoByWhere(' and `ParentID` = 0', true);
         $code = 'XS';
+        
         if ($_POST) {
             $Data['CreditorsPhone'] = trim($_POST['CreditorsPhone']);
             $Data['DebtName'] = trim($_POST['DebtName']);
@@ -26,9 +29,9 @@ class Reward
             $Data['Address'] = trim($_POST['Address']);
             $Data['Type'] = intval($_POST['Type']);
             $Data['AddTime'] = time();
-            $Data['RewardNum'] = $code.time();
-            
-                        // 上传图片
+            $Data['RewardNum'] = $code . time();
+
+            // 上传图片
             include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
             if ($_FILES['Image']['size'][0] > 0) {
                 $Upload = new MultiUpload('Image');
@@ -38,9 +41,9 @@ class Reward
                 $ImageInfo['IsDefault'] = 1;
                 $ImageInfo['RewardID'] = 1;
             }
-            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == ''|| $_POST['DebtPhone'] == ''|| $_POST['Address'] == '') {
-                alertandback('信息填写不完整');
-            }
+//            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == ''|| $_POST['DebtPhone'] == ''|| $_POST['Address'] == '') {
+//                alertandback('信息填写不完整');
+//            }
             $result = $MemberRewardInfoModule->InsertInfo($Data);
             $uploadImage = $MemberRewardImageModule->InsertInfo($ImageInfo);
             if ($result && $uploadImage) {
