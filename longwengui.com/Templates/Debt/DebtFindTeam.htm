@@ -12,7 +12,7 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/user.png" alt="">
           <span>债权人信息</span>
-          <div class="opt" onclick="addDom('debtor_owner_info', 'debtor_owner_info_temp')">
+          <div class="opt" onclick="addDebtDom('debtor_owner_info', 'debtor_owner_info_temp')">
             <img src="/Uploads/Debt/imgs/add_b.png" alt="">
             添加
           </div>
@@ -28,9 +28,9 @@
                 债权人信息 :
               </div>
               <div class="details">
-                <input type="text" name="name" placeholder="*姓名">
-                <input type="text" name="idNum" placeholder="身份证号">
-                <input type="text" name="phoneNumber" placeholder="联系电话">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+                <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
               </div>
             </div>
             <div class="line">
@@ -66,10 +66,18 @@
             </div>
             <div class="line">
               <div class="info">
+                详细地址 :
+              </div>
+              <div class="details">
+                <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
                 债权金额 :
               </div>
               <div class="details">
-                <input type="number" name="debt_money" placeholder="请输入债权金额">元
+                <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
               </div>
             </div>
           </div>
@@ -101,7 +109,7 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/user.png" alt="">
           <span>债务人基本信息</span>
-          <div class="opt" onclick="addDom('debtor_info', 'debtor_info_temp')">
+          <div class="opt" onclick="addDebtDom('debtor_info', 'debtor_info_temp')">
             <img src="/Uploads/Debt/imgs/add_b.png" alt="">
             添加
           </div>
@@ -117,9 +125,9 @@
                 债务人信息 :
               </div>
               <div class="details">
-                <input type="text" name="name" placeholder="*姓名">
-                <input type="text" name="idNum" placeholder="身份证号">
-                <input type="text" name="phoneNumber" placeholder="联系电话">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+                <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
               </div>
             </div>
             <div class="line">
@@ -155,10 +163,18 @@
             </div>
             <div class="line">
               <div class="info">
+                详细地址 :
+              </div>
+              <div class="details">
+                <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
                 债务金额 :
               </div>
               <div class="details">
-                <input type="text" name="debt_money" placeholder="请输入债务金额">元
+                <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债务金额">元
               </div>
             </div>
           </div>
@@ -233,9 +249,9 @@
                 </label>
               </div>
               <div class="details">
-                <input type="text" name="name" placeholder="*保证人名称">
-                <input type="text" name="idNum" placeholder="身份证号">
-                <input type="text" name="phoneNumber" placeholder="联系方式">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*保证人名称">
+                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+                <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
               </div>
             </div>
           </div>
@@ -244,7 +260,7 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/gou_b_off.png" id="bonds_good_info_btn" style="cursor: pointer;" data-checked="0" alt="">
           <span>有抵押物</span>
-          <div class="opt" onclick="addDom('bonds_good_info', 'bonds_good_tepl')"  style="display: none;">
+          <div class="opt" onclick="addBondsGood()"  style="display: none;">
             <img src="/Uploads/Debt/imgs/add_b.png" alt="">
             添加
           </div>
@@ -259,13 +275,13 @@
                 抵押物信息 :
               </div>
               <div class="details">
-                <input type="text" name="name" placeholder="*抵押物名称">
+                <input type="text" name="name" onblur="validateNeed()" placeholder="*抵押物名称">
               </div>
             </div>
             <div class="line">
               <div class="info"></div>
               <div class="details">
-                <textarea name="good_detail" rows="8" cols="80" placeholder="抵押物详情(最多可输入150字)"></textarea>
+                <textarea name="good_detail" rows="8" cols="80" maxlength="150" placeholder="抵押物详情(最多可输入150字)"></textarea>
               </div>
             </div>
           </div>
@@ -298,7 +314,6 @@
   </div>
 </div>
 
-
 <script type="text/x-jquery-tmpl" id="debtor_owner_info_temp">
   <div class="blo">
     <div class="to-del" onclick="removeParentDom(this, 'blo')">
@@ -309,9 +324,9 @@
         债权人信息 :
       </div>
       <div class="details">
-        <input type="text" name="name" placeholder="*姓名">
-        <input type="text" name="idNum" placeholder="身份证号">
-        <input type="text" name="phoneNumber" placeholder="联系电话">
+        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+        <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+        <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
       </div>
     </div>
     <div class="line">
@@ -347,10 +362,18 @@
     </div>
     <div class="line">
       <div class="info">
+        详细地址 :
+      </div>
+      <div class="details">
+        <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
         债权金额 :
       </div>
       <div class="details">
-        <input type="number" name="debt_money" placeholder="请输入债权金额">元
+        <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
       </div>
     </div>
   </div>
@@ -365,9 +388,9 @@
         债务人信息 :
       </div>
       <div class="details">
-        <input type="text" name="name" placeholder="*姓名">
-        <input type="text" name="idNum" placeholder="身份证号">
-        <input type="text" name="phoneNumber" placeholder="联系电话">
+        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+        <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+        <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
       </div>
     </div>
     <div class="line">
@@ -403,10 +426,18 @@
     </div>
     <div class="line">
       <div class="info">
+        详细地址 :
+      </div>
+      <div class="details">
+        <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
         债务金额 :
       </div>
       <div class="details">
-        <input type="text" name="debt_money" placeholder="请输入债务金额">元
+        <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债务金额">元
       </div>
     </div>
   </div>
@@ -432,9 +463,9 @@
         </label>
       </div>
       <div class="details">
-        <input type="text" name="name" placeholder="*保证人名称">
-        <input type="text" name="idNum" placeholder="身份证号">
-        <input type="text" name="phoneNumber" placeholder="联系方式">
+        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*保证人名称">
+        <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+        <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
       </div>
     </div>
   </div>
@@ -449,13 +480,13 @@
         抵押物信息 :
       </div>
       <div class="details">
-        <input type="text" name="name" placeholder="*抵押物名称">
+        <input type="text" name="name" onblur="validateNeed()" placeholder="*抵押物名称">
       </div>
     </div>
     <div class="line">
       <div class="info"></div>
       <div class="details">
-        <textarea name="good_detail" rows="8" cols="80" placeholder="抵押物详情(最多可输入150字)"></textarea>
+        <textarea name="good_detail" rows="8" cols="80" maxlength="150" placeholder="抵押物详情(最多可输入150字)"></textarea>
       </div>
     </div>
   </div>

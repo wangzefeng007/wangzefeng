@@ -133,6 +133,9 @@
 .wayByLawer .wrap .form-wrap .box .c .blo .line .info {
   display: inline-block;
   width: 110px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
 }
 .wayByLawer .wrap .form-wrap .box .c .blo .line .m-dropdown {
   display: inline-block;
@@ -180,7 +183,7 @@
 }
 .wayByLawer .wrap .form-wrap .box .c .blo .line .details textarea {
   width: 848px;
-  height: 90px;
+  height: 40px;
   border: 1px solid #e6e6e6;
   font-size: 14px;
   padding: 10px;

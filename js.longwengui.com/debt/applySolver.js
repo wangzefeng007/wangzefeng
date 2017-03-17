@@ -48,6 +48,7 @@ $(function(){
     var _debtorInfos = [];
     var _bondsmanInfos = [];
     var _bondsgoodInfos = [];
+    var _debtor_owner_money = 0, _debtor_money = 0;
 
     //决定程序是否往下执行
     var flag = true;
@@ -65,12 +66,30 @@ $(function(){
           flag = false;
           return;
         }
-        //债权人地区
-        var _province = $(this).find('input[name="province"]').val();
-        var _city = $(this).find('input[name="city"]').val();
-        var _county = $(this).find('input[name="county"]').val();
 
-        if(_province == "" || _city == "" || _county == ""){
+        if(_name != '' && !validate('chinese', _name)){
+          showMsg('请输入正确的债权人姓名');
+          flag = false;
+          return;
+        }
+        if(_idNum != '' && !validate('idNum', _idNum)){
+          showMsg('请输入正确的债权人身份证');
+          flag = false;
+          return;
+        }
+        if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+          showMsg('请输入正确的债权人手机号');
+          flag = false;
+          return;
+        }
+
+        //债权人地区
+        var _pid = $(this).find('.p-dropdown span').attr('data-id');
+        var _cid = $(this).find('.c-dropdown span').attr('data-id');
+        var _aid = $(this).find('.a-dropdown span').attr('data-id');
+        var _areaDetail = $(this).find('textarea[name="areaDetail"]').val();
+
+        if(!_pid || !_cid || !_aid){
           showMsg('请完善债权人地区信息');
           flag = false;
           return;
@@ -78,19 +97,26 @@ $(function(){
 
         //债权金额
         var _debt_money = $(this).find('input[name="debt_money"]').val();
-        if(_debt_money && parseInt(_debt_money) < 0){
+        if(_debt_money == ''){
+          showMsg('请输入债务金额');
+          flag = false;
+          return;
+        }
+        if(parseInt(_debt_money) < 0){
           showMsg('请输入正确的债权金额');
           flag = false;
           return;
         }
+        _debtor_owner_money += parseInt(_debt_money);
         _debtOwnerInfos.push({
           "name": _name,
           "idNum": _idNum,
           "debt_money": _debt_money,
           "phoneNumber": _phoneNumber,
-          "province": _province,
-          "city": _city,
-          "area": _county
+          "province": _pid,
+          "city": _cid,
+          "area": _aid,
+          "areaDetail": _areaDetail
         });
       }
     });
@@ -111,12 +137,28 @@ $(function(){
           flag = false;
           return;
         }
+        if(_name != '' && !validate('chinese', _name)){
+          showMsg('请输入正确的债务人姓名');
+          flag = false;
+          return;
+        }
+        if(_idNum != '' && !validate('idNum', _idNum)){
+          showMsg('请输入正确的债权人身份证');
+          flag = false;
+          return;
+        }
+        if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+          showMsg('请输入正确的债权人手机号');
+          flag = false;
+          return;
+        }
         //债务人地区
-        var _province = $(this).find('input[name="province"]').val();
-        var _city = $(this).find('input[name="city"]').val();
-        var _county = $(this).find('input[name="county"]').val();
+        var _pid = $(this).find('.p-dropdown span').attr('data-id');
+        var _cid = $(this).find('.c-dropdown span').attr('data-id');
+        var _aid = $(this).find('.a-dropdown span').attr('data-id');
+        var _areaDetail = $(this).find('textarea[name="areaDetail"]').val();
 
-        if(_province == "" || _city == "" || _county == ""){
+        if(!_pid || !_cid || !_aid){
           showMsg('请完善债务人地区信息');
           flag = false;
           return;
@@ -124,19 +166,26 @@ $(function(){
 
         //债权金额
         var _debt_money = $(this).find('input[name="debt_money"]').val();
-        if(_debt_money && parseInt(_debt_money) < 0){
+        if(_debt_money == ''){
+          showMsg('请输入债务金额');
+          flag = false;
+          return;
+        }
+        if(parseInt(_debt_money) < 0){
           showMsg('请输入正确的债务金额');
           flag = false;
           return;
         }
+        _debtor_money += parseInt(_debt_money);
         _debtorInfos.push({
           "name": _name,
           "idNum": _idNum,
           "debt_money": _debt_money,
           "phoneNumber": _phoneNumber,
-          "province": _province,
-          "city": _city,
-          "area": _county
+          "province": _pid,
+          "city": _cid,
+          "area": _aid,
+          "areaDetail": _areaDetail
         });
       }
     });
@@ -144,6 +193,10 @@ $(function(){
       return;
     }
 
+    if(_debtor_owner_money != _debtor_money){
+      showMsg('债务人和债权人金额总和不统一');
+      return;
+    }
 
     //是否有前期费用
     _preFee = $('input[name="fee"]:checked').val();
@@ -166,6 +219,21 @@ $(function(){
 
           if(_name == ""){
             showMsg('请完善保证人信息');
+            flag = false;
+            return;
+          }
+          if(_name != '' && !validate('chinese', _name)){
+            showMsg('请输入正确的保证人姓名');
+            flag = false;
+            return;
+          }
+          if(_idNum != '' && !validate('idNum', _idNum)){
+            showMsg('请输入正确的保证人身份证');
+            flag = false;
+            return;
+          }
+          if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+            showMsg('请输入正确的保证人手机号');
             flag = false;
             return;
           }
@@ -239,7 +307,6 @@ $(function(){
           injectPagination('#result_tbl_pagination', cur_page, data.PageCount, function(){
             $('#result_tbl_pagination').find('.b').click(function(){
               var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
-              console.log(changeTo)
               if(changeTo){
                 ajax(changeTo);
               }
@@ -265,8 +332,6 @@ $(function(){
 
 });
 
-
-
 //添加保证人角色下拉框事件
 function addBondsManDpEvent(){
   addEventToDropdown("bonds_man_role", function(tar){
@@ -276,11 +341,21 @@ function addBondsManDpEvent(){
 }
 //添加新的保证人
 function addBondsMan(){
-  addDom('bonds_man_info', 'bonds_man_tmpl', addBondsManDpEvent);
+  if($('#bonds_man_info').children('.blo').length < 5){
+    addDom('bonds_man_info', 'bonds_man_tmpl', addBondsManDpEvent);
+  }
+}
+//添加新的抵押物
+function addBondsGood(){
+  if($('#bonds_good_info').children('.blo').length < 5){
+    addDom('bonds_good_info', 'bonds_good_tepl');
+  }
 }
 //添加债权人事件
 function addDebtDom(targetID, tempID){
-  addDom(targetID, tempID, getProvinceData);
+  if($('#' + targetID).children('.blo').length < 3){
+    addDom(targetID, tempID, getProvinceData);
+  }
 }
 
 //申请寻找处置方

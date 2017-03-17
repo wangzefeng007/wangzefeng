@@ -415,3 +415,92 @@ function resetAreaDropdown(tar, selName){
     );
   }
 }
+
+//验证方法
+function validate(type, text){
+  switch (type) {
+    case 'phone':
+      return /^1[3|4|5|8][0-9]\d{8}$/.test(text) || /^0[\d]{2,3}-[\d]{7,8}$/.test(text);
+      break;
+    case 'chinese':
+      return /^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text);
+      break;
+    case 'idNum':
+      return /^\d{15}$/.test(text) || /^\d{17}(\d|x)$/.test(text);
+    case '+number':
+      return /^[0-9]*[1-9][0-9]*$/.test(text);
+    default:
+      return false;
+  }
+}
+
+//号码验证
+function validatePhone(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    if(isNeed){
+      showTip(tar, '请输入');
+    }
+    return;
+  }
+  if(!validate('phone', _text)){
+    showTip(tar, '请输入有效号码');
+    return;
+  }
+}
+//中文验证
+function validateChinese(tar){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+  for(var i=0; i<_text.length; i++){
+    if(!validate('chinese', _text[i])){
+      showTip(tar, '请输入中文');
+      return;
+    }
+  }
+}
+//身份证验证
+function validateIDNumber(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    if(isNeed){
+      showTip(tar, '请输入');
+    }
+    return;
+  }
+  if(!validate('idNum', _text)){
+    showTip(tar, '请输入有效身份证');
+    return;
+  }
+}
+//验证金额
+function validateMoney(tar){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+  if(!validate('+number', _text)){
+    showTip(tar, '请输入正确的数字');
+    $(tar).val('');
+    return;
+  }
+}
+//检验是否必须
+function validateNeed(tar){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+}
+
+//表单提示
+function showTip(tar, text){
+  layer.tips(text, tar, {
+    tips: [1, '#35bdfc']
+  });
+}
