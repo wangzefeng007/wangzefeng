@@ -1,0 +1,25 @@
+{
+  "ResultCode": 200,
+  "Page": 1,
+  "PageCount": 6,
+  "Data": [
+    {
+      "CompanyName": "厦门方与圆律师事务所",
+      "province": "福建省",
+      "city": "厦门市",
+      "area": "思明区",
+      "fee": "6000.00",
+      "phoneNumber": "1352465****",
+      "UserID": "123"
+    },
+    {
+      "CompanyName": "厦门方与圆律师事务所",
+      "province": "福建省",
+      "city": "厦门市",
+      "area": "思明区",
+      "fee": "6000.00",
+      "phoneNumber": "1352465****",
+      "UserID": "123"
+    }
+  ]
+}

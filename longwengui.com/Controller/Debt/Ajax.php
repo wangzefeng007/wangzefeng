@@ -202,6 +202,8 @@ class Ajax
         $iname =trim($_POST['iname']);
         $cardNum =trim($_POST['cardNum']);
         $areaName =trim($_POST['areaName']);
+        $Page =trim($_POST['Page']);
+        $pn = ($Page-1)*10;
         if ($areaName=='全国'){
             $areaName='';
         }
@@ -213,8 +215,9 @@ class Ajax
             echo json_encode($json_result);
             exit;
         }
-        $Html = curl_getsend('https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?resource_id=6899&query=%E5%A4%B1%E4%BF%A1%E8%A2%AB%E6%89%A7%E8%A1%8C%E4%BA%BA%E5%90%8D%E5%8D%95&cardNum='.$cardNum.'&iname='.$iname.'&areaName='.$areaName.'&ie=utf-8&oe=utf-8&format=json&_='.$Time.$Num);
+        $Html = curl_getsend('https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?resource_id=6899&query=%E5%A4%B1%E4%BF%A1%E8%A2%AB%E6%89%A7%E8%A1%8C%E4%BA%BA%E5%90%8D%E5%8D%95&cardNum='.$cardNum.'&iname='.$iname.'&areaName='.$areaName.'&pn='.$pn.'&rn=10&ie=utf-8&oe=utf-8&format=json&_='.$Time.$Num);
         $Html = json_decode($Html,true);
+        $PageCount = ceil($Html['data'][0]['listNum']/10);
         if (empty($Html['data'])){
             $json_result = array(
                 'ResultCode' => 101,
@@ -224,8 +227,13 @@ class Ajax
             $json_result = array(
                 'ResultCode' => 200,
                 'Message' => '返回成功',
+                "PageSize"=> 10,
+                "PageCount"=>$PageCount,
+                "Page"=>intval($Page),
             );
-            $json_result['Data'] =  $Html['data'][0]['result'];
+            $Result = array_slice($Html['data'][0]['result'],0,10);
+            $json_result['Data'] = $Result;
+
         }
         echo stripslashes(json_encode($json_result,JSON_UNESCAPED_UNICODE));
         exit;
@@ -283,19 +291,80 @@ class Ajax
 
     public function FindTeam(){
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
-        $debtorInfos = $AjaxData['debtorInfos'];
-        foreach ($debtOwnerInfos as $key=>$value){
-            //$value['']
+        //是否有前期费用
+        $Data['EarlyCost'] = $AjaxData['preFee'];
+        //是否随时能找到
+        $Data['FindDebtor'] = $AjaxData['searchedAnytime'];
+        //是否有能力还债
+        $Data['RepaymentDebtor'] = $AjaxData['abilityDebt'];
+        //是否有保证人
+        $Data['Warrantor'] = $AjaxData['haveBondsMan'];
+        if ($Data['Warrantor']=='1'){
+            //保证人信息
+            foreach ($AjaxData['bondsmanInfos'] as $key=>$value){
+                $WarrantorInfo[$key]['type'] = $value['bonds_man_role'];
+                $WarrantorInfo[$key]['name'] = $value['name'];
+                $WarrantorInfo[$key]['card'] = $value['idNum'];
+                $WarrantorInfo[$key]['phone'] = $value['phoneNumber'];
+            }
+            $Data['WarrantorInfo'] = json_encode($WarrantorInfo,JSON_UNESCAPED_UNICODE);
+        }
+        //是否有抵押物
+        $Data['Guarantee'] = $AjaxData['haveBondsGood'];
+        if ($Data['Guarantee']=='1'){
+            //抵押物信息
+            foreach ($AjaxData['bondsgoodInfos'] as $key=>$value){
+                $GuaranteeInfo[$key]['name'] = $value['name'];
+                $GuaranteeInfo[$key]['content'] = $value['details'];
+            }
+            $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
         }
 
+        $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
+        $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
+        //债权人信息
+        if (!empty($debtOwnerInfos)) {
+            foreach ($debtOwnerInfos as $key => $value) {
+                $value['name'];
+                $value['idNum'];
+                $value['debt_money'];
+                $value['phoneNumber'];
+                $value['province'];
+                $value['city'];
+                $value['area'];
+            }
+        }
+        exit;
+        //债务人信息
+        $debtorInfos = $AjaxData['debtorInfos'];
+        if (!empty($debtorInfos)){
+            foreach ($debtOwnerInfos as $key=>$value){
+                $value['name'];
+                $value['idNum'];
+                $value['debt_money'];
+                $value['phoneNumber'];
+                $value['province'];
+                $value['city'];
+                $value['area'];
+            }
+        }
+
+        //债务人信息
+//        "debtOwnerInfos": _debtOwnerInfos, //债权人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债权金额}
+//      "debtorInfos": _debtorInfos, //债务人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债务金额}
+//      "preFee": _preFee, //是否有前期费用 0 没有 1 有
+//      "searchedAnytime": _searchedAnytime, //是否随时能找到 0 不能 1能
+//      "abilityDebt": _abilityDebt, //是否有能力还债 0 不能 1 能
+//      "haveBondsMan": haveBondsMan, //是否有保证人 0 无 1 有
+//      "bondsmanInfos": _bondsmanInfos, //保证人信息数组； haveBondsMan为0: 数组为空;为1: {name: 名称; idNum: 身份证号; phoneNumber: 联系方式; bonds_man_role: 保证人角色}
+//      "haveBondsGood": haveBondsGood,  //是否有抵押物 0 无 1 有
+//      "bondsgoodInfos": _bondsgoodInfos, //抵押物信息数组； haveBondsGood为0: 数组为空; 为1：{name：抵押物名称; details: 抵押物描述}
         //开启事务
         global $DB;
         $DB->query("BEGIN");//开始事务定义
         $DB->query("COMMIT");//执行事务
         $DB->query("ROLLBACK");//判断当执行失败时回滚
-        var_dump($AjaxData);
-             var_dump($_POST);exit;
+        exit;
 
     }
 }
