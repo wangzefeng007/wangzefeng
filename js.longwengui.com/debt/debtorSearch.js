@@ -36,11 +36,12 @@ $(function(){
           success: function(data) {	//函数回调
               //注入列表
                 if(data.ResultCode=='200'){
+                    cur_page = data.Page;
                     dataSuccess(data.Data);
                     // 注入分页
-                    injectPagination('#search_result_pagination', cur_page, 10, function(){
+                    injectPagination('#search_result_pagination', cur_page, data.PageCount, function(){
                         $('#search_result_pagination').find('.b').click(function(){
-                            var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageSize);
+                            var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
                             if(changeTo){
                                 ajax(changeTo);
                             }
