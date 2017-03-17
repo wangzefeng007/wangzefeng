@@ -95,6 +95,7 @@ function addInputEventByNames(names, callback){
 
 //注入分页dom
 function injectPagination(id, Page, LastPage, callback){
+  $(id).empty();
   //总数=1，不显示分页
   if(LastPage == 1){
     callback();
