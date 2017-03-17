@@ -426,7 +426,7 @@ function validate(type, text){
       return /^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text);
       break;
     case 'idNum':
-      return /^\d{15}$/.test(text) || /^\d{17}(\d|x)$/.test(text);
+      return /^\d{15}$/.test(text) || /^\d{17}(\d|x|X)$/.test(text);
     case '+number':
       return /^[0-9]*[1-9][0-9]*$/.test(text);
     default:
