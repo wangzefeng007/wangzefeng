@@ -265,3 +265,20 @@ function isIE9(){
   }
   return _r;
 }
+
+//添加指定模板到指定dom中
+function addDom(targetID, tempID, callback){
+  $('#' + tempID).tmpl().appendTo('#' + targetID);
+  if(isIE8() || isIE9()){
+    $('#' + targetID).find('input').each(function(){
+      $(this).placeholder();
+    });
+  }
+  callback();
+}
+//删除指定父级元素
+function removeParentDom(self, className){
+  if($(self).parents('.' + className).siblings('.' + className).length > 0){
+    $(self).parents('.' + className).remove();
+  }
+}
