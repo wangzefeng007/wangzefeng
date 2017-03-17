@@ -139,6 +139,7 @@ class Reward
         }
         if ($_GET['ID']) {
             $ID = $_GET['ID'];
+            $UserInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID = '.$ID);
             $RewardImg = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID);
             $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
         }
