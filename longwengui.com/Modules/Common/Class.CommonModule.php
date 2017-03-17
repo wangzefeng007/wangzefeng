@@ -149,13 +149,5 @@ class CommonModule {
 		global $DB;
 		return $DB->Update ( 'Update ' . $this->TableName .' set '.$this->ViewCount.'='.$this->ViewCount.'+1 where `'. $this->KeyID . '`=' . $ArticleID );
 	}
-//        function GetProvinceByAreaID($AreaID = '') {
-//
-//                global $DB;
-//                if ($AreaID == '')
-//                    return 0;
-//                $sql = 'select * from member_area ' . ' where  AreaID = ' . $AreaID;
-//                return $DB->getone ( $sql );
-//    }
 
 }
