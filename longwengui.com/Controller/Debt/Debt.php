@@ -24,8 +24,9 @@ class Debt
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
+        $Province = $MemberAreaModule->Province;
         $City = $MemberAreaModule->City;
-        var_dump($City);exit;
+        $Area = $MemberAreaModule->Area;
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
@@ -51,9 +52,9 @@ class Debt
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
-                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
-                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
+                $Data['Data'][$key]['Province'] = $Province[$DebtorsInfo['Province']];
+                $Data['Data'][$key]['City'] = $City[$DebtorsInfo['City']];
+                $Data['Data'][$key]['Area'] = $Area[$DebtorsInfo['Area']];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
