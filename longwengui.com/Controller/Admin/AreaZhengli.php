@@ -44,39 +44,34 @@ class AreaZhengli
         }
         var_dump($cities);exit;
     }
-//    public function AreaCity(){
-//        $MemberAreaModule = new MemberAreaModule();
-//        $province = $MemberAreaModule->GetInfoByWhere(' and Level=1',true);
-//        foreach ($province as $Key=>$Value)
-//        {
-//            $provinceJson[$Key]['AreaID'] = $Value['AreaID'];
-//            $provinceJson[$Key]['CnName'] = $Value['CnName'];
-//        }
-//        $provinceJsonString = json_encode($provinceJson,JSON_UNESCAPED_UNICODE);
-//        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Province.json',$provinceJsonString);
-//    }
+    public function AreaProvince(){
+        $MemberAreaModule = new MemberAreaModule();
+        $province = $MemberAreaModule->GetInfoByWhere(' and Level=1',true);
+        foreach ($province as $Key=>$Value)
+        {
+            $provinceJson[$Value['AreaID']] = $Value['CnName'];
+        }
+        $provinceJsonString = json_encode($provinceJson,JSON_UNESCAPED_UNICODE);
+        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/ProvincePHP.json',$provinceJsonString);
+    }
     public function AreaCity(){
         $MemberAreaModule = new MemberAreaModule();
         $city = $MemberAreaModule->GetInfoByWhere(' and Level=2',true);
         foreach ($city as $Key=>$Value)
         {
-            $cityJson[$Key]['AreaID'] = $Value['AreaID'];
-            $cityJson[$Key]['CnName'] = $Value['CnName'];
-            $cityJson[$Key]['ParentID'] = $Value['ParentID'];
+            $cityJson[$Value['AreaID']] = $Value['CnName'];
         }
         $cityJsonString = json_encode($cityJson,JSON_UNESCAPED_UNICODE);
-        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/City.json',$cityJsonString);
+        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/CityPHP.json',$cityJsonString);
     }
     public function Areas(){
         $MemberAreaModule = new MemberAreaModule();
         $city = $MemberAreaModule->GetInfoByWhere(' and Level=3',true);
         foreach ($city as $Key=>$Value)
         {
-            $cityJson[$Key]['AreaID'] = $Value['AreaID'];
-            $cityJson[$Key]['CnName'] = $Value['CnName'];
-            $cityJson[$Key]['ParentID'] = $Value['ParentID'];
+            $cityJson[$Value['AreaID']] = $Value['CnName'];
         }
         $cityJsonString = json_encode($cityJson,JSON_UNESCAPED_UNICODE);
-        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Area.json',$cityJsonString);
+        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/AreaPHP.json',$cityJsonString);
     }
 }
