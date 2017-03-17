@@ -284,7 +284,8 @@ $(function(){
       "bondsmanInfos": _bondsmanInfos, //保证人信息数组； haveBondsMan为0: 数组为空;为1: {name: 名称; idNum: 身份证号; phoneNumber: 联系方式; bonds_man_role: 保证人角色}
       "haveBondsGood": haveBondsGood,  //是否有抵押物 0 无 1 有
       "bondsgoodInfos": _bondsgoodInfos, //抵押物信息数组； haveBondsGood为0: 数组为空; 为1：{name：抵押物名称; details: 抵押物描述}
-      "Page": Page
+      "Page": Page,
+      "Type": window.location.href.charAt(window.location.href.length - 2)
     }
 
     $.ajax({
