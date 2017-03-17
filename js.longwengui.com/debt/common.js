@@ -291,7 +291,7 @@ function getProvinceData(){
   $.ajax({
     type: 'get',
     dataType: 'json',
-    url: '../data/Province.json',
+    url: '/Templates/Debt/data/Province.json',
     success: function(data){
       $('input[name="dd_province"]').each(function(){
         var _t = $(this).siblings('ul');
@@ -321,7 +321,7 @@ function getCityData(_pid, _sel){
     {
       type: "get",
       dataType: "json",
-      url: "../data/City.json",
+      url: "/Templates/Debt/data/City.json",
       success: function(data){
         var _city = [];
         for(var i=0; i<data.length; i++){
@@ -356,7 +356,7 @@ function getAreaData(_pid, _sel){
     {
       type: "get",
       dataType: "json",
-      url: "../data/Area.json",
+      url: "/Templates/Debt/data/Area.json",
       success: function(data){
         var _area = [];
         for(var i=0; i<data.length; i++){
