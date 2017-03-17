@@ -290,7 +290,7 @@ class Ajax
      */
 
     public function FindTeam(){
-
+        //开启事务
         global $DB;
         $DB->query("BEGIN");//开始事务定义
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
@@ -322,47 +322,40 @@ class Ajax
             }
             $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
         }
-
         $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
         $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
         //债权人信息
         if (!empty($debtOwnerInfos)) {
+            $Date['Type'] = 2;
+            $Date['AddTime'] = time();
             foreach ($debtOwnerInfos as $key => $value) {
-                $value['name'];
-                $value['idNum'];
-                $value['debt_money'];
-                $value['phoneNumber'];
-                $value['province'];
-                $value['city'];
-                $value['area'];
-            }
-        }
-        exit;
-        //债务人信息
-        $debtorInfos = $AjaxData['debtorInfos'];
-        if (!empty($debtorInfos)){
-            foreach ($debtOwnerInfos as $key=>$value){
-                $value['name'];
-                $value['idNum'];
-                $value['debt_money'];
-                $value['phoneNumber'];
-                $value['province'];
-                $value['city'];
-                $value['area'];
+                $Datb['Name'] = $value['name'];
+                $Datb['Card'] = $value['idNum'];
+                $Datb['Money'] = $value['debt_money'];
+                $Datb['Phone'] = $value['phoneNumber'];
+                $Datb['Province'] = $value['province'];
+                $Datb['City'] = $value['city'];
+                $Datb['Area'] = $value['area'];
+                $Datb['Address'] = $value['area'];
             }
         }
 
         //债务人信息
-//        "debtOwnerInfos": _debtOwnerInfos, //债权人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债权金额}
-//      "debtorInfos": _debtorInfos, //债务人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债务金额}
-//      "preFee": _preFee, //是否有前期费用 0 没有 1 有
-//      "searchedAnytime": _searchedAnytime, //是否随时能找到 0 不能 1能
-//      "abilityDebt": _abilityDebt, //是否有能力还债 0 不能 1 能
-//      "haveBondsMan": haveBondsMan, //是否有保证人 0 无 1 有
-//      "bondsmanInfos": _bondsmanInfos, //保证人信息数组； haveBondsMan为0: 数组为空;为1: {name: 名称; idNum: 身份证号; phoneNumber: 联系方式; bonds_man_role: 保证人角色}
-//      "haveBondsGood": haveBondsGood,  //是否有抵押物 0 无 1 有
-//      "bondsgoodInfos": _bondsgoodInfos, //抵押物信息数组； haveBondsGood为0: 数组为空; 为1：{name：抵押物名称; details: 抵押物描述}
-        //开启事务
+        $debtorInfos = $AjaxData['debtorInfos'];
+        if (!empty($debtorInfos)){
+            foreach ($debtOwnerInfos as $key=>$value){
+                $Datc['Name'] = $value['name'];
+                $Datc['Card'] = $value['idNum'];
+                $Datc['Money'] = $value['debt_money'];
+                $Datc['Phone'] = $value['phoneNumber'];
+                $Datc['Province'] = $value['province'];
+                $Datc['City'] = $value['city'];
+                $Datc['Area'] = $value['area'];
+                $Datc['Address'] = $value['area'];
+            }
+        }
+        exit;
+
 
         $DB->query("COMMIT");//执行事务
         $DB->query("ROLLBACK");//判断当执行失败时回滚

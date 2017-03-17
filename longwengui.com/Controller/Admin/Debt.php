@@ -12,7 +12,11 @@ class Debt {
     public function DebtLists() {
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberDebtInfoModule->Status;
+        $Province = $MemberAreaModule->Province;
+        $City = $MemberAreaModule->City;
+        $Area = $MemberAreaModule->Area;
         $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
@@ -50,9 +54,9 @@ class Debt {
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
-                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
-                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
+                $Data['Data'][$key]['Province'] = $Province[$DebtorsInfo['Province']];
+                $Data['Data'][$key]['City'] = $City[$DebtorsInfo['City']];
+                $Data['Data'][$key]['Area'] = $Area[$DebtorsInfo['Area']];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
             }
 

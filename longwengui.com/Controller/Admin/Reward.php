@@ -17,10 +17,7 @@ class Reward
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
-        $MemberAreaModule = new MemberAreaModule();
-        $ProvinceLists = $MemberAreaModule->GetInfoByWhere(' and `ParentID` = 0', true);
         $code = 'XS';
-        
         if ($_POST) {
             $Data['CreditorsPhone'] = trim($_POST['CreditorsPhone']);
             $Data['DebtName'] = trim($_POST['DebtName']);
