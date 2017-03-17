@@ -30,11 +30,12 @@
 }
 .wayByLawer .wrap .m-dropdown label {
   color: #a9a9a9;
+  width: 100%;
+  display: inline-block;
 }
 .wayByLawer .wrap .m-dropdown label i {
   display: inline-block;
   vertical-align: middle;
-  cursor: pointer;
   float: right;
   margin-top: 13px;
   background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");

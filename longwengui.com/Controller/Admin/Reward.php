@@ -31,9 +31,9 @@ class Reward
             $Data['AddTime'] = time();
             $Data['RewardNum'] = $code . time();
 
-//            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == '' || $_POST['DebtPhone'] == '' || $_POST['Address'] == '') {
-//                alertandback('信息填写不完整');
-//            }
+            if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == '' || $_POST['DebtPhone'] == '' || $_POST['Address'] == '') {
+                alertandback('信息填写不完整');
+            }
             // 上传图片
             include SYSTEM_ROOTPATH . '/Include/fileupload.class.php';
             $up = new fileupload;
@@ -44,10 +44,13 @@ class Reward
             $up->set("maxsize", 2000000);
             $up->set("allowtype", array("gif", "png", "jpg", "jpeg"));
             $up->set("israndname", true);
-//            http://www.jb51.net/article/57510.htm
             //使用对象中的upload方法， 就可以上传文件， 方法需要传一个上传表单的名子 pic, 如果成功返回true, 失败返回false
             if ($up->upload("image")) {
-                $ImageInfo['ImageUrl'] = $SavePath;
+                $FileName = $up->getFileName();
+                if (is_array($FileName)) {
+                    $ImageInfo['ImageUrl'] = $SavePath . $FileName[0];
+                    $ImageInfo['ImageUrl2'] = $SavePath . $FileName[1];
+                }
                 $ImageInfo['IsDefault'] = 1;
                 $ImageInfo['RewardID'] = 1;
             } else {
@@ -59,7 +62,7 @@ class Reward
         
             $result = $MemberRewardInfoModule->InsertInfo($Data);
             $uploadImage = $MemberRewardImageModule->InsertInfo($ImageInfo);
-            if ($result && $uploadImage) {
+        if ($result || $uploadImage) {
                 alertandgotopage("操作成功", '/index.php?Module=Reward&Action=RewardLists');
  
             } else {
@@ -124,6 +127,7 @@ class Reward
     public function RewardDetail()
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
         if ($_POST['ID']) {
             $Data['Status'] = intval($_POST['Status']);
             $ID = intval($_POST['ID']);
@@ -138,7 +142,7 @@ class Reward
         }
         if ($_GET['ID']) {
             $ID = $_GET['ID'];
-            $UserInfo = $MemberRewardInfoModule->GetInfoByKeyID($ID);
+            $RewardImg = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID);
             $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
         }
         include template('RewardDetail');

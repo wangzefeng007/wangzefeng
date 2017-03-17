@@ -1,6 +1,7 @@
 $(function(){
   var haveBondsMan = 0;
   var haveBondsGood = 0;
+  getProvinceData();
 
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
@@ -276,6 +277,10 @@ function addBondsManDpEvent(){
 //添加新的保证人
 function addBondsMan(){
   addDom('bonds_man_info', 'bonds_man_tmpl', addBondsManDpEvent);
+}
+//添加债权人事件
+function addDebtDom(targetID, tempID){
+  addDom(targetID, tempID, getProvinceData);
 }
 
 //申请寻找处置方
