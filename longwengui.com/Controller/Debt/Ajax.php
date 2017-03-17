@@ -286,8 +286,14 @@ class Ajax
         $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
         $debtorInfos = $AjaxData['debtorInfos'];
         foreach ($debtOwnerInfos as $key=>$value){
-            $value['']
+            //$value['']
         }
+
+        //开启事务
+        global $DB;
+        $DB->query("BEGIN");//开始事务定义
+        $DB->query("COMMIT");//执行事务
+        $DB->query("ROLLBACK");//判断当执行失败时回滚
         var_dump($AjaxData);
              var_dump($_POST);exit;
 
