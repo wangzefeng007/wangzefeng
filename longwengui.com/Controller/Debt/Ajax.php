@@ -290,6 +290,9 @@ class Ajax
      */
 
     public function FindTeam(){
+
+        global $DB;
+        $DB->query("BEGIN");//开始事务定义
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         //是否有前期费用
         $Data['EarlyCost'] = $AjaxData['preFee'];
@@ -360,8 +363,7 @@ class Ajax
 //      "haveBondsGood": haveBondsGood,  //是否有抵押物 0 无 1 有
 //      "bondsgoodInfos": _bondsgoodInfos, //抵押物信息数组； haveBondsGood为0: 数组为空; 为1：{name：抵押物名称; details: 抵押物描述}
         //开启事务
-        global $DB;
-        $DB->query("BEGIN");//开始事务定义
+
         $DB->query("COMMIT");//执行事务
         $DB->query("ROLLBACK");//判断当执行失败时回滚
         exit;
