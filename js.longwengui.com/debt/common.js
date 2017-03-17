@@ -275,11 +275,143 @@ function addDom(targetID, tempID, callback){
       $(this).placeholder();
     });
   }
-  callback();
+  if(typeof callback == "function"){
+    callback();
+  }
 }
 //删除指定父级元素
 function removeParentDom(self, className){
   if($(self).parents('.' + className).siblings('.' + className).length > 0){
     $(self).parents('.' + className).remove();
+  }
+}
+
+//获得省级元素
+function getProvinceData(){
+  $.ajax({
+    type: 'get',
+    dataType: 'json',
+    url: '../data/Province.json',
+    success: function(data){
+      $('input[name="dd_province"]').each(function(){
+        var _t = $(this).siblings('ul');
+        var _html = '';
+        for(var i=0; i<data.length; i++){
+          _html +=   "<li data-id='"+ data[i].AreaID +"' data-name='" + data[i].CnName + "'>"
+                  +     data[i].CnName
+                  +  "</li>";
+        }
+        _t.html(_html);
+        _t.children('li').click(function(){
+          resetAreaDropdown($(this), 'p-dropdown');
+          var _id = $(this).attr("data-id");
+          var _name = $(this).attr("data-name");
+          var _sel = $(this).parent().siblings("span");
+          _sel.text(_name);
+          _sel.attr('data-id', _id);
+          getCityData(_id, _sel);
+        });
+      });
+    }
+  });
+}
+//获得市级元素
+function getCityData(_pid, _sel){
+  $.ajax(
+    {
+      type: "get",
+      dataType: "json",
+      url: "../data/City.json",
+      success: function(data){
+        var _city = [];
+        for(var i=0; i<data.length; i++){
+          if(data[i].ParentID == _pid){
+            _city.push(data[i]);
+          }
+        }
+        var _html = '';
+        for(var i=0; i<_city.length; i++){
+          _html  +=   "<li data-id='"+ _city[i].AreaID +"' data-name='" + _city[i].CnName + "'>"
+                  +     _city[i].CnName
+                  +  "</li>";
+        }
+        var _t = _sel.parents('.p-dropdown').siblings('.c-dropdown').find('ul');
+        _t.html(_html);
+        _t.children('li').click(function(){
+          resetAreaDropdown($(this), 'c-dropdown');
+          var _id = $(this).attr("data-id");
+          var _name = $(this).attr("data-name");
+          var __sel = $(this).parent().siblings("span");
+          __sel.text(_name);
+          __sel.attr('data-id', _id);
+          getAreaData(_id, __sel);
+        });
+      }
+    }
+  );
+}
+//获得县级元素
+function getAreaData(_pid, _sel){
+  $.ajax(
+    {
+      type: "get",
+      dataType: "json",
+      url: "../data/Area.json",
+      success: function(data){
+        var _area = [];
+        for(var i=0; i<data.length; i++){
+          if(data[i].ParentID == _pid){
+            _area.push(data[i]);
+          }
+        }
+
+        var _html = '';
+        for(var i=0; i<_area.length; i++){
+          _html  +=   "<li data-id='"+ _area[i].AreaID +"' data-name='" + _area[i].CnName + "'>"
+                  +     _area[i].CnName
+                  +  "</li>";
+        }
+        var _t = _sel.parents('.c-dropdown').siblings('.a-dropdown').find('ul');
+        _t.html(_html);
+        _t.children('li').click(function(){
+          var _id = $(this).attr("data-id");
+          var _name = $(this).attr("data-name");
+          var __sel = $(this).parent().siblings("span");
+          __sel.text(_name);
+          __sel.attr('data-id', _id);
+        });
+      }
+    }
+  );
+}
+//重置省市县下拉框
+function resetAreaDropdown(tar, selName){
+  if(selName == 'p-dropdown'){
+    $(tar).parents('.p-dropdown').siblings('.c-dropdown').html(
+       '<label type="checkbox">'
+      +  '<span>*城市</span>'
+      +  '<i></i>'
+      +  '<input type="checkbox" name="dd_city" value="">'
+      +  '<ul></ul>'
+      + '</label>'
+    );
+    $(tar).parents('.p-dropdown').siblings('.a-dropdown').html(
+       '<label type="checkbox">'
+      +  '<span>*区县/市</span>'
+      +  '<i></i>'
+      +  '<input type="checkbox" name="dd_area" value="">'
+      +  '<ul></ul>'
+      + '</label>'
+    );
+  }
+  if(selName == 'c-dropdown'){
+    $(tar).parents('.c-dropdown').siblings('.a-dropdown').html(
+       '<label type="checkbox">'
+      +  '<span>*区县/市</span>'
+      +  '<i></i>'
+      +  '<input type="checkbox" name="dd_area" value="">'
+      +  '<ul></ul>'
+      + '</label>'
+    );
   }
 }

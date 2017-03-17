@@ -725,59 +725,6 @@ a{
   width: 16px;
   height: 16px;
 }
-.m-dropdown {
-  display: inline-block;
-  width: 120px;
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid #94dafb;
-  border-radius: 5px;
-  padding: 0 10px;
-  position: relative;
-}
-.m-dropdown label {
-  color: #a9a9a9;
-}
-.m-dropdown label i {
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-  float: right;
-  margin-top: 17px;
-  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
-  background-position: -141px -107px;
-  width: 14px;
-  height: 9px;
-}
-.m-dropdown label input[type="checkbox"] {
-  display: none;
-}
-.m-dropdown label ul {
-  display: none;
-  width: 140px;
-  position: absolute;
-  top: 44px;
-  border-radius: 3px;
-  padding: 0;
-  margin: 0;
-  left: 0;
-  font-size: 12px;
-  text-align: center;
-  background-color: #f5f5f5;
-  overflow-y: scroll;
-  height: 300px;
-  border: 1px solid #94dafb;
-}
-.m-dropdown label ul li {
-  line-height: 30px;
-  cursor: pointer;
-}
-.m-dropdown label ul li:hover {
-  background-color: #e5e5e5;
-}
-.m-dropdown label input[type="checkbox"]:checked + ul {
-  display: block;
-}
 .pop-login {
   position: fixed;
   width: 100%;
@@ -1037,4 +984,77 @@ a{
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+}
+.p-dropdown,
+.c-dropdown,
+.a-dropdown {
+  display: inline-block;
+  width: 120px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.p-dropdown label,
+.c-dropdown label,
+.a-dropdown label {
+  color: #a9a9a9;
+  width: 100%;
+  display: inline-block;
+}
+.p-dropdown label i,
+.c-dropdown label i,
+.a-dropdown label i {
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.p-dropdown label input[type="checkbox"],
+.c-dropdown label input[type="checkbox"],
+.a-dropdown label input[type="checkbox"] {
+  display: none;
+}
+.p-dropdown label ul,
+.c-dropdown label ul,
+.a-dropdown label ul {
+  display: none;
+  width: 138px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.p-dropdown label ul li,
+.c-dropdown label ul li,
+.a-dropdown label ul li {
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.p-dropdown label ul li:hover,
+.c-dropdown label ul li:hover,
+.a-dropdown label ul li:hover {
+  background-color: #35bdfc;
+  color: #fff;
+}
+.p-dropdown label input[type="checkbox"]:checked + ul,
+.c-dropdown label input[type="checkbox"]:checked + ul,
+.a-dropdown label input[type="checkbox"]:checked + ul {
+  display: block;
 }

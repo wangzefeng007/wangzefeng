@@ -33,11 +33,12 @@
 }
 .debtorSearch .wrap .m-dropdown label {
   color: #a9a9a9;
+  display: inline-block;
+  width: 100%;
 }
 .debtorSearch .wrap .m-dropdown label i {
   display: inline-block;
   vertical-align: middle;
-  cursor: pointer;
   float: right;
   margin-top: 17px;
   background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
