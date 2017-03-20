@@ -1,6 +1,7 @@
 $(function(){
   var haveBondsMan = 0;
   var haveBondsGood = 0;
+  var debtId;
   getProvinceData();
 
   $('#bonds_man_info_btn').click(function(){
@@ -300,6 +301,12 @@ $(function(){
       },
       success: function(data){
         if(data.ResultCode == 200){
+          //设置匹配按钮不可点击
+          $('#match')[0].disabled = true;
+          $('#match').addClass('btn-disabled');
+
+          debtId = data.DebtId;
+
           dataSuccess(data.Data);
           //获得当前页
           cur_page = data.Page;
@@ -380,7 +387,8 @@ function applyToSearch(UserID){
         dataType: "json",
         url: "/data/applyDebtSolver.json",
         data: {
-          "uid": uid //提交处置方userid
+          "uid": uid, //提交处置方userid
+          "debtId": debtId //该债务的id
         },
         beforeSend: function(){
           showLoading();

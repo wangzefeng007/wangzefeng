@@ -1058,3 +1058,7 @@ a{
 .a-dropdown label input[type="checkbox"]:checked + ul {
   display: block;
 }
+.btn-disabled {
+  background-color: #bebebe!important;
+  color: #fff!important;
+}
