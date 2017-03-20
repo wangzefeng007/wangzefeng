@@ -4,6 +4,12 @@
   width: 14px;
   height: 9px;
 }
+.icon-tri_arrow_bl {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
 .reset .form-reset {
   width: 464px;
   height: 432px;
@@ -22,7 +28,7 @@
 }
 .reset .form-reset .cont .line {
   width: 390px;
-  margin: 24px auto;
+  margin: 28px auto;
   position: relative;
 }
 .reset .form-reset .cont .line .info {
@@ -68,6 +74,7 @@
   cursor: pointer;
 }
 .reset .form-reset .cont .line .error-hint {
+  display: none;
   color: #fe2929;
   position: absolute;
   left: 100px;

@@ -4,6 +4,12 @@
   width: 14px;
   height: 9px;
 }
+.icon-tri_arrow_bl {
+  background-image: url("../imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
 .login .form-login {
   width: 460px;
   height: 360px;
@@ -79,6 +85,7 @@
   cursor: pointer;
 }
 .login .form-login .cont .line .error-hint {
+  display: none;
   color: #fe2929;
   position: absolute;
   left: 100px;

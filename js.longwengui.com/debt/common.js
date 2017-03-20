@@ -155,7 +155,7 @@ function　calcPageNums(pageCount, page){
 //错误提示窗
 function showMsg(text){
   layer.msg(text, {
-    offset: '240px'
+    offset: '320px'
   });
 }
 
@@ -429,6 +429,10 @@ function validate(type, text){
       return /^\d{15}$/.test(text) || /^\d{17}(\d|x|X)$/.test(text);
     case '+number':
       return /^[0-9]*[1-9][0-9]*$/.test(text);
+    case 'mobilePhone':
+      return /^1[3|4|5|8][0-9]\d{8}$/.test(text);
+    case 'password':
+      return /^(\w){6,20}$/.test(text);
     default:
       return false;
   }
@@ -503,4 +507,22 @@ function showTip(tar, text){
   layer.tips(text, tar, {
     tips: [1, '#35bdfc']
   });
+}
+
+//发送验证码倒计时 60秒不能重复提交 tar为button
+function codeTimedown(tar){
+  var pre_text = $(tar).html();
+  var totalTime = 60;
+  $(tar)[0].disabled = true;
+  $(tar).html(totalTime + 's');
+  var inr = setInterval(function(){
+    totalTime--;
+    var html = totalTime + 's';
+    $(tar).html(html);
+    if(totalTime == 0){
+      $(tar).html(pre_text);
+      clearInterval(inr);
+      $(tar)[0].disabled = false;
+    }
+  }, 1000);
 }
