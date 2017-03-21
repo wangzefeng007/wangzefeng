@@ -97,24 +97,27 @@ function ajax(){
   });
 
   $.ajax({
-    type: "get",
+    type: "post",
     dataType: "json",
-    url: "../data/publishReword.json",
-    data: JSON.stringify({
-      "debt_owner": debt_owner,
-      "debtor": debtor,
-      "images": img_voucher,
-      "reword_type": reword_type
-    }),
+    url: "/ajax.html",
+      data: {
+          "Intention":"ReleaseReward",
+          "AjaxJSON":JSON.stringify({
+              "debt_owner": debt_owner,
+              "debtor": debtor,
+              "images": img_voucher,
+              "reword_type": reword_type
+          }),
+      },
     beforeSend: function(){
       showLoading();
     },
     success: function(data){
       if(data.ResultCode == 200){
-        showMsg('发布成功');
+          layer.msg(data.Message);
         //路由跳转
       }else{
-        showMsg(data.Message);
+          layer.msg(data.Message);
       }
     },
     complete: function(){

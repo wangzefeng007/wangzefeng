@@ -82,5 +82,11 @@ class Reword
             $Area = '1001';
         return $Area;
     }
-
+    /**
+     * @desc  发布悬赏
+     */
+    public function RewordPublish(){
+        $Nav = 'rewordlists';
+    include template('RewordPublish');
+    }
 }

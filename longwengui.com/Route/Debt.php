@@ -7,6 +7,8 @@ $RouteArr=array(
     'debt@debtdetails'=>'Debt@DebtDetails',
     //线索悬赏
     'reword@index'=>'Reword@Index',
+    'reword@publish'=>'Reword@RewordPublish',
+
     //寻找处置方
     'find@choicefind'=>'Find@ChoiceFind',
     'find@team'=>'Find@Team',
