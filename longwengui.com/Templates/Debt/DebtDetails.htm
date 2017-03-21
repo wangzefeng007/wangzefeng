@@ -9,7 +9,7 @@
         <div class="info-wrap">
             <div class="hd">
                 <!-- <button type="button" name="button">关注</button> -->
-                债务编号：{$DebtInfo[DebtNum]}--处置方偏向：律师团队
+                债务编号：{$DebtInfo[DebtNum]}--处置方偏向：{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{/if}
             </div>
             <div class="pubman-info">
                 <span>发布人: {$UserInfo[RealName]}</span>
