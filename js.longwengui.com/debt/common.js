@@ -426,9 +426,11 @@ function validate(type, text){
       return /^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text);
       break;
     case 'idNum':
-      return /^\d{15}$/.test(text) || /^\d{17}(\d|x|X)$/.test(text);
+      return /^\d{15}$/.test(text) || /^\d{17}(\d|X|x)$/.test(text);
     case '+number':
       return /^[0-9]*[1-9][0-9]*$/.test(text);
+    case '+money':
+      return /^[0-9]+(\.[0-9]{1,2})?$/.test(text);
     case 'mobilePhone':
       return /^1[3|4|5|8][0-9]\d{8}$/.test(text);
     case 'password':
