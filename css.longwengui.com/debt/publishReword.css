@@ -1,0 +1,258 @@
+.icon-tri_arrow_down_b {
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -141px -107px;
+  width: 14px;
+  height: 9px;
+}
+.icon-tri_arrow_bl {
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.public-reword {
+  width: 100%;
+}
+.public-reword .wrap {
+  width: 1180px;
+  margin: 0 auto;
+  color: #666666;
+}
+.public-reword .wrap .m-dropdown {
+  display: inline-block;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #94dafb;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.public-reword .wrap .m-dropdown label {
+  color: #a9a9a9;
+}
+.public-reword .wrap .m-dropdown label i {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.public-reword .wrap .m-dropdown label input[type="checkbox"] {
+  display: none;
+}
+.public-reword .wrap .m-dropdown label ul {
+  display: none;
+  width: 172px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  height: 62px;
+  border: 1px solid #e6e6e6;
+}
+.public-reword .wrap .m-dropdown label ul li {
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.public-reword .wrap .m-dropdown label ul li:hover {
+  background-color: #35bdfc;
+  color: #fff;
+}
+.public-reword .wrap .m-dropdown label input[type="checkbox"]:checked + ul {
+  display: block;
+}
+.public-reword .wrap .current-loc {
+  padding-top: 26px;
+  padding-bottom: 17px;
+  line-height: 20px;
+}
+.public-reword .wrap .current-loc img {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.public-reword .wrap .current-loc a {
+  text-decoration: none;
+  color: #666666;
+}
+.public-reword .wrap .current-loc .cur {
+  color: #999;
+}
+.public-reword .wrap .form-wrap {
+  border: 1px solid #e6e6e6;
+  -moz-box-shadow: 0 0 2px #e6e6e6;
+  box-shadow: 0 0 2px #e6e6e6;
+  margin-bottom: 100px;
+}
+.public-reword .wrap .form-wrap .box .t {
+  background-color: #eaf8ff;
+  line-height: 50px;
+  padding: 0 18px;
+}
+.public-reword .wrap .form-wrap .box .t img {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.public-reword .wrap .form-wrap .box .t .opt {
+  float: right;
+  color: #54c7fd;
+  cursor: pointer;
+}
+.public-reword .wrap .form-wrap .box .t .danger {
+  color: #fe352e;
+  margin-left: 10px;
+}
+.public-reword .wrap .form-wrap .box .c {
+  min-height: 10px;
+  background-color: #fff;
+}
+.public-reword .wrap .form-wrap .box .c .blo {
+  padding: 20px 0;
+  margin: 0 36px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line {
+  margin-bottom: 10px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .info {
+  display: inline-block;
+  width: 110px;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details {
+  display: inline-block;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details input {
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 12px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="name"],
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="idNum"],
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="phoneNumber"] {
+  width: 180px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="province"],
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="city"],
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="county"] {
+  width: 130px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details input[name="debt_money"] {
+  width: 200px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details textarea {
+  width: 848px;
+  height: 90px;
+  border: 1px solid #e6e6e6;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details .bx {
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 12px;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details .bx span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details .bx .img-wrap {
+  width: 180px;
+  height: 124px;
+  margin-bottom: 5px;
+  background-color: #eeeff0;
+}
+.public-reword .wrap .form-wrap .box .c .blo .line .details .bx .img-wrap img {
+  width: 100%;
+  height: 100%;
+}
+.public-reword .wrap .form-wrap .box .c .blo .comfirm-btns {
+  text-align: center;
+  margin: 80px 0 60px 0;
+}
+.public-reword .wrap .form-wrap .box .c .blo .comfirm-btns button {
+  min-width: 120px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.public-reword .wrap .form-wrap .box .c .blo .comfirm-btns button:nth-child(1) {
+  margin-right: 24px;
+}
+.public-reword .wrap .form-wrap .box .c .blo:not(:last-child) {
+  border-bottom: 1px dashed #e6e6e6;
+}
+.public-reword .wrap .form-wrap .box .agree-protocal {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+.public-reword .wrap .form-wrap .box .agree-protocal .protocal {
+  color: #35bdfc;
+  cursor: pointer;
+  margin-left: -8px;
+}
+.public-reword .wrap .form-wrap .box .sub-btn {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.public-reword .wrap .form-wrap .box .sub-btn .btn-pub {
+  min-width: 126px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 12px;
+}
+.public-reword .wrap .form-wrap .box .sub-btn .btn-reset {
+  min-width: 126px;
+  line-height: 36px;
+  border: 0;
+  background-color: #cccccc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.public-reword .wrap .form-wrap .box .sub-btn .give-up {
+  position: absolute;
+  right: 46px;
+  top: 12px;
+}
+.public-reword .wrap .form-wrap .box .sub-btn .give-up span {
+  color: #35bdfc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.public-reword .wrap .form-wrap .box .arounce {
+  text-align: center;
+  color: #d81e06;
+  line-height: 30px;
+  margin-bottom: 40px;
+}
+.public-reword .wrap .form-wrap .box .arounce img {
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 3px;
+}
