@@ -18,7 +18,7 @@ class DisposalMatch
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberFindDisposalDebtModule->NStatus;
-        $SqlWhere = '';
+        $SqlWhere = ' order by AddTime desc';
         // 搜索条件
         $PageUrl = '';
         $keyword = trim($_GET['keyword']);
@@ -76,6 +76,7 @@ class DisposalMatch
         $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         //编辑当前状态
         if ($_POST['DebtID']) {
             $Data['Status'] = intval($_POST['Status']);
@@ -91,13 +92,22 @@ class DisposalMatch
         }
         $DebtID = intval($_GET ['DebtID']);
         $DebtInfo = $MemberFindDisposalDebtModule->GetInfoByKeyID($DebtID);
-        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID,true);
-        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID,true);
+        //债务人信息
+        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and Type =2 and DebtID = " . $DebtID,true);
+        //债权人信息
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(" and Type =2 and DebtID = " . $DebtID,true);
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
         $DebtInfo['GuaranteeInfo'] = json_decode($DebtInfo['GuaranteeInfo'], true);
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $DebtInfo['UserID']);
+        //处置方会员信息
+        $Disposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and Type =2 and DebtID = '.$DebtID,true);
+        foreach ($Disposal as $key=>$value){
+            $Disposal[$key]['UserID'] = $value['MandatorID'];
+            $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $value['MandatorID']);
+            $Disposal[$key]['CompanyName'] = $UserInfo['CompanyName'];
+        }
         include template('DisposalMatchEdit');
     }
 }

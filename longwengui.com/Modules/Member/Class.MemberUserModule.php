@@ -1,6 +1,6 @@
 <?php
 /**
- * @desc 管理员账号表
+ * @desc 用户表
  * Class MemberUserModule
  */
 Class MemberUserModule extends CommonModule  {

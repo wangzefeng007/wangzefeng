@@ -41,10 +41,11 @@ class Ajax
         }
         $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = '';
+        $MysqlWhere = ' and `Status` < 8 ';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }
+        $MysqlWhere .= ' order by Status asc';
         $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         $PageSize = 7;
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
@@ -295,6 +296,7 @@ class Ajax
                 'ResultCode' => 101,
                 'Message' => '请先登录',
             );
+            EchoResult($json_result);exit;
         }
         $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
@@ -338,6 +340,7 @@ class Ajax
         $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
         $debtorInfos = $AjaxData['debtorInfos'];
         $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
+        $Data['DebtorNum'] = count($debtorInfos);//债务人数量
         //计算债务人和债权人金额start
         $debtOwnermoney =0;
         $debtormoney =0;
@@ -381,7 +384,7 @@ class Ajax
         }else{
             $DB->query("COMMIT");//执行事务
             //债权人信息
-            $Datb['Type'] = 2;
+            $Datb['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
             $Datb['AddTime'] = $Data['AddTime'];
             $Datb['DebtID'] = $DebtID;
             foreach ($debtOwnerInfos as $key => $value) {
@@ -403,7 +406,7 @@ class Ajax
             if ($InsertCreditorsInfo){
                 $DB->query("COMMIT");//执行事务
                 //债务人信息
-                $Datc['Type'] = 2;
+                $Datc['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
                 $Datc['AddTime'] = $Data['AddTime'];
                 $Datc['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key=>$value){
@@ -426,17 +429,28 @@ class Ajax
                     $DB->query("COMMIT");//执行事务
                     $MemberSetCommissionModule = new MemberSetCommissionModule();
                     $MemberUserInfoModule = new MemberUserInfoModule();
+                    $MemberUserModule = new MemberUserModule();
+                    //1律师团队，2催收公司
+                    if ($Data['Type']==1){
+                        $UserInfoWhere = ' and Identity =4 ';
+                    }elseif($Data['Type']==2){
+                        $UserInfoWhere = ' and Identity =3 ';
+                    }
                     foreach ($debtOwnerInfos  as $key=>$value){
                         $Area[] = $value['area'];
                     }
                     $Area=implode(',',array_unique($Area));
-                    $MysqlWhere = " and AreaService IN ($Area)";
+                    $MysqlWhere = " and AreaService IN ($Area)";//匹配条件待完善
                     $Commission = $MemberSetCommissionModule->GetInfoByWhere($MysqlWhere,true);
+                    if (!$Commission){
+                        $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
+                        EchoResult($result_json);exit;
+                    }
                     foreach ($Commission as $key =>$value){
                         $UserID[] = $value['UserID'];
                     }
                     $UserIDLists=implode(',',array_unique($UserID));
-                    $UserInfoWhere = " and UserID IN ($UserIDLists)";
+                    $UserInfoWhere .= " and IdentityState=3 and UserID IN ($UserIDLists)";
                     $UserInfo = $MemberUserInfoModule->GetLists($UserInfoWhere, 0,10);
                     if ($UserInfo){
                         foreach ($UserInfo as $key=>$value){
@@ -445,15 +459,17 @@ class Ajax
                             $Result['Data'][$key]['province'] = $value['Province'];
                             $Result['Data'][$key]['city'] = $value['City'];
                             $Result['Data'][$key]['area'] = $value['Area'];
-                            $Result['Data'][$key]['phoneNumber'] = $value['Phone'];
-                            $Result['Data'][$key]['fee'] = 1111;
+                            $User = $MemberUserModule->GetInfoByKeyID($value['UserID']);
+                            $Result['Data'][$key]['phoneNumber'] = $User['Mobile'];
+                            $Result['Data'][$key]['fee'] = 1111;//佣金比例待完善
                         }
                         $Result['ResultCode'] = 200;
                         $Result['Page'] = 1;
                         $Result['PageCount'] = 1;
+                        $Result['DebtId'] = $DebtID;
                         EchoResult($Result);exit;
                     }else{
-                        $result_json = array('ResultCode'=>104,'Message'=>'暂无相应催收团队');
+                        $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                         EchoResult($result_json);exit;
                     }
                 }else{
@@ -464,6 +480,34 @@ class Ajax
                 $DB->query("ROLLBACK");//判断当执行失败时回滚
                 $result_json = array('ResultCode'=>102,'Message'=>'录入债权人信息失败');
             }
+        }
+        EchoResult($result_json);exit;
+    }
+    public function DisposeApply(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+            EchoResult($json_result);exit;
+        }
+        $Data['MandatorID'] = $_POST['uid'];
+        $Data['DebtID'] = $_POST['debtId'];
+        $Data['Type'] = 2;//类型：2-寻找处置方接单申请
+        $Data['Money'] = $_POST['money'];
+        $Data['DelegateTime'] = time();
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $Rscount = $MemberClaimsDisposalModule->GetListsNum(' and Type =2 and DebtID = '.$Data['DebtID']);
+        if ($Rscount ['Num']>='3'){
+            $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，您最多只可申请三个处置方');
+
+        }else{
+           $InsertDisposal = $MemberClaimsDisposalModule->InsertInfo($Data);
+           if (!$InsertDisposal){
+               $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
+           }else{
+               $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
+           }
         }
         EchoResult($result_json);exit;
     }

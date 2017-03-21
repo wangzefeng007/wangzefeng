@@ -92,13 +92,15 @@
                         </tr>
                         {/loop}
                         <tr>
-                            <td colspan="3" class="t-h">匹配委托方会员信息：</td>
+                            <td colspan="3" class="t-h">申请处置方会员信息：</td>
                         </tr>
+                        {loop $Disposal $lists}
                         <tr>
-                            <td>会员ID：</td>
-                            <td>公司名称/事务所名称：</td>
-                            <td></td>
+                            <td>会员ID：{$lists[UserID]}</td>
+                            <td>公司名称/事务所名称：{$lists[CompanyName]}</td>
+                            <td>申请佣金：{$lists[Money]}</td>
                         </tr>
+                        {/loop}
                     </table>
                     <table class="table table-bordered table-striped table-hover">
                         <form action='/index.php?Module=DisposalMatch&Action=DisposalMatchEdit'  method='post'  enctype="multipart/form-data">
