@@ -261,7 +261,7 @@ class Ajax
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and MandatorID = '.$Data['MandatorID']);
         if (!$ClaimsDisposal){
-           $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
+            $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
         }else{
             $json_result = array(
                 'ResultCode' => 101,
@@ -296,9 +296,9 @@ class Ajax
                 'Message' => '请先登录',
             );
         }
-        //开启事务
-        global $DB;
-        $DB->query("BEGIN");//开始事务定义
+        $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
         $Data['UserID'] = $_SESSION ['UserID'];
         $Data['AddTime'] = time();
@@ -338,29 +338,52 @@ class Ajax
         $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
         $debtorInfos = $AjaxData['debtorInfos'];
         $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
+        //计算债务人和债权人金额start
         $debtOwnermoney =0;
         $debtormoney =0;
-         foreach ($debtOwnerInfos as  $value) {
-             $debtOwnermoney = $debtOwnermoney+trim($value['debt_money']);
-           }
+        foreach ($debtOwnerInfos as  $value) {
+            $debtOwnermoney = $debtOwnermoney+trim($value['debt_money']);
+        }
         foreach ($debtorInfos as  $value) {
             $debtormoney = $debtormoney+trim($value['debt_money']);
         }
         if ($debtOwnermoney!==$debtormoney){
             $json_result = array(
                 'ResultCode' => 101,
-                'Message' => '债权人信息未填写完整',
+                'Message' => '债务人和债权人金额总和不一致',
             );
             EchoResult($json_result);exit;
         }else{
             $Data['DebtAmount'] = $debtOwnermoney;
         }
-        $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
-        $MemberFindDisposalDebtModule->InsertInfo($Data);
-        //债权人信息
-        if (!empty($debtOwnerInfos)) {
+        //计算债务人和债权人金额end
+        if (empty($debtOwnerInfos)) {
+            $json_result = array(
+                'ResultCode' => 103,
+                'Message' => '债权人信息未填写完整',
+            );
+            EchoResult($json_result);exit;
+        }
+        if (empty($debtorInfos)){
+            $json_result = array(
+                'ResultCode' => 102,
+                'Message' => '债务人信息未填写完整',
+            );
+            EchoResult($json_result);exit;
+        }
+        //开启事务
+        global $DB;
+        $DB->query("BEGIN");//开始事务定义
+        $DebtID = $MemberFindDisposalDebtModule->InsertInfo($Data);
+        if (!$DebtID){
+            $DB->query("ROLLBACK");//判断当执行失败时回滚
+            $result_json = array('ResultCode'=>102,'Message'=>'录入债务基本信息失败');
+        }else{
+            $DB->query("COMMIT");//执行事务
+            //债权人信息
             $Datb['Type'] = 2;
-            $Datb['AddTime'] = time();
+            $Datb['AddTime'] = $Data['AddTime'];
+            $Datb['DebtID'] = $DebtID;
             foreach ($debtOwnerInfos as $key => $value) {
                 $Datb['Name'] = trim($value['name']);
                 $Datb['Card'] = trim($value['idNum']);
@@ -370,41 +393,78 @@ class Ajax
                 $Datb['City'] = trim($value['city']);
                 $Datb['Area'] = trim($value['area']);
                 $Datb['Address'] = trim($value['area']);
+                $InsertCreditorsInfo = $MemberCreditorsInfoModule->InsertInfo($Datb);
+                if(!$InsertCreditorsInfo){
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>102,'Message'=>'录入债权人信息失败');
+                    EchoResult($result_json);exit;
+                }
             }
-        }else{
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '债权人信息未填写完整',
-            );
-            EchoResult($json_result);exit;
-        }
-        //债务人信息
-        if (!empty($debtorInfos)){
-            $Datc['Type'] = 2;
-            $Datc['AddTime'] = time();
-            foreach ($debtOwnerInfos as $key=>$value){
-                $Datc['Name'] = trim($value['name']);
-                $Datc['Card'] = trim($value['idNum']);
-                $Datc['Money'] = trim($value['debt_money']);
-                $Datc['Phone'] = trim($value['phoneNumber']);
-                $Datc['Province'] = trim($value['province']);
-                $Datc['City'] = trim($value['city']);
-                $Datc['Area'] = trim($value['area']);
-                $Datc['Address'] = trim($value['area']);
+            if ($InsertCreditorsInfo){
+                $DB->query("COMMIT");//执行事务
+                //债务人信息
+                $Datc['Type'] = 2;
+                $Datc['AddTime'] = $Data['AddTime'];
+                $Datc['DebtID'] = $DebtID;
+                foreach ($debtOwnerInfos as $key=>$value){
+                    $Datc['Name'] = trim($value['name']);
+                    $Datc['Card'] = trim($value['idNum']);
+                    $Datc['Money'] = trim($value['debt_money']);
+                    $Datc['Phone'] = trim($value['phoneNumber']);
+                    $Datc['Province'] = trim($value['province']);
+                    $Datc['City'] = trim($value['city']);
+                    $Datc['Area'] = trim($value['area']);
+                    $Datc['Address'] = trim($value['area']);
+                    $InsertDebtorsInfo = $MemberDebtorsInfoModule->InsertInfo($Datc);
+                    if(!$InsertDebtorsInfo){
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $result_json = array('ResultCode'=>103,'Message'=>'录入债务人信息失败');
+                        EchoResult($result_json);exit;
+                    }
+                }
+                if ($InsertDebtorsInfo){
+                    $DB->query("COMMIT");//执行事务
+                    $MemberSetCommissionModule = new MemberSetCommissionModule();
+                    $MemberUserInfoModule = new MemberUserInfoModule();
+                    foreach ($debtOwnerInfos  as $key=>$value){
+                        $Area[] = $value['area'];
+                    }
+                    $Area=implode(',',array_unique($Area));
+                    $MysqlWhere = " and AreaService IN ($Area)";
+                    $Commission = $MemberSetCommissionModule->GetInfoByWhere($MysqlWhere,true);
+                    foreach ($Commission as $key =>$value){
+                        $UserID[] = $value['UserID'];
+                    }
+                    $UserIDLists=implode(',',array_unique($UserID));
+                    $UserInfoWhere = " and UserID IN ($UserIDLists)";
+                    $UserInfo = $MemberUserInfoModule->GetLists($UserInfoWhere, 0,10);
+                    if ($UserInfo){
+                        foreach ($UserInfo as $key=>$value){
+                            $Result['Data'][$key]['UserID'] = $value['UserID'];
+                            $Result['Data'][$key]['CompanyName'] = $value['CompanyName'];
+                            $Result['Data'][$key]['province'] = $value['Province'];
+                            $Result['Data'][$key]['city'] = $value['City'];
+                            $Result['Data'][$key]['area'] = $value['Area'];
+                            $Result['Data'][$key]['phoneNumber'] = $value['Phone'];
+                            $Result['Data'][$key]['fee'] = 1111;
+                        }
+                        $Result['ResultCode'] = 200;
+                        $Result['Page'] = 1;
+                        $Result['PageCount'] = 1;
+                        EchoResult($Result);exit;
+                    }else{
+                        $result_json = array('ResultCode'=>104,'Message'=>'暂无相应催收团队');
+                        EchoResult($result_json);exit;
+                    }
+                }else{
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>103,'Message'=>'录入债务人信息失败');
+                }
+            }else{
+                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                $result_json = array('ResultCode'=>102,'Message'=>'录入债权人信息失败');
             }
-        }else{
-            $json_result = array(
-                'ResultCode' => 102,
-                'Message' => '债务人信息未填写完整',
-            );
-            EchoResult($json_result);exit;
         }
-        exit;
-
-
-        $DB->query("COMMIT");//执行事务
-        $DB->query("ROLLBACK");//判断当执行失败时回滚
-        exit;
-
+        EchoResult($result_json);exit;
     }
 }

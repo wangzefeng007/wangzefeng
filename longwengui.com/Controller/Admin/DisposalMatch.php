@@ -16,6 +16,7 @@ class DisposalMatch
     {
         $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberFindDisposalDebtModule->NStatus;
         $SqlWhere = '';
         // 搜索条件
@@ -54,12 +55,14 @@ class DisposalMatch
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Money'] = $DebtorsInfo['Money'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
-                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
-                $Data['Data'][$key]['Area'] = $DebtorsInfo['Area'];
+                $Province = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Province']);
+                $Data['Data'][$key]['Province'] = $Province['CnName'];
+                $City = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['City']);
+                $Data['Data'][$key]['City'] = $City['CnName'];
+                $Area = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['Area'] = $Area['CnName'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
             }
-
             MultiPage($Data, $Data['PageCount']);
         }
         include template('DisposalMatchLists');
@@ -88,8 +91,8 @@ class DisposalMatch
         }
         $DebtID = intval($_GET ['DebtID']);
         $DebtInfo = $MemberFindDisposalDebtModule->GetInfoByKeyID($DebtID);
-        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID);
-        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID);
+        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID,true);
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = " . $DebtID,true);
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);

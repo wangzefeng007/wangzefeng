@@ -195,7 +195,7 @@ $(function(){
     }
 
     if(_debtor_owner_money != _debtor_money){
-      showMsg('债务人和债权人金额总和不统一');
+      showMsg('债务人和债权人金额总和不一致');
       return;
     }
 
@@ -291,6 +291,7 @@ $(function(){
 
     $.ajax({
       type: "post",
+      dataType: "json",
       url: "/ajax.html",
         data: {
             "Intention":"FindTeam",
