@@ -87,6 +87,10 @@ class Debt {
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $Province = $MemberAreaModule->Province;
+        $City = $MemberAreaModule->City;
+        $Area = $MemberAreaModule->Area;
         //编辑当前状态
 
         if ($_POST['DebtID']) {

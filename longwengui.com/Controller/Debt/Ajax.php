@@ -290,10 +290,23 @@ class Ajax
      */
 
     public function FindTeam(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+        }
         //开启事务
         global $DB;
         $DB->query("BEGIN");//开始事务定义
+        $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
+        $Data['UserID'] = $_SESSION ['UserID'];
+        $Data['AddTime'] = time();
+        $Data['UpdateTime'] = $Data['AddTime'];
+        $Data['Status'] = 1;
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        //1律师团队，2催收公司
+        $Data['Type'] = trim($AjaxData['Type']);
         //是否有前期费用
         $Data['EarlyCost'] = $AjaxData['preFee'];
         //是否随时能找到
@@ -305,54 +318,86 @@ class Ajax
         if ($Data['Warrantor']=='1'){
             //保证人信息
             foreach ($AjaxData['bondsmanInfos'] as $key=>$value){
-                $WarrantorInfo[$key]['type'] = $value['bonds_man_role'];
-                $WarrantorInfo[$key]['name'] = $value['name'];
-                $WarrantorInfo[$key]['card'] = $value['idNum'];
-                $WarrantorInfo[$key]['phone'] = $value['phoneNumber'];
+                $WarrantorInfo[$key]['type'] = trim($value['bonds_man_role']);
+                $WarrantorInfo[$key]['name'] = trim($value['name']);
+                $WarrantorInfo[$key]['card'] = trim($value['idNum']);
+                $WarrantorInfo[$key]['phone'] = trim($value['phoneNumber']);
             }
             $Data['WarrantorInfo'] = json_encode($WarrantorInfo,JSON_UNESCAPED_UNICODE);
         }
         //是否有抵押物
-        $Data['Guarantee'] = $AjaxData['haveBondsGood'];
+        $Data['Guarantee'] = trim($AjaxData['haveBondsGood']);
         if ($Data['Guarantee']=='1'){
             //抵押物信息
             foreach ($AjaxData['bondsgoodInfos'] as $key=>$value){
-                $GuaranteeInfo[$key]['name'] = $value['name'];
-                $GuaranteeInfo[$key]['content'] = $value['details'];
+                $GuaranteeInfo[$key]['name'] = trim($value['name']);
+                $GuaranteeInfo[$key]['content'] = trim($value['details']);
             }
             $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
         }
         $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
+        $debtorInfos = $AjaxData['debtorInfos'];
         $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
+        $debtOwnermoney =0;
+        $debtormoney =0;
+         foreach ($debtOwnerInfos as  $value) {
+             $debtOwnermoney = $debtOwnermoney+trim($value['debt_money']);
+           }
+        foreach ($debtorInfos as  $value) {
+            $debtormoney = $debtormoney+trim($value['debt_money']);
+        }
+        if ($debtOwnermoney!==$debtormoney){
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '债权人信息未填写完整',
+            );
+            EchoResult($json_result);exit;
+        }else{
+            $Data['DebtAmount'] = $debtOwnermoney;
+        }
+        $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
+        $MemberFindDisposalDebtModule->InsertInfo($Data);
         //债权人信息
         if (!empty($debtOwnerInfos)) {
-            $Date['Type'] = 2;
-            $Date['AddTime'] = time();
+            $Datb['Type'] = 2;
+            $Datb['AddTime'] = time();
             foreach ($debtOwnerInfos as $key => $value) {
-                $Datb['Name'] = $value['name'];
-                $Datb['Card'] = $value['idNum'];
-                $Datb['Money'] = $value['debt_money'];
-                $Datb['Phone'] = $value['phoneNumber'];
-                $Datb['Province'] = $value['province'];
-                $Datb['City'] = $value['city'];
-                $Datb['Area'] = $value['area'];
-                $Datb['Address'] = $value['area'];
+                $Datb['Name'] = trim($value['name']);
+                $Datb['Card'] = trim($value['idNum']);
+                $Datb['Money'] = trim($value['debt_money']);
+                $Datb['Phone'] = trim($value['phoneNumber']);
+                $Datb['Province'] = trim($value['province']);
+                $Datb['City'] = trim($value['city']);
+                $Datb['Area'] = trim($value['area']);
+                $Datb['Address'] = trim($value['area']);
             }
+        }else{
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '债权人信息未填写完整',
+            );
+            EchoResult($json_result);exit;
         }
-
         //债务人信息
-        $debtorInfos = $AjaxData['debtorInfos'];
         if (!empty($debtorInfos)){
+            $Datc['Type'] = 2;
+            $Datc['AddTime'] = time();
             foreach ($debtOwnerInfos as $key=>$value){
-                $Datc['Name'] = $value['name'];
-                $Datc['Card'] = $value['idNum'];
-                $Datc['Money'] = $value['debt_money'];
-                $Datc['Phone'] = $value['phoneNumber'];
-                $Datc['Province'] = $value['province'];
-                $Datc['City'] = $value['city'];
-                $Datc['Area'] = $value['area'];
-                $Datc['Address'] = $value['area'];
+                $Datc['Name'] = trim($value['name']);
+                $Datc['Card'] = trim($value['idNum']);
+                $Datc['Money'] = trim($value['debt_money']);
+                $Datc['Phone'] = trim($value['phoneNumber']);
+                $Datc['Province'] = trim($value['province']);
+                $Datc['City'] = trim($value['city']);
+                $Datc['Area'] = trim($value['area']);
+                $Datc['Address'] = trim($value['area']);
             }
+        }else{
+            $json_result = array(
+                'ResultCode' => 102,
+                'Message' => '债务人信息未填写完整',
+            );
+            EchoResult($json_result);exit;
         }
         exit;
 
