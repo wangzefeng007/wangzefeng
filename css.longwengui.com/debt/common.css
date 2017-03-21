@@ -1062,3 +1062,12 @@ a{
   background-color: #bebebe!important;
   color: #fff!important;
 }
+.waiting-for {
+  width: 1180px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto;
+  height: 360px;
+  font-size: 40px;
+  padding-top: 200px;
+}
