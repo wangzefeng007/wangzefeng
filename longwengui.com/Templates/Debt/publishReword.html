@@ -1,5 +1,6 @@
 {template Header}
-<link rel="stylesheet" href="{echo CssURL}/debt/publishDebtByDiy.css">
+<link rel="stylesheet" href="{echo CssURL}/debt/publishReword.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="public-reword">
   <div class="wrap">
     <div class="current-loc">
@@ -21,7 +22,7 @@
           </div>
           <div class="m-radio ml-10">
             <label type="radio">
-              <input type="radio" name="rewordType" value="1">
+              <input type="radio" name="rewordType" value="2">
               <i></i>
               找财产
             </label>
@@ -34,14 +35,14 @@
           <img src="/Uploads/Debt/imgs/user.png" alt="">
           <span>债权人信息</span>
         </div>
-        <div class="c">
+        <div class="c" id="debt_owner">
           <div class="blo">
             <div class="line">
               <div class="info">
                 债权人信息 :
               </div>
               <div class="details">
-                <input type="text" name="phoneNumber" placeholder="*联系电话">
+                <input type="text" name="phoneNumber" onblur="validatePhone(this, true)" placeholder="*联系电话">
               </div>
             </div>
           </div>
@@ -54,16 +55,16 @@
           <span>债务人基本信息</span>
         </div>
 
-        <div class="c">
+        <div class="c" id="debtor">
           <div class="blo">
             <div class="line">
               <div class="info">
                 债务人信息 :
               </div>
               <div class="details">
-                <input type="text" name="name" placeholder="*姓名">
-                <input type="text" name="idNum" placeholder="身份证号">
-                <input type="text" name="phoneNumber" placeholder="联系电话">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+                <input type="text" name="phoneNumber"  onblur="validatePhone(this, false)" placeholder="联系电话">
               </div>
             </div>
             <div class="line">
@@ -123,24 +124,35 @@
               <div class="details">
                 <div class="bx">
                   <div class="img-wrap">
-                    <img src="/Uploads/Debt/imgs/about_us.png" alt="">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
                 <div class="bx">
                   <div class="img-wrap">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
                 <div class="bx">
                   <div class="img-wrap">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
                 <div class="bx">
                   <div class="img-wrap">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
               </div>
             </div>
@@ -151,17 +163,34 @@
                 <div class="bx">
                   <div class="img-wrap">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
                 <div class="bx">
                   <div class="img-wrap">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
                 <div class="bx">
                   <div class="img-wrap">
                   </div>
-                  <span>+上传凭证一</span>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
+                </div>
+                <div class="bx">
+                  <div class="img-wrap">
+                  </div>
+                  <label>
+                    <span>+上传凭证</span>
+                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="1" data-msg="512kb" data-ratio="1.45" style="display:none;" value="">
+                  </label>
                 </div>
               </div>
             </div>
@@ -171,16 +200,16 @@
         <div class="agree-protocal">
           <div class="m-checkbox">
             <label type="checkbox">
-              <input type="checkbox" name="area" value="1001">
+              <input type="checkbox" name="agreement" checked>
               <i></i>我已阅读并同意
             </label>
-            <span class="protocal">《线索悬赏协议》</span>
+            <span class="protocal" onclick="openProtocalWindow()">《线索悬赏协议》</span>
           </div>
         </div>
 
         <div class="sub-btn">
-          <button type="button" class="btn-pub" name="button">发布悬赏</button>
-          <button type="button" class="btn-reset" name="button">重置</button>
+          <button type="button" class="btn-pub" onclick="publish()" name="button">发布悬赏</button>
+          <button type="button" class="btn-pub" onclick="javascript:window.location.reload()" name="button">重置</button>
         </div>
 
         <div class="arounce">
@@ -191,5 +220,31 @@
     </div>
   </div>
 </div>
-
+<div class="protocal-pop">
+  <div class="popup">
+    <div class="hd">
+      隆文贵软件许可及服务协议
+      <div class="close" onclick="closeProtocalWindow()">
+        <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+      </div>
+    </div>
+    <div class="cont">
+      <div class="para">
+        <p>感谢您使用隆文贵服务!《隆文贵软件许可及服务协议》（以下简称“本协议”）由武夷山隆文贵互联网信息咨询有限公司（以下简称“隆文贵”）和您签订。</p>
+        <p>您使用隆文贵软件（以下简称“本软件”）及服务前，应当阅读并遵守“本协议”，并务必审慎阅读、充分理解各条款内容。您的下载、安装、使用、浏览、注册账号、登录等行为即视为您已阅读并同意上述协议的约束。</p>
+        <p>一、协议的范围</p>
+        <p>1.1本协议是您与隆文贵之间关于您下载、安装、使用本软件及相关服务所订立的协议。本协议中的“用户”,一般指经过隆文贵实名认证的注册会员，包括“个人用户”、“单位用户”和“律师用户”。“个人用户”是指使用本软件相关服务的个人；“单位用户”是指使用本软件相关服务的法人或非法人组织；“律师用户”是指使用本软件相关服务的律师或律师事务所。“用户”在软件中也称为“您”。</p>
+        <p>1.2本协议同时包括隆文贵可能不断发布的关于本服务的相关协议、规则、合同等内容。上述内容在本软件中一经发布，即为本协议不可分割的组成部分，您同样应当遵守。</p>
+        <p>1.3隆文贵可能会变更本协议及相关协议、规则、合同等内容，变更内容在本软件中一经公布，即应生效。如您继续使用，视为同意内容变更。</p>
+        <p>二、关于本服务</p>
+        <p>2.1 本服务的内容</p>
+      </div>
+      <div class="confirm-btn">
+        <button type="button" onclick="agreeProtocal()" name="button">同意并继续</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.min.js'></script>
+<script src='{echo JsURL}/debt/publishReword.js'></script>
 {template Footer}
