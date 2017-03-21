@@ -483,6 +483,9 @@ class Ajax
         }
         EchoResult($result_json);exit;
     }
+    /**
+     * @desc 申请处置方
+     */
     public function DisposeApply(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
             $json_result = array(
@@ -502,13 +505,173 @@ class Ajax
             $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，您最多只可申请三个处置方');
 
         }else{
-           $InsertDisposal = $MemberClaimsDisposalModule->InsertInfo($Data);
-           if (!$InsertDisposal){
-               $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
-           }else{
-               $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
-           }
+            $InsertDisposal = $MemberClaimsDisposalModule->InsertInfo($Data);
+            if (!$InsertDisposal){
+                $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
+            }else{
+                $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
+            }
         }
         EchoResult($result_json);exit;
     }
+    /**
+     * @desc 发布债务
+     */
+    public function ReleaseDebt(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+            EchoResult($json_result);exit;
+        }
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        if ($_POST){
+            $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
+            $Data['UserID'] = $_SESSION ['UserID'];
+            $Data['AddTime'] = time();
+            $Data['UpdateTime'] = $Data['AddTime'];
+            $Data['Status'] = 1;
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+            //1律师团队，2催收公司,3自助催收
+            $Data['Type'] = trim($AjaxData['Type']);
+            //是否有前期费用
+            $Data['EarlyCost'] = $AjaxData['preFee'];
+            //是否随时能找到
+            $Data['FindDebtor'] = $AjaxData['searchedAnytime'];
+            //是否有能力还债
+            $Data['RepaymentDebtor'] = $AjaxData['abilityDebt'];
+            //是否有保证人
+            $Data['Warrantor'] = $AjaxData['haveBondsMan'];
+            if ($Data['Warrantor']=='1'){
+                //保证人信息
+                foreach ($AjaxData['bondsmanInfos'] as $key=>$value){
+                    $WarrantorInfo[$key]['type'] = trim($value['bonds_man_role']);
+                    $WarrantorInfo[$key]['name'] = trim($value['name']);
+                    $WarrantorInfo[$key]['card'] = trim($value['idNum']);
+                    $WarrantorInfo[$key]['phone'] = trim($value['phoneNumber']);
+                }
+                $Data['WarrantorInfo'] = json_encode($WarrantorInfo,JSON_UNESCAPED_UNICODE);
+            }
+            //是否有抵押物
+            $Data['Guarantee'] = trim($AjaxData['haveBondsGood']);
+            if ($Data['Guarantee']=='1'){
+                //抵押物信息
+                foreach ($AjaxData['bondsgoodInfos'] as $key=>$value){
+                    $GuaranteeInfo[$key]['name'] = trim($value['name']);
+                    $GuaranteeInfo[$key]['content'] = trim($value['details']);
+                }
+                $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
+            }
+            $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
+            $debtorInfos = $AjaxData['debtorInfos'];
+            $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
+            $Data['DebtorNum'] = count($debtorInfos);//债务人数量
+            //计算债务人和债权人金额start
+            $debtOwnermoney =0;
+            $debtormoney =0;
+            foreach ($debtOwnerInfos as  $value) {
+                $debtOwnermoney = $debtOwnermoney+trim($value['debt_money']);
+            }
+            foreach ($debtorInfos as  $value) {
+                $debtormoney = $debtormoney+trim($value['debt_money']);
+            }
+            if ($debtOwnermoney!==$debtormoney){
+                $json_result = array(
+                    'ResultCode' => 101,
+                    'Message' => '债务人和债权人金额总和不一致',
+                );
+                EchoResult($json_result);exit;
+            }else{
+                $Data['DebtAmount'] = $debtOwnermoney;
+            }
+            //计算债务人和债权人金额end
+            if (empty($debtOwnerInfos)) {
+                $json_result = array(
+                    'ResultCode' => 102,
+                    'Message' => '债权人信息未填写完整',
+                );
+                EchoResult($json_result);exit;
+            }
+            if (empty($debtorInfos)){
+                $json_result = array(
+                    'ResultCode' => 103,
+                    'Message' => '债务人信息未填写完整',
+                );
+                EchoResult($json_result);exit;
+            }
+            //开启事务
+            global $DB;
+            $DB->query("BEGIN");//开始事务定义
+            $DebtID = $MemberDebtInfoModule->InsertInfo($Data);
+            if ($DebtID){
+                $DB->query("COMMIT");//执行事务
+                //债权人信息
+                $Datb['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
+                $Datb['AddTime'] = $Data['AddTime'];
+                $Datb['DebtID'] = $DebtID;
+                foreach ($debtOwnerInfos as $key => $value) {
+                    $Datb['Name'] = trim($value['name']);
+                    $Datb['Card'] = trim($value['idNum']);
+                    $Datb['Money'] = trim($value['debt_money']);
+                    $Datb['Phone'] = trim($value['phoneNumber']);
+                    $Datb['Province'] = trim($value['province']);
+                    $Datb['City'] = trim($value['city']);
+                    $Datb['Area'] = trim($value['area']);
+                    $Datb['Address'] = trim($value['area']);
+                    $InsertCreditorsInfo = $MemberCreditorsInfoModule->InsertInfo($Datb);
+                    if (!$InsertCreditorsInfo) {
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $result_json = array('ResultCode' => 104, 'Message' => '录入债权人信息失败');
+                        EchoResult($result_json);
+                        exit;
+                    }
+                }
+                if ($InsertCreditorsInfo) {
+                    $DB->query("COMMIT");//执行事务
+                    //债务人信息
+                    $Datc['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
+                    $Datc['AddTime'] = $Data['AddTime'];
+                    $Datc['DebtID'] = $DebtID;
+                    foreach ($debtOwnerInfos as $key => $value) {
+                        $Datc['Name'] = trim($value['name']);
+                        $Datc['Card'] = trim($value['idNum']);
+                        $Datc['Money'] = trim($value['debt_money']);
+                        $Datc['Phone'] = trim($value['phoneNumber']);
+                        $Datc['Province'] = trim($value['province']);
+                        $Datc['City'] = trim($value['city']);
+                        $Datc['Area'] = trim($value['area']);
+                        $Datc['Address'] = trim($value['area']);
+                        $InsertDebtorsInfo = $MemberDebtorsInfoModule->InsertInfo($Datc);
+                        if (!$InsertDebtorsInfo) {
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
+                            $result_json = array('ResultCode' => 105, 'Message' => '录入债务人信息失败');
+                            EchoResult($result_json);
+                            exit;
+                        }
+                    }
+                }
+
+            }else{
+                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                $result_json = array('ResultCode'=>106,'Message'=>'录入债务基本信息失败');
+            }
+
+        }else {
+            $result_json = array('ResultCode'=>107,'Message'=>'录入债务基本信息失败');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+
+    /**
+     * @desc 发布悬赏
+     */
+    public function ReleaseReward(){
+        $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
+    }
+
 }

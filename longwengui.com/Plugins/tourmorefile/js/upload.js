@@ -136,7 +136,7 @@
             swf: 'js/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '/Plugins/tourmorefile/server/fileupload.php'+window.location.search,
+            server: '/Plugins/tourmorefile/server/fileupload.class.php'+window.location.search,
             // runtimeOrder: 'flash',
 
             // accept: {
