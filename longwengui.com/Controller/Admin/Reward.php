@@ -18,7 +18,7 @@ class Reward
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $code = 'XS';
-        if ($_POST) {var_dump($_POST);exit;
+        if ($_POST) {
             $Data['CreditorsPhone'] = trim($_POST['CreditorsPhone']);
             $Data['DebtName'] = trim($_POST['DebtName']);
             $Data['DebtCard'] = trim($_POST['DebtCard']);
@@ -29,11 +29,18 @@ class Reward
             $Data['RewardNum'] = $code . time();
 
             if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == '' || $_POST['DebtPhone'] == '' || $_POST['Address'] == '') {
-                alertandback('信息填写不完整');
+               // alertandback('信息填写不完整');
             }
             //上传图片
+            include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
+            if ($_FILES['Image']['size'][0] > 0) {
+                $Upload = new MultiUpload('Image');
+                $Image = $Upload->upload();
+                $Picture = $Image ? $Image : '';
+                $Image['Image'] = $Picture;
+            }
             $result = $MemberRewardInfoModule->InsertInfo($Data);
-            $uploadImage = $MemberRewardImageModule->InsertInfo($ImageInfo);
+            $uploadImage = $MemberRewardImageModule->InsertInfo($Image);
         if ($result || $uploadImage) {
                 alertandgotopage("操作成功", '/index.php?Module=Reward&Action=RewardLists');
  

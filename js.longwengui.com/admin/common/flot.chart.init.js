@@ -71,7 +71,7 @@ $(function() {
                 borderWidth: 1,
                 borderColor: "#eeeeee"
             },
-            colors: ["#65CEA7", "#424F63"],
+            colors: ["#bd8739", "#424F63"],
             tooltip: true,
             tooltipOpts: {
                 defaultTheme: false
@@ -171,7 +171,7 @@ $(function() {
                 hoverable: true,
                 clickable: true
             },
-            colors: ["#424F63", "#65CEA7", "#869cb3"],
+            colors: ["#424F63", "#bd8739", "#869cb3"],
             tooltip: true,
             tooltipOpts: {
                 defaultTheme: false
