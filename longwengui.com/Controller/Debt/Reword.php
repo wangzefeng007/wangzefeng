@@ -19,7 +19,7 @@ class Reword
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
-        $MysqlWhere ='';
+        $MysqlWhere =' and `Status` >2';
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $MyUrl = WEB_MAIN_URL.'/reword/';
         $SoUrl = $_GET['SoUrl'];
