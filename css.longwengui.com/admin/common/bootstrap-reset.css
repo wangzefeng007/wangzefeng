@@ -90,8 +90,8 @@
 .pagination > li.active > a:hover,
 
 .pager li > a:hover, .pager li > a:focus{
-    background-color: #65CEA7;
-    border-color: #65CEA7;
+    background-color: #bd8739;
+    border-color: #bd8739;
     color: #fff;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .modal-header {
-    background: #65CEA7;
+    background: #bd8739;
     color: #fff;
     border-radius: 0;
     -webkit-border-radius: 0;
