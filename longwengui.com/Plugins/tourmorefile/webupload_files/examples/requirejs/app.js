@@ -73,7 +73,7 @@ require([ 'webuploader.flashonly' ], function( WebUploader ) {
             chunked: true,
             // runtimeOrder: 'flash',
             sendAsBinary: true,
-            server: '../../server/fileupload.php',
+            server: '../../server/fileupload.class.php',
             // server: 'http://liaoxuezhi.fe.baidu.com/webupload/fileupload.php',
             // server: 'http://www.2betop.net/fileupload.php',
             fileNumLimit: 300,

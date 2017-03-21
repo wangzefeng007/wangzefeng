@@ -42,7 +42,7 @@
             dnd: '#dndArea',
             chunked: true,
             accept: '',
-            server: './server/fileupload.php',
+            server: './server/fileupload.class.php',
             // server: 'http://www.2betop.net/fileupload.php',
         });
 
