@@ -12,6 +12,17 @@ $(
       //决定程序是否往下执行
       var flag = true;
 
+      // 设置方案名称
+      var case_name = $('input[name="name"]').val();
+      if(case_name == ''){
+        showMsg('请输入方案名称');
+        flag = false;
+        return;
+      }
+      if(!flag){
+        return;
+      }
+
       //添加地区信息
       $('#set_area').find('.blo').each(function(){
         if(flag){
@@ -97,6 +108,7 @@ $(
         dataType: "json",
         url: "../data/setDebt.json",
         data: JSON.stringify({
+          "case_name": case_name,  //方案名称
           "searchedAnytime": searchedAnytime, //是否随时找到 1 是 0 否
           "fee": fee,  //是否有前期费用
           "abilityDebt": abilityDebt, //是否有还款能力
