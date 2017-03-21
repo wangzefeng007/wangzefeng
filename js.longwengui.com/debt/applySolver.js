@@ -1,7 +1,6 @@
 $(function(){
   var haveBondsMan = 0;
   var haveBondsGood = 0;
-  var debtId;
   getProvinceData();
 
   $('#bonds_man_info_btn').click(function(){
@@ -301,17 +300,15 @@ $(function(){
           showLoading();
       },
       success: function(data){
-        if(data.ResultCode == 200){
           //设置匹配按钮不可点击
           $('#match')[0].disabled = true;
           $('#match').addClass('btn-disabled');
-
+        if(data.ResultCode == 200){
           debtId = data.DebtId;
-
+          console.log(data)
           dataSuccess(data.Data);
           //获得当前页
           cur_page = data.Page;
-
           //注入分页
           injectPagination('#result_tbl_pagination', cur_page, data.PageCount, function(){
             $('#result_tbl_pagination').find('.b').click(function(){
@@ -322,7 +319,7 @@ $(function(){
             });
           });
         }else{
-          showMsg("未找到相应信息");
+            layer.msg(data.Message);
         }
       },
       complete: function () { //加载完成提示
@@ -341,6 +338,7 @@ $(function(){
 
 });
 
+var debtId;
 //添加保证人角色下拉框事件
 function addBondsManDpEvent(){
   addEventToDropdown("bonds_man_role", function(tar){
@@ -367,8 +365,8 @@ function addDebtDom(targetID, tempID){
   }
 }
 
-//申请寻找处置方
-function applyToSearch(UserID){
+//申请处置方
+function applyToSearch(UserID, money, tar){
   layer.open({
     content: '确定申请该处置方进行处理',
     title: 0,
@@ -377,28 +375,33 @@ function applyToSearch(UserID){
     closeBtn: 0,
     btn: ['确定'],
     yes: function(index, layero){
-      toApply(UserID);
+      toApply(UserID, money, tar);
       layer.close(index);
     }
   });
-  function toApply(uid){
+  function toApply(uid, money, tar){
     $.ajax(
       {
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: "/data/applyDebtSolver.json",
+        url: "/ajax.html",
         data: {
+          "Intention":"DisposeApply",
           "uid": uid, //提交处置方userid
-          "debtId": debtId //该债务的id
+          "debtId": debtId, //该债务的id
+          "money": money
         },
         beforeSend: function(){
           showLoading();
         },
         success: function(data){
           if(data.ResultCode == 200){
-            showMsg('申请成功');
+              layer.msg(data.Message);
+              $(tar)[0].disabled = true;
+              $(tar).addClass("btn-disabled");
+              $(tar).html("已申请");
           }else{
-            show(data.Message); //例如申请不能超过3个
+            layer.msg(data.Message); //例如申请不能超过3个
           }
         },
         complete: function () { //加载完成提示

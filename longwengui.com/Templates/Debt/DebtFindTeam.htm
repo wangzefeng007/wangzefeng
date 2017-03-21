@@ -510,7 +510,7 @@
         <td>￥{{= v.fee}}</td>
         <td>{{= v.phoneNumber}}</td>
         <td>
-          <button type="button" onclick="applyToSearch(${v.UserID})" name="button">申请</button>
+          <button type="button" onclick="applyToSearch(${v.UserID}, ${v.fee}, this)" name="button">申请</button>
         </td>
       </tr>
       {{/each}}
