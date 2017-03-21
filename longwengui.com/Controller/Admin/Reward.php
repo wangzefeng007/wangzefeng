@@ -32,7 +32,6 @@ class Reward
                 alertandback('信息填写不完整');
             }
             //上传图片
-        
             $result = $MemberRewardInfoModule->InsertInfo($Data);
             $uploadImage = $MemberRewardImageModule->InsertInfo($ImageInfo);
         if ($result || $uploadImage) {
