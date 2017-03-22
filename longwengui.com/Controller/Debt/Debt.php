@@ -97,4 +97,19 @@ class Debt
         $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$ID,true);
         include template('DebtDetails');
     }
+    /**
+     * @desc  发布悬赏
+     */
+    public function DebtPublish()
+    {
+        $Type = intval($_GET['T']);
+        if ($Type===1){
+            include template('DebtPublishLawer');
+        }elseif ($Type===2){
+            include template('DebtPublishCollectors');
+        }elseif ($Type===3){
+            include template('DebtPublishDiy');
+        }
+
+    }
 }

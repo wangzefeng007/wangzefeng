@@ -529,14 +529,14 @@ class Ajax
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         if ($_POST){
-            $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
+            $Data['DebtNum'] ='DB'.date("YmdHis").rand(100, 999);
             $Data['UserID'] = $_SESSION ['UserID'];
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
-            $Data['Status'] = 1;
+            $Data['Status'] = 8;//发布待审核
             $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
             //1律师团队，2催收公司,3自助催收
-            $Data['Type'] = trim($AjaxData['Type']);
+            $Data['CollectionType'] = intval($_POST['Type']);
             //是否有前期费用
             $Data['EarlyCost'] = $AjaxData['preFee'];
             //是否随时能找到
@@ -565,6 +565,11 @@ class Ajax
                 }
                 $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
             }
+            //借款原因
+            $Data['ReasonsBorrowing'] = trim($AjaxData['loan_reason']);
+            //借款近况
+            $Data['DebtRecent'] = trim($AjaxData['loan_recent']);
+
             $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
             $debtorInfos = $AjaxData['debtorInfos'];
             $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
@@ -609,7 +614,7 @@ class Ajax
             if ($DebtID){
                 $DB->query("COMMIT");//执行事务
                 //债权人信息
-                $Datb['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
+                $Datb['Type'] = 1;//类型(1:普通发布债务)
                 $Datb['AddTime'] = $Data['AddTime'];
                 $Datb['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key => $value) {
@@ -632,7 +637,7 @@ class Ajax
                 if ($InsertCreditorsInfo) {
                     $DB->query("COMMIT");//执行事务
                     //债务人信息
-                    $Datc['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
+                    $Datc['Type']  =1;//类型(1:普通发布债务)
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
                     foreach ($debtOwnerInfos as $key => $value) {
@@ -651,6 +656,12 @@ class Ajax
                             EchoResult($result_json);
                             exit;
                         }
+                    }
+                    if ($InsertDebtorsInfo){
+                        $DB->query("COMMIT");//执行事务
+                        $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                    }else{
+                        $result_json = array('ResultCode' => 106, 'Message' => '录入债务人信息失败');
                     }
                 }
             }else{

@@ -308,8 +308,13 @@ $(function(){
 
     $.ajax({
       type: "get",
-      url: "../data/code200.json",
-      data: JSON.stringify(submitData),
+      url: "/ajax.html",
+      dataType: "json",
+      data: {
+          "Intention":"ReleaseDebt",
+          "AjaxJSON":JSON.stringify(submitData),
+          "Type":2//债务催收类型1-律师，2-催收公司，3-自助催收
+      },
       beforeSend: function () { //加载过程效果
           showLoading();
       },
