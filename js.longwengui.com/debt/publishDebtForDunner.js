@@ -6,13 +6,13 @@ $(function(){
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
-      $(this).attr('src', '/Uploads/Debt/imgs/gou_b_off.png');
+      $(this).attr('src', '../imgs/gou_b_off.png');
       $(this).siblings('.opt').hide();
       $('#bonds_man_info').children().hide();
       haveBondsMan = 0;
     }else{
       $(this).attr('data-checked', 1);
-      $(this).attr('src', '/Uploads/Debt/imgs/gou_b.png');
+      $(this).attr('src', '../imgs/gou_b.png');
       $(this).siblings('.opt').show();
       $('#bonds_man_info').children().show();
       haveBondsMan = 1;
@@ -23,35 +23,42 @@ $(function(){
   $('#bonds_good_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
-      $(this).attr('src', '/Uploads/Debt/imgs/gou_b_off.png');
+      $(this).attr('src', '../imgs/gou_b_off.png');
       $(this).siblings('.opt').hide();
       $('#bonds_good_info').children().hide();
       haveBondsGood = 0;
     }else{
       $(this).attr('data-checked', 1);
-      $(this).attr('src', '/Uploads/Debt/imgs/gou_b.png');
+      $(this).attr('src', '../imgs/gou_b.png');
       $(this).siblings('.opt').show();
       $('#bonds_good_info').children().show();
       haveBondsGood = 1;
     }
   });
 
-  $('#match').click(function(){
+  $('#publish').click(function(){
     ajax();
   });
 
-
   //提交匹配条件
-  function ajax(Page){
+  function ajax(){
     var _debtOwnerInfos = [];
     var _preFee, _searchedAnytime, _abilityDebt;
     var _debtorInfos = [];
     var _bondsmanInfos = [];
     var _bondsgoodInfos = [];
     var _debtor_owner_money = 0, _debtor_money = 0;
+    var _loan_reason, _loan_recent; //借款原因、借款近况
+    var img_voucher = []; //债务凭证图片地址
 
     //决定程序是否往下执行
     var flag = true;
+
+    //判断是否同意
+    if(!$('input[name="agreement"]')[0].checked){
+      showMsg('请先同意委托追债协议');
+      return;
+    }
 
     //注入债权人信息
     $('#debtor_owner_info').find('.blo').each(function(){
@@ -102,7 +109,7 @@ $(function(){
           flag = false;
           return;
         }
-        if(parseInt(_debt_money) < 0){
+        if(!validate('+money', _debt_money)){
           showMsg('请输入正确的债权金额');
           flag = false;
           return;
@@ -171,7 +178,7 @@ $(function(){
           flag = false;
           return;
         }
-        if(parseInt(_debt_money) < 0){
+        if(!validate('+money', _debt_money)){
           showMsg('请输入正确的债务金额');
           flag = false;
           return;
@@ -194,7 +201,7 @@ $(function(){
     }
 
     if(_debtor_owner_money != _debtor_money){
-      showMsg('债务人和债权人金额总和不一致');
+      showMsg('债务人和债权人金额总和不统一');
       return;
     }
 
@@ -274,6 +281,16 @@ $(function(){
       }
     }
 
+    $('.img-wrap').each(function(){
+      if($(this).children('img').attr('src')){
+        img_voucher.push($(this).children('img').attr('src'));
+      }
+    });
+
+    _loan_reason = $('textarea[name="loan_reason"]').val();
+    _loan_recent = $('textarea[name="loan_recent"]').val();
+
+
     var submitData = {
       "debtOwnerInfos": _debtOwnerInfos, //债权人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债权金额}
       "debtorInfos": _debtorInfos, //债务人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债务金额}
@@ -284,42 +301,25 @@ $(function(){
       "bondsmanInfos": _bondsmanInfos, //保证人信息数组； haveBondsMan为0: 数组为空;为1: {name: 名称; idNum: 身份证号; phoneNumber: 联系方式; bonds_man_role: 保证人角色}
       "haveBondsGood": haveBondsGood,  //是否有抵押物 0 无 1 有
       "bondsgoodInfos": _bondsgoodInfos, //抵押物信息数组； haveBondsGood为0: 数组为空; 为1：{name：抵押物名称; details: 抵押物描述}
-      "Page": Page,
-      "Type": window.location.href.charAt(window.location.href.length - 2)
+      "loan_reason": _loan_reason, //借款原因
+      "loan_recent": _loan_recent, //借款近况
+      "images": img_voucher, //债务凭证图片
     }
 
     $.ajax({
-      type: "post",
-      dataType: "json",
-      url: "/ajax.html",
-        data: {
-            "Intention":"FindTeam",
-            "AjaxJSON":JSON.stringify(submitData),
-        },
+      type: "get",
+      url: "../data/code200.json",
+      data: JSON.stringify(submitData),
       beforeSend: function () { //加载过程效果
           showLoading();
       },
       success: function(data){
-          //设置匹配按钮不可点击
-          $('#match')[0].disabled = true;
-          $('#match').addClass('btn-disabled');
         if(data.ResultCode == 200){
-          debtId = data.DebtId;
-          console.log(data)
-          dataSuccess(data.Data);
-          //获得当前页
-          cur_page = data.Page;
-          //注入分页
-          injectPagination('#result_tbl_pagination', cur_page, data.PageCount, function(){
-            $('#result_tbl_pagination').find('.b').click(function(){
-              var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
-              if(changeTo){
-                ajax(changeTo);
-              }
-            });
-          });
+          showMsg('发布成功');
+          //路由跳转
+
         }else{
-            layer.msg(data.Message);
+          showMsg(data.Message);
         }
       },
       complete: function () { //加载完成提示
@@ -328,17 +328,28 @@ $(function(){
     });
 
   }
-
-  //数据注入
-  function dataSuccess(data){
-    $('#result_data').show();
-    $('#result_tbl').empty();
-    $('#result_data_tmpl').tmpl({resData: data}).appendTo('#result_tbl');
-  }
-
 });
 
-var debtId;
+//适配ie8label
+fixIE8Label();
+
+//打开协议窗口
+function openProtocalWindow(){
+  $('.protocal-pop').show();
+}
+
+//关闭协议窗口
+function closeProtocalWindow(){
+  $('.protocal-pop').hide();
+}
+
+//同意协议
+function agreeProtocal(){
+  var _tar = $('.m-checkbox input[name="agreement"]')[0];
+  _tar.checked = true;
+  $('.protocal-pop').hide();
+}
+
 //添加保证人角色下拉框事件
 function addBondsManDpEvent(){
   addEventToDropdown("bonds_man_role", function(tar){
@@ -365,49 +376,33 @@ function addDebtDom(targetID, tempID){
   }
 }
 
-//申请处置方
-function applyToSearch(UserID, money, tar){
-  layer.open({
-    content: '确定申请该处置方进行处理',
-    title: 0,
-    btnAlign: 'c',
-    shadeClose: 'true',
-    closeBtn: 0,
-    btn: ['确定'],
-    yes: function(index, layero){
-      toApply(UserID, money, tar);
-      layer.close(index);
-    }
-  });
-  function toApply(uid, money, tar){
-    $.ajax(
-      {
-        type: "post",
+//图片上传裁剪方法
+function imagesInput(tar, ImgBaseData, index) {
+    $.ajax({
+        type: "get",
         dataType: "json",
-        url: "/ajax.html",
+        url: "../data/getImg.json",
         data: {
-          "Intention":"DisposeApply",
-          "uid": uid, //提交处置方userid
-          "debtId": debtId, //该债务的id
-          "money": money
+          'ImgBaseData': ImgBaseData,
         },
-        beforeSend: function(){
-          showLoading();
+        beforeSend: function () {
+            showLoading();
         },
-        success: function(data){
-          if(data.ResultCode == 200){
-              layer.msg(data.Message);
-              $(tar)[0].disabled = true;
-              $(tar).addClass("btn-disabled");
-              $(tar).html("已申请");
+        success: function(data) {
+          if(data.ResultCode=='200'){
+              showMsg('上传成功');
+              $(tar).parent().siblings('.img-wrap').html(
+                "<img src='" + data.url + "' alt=''>"
+              );
+              setTimeout(function(){
+                layer.close(index);
+              }, 200);
           }else{
-            layer.msg(data.Message); //例如申请不能超过3个
+              layer.msg(data.Message);
           }
         },
         complete: function () { //加载完成提示
             closeLoading();
         }
-      }
-    );
-  }
+    });
 }

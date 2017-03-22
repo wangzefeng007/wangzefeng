@@ -489,8 +489,8 @@ function validateMoney(tar){
     showTip(tar, '请输入');
     return;
   }
-  if(!validate('+number', _text)){
-    showTip(tar, '请输入正确的数字');
+  if(!validate('+money', _text)){
+    showTip(tar, '请输入正确金额，最多保留2位小数');
     $(tar).val('');
     return;
   }
@@ -552,7 +552,7 @@ function imageUpload(tar){
   //裁剪比例
   var _ratio = $(tar).attr('data-ratio');
   //上传图片大小限制
-  var filemaxsize = 1024 * _size; //验证图片上传大小
+  var filemaxsize = _size; //验证图片上传大小
 
   //获取上传的图片大小
   var target = $(tar);
@@ -569,7 +569,7 @@ function imageUpload(tar){
 
   //验证图大小
   if(Size > filemaxsize) {
-      layer.msg('请不要选择大于' + _msg + '');
+      layer.msg('图片大小请不要超过' + _msg + '');
       return;
   }
 
@@ -593,7 +593,7 @@ function imageUpload(tar){
             //执行提交方法B
             // imagesInputB(ImgBaseData,index);
         },
-        success:function(index,layero){
+        success:function(index, layero){
             $image = $("#AvatarFile");
             $image.one('built.cropper', function () {
                 // Revoke when load complete
@@ -604,7 +604,7 @@ function imageUpload(tar){
                 minContainerWidth: 480,
             }).cropper('replace', blobURL);
         },
-        end:function(index,layero){
+        end:function(index, layero){
             layer.close(index);
         }
     });

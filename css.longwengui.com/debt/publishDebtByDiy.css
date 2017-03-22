@@ -23,13 +23,15 @@
   width: 120px;
   height: 30px;
   line-height: 30px;
-  border: 1px solid #94dafb;
+  border: 1px solid #e6e6e6;
   border-radius: 5px;
   padding: 0 10px;
   position: relative;
 }
 .public-debt-diy .wrap .m-dropdown label {
   color: #a9a9a9;
+  width: 100%;
+  display: inline-block;
 }
 .public-debt-diy .wrap .m-dropdown label i {
   display: inline-block;
@@ -47,11 +49,12 @@
 }
 .public-debt-diy .wrap .m-dropdown label ul {
   display: none;
-  width: 172px;
+  width: 138px;
   position: absolute;
   top: 36px;
   border-radius: 3px;
   padding: 0;
+  z-index: 100;
   margin: 0;
   left: 0;
   font-size: 12px;
@@ -115,9 +118,20 @@
   min-height: 10px;
   background-color: #fff;
 }
+.public-debt-diy .wrap .form-wrap .box .c .blo:hover .to-del {
+  display: block;
+}
 .public-debt-diy .wrap .form-wrap .box .c .blo {
   padding: 20px 0;
   margin: 0 36px;
+  position: relative;
+}
+.public-debt-diy .wrap .form-wrap .box .c .blo .to-del {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  display: none;
+  cursor: pointer;
 }
 .public-debt-diy .wrap .form-wrap .box .c .blo .line {
   margin-bottom: 10px;
@@ -128,25 +142,6 @@
   float: left;
   height: 30px;
   line-height: 30px;
-}
-.public-debt-diy .wrap .form-wrap .box .c .blo .line .m-dropdown {
-  display: inline-block;
-  line-height: 30px;
-  width: 154px;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  padding: 0 10px;
-  font-size: 14px;
-  position: relative;
-  margin-right: 10px;
-}
-.public-debt-diy .wrap .form-wrap .box .c .blo .line .m-dropdown span {
-  color: #a9a9a9;
-}
-.public-debt-diy .wrap .form-wrap .box .c .blo .line .m-dropdown img {
-  float: right;
-  margin-top: 14px;
-  cursor: pointer;
 }
 .public-debt-diy .wrap .form-wrap .box .c .blo .line .details {
   display: inline-block;
@@ -233,7 +228,6 @@
 .public-debt-diy .wrap .form-wrap .box .sub-btn {
   position: relative;
   text-align: center;
-  margin-top: 30px;
   margin-bottom: 40px;
 }
 .public-debt-diy .wrap .form-wrap .box .sub-btn .btn-pub {
