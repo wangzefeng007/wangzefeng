@@ -8,7 +8,9 @@ RewriteRule ^debt/([0-9]+).html$ /Index.php?Module=Debt&Action=DebtDetails&ID=$1
 
 #线索悬赏
 RewriteRule ^reword(|\/)$ /Index.php?Module=Reword&Action=Index [QSA]
+RewriteRule ^reword/publish(|\/)$ /Index.php?Module=Reword&Action=RewordPublish [QSA]
 RewriteRule ^reword/([a-z0-9]+)(|\/)$ /Index.php?Module=Reword&Action=Index&SoUrl=$1 [QSA]
+
 #寻找处置方
 RewriteRule ^choicefind(|\/)$ /Index.php?Module=Find&Action=ChoiceFind [QSA]
 RewriteRule ^find/team/([0-9]+)(|\/)$ /Index.php?Module=Find&Action=Team&T=$1 [QSA]

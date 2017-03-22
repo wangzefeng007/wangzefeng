@@ -670,8 +670,36 @@ class Ajax
      * @desc 发布悬赏
      */
     public function ReleaseReward(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+            EchoResult($json_result);exit;
+        }
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $Data['RewardNum'] ='XS'.date("YmdHis").rand(100, 999);
+        $Data['UserID'] = $_SESSION ['UserID'];
+        $Data['AddTime'] = time();
+        $Data['Type'] = $AjaxData['reword_type'];
+        $Data['CreditorsPhone'] =$AjaxData['debt_owner']['phoneNumber'];
+        $Data['DebtName'] =$AjaxData['debtor']['name'];
+        $Data['DebtCard'] =$AjaxData['debtor']['idNum'];
+        $Data['DebtPhone'] =$AjaxData['debtor']['phoneNumber'];
+        $Data['Province'] =$AjaxData['debtor']['province'];
+        $Data['City'] =$AjaxData['debtor']['city'];
+        $Data['Area'] =$AjaxData['debtor']['area'];
+        $Data['Address'] =$AjaxData['debtor']['areaDetail'];
+        $Data['Status'] =2;
+        $InsertReward = $MemberRewardInfoModule->InsertInfo($Data);
+        if (!$InsertReward){
+            $result_json = array('ResultCode'=>101,'Message'=>'悬赏发布失败');
+        }else{
+            $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+        }
+        EchoResult($result_json);
+        exit;
     }
-
 }
