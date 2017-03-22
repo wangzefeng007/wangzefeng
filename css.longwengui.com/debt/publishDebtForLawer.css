@@ -23,13 +23,15 @@
   width: 120px;
   height: 30px;
   line-height: 30px;
-  border: 1px solid #94dafb;
+  border: 1px solid #e6e6e6;
   border-radius: 5px;
   padding: 0 10px;
   position: relative;
 }
 .public-for-lawer .wrap .m-dropdown label {
   color: #a9a9a9;
+  width: 100%;
+  display: inline-block;
 }
 .public-for-lawer .wrap .m-dropdown label i {
   display: inline-block;
@@ -47,11 +49,12 @@
 }
 .public-for-lawer .wrap .m-dropdown label ul {
   display: none;
-  width: 172px;
+  width: 138px;
   position: absolute;
   top: 36px;
   border-radius: 3px;
   padding: 0;
+  z-index: 100;
   margin: 0;
   left: 0;
   font-size: 12px;
@@ -115,9 +118,20 @@
   min-height: 10px;
   background-color: #fff;
 }
+.public-for-lawer .wrap .form-wrap .box .c .blo:hover .to-del {
+  display: block;
+}
 .public-for-lawer .wrap .form-wrap .box .c .blo {
   padding: 20px 0;
   margin: 0 36px;
+  position: relative;
+}
+.public-for-lawer .wrap .form-wrap .box .c .blo .to-del {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  display: none;
+  cursor: pointer;
 }
 .public-for-lawer .wrap .form-wrap .box .c .blo .line {
   margin-bottom: 10px;
@@ -128,25 +142,6 @@
   float: left;
   height: 30px;
   line-height: 30px;
-}
-.public-for-lawer .wrap .form-wrap .box .c .blo .line .m-dropdown {
-  display: inline-block;
-  line-height: 30px;
-  width: 154px;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  padding: 0 10px;
-  font-size: 14px;
-  position: relative;
-  margin-right: 10px;
-}
-.public-for-lawer .wrap .form-wrap .box .c .blo .line .m-dropdown span {
-  color: #a9a9a9;
-}
-.public-for-lawer .wrap .form-wrap .box .c .blo .line .m-dropdown img {
-  float: right;
-  margin-top: 14px;
-  cursor: pointer;
 }
 .public-for-lawer .wrap .form-wrap .box .c .blo .line .details {
   display: inline-block;
@@ -268,4 +263,57 @@
   text-align: center;
   color: #fc4c4c;
   margin-bottom: 40px;
+}
+.protocal-pop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: none;
+}
+.protocal-pop .popup {
+  width: 600px;
+  margin: 0 auto;
+  height: 504px;
+  background-color: #fff;
+  margin-top: 144px;
+}
+.protocal-pop .popup .hd {
+  line-height: 60px;
+  background-color: #f5f5f5;
+  color: #35bdfc;
+  font-size: 20px;
+  padding-left: 20px;
+}
+.protocal-pop .popup .hd .close {
+  float: right;
+  padding-right: 20px;
+  cursor: pointer;
+}
+.protocal-pop .popup .cont .para {
+  height: 330px;
+  overflow-y: scroll;
+  padding: 16px;
+  font-size: 14px;
+  color: #666;
+}
+.protocal-pop .popup .cont .para p {
+  margin: 10px;
+  text-indent: 28px;
+}
+.protocal-pop .popup .cont .confirm-btn {
+  margin-top: 15px;
+  text-align: center;
+}
+.protocal-pop .popup .cont .confirm-btn button {
+  min-width: 280px;
+  line-height: 40px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
 }
