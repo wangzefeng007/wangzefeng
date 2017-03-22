@@ -658,8 +658,28 @@ class Ajax
                         }
                     }
                     if ($InsertDebtorsInfo){
-                        $DB->query("COMMIT");//执行事务
-                        $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                        $MemberDebtImageModule = new MemberDebtImageModule();
+                        if (!empty($AjaxData['images'])){
+                            $Date['DebtID']= $DebtID;
+                            foreach ($AjaxData['images'] as $key=>$value){
+                                if ($key==0){
+                                    $Date['IsDefault']= 1;
+                                }else{
+                                    $Date['IsDefault']= 0;
+                                }
+                                $UpdateDebtImage = $MemberDebtImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                            }
+                            if (!$UpdateDebtImage){
+                                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                                $result_json = array('ResultCode'=>102,'Message'=>'添加借款凭证失败');
+                            }else{
+                                $DB->query("COMMIT");//执行事务
+                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                            }
+                        }else{
+                            $DB->query("COMMIT");//执行事务
+                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                        }
                     }else{
                         $result_json = array('ResultCode' => 106, 'Message' => '录入债务人信息失败');
                     }
@@ -675,7 +695,36 @@ class Ajax
         EchoResult($result_json);
         exit;
     }
-
+    /**
+     * @desc 发布债务添加借款凭证
+     */
+    public function AddBorrowImage(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+            EchoResult($json_result);exit;
+        }
+        $MemberDebtImageModule = new MemberDebtImageModule();
+        //上传图片
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $ImageUrl = SendToImgServ($ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        $Data['IsDefault'] = 0;
+        if ($Data['ImageUrl'] !==''){
+            $DebtImage = $MemberDebtImageModule->InsertInfo($Data);
+            if ($DebtImage){
+                $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'上传失败！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
     /**
      * @desc 发布悬赏
      */
@@ -703,8 +752,12 @@ class Ajax
         $Data['Area'] =$AjaxData['debtor']['area'];
         $Data['Address'] =$AjaxData['debtor']['areaDetail'];
         $Data['Status'] =2;
+        //开启事务
+        global $DB;
+        $DB->query("BEGIN");//开始事务定义
         $ID = $MemberRewardInfoModule->InsertInfo($Data);
         if (!$ID){
+            $DB->query("ROLLBACK");//判断当执行失败时回滚
             $result_json = array('ResultCode'=>101,'Message'=>'悬赏发布失败');
         }else{
             if (!empty($AjaxData['images'])){
@@ -715,10 +768,20 @@ class Ajax
                     }else{
                         $Date['IsDefault']= 0;
                     }
-                   $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                  $UpdateRewardImage = $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
                 }
+                if (!$UpdateRewardImage){
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>102,'Message'=>'添加悬赏图片失败');
+                }else{
+                    $DB->query("COMMIT");//执行事务
+                    $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+                }
+            }else{
+                $DB->query("COMMIT");//执行事务
+                $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
             }
-            $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+
         }
         EchoResult($result_json);
         exit;

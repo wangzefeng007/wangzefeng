@@ -20,7 +20,7 @@ class MultiUpload{
     public $savedName =array();
     public $sourceFileName=1;
     function __construct($fieldName){
-        $this->savePath='/Uploads/Reword/'.date('Ymd').'/';
+        $this->savePath='/Uploads/Debt/'.date('Ymd').'/';
         if(!empty($fieldName)){$this->field=$fieldName;}
         foreach ($_FILES[$this->field]['size'] as $filename){
             $this->count++;
