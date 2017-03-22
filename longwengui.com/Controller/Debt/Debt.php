@@ -98,10 +98,11 @@ class Debt
         include template('DebtDetails');
     }
     /**
-     * @desc  发布悬赏
+     * @desc  发布债务
      */
     public function DebtPublish()
     {
+        $Nav='debt';
         $Type = intval($_GET['T']);
         if ($Type===1){
             include template('DebtPublishLawer');

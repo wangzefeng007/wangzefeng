@@ -36,5 +36,13 @@ Class MemberDebtInfoModule extends CommonModule {
         '7' => '已曝光',
         '8' => '待审核',
     ];
-
+    /**
+     * @desc 催收方式
+     * @var array
+     */
+    public $CollectionType = [
+        '1' => '律师催收',
+        '2' => '催收公司催收',
+        '3' => '自助催收',
+    ];
 }

@@ -32,6 +32,14 @@
 							<option  value="{$key}">{$value}</option>
 							{/loop}
 						</select>
+						催收方式：
+						<select name="Type" id="Type"  class="form-control">
+							<option style="width:100px;"  value="{$Type}">{if !$CollectionType[$Type]}请选择方式{else}{$CollectionType[$Type]}{/if}</option>
+							<option  value="">全部</option>
+							{loop $CollectionType $key $value}
+							<option  value="{$key}">{$value}</option>
+							{/loop}
+						</select>
 						<button class="btn btn-info">搜索</button>
 					</form>
 				</div>
@@ -45,8 +53,7 @@
 							<th class="numeric">债务人地区</th>
 							<th class="numeric">债务金额</th>
 							<th class="numeric">逾期时间</th>
-							<th class="numeric">债权人数量</th>
-							<th class="numeric">债务人数量</th>
+							<th class="numeric">催收方式</th>
 							<th class="numeric">发布时间</th>
 							<th class="numeric">当前状态</th>
 							<th class="numeric">操作</th>
@@ -61,8 +68,7 @@
 							<td nowrap="nowrap">{$lists[Province]}-{$lists[City]}-{$lists[Area]}</td>
 							<td nowrap="nowrap">{$lists[DebtAmount]}</td>
 							<td nowrap="nowrap">{$lists[Overduetime]}</td>
-							<td nowrap="nowrap">{$lists[BondsNum]}</td>
-							<td nowrap="nowrap">{$lists[DebtorNum]}</td>
+							<td nowrap="nowrap">{$CollectionType[$lists[CollectionType]]}</td>
 							<td nowrap="nowrap">{$lists[AddTime]}</td>
 							<td nowrap="nowrap">{$StatusInfo[$lists[Status]]}</td>
 							<td>

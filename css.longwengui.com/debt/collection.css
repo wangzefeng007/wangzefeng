@@ -33,7 +33,7 @@
   border: 1px solid #e6e6e6;
   border-radius: 2px;
 }
-.collection .wrap .filt-parm .search button[name='search'] {
+.collection .wrap .filt-parm .search input[name='search'] {
   border: 0;
   width: 102px;
   padding: 10px 0;

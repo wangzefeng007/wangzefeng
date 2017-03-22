@@ -6,13 +6,13 @@ $(function(){
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
-      $(this).attr('src', '../imgs/gou_b_off.png');
+      $(this).attr('src', 'http://www.longwengui.net/Uploads/Debt/imgs/gou_b_off.png');
       $(this).siblings('.opt').hide();
       $('#bonds_man_info').children().hide();
       haveBondsMan = 0;
     }else{
       $(this).attr('data-checked', 1);
-      $(this).attr('src', '../imgs/gou_b.png');
+      $(this).attr('src', 'http://www.longwengui.net/Uploads/Debt/imgs/gou_b.png');
       $(this).siblings('.opt').show();
       $('#bonds_man_info').children().show();
       haveBondsMan = 1;
@@ -23,13 +23,13 @@ $(function(){
   $('#bonds_good_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
-      $(this).attr('src', '../imgs/gou_b_off.png');
+      $(this).attr('src', 'http://www.longwengui.net/Uploads/Debt/imgs/gou_b_off.png');
       $(this).siblings('.opt').hide();
       $('#bonds_good_info').children().hide();
       haveBondsGood = 0;
     }else{
       $(this).attr('data-checked', 1);
-      $(this).attr('src', '../imgs/gou_b.png');
+      $(this).attr('src', 'http://www.longwengui.net/Uploads/Debt/imgs/gou_b.png');
       $(this).siblings('.opt').show();
       $('#bonds_good_info').children().show();
       haveBondsGood = 1;
@@ -53,12 +53,6 @@ $(function(){
 
     //决定程序是否往下执行
     var flag = true;
-
-    //判断是否同意
-    if(!$('input[name="agreement"]')[0].checked){
-      showMsg('请先同意委托追债协议');
-      return;
-    }
 
     //注入债权人信息
     $('#debtor_owner_info').find('.blo').each(function(){
@@ -303,7 +297,7 @@ $(function(){
     }
 
     $.ajax({
-      type: "get",
+      type: "post",
       url: "/ajax.html",
       dataType: "json",
       data: {
@@ -316,11 +310,11 @@ $(function(){
       },
       success: function(data){
         if(data.ResultCode == 200){
-          showMsg('发布成功');
+            layer.msg(data.Message);
           //路由跳转
 
         }else{
-          showMsg(data.Message);
+            layer.msg(data.Message);
         }
       },
       complete: function () { //加载完成提示

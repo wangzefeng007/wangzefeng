@@ -41,7 +41,7 @@ class Ajax
         }
         $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = ' and `Status` < 8 ';
+        $MysqlWhere = ' and `Status` < 8 and `CollectionType` < 3';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }
@@ -82,11 +82,7 @@ class Ajax
                 $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
             }
             MultiPage($Data, 5);
-            if ($Keyword != '') {
-                $Data['ResultCode'] = 102;
-            } else {
-                $Data['ResultCode'] = 200;
-            }
+            $Data['ResultCode'] = 200;
         }else{
             $Data['ResultCode'] = 101;
             $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
@@ -108,7 +104,7 @@ class Ajax
             }
             $Area =trim($_POST['col_area']); //催收地区
             if($Area!=''){
-                $AreaWhere = " and City IN ($Area)";
+                $AreaWhere = " and Type=1 and City IN ($Area)";
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
@@ -116,6 +112,8 @@ class Ajax
                     }
                     $data=implode(',',array_unique($data));
                     $MysqlWhere .= " and DebtID IN ($data)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
                 }
             }
             $DebtAmount = $_POST['col_money'];//债务金额
@@ -189,7 +187,18 @@ class Ajax
             }
             $Page = trim($_POST['Page']);
             if ($Keyword != '') {
-                $MysqlWhere .= " and (HighSchoolName like '%$Keyword%' or HighSchoolNameEng like '%$Keyword%')";
+                $KeywordWhere = ' and Type=1 and (Name like \'%'.$Keyword.'%\' or Card =\'' .$Keyword.'\')';
+                $KeywordInfo = $MemberDebtorsInfoModule->GetInfoByWhere($KeywordWhere,true);
+                if ($KeywordInfo){
+                    foreach ($KeywordInfo  as $key=>$value){
+                        $KeywordData[]=$value['DebtID'];
+                    }
+                    $KeywordData=implode(',',array_unique($KeywordData));
+                    $MysqlWhere .= " and DebtID IN ($KeywordData)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
+                }
+
             }
             return $MysqlWhere;
         }
