@@ -26,13 +26,13 @@
   font-weight: bold;
   margin-right: 16px;
 }
-.reword .wrap .filt-parm .search input {
+.reword .wrap .filt-parm .search #keyword {
   padding: 10px 14px;
   width: 300px;
   border: 1px solid #e6e6e6;
   border-radius: 2px;
 }
-.reword .wrap .filt-parm .search button[name='search'] {
+.reword .wrap .filt-parm .search #btn_search {
   border: 0;
   width: 102px;
   padding: 10px 0;

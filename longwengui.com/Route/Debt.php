@@ -5,6 +5,7 @@ $RouteArr=array(
     'debt@index'=>'Debt@Index',
     'debt@debtlists'=>'Debt@DebtLists',
     'debt@debtdetails'=>'Debt@DebtDetails',
+    'debt@publish'=>'Debt@DebtPublish',
     //线索悬赏
     'reword@index'=>'Reword@Index',
     'reword@publish'=>'Reword@RewordPublish',

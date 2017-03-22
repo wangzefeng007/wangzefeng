@@ -30,6 +30,10 @@ class Reword
             $Type = 'a2';
             $MysqlWhere .= ' and Type =2 ';
         }
+        $Keyword = trim($_GET['K']);
+        if ($Keyword !=''){
+            $MysqlWhere .= ' and Type=1 and (DebtName like \'%'.$Keyword.'%\' or DebtCard =\'' .$Keyword.'\')';
+        }
         $Area = $this->GetArea($SoUrl);
         if ($Area>0){
             $AreaInfo = $MemberAreaModule->GetInfoByKeyID($Area);

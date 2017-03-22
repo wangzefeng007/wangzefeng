@@ -5,6 +5,7 @@ RewriteRule ^index.html$ /Index.php [QSA]
 #债务催收
 RewriteRule ^debtlists(|\/)$ /Index.php?Module=Debt&Action=DebtLists [QSA]
 RewriteRule ^debt/([0-9]+).html$ /Index.php?Module=Debt&Action=DebtDetails&ID=$1 [QSA]
+RewriteRule ^debt/publish/([0-9]+)(|\/)$ /Index.php?Module=Debt&Action=DebtPublish&T=$1 [QSA]
 
 #线索悬赏
 RewriteRule ^reword(|\/)$ /Index.php?Module=Reword&Action=Index [QSA]
@@ -14,6 +15,7 @@ RewriteRule ^reword/([a-z0-9]+)(|\/)$ /Index.php?Module=Reword&Action=Index&SoUr
 #寻找处置方
 RewriteRule ^choicefind(|\/)$ /Index.php?Module=Find&Action=ChoiceFind [QSA]
 RewriteRule ^find/team/([0-9]+)(|\/)$ /Index.php?Module=Find&Action=Team&T=$1 [QSA]
+
 #搜索老赖
 RewriteRule ^deadbeat(|\/)$ /Index.php?Module=DeadBeat&Action=Index [QSA]
 RewriteRule ^ajax.html$ /Index.php?Module=Ajax&Action=Index [QSA]

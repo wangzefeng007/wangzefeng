@@ -41,7 +41,7 @@ class Ajax
         }
         $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = ' and `Status` < 8 ';
+        $MysqlWhere = ' and `Status` < 8 and `CollectionType` < 3';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }
@@ -82,11 +82,7 @@ class Ajax
                 $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
             }
             MultiPage($Data, 5);
-            if ($Keyword != '') {
-                $Data['ResultCode'] = 102;
-            } else {
-                $Data['ResultCode'] = 200;
-            }
+            $Data['ResultCode'] = 200;
         }else{
             $Data['ResultCode'] = 101;
             $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
@@ -108,7 +104,7 @@ class Ajax
             }
             $Area =trim($_POST['col_area']); //催收地区
             if($Area!=''){
-                $AreaWhere = " and City IN ($Area)";
+                $AreaWhere = " and Type=1 and City IN ($Area)";
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
@@ -116,6 +112,8 @@ class Ajax
                     }
                     $data=implode(',',array_unique($data));
                     $MysqlWhere .= " and DebtID IN ($data)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
                 }
             }
             $DebtAmount = $_POST['col_money'];//债务金额
@@ -189,7 +187,18 @@ class Ajax
             }
             $Page = trim($_POST['Page']);
             if ($Keyword != '') {
-                $MysqlWhere .= " and (HighSchoolName like '%$Keyword%' or HighSchoolNameEng like '%$Keyword%')";
+                $KeywordWhere = ' and Type=1 and (Name like \'%'.$Keyword.'%\' or Card =\'' .$Keyword.'\')';
+                $KeywordInfo = $MemberDebtorsInfoModule->GetInfoByWhere($KeywordWhere,true);
+                if ($KeywordInfo){
+                    foreach ($KeywordInfo  as $key=>$value){
+                        $KeywordData[]=$value['DebtID'];
+                    }
+                    $KeywordData=implode(',',array_unique($KeywordData));
+                    $MysqlWhere .= " and DebtID IN ($KeywordData)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
+                }
+
             }
             return $MysqlWhere;
         }
@@ -529,14 +538,14 @@ class Ajax
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         if ($_POST){
-            $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
+            $Data['DebtNum'] ='DB'.date("YmdHis").rand(100, 999);
             $Data['UserID'] = $_SESSION ['UserID'];
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
-            $Data['Status'] = 1;
+            $Data['Status'] = 8;//发布待审核
             $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
             //1律师团队，2催收公司,3自助催收
-            $Data['Type'] = trim($AjaxData['Type']);
+            $Data['CollectionType'] = intval($_POST['Type']);
             //是否有前期费用
             $Data['EarlyCost'] = $AjaxData['preFee'];
             //是否随时能找到
@@ -565,6 +574,11 @@ class Ajax
                 }
                 $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
             }
+            //借款原因
+            $Data['ReasonsBorrowing'] = trim($AjaxData['loan_reason']);
+            //借款近况
+            $Data['DebtRecent'] = trim($AjaxData['loan_recent']);
+
             $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
             $debtorInfos = $AjaxData['debtorInfos'];
             $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
@@ -609,7 +623,7 @@ class Ajax
             if ($DebtID){
                 $DB->query("COMMIT");//执行事务
                 //债权人信息
-                $Datb['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
+                $Datb['Type'] = 1;//类型(1:普通发布债务)
                 $Datb['AddTime'] = $Data['AddTime'];
                 $Datb['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key => $value) {
@@ -632,7 +646,7 @@ class Ajax
                 if ($InsertCreditorsInfo) {
                     $DB->query("COMMIT");//执行事务
                     //债务人信息
-                    $Datc['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
+                    $Datc['Type']  =1;//类型(1:普通发布债务)
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
                     foreach ($debtOwnerInfos as $key => $value) {
@@ -652,6 +666,32 @@ class Ajax
                             exit;
                         }
                     }
+                    if ($InsertDebtorsInfo){
+                        $MemberDebtImageModule = new MemberDebtImageModule();
+                        if (!empty($AjaxData['images'])){
+                            $Date['DebtID']= $DebtID;
+                            foreach ($AjaxData['images'] as $key=>$value){
+                                if ($key==0){
+                                    $Date['IsDefault']= 1;
+                                }else{
+                                    $Date['IsDefault']= 0;
+                                }
+                                $UpdateDebtImage = $MemberDebtImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                            }
+                            if (!$UpdateDebtImage){
+                                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                                $result_json = array('ResultCode'=>102,'Message'=>'添加借款凭证失败');
+                            }else{
+                                $DB->query("COMMIT");//执行事务
+                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                            }
+                        }else{
+                            $DB->query("COMMIT");//执行事务
+                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                        }
+                    }else{
+                        $result_json = array('ResultCode' => 106, 'Message' => '录入债务人信息失败');
+                    }
                 }
             }else{
                 $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -664,7 +704,36 @@ class Ajax
         EchoResult($result_json);
         exit;
     }
-
+    /**
+     * @desc 发布债务添加借款凭证
+     */
+    public function AddBorrowImage(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+            EchoResult($json_result);exit;
+        }
+        $MemberDebtImageModule = new MemberDebtImageModule();
+        //上传图片
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $ImageUrl = SendToImgServ($ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        $Data['IsDefault'] = 0;
+        if ($Data['ImageUrl'] !==''){
+            $DebtImage = $MemberDebtImageModule->InsertInfo($Data);
+            if ($DebtImage){
+                $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'上传失败！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
     /**
      * @desc 发布悬赏
      */
@@ -692,8 +761,12 @@ class Ajax
         $Data['Area'] =$AjaxData['debtor']['area'];
         $Data['Address'] =$AjaxData['debtor']['areaDetail'];
         $Data['Status'] =2;
+        //开启事务
+        global $DB;
+        $DB->query("BEGIN");//开始事务定义
         $ID = $MemberRewardInfoModule->InsertInfo($Data);
         if (!$ID){
+            $DB->query("ROLLBACK");//判断当执行失败时回滚
             $result_json = array('ResultCode'=>101,'Message'=>'悬赏发布失败');
         }else{
             if (!empty($AjaxData['images'])){
@@ -704,10 +777,20 @@ class Ajax
                     }else{
                         $Date['IsDefault']= 0;
                     }
-                   $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                  $UpdateRewardImage = $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
                 }
+                if (!$UpdateRewardImage){
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>102,'Message'=>'添加悬赏图片失败');
+                }else{
+                    $DB->query("COMMIT");//执行事务
+                    $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+                }
+            }else{
+                $DB->query("COMMIT");//执行事务
+                $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
             }
-            $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+
         }
         EchoResult($result_json);
         exit;

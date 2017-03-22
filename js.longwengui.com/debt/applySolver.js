@@ -292,10 +292,10 @@ $(function(){
       type: "post",
       dataType: "json",
       url: "/ajax.html",
-        data: {
-            "Intention":"FindTeam",
-            "AjaxJSON":JSON.stringify(submitData),
-        },
+      data: {
+          "Intention":"FindTeam",
+          "AjaxJSON":JSON.stringify(submitData),
+      },
       beforeSend: function () { //加载过程效果
           showLoading();
       },
@@ -305,7 +305,6 @@ $(function(){
           $('#match').addClass('btn-disabled');
         if(data.ResultCode == 200){
           debtId = data.DebtId;
-          console.log(data)
           dataSuccess(data.Data);
           //获得当前页
           cur_page = data.Page;

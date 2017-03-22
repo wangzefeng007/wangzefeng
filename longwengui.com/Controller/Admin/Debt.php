@@ -14,6 +14,7 @@ class Debt {
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberDebtInfoModule->Status;
+        $CollectionType = $MemberDebtInfoModule->CollectionType;
         $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
@@ -26,6 +27,11 @@ class Debt {
             $Status = trim($_GET ['Status']);
             $SqlWhere .=' and `Status` = \'' . $Status . '\'';
             $PageUrl .='&Status=' . $Status;
+        }
+        if ($_GET ['Type']) {
+            $Type = trim($_GET ['Type']);
+            $SqlWhere .=' and `CollectionType` = \'' . $Type . '\'';
+            $PageUrl .='&Type=' . $Type;
         }
         // 跳转到该页面
         if ($_POST['page']) {
