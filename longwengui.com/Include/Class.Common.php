@@ -584,15 +584,13 @@ function WriteTopPicture($Picture = '')
 
 // ---------------------------图片服务器操作start--------------------------------
 // 上传到图片服务器
-function SendToImgServ($Img, $ImgText)
+function SendToImgServ($ImgText)
 {
-    $Data = array(
-        'Action' => 'AddImage',
-        'Image' => $Img,
-        'ImageText' => $ImgText
-    );
-    $Data['Sign'] = ImageAPIVerify($Data);
-    return curl_postsend('http://images.57us.com/57usapi.php', $Data);
+
+    include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
+    $Upload = new MultiUpload('Image');
+    $ImageUrl = $Upload->ImageUpload($ImgText);
+    return $ImageUrl;
 }
 
 /**

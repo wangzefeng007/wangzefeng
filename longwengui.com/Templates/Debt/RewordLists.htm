@@ -20,7 +20,7 @@
             </div>
             <div class="search">
                 <span>悬赏搜索 :</span>
-                <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
+                <input type="text" name="Keyword" id="keyword" placeholder="请输入姓名或身份证号">
                 <button type="button" id="btn_search" name="search">
                     搜索
                 </button>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="line">
                             <div class="t">债务人电话 : </div>
-                            <div class="c">{$lists[DebtPhone]}</div>
+                            <div class="c">{if $lists[Status]=='4'}{echo strlen($lists[DebtPhone]) ? substr_replace($lists[DebtPhone], '****', 7, 4) : '';}{else}{$lists[CreditorsPhone]}{/if}</div>
                         </div>
                         <div class="line">
                             <div class="t">债务人地区 : </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="ower-contact">
                             <div class="t">债权人联系方式 :</div>
-                            <div class="c">{$lists[CreditorsPhone]}</div>
+                            <div class="c">{if $lists[Status]=='4'}{echo strlen($lists[CreditorsPhone]) ? substr_replace($lists[CreditorsPhone], '****', 7, 4) : '';}{else}{$lists[CreditorsPhone]}{/if}</div>
                         </div>
                     </div>
                 </div>

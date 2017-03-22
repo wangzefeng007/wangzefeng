@@ -25,6 +25,7 @@ class MultiUpload{
         foreach ($_FILES[$this->field]['size'] as $filename){
             $this->count++;
         }
+
     }
     public function upload(){
         //$this->checkSavePath();
@@ -54,6 +55,24 @@ class MultiUpload{
             }
         }
         return $this->savedName;
+    }
+    public function ImageUpload($ImgText=''){
+        $filename = 'jpg';
+        $saveName = $this->getSaveName($filename);
+        $savedPath = $this->savePath.$saveName;
+        $Img = explode(',',$ImgText);
+        $tmp_name = $Img[1];
+        if (!file_exists(SYSTEM_ROOTPATH.$this->savePath) && !mkdir(SYSTEM_ROOTPATH.$this->savePath, 0777, true)) {
+            return false;
+        } else if (!is_writeable(SYSTEM_ROOTPATH.$this->savePath)) {
+            return false;
+        }
+        $PushImage = file_put_contents(SYSTEM_ROOTPATH.$savedPath, base64_decode($tmp_name));
+        if ($PushImage){
+            return $savedPath;
+        }else{
+            return false;
+        }
     }
     public function getUploadFileInfo(){
         return $this->savedName;
@@ -85,11 +104,11 @@ class MultiUpload{
         }
 
         //检查是否合法上传
-        if(!$this->checkUpload($file['tmp_name'])) {var_dump($this->checkUpload($file['tmp_name']));exit;
+        if(!$this->checkUpload($file['tmp_name'])) {
             $this->error[$file_number] = '非法上传文件！';
             return false;
         }
-         $this->error[$file_number] = '';
+        $this->error[$file_number] = '';
         return true;
     }
 
@@ -110,19 +129,19 @@ class MultiUpload{
     private function getExt($file_name)
     {
 
-    $extend =explode("." , $file_name);
-    $va=count($extend)-1;
-    return '.'.strtolower($extend[$va]);
+        $extend =explode("." , $file_name);
+        $va=count($extend)-1;
+        return '.'.strtolower($extend[$va]);
     }
     private function checkSavePath(){
-    if(!is_dir($this->savePath)){
-	    self::mkDir($this->savePath);
+        if(!is_dir($this->savePath)){
+            self::mkDir($this->savePath);
             return;
-    }
+        }
     }
     private static function mkDir($dir) {
-		mkdir($dir);
-		chmod($dir,0777);
+        mkdir($dir);
+        chmod($dir,0777);
     }
     public function getErrorMsg()
     {

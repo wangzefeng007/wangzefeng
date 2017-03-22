@@ -115,7 +115,7 @@ function ajax(){
     success: function(data){
       if(data.ResultCode == 200){
           layer.msg(data.Message);
-        //路由跳转
+          //路由跳转
       }else{
           layer.msg(data.Message);
       }
@@ -131,11 +131,12 @@ function ajax(){
 //图片上传裁剪方法
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: "../data/getImg.json",
+        url: "/ajax.html",
         data: {
-          'ImgBaseData': ImgBaseData,
+            "Intention":"AddRewardImage",
+            "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {
             showLoading();

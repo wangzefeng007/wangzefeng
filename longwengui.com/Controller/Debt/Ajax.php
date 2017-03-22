@@ -653,7 +653,6 @@ class Ajax
                         }
                     }
                 }
-
             }else{
                 $DB->query("ROLLBACK");//判断当执行失败时回滚
                 $result_json = array('ResultCode'=>106,'Message'=>'录入债务基本信息失败');
@@ -693,11 +692,45 @@ class Ajax
         $Data['Area'] =$AjaxData['debtor']['area'];
         $Data['Address'] =$AjaxData['debtor']['areaDetail'];
         $Data['Status'] =2;
-        $InsertReward = $MemberRewardInfoModule->InsertInfo($Data);
-        if (!$InsertReward){
+        $ID = $MemberRewardInfoModule->InsertInfo($Data);
+        if (!$ID){
             $result_json = array('ResultCode'=>101,'Message'=>'悬赏发布失败');
         }else{
+            if (!empty($AjaxData['images'])){
+                $Date['RewardID']= $ID;
+                foreach ($AjaxData['images'] as $key=>$value){
+                    if ($key==0){
+                        $Date['IsDefault']= 1;
+                    }else{
+                        $Date['IsDefault']= 0;
+                    }
+                   $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                }
+            }
             $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 添加发布悬赏图片
+     */
+    public function AddRewardImage(){
+        $MemberRewardImageModule = new MemberRewardImageModule();
+        //上传图片
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $ImageUrl = SendToImgServ($ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        $Data['IsDefault'] = 0;
+        if ($Data['ImageUrl'] !==''){
+           $RewardImage = $MemberRewardImageModule->InsertInfo($Data);
+           if ($RewardImage){
+               $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+           }else{
+               $result_json = array('ResultCode'=>101,'Message'=>'上传失败！');
+           }
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
         }
         EchoResult($result_json);
         exit;
