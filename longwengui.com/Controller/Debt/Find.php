@@ -16,7 +16,10 @@ class Find
     }
     public function Team(){
         $Nav ='find';
-        $Type = $_GET['T'];
+        $Type = intval($_GET['T']);
+        if ($Type!==1 && $Type!==2){
+            alertandback('无此处置方！');
+        }
         include template('DebtFindTeam');
     }
 }
