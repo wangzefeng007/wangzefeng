@@ -28,7 +28,7 @@ class Admin
     public function Login()
     {
         $ImageCode = strtolower(trim($_POST['code']));
-        //$_SESSION['authnum_session'] = $ImageCode;
+        $_SESSION['authnum_session'] = $ImageCode;
         if ($ImageCode == $_SESSION['authnum_session']) {
             $AdminName = trim($_POST['user']);
             $PassWord = md5(trim($_POST['pass']));
