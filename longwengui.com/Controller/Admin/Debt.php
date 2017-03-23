@@ -12,21 +12,20 @@ class Debt {
     public function DebtLists() {
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
-        $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberDebtInfoModule->Status;
         $CollectionType = $MemberDebtInfoModule->CollectionType;
         $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
-        $keyword = trim($_GET['keyword']);
-        if ($keyword != '') {
-            $SqlWhere .= ' and (DebtNum=\'' . $keyword . '\' or concat(UserID) like \'%' . $keyword . '%\')';
-            $PageUrl .= '&keyword=' . $keyword;
-        }
         if ($_GET ['Status']) {
             $Status = trim($_GET ['Status']);
             $SqlWhere .=' and `Status` = \'' . $Status . '\'';
             $PageUrl .='&Status=' . $Status;
+        }
+        if ($_GET['keyword'] != '') {
+            $keyword = trim($_GET['keyword']);
+            $SqlWhere .= ' and (DebtNum=\'' . $keyword . '\' or concat(UserID) like \'%' . $keyword . '%\')';
+            $PageUrl .= '&keyword=' . $keyword;
         }
         if ($_GET ['Type']) {
             $Type = trim($_GET ['Type']);
@@ -38,6 +37,7 @@ class Debt {
             $page = $_POST['page'];
             tourl('/index.php?Module=Debt&Action=DebtLists&Page=' . $page . $PageUrl);
         }
+
         // 分页开始
         $Page = intval($_GET['Page']);
         $Page = $Page ? $Page : 1;
@@ -54,15 +54,11 @@ class Debt {
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberDebtInfoModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
+                $Data['Data'][$key]['Status'] = $StatusInfo[$value['Status']];
+                $Data['Data'][$key]['CollectionType'] = $CollectionType[$value['CollectionType']];
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Province = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Province']);
-                $Data['Data'][$key]['Province'] = $Province['CnName'];
-                $City = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['City']);
-                $Data['Data'][$key]['City'] = $City['CnName'];
-                $Area= $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Area']);
-                $Data['Data'][$key]['Area'] = $Area['CnName'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
             }
 
@@ -123,5 +119,4 @@ class Debt {
         include template("DebtEdit");
     }
 }
-
 ?>

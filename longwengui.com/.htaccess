@@ -2,6 +2,8 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule ^index.html$ /Index.php [QSA]
+#验证码
+RewriteRule ^code/pic.jpg$ /Plugins/Code/Class.DoCode.php [QSA]
 #债务催收
 RewriteRule ^debtlists(|\/)$ /Index.php?Module=Debt&Action=DebtLists [QSA]
 RewriteRule ^debt/([0-9]+).html$ /Index.php?Module=Debt&Action=DebtDetails&ID=$1 [QSA]

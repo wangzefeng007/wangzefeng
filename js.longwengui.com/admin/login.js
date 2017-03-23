@@ -3,9 +3,9 @@
  */
 //根据域名后缀判断引用的通用的js
 var Js = {
-    com: 'http://js.57us.com',
-    cn: 'http://js.57us.cn',
-    net:'http://js.57us.net',
+    com: 'http://js.longwengui.com',
+    cn: 'http://js.longwengui.cn',
+    net:'http://js.longwengui.net',
 };
 host = window.location.host.split('.');
 var suffix = host[2];
