@@ -5,8 +5,8 @@
         <div class="filt-parm">
             <div class="line">
                 <span>催收方式 :</span>
-                <span class="sel" id="way_all">全部</span>
-                <span>
+                <span class="sel span-1" id="way_all">全部</span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="way" value="1">
@@ -15,7 +15,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="way" value="2">
@@ -27,9 +27,9 @@
             </div>
             <div class="line">
                 <span>催收地区 :</span>
-                <span class="sel" id="area_all">全部</span>
+                <span class="sel span-1" id="area_all">全部</span>
                 {loop $AreaList $lists}
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="area" value="{$lists[AreaID]}"><i></i>{$lists[CnName]}</label>
@@ -40,8 +40,8 @@
             </div>
             <div class="line">
                 <span>催收金额 :</span>
-                <span class="sel" id="money_all">全部</span>
-                <span>
+                <span class="sel span-1" id="money_all">全部</span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="money" value="0-3">
@@ -50,7 +50,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="money" value="3-10">
@@ -59,7 +59,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="money" value="10-50">
@@ -68,7 +68,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="money" value="50-100">
@@ -77,7 +77,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="money" value="100-All">
@@ -89,8 +89,8 @@
             </div>
             <div class="line">
                 <span>逾期时间 :</span>
-                <span class="sel" id="day_all">全部</span>
-                <span>
+                <span class="sel span-1" id="day_all">全部</span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="day" value="0-60">
@@ -99,7 +99,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="day" value="61-180">
@@ -108,7 +108,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="day" value="181-365">
@@ -117,7 +117,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="day" value="366-1095">
@@ -126,7 +126,7 @@
                   </label>
                 </div>
               </span>
-                <span>
+                <span class="span-2">
                 <div class="m-checkbox">
                   <label type="checkbox">
                     <input type="checkbox" name="day" value="1096-All">

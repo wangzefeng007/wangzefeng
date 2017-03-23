@@ -17,6 +17,12 @@ class Debt
         include template('Index');
     }
     /**
+     * @desc 前端测试静态页
+     */
+    public function Test(){
+      include template('Test');
+    }
+    /**
      * @desc  债务催收列表
      */
     public function DebtLists(){
