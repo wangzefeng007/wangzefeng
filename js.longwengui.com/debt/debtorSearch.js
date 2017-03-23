@@ -1,6 +1,8 @@
 $(function(){
   //声明当前页
   var cur_page;
+  //适配ie8
+  fixIE8Label();
 
   //添加下拉框事件
   addEventToDropdown("area", function(tar){
