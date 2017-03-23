@@ -33,7 +33,7 @@
   border: 1px solid #e6e6e6;
   border-radius: 2px;
 }
-.collection .wrap .filt-parm .search input[name='search'] {
+.collection .wrap .filt-parm .search button[name='search'] {
   border: 0;
   width: 102px;
   padding: 10px 0;
@@ -75,16 +75,16 @@
   margin-left: 5px;
   vertical-align: middle;
 }
-.collection .wrap .filt-parm .line span:nth-child(1) {
-  font-weight: bold;
+.collection .wrap .filt-parm .line .span-1 {
   margin-right: 16px;
 }
-.collection .wrap .filt-parm .line span:nth-child(n+2) {
+.collection .wrap .filt-parm .line span {
   padding: 4px 6px;
   margin-right: 10px;
 }
 .collection .wrap .filt-parm .line .sel {
   background-color: #35bdfc;
+  font-weight: bold;
   color: #fff;
   border-radius: 5px;
 }

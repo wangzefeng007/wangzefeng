@@ -1,6 +1,7 @@
 <?php
 $RouteArr=array(
     //'控制器小写@方法小写'=>'真实控制器名@真实方法名'
+    'debt@test'=>'Debt@Test',
     //债务催收
     'debt@index'=>'Debt@Index',
     'debt@debtlists'=>'Debt@DebtLists',
@@ -17,4 +18,3 @@ $RouteArr=array(
     'deadbeat@index'=>'DeadBeat@Index',
     //普通会员中心
 );
-

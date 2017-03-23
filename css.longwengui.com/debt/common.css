@@ -231,7 +231,9 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input {
+input,
+textarea {
+  color: #666;
   /* 1 */
   overflow: visible;
 }
@@ -469,11 +471,11 @@ a{
   font-size: 14px;
   color: #666666;
 }
-.top .wrap span:nth-child(1) {
+.top .wrap .span-1 {
   margin-right: 56px;
 }
-.top .wrap span:nth-child(3),
-.top .wrap span:nth-child(4) {
+.top .wrap .span-3,
+.top .wrap .span-4 {
   display: inline-block;
   float: right;
   min-width: 52px;
@@ -617,12 +619,12 @@ a{
   padding: 0 24px;
   float: left;
 }
-.block-t .t-wrap span:nth-of-type(1) {
+.block-t .t-wrap .span-1 {
   font-size: 24px;
   letter-spacing: 10px;
   color: #35bdfc;
 }
-.block-t .t-wrap span:nth-of-type(2) {
+.block-t .t-wrap .span-2 {
   font-size: 18px;
   color: #b2b2b2;
   margin-left: -10px;
@@ -1001,7 +1003,7 @@ a{
 .p-dropdown label,
 .c-dropdown label,
 .a-dropdown label {
-  color: #a9a9a9;
+  color: #666;
   width: 100%;
   display: inline-block;
 }
