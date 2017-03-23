@@ -21,17 +21,15 @@
 
             <div class="search">
                 <form action="/reword/" method="get">
-                  <span>悬赏搜索 :</span>
-                  <input type="text" name="K" id="keyword" value="{$Keyword}" placeholder="请输入姓名或身份证号">
-                  <input type="submit" id="btn_search" value="搜索">
-                  <div class="pub-wrap">
-                    <a href="/reword/publish/">
-                      <img src="/Uploads/Debt/imgs/edit.png" alt="">
-                      <button type="button" name="pub">
-                        发布悬赏
-                      </button>
-                    </a>
-                  </div>
+                    <span>悬赏搜索 :</span>
+                    <input type="text" name="K" id="keyword" value="{$Keyword}" placeholder="请输入姓名或身份证号">
+                    <input type="submit" id="btn_search" value="搜索">
+                        <div class="pub-wrap">
+                            <img src="/Uploads/Debt/imgs/edit.png" alt="">
+                            <button type="button" name="pub" onclick="javascript:window.location.href='/reword/publish/'">
+                                发布悬赏
+                            </button>
+                        </div>
                 </form>
             </div>
         </div>
