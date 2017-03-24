@@ -17,11 +17,11 @@
               <span>催收地区 :</span>
               <span class="sel span-1" data-id="0">全部</span>
               {loop $AreaList $lists}
-                <span class="span-2" data-id="1">
+                <span class="span-2" data-id="{$lists[AreaID]}">
                   {$lists[CnName]}
                 </span>
               {/loop}
-              <!-- <span>其他城市<img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span> -->
+              <span onclick="openCitySelector(otherCitySel)"><l id="other_city">其他城市</l><img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span>
             </div>
             <div class="line" id="money">
               <span>催收金额 :</span>

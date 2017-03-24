@@ -733,3 +733,165 @@ function toLogin(){
             + '</div>'
    });
 }
+
+//打开城市选择弹窗
+function openCitySelector(callback){
+  var index = layer.open(
+    {
+      type: 3,
+      title: false,
+      offset: '100px',
+      area: '460px',
+      closeBtn: 0,
+      shadeClose: true,
+      content: '<div class="city-picker">'
+              +    '<div class="city-head">'
+              +      '<li class="city-tab tab-sel" onclick="changeCityPickerTab(0, this)" data-name="省份">'
+              +        '省份'
+              +      '</li>'
+              +      '<li class="city-tab" onclick="changeCityPickerTab(1, this)" data-name="城市">'
+              +        '城市'
+              +      '</li>'
+              +      '<li class="city-tab" onclick="changeCityPickerTab(2, this)" data-name="地区">'
+              +        '地区'
+              +      '</li>'
+              +      '<span class="c-close" onclick="closeAll()">×</span>'
+              +    '</div>'
+              +    '<div class="city-body">'
+              +      '<div id="city_0"></div>'
+              +      '<div id="city_1"></div>'
+              +      '<div id="city_2"></div>'
+              +    '</div>'
+              +  '</div>'
+    }
+  );
+  getWinProvinceData(callback);
+}
+
+//获得省级元素
+function getWinProvinceData(callback){
+  $.ajax({
+    type: 'get',
+    dataType: 'json',
+    url: '/Templates/Debt/data/Province.json',
+    success: function(data){
+      var _html = '';
+      for(var i=0; i<data.length; i++){
+        _html +=   "<a data-id='"+ data[i].AreaID +"' data-name='" + data[i].CnName + "'>"
+                +     data[i].CnName
+                +  "</a>";
+      }
+
+      $('#city_0').html(_html);
+
+      $('#city_0 a').click(function(){
+        $('#city_0 .provS').removeClass('provS');
+        $(this).addClass('provS');
+        $('#city_0').hide();
+        $('#city_1').show();
+        $('#city_2').hide();
+        $('.tab-sel').removeClass('tab-sel');
+        $('.city-head li').eq(1).addClass('tab-sel');
+        getWinCityData($(this).attr('data-id'), callback);
+      });
+    }
+  });
+}
+//获得市级元素
+function getWinCityData(_pid, callback){
+  $.ajax(
+    {
+      type: "get",
+      dataType: "json",
+      url: "/Templates/Debt/data/City.json",
+      success: function(data){
+        var _city = [];
+        for(var i=0; i<data.length; i++){
+          if(data[i].ParentID == _pid){
+            _city.push(data[i]);
+          }
+        }
+        var _html = '';
+        for(var i=0; i<_city.length; i++){
+          _html  +=   "<a data-id='"+ _city[i].AreaID +"' data-name='" + _city[i].CnName + "'>"
+                  +     _city[i].CnName
+                  +  "</a>";
+        }
+        $('#city_1').html(_html);
+        $('#city_1 a').click(function(){
+          $('#city_1 .cityS').removeClass('cityS');
+          $(this).addClass('cityS');
+          $('#city_0').hide();
+          $('#city_1').hide();
+          $('#city_2').show();
+          $('.tab-sel').removeClass('tab-sel');
+          $('.city-head li').eq(2).addClass('tab-sel');
+          getWinAreaData($(this).attr('data-id'), callback);
+        });
+      }
+    }
+  );
+}
+//获得县级元素
+function getWinAreaData(_pid, callback){
+  $.ajax(
+    {
+      type: "get",
+      dataType: "json",
+      url: "/Templates/Debt/data/Area.json",
+      success: function(data){
+        var _area = [];
+        for(var i=0; i<data.length; i++){
+          if(data[i].ParentID == _pid){
+            _area.push(data[i]);
+          }
+        }
+        var _html = '';
+        for(var i=0; i<_area.length; i++){
+          _html  +=   "<a data-id='"+ _area[i].AreaID +"' data-name='" + _area[i].CnName + "'>"
+                  +     _area[i].CnName
+                  +  "</a>";
+        }
+        $('#city_2').html(_html);
+        $('#city_2 a').click(function(){
+          $('#city_2 .areaS').removeClass('areaS');
+          $(this).addClass('areaS');
+          $('#other_city').attr('data-id', $(this).attr('data-id'));
+          $('#other_city').html(
+            $(this).attr('data-name')
+          );
+          layer.closeAll();
+          callback();
+        });
+      }
+    }
+  );
+}
+
+//切换地区选择tab
+function changeCityPickerTab(index, tar){
+  $('.tab-sel').removeClass('tab-sel');
+  $(tar).addClass('tab-sel');
+  switch (index) {
+    case 0:
+      $('#city_0').show();
+      $('#city_1').hide();
+      $('#city_2').hide();
+      $('#city_1').html('');
+      $('#city_2').html('');
+      break;
+    case 1:
+      $('#city_0').hide();
+      $('#city_1').show();
+      $('#city_2').hide();
+      $('#city_2').html('');
+      break;
+    case 2:
+      $('#city_0').hide();
+      $('#city_1').hide();
+      $('#city_2').show();
+      break;
+    default:
+      return;
+  }
+}
