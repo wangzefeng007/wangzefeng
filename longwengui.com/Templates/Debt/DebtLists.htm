@@ -3,157 +3,82 @@
 <div class="collection">
     <div class="wrap">
         <div class="filt-parm">
-            <div class="line">
-                <span>催收方式 :</span>
-                <span class="sel span-1" id="way_all">全部</span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="way" value="1">
-                    <i></i>
-                    选择律师的债权
-                  </label>
-                </div>
+            <div class="line" id="way">
+              <span>催收方式 :</span>
+              <span class="sel span-1" data-id="0">全部</span>
+              <span class="span-2" data-id="1">
+                选择律师的债权
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="way" value="2">
-                    <i></i>
-                    选择催收团队的债权
-                  </label>
-                </div>
+              <span class="span-2" data-id="2">
+                选择催收团队的债权
               </span>
             </div>
-            <div class="line">
-                <span>催收地区 :</span>
-                <span class="sel span-1" id="area_all">全部</span>
-                {loop $AreaList $lists}
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="area" value="{$lists[AreaID]}"><i></i>{$lists[CnName]}</label>
-                </div>
-              </span>
-                {/loop}
-                <!-- <span>其他城市<img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span> -->
+            <div class="line" id="area">
+              <span>催收地区 :</span>
+              <span class="sel span-1" data-id="0">全部</span>
+              {loop $AreaList $lists}
+                <span class="span-2" data-id="1">
+                  {$lists[CnName]}
+                </span>
+              {/loop}
+              <!-- <span>其他城市<img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span> -->
             </div>
-            <div class="line">
-                <span>催收金额 :</span>
-                <span class="sel span-1" id="money_all">全部</span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="money" value="0-3">
-                    <i></i>
-                    3万以下
-                  </label>
-                </div>
+            <div class="line" id="money">
+              <span>催收金额 :</span>
+              <span class="sel span-1" data-id="0">全部</span>
+              <span class="span-2" data-id="1">
+                3万以下
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="money" value="3-10">
-                    <i></i>
-                    3万到10万
-                  </label>
-                </div>
+              <span class="span-2" data-id="2">
+                3万到10万
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="money" value="10-50">
-                    <i></i>
-                    10万到50万
-                  </label>
-                </div>
+              <span class="span-2" data-id="3">
+                10万到50万
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="money" value="50-100">
-                    <i></i>
-                    50万到100万
-                  </label>
-                </div>
+              <span class="span-2" data-id="4">
+                50万到100万
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="money" value="100-All">
-                    <i></i>
-                    100万以上
-                  </label>
-                </div>
+              <span class="span-2" data-id="5">
+                100万以上
               </span>
             </div>
-            <div class="line">
-                <span>逾期时间 :</span>
-                <span class="sel span-1" id="day_all">全部</span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="day" value="0-60">
-                    <i></i>
-                    0-60天
-                  </label>
-                </div>
+            <div class="line" id="day">
+              <span>逾期时间 :</span>
+              <span class="sel span-1" data-id="0">全部</span>
+              <span class="span-2" data-id="1">
+                0-60天
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="day" value="61-180">
-                    <i></i>
-                    61-180天
-                  </label>
-                </div>
+              <span class="span-2" data-id="2">
+                61-180天
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="day" value="181-365">
-                    <i></i>
-                    181-365天
-                  </label>
-                </div>
+              <span class="span-2" data-id="3">
+                181-365天
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="day" value="366-1095">
-                    <i></i>
-                    366-1095天
-                  </label>
-                </div>
+              <span class="span-2" data-id="4">
+                366-1095天
               </span>
-                <span class="span-2">
-                <div class="m-checkbox">
-                  <label type="checkbox">
-                    <input type="checkbox" name="day" value="1096-All">
-                    <i></i>
-                    1096天以上
-                  </label>
-                </div>
+              <span class="span-2" data-id="5">
+                1096天以上
               </span>
             </div>
             <div class="search">
-                <span>债务搜索 :</span>
-                <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
-                <button type="button" id="btn_search" name="search">
-                    搜索
-                </button>
-                <a href="/debt/publish/" target="_blank" title="发布债务">
+              <span>债务搜索 :</span>
+              <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
+              <button type="button" id="btn_search" name="search">
+                  搜索
+              </button>
+              <a href="/debt/publish/" target="_blank" title="发布债务">
                 <div class="pub-wrap">
                     <img src="/Uploads/Debt/imgs/edit.png" alt="">
                     <button type="button" name="pub">
                        发布债务
                     </button>
                 </div>
-                </a>
+              </a>
             </div>
         </div>
         <div class="table">
-            <div class="t">催收列表分类 :</div>
+            <div class="t">催收列表分类 : <span id="choices"></span></div>
             <div class="no-data">
               <img src="/Uploads/Debt/imgs/no_data.png" alt="">
             </div>
