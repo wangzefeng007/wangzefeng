@@ -3,7 +3,7 @@ $(function(){
   var cur_page;
   //给多选框添加点击事件
   addInputEventByNames(["way", "area", "money", "day"], function(name){
-    ajax(1);
+    ajax(1, true);
     if(isLimited(name)){
       $('#' + name + '_all').removeClass('sel');
     }else{
@@ -14,7 +14,7 @@ $(function(){
   addSearchEvent();
 
   addSelectAllEvent(["way", "area", "money", "day"], function(name){
-    ajax(1);
+    ajax(1, true);
     $('#' + name + '_all').addClass('sel');
   });
 
@@ -27,12 +27,14 @@ $(function(){
   };
 
   //ajax请求数据
-  function ajax(Page){
+  function ajax(Page, isSearched){
     var col_way = getCheckboxSelectedByName("way");
     var col_area = getCheckboxSelectedByName("area");
     var col_money = getCheckboxSelectedByName("money");
     var col_day = getCheckboxSelectedByName("day");
     var Keyword = $('#keyword').val();
+
+    console.log(isSearched);
 
     $.ajax({
           type: "post",	//提交类型
@@ -45,7 +47,7 @@ $(function(){
               'col_money': col_money, //催收金额 1- <3w; 2- 3~10w; 3- 10~50w; 4- 50~100w; 5- >100w
               'col_day': col_day, //逾期时间 1- 0~60d; 2- 61~180d; 3- 181~365d; 4- 366~1095; 5- 1096d以上
               'Page': Page, //当前页
-              'Keyword': Keyword, //搜索关键词
+              'Keyword': isSearched ? 'all' : Keyword, //搜索关键词
           },
           beforeSend: function () { //加载过程效果
               showLoading();

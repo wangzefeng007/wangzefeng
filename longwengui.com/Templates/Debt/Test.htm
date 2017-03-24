@@ -1,0 +1,57 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/login.css">
+<div class="login">
+  <div class="form-login">
+    <div class="hd">
+      会员登录
+    </div>
+    <div class="cont">
+      <div class="line">
+        <div class="info">
+          手机
+        </div>
+        <div class="det">
+          <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
+        </div>
+        <div class="error-hint">
+          请输入手机号！
+        </div>
+        <div class="error-hint">
+          您输入的手机号有误！
+        </div>
+      </div>
+      <div class="line">
+        <div class="info">
+          密码
+        </div>
+        <div class="det">
+          <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="请输入密码">
+        </div>
+        <div class="error-hint">
+          请输入密码!
+        </div>
+        <div class="error-hint">
+          密码不能少于6位！
+        </div>
+        <div class="error-hint">
+          密码格式有误！
+        </div>
+      </div>
+      <div class="forget-pass">
+        <span>忘记密码？</span>
+      </div>
+      <div class="line">
+        <div class="info">
+        </div>
+        <div class="det">
+          <button type="button" class="btn-login" onclick="login()" name="button">登 录</button>
+        </div>
+      </div>
+      <div class="hav">
+        还没有账号 <span>立即注册</span>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/login.js'></script>
