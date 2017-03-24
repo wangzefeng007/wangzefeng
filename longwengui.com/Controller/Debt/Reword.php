@@ -15,6 +15,7 @@ class Reword
      * @desc  线索悬赏列表
      */
     public function Index(){
+        $Title="线索悬赏-隆文贵不良资产处置";
         $Nav = 'rewordlists';
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
@@ -90,6 +91,7 @@ class Reword
      * @desc  发布悬赏
      */
     public function RewordPublish(){
+        $Title="发布悬赏-隆文贵不良资产处置";
         $Nav = 'rewordlists';
     include template('RewordPublish');
     }

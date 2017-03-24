@@ -101,6 +101,7 @@ class Debt
         }
         //债务人图片
         $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$ID,true);
+        $Title="债务详情-隆文贵不良资产处置";
         include template('DebtDetails');
     }
     /**
@@ -110,6 +111,7 @@ class Debt
     {
         $Nav='debt';
         $Type = intval($_GET['T']);
+        $Title="发布债务-隆文贵不良资产处置";
         if ($Type===1){
             include template('DebtPublishLawer');
         }elseif ($Type===2){

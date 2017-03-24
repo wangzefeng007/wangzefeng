@@ -1,4 +1,4 @@
-            {template Head}
+{template Head}
 <div class="wrapper">
 	<div class="row">
 		<div class="col-md-12">
@@ -50,7 +50,6 @@
 							<th>债务ID</th>
 							<th>债务编号</th>
 							<th>债务人姓名</th>
-							<th class="numeric">债务人地区</th>
 							<th class="numeric">债务金额</th>
 							<th class="numeric">逾期时间</th>
 							<th class="numeric">催收方式</th>
@@ -65,15 +64,14 @@
 							<td nowrap="nowrap">{$lists[DebtID]}</td>
 							<td nowrap="nowrap">{$lists[DebtNum]}</td>
 							<td nowrap="nowrap">{$lists[Name]}</td>
-							<td nowrap="nowrap">{$lists[Province]}-{$lists[City]}-{$lists[Area]}</td>
 							<td nowrap="nowrap">{$lists[DebtAmount]}</td>
 							<td nowrap="nowrap">{$lists[Overduetime]}</td>
-							<td nowrap="nowrap">{$CollectionType[$lists[CollectionType]]}</td>
+							<td nowrap="nowrap">{$lists[CollectionType]}</td>
 							<td nowrap="nowrap">{$lists[AddTime]}</td>
-							<td nowrap="nowrap">{$StatusInfo[$lists[Status]]}</td>
+							<td nowrap="nowrap">{$lists[Status]}</td>
 							<td>
 								<a class="getinfo" href="/index.php?Module=Debt&Action=DebtEdit&DebtID={$lists[DebtID]}">查看详情</a>
-                                                                <a href="javascript:void(0)" class="del" data-id="{$lists[DebtID]}" data-num="{$lists[DebtNum]}">删除</a>
+								<a href="javascript:void(0)" class="del" data-id="{$lists[DebtID]}" data-num="{$lists[DebtNum]}">删除</a>
 							</td>
 						</tr>
 						{/loop}
