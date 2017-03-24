@@ -52,6 +52,9 @@ $(function(){
           },
           success: function(data) {	//函数回调
               if(data.ResultCode == "200"){
+                   $('.no-data').hide();
+                   $('#collection_info').show();
+                   $('#collection_page_pagination').show();
                    dataSuccess(data.Data);
                    //获得当前页
                    cur_page = data.Page;
@@ -67,7 +70,9 @@ $(function(){
                    });
               }else{
                   layer.msg(data.Message);
-                    //后续添加无数据返回结果页面
+                  $('#collection_info').hide();
+                  $('#collection_page_pagination').hide();
+                  $('.no-data').show();
               }
           },
           complete: function () { //加载完成提示

@@ -131,6 +131,13 @@
 .collection .wrap .table .det {
   cursor: pointer;
 }
+.collection .wrap .table .no-data{
+  text-align: center;
+  display: none;
+  line-height: 428px;
+  height: 428px;
+  padding-top: 50px;
+}
 .collection .wrap .table table {
   width: 100%;
   border: 1px solid #e6e6e6;
