@@ -128,7 +128,7 @@ function reg(){
     {
       type: "get",
       dataType: "json",
-      url: "../data/reg.json",
+      url: "/Templates/Debt/data/reg.json",
       data: JSON.stringify(formData),
       beforeSend:　function(){
         showLoading();
@@ -137,7 +137,26 @@ function reg(){
         if(data.ResultCode == 200){
           $('#regForm').hide();
           $('.sel-role').show();
-          $('#regSuccessHint').show();
+          var index = layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            content:    '<div class="popup">'
+                      +    '<div class="hd">'
+                      +      '会员注册'
+                      +    '</div>'
+                      +    '<div class="cont">'
+                      +      '<div class="para">'
+                      +        '<img src="/Uploads/Debt/imgs/gou_b.png" alt="">'
+                      +        '恭喜您注册成功！'
+                      +      '</div>'
+                      +      '<div class="confirm-btn">'
+                      +        '<button type="button" onclick="closeAll()" name="button">确定</button>'
+                      +      '</div>'
+                      +     '</div>'
+                      +  '</div>'
+          });
         }else{
           showMsg(data.Message);
         }
@@ -169,7 +188,7 @@ function getCode(tar){
   $.ajax({
     type: 'get',
     dataType: 'json',
-    url: '../data/getCode.json',
+    url: '/Templates/Debt/data/getCode.json',
     data: {
       "phoneNumber": _phoneNumber
     },

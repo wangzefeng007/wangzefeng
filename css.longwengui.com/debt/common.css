@@ -827,46 +827,35 @@ a{
   color: #35bdfc;
   cursor: pointer;
 }
-.pop-hint {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(199, 199, 199, 0.6);
-  z-index: 100;
-  display: none;
-}
-.pop-hint .popup {
+.popup {
   width: 360px;
   margin: 0 auto;
   min-height: 260px;
-  margin-top: 240px;
   background-color: #fff;
 }
-.pop-hint .popup .hd {
+.popup .hd {
   line-height: 60px;
   background-color: #f5f5f5;
   color: #35bdfc;
   font-size: 20px;
   padding-left: 20px;
 }
-.pop-hint .popup .cont .para {
+.popup .cont .para {
   font-size: 18px;
   line-height: 20px;
   color: #666;
   padding: 50px 10px 50px;
   text-align: center;
 }
-.pop-hint .popup .cont .para img {
+.popup .cont .para img {
   vertical-align: middle;
   margin-top: -2px;
   margin-right: 5px;
 }
-.pop-hint .popup .cont .confirm-btn {
+.popup .cont .confirm-btn {
   text-align: center;
 }
-.pop-hint .popup .cont .confirm-btn button {
+.popup .cont .confirm-btn button {
   min-width: 120px;
   line-height: 40px;
   border: 0;

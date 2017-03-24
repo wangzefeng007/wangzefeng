@@ -610,3 +610,8 @@ function imageUpload(tar){
     });
   }
 }
+
+//关闭弹窗
+function closeAll(){
+  layer.closeAll();
+}
