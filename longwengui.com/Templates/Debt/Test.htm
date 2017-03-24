@@ -8,7 +8,7 @@
     <div class="cont">
       <div class="line">
         <div class="info">
-          手机
+          手 机
         </div>
         <div class="det">
           <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
@@ -22,7 +22,7 @@
       </div>
       <div class="line">
         <div class="info">
-          密码
+          密 码
         </div>
         <div class="det">
           <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="请输入密码">
@@ -35,6 +35,18 @@
         </div>
         <div class="error-hint">
           密码格式有误！
+        </div>
+      </div>
+      <div class="line" id="code" data-show="0">
+        <div class="info">
+          验证码
+        </div>
+        <div class="det">
+          <input type="text" name="code" class="input-3" maxlength="4" onblur="validateErr('code', this)"  placeholder="验证码">
+          <img src="/code/pic.jpg" onclick="this.src='/code/pic.jpg?'+Math.random();" class="v-code" alt="">
+        </div>
+        <div class="error-hint">
+          请输入验证码!
         </div>
       </div>
       <div class="forget-pass">

@@ -1,3 +1,4 @@
+var times;
 //失去焦点时表单验证
 function validateErr(type, tar){
   $('.error-hint').hide();
@@ -28,6 +29,11 @@ function validateErr(type, tar){
         return;
       }
       break;
+    case "code":
+      if(text == ''){
+        err_hint.eq(0).show();
+        return;
+      }
     default:
       return;
   }
@@ -37,9 +43,24 @@ function validateErr(type, tar){
 function validateForm(){
   var _phoneNumber = $("input[name='phoneNumber']").val();
   var _pass = $("input[name='pass']").val();
+  var _code;
 
-  if(_phoneNumber == '' || _pass == ''){
-    showMsg('请完善登录信息');
+  if($('#code').attr('data-show') == 1 && getCookie('PasswordErrTimes') == 3){
+    _code = $("input[name='code']").val();
+  }
+
+  if(_code && _code == ''){
+    showMsg('请输入验证码');
+    return;
+  }
+
+  if(_phoneNumber == ''){
+    showMsg('请填写手机号');
+    return false;
+  }
+
+  if(_pass == ''){
+    showMsg('请填写登录密码');
     return false;
   }
 
@@ -60,7 +81,8 @@ function validateForm(){
 
   return {
     "phoneNumber": _phoneNumber,
-    "password": _pass
+    "password": _pass,
+    "code": _code
   }
 }
 
@@ -70,11 +92,12 @@ function login(){
   if(!formData){
     return;
   }
+  console.log(121);
   $.ajax(
     {
       type: "get",
       dataType: "json",
-      url: "../data/login.json",
+      url: "/Templates/Debt/data/login.json",
       data: JSON.stringify(formData),
       beforeSend:　function(){
         showLoading();
@@ -85,6 +108,11 @@ function login(){
           //路由跳转
         }else{
           showMsg(data.Message);
+          times = getCookie('PasswordErrTimes');
+          if($('#code').attr('data-show') == 0 && times == 3){
+            $('#code').show();
+            $('#code').attr('data-show', 1);
+          }
         }
       },
       complete: function(){

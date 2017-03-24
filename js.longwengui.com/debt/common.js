@@ -615,3 +615,121 @@ function imageUpload(tar){
 function closeAll(){
   layer.closeAll();
 }
+
+//获得cookie
+function getCookie(name){
+  var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+  if(arr=document.cookie.match(reg))
+  return unescape(arr[2]);
+  else
+  return null;
+}
+
+//弹窗登录表单
+function daLogin(){
+  var formData = validateForm();
+  if(!formData){
+    return;
+  }
+  $.ajax(
+    {
+      type: "get",
+      dataType: "json",
+      url: "/Templates/Debt/data/login.json",
+      data: JSON.stringify(formData),
+      success: function(data){
+        if(data.ResultCode == 200){
+          showMsg('登录成功');
+          closeAll();
+          setTimeout(function(){
+            window.location.reload();
+          }, 500);
+        }else{
+          showMsg(data.Message);
+          times = getCookie('PasswordErrTimes');
+          if($('#code').attr('data-show') == 0 && times == 3){
+            $('#code').show();
+            $('#code').attr('data-show', 1);
+          }
+        }
+      }
+    }
+  )
+}
+
+//弹窗登录
+function toLogin(){
+  var index = layer.open({
+    type: 3,
+    title: false,
+    offset: '100px',
+    area: '460px',
+    closeBtn: 0,
+    shadeClose: true,
+    content:  '<div class="login">'
+            +'<div class="form-login">'
+            + '<div class="hd">'
+            +   '会员登录'
+            + '</div>'
+            + '<div class="cont">'
+            +   '<div class="line">'
+            +     '<div class="info">'
+            +       '手 机'
+            +     '</div>'
+            +     '<div class="det">'
+            +       '<input type="text" name="phoneNumber" onblur="validateErr(\'phoneNumber\', this)" class="input-1" placeholder="请输入您的手机号">'
+            +     '</div>'
+            +     '<div class="error-hint">'
+            +       '请输入手机号！'
+            +     '</div>'
+            +     '<div class="error-hint">'
+            +       '您输入的手机号有误！'
+            +     '</div>'
+            +   '</div>'
+            +   '<div class="line">'
+            +     '<div class="info">'
+            +       '密 码'
+            +     '</div>'
+            +     '<div class="det">'
+            +       '<input type="password" name="pass" maxlength="20" onblur="validateErr(\'pass\', this)" class="input-1" placeholder="请输入密码">'
+            +     '</div>'
+            +     '<div class="error-hint">'
+            +       '请输入密码!'
+            +     '</div>'
+            +     '<div class="error-hint">'
+            +       '密码不能少于6位！'
+            +     '</div>'
+            +     '<div class="error-hint">'
+            +       '密码格式有误！'
+            +     '</div>'
+            +   '</div>'
+            +   '<div class="line" id="code" data-show="0">'
+            +     '<div class="info">'
+            +       '验证码'
+            +     '</div>'
+            +     '<div class="det">'
+            +       '<input type="text" name="code" class="input-3" maxlength="4" onblur="validateErr(\'code\', this)"  placeholder="验证码">'
+            +       '<img src="/code/pic.jpg" onclick="this.src=\'/code/pic.jpg?\'+Math.random();" class="v-code" alt="">'
+            +     '</div>'
+            +     '<div class="error-hint">'
+            +       '请输入验证码!'
+            +     '</div>'
+            +   '</div>'
+            +   '<div class="forget-pass">'
+            +     '<span>忘记密码？</span>'
+            +   '</div>'
+            +   '<div class="line">'
+            +     '<div class="info">'
+            +     '</div>'
+            +     '<div class="det">'
+            +       '<button type="button" class="btn-login" onclick="daLogin()" name="button">登 录</button>'
+            +     '</div>'
+            +   '</div>'
+            +   '<div class="hav">'
+            +     '还没有账号 <span>立即注册</span>'
+            +   '</div>'
+            +  '</div>'
+            + '</div>'
+            + '</div>'
+   });
+}

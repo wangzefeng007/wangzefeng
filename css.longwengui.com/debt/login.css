@@ -10,9 +10,12 @@
   width: 10px;
   height: 6px;
 }
+.login{
+  width: 460px;
+}
 .login .form-login {
   width: 460px;
-  height: 360px;
+  min-height: 360px;
   margin: 40px auto;
   background-color: #fff;
   border: 1px solid #e6e6e6;
@@ -65,6 +68,19 @@
   border: 1px solid #e6e6e6;
   border-radius: 5px;
 }
+.login .form-login .cont .line .det .input-3 {
+  width: 106px;
+  padding: 12px 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+}
+.v-code{
+  vertical-align: middle;
+  margin-left: 10px;
+  width: 120px;
+  height: 40px;
+  margin-top: -1px;
+}
 .login .form-login .cont .line .det .comfirm-code {
   min-width: 100px;
   line-height: 40px;
@@ -92,10 +108,13 @@
   top: 47px;
   font-size: 12px;
 }
+#code{
+  display: none;
+}
 .login .form-login .cont .hav {
   text-align: center;
   color: #ccc;
-  margin-top: 15px;
+  margin: 15px 0;
 }
 .login .form-login .cont .hav span {
   color: #35bdfc;
