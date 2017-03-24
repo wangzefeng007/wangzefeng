@@ -21,6 +21,11 @@ $(function(){
     var area_sel = $("#area_sel").text();
     var id_num = $("#id_num").val();
 
+    if(key == ''){
+      showMsg('请输入必填');
+      return;
+    }
+
     $.ajax({
           type: "post",	//提交类型
           dataType: "json",	//提交数据类型
@@ -36,26 +41,32 @@ $(function(){
               showLoading();
           },
           success: function(data) {	//函数回调
-              //注入列表
-                if(data.ResultCode=='200'){
-                    cur_page = data.Page;
-                    dataSuccess(data.Data);
-                    // 注入分页
-                    injectPagination('#search_result_pagination', cur_page, data.PageCount, function(){
-                        $('#search_result_pagination').find('.b').click(function(){
-                            var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
-                            if(changeTo){
-                                ajax(changeTo);
-                            }
-                        });
-                    });
-                }else{
-                    layer.msg(data.Message);
-                }
-              // 获得当前页
-              cur_page = data.Page;
-
-
+            //注入列表
+              if(data.ResultCode=='200'){
+                  $('.result').show();
+                  $('.map').hide();
+                  $('#result').show();
+                  $('#search_result_pagination').show();
+                  $('.no-data').hide();
+                  cur_page = data.Page;
+                  dataSuccess(data.Data);
+                  // 注入分页
+                  injectPagination('#search_result_pagination', cur_page, data.PageCount, function(){
+                      $('#search_result_pagination').find('.b').click(function(){
+                          var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
+                          if(changeTo){
+                              ajax(changeTo);
+                          }
+                      });
+                  });
+              }else{
+                  layer.msg(data.Message);
+                  $('.result').show();
+                  $('.map').hide();
+                  $('#result').hide();
+                  $('#search_result_pagination').hide();
+                  $('.no-data').show();
+              }
           },
           complete: function () { //加载完成提示
               closeLoading();
@@ -65,8 +76,6 @@ $(function(){
 
   //注入dom
   function dataSuccess(data){
-    $('.map').hide();
-    $('.result').show();
     $('#result').empty();
     $('#search_result').tmpl(data).appendTo('#result');
     $('.result .tbl-wrap .i-5 img').click(function(){

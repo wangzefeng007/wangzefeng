@@ -12,7 +12,7 @@
 }
 .debtorSearch {
   width: 100%;
-  background: url('http://www.longwengui.net/Uploads/Debt/imgs/debtor_search_bg.png') 0 center no-repeat;
+  background: url('http://www.longwengui.net/Uploads/Debt/imgs/debtor_search_bg.png') repeat;
   min-height: 664px;
   padding-top: 74px;
   padding-bottom: 70px;
@@ -125,6 +125,11 @@
   padding: 0 30px;
   margin-top: 50px;
 }
+.debtorSearch .wrap .result .no-data{
+  display: none;
+  text-align: center;
+  margin-top: 140px;
+}
 .debtorSearch .wrap .result .current-loc {
   padding: 30px 0;
   line-height: 20px;
@@ -162,6 +167,11 @@
 .debtorSearch .wrap .result .tbl-wrap .bx .hd-wrap .i-3,
 .debtorSearch .wrap .result .tbl-wrap .bx .hd-wrap .i-4 {
   width: 170px;
+}
+.debtorSearch .wrap .result .tbl-wrap .bx .hd-wrap .i-1{
+  line-height: 25px;
+  vertical-align: middle;
+  padding: 10px 0;
 }
 .debtorSearch .wrap .result .tbl-wrap .bx .hd-wrap .i-2 {
   width: 360px;
