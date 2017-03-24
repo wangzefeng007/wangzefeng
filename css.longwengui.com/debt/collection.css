@@ -97,6 +97,14 @@
   line-height: 34px;
   padding-left: 10px;
 }
+#choices span{
+  margin-right: 5px;
+  padding: 2px 20px 2px 5px;
+  cursor: pointer;
+  color: #666;
+  background: url('http://www.longwengui.net/Uploads/Debt/imgs/close.png') 94% center no-repeat;
+  background-color: #e6e6e6;
+}
 .collection .wrap .table .m-c {
   color: #f85951;
 }
