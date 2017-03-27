@@ -92,7 +92,6 @@ function login(){
   if(!formData){
     return;
   }
-  console.log(121);
   $.ajax(
     {
       type: "get",
