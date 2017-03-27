@@ -423,7 +423,12 @@ function validate(type, text){
       return /^1[3|4|5|8][0-9]\d{8}$/.test(text) || /^0[\d]{2,3}-[\d]{7,8}$/.test(text);
       break;
     case 'chinese':
-      return /^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text);
+      for(var i=0; i<text.length; i++){
+        if(!(/^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text[i]))){
+          return false;
+        }
+      }
+      return true;
       break;
     case 'idNum':
       return /^\d{15}$/.test(text) || /^\d{17}(\d|X|x)$/.test(text);
@@ -435,11 +440,71 @@ function validate(type, text){
       return /^1[3|4|5|8][0-9]\d{8}$/.test(text);
     case 'password':
       return /^(\w){6,20}$/.test(text);
+    case 'email':
+      return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(text);
+    case 'qq':
+      return /^[1-9][0-9]{4,9}$/.test(text);
+    case 'creditNum':
+      return /^[0-9A-Z]{18}$/.test(text);
+    case 'lawJobNo':
+      return /^[0-9]{17}$/.test(text);
     default:
       return false;
   }
 }
 
+//律师执业证号验证
+function validateLawJobNo(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+  if(!validate('lawJobNo', _text)){
+    showTip(tar, '请输入正确的律师执业证号');
+    return;
+  }
+}
+//社会信用代码验证
+function validateCreditNum(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+  if(!validate('creditNum', _text)){
+    showTip(tar, '请输入正确的社会信用代码');
+    return;
+  }
+}
+//qq验证
+function validateQQ(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    if(isNeed){
+      showTip(tar, '请输入');
+    }
+    return;
+  }
+  if(!validate('qq', _text)){
+    showTip(tar, '请输入正确的qq');
+    return;
+  }
+}
+//邮箱验证
+function validateEmail(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    if(isNeed){
+      showTip(tar, '请输入');
+    }
+    return;
+  }
+  if(!validate('email', _text)){
+    showTip(tar, '请输入正确的邮箱');
+    return;
+  }
+}
 //号码验证
 function validatePhone(tar, isNeed){
   var _text = $(tar).val();
@@ -572,6 +637,7 @@ function imageUpload(tar){
       layer.msg('图片大小请不要超过' + _msg + '');
       return;
   }
+
 
   //验证图片格式
   if(!target[0].files[0].type.match(/image.*/)) {

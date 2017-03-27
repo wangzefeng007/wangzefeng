@@ -11,12 +11,12 @@
   height: 6px;
 }
 .login{
+  margin: 40px auto;
   width: 460px;
 }
 .login .form-login {
   width: 460px;
   min-height: 360px;
-  margin: 40px auto;
   background-color: #fff;
   border: 1px solid #e6e6e6;
   -moz-box-shadow: 0 0 2px #e6e6e6;

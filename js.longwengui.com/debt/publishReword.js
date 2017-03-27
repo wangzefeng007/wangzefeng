@@ -124,8 +124,6 @@ function ajax(){
       closeLoading();
     }
   });
-
-
 }
 
 //图片上传裁剪方法
