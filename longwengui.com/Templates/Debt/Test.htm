@@ -1,25 +1,16 @@
 {template Header}
-<link rel="stylesheet" href="{echo CssURL}/debt/debtorToAuth.css">
-<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
+<link rel="stylesheet" href="{echo CssURL}/debt/personRoleAuth.css">
 <link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
-<div class="debtor-auth">
+<div class="person-role-auth">
   <div class="wrap">
-    <div class="bx-wraper" >
+    <div class="bx-wraper">
       <div class="tl">
-        <div class="tb act" data-tab="person">
-          催客(个人)
-        </div>
-        <div class="tb" data-tab="company">
-          催收公司
-        </div>
-        <div class="tb" data-tab="lawer">
-          律师团队
-        </div>
+        个人用户
       </div>
-      <div class="cont tab-person" data-tab="person">
+      <div class="cont">
         <div class="role-img">
           <img src="/Uploads/Debt/imgs/user_for_auth.png" alt="">
-          <br><br>催客(个人)
+          <br><br>个人用户
         </div>
         <div class="info-form">
           <div class="line">
@@ -65,13 +56,6 @@
                     <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                   </label>
               </div>
-              <div class="bx-1">
-                  <div class="i-wrap"></div>
-                  <label>
-                    <span>+ 手持身份证</span>
-                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                  </label>
-              </div>
             </div>
           </div>
           <div class="line">
@@ -150,314 +134,10 @@
             <div class="if">
             </div>
             <div class="cont-in">
-              <button type="button" id="person_save" name="button">保 存</button>
+              <button type="button" id="person_role_auth_save" name="button">保 存</button>
             </div>
           </div>
 
-        </div>
-      </div>
-      <div class="cont tab-company" data-tab="company">
-        <div class="role-img">
-          <img src="/Uploads/Debt/imgs/debtor_company.png" alt="">
-          <br><br>催收公司
-        </div>
-        <div class="info-form">
-          <div class="line">
-            <div class="if">
-              公司名称<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateChinese(this)" name="companyName" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              注册人姓名<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateChinese(this)" name="registrantName" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              身份证号<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateIDNumber(this, true)" name="idNum" value="">
-            </div>
-          </div>
-          <div class="line-1">
-            <div class="if">
-              证件照片<span class="form-need">*</span>
-            </div>
-            <div class="cont-in" id="i_registrant">
-              <div class="bx-1-1">
-                  <div class="i-wrap"></div>
-                  <label>
-                    <span>+ 身份证正面</span>
-                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                  </label>
-              </div>
-              <div class="bx-1-1">
-                  <div class="i-wrap"></div>
-                  <label>
-                    <span>+ 身份证反面面</span>
-                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                  </label>
-              </div>
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              信用代码<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" name="creditNum" onblur="validateCreditNum(this)" value="" placeholder="统一社会信用代码">
-            </div>
-          </div>
-          <div class="line-1">
-            <div class="if">
-              营业执照<span class="form-need">*</span>
-            </div>
-            <div class="cont-in" id="i_license">
-              <div class="bx-1-1">
-                  <div class="i-wrap"></div>
-                  <label>
-                    <span>+ 营业执照副本</span>
-                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                  </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="line">
-            <div class="if">
-              省份<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="p-dropdown">
-                <label type="checkbox">
-                  <span>请选择</span>
-                  <i></i>
-                  <input type="checkbox" name="dd_province" value="">
-                  <ul></ul>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              城市<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="c-dropdown">
-                <label type="checkbox">
-                  <span>请选择</span>
-                  <i></i>
-                  <input type="checkbox" name="dd_city" value="">
-                  <ul></ul>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              区县<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="a-dropdown">
-                <label type="checkbox">
-                  <span>请选择</span>
-                  <i></i>
-                  <input type="checkbox" name="dd_area" value="">
-                  <ul></ul>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="line">
-            <div class="if">
-              详细地址
-            </div>
-            <div class="cont-in">
-              <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
-            </div>
-
-          </div>
-          <div class="line">
-            <div class="if">
-              QQ
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              邮箱
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateEmail(this, false)" name="email" value="">
-            </div>
-          </div>
-
-          <div class="line">
-            <div class="if">
-            </div>
-            <div class="cont-in">
-              <button type="button" id="company_save" name="button">保 存</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cont tab-lawer" data-tab="lawer">
-        <div class="role-img">
-          <img src="/Uploads/Debt/imgs/debtor_company.png" alt="">
-          <br><br>律师团队
-        </div>
-        <div class="info-form">
-          <div class="line">
-            <div class="if">
-              真实姓名<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" name="name" onblur="validateChinese(this)" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              身份证号<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              执业证号<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" name="jobNo" onblur="validateLawJobNo(this)" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              所属事务所<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateChinese(this)" name="office" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              年检到期日<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <input id='mydatepicker' type='text'/> 
-            </div>
-          </div>
-          <div class="line-1">
-            <div class="if">
-              律师资格证<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="bx-1-1">
-                <div class="i-wrap"></div>
-                <label>
-                  <span>+ 律师资格证照片页</span>
-                  <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                </label>
-              </div>
-              <div class="bx-1-1">
-                <div class="i-wrap"></div>
-                <label>
-                  <span>+ 律师资格证年检页</span>
-                  <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="line">
-            <div class="if">
-              省份<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="p-dropdown">
-                <label type="checkbox">
-                  <span>请选择</span>
-                  <i></i>
-                  <input type="checkbox" name="dd_province" value="">
-                  <ul></ul>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              城市<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="c-dropdown">
-                <label type="checkbox">
-                  <span>请选择</span>
-                  <i></i>
-                  <input type="checkbox" name="dd_city" value="">
-                  <ul></ul>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              区县<span class="form-need">*</span>
-            </div>
-            <div class="cont-in">
-              <div class="a-dropdown">
-                <label type="checkbox">
-                  <span>请选择</span>
-                  <i></i>
-                  <input type="checkbox" name="dd_area" value="">
-                  <ul></ul>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="line">
-            <div class="if">
-              详细地址
-            </div>
-            <div class="cont-in">
-              <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
-            </div>
-
-          </div>
-          <div class="line">
-            <div class="if">
-              QQ
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
-            </div>
-          </div>
-          <div class="line">
-            <div class="if">
-              邮箱
-            </div>
-            <div class="cont-in">
-              <input type="text" onblur="validateEmail(this, false)" name="email" value="">
-            </div>
-          </div>
-
-          <div class="line">
-            <div class="if">
-            </div>
-            <div class="cont-in">
-              <button type="button" id="lawer_save" name="button">保 存</button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -465,5 +145,4 @@
 </div>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
-<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
-<script src='{echo JsURL}/debt/debtorToAuth.js'></script>
+<script src='{echo JsURL}/debt/personRoleAuth.js'></script>
