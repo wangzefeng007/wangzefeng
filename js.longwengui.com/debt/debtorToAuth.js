@@ -414,6 +414,7 @@ $(function(){
       "idNum": idNum, //身份证号
       "jobNo": jobNo, //执业证号
       "office": office, //所属律师事务所
+      "inspectionDate": inspection_date, //年检时间
       "province": province, //省
       "city": city, //市
       "area": area, //县
