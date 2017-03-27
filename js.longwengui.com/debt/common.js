@@ -626,7 +626,7 @@ function getCookie(name){
 }
 
 //弹窗登录表单
-function daLogin(){
+function doLogin(){
   var formData = validateForm();
   if(!formData){
     return;
@@ -639,11 +639,10 @@ function daLogin(){
       data: JSON.stringify(formData),
       success: function(data){
         if(data.ResultCode == 200){
-          showMsg('登录成功');
           closeAll();
           setTimeout(function(){
-            window.location.reload();
-          }, 500);
+            showMsg('登录成功');
+          }, 300);
         }else{
           showMsg(data.Message);
           times = getCookie('PasswordErrTimes');
@@ -722,7 +721,7 @@ function toLogin(){
             +     '<div class="info">'
             +     '</div>'
             +     '<div class="det">'
-            +       '<button type="button" class="btn-login" onclick="daLogin()" name="button">登 录</button>'
+            +       '<button type="button" class="btn-login" onclick="doLogin()" name="button">登 录</button>'
             +     '</div>'
             +   '</div>'
             +   '<div class="hav">'
