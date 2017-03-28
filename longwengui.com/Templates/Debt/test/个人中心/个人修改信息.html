@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
   <div class="wrap">
     <div class="current-loc">
@@ -87,7 +88,10 @@
               <div class="head-portrait">
                 <img src="/Uploads/Debt/imgs/head_img.png" alt="">
                 <br>
-                <span>更改头像</span>
+                <label>
+                  <span>更改头像</span>
+                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                </label>
               </div>
               <div class="info-blk">
                 <div class="line">
@@ -115,61 +119,67 @@
             <div class="info-o">
               <div class="line">
                 <div class="if">
-                  昵称:
+                  手机号
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="发布者">
+                  15763948807
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  真实姓名:
+                  昵称<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="杨采采">
+                  <input type="text" name="nickName" maxlength="5" onblur="validateNeed(this)" placeholder="不超过5个字" value="发布者">
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  手机号码:
+                  真实姓名<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="13546588777">
+                  <input type="text" name="name" onblur="validateChinese(this)" value="杨采采">
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  身份证号:
+                  身份证号<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="350235135823541355">
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350235135823541355">
                 </div>
               </div>
               <div class="line-img">
                 <div class="if">
-                  证件照:
+                  证件照<span class="form-need">*</span>
                 </div>
                 <div class="cont">
                   <div class="bx">
                     <div class="img-wrap">
                     </div>
-                    + 身份证正面照
+                    <label>
+                      <span>+ 身份证正面照</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
                   </div>
                   <div class="bx">
                     <div class="img-wrap">
                     </div>
-                    + 身份证反面照
+                    <label>
+                      <span>+ 身份证反面照</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
                   </div>
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  所在地区:
+                  所在地区<span class="form-need">*</span>
                 </div>
                 <div class="cont">
                   <div class="p-dropdown">
                     <label type="checkbox">
-                      <span>*省份</span>
+                      <span data-id="1013">福建省</span>
                       <i></i>
                       <input type="checkbox" name="dd_province" value="">
                       <ul></ul>
@@ -177,7 +187,7 @@
                   </div>
                   <div class="c-dropdown">
                     <label type="checkbox">
-                      <span>*城市</span>
+                      <span data-id="1153">厦门市</span>
                       <i></i>
                       <input type="checkbox" name="dd_city" value="">
                       <ul></ul>
@@ -185,7 +195,7 @@
                   </div>
                   <div class="a-dropdown">
                     <label type="checkbox">
-                      <span>*区县/市</span>
+                      <span data-id="2538">思明区</span>
                       <i></i>
                       <input type="checkbox" name="dd_area" value="">
                       <ul></ul>
@@ -195,26 +205,26 @@
               </div>
               <div class="line">
                 <div class="if">
-                  详细地址:
+                  详细地址
                 </div>
                 <div class="cont">
-                  <textarea name="areaDetail" rows="2" maxlength="50" cols="80"></textarea>
+                  <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  QQ号码:
+                  QQ号码
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="">
+                  <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  邮箱地址:
+                  邮箱地址
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="">
+                  <input type="text" onblur="validateEmail(this, false)" name="email" value="">
                 </div>
               </div>
             </div>
@@ -223,7 +233,7 @@
 
         <div class="to-opt">
           <div class="cont">
-            <button type="button" name="save">保存</button>
+            <button type="button" id="save" name="save">保存</button>
             <button type="button" name="cancel">取消</button>
           </div>
         </div>
@@ -232,3 +242,5 @@
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>

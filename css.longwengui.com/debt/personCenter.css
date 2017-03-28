@@ -335,6 +335,8 @@
 }
 .menu-cont-wrap .menu-cont .show-info .info-cont .info-m .head-portrait img {
   width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
 .menu-cont-wrap .menu-cont .show-info .info-cont .info-m .head-portrait span {
   text-decoration: underline;
@@ -399,6 +401,14 @@
   height: 100px;
   background-color: #e9e9e9;
   margin-bottom: 10px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line-img .cont .bx .img-wrap img{
+  width: 150px;
+  height: 100px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line-img .cont .bx label span{
+  cursor: pointer;
+  color: #35bdfc;
 }
 .menu-cont-wrap .menu-cont .to-opt {
   padding: 0 20px;

@@ -607,7 +607,7 @@ function fixIE8Label(){
 }
 
 //图片裁剪上传
-function imageUpload(tar){
+function imageUpload(tar, callback){
   //提交方法执行类型
   var _type = $(tar).attr('data-type');
   //图片最大能上传多少
@@ -655,7 +655,11 @@ function imageUpload(tar){
             //图片BASE64处理
             var ImgBaseData = $image.cropper("getCroppedCanvas").toDataURL('image/jpeg');
             //执行提交方法
-            imagesInput(tar, ImgBaseData, index, _type);
+            if(typeof callback == 'function'){
+              callback(tar, ImgBaseData, index, _type);
+            }else{
+              imagesInput(tar, ImgBaseData, index, _type);
+            }
             //执行提交方法B
             // imagesInputB(ImgBaseData,index);
         },
