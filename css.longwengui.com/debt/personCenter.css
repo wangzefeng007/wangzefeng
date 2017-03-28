@@ -414,12 +414,16 @@
   padding: 0 20px;
   margin-top: 30px;
 	font-size: 14px;
+  line-height: 38px;
 }
 .menu-cont-wrap .menu-cont .to-opt .for-auth{
   float: right;
 }
 .menu-cont-wrap .menu-cont .to-opt .for-auth .waiting{
   color: #db3652;
+}
+.menu-cont-wrap .menu-cont .to-opt .cont{
+  display: inline-block;
 }
 .menu-cont-wrap .menu-cont .to-opt .for-auth button,
 .menu-cont-wrap .menu-cont .to-opt .cont button[name="edit"],
