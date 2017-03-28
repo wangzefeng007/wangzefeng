@@ -1,11 +1,11 @@
 .icon-tri_arrow_down_b {
-  background-image: url("../imgs/spriteIcon.png");
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
   background-position: -141px -107px;
   width: 14px;
   height: 9px;
 }
 .icon-tri_arrow_bl {
-  background-image: url("../imgs/spriteIcon.png");
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
   background-position: -66px -41px;
   width: 10px;
   height: 6px;
@@ -116,7 +116,6 @@
   width: 100%;
   border: 1px solid #e6e6e6;
   border-collapse: collapse;
-  margin-bottom: 24px;
 }
 .collection-details .wrap .info-wrap .rel-debt .table table thead tr {
   background-color: #f2f2f2;
@@ -137,6 +136,14 @@
   border-bottom: 1px solid #e6e6e6;
 }
 .collection-details .wrap .info-wrap .rel-debt .table table tbody tr td {
+  border-right: 1px solid #e6e6e6;
+}
+.collection-details .wrap .info-wrap .rel-debt .info-det{
+  line-height: 42px;
+  text-align: right;
+  padding-right: 20px;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
   border-right: 1px solid #e6e6e6;
 }
 .collection-details .wrap .info-wrap .form-wrap {
