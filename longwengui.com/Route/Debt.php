@@ -17,4 +17,5 @@ $RouteArr=array(
     //搜索老赖
     'deadbeat@index'=>'DeadBeat@Index',
     //普通会员中心
+    'member@login'=>'Member@Login',
 );
