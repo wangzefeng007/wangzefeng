@@ -13,10 +13,10 @@ class MemberRewardInfoModule extends CommonModule {
      * @desc 后台悬赏状态
      * @var array
      */
-    public $NStatus = [
+    public $NStatus = array(
         '1' => '未提交审核',
         '2' => '审核中',
         '3' => '悬赏中',
         '4' => '已完成',
-    ];
+    );
 }

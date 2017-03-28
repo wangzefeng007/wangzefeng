@@ -153,7 +153,7 @@ function compiled_save($tpl, $path, $template_sources) {
 	
 	$objfile = $path;
 	if (! @$fp = fopen ( $objfile, 'w' )) {
-		die ( "Directory '" . $templates_cfg ['templates_compiled_dir'] . "' not found or have no access!" );
+		die ( "Directory '" . $templates_cfg['templates_compiled_dir'] . "' not found or have no access!" );
 	}
 	flock ( $fp, 2 );
 	fwrite ( $fp, $template_sources );
