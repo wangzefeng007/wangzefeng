@@ -103,7 +103,7 @@ function reset(){
   $.ajax({
     type: "get",
     dataType: "json",
-    url: "../data/reset.json",
+    url: "/Templates/Debt/data/reset.json",
     data: JSON.stringify(formData),
     beforeSend:　function(){
       showLoading();
@@ -112,7 +112,7 @@ function reset(){
       if(data.ResultCode == 200){
         showMsg('重置成功');
         //重置成功跳转登录页面
-        window.location.href = './login.html';
+
       }else{
         showMsg(data.Message);
       }
@@ -138,7 +138,7 @@ function getCode(tar){
   $.ajax({
     type: 'get',
     dataType: 'json',
-    url: '../data/getCode.json',
+    url: '/Templates/Debt/data/getCode.json',
     data: {
       "phoneNumber": _phoneNumber
     },

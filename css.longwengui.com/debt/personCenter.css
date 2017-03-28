@@ -1,0 +1,537 @@
+.person-center .wrap {
+  width: 1180px;
+  margin: 0 auto;
+  color: #666;
+}
+.person-center .wrap .current-loc {
+  padding-top: 26px;
+  padding-bottom: 17px;
+  line-height: 20px;
+}
+.person-center .wrap .current-loc img {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.person-center .wrap .current-loc a {
+  text-decoration: none;
+  color: #666666;
+}
+.person-center .wrap .current-loc span {
+  color: #999;
+}
+.person-center .wrap .menu-cont-wrap {
+  margin-bottom: 100px;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar {
+  background-color: #2f88b1;
+  color: #fff;
+  width: 200px;
+  min-height: 1100px;
+  position: relative;
+  float: left;
+  -moz-box-shadow: 0 0 2px #e6e6e6;
+  box-shadow: 0 0 2px #e6e6e6;
+  border-radius: 5px;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .u-img {
+  border-radius: 50%;
+  margin: 30px auto 0 55px;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .nick-name {
+  text-align: center;
+  font-size: 14px;
+  margin: 20px 0 100px;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar button {
+  min-width: 80px;
+  line-height: 30px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: 0;
+  left: 55px;
+  top: 180px;
+  font-size: 14px;
+  position: absolute;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 {
+  font-size: 14px;
+  line-height: 40px;
+  position: relative;
+  cursor: pointer;
+  border-top: 1px solid #3e9dc9;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .i-left {
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 5px;
+  margin-left: 20px;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .i-right {
+  float: right;
+  margin-top: 16px;
+  margin-right: 15px;
+  transform: rotate(180deg);
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .img-sel {
+  transform: rotate(0deg);
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .menu-level-2-wrap {
+  /*display: none;*/
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .menu-level-2-wrap .menu-level-2 {
+  line-height: 36px;
+  padding-left: 44px;
+  background-color: #2d7ca1;
+  font-size: 14px;
+  cursor: pointer;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .menu-level-2-wrap .menu-level-2:hover, .person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1 .menu-level-2-wrap .menu-level-2-act {
+  background-color: #328bb4;
+  border-left: 4px solid #35bdfc;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1:last-child {
+  border-bottom: 1px solid #3e9dc9;
+}
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1-act,
+.person-center .wrap .menu-cont-wrap .menu-bar .menu-level-1:hover {
+  background-color: #319bcc;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont {
+  background-color: #fff;
+  width: 970px;
+  min-height: 1100px;
+  -moz-box-shadow: 0 0 2px #e6e6e6;
+  box-shadow: 0 0 2px #e6e6e6;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  margin-left: 210px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .tab-hd {
+  background-color: #c2ebfe;
+  color: #666;
+  height: 40px;
+  line-height: 40px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .tab-hd .tb {
+  min-width: 112px;
+  padding: 0 10px;
+  cursor: pointer;
+  float: left;
+  text-align: center;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .tab-hd .act {
+  background-color: #fff;
+  color: #35bdfc;
+}
+
+/*修改密码&绑定手机*/
+.person-center .change-pass{
+  padding: 50px 42px;
+}
+.person-center .change-pass .line{
+  line-height: 45px;
+  font-size: 14px;
+
+}
+.person-center .change-pass .line .lab{
+  width: 80px;
+  float: left;
+  height: 30px;
+}
+.person-center .change-pass .line input{
+  padding: 6px 10px;
+  width: 240px;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  font-size: 14px;
+}
+.person-center .change-pass .line .cont .error-hint{
+  color: #fc3535;
+  margin-left: 5px;
+  display: none;
+}
+.person-center .change-pass .line .cont button{
+  border: none;
+	background-color: #35bdfc;
+  cursor: pointer;
+  color: #FFFFFF;
+	width: 262px;
+	height: 36px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+/*投诉建议*/
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .complaint{
+	padding: 20px 0;
+	margin: 0 20px;
+	border-bottom: 1px dashed #E6E6E6;
+}
+.complaint .complaint-info{
+	overflow: hidden;
+}
+.complaint .complaint-info .leb{
+	float: left;
+	width: 100px;
+	line-height: 30px;
+}
+.complaint .complaint-info .complaint-inp{
+	float: left;
+	width: 750px;
+	padding: 0 10px;
+	min-height: 150px;
+	line-height: 30px;
+	font-size: 14px;
+	border-color: #E6E6E6;
+	outline: none;
+	color: #666666;
+}
+.complaint .complaint-info button{
+	border: none;
+	outline: none;
+	background-color: #35bdfc;
+	color: #FFFFFF;
+	margin-left: 100px;
+	width: 100px;
+	height: 36px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+/*个人、企业、律师信息*/
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-m {
+  margin: 0 20px;
+  padding: 20px 0;
+  border-bottom: 1px dashed #e6e6e6;
+  height: 100px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-m .head-portrait {
+  text-align: center;
+  width: 106px;
+  float: left;
+  margin-right: 40px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-m .head-portrait img {
+  width: 80px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-m .head-portrait span {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #35bdfc;
+  font-size: 14px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-m .info-blk {
+  float: left;
+  width: 340px;
+  font-size: 14px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-m .info-blk .line {
+  line-height: 37px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o {
+  margin: 20px 20px 0 20px;
+  font-size: 14px;
+  padding-bottom: 30px;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line {
+  line-height: 45px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line .cont input{
+	padding: 6px 10px;
+  width: 320px;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  font-size: 14px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line .cont textarea{
+	width: 320px;
+  padding: 6px 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: -8px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line .if {
+  width: 116px;
+  margin-left: 30px;
+  float: left;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line-img{
+  margin: 10px 0;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line-img .if {
+  width: 116px;
+  margin-left: 30px;
+  float: left;
+  line-height: 50px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line-img .cont .bx {
+  text-align: center;
+  display: inline-block;
+  margin-right: 15px;
+}
+.menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line-img .cont .bx .img-wrap {
+  width: 150px;
+  height: 100px;
+  background-color: #e9e9e9;
+  margin-bottom: 10px;
+}
+.menu-cont-wrap .menu-cont .to-opt {
+  padding: 0 20px;
+  margin-top: 30px;
+	font-size: 14px;
+}
+.menu-cont-wrap .menu-cont .to-opt .cont button[name="edit"],
+.menu-cont-wrap .menu-cont .to-opt .cont button[name="save"] {
+  min-width: 90px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.menu-cont-wrap .menu-cont .to-opt .cont button[name="cancel"]{
+	min-width: 90px;
+  line-height: 36px;
+  border: 0;
+  background-color: #b3b3b3;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+	margin-left: 5px;
+}
+
+/*系统消息*/
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .sys-info{
+	margin: 0 20px;
+	padding: 20px 0;
+}
+.sys-info .sys-info-list{
+	list-style: none;
+	margin: 0;
+	padding: 0 10px;
+}
+.sys-info .sys-info-list .sys-info-li{
+	line-height: 36px;
+	height: 36px;
+	border-bottom: 1px dashed #e5e5e5;
+}
+.sys-info .sys-info-list .sys-info-li a{
+	text-decoration: none;
+	color: #666666;
+	font-size: 14px;
+}
+.sys-info .sys-info-list .sys-info-li img{
+	vertical-align: middle;
+	margin-top: -2px;
+}
+.sys-info .sys-info-list .sys-info-li span{
+	float: right;
+	font-size: 13px;
+	color: #999999;
+}
+
+/*发布悬赏*/
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .clue{
+	margin: 0 10px;
+	padding: 10px 0;
+}
+
+/*公共部分start*/
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-hd{
+	line-height: 60px;
+	height: 60px;
+	margin: 0 10px;
+	border-bottom: 1px dashed #E6E6E6;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-hd .send{
+	float: right;
+	height: 32px;
+	line-height: 32px;
+	margin-top: 14px;
+	border: none;
+	outline: none;
+	padding: 0 15px;
+	background-color: #35BDFC;
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-hd .send img{
+	vertical-align: middle;
+	margin-top: -3px;
+	margin-right: 5px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select{
+	padding: 0;
+	margin: 0;
+	margin: 0 10px;
+	height: 44px;
+	line-height: 44px;
+	border-bottom: 1px dashed #E6E6E6;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select *{
+	display: inline;
+	margin: 0;
+	cursor: default;
+	font-size: 14px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
+	padding: 5px 10px;
+	margin: 0 5px;
+	font-size: 12px;
+	border-radius: 5px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd.cont-select-act{
+	background-color: #35bdfc;
+	color: #fff;
+}
+/*公共部分end*/
+
+.clue .clue-list{
+	margin-top: 10px;
+}
+.clue .list-details{
+	padding: 10px 10px 0 10px;
+	margin-bottom: 10px;
+	height: 170px;
+	border: 1px solid #e6e6e6;
+	position: relative;
+}
+.clue .details-pt{
+	float: left;
+	width: 350px;
+	margin-right: 10px;
+}
+.clue .details-pt .details-pt-big{
+	float: left;
+	width: 200px;
+	height: 160px;
+	margin-right: 10px;
+	background-color: #999;
+}
+.clue .details-pt .details-pt-small{
+	float: left;
+	width: 60px;
+	height: 48px;
+	margin-right: 10px;
+	margin-bottom: 8px;
+	background-color: #999;
+}
+.clue .details-txt{
+	float: left;
+	width: 560px;
+}
+.clue .details-txt .details-txt-cont{
+	line-height: 25px;
+	font-size: 14px;
+}
+.clue .details-txt .details-txt-cont span{
+	color: #f00;
+}
+.clue .details-txt .details-txt-cont-last{
+	line-height: 36px;
+	height: 36px;
+	border-top: 1px dashed #E6E6E6;
+	font-style: italic;
+}
+.clue .details-txt .details-txt-cont-last button{
+	height: 24px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	background-color: #35bdfc;
+	float: right;
+	font-size: 12px;
+	color: #fff;
+	margin-top: 6px;
+	padding: 0 15px;
+}
+.clue .list-details .details-over{
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	right: 30px;
+	top: 30px;
+}
+
+/*浏览过的债务*/
+/*公共表格样式start*/
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .debt{
+	margin: 0 10px;
+	padding: 10px 0;
+}
+.debt .debt-table{
+	border-top: 1px solid #e6e6e6;
+	border-left: 1px solid #e6e6e6;
+}
+.debt .debt-table td{
+	border-right: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+	font-size: 13px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.debt .debt-table td.color-red{
+	color: #f00;
+}
+.debt .debt-table td.color-blue{
+	color: #2f88b1;
+}
+.debt .debt-table thead{
+	background-color: #f2f2f2;
+	font-weight: bold;
+}
+.debt .debt-table tr:hover{
+	background-color: #f8f8f8;
+}
+.debt .debt-table a.details-enter{
+	text-decoration: none;
+	color: #666;
+	padding: 0 8px;
+}
+.debt .debt-table a.details-enter:hover{
+	text-decoration: underline;
+}
+.debt .debt-table button{
+	text-decoration: underline;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+	color: #666;
+}
+.debt .debt-table a.oper{
+	color: #f00;
+	margin: 0 5px;
+}
+
+
+/*债权接单*/
+.debt-table td .see,.debt-table td .modify,.debt-table td .del{
+	color: #fff;
+	margin: 0 10px;
+	text-decoration: none;
+	border-radius: 5px;
+}
+.debt-table td a.see{
+	background-color: #35bdfc;
+	padding: 2px 8px;
+}
+.debt-table td a.modify{
+	background-color: #328bb4;
+	padding: 2px 8px;
+}
+.debt-table td a.del{
+	background-color: #999;
+	padding: 2px 8px;
+}
