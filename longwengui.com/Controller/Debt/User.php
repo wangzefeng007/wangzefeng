@@ -5,7 +5,7 @@
 class User
 {
     public function __construct() {
-        echo 1;exit;
+       // echo 1;exit;
         $_SESSION ['UserID']=1;
     }
     /**
