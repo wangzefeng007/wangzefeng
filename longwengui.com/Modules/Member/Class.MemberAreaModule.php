@@ -8,7 +8,7 @@ class MemberAreaModule extends CommonModule {
 
     public $KeyID = 'AreaID';
     public $TableName = 'member_area';
-    public $Province= [
+    public $Province= array(
         "1001"=> "北京市",
         "1002"=> "天津市",
         "1003"=> "河北省",
@@ -43,8 +43,8 @@ class MemberAreaModule extends CommonModule {
         "1032"=> "台湾省",
         "1033"=> "香港特别行政区",
         "1034"=> "澳门特别行政区"
-    ];
-    public $City= [
+    );
+    public $City= array(
         "1035"=> "市辖区",
         "1036"=> "县",
         "1037"=> "市辖区",
@@ -390,8 +390,8 @@ class MemberAreaModule extends CommonModule {
         "1377"=> "塔城地区",
         "1378"=> "阿勒泰地区",
         "1379"=> "省直辖行政单位"
-    ];
-    public $Area = [
+    );
+    public $Area = array(
         "1380"=> "东城区",
         "1381"=> "西城区",
         "1382"=> "崇文区",
@@ -3536,5 +3536,5 @@ class MemberAreaModule extends CommonModule {
         "4521"=> "阿拉尔市",
         "4522"=> "图木舒克市",
         "4523"=> "五家渠市"
-    ];
+    );
 }
