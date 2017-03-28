@@ -19,6 +19,7 @@
   color: #666666;
 }
 .public-for-lawer .wrap .m-dropdown {
+  font-size: 14px;
   display: inline-block;
   width: 120px;
   height: 30px;
@@ -259,6 +260,71 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way{
+  position: absolute;
+  right: 46px;
+  top: 4px;
+  font-size: 14px;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown {
+  display: inline-block;
+  margin-left: 15px;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label {
+  color: #a9a9a9;
+  width: 100%;
+  display: inline-block;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label i {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label input[type="checkbox"] {
+  display: none;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label ul {
+  display: none;
+  width: 100px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  z-index: 100;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  height: 62px;
+  border: 1px solid #e6e6e6;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label ul li {
+  padding-left: 16px;
+  line-height: 30px;
+  cursor: pointer;
+  text-align: left;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label ul li:hover {
+  background-color: #35bdfc;
+  color: #fff;
+}
+.public-for-lawer .wrap .form-wrap .box .sub-btn .change-way .m-dropdown label input[type="checkbox"]:checked + ul {
+  display: block;
+}
+
 .public-for-lawer .wrap .form-wrap .box .arounce {
   text-align: center;
   color: #fc4c4c;
