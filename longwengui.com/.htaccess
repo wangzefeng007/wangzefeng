@@ -24,4 +24,9 @@ RewriteRule ^find/team/([0-9]+)(|\/)$ /Index.php?Module=Find&Action=Team&T=$1 [Q
 RewriteRule ^deadbeat(|\/)$ /Index.php?Module=DeadBeat&Action=Index [QSA]
 RewriteRule ^ajax.html$ /Index.php?Module=Ajax&Action=Index [QSA]
 
+#通用地址
+RewriteRule ^([a-z]+)(|\/)$ /Index.php?Module=$1 [QSA]
+RewriteRule ^([a-z]+)/([a-z]+)(|\/)$ /Index.php?Module=$1&Action=$2 [QSA]
+RewriteRule ^([a-z]+)_([a-z]+)(|\/)$ /Index.php?Module=$1&Action=$2 [QSA]
+
 </IfModule>

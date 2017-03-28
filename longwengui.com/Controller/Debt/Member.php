@@ -1,8 +1,8 @@
 <?php
 /**
- * @desc  普通用户会员中心
+ * @desc  会员登录注册
  */
-class User
+class Member
 {
     public function __construct() {
        // echo 1;exit;
@@ -13,13 +13,13 @@ class User
      */
     public function Index()
     {
-        $Title = '会员中心首页';
     }
     /**
      * @desc 登入页或登录操作
      */
     public function  Login(){
-
+        var_dump(1);exit;
+        include template('MemberLogin');
     }
     /**
      * @desc  退出登录
@@ -39,14 +39,16 @@ class User
     public function Register()
     {
         $Title = '会员登录_注册';
+        include template('MemberRegister');
     }
     /**
      * @desc  找回密码
      */
-    public function RetrievePassword()
+    public function FindPasswd()
     {
         UserService::IsLogin();
         $Title = '会员登录_找回密码';
+        include template('MemberFindPasswd');
     }
     /**
      * @desc 更改/绑定手机
@@ -54,6 +56,7 @@ class User
     public function ChangeMobile()
     {
         $Title = '会员登录_绑定手机';
+        include template('MemberChangeMobile');
     }
     /**
      * @desc  发布债务
