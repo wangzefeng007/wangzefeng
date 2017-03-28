@@ -380,7 +380,19 @@
         <div class="sub-btn">
           <button type="button" id="publish" class="btn-pub" name="button">发布债务</button>
           <button type="button" class="btn-pub" onclick="javascript:window.location.reload();" name="button">重置</button>
-          <span class="give-up">放弃催收公司, <span>选择律师团队</span></span>
+          <span class="change-way">切换催收方式
+            <div class="m-dropdown">
+              <label type="checkbox">
+                <span>催收公司</span>
+                <i></i>
+                <input type="checkbox" value="">
+                <ul>
+                  <li onclick="go('http://www.longwengui.net/debt/publish/3')">自助催收</li>
+                  <li onclick="go('http://www.longwengui.net/debt/publish/1')">律师团队</li>
+                </ul>
+              </label>
+            </div>
+          </span>
         </div>
 
         <div class="arounce">
