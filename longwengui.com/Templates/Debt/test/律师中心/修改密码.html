@@ -10,7 +10,7 @@
       <div class="menu-bar">
         <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
         <div class="nick-name">
-          昵称
+          13546588777
         </div>
         <button type="button" name="button">已认证</button>
         <div class="menu-level-1  menu-level-1-act">
@@ -56,9 +56,15 @@
               原密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" maxlength="20" onblur="validatePass(this)" name="oldPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *请输入密码
+              </span>
+              <span class="error-hint">
+                *密码不能少于6位！
+              </span>
+              <span class="error-hint">
+                *密码为6-20位数字、字母、下划线
               </span>
             </div>
           </div>
@@ -67,9 +73,15 @@
               新密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" maxlength="20" onblur="validatePass(this)" name="newPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *请输入密码
+              </span>
+              <span class="error-hint">
+                *密码不能少于6位！
+              </span>
+              <span class="error-hint">
+                *密码为6-20位数字、字母、下划线
               </span>
             </div>
           </div>
@@ -78,16 +90,16 @@
               重复密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" onblur="validateComfirmPass()" name="comfirmPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *两次密码输入不一致
               </span>
             </div>
           </div>
           <div class="line">
             <div class="lab"></div>
             <div class="cont">
-              <button type="button" name="button">确认修改</button>
+              <button type="button" id="change_pass" name="button">确认修改</button>
             </div>
           </div>
         </div>
@@ -97,3 +109,4 @@
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/changePass.js'></script>

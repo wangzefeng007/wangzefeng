@@ -4,7 +4,7 @@
   <div class="wrap">
     <div class="current-loc">
       <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-      当前位置 > 个人中心 > <span>企业信息</span>
+      当前位置 > 个人中心 > <span>个人信息</span>
     </div>
     <div class="menu-cont-wrap">
       <div class="menu-bar">
@@ -15,17 +15,54 @@
         <button type="button" name="button">已认证</button>
         <div class="menu-level-1  menu-level-1-act">
           <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
-          企业信息
+          个人信息
         </div>
         <div class="menu-level-1" data-open="0" can-down='1'>
           <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
           债权管理
           <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
           <div class="menu-level-2-wrap">
+            <div class="menu-level-2">我的债权</div>
+            <div class="menu-level-2">我的负债</div>
+            <div class="menu-level-2">订单管理</div>
+            <div class="menu-level-2">浏览过的债务</div>
+          </div>
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          关注
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2">我关注的债务</div>
+            <div class="menu-level-2">提前关注</div>
+          </div>
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          范本下载
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          代理
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2">申请代理</div>
+            <div class="menu-level-2">已代理区域</div>
+          </div>
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          推荐人/我的推荐人
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          催客权益
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
             <div class="menu-level-2">申请的债权</div>
-            <div class="menu-level-2">债权接单</div>
             <div class="menu-level-2">浏览过的债权</div>
-            <div class="menu-level-2">发布悬赏</div>
+            <div class="menu-level-2">寻找同城催客</div>
+            <div class="menu-level-2">联盟催客</div>
           </div>
         </div>
         <div class="menu-level-1">
@@ -56,9 +93,15 @@
               原密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" maxlength="20" onblur="validatePass(this)" name="oldPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *请输入密码
+              </span>
+              <span class="error-hint">
+                *密码不能少于6位！
+              </span>
+              <span class="error-hint">
+                *密码为6-20位数字、字母、下划线
               </span>
             </div>
           </div>
@@ -67,9 +110,15 @@
               新密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" maxlength="20" onblur="validatePass(this)" name="newPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *请输入密码
+              </span>
+              <span class="error-hint">
+                *密码不能少于6位！
+              </span>
+              <span class="error-hint">
+                *密码为6-20位数字、字母、下划线
               </span>
             </div>
           </div>
@@ -78,16 +127,16 @@
               重复密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" onblur="validateComfirmPass()" name="comfirmPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *两次密码输入不一致
               </span>
             </div>
           </div>
           <div class="line">
             <div class="lab"></div>
             <div class="cont">
-              <button type="button" name="button">确认修改</button>
+              <button type="button" id="change_pass" name="button">确认修改</button>
             </div>
           </div>
         </div>
@@ -97,3 +146,4 @@
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/changePass.js'></script>

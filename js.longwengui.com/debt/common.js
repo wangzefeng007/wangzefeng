@@ -967,3 +967,28 @@ function changeCityPickerTab(index, tar){
       return;
   }
 }
+
+//退出登录
+$('#login_out').click(function(){
+  loginOut();
+});
+function loginOut(){
+  $.ajax({
+    type: "get",
+    url: "/Templates/Debt/data/loginout.json",
+    dataType: "json",
+    beforeSend: function(){
+      showLoading();
+    },
+    success: function(data){
+      if(data.ResultCode == 200){
+        showMsg('退出成功');
+        //跳转到首页
+
+      }
+    },
+    complete: function(){
+      closeLoading();
+    }
+  })
+}
