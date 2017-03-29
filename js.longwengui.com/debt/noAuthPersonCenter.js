@@ -1,68 +1,47 @@
 $(function(){
   initArea();
 
+  //保存修改
   $('#save').click(function(){
-    var company_name = $('input[name="companyName"]').val();
-    var registrant_name = $('input[name="registrantName"]').val();
+    var nick_name = $('input[name="nickName"]').val();
+    var name = $('input[name="name"]').val();
     var idNum = $('input[name="idNum"]').val();
-    var credit_num = $('input[name="creditNum"]').val();
     var province = $('input[name="dd_province"]').siblings('span').attr('data-id');
     var city = $('input[name="dd_city"]').siblings('span').attr('data-id');
     var area = $('input[name="dd_area"]').siblings('span').attr('data-id');
-    var registrant_images = []; //证明图片
-    var license;
+    var images = []; //证明图片
 
-    if(company_name == ''){
-      showMsg('请输入您的公司名称');
-      return;
-    }
-    if(!validate('chinese', company_name)){
-      showMsg('公司名称只能为中文');
+    if(nick_name == ''){
+      showMsg('昵称不能为空');
       return;
     }
 
-    if(registrant_name == ''){
-      showMsg('请输入公司注册人姓名');
+    if(name == ''){
+      showMsg('姓名不能为空');
       return;
     }
-    if(!validate('chinese', registrant_name)){
+    if(!validate('chinese', name)){
       showMsg('姓名只能为中文');
       return;
     }
 
     if(idNum == ''){
-      showMsg('请输入公司注册人身份证号');
+      showMsg('身份证号不能为空');
       return;
     }
     if(!validate('idNum', idNum)){
-      showMsg('请输入正确的身份证号');
+      showMsg('身份证号输入有误');
       return;
     }
 
-    $('#i_registrant .img-wrap').each(function(){
+    $('.img-wrap').each(function(){
       if($(this).children('img').attr('src')){
-        registrant_images.push($(this).children('img').attr('src'));
+        images.push($(this).children('img').attr('src'));
       }
     });
 
-    if(registrant_images.length != 2){
-      showMsg('请上传所需的身份证照片');
-      return;
-    }
-
-    if(credit_num == ''){
-      showMsg('请输入信用代码');
-      return;
-    }
-    if(!validate('creditNum', credit_num)){
-      showMsg('请输入正确的信用代码');
-      return;
-    }
-
-    if($('#i_license .img-wrap').children('img').attr('src')){
-      license = $('#i_license .img-wrap').children('img').attr('src');
-    }else{
-      showMsg('请上传所需的营业执照');
+    if(images.length != 2){
+      showMsg('请上传所需的证件照片');
       return;
     }
 
@@ -70,6 +49,7 @@ $(function(){
       showMsg('请输入完整的地址信息');
       return;
     }
+
 
     var area_detail = $('textarea[name="areaDetail"]').val();
     var qq = $('input[name="qq"]').val();
@@ -87,22 +67,19 @@ $(function(){
     }
 
     ajax({
-      "companyName": company_name, //催收公司名称
-      "registrantName": registrant_name, //公司注册人姓名
-      "idNum": idNum, //注册人身份证号
-      "creditNum": credit_num, //信用代码
+      "nickName": nick_name, //昵称
+      "name": name, //姓名
+      "idNum": idNum, //身份证号
       "province": province, //省
       "city": city, //市
       "area": area, //县
-      "registrantImages": registrant_images, //注册人身份证照
-      "license": license, //营业执照照片
+      "images": images, //身份证照
       "areaDetail": area_detail, //详细地址
       "qq": qq, //qq
       "email": email, //邮箱
       "headImg": head_img //头像
     });
   });
-
   function ajax(formData){
     $.ajax({
       type: "get",
@@ -115,7 +92,7 @@ $(function(){
       success: function(data){
         if(data.ResultCode == 200){
           showMsg('保存成功');
-          //路由跳转展示页面
+          //路由跳转未认证展示页面
 
         }else{
           showMsg(data.Message);

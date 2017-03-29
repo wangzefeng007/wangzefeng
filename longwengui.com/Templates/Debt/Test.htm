@@ -1,0 +1,229 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="person-center">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      当前位置 > 个人中心 > <span>企业信息</span>
+    </div>
+    <div class="menu-cont-wrap">
+      <div class="menu-bar">
+        <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+        <div class="nick-name">
+          13546588777
+        </div>
+        <button type="button" name="button">已认证</button>
+        <div class="menu-level-1  menu-level-1-act">
+          <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+          企业信息
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          债权管理
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2">申请的债权</div>
+            <div class="menu-level-2">债权接单</div>
+            <div class="menu-level-2">浏览过的债权</div>
+            <div class="menu-level-2">发布悬赏</div>
+          </div>
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          系统信息
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+          投诉建议
+        </div>
+      </div>
+      <div class="menu-cont">
+        <div class="tab-hd">
+          <div class="tb act">
+            企业信息
+          </div>
+        </div>
+
+        <div class="show-info">
+          <div class="info-cont">
+            <div class="info-m">
+              <div class="head-portrait">
+                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                <br>
+                <label>
+                  <span>更改头像</span>
+                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                </label>
+              </div>
+              <div class="info-blk">
+                <div class="line">
+                  会员ID:&nbsp;&nbsp;LWG1588
+                </div>
+                <div class="line">
+                  注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                </div>
+                <div class="line">
+                  注册IP:&nbsp;&nbsp;110.84.32.35
+                </div>
+              </div>
+              <div class="info-blk">
+                <div class="line">
+                  账号等级:&nbsp;&nbsp;律师团队
+                </div>
+                <div class="line">
+                  最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                </div>
+                <div class="line">
+                  上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                </div>
+              </div>
+            </div>
+            <div class="info-o">
+              <div class="line">
+                <div class="if">
+                  手机号
+                </div>
+                <div class="cont">
+                  13546588777
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  真实姓名<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input type="text" name="name" onblur="validateChinese(this)" value="钱学喜">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  身份证号<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350526194564528015">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  执业证号<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input type="text" name="jobNo" onblur="validateLawJobNo(this)" value="35052619456452801">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  所属事务所<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input type="text" onblur="validateChinese(this)" name="office" value="厦门市方圆律师事务所">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  年检到期日<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input id='mydatepicker' type='text' value="2017-10-25"/> 
+                </div>
+              </div>
+              <div class="line-img">
+                <div class="if">
+                  律师资格证<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                    </div>
+                    <label>
+                      <span>+ 律师资格证照片页</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
+                  </div>
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                    </div>
+                    <label>
+                      <span>+ 律师资格证年检页</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  所在地区<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span data-id="1013">福建省</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span data-id="1153">厦门市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span data-id="2538">思明区</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  详细地址
+                </div>
+                <div class="cont">
+                  <textarea name="areaDetail" placeholder="不超过50个字" rows="2" maxlength="50" cols="80"></textarea>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  QQ号码
+                </div>
+                <div class="cont">
+                  <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  邮箱地址
+                </div>
+                <div class="cont">
+                  <input type="text" onblur="validateEmail(this, false)" name="email" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="to-opt">
+          <div class="cont">
+            <button type="button" id="save" name="save">保存</button>
+            <button type="button" name="cancel">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='{echo JsURL}/debt/lawerCenterInfo.js'></script>

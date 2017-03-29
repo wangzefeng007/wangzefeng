@@ -284,7 +284,7 @@ $(function(){
     }
 
     if($('#i_license .i-wrap').children('img').attr('src')){
-      license = $(this).children('img').attr('src');
+      license = $('#i_license .i-wrap').children('img').attr('src');
     }else{
       showMsg('请上传所需的营业执照');
       return;
