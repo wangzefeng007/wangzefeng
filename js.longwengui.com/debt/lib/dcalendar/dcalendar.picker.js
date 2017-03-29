@@ -138,7 +138,8 @@ if (typeof jQuery === 'undefined') { throw new Error('DCalendar.Picker: This plu
 
 		reformatDate : function (date) {
 			var that = this,
-				format = that.options.format;
+				format = that.options ? that.options.format : 'yyyy-mm-dd';
+
 
 			return {
 					m: date.substring(format.indexOf('m'), format.lastIndexOf('m') + 1),

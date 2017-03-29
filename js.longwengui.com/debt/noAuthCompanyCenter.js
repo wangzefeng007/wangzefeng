@@ -67,13 +67,14 @@ $(function(){
     }
 
     if(!province || !city || !area){
-      showMsg('请输入您的地址信息');
+      showMsg('请输入完整的地址信息');
       return;
     }
 
     var area_detail = $('textarea[name="areaDetail"]').val();
     var qq = $('input[name="qq"]').val();
     var email = $('input[name="email"]').val();
+    var head_img = $('.head-portrait img').attr('src');
 
     if(qq != '' && !validate('qq', qq)){
       showMsg('请输入正确的qq号');
@@ -97,7 +98,8 @@ $(function(){
       "license": license, //营业执照照片
       "areaDetail": area_detail, //详细地址
       "qq": qq, //qq
-      "email": email //邮箱
+      "email": email, //邮箱
+      "headImg": head_img //头像
     });
   });
 
