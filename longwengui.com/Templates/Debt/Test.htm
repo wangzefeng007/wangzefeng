@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
 <link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
   <div class="wrap">
@@ -11,7 +12,7 @@
       <div class="menu-bar">
         <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
         <div class="nick-name">
-          昵称
+          13546588777
         </div>
         <button type="button" name="button">已认证</button>
         <div class="menu-level-1  menu-level-1-act">
@@ -23,16 +24,10 @@
           债权管理
           <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
           <div class="menu-level-2-wrap">
-            <div class="menu-level-2">
-              申请的债权
-            </div>
+            <div class="menu-level-2">申请的债权</div>
             <div class="menu-level-2">债权接单</div>
-            <div class="menu-level-2">
-              	浏览过的债权
-            </div>
-            <div class="menu-level-2">
-             	发布债务
-            </div>
+            <div class="menu-level-2">浏览过的债权</div>
+            <div class="menu-level-2">发布悬赏</div>
           </div>
         </div>
         <div class="menu-level-1">
@@ -75,7 +70,7 @@
               </div>
               <div class="info-blk">
                 <div class="line">
-                  账号等级:&nbsp;&nbsp;普通会员
+                  账号等级:&nbsp;&nbsp;律师团队
                 </div>
                 <div class="line">
                   最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
@@ -96,18 +91,10 @@
               </div>
               <div class="line">
                 <div class="if">
-                  公司名称<span class="form-need">*</span>
+                  真实姓名<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" onblur="validateChinese(this)" name="companyName" value="厦门雄霸催收公司">
-                </div>
-              </div>
-              <div class="line">
-                <div class="if">
-                  注册人姓名<span class="form-need">*</span>
-                </div>
-                <div class="cont">
-                  <input type="text" onblur="validateChinese(this)" name="registrantName" value="吴霸">
+                  <input type="text" name="name" onblur="validateChinese(this)" value="钱学喜">
                 </div>
               </div>
               <div class="line">
@@ -115,53 +102,53 @@
                   身份证号<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" onblur="validateIDNumber(this, true)" name="idNum" value="350235135823541355">
-                </div>
-              </div>
-              <div class="line-img">
-                <div class="if">
-                  证件照<span class="form-need">*</span>
-                </div>
-                <div class="cont" id="i_registrant">
-                  <div class="bx">
-                    <div class="img-wrap">
-                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
-                    </div>
-                    <label>
-                      <span>+ 身份证正面</span>
-                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                    </label>
-                  </div>
-                  <div class="bx">
-                    <div class="img-wrap">
-                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
-                    </div>
-                    <label>
-                      <span>+ 身份证反面</span>
-                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                    </label>
-                  </div>
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350526194564528015">
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  信用代码<span class="form-need">*</span>
+                  执业证号<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="creditNum" onblur="validateCreditNum(this)" placeholder="统一社会信用代码" value="ASDFASSDDSSDD31313">
+                  <input type="text" name="jobNo" onblur="validateLawJobNo(this)" value="35052619456452801">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  所属事务所<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input type="text" onblur="validateChinese(this)" name="office" value="厦门市方圆律师事务所">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  年检到期日<span class="form-need">*</span>
+                </div>
+                <div class="cont">
+                  <input id='mydatepicker' type='text' value="2017-10-25"/> 
                 </div>
               </div>
               <div class="line-img">
                 <div class="if">
-                  营业执照<span class="form-need">*</span>
+                  律师资格证<span class="form-need">*</span>
                 </div>
-                <div class="cont" id="i_license">
+                <div class="cont">
                   <div class="bx">
                     <div class="img-wrap">
                       <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                     </div>
                     <label>
-                      <span>+ 营业执照副本</span>
+                      <span>+ 律师资格证照片页</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
+                  </div>
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                    </div>
+                    <label>
+                      <span>+ 律师资格证年检页</span>
                       <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                     </label>
                   </div>
@@ -203,7 +190,7 @@
                   详细地址
                 </div>
                 <div class="cont">
-                  <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
+                  <textarea name="areaDetail" placeholder="不超过50个字" rows="2" maxlength="50" cols="80"></textarea>
                 </div>
               </div>
               <div class="line">
@@ -238,4 +225,5 @@
 </div>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
-<script src='{echo JsURL}/debt/companyCenterInfo.js'></script>
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='{echo JsURL}/debt/lawerCenterInfo.js'></script>
