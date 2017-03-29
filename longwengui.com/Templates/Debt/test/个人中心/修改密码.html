@@ -4,7 +4,7 @@
   <div class="wrap">
     <div class="current-loc">
       <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-      当前位置 > 个人中心 > <span>企业信息</span>
+      当前位置 > 个人中心 > <span>个人信息</span>
     </div>
     <div class="menu-cont-wrap">
       <div class="menu-bar">
@@ -93,9 +93,15 @@
               原密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" maxlength="20" onblur="validatePass(this)" name="oldPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *请输入密码
+              </span>
+              <span class="error-hint">
+                *密码不能少于6位！
+              </span>
+              <span class="error-hint">
+                *密码为6-20位数字、字母、下划线
               </span>
             </div>
           </div>
@@ -104,9 +110,15 @@
               新密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" maxlength="20" onblur="validatePass(this)" name="newPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *请输入密码
+              </span>
+              <span class="error-hint">
+                *密码不能少于6位！
+              </span>
+              <span class="error-hint">
+                *密码为6-20位数字、字母、下划线
               </span>
             </div>
           </div>
@@ -115,16 +127,16 @@
               重复密码:
             </div>
             <div class="cont">
-              <input type="password" name="" value="">
+              <input type="password" onblur="validateComfirmPass()" name="comfirmPass" value="">
               <span class="error-hint">
-                *输入的密码错误
+                *两次密码输入不一致
               </span>
             </div>
           </div>
           <div class="line">
             <div class="lab"></div>
             <div class="cont">
-              <button type="button" name="button">确认修改</button>
+              <button type="button" id="change_pass" name="button">确认修改</button>
             </div>
           </div>
         </div>
