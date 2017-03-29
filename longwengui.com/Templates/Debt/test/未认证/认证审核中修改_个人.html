@@ -31,6 +31,11 @@
             <div class="info-m">
               <div class="head-portrait">
                 <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                <br>
+                <label>
+                  <span>更改头像</span>
+                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                </label>
               </div>
               <div class="info-blk">
                 <div class="line">
@@ -58,7 +63,7 @@
             <div class="info-o">
               <div class="line">
                 <div class="if">
-                  手机号码:
+                  手机号
                 </div>
                 <div class="cont">
                   13546588777
@@ -66,31 +71,31 @@
               </div>
               <div class="line">
                 <div class="if">
-                  昵称:
+                  昵称<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="聂风">
+                  <input type="text" name="nickName" maxlength="5" onblur="validateNeed(this)" placeholder="不超过5个字" value="聂风">
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  真实姓名:
+                  真实姓名<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="李霸">
+                  <input type="text" name="name" onblur="validateChinese(this)" value="李霸">
                 </div>
               </div>
               <div class="line">
                 <div class="if">
-                  身份证号:
+                  身份证号<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="350523219444285514">
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350523219444285514">
                 </div>
               </div>
               <div class="line-img">
                 <div class="if">
-                  证件照:
+                  证件照<span class="form-need">*</span>
                 </div>
                 <div class="cont">
                   <div class="bx">
@@ -115,10 +120,33 @@
               </div>
               <div class="line">
                 <div class="if">
-                  所在地区:
+                  所在地区<span class="form-need">*</span>
                 </div>
                 <div class="cont">
-                  福建省-厦门市-思明区
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span data-id="1013">福建省</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span data-id="1153">厦门市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span data-id="2538">思明区</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="line">
@@ -126,7 +154,7 @@
                   详细地址:
                 </div>
                 <div class="cont">
-                  无
+                  <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
                 </div>
               </div>
               <div class="line">
@@ -134,7 +162,7 @@
                   QQ号码:
                 </div>
                 <div class="cont">
-                  无
+                  <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
                 </div>
               </div>
               <div class="line">
@@ -142,7 +170,7 @@
                   邮箱地址:
                 </div>
                 <div class="cont">
-                  无
+                  <input type="text" onblur="validateEmail(this, false)" name="email" value="">
                 </div>
               </div>
             </div>
@@ -166,4 +194,4 @@
 </div>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
-<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>
+<script src='{echo JsURL}/debt/noAuthPersonCenter.js'></script>
