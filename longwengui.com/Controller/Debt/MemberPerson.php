@@ -5,13 +5,21 @@
 class MemberPerson
 {
     public function __construct() {
-        //$_SESSION ['UserID']=1;
+
     }
     /**
      * @desc 个人会员中心(个人信息)
      */
     public function Index()
     {
+
+        MemberService::IsLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        var_dump($_SESSION);
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);var_dump($UserInfo);
         $Title = '会员中心首页';
         include template('MemberPersonIndex');
     }

@@ -4,7 +4,7 @@ RewriteEngine On
 RewriteRule ^index.html$ /Index.php [QSA]
 #验证码
 RewriteRule ^code/pic.jpg$ /Plugins/Code/Class.DoCode.php [QSA]
-
+#测试入口
 RewriteRule ^test(|\/)$ /Index.php?Module=Debt&Action=Test [QSA]
 #债务催收
 RewriteRule ^debtlists(|\/)$ /Index.php?Module=Debt&Action=DebtLists [QSA]
@@ -24,6 +24,8 @@ RewriteRule ^find/team/([0-9]+)(|\/)$ /Index.php?Module=Find&Action=Team&T=$1 [Q
 RewriteRule ^deadbeat(|\/)$ /Index.php?Module=DeadBeat&Action=Index [QSA]
 RewriteRule ^ajax.html$ /Index.php?Module=Ajax&Action=Index [QSA]
 
+#会员中心
+RewriteRule ^loginajax.html$ /Index.php?Module=AjaxLogin&Action=Index [QSA]
 #通用地址
 RewriteRule ^([a-z]+)(|\/)$ /Index.php?Module=$1 [QSA]
 RewriteRule ^([a-z]+)/([a-z]+)(|\/)$ /Index.php?Module=$1&Action=$2 [QSA]

@@ -82,7 +82,7 @@ function validateForm(){
   return {
     "phoneNumber": _phoneNumber,
     "password": _pass,
-    "code": _code
+    "ImageCode": _code
   }
 }
 
@@ -94,20 +94,26 @@ function login(){
   }
   $.ajax(
     {
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/login.json",
-      data: JSON.stringify(formData),
+      url: "/loginajax.html",
+        data: {
+            "Intention":"Login",
+            "AjaxJSON":JSON.stringify(formData),
+        },
       beforeSend:　function(){
         showLoading();
       },
       success: function(data){
         if(data.ResultCode == 200){
-          showMsg('登录成功');
+            layer.msg("登录成功");
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
           //路由跳转
         }else{
-          showMsg(data.Message);
-          times = getCookie('PasswordErrTimes');
+            layer.msg(data.Message);
+            times = getCookie('PasswordErrTimes');
           if($('#code').attr('data-show') == 0 && times == 3){
             $('#code').show();
             $('#code').attr('data-show', 1);

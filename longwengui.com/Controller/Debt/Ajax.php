@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: 123456
+ * Member: 123456
  * Date: 2017/3/9
  * Time: 16:42
  */
@@ -817,5 +817,21 @@ class Ajax
         }
         EchoResult($result_json);
         exit;
+    }
+
+    /**
+     * @desc 获取客户SESSION信息
+     */
+    private function GetSession()
+    {
+        $MemberUserInfoModule = new MemberUserInfoModule ();
+        $Data ['UserID'] = $_POST ['ID'];
+        $Data ['Account'] = $_POST ['Account'];
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$Data ['UserID']);
+        $Data ['Identity'] = $UserInfo['Identity'];
+        $Data ['NickName'] = $UserInfo ['NickName'];
+        $Data ['Level'] = $UserInfo ['Level'];
+        $Data ['Avatar'] = $UserInfo ['Avatar'];
+        echo json_encode($Data);
     }
 }

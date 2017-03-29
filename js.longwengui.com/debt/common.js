@@ -703,10 +703,13 @@ function doLogin(){
   }
   $.ajax(
     {
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/login.json",
-      data: JSON.stringify(formData),
+      url: "/loginajax.html",
+        data: {
+            "Intention":"Login",
+            "AjaxJSON":JSON.stringify(formData),
+        },
       success: function(data){
         if(data.ResultCode == 200){
           closeAll();

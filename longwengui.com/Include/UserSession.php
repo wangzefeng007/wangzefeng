@@ -30,7 +30,7 @@ function curl_postsend_usersession($url, $data = array()) {
 //获取登录信息
 if($_SESSION['UserID'] && $_SESSION['Account']){
     if(!isset($_SESSION['Level'])){
-        $json_data=curl_postsend_usersession(WEB_MEMBER_URL.'/userajax.html',array('Intention'=>'GetSession','ID'=>$_SESSION['UserID'],'Account'=>$_SESSION['Account']));
+        $json_data=curl_postsend_usersession(WEB_MAIN_URL.'/ajax.html',array('Intention'=>'GetSession','ID'=>$_SESSION['UserID'],'Account'=>$_SESSION['Account']));
         $_SESSION=json_decode($json_data,true);
     }
     
