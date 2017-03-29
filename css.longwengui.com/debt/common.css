@@ -500,6 +500,115 @@ a{
   vertical-align: middle;
   text-align: center;
 }
+#after-login{
+  float: right;
+  cursor: pointer;
+  height: 42px;
+  padding: 0 15px;
+  position: relative;
+}
+#after-login img{
+  vertical-align: middle;
+  margin-top: -2px;
+}
+#after-login .user-name{
+  color: #35bdfc;
+}
+#after-login .m{
+  position: absolute;
+  right: 3px;
+  top: 6px;
+  line-height: 15px;
+  width: 15px;
+  height: 15px;
+  background-color: #ff2d2d;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+#after-login .det{
+  display: none;
+  width: 220px;
+  background-color: #fff;
+  position: absolute;
+  z-index: 10;
+  line-height: 20px;
+  top: 42px;
+  right: -1px;
+  font-size: 14px;
+  margin-left: -220px;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 20px 0 0;
+}
+#after-login .det .info{
+  border-bottom: 1px solid #e6e6e6;
+  margin: 0 6px;
+  padding: 0 6px 15px 6px;
+}
+#after-login .det .info .name{
+  padding-left: 70px;
+}
+#after-login .det .info p{
+  margin: 0;
+  line-height: 21px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+}
+#after-login .det .info img{
+  width: 45px;
+  height: 45px;
+  margin-left: 13px;
+  margin-left: 14px;
+  float: left;
+}
+#after-login:hover{
+  background-color: #fff;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+}
+#after-login:hover .det{
+  display: block;
+}
+#after-login .opt{
+  padding: 8px 0;
+}
+#after-login .opt .line{
+  line-height: 36px;
+  font-size: 16px;
+  padding: 0 8px;
+  position: relative;
+}
+#after-login .opt .line .tip{
+  position: absolute;
+  right: 8px;
+  top: 11px;
+  line-height: 15px;
+  width: 15px;
+  height: 15px;
+  background-color: #ff2d2d;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+#after-login .opt .line:hover{
+  background-color: #e6e6e6;
+}
+#after-login .opt .line img{
+  margin-right: 10px;
+}
+#after-login .l{
+  border-bottom: 1px solid #e6e6e6;
+  margin: 0 8px;
+}
+
+
+
+
 .header {
   width: 100%;
   line-height: 82px;
