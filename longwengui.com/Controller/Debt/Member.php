@@ -6,7 +6,7 @@ class Member
 {
     public function __construct() {
        // echo 1;exit;
-        $_SESSION ['UserID']=1;
+       //$_SESSION ['UserID']=1;
     }
     /**
      * @desc 会员中心首页(我的主页)
@@ -18,7 +18,6 @@ class Member
      * @desc 登入页或登录操作
      */
     public function  Login(){
-        var_dump(1);exit;
         include template('MemberLogin');
     }
     /**
@@ -42,6 +41,14 @@ class Member
         include template('MemberRegister');
     }
     /**
+     * @desc  会员注册完善资料
+     */
+    public function RegisterTwo()
+    {
+        $Title = '会员注册完善资料';
+        include template('MemberRegisterTwo');
+    }
+    /**
      * @desc  找回密码
      */
     public function FindPasswd()
@@ -57,12 +64,5 @@ class Member
     {
         $Title = '会员登录_绑定手机';
         include template('MemberChangeMobile');
-    }
-    /**
-     * @desc  发布债务
-     */
-    public function  DebtRelease(){
-        UserService::IsLogin();
-        include template('DebtRelease');
     }
 }
