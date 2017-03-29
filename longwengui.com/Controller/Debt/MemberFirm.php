@@ -13,6 +13,12 @@ class MemberFirm
     public function Index()
     {
         $Title = '会员中心首页';
+        MemberService::IsLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberFirmIndex');
     }
     /**

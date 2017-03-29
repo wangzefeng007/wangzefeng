@@ -112,21 +112,57 @@ class AjaxLogin
      */
     private function Register()
     {
-            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-
-            $Account = trim($AjaxData['phoneNumber']);
-            $UserModule = new MemberUserModule();
-            if ($UserModule->AccountExists($Account)) {
-                $result = array('ResultCode' => 101, 'Message' => '该帐号已被注册过了,请更换号码注册', 'Url' => '');
-            } else {var_dump($Account);exit;
-                if (is_numeric($_SESSION['temp_account'])) {
-                    $Data['Mobile'] = $_SESSION['temp_account'];
-                } elseif (strpos($_SESSION['temp_account'], '@')) {
-                    $Data['E-Mail'] = $_SESSION['temp_account'];
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $Account = trim($AjaxData['phoneNumber']);
+        $UserModule = new MemberUserModule();
+        if ($UserModule->AccountExists($Account)) {
+            $json_result = array('ResultCode' => 101, 'Message' => '该帐号已被注册过了,请更换号码注册', 'Url' => '');
+        } else {
+            $VerifyCode = $AjaxData['code'];
+            $Authentication = new MemberAuthenticationModule ();
+            $TempUserInfo = $Authentication->GetAccountInfo($Account, $VerifyCode, 0);
+            if ($TempUserInfo) {
+                $CurrentTime = time();
+                if ($CurrentTime > $TempUserInfo['XpirationDate']) {
+                    $json_result = array('ResultCode' => 103, 'Message' => '短信验证码过期');
+                }else{
+                    $Data['Mobile'] = $Account;
+                    $Data['AddTime'] = Time();
+                    $Data['AddIP'] = GetIP();
+                    $Data['State'] = 1;
+                    $Data['PassWord'] = md5(trim($AjaxData['password']));
+                    //开始事务
+                    global $DB;
+                    $DB->query("BEGIN");
+                    $insert_result = $UserModule->InsertInfo($Data);
+                    if ($insert_result) {
+                        $AccountInfo = $UserModule->AccountExists($Account);
+                        $UserInfo = new MemberUserInfoModule();
+                        $InfoData['UserID'] = $AccountInfo['UserID'];
+                        $InfoData['NickName'] = 'LWG_'.date('i').mt_rand(100,999);
+                        $InfoData['LastLogin'] =  $Data['AddTime'];
+                        $InfoData['Identity'] =0;
+                        $InfoData['IdentityState'] =3;
+                        $InfoData['Avatar']='/Uploads/Debt/imgs/head_img.png';
+                        $UserInfo->InsertInfo($InfoData);
+                        // 同步SESSIONID
+                        setcookie("session_id", session_id(), time() + 3600 * 24, "/", WEB_HOST_URL);
+                        $_SESSION['UserID'] = $InfoData['UserID'];
+                        $_SESSION['NickName'] = $InfoData['NickName'];
+                        $_SESSION['Account'] = $Account;
+                        $_SESSION['Identity'] = $InfoData['Identity'];
+                        setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
+                        $DB->query("COMMIT");//执行事务
+                        $json_result = array('ResultCode' => 200, 'Message' => '注册成功',);
+                    }else{
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $json_result = array('ResultCode' => 102, 'Message' => '注册失败',);
+                    }
                 }
-                $Data['AddTime'] = Time();
-                $Data['State'] = 1;
-                $Data['PassWord'] = md5(trim($_POST['PassWord']));
+            }else{
+                $json_result = array('ResultCode' => 104, 'Message' => '短信验证码输入错误',);
             }
+        }
+        echo json_encode($json_result);exit;
     }
 }

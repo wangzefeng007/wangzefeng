@@ -44,6 +44,19 @@ Class MemberAuthenticationModule extends CommonModule {
         }
     }
     /**
+     * @desc  验证信息
+     * @param $Account
+     * @param $VerifyCode
+     * @param int $Type
+     * @return array
+     */
+    public function GetAccountInfo($Account, $VerifyCode, $Type = 0)
+    {
+        global $DB;
+        $sql = 'select * from ' . $this->TableName . ' where Account=\'' . $Account . '\' and VerifyCode=' . $VerifyCode . ' and Type=' . $Type;
+        return $DB->GetOne($sql);
+    }
+    /**
      * @desc  添加数据
      * @param $Data
      * @return int

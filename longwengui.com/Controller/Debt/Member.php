@@ -18,6 +18,16 @@ class Member
      * @desc 登入页或登录操作
      */
     public function  Login(){
+        //如果已登陆，直接跳转到会员中心
+        if (isset($_SESSION['UserID']) && !empty($_SESSION['UserID'])) {
+            if ($_SESSION['Identity'] <=2){
+                header('Location:' . WEB_MAIN_URL.'/memberperson/');
+            }elseif($_SESSION['Identity'] ==3){
+                header('Location:' . WEB_MAIN_URL.'/memberfirm/');
+            }elseif($_SESSION['Identity'] ==4){
+                header('Location:' . WEB_MAIN_URL.'/memberlawyer/');
+            }
+        }
         include template('MemberLogin');
     }
     /**
@@ -37,6 +47,7 @@ class Member
      */
     public function Register()
     {
+        $this->Login();
         $Title = '会员登录_注册';
         include template('MemberRegister');
     }
@@ -45,6 +56,7 @@ class Member
      */
     public function RegisterTwo()
     {
+        MemberService::IsLogin();
         $Title = '会员注册完善资料';
         include template('MemberRegisterTwo');
     }
@@ -62,7 +74,8 @@ class Member
      */
     public function ChangeMobile()
     {
-        $Title = '会员登录_绑定手机';
+        MemberService::IsLogin();
+        $Title = '会员_绑定手机';
         include template('MemberChangeMobile');
     }
 }
