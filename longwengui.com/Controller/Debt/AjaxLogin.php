@@ -33,7 +33,7 @@ class AjaxLogin
         if ($_COOKIE['PasswordErrTimes'] < 3) {
             $_SESSION['authnum_session'] = $ImageCode;
         }
-        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);var_dump($_POST);exit;
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         if ($ImageCode == $_SESSION['authnum_session']) {
             $Account = trim($AjaxData['phoneNumber']);
             $User = new MemberUserModule();

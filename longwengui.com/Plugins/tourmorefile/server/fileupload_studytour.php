@@ -1,5 +1,5 @@
 <?php
-session_start();
+http://www.longwengui.net/Uploads/Debt/imgs/
 /**
  * upload.php
  *

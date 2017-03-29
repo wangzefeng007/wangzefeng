@@ -315,7 +315,7 @@ class Ajax
         $Data['AddTime'] = time();
         $Data['UpdateTime'] = $Data['AddTime'];
         $Data['Status'] = 1;
-        $AjaxData= json_decode(stripslashes($_POST['http://www.longwengui.net/Uploads/Debt/imgs/']),true);
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         //1律师团队，2催收公司
         $Data['Type'] = trim($AjaxData['Type']);
         //是否有前期费用
@@ -543,7 +543,7 @@ class Ajax
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
             $Data['Status'] = 8;//发布待审核
-            $AjaxData= json_decode(stripslashes($_POST['http://www.longwengui.net/Uploads/Debt/imgs/']),true);
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
             //1律师团队，2催收公司,3自助催收
             $Data['CollectionType'] = intval($_POST['Type']);
             //是否有前期费用
@@ -747,7 +747,7 @@ class Ajax
         }
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
-        $AjaxData= json_decode(stripslashes($_POST['http://www.longwengui.net/Uploads/Debt/imgs/']),true);
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         $Data['RewardNum'] ='XS'.date("YmdHis").rand(100, 999);
         $Data['UserID'] = $_SESSION ['UserID'];
         $Data['AddTime'] = time();
@@ -817,5 +817,21 @@ class Ajax
         }
         EchoResult($result_json);
         exit;
+    }
+
+    /**
+     * @desc 获取客户SESSION信息
+     */
+    private function GetSession()
+    {
+        $MemberUserInfoModule = new MemberUserInfoModule ();
+        $Data ['UserID'] = $_POST ['ID'];
+        $Data ['Account'] = $_POST ['Account'];
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$Data ['UserID']);
+        $Data ['Identity'] = $UserInfo['Identity'];
+        $Data ['NickName'] = $UserInfo ['NickName'];
+        $Data ['Level'] = $UserInfo ['Level'];
+        $Data ['Avatar'] = $UserInfo ['Avatar'];
+        echo json_encode($Data);
     }
 }

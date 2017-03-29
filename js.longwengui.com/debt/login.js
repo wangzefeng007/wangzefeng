@@ -82,7 +82,7 @@ function validateForm(){
   return {
     "phoneNumber": _phoneNumber,
     "password": _pass,
-    "code": _code
+    "ImageCode": _code
   }
 }
 
@@ -97,9 +97,9 @@ function login(){
       type: "post",
       dataType: "json",
       url: "/loginajax.html",
-      data: JSON.stringify(formData),
+        data: {
             "Intention":"Login",
-            "http://www.longwengui.net/Uploads/Debt/imgs/":JSON.stringify(formData),
+            "AjaxJSON":JSON.stringify(formData),
         },
       beforeSend:　function(){
         showLoading();
@@ -109,7 +109,7 @@ function login(){
             layer.msg("登录成功");
             setTimeout(function() {
                 window.location = data.Url;
-            }, 600);
+            }, 10);
           //路由跳转
         }else{
             layer.msg(data.Message);
