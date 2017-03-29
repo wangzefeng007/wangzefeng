@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
   <div class="wrap">
     <div class="current-loc">
@@ -86,8 +87,6 @@
             <div class="info-m">
               <div class="head-portrait">
                 <img src="/Uploads/Debt/imgs/head_img.png" alt="">
-                <br>
-                <span>更改头像</span>
               </div>
               <div class="info-blk">
                 <div class="line">
@@ -115,6 +114,14 @@
             <div class="info-o">
               <div class="line">
                 <div class="if">
+                  手机号码:
+                </div>
+                <div class="cont">
+                  13546588777
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
                   昵称:
                 </div>
                 <div class="cont">
@@ -127,14 +134,6 @@
                 </div>
                 <div class="cont">
                   杨采采
-                </div>
-              </div>
-              <div class="line">
-                <div class="if">
-                  手机号码:
-                </div>
-                <div class="cont">
-                  13546588777
                 </div>
               </div>
               <div class="line">
@@ -208,3 +207,5 @@
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>

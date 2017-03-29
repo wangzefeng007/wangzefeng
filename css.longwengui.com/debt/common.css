@@ -446,6 +446,9 @@ a{
 .ml-36 {
   margin-left: 36px;
 }
+.mr-99{
+  margin-right: 99px;
+}
 .fl-r {
   float: right;
 }
@@ -457,6 +460,9 @@ a{
 }
 .bc-f5 {
   background-color: #f5f5f5;
+}
+.act-r{
+  color: #ff2d2d;
 }
 .top {
   width: 100%;

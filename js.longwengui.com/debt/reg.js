@@ -176,6 +176,14 @@ function closeHint(){
 //获取验证码
 function getCode(tar){
   var _phoneNumber = $("input[name='phoneNumber']").val();
+  var _pass = $("input[name='pass']").val();
+  var _confirmPass = $("input[name='confirmPass']").val();
+  var agreement = $("input[name='agreement']")[0].checked;
+
+  if(!agreement){
+    showMsg('您还没有同意服务协议');
+    return false;
+  }
   if(_phoneNumber == ''){
     showMsg('请先填写手机号');
     return;
@@ -183,6 +191,22 @@ function getCode(tar){
   if(!validate("mobilePhone", _phoneNumber)){
     showMsg('请填写正确的号码');
     return;
+  }
+  if(_pass == ''){
+    showMsg('请先设置密码');
+    return false;
+  }
+  if(_pass.length < 6){
+    showMsg('密码不能少于6位');
+    return false;
+  }
+  if(!validate('password', _pass)){
+    showMsg('您输入的密码有误');
+    return false;
+  }
+  if(_confirmPass != _pass){
+    showMsg('两次输入的密码不一致');
+    return false;
   }
   codeTimedown(tar);
   $.ajax({

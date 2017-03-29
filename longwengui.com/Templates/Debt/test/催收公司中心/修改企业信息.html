@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
   <div class="wrap">
     <div class="current-loc">
@@ -12,7 +13,7 @@
         <div class="nick-name">
           昵称
         </div>
-        <button type="button" name="button">已实名认证</button>
+        <button type="button" name="button">已认证</button>
         <div class="menu-level-1  menu-level-1-act">
           <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
           企业信息
@@ -27,7 +28,7 @@
             </div>
             <div class="menu-level-2">债权接单</div>
             <div class="menu-level-2">
-              	浏览过的债券
+              	浏览过的债权
             </div>
             <div class="menu-level-2">
              	发布债务
@@ -84,6 +85,14 @@
             <div class="info-o">
               <div class="line">
                 <div class="if">
+                  手机号码:
+                </div>
+                <div class="cont">
+                  13546588777
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
                   公司名称:
                 </div>
                 <div class="cont">
@@ -96,14 +105,6 @@
                 </div>
                 <div class="cont">
                   <input type="text" name="" value="吴霸">
-                </div>
-              </div>
-              <div class="line">
-                <div class="if">
-                  手机号码:
-                </div>
-                <div class="cont">
-                  <input type="text" name="" value="13546588777">
                 </div>
               </div>
               <div class="line">
@@ -121,11 +122,13 @@
                 <div class="cont">
                   <div class="bx">
                     <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                     </div>
                     + 身份证正面照
                   </div>
                   <div class="bx">
                     <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                     </div>
                     + 身份证反面照
                   </div>
@@ -136,7 +139,7 @@
                   信用代码:
                 </div>
                 <div class="cont">
-                  <input type="text" name="" value="ADFASDF13156">
+                  <input type="text" name="" value="ASDFASSDDSSDD31313">
                 </div>
               </div>
               <div class="line-img">
@@ -146,6 +149,7 @@
                 <div class="cont">
                   <div class="bx">
                     <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                     </div>
                     + 营业执照副本
                   </div>
@@ -158,7 +162,7 @@
                 <div class="cont">
                   <div class="p-dropdown">
                     <label type="checkbox">
-                      <span>*省份</span>
+                      <span data-id="1013">福建省</span>
                       <i></i>
                       <input type="checkbox" name="dd_province" value="">
                       <ul></ul>
@@ -166,7 +170,7 @@
                   </div>
                   <div class="c-dropdown">
                     <label type="checkbox">
-                      <span>*城市</span>
+                      <span data-id="1153">厦门市</span>
                       <i></i>
                       <input type="checkbox" name="dd_city" value="">
                       <ul></ul>
@@ -174,7 +178,7 @@
                   </div>
                   <div class="a-dropdown">
                     <label type="checkbox">
-                      <span>*区县/市</span>
+                      <span data-id="2538">思明区</span>
                       <i></i>
                       <input type="checkbox" name="dd_area" value="">
                       <ul></ul>
@@ -221,3 +225,5 @@
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/companyCenterInfo.js'></script>

@@ -1,0 +1,73 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="person-center">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      当前位置 > 个人中心 > <span>用户中心</span>
+    </div>
+    <div class="menu-cont-wrap">
+      <div class="menu-bar">
+        <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+        <div class="nick-name">
+          昵称
+        </div>
+        <button type="button" name="button">未认证</button>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+          个人信息
+        </div>
+        <div class="menu-level-1   menu-level-1-act">
+          <img src="/Uploads/Debt/imgs/user_center.png" class="i-left" alt="">
+          用户中心
+        </div>
+      </div>
+      <div class="menu-cont">
+        <div class="tab-hd">
+          <div class="tb act">
+            用户中心
+          </div>
+        </div>
+
+        <div class="no-auth-userinfo">
+          <div class="hd">
+            选择用户角色并完善认证信息
+          </div>
+          <div class="sel-to-auth">
+            <div class="img-sel mr-99">
+              <img src="/Uploads/Debt/imgs/user_for_auth.png" alt="">
+              <br><br>个人<br><br>
+              <button type="button" name="button">选择并认证</button>
+            </div>
+            <div class="img-sel mr-99">
+              <img src="/Uploads/Debt/imgs/user_for_auth.png" alt="">
+              <br><br>催客(个人)<br><br>
+              <button type="button" name="button">选择并认证</button>
+            </div>
+            <div class="img-sel mr-99">
+              <img src="/Uploads/Debt/imgs/debtor_company.png" alt="">
+              <br><br>催收公司<br><br>
+              <button type="button" name="button">选择并认证</button>
+            </div>
+            <div class="img-sel">
+              <img src="/Uploads/Debt/imgs/debtor_lawer.png" alt="">
+              <br><br>律师团队<br><br>
+              <button type="button" name="button">选择并认证</button>
+            </div>
+          </div>
+          <div class="show-msg">
+            <h2>角色说明：</h2>
+            <p>个人：个人权益只限发布债务、债权转让、悬赏及查询老赖，也可以升级成催客（个人），升级后即拥有催客权益，可接单。</p>
+            <p>催客（个人）：催客权益既可以发布债务、债权转让、悬赏及查询老赖，也可以作为处置方接单。</p>
+            <p>催收公司：已公司名义自主进行债务接单处理，也可以由债务发布者匹配后被申请处置债务。</p>
+            <p>律师团队：已律师事务所名义自主进行债务接单处理，也可以由债务发布者匹配后被申请处置债务</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>

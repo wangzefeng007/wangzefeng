@@ -1,10 +1,11 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
   <div class="wrap">
     <div class="current-loc">
       <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-      当前位置 > 个人中心 > <span>企业信息</span>
+      当前位置 > 个人中心 > <span>个人信息</span>
     </div>
     <div class="menu-cont-wrap">
       <div class="menu-bar">
@@ -12,35 +13,16 @@
         <div class="nick-name">
           昵称
         </div>
-        <button type="button" name="button">已实名认证</button>
+        <button type="button" name="button">认证审核中</button>
         <div class="menu-level-1  menu-level-1-act">
           <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
-          企业信息
-        </div>
-        <div class="menu-level-1" data-open="0" can-down='1'>
-          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
-          债权管理
-          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
-          <div class="menu-level-2-wrap">
-            <div class="menu-level-2">申请的债权</div>
-            <div class="menu-level-2">债权接单</div>
-            <div class="menu-level-2">浏览过的债权</div>
-            <div class="menu-level-2">发布悬赏</div>
-          </div>
-        </div>
-        <div class="menu-level-1">
-          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
-          系统信息
-        </div>
-        <div class="menu-level-1">
-          <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
-          投诉建议
+          个人信息
         </div>
       </div>
       <div class="menu-cont">
         <div class="tab-hd">
           <div class="tb act">
-            企业信息
+            个人信息
           </div>
         </div>
 
@@ -49,8 +31,6 @@
             <div class="info-m">
               <div class="head-portrait">
                 <img src="/Uploads/Debt/imgs/head_img.png" alt="">
-                <br>
-                <span>更改头像</span>
               </div>
               <div class="info-blk">
                 <div class="line">
@@ -65,7 +45,7 @@
               </div>
               <div class="info-blk">
                 <div class="line">
-                  账号等级:&nbsp;&nbsp;律师团队
+                  账号等级:&nbsp;&nbsp;个人会员(认证中)
                 </div>
                 <div class="line">
                   最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
@@ -86,10 +66,18 @@
               </div>
               <div class="line">
                 <div class="if">
+                  昵称:
+                </div>
+                <div class="cont">
+                  <input type="text" name="" value="聂风">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
                   真实姓名:
                 </div>
                 <div class="cont">
-                  钱学喜
+                  <input type="text" name="" value="李霸">
                 </div>
               </div>
               <div class="line">
@@ -97,47 +85,31 @@
                   身份证号:
                 </div>
                 <div class="cont">
-                  350526199311280014
-                </div>
-              </div>
-              <div class="line">
-                <div class="if">
-                  职业证号:
-                </div>
-                <div class="cont">
-                  ASFDAS588777
-                </div>
-              </div>
-              <div class="line">
-                <div class="if">
-                  所属事务所:
-                </div>
-                <div class="cont">
-                  厦门市方圆律师事务所
-                </div>
-              </div>
-              <div class="line">
-                <div class="if">
-                  年检到期日:
-                </div>
-                <div class="cont">
-                  2017-10-25
+                  <input type="text" name="" value="350523219444285514">
                 </div>
               </div>
               <div class="line-img">
                 <div class="if">
-                  律师资格证:
+                  证件照:
                 </div>
                 <div class="cont">
                   <div class="bx">
                     <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                     </div>
-                    律师资格证照片页
+                    <label>
+                      <span>+ 身份证正面照</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
                   </div>
                   <div class="bx">
                     <div class="img-wrap">
+                      <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                     </div>
-                    律师资格证年检页
+                    <label>
+                      <span>+ 身份证反面照</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
                   </div>
                 </div>
               </div>
@@ -179,7 +151,13 @@
 
         <div class="to-opt">
           <div class="cont">
-            <button type="button" name="edit">修改信息</button>
+            <button type="button" id="save" name="save">保存</button>
+            <button type="button" name="cancel">取消</button>
+          </div>
+          <div class="for-auth">
+            <span class="waiting">
+              认证审核中，请耐心等待！
+            </span>
           </div>
         </div>
       </div>
@@ -187,3 +165,5 @@
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>
