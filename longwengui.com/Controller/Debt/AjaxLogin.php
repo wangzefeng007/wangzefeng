@@ -93,4 +93,40 @@ class AjaxLogin
         echo json_encode($json_result);
         exit;
     }
+    /**
+     * @desc  发送 注册/找回密码 验证码
+     */
+    private function RegisterSendCode(){
+        $ImageCode = $_POST['ImageCode'];
+        $Account = $_POST['phoneNumber'];
+        $UserModule = new MemberUserModule();
+        if ($UserModule->AccountExists($Account)) {
+            $json_result = array('ResultCode' => 106, 'Message' => '该帐号已被注册过了,请更换帐号注册');
+        }else{
+            $json_result = MemberService::SendMobileVerificationCode($Account);
+        }
+        echo json_encode($json_result);exit;
+    }
+    /**
+     * @desc  注册
+     */
+    private function Register()
+    {
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+
+            $Account = trim($AjaxData['phoneNumber']);
+            $UserModule = new MemberUserModule();
+            if ($UserModule->AccountExists($Account)) {
+                $result = array('ResultCode' => 101, 'Message' => '该帐号已被注册过了,请更换号码注册', 'Url' => '');
+            } else {var_dump($Account);exit;
+                if (is_numeric($_SESSION['temp_account'])) {
+                    $Data['Mobile'] = $_SESSION['temp_account'];
+                } elseif (strpos($_SESSION['temp_account'], '@')) {
+                    $Data['E-Mail'] = $_SESSION['temp_account'];
+                }
+                $Data['AddTime'] = Time();
+                $Data['State'] = 1;
+                $Data['PassWord'] = md5(trim($_POST['PassWord']));
+            }
+    }
 }
