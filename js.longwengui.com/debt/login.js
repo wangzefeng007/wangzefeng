@@ -94,20 +94,26 @@ function login(){
   }
   $.ajax(
     {
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/login.json",
+      url: "/loginajax.html",
       data: JSON.stringify(formData),
+            "Intention":"Login",
+            "http://www.longwengui.net/Uploads/Debt/imgs/":JSON.stringify(formData),
+        },
       beforeSend:　function(){
         showLoading();
       },
       success: function(data){
         if(data.ResultCode == 200){
-          showMsg('登录成功');
+            layer.msg("登录成功");
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 600);
           //路由跳转
         }else{
-          showMsg(data.Message);
-          times = getCookie('PasswordErrTimes');
+            layer.msg(data.Message);
+            times = getCookie('PasswordErrTimes');
           if($('#code').attr('data-show') == 0 && times == 3){
             $('#code').show();
             $('#code').attr('data-show', 1);

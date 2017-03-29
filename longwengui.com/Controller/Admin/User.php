@@ -69,7 +69,7 @@ class User
             $UserID = intval($_POST['UserID']);
             $result = $MemberUserInfoModule->UpdateInfoByWhere($Data, ' UserID= ' . $UserID);
             if ($result) {
-                alertandgotopage('操作成功!', '/index.php?Module=User&Action=UserDetail&UserID=' . $UserID);
+                alertandgotopage('操作成功!', '/index.php?Module=Member&Action=UserDetail&UserID=' . $UserID);
             } elseif ($result === 0) {
                 alertandback('状态未发生改变!');
             } else {

@@ -53,7 +53,7 @@ class Member
      */
     public function FindPasswd()
     {
-        UserService::IsLogin();
+        MemberService::IsLogin();
         $Title = '会员登录_找回密码';
         include template('MemberFindPasswd');
     }
