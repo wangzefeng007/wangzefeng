@@ -1,0 +1,134 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/reg.css">
+<div class="reg" id="regForm">
+    <form class="form-reg">
+        <div class="hd">
+            会员注册
+        </div>
+        <div class="cont">
+            <div class="line">
+                <div class="info">
+                    手机号
+                </div>
+                <div class="det">
+                    <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
+                </div>
+                <div class="error-hint">
+                    请输入手机号！
+                </div>
+                <div class="error-hint">
+                    您输入的手机号有误！
+                </div>
+            </div>
+            <div class="line">
+                <div class="info">
+                    密 码
+                </div>
+                <div class="det">
+                    <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="6-20位密码字母、数字、下划线">
+                </div>
+                <div class="error-hint">
+                    请设置密码！
+                </div>
+                <div class="error-hint">
+                    密码不能少于6位！
+                </div>
+                <div class="error-hint">
+                    密码格式有误！
+                </div>
+            </div>
+            <div class="line">
+                <div class="info">
+                    确认密码
+                </div>
+                <div class="det">
+                    <input type="password" name="confirmPass" onblur="validateErr('confirm', this)" class="input-1" placeholder="确认您的密码">
+                </div>
+                <div class="error-hint">
+                    两次密码不一致！
+                </div>
+            </div>
+            <div class="line">
+                <div class="info">
+                    验证码
+                </div>
+                <div class="det">
+                    <input type="text" name="code" maxlength="4" onblur="validateErr('code', this)" class="input-2" placeholder="请输入验证码">
+                    <button type="button" class="comfirm-code" onclick="getCode(this)" name="button">发送验证码</button>
+                </div>
+                <div class="error-hint">
+                    请输入验证码！
+                </div>
+                <div class="error-hint">
+                    您输入的验证码有误！
+                </div>
+            </div>
+            <div class="agreen-protocal">
+                <div class="m-checkbox">
+                    <label type="checkbox">
+                        <input type="checkbox" name="agreement"  checked>
+                        <i></i>
+                        我已阅读并同意
+                    </label>
+                    <span onclick="openProtocalWindow()">《用户协议》</span>
+                </div>
+            </div>
+            <div class="btn-reg">
+                <button type="button" onclick="reg()">注  册</button>
+            </div>
+            <div class="hav">
+                已有账号 <span>立即登录</span>
+            </div>
+        </div>
+    </form>
+
+    <div class="protocal-pop">
+        <div class="popup">
+            <div class="hd">
+                隆文贵软件许可及服务协议
+                <div class="close" onclick="closeProtocalWindow()">
+                    <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                </div>
+            </div>
+            <div class="cont">
+                <div class="para">
+                    <p>感谢您使用隆文贵服务!《隆文贵软件许可及服务协议》（以下简称“本协议”）由武夷山隆文贵互联网信息咨询有限公司（以下简称“隆文贵”）和您签订。</p>
+                    <p>您使用隆文贵软件（以下简称“本软件”）及服务前，应当阅读并遵守“本协议”，并务必审慎阅读、充分理解各条款内容。您的下载、安装、使用、浏览、注册账号、登录等行为即视为您已阅读并同意上述协议的约束。</p>
+                    <p>一、协议的范围</p>
+                    <p>1.1本协议是您与隆文贵之间关于您下载、安装、使用本软件及相关服务所订立的协议。本协议中的“用户”,一般指经过隆文贵实名认证的注册会员，包括“个人用户”、“单位用户”和“律师用户”。“个人用户”是指使用本软件相关服务的个人；“单位用户”是指使用本软件相关服务的法人或非法人组织；“律师用户”是指使用本软件相关服务的律师或律师事务所。“用户”在软件中也称为“您”。</p>
+                    <p>1.2本协议同时包括隆文贵可能不断发布的关于本服务的相关协议、规则、合同等内容。上述内容在本软件中一经发布，即为本协议不可分割的组成部分，您同样应当遵守。</p>
+                    <p>1.3隆文贵可能会变更本协议及相关协议、规则、合同等内容，变更内容在本软件中一经公布，即应生效。如您继续使用，视为同意内容变更。</p>
+                    <p>二、关于本服务</p>
+                    <p>2.1 本服务的内容</p>
+                </div>
+                <div class="confirm-btn">
+                    <button type="button" onclick="agreeProtocal()" name="button">同意并继续</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sel-role">
+    <div class="wrap">
+        <div class="tl">
+            请选择下一步操作 或 <span>跳过</span>
+        </div>
+        <div class="cont">
+            <div class="bx">
+                <img src="/Uploads/Debt/imgs/money.png" alt="">
+                <p>通过平台发布债务信息，进行自助催收或委托处置方协助</p>
+                <p>债务催收</p>
+                <button type="button" name="button">发布债务</button>
+            </div>
+            <div class="bx">
+                <img src="/Uploads/Debt/imgs/debt_phone.png" alt="">
+                <p>可以选择以催客（个人）、催收公司或律师团队身份加入</p>
+                <p>催收行业，进行债务催收接单</p>
+                <button type="button" name="button">加入催收行业</button>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/reg.js'></script>
