@@ -8,7 +8,7 @@ Class CommonService{
     public static function SendMobileVerificationCode($Mobile)
     {
         $Data['Account'] = trim($Mobile);
-        $Data['VerifyCode'] = mt_rand(100000, 999999);
+        $Data['VerifyCode'] = mt_rand(1000, 9999);
         $Data['XpirationDate'] = Time() + 60 * 30;
         $Data ['Type'] = 0;
         $Authentication = new MemberAuthenticationModule ();

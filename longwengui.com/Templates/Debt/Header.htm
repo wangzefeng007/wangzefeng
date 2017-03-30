@@ -19,28 +19,28 @@
     <div class="wrap">
         <span class="span-1">您好 , 欢迎访问 隆文贵 ！</span>
         <span>服务热线 : 13960658585</span>
-        <!-- <span id="no-login">
-          <span class="span-3" onclick="toLogin()">登录</span>
-          <span class="span-4" onclick="go('./reg.html')">注册</span>
-        </span> -->
+
+        {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
         <span id="after-login">
           <img src="/Uploads/Debt/imgs/toper_head_img.png" alt="">
-          <span class="user-name">新用户1101</span>
+          <span class="user-name">{$_SESSION[NickName]}</span>
           <div class="m">
             5
           </div>
           <div class="det">
             <div class="info">
-              <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+              <img src="{$_SESSION[Avatar]}" alt="{$_SESSION[NickName]}">
               <div class="name">
-                <p>职业催收师</p>
-                <p>13544658877</p>
+                <p>{$_SESSION[NickName]}</p>
+                <p>{$_SESSION[Account]}</p>
               </div>
             </div>
             <div class="opt">
+              <a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{/if}/">
               <div class="line">
                 <img src="/Uploads/Debt/imgs/toper_pc.png" alt="">用户中心
               </div>
+              </a>
               <div class="line">
                 <img src="/Uploads/Debt/imgs/toper_msg.png" alt="">系统消息
                 <div class="tip">
@@ -50,12 +50,20 @@
             </div>
             <div class="l"></div>
             <div class="opt">
-              <div class="line" id="login_out">
-                <img src="/Uploads/Debt/imgs/toper_out.png" alt="">退出登录
+                <a href="/member/signout/">
+              <div class="line" id="">
+                <img src="/Uploads/Debt/imgs/toper_out.png" alt="退出登录">退出登录
               </div>
+                </a>
             </div>
           </div>
         </span>
+        {else}
+        <span id="no-login">
+          <span class="span-3" onclick="toLogin()">登录</span>
+          <span class="span-4" onclick="go('/member/register/')">注册</span>
+        </span>
+        {/if}
     </div>
 </div>
 <div class="header">

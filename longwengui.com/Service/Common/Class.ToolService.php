@@ -12,9 +12,9 @@ class ToolService {
         if ( !strstr($Url, '.com')){
             return 0;
         }
-        require_once SYSTEM_ROOTPATH . '/Include/ManDaoSmsApi.php';
-        $smsapi = new ManDaoSmsApi ();
-        $result = $smsapi->sendSMS ( $Mobile, '【57美国网】'.$Message);
+        require_once SYSTEM_ROOTPATH . '/Include/SmsbaoApi.php';
+        $smsapi = new SmsbaoApi ();
+        $result = $smsapi->sendSMS ( $Mobile, '【隆文贵网】'.$Message);
         if ($result == "success") {
             return true;
         } else {

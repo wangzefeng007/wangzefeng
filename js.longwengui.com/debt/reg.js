@@ -126,10 +126,13 @@ function reg(){
   }
   $.ajax(
     {
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/reg.json",
-      data: JSON.stringify(formData),
+      url: "/loginajax.html",
+      data: {
+          "Intention":"Register",
+          "AjaxJSON":JSON.stringify(formData),
+      },
       beforeSend:　function(){
         showLoading();
       },
@@ -208,19 +211,21 @@ function getCode(tar){
     showMsg('两次输入的密码不一致');
     return false;
   }
-  codeTimedown(tar);
+
   $.ajax({
-    type: 'get',
+    type: 'post',
     dataType: 'json',
-    url: '/Templates/Debt/data/getCode.json',
+    url: '/loginajax.html',
     data: {
+      "Intention":"RegisterSendCode",
       "phoneNumber": _phoneNumber
     },
     success: function(data){
       if(data.ResultCode == 200){
+        codeTimedown(tar);
         showMsg('短信发送成功');
       }else{
-        showMsg(data.Message);
+       showMsg(data.Message);
       }
     }
   });
