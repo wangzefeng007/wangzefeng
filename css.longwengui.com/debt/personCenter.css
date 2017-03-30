@@ -35,7 +35,9 @@
 }
 .person-center .wrap .menu-cont-wrap .menu-bar .u-img {
   border-radius: 50%;
-  margin: 30px auto 0 55px;
+  margin: 30px auto 0 52px;
+  width: 90px;
+  height: 90px;
 }
 .person-center .wrap .menu-cont-wrap .menu-bar .nick-name {
   text-align: center;
