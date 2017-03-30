@@ -550,6 +550,7 @@ a{
 }
 #after-login .det .info .name{
   padding-left: 70px;
+  min-height: 50px;
 }
 #after-login .det .info p{
   margin: 0;
