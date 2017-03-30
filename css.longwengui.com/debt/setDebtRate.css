@@ -98,6 +98,10 @@
   line-height: 50px;
   padding: 0 18px;
 }
+.set-debt .wrap .form-wrap .box .t .tx{
+  margin-left: 5px;
+  color: #35bdfc;
+}
 .set-debt .wrap .form-wrap .box .t img {
   vertical-align: middle;
   margin-top: -2px;
@@ -121,6 +125,7 @@
 .set-debt .wrap .form-wrap .box .c .blo {
   padding: 20px 0;
   margin: 0 36px;
+  min-height: 30px;
   position: relative;
 }
 .set-debt .wrap .form-wrap .box .c .blo .to-del {
@@ -131,8 +136,8 @@
   cursor: pointer;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line {
-  margin-bottom: 10px;
   font-size: 14px;
+  height: 30px;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line .left {
   width: 50%;
@@ -153,6 +158,21 @@
   padding: 0 12px;
   margin-right: 10px;
   font-size: 14px;
+}
+.set-debt .wrap .form-wrap .box .c .blo .line .g-info{
+  width: 90px;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+}
+.set-debt .wrap .form-wrap .box .c .blo .line .g-det{
+  color: #35bdfc;
+  line-height: 30px;
+  min-height: 30px;
+  padding-left: 90px;
+}
+.set-debt .wrap .form-wrap .box .c .blo .line .g-det span{
+  margin-right: 10px;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line .right {
   display: inline-block;
