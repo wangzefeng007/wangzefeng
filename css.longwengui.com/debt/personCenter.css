@@ -362,6 +362,7 @@
 }
 .menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line {
   line-height: 45px;
+  height: 45px;
 }
 .menu-cont-wrap .menu-cont .show-info .info-cont .info-o .line .cont input{
 	padding: 6px 10px;
