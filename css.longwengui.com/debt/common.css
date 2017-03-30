@@ -443,6 +443,15 @@ a{
 .ml-10 {
   margin-left: 10px;
 }
+.mr-40{
+  margin-right: 40px;
+}
+.mb-15{
+  margin-bottom: 15px;
+}
+.mb-100{
+  margin-bottom: 100px;
+}
 .ml-36 {
   margin-left: 36px;
 }
@@ -550,6 +559,7 @@ a{
 }
 #after-login .det .info .name{
   padding-left: 70px;
+  min-height: 50px;
 }
 #after-login .det .info p{
   margin: 0;
@@ -605,10 +615,6 @@ a{
   border-bottom: 1px solid #e6e6e6;
   margin: 0 8px;
 }
-
-
-
-
 .header {
   width: 100%;
   line-height: 82px;
@@ -1259,4 +1265,142 @@ a{
 }
 .form-need{
   color: #fe2929;
+}
+.sel-debt-way-pop{
+  padding: 24px 20px;
+}
+.sel-debt-way-pop .tl{
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px dashed #e6e6e6;
+  padding-bottom: 10px;
+}
+.sel-debt-way-pop .way{
+  margin-top: 50px;
+  margin: 50px 100px 0;
+}
+.sel-debt-way-pop .m-dropdown{
+  display: inline-block;
+  width: 110px;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.sel-debt-way-pop .m-dropdown label{
+  color: #666;
+  width: 100%;
+  display: inline-block;
+}
+.sel-debt-way-pop .m-dropdown label i{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.sel-debt-way-pop .m-dropdown label input[type="checkbox"]{
+  display: none;
+}
+.sel-debt-way-pop .m-dropdown label ul{
+  display: none;
+  width: 128px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.sel-debt-way-pop .m-dropdown label ul li{
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.sel-debt-way-pop .m-dropdown label ul li:hover{
+  background-color: #35bdfc;
+  color: #fff;
+}
+.sel-debt-way-pop .m-dropdown label input[type="checkbox"]:checked + ul{
+  display: block;
+}
+.sel-debt-way-pop .btn{
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 26px;
+}
+.sel-debt-way-pop .btn button{
+  min-width: 80px;
+  line-height: 30px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+.sel-debt-way-pop .btn button[name="ok"]{
+  background-color: #35bdfc;
+  margin-right: 10px;
+}
+.sel-debt-way-pop .btn button[name="cancel"]{
+  background-color: #b2b2b2;
+}
+.sel-debt-way-pop .info .danger{
+  color: #fc3535;
+  font-weight: bold;
+}
+.sel-debt-way-pop .info p{
+  font-size: 14px;
+  margin: 0 0 5px;
+  line-height: 20px;
+}
+.warn-hint{
+  padding: 22px 20px;
+}
+.warn-hint .tl{
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px dashed #e6e6e6;
+  padding-bottom: 10px;
+}
+.warn-hint .tx{
+  line-height: 30px;
+  text-align: center;
+  margin: 30px 0;
+}
+.warn-hint .tx img{
+  vertical-align: middle;
+  margin-top: -4px;
+}
+.warn-hint .btn{
+  text-align: center;
+}
+.warn-hint .btn button{
+  min-width: 80px;
+  line-height: 30px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+.warn-hint .btn button[name="ok"]{
+  background-color: #35bdfc;
+  margin-right: 10px;
+}
+.warn-hint .btn button[name="cancel"]{
+  background-color: #b2b2b2;
 }

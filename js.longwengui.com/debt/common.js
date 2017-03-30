@@ -993,3 +993,100 @@ function loginOut(){
     }
   })
 }
+
+//选择债务催收方式弹窗
+function selDebtWayPop(){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    area: ['600px','450px'], //宽高
+    shadeClose: false,
+    content:   '<div class="sel-debt-way-pop">'
+              +    '<div class="tl">请选择债务催收方式</div>'
+              +    '<div class="way">'
+              +      '<div class="m-radio mr-40">'
+              +        '<label type="radio">'
+              +        '<input type="radio" name="selWay" checked value="a">'
+              +        '<i></i>'
+              +        '自助催收'
+              +        '</label>'
+              +      '</div>'
+              +      '<div class="m-radio">'
+              +        '<label type="radio">'
+              +          '<input type="radio" name="selWay" value="b">'
+              +          '<i></i>'
+              +          '委托催收'
+              +        '</label>'
+              +      '</div>'
+              +      '<div class="m-dropdown">'
+              +        '<label>'
+              +          '<span id="to_sel" data-id="1">律师团队</span>'
+              +          '<input type="checkbox" value="">'
+              +          '<ul>'
+              +            '<li data-id="1">律师团队</li>'
+              +            '<li data-id="2">催收公司</li>'
+              +          '</ul>'
+              +          '<i></i>'
+              +        '</label>'
+              +      '</div>'
+              +    '</div>'
+              +    '<div class="btn">'
+              +      '<button type="button" id="sel_way_ok" name="ok">确定</button>'
+              +      '<button type="button" id="sel_way_cancel" name="cancel">取消</button>'
+              +    '</div>'
+              +    '<div class="info">'
+              +      '<div class="mb-15">说明: </div>'
+              +      '<p><span class="danger">自助催收：</span>小额债权早期部分欠款人非恶意欠款， 可以选择自助催收，我们提供外呼和对不还款恶意行为的债务人信息传送到各金融机构、生活平台、消费平台，因此能够起到长期的低成本催收作用，避免债权不了了之，催收成本极低，目前平台只收取回款额的5%的服务费用。</p>'
+              +      '<p><span class="danger">委托催收：</span>由用户自己选择律师、催收团队或者催客帮助拿回资金，用户可以根据律师、催收团队或者催客的优势和报价来进行选择由谁接单。</p>'
+              +    '</div>'
+              +  '</div>'
+  });
+  //1 律师团队 2 催收公司 3 自助催收 /debt/publish/
+  $('#sel_way_ok').click(function(){
+    var way = $('input[name="selWay"]:checked').val();
+    if(way == "a"){
+      layer.close(index);
+      window.location.href = '/debt/publish/3';
+    }
+    if(way == "b"){
+      layer.close(index);
+      window.location.href = '/debt/publish/' + $('#to_sel').attr('data-id');
+    }
+  });
+  $('.sel-debt-way-pop .m-dropdown li').click(function(){
+    var id = $(this).attr('data-id');
+    $(this).parent().siblings('span').attr('data-id', id);
+    $(this).parent().siblings('span').html($(this).html());
+  });
+  $('#sel_way_cancel').click(function(){
+    layer.close(index);
+    var index1 = layer.open({
+      type: 1,
+      title: 0,
+      closeBtn: 0,
+      area: ['330px','200px'], //宽高
+      shadeClose: false,
+      content: '<div class="warn-hint">'
+              +    '<div class="tl">'
+              +      '警告提醒'
+              +     '</div>'
+              +    '<div class="tx">'
+              +      '<img src="/Uploads/Debt/imgs/warn.png" alt="">'
+              +      '确定取消债务吗?'
+              +    '</div>'
+              +    '<div class="btn">'
+              +      '<button type="button" id="cacel_yes" name="ok">确定</button>'
+              +      '<button type="button" id="cacel_no" name="cancel">取消</button>'
+              +    '</div>'
+              +  '</div>'
+    });
+    $('#cacel_no').click(function(){
+      layer.close(index1);
+      selDebtWayPop();
+    });
+    $('#cacel_yes').click(function(){
+      layer.close(index1);
+    });
+  });
+}

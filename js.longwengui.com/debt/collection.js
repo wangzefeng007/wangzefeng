@@ -20,11 +20,19 @@ function addSelectEvent(id_array){
     $('#' + id + ' .span-1').click(function(){
       $('#' + id + ' .sel').removeClass('sel');
       $(this).addClass('sel');
+      if(id == 'area' && $('#other_city').attr('data-id')){
+        $('#other_city').attr('data-id', null)
+        $('#other_city').html('其他城市');
+      }
       ajax(1, true);
     });
     $('#' + id + ' .span-2').click(function(){
       $('#' + id + ' .sel').removeClass('sel');
       $(this).addClass('sel');
+      if(id == 'area' && $('#other_city').attr('data-id')){
+        $('#other_city').attr('data-id', null)
+        $('#other_city').html('其他城市');
+      }
       ajax(1, true);
     });
   });
@@ -35,10 +43,9 @@ function ajax(Page, isSearched){
   resetChoices();
 
   var col_way = $('#way .sel').attr('data-id');
-  var col_area = $('#area .sel').attr('data-id');
+  var col_area = $('#area .sel').attr('data-id') || $('#other_city').attr('data-id');
   var col_money = $('#money .sel').attr('data-id');
   var col_day = $('#day .sel').attr('data-id');
-  var other_city = $('#other_city').attr('data-id');
   var Keyword = $('#keyword').val();
 
   $.ajax({
@@ -52,7 +59,6 @@ function ajax(Page, isSearched){
             'col_money': col_money == 0 ? 'all' : col_money, //催收金额 1- <3w; 2- 3~10w; 3- 10~50w; 4- 50~100w; 5- >100w
             'col_day': col_day == 0 ? 'all' : col_day, //逾期时间 1- 0~60d; 2- 61~180d; 3- 181~365d; 4- 366~1095; 5- 1096d以上
             'Page': Page, //当前页
-            'other_city': other_city, //当前页
             'Keyword': isSearched ? 'all' : Keyword, //搜索关键词
         },
         beforeSend: function () { //加载过程效果
@@ -100,6 +106,7 @@ function dataSuccess(data){
 
 //其他城市选中刷新
 function otherCitySel(){
+  $('#area .sel').removeClass('sel');
   ajax(1, true);
 }
 
@@ -108,7 +115,6 @@ function resetChoices(){
   var html = '';
   var array = [
     'way',
-    'area',
     'money',
     'day'
   ]
@@ -118,11 +124,15 @@ function resetChoices(){
       html += '<span data-attr="' + array[i] + '" onclick="delChoice(this)">' + item.html() + '</span>';
     }
   }
-  if($('#keyword').val() != ''){
-    html += '<span data-attr="keyword" onclick="delChoice(this)">' + $('#keyword').val() + '</span>';
-  }
   if($('#other_city').attr('data-id')){
     html += '<span data-attr="other_city" onclick="delChoice(this)">' + $('#other_city').html() + '</span>';
+  }else{
+    if($('#area .sel').attr('data-id') && $('#area .sel').attr('data-id') != 0){
+      html += '<span data-attr="area" onclick="delChoice(this)">' + $('#area .sel').html() + '</span>';
+    }
+  }
+  if($('#keyword').val() != ''){
+    html += '<span data-attr="keyword" onclick="delChoice(this)">' + $('#keyword').val() + '</span>';
   }
   $('#choices').html(html);
 }
@@ -136,6 +146,7 @@ function delChoice(tar){
   }else if(type == 'other_city'){
     $('#other_city').attr('data-id', null)
     $('#other_city').html('其他城市');
+    $('#area .span-1').addClass('sel');
     $('#btn_search').click();
   }else{
     $('#' + type).find('.span-1').click();

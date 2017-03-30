@@ -25,7 +25,6 @@
             <div class="menu-level-2">申请的债权</div>
             <div class="menu-level-2">债权接单</div>
             <div class="menu-level-2">浏览过的债权</div>
-            <div class="menu-level-2">发布债务</div>
           </div>
         </div>
         <div class="menu-level-1">
@@ -81,7 +80,7 @@
                 原手机
               </div>
               <div class="cont">
-                <input type="text" class="input-1" name="" value="">
+                <input type="text" class="input-1" name="oldPhoneNumber" disabled value="15763948807">
               </div>
             </div>
             <div class="line">
@@ -89,14 +88,14 @@
                 验证码
               </div>
               <div class="cont">
-                <input type="text" class="input-2" name="" value="">
-                <button type="button" name="code">发送验证码</button>
+                <input type="text" class="input-2" maxlength="4" onblur="validateCode(this)" name="code1" value="">
+                <button type="button"  onclick="getCode(this, 'oldPhoneNumber')" name="code">发送验证码</button>
               </div>
             </div>
             <div class="line">
               <div class="lab"></div>
               <div class="cont">
-                <button type="button" name="next">下一步</button>
+                <button type="button" id="step_1_next" name="next">下一步</button>
               </div>
             </div>
           </div>
@@ -107,13 +106,22 @@
                 新手机
               </div>
               <div class="cont">
-                <input type="text" class="input-1" name="" value="">
+                <input type="text" class="input-1" onblur="validatePhone(this, true)" name="newPhoneNumber" value="">
+              </div>
+            </div>
+            <div class="line">
+              <div class="lab">
+                验证码
+              </div>
+              <div class="cont">
+                <input type="text" class="input-2" maxlength="4" onblur="validateCode(this)" name="code2" value="">
+                <button type="button" onclick="getCode(this, 'newPhoneNumber')" name="code">发送验证码</button>
               </div>
             </div>
             <div class="line">
               <div class="lab"></div>
               <div class="cont">
-                <button type="button" name="next">完成</button>
+                <button type="button" id="step_2_next" name="next">完成</button>
               </div>
             </div>
           </div>
@@ -123,13 +131,11 @@
               <img src="/Uploads/Debt/imgs/gou_success.png" alt="">手机绑定成功！
             </div>
           </div>
-
-
         </div>
-
 
       </div>
     </div>
   </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/bindPhone.js'></script>
