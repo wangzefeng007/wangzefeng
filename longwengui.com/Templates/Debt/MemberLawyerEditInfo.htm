@@ -1,5 +1,7 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
     <div class="wrap">
         <div class="current-loc">
@@ -21,7 +23,10 @@
                             <div class="head-portrait">
                                 <img src="/Uploads/Debt/imgs/head_img.png" alt="">
                                 <br>
-                                <span>更改头像</span>
+                                <label>
+                                    <span>更改头像</span>
+                                    <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                </label>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
@@ -36,7 +41,7 @@
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    账号等级:&nbsp;&nbsp;律师团队
+                                    账号等级:&nbsp;&nbsp;律师团队(认证中)
                                 </div>
                                 <div class="line">
                                     最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
@@ -49,7 +54,7 @@
                         <div class="info-o">
                             <div class="line">
                                 <div class="if">
-                                    手机号码:
+                                    手机号
                                 </div>
                                 <div class="cont">
                                     13546588777
@@ -57,91 +62,122 @@
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    真实姓名:
+                                    真实姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    钱学喜
+                                    <input type="text" name="name" onblur="validateChinese(this)" value="钱学喜">
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    身份证号:
+                                    身份证号<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    350526199311280014
+                                    <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350526199311280014">
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    职业证号:
+                                    执业证号<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    ASFDAS588777
+                                    <input type="text" name="jobNo" onblur="validateLawJobNo(this)" value="ASFDAS588777">
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    所属事务所:
+                                    所属事务所<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    厦门市方圆律师事务所
+                                    <input type="text" onblur="validateChinese(this)" name="office" value="厦门市方圆律师事务所">
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    年检到期日:
+                                    年检到期日<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    2017-10-25
+                                    <input id='mydatepicker' type='text' value="2017-10-25"/> 
                                 </div>
                             </div>
                             <div class="line-img">
                                 <div class="if">
-                                    律师资格证:
+                                    律师资格证<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
                                     <div class="bx">
                                         <div class="img-wrap">
+                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                                         </div>
-                                        律师资格证照片页
+                                        <label>
+                                            <span>+ 律师资格证照片页</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
                                     </div>
                                     <div class="bx">
                                         <div class="img-wrap">
+                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                                         </div>
-                                        律师资格证年检页
+                                        <label>
+                                            <span>+ 律师资格证年检页</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    所在地区:
+                                    所在地区<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    福建省-厦门市-思明区
+                                    <div class="p-dropdown">
+                                        <label type="checkbox">
+                                            <span data-id="1013">福建省</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_province" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="c-dropdown">
+                                        <label type="checkbox">
+                                            <span data-id="1153">厦门市</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_city" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="a-dropdown">
+                                        <label type="checkbox">
+                                            <span data-id="2538">思明区</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_area" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    详细地址:
+                                    详细地址
                                 </div>
                                 <div class="cont">
-                                    无
+                                    <textarea name="areaDetail" placeholder="不超过50个字" rows="2" maxlength="50" cols="80"></textarea>
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    QQ号码:
+                                    QQ号码
                                 </div>
                                 <div class="cont">
-                                    无
+                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    邮箱地址:
+                                    邮箱地址
                                 </div>
                                 <div class="cont">
-                                    无
+                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="">
                                 </div>
                             </div>
                         </div>
@@ -150,7 +186,13 @@
 
                 <div class="to-opt">
                     <div class="cont">
-                        <button type="button" name="edit">修改信息</button>
+                        <button type="button" id="save" name="save">保存</button>
+                        <button type="button" name="cancel">取消</button>
+                    </div>
+                    <div class="for-auth">
+            <span class="waiting">
+              认证审核中，请耐心等待！
+            </span>
                     </div>
                 </div>
             </div>
@@ -158,3 +200,6 @@
     </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='{echo JsURL}/debt/noAuthLawerCenter.js'></script>

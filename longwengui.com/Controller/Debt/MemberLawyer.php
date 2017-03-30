@@ -24,8 +24,8 @@ class MemberLawyer
     /**
      * @desc 律师会员中心(完善个人资料)
      */
-    public function PerfectInfo()
+    public function EditInfo()
     {
-        include template('MemberLawyerPerfectInfo');
+        include template('MemberLawyerEditInfo');
     }
 }

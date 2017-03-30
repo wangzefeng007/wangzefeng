@@ -150,7 +150,7 @@ function changeHeadImg(tar, ImgBaseData, index){
 //上传证件照
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
         url: "/Templates/Debt/data/imageUpload.json",
         data: {

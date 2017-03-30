@@ -7,75 +7,39 @@
             当前位置 > 个人中心 > <span>企业信息</span>
         </div>
         <div class="menu-cont-wrap">
-            <div class="menu-bar">
-                <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
-                <div class="nick-name">
-                    昵称
-                </div>
-                <button type="button" name="button">已认证</button>
-                <div class="menu-level-1  menu-level-1-act">
-                    <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
-                    企业信息
-                </div>
-                <div class="menu-level-1" data-open="0" can-down='1'>
-                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
-                    债权管理
-                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
-                    <div class="menu-level-2-wrap">
-                        <div class="menu-level-2">
-                            申请的债权
-                        </div>
-                        <div class="menu-level-2">债权接单</div>
-                        <div class="menu-level-2">
-                            浏览过的债权
-                        </div>
-                        <div class="menu-level-2">
-                            发布债务
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-level-1">
-                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
-                    系统信息
-                </div>
-                <div class="menu-level-1">
-                    <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
-                    投诉建议
-                </div>
-            </div>
+            {template MemberFirmLeft}
             <div class="menu-cont">
                 <div class="tab-hd">
                     <div class="tb act">
                         企业信息
                     </div>
                 </div>
-
                 <div class="show-info">
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
-                                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                                <img src="{$UserInfo[Avatar]}" alt="">
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    会员ID:&nbsp;&nbsp;LWG1588
+                                    会员ID:&nbsp;&nbsp;LWG{$User[UserID]}
                                 </div>
                                 <div class="line">
-                                    注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    注册时间:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$User[AddTime])}
                                 </div>
                                 <div class="line">
-                                    注册IP:&nbsp;&nbsp;110.84.32.35
+                                    注册IP:&nbsp;&nbsp;{$User[AddIP]}
                                 </div>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    账号等级:&nbsp;&nbsp;普通会员
+                                    账号等级:&nbsp;&nbsp;{$UserInfo[Identity]}({$UserInfo[IdentityState]})
                                 </div>
                                 <div class="line">
-                                    最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
                                 </div>
                                 <div class="line">
-                                    上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                                    上次登陆IP:&nbsp;&nbsp;{$UserInfo[IP]}
                                 </div>
                             </div>
                         </div>
@@ -85,7 +49,7 @@
                                     手机号码:
                                 </div>
                                 <div class="cont">
-                                    13546588777
+                                    {if !empty($User[Mobile])}{$User[Mobile]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -93,7 +57,7 @@
                                     公司名称:
                                 </div>
                                 <div class="cont">
-                                    雄霸天下催收公司
+                                    {if !empty($UserInfo[CompanyName])}{$UserInfo[CompanyName]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -101,7 +65,7 @@
                                     注册人姓名:
                                 </div>
                                 <div class="cont">
-                                    聂风
+                                    {if !empty($UserInfo[RealName])}{$UserInfo[RealName]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -109,7 +73,7 @@
                                     身份证号:
                                 </div>
                                 <div class="cont">
-                                    350523193611360014
+                                    {if !empty($UserInfo[CardNum])}{$UserInfo[CardNum]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line-img">
@@ -119,13 +83,13 @@
                                 <div class="cont">
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[CardPositive]}" alt="">
                                         </div>
                                         身份证正面照
                                     </div>
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[CardNegative]}" alt="">
                                         </div>
                                         身份证反面照
                                     </div>
@@ -136,7 +100,7 @@
                                     信用代码:
                                 </div>
                                 <div class="cont">
-                                    ASDFASSDDSSDD31313
+                                    {if !empty($UserInfo[CreditCode])}{$UserInfo[CreditCode]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line-img">
@@ -146,7 +110,7 @@
                                 <div class="cont">
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[BusinessImage]}" alt="">
                                         </div>
                                         营业执照副本
                                     </div>
@@ -157,7 +121,7 @@
                                     所在地区:
                                 </div>
                                 <div class="cont">
-                                    福建省-厦门市-思明区
+                                    {$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}
                                 </div>
                             </div>
                             <div class="line">
@@ -165,7 +129,7 @@
                                     详细地址:
                                 </div>
                                 <div class="cont">
-                                    无
+                                    {if !empty($UserInfo[Address])}{$UserInfo[Address]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -173,7 +137,7 @@
                                     QQ号码:
                                 </div>
                                 <div class="cont">
-                                    无
+                                    {if !empty($UserInfo[Address])}{$UserInfo[QQ]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -181,7 +145,7 @@
                                     邮箱地址:
                                 </div>
                                 <div class="cont">
-                                    无
+                                    {if !empty($UserInfo['E-Mail'])}{$UserInfo['E-Mail']}{else}无{/if}
                                 </div>
                             </div>
                         </div>
@@ -192,7 +156,13 @@
                     <div class="cont">
                         <button type="button" name="edit">修改信息</button>
                     </div>
+                    <div class="for-auth">
+                    <span class="waiting">
+                      认证审核中，请耐心等待！
+                    </span>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

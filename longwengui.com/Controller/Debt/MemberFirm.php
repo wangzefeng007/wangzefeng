@@ -24,8 +24,14 @@ class MemberFirm
     /**
      * @desc 催收公司会员中心(完善个人资料)
      */
-    public function PerfectInfo()
+    public function EditInfo()
     {
-        include template('MemberFirmPerfectInfo');
+        MemberService::IsLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberFirmEditInfo');
     }
 }

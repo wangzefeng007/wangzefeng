@@ -5,24 +5,14 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            当前位置 > 个人中心 > <span>个人信息</span>
+            当前位置 > 个人中心 > <span>企业信息</span>
         </div>
         <div class="menu-cont-wrap">
-            <div class="menu-bar">
-                <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
-                <div class="nick-name">
-                    昵称
-                </div>
-                <button type="button" name="button">认证审核中</button>
-                <div class="menu-level-1  menu-level-1-act">
-                    <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
-                    个人信息
-                </div>
-            </div>
+            {template MemberFirmLeft}
             <div class="menu-cont">
                 <div class="tab-hd">
                     <div class="tb act">
-                        个人信息
+                        企业信息
                     </div>
                 </div>
 
@@ -30,7 +20,7 @@
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
-                                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                                <img src="{$UserInfo[Avatar]}" alt="">
                                 <br>
                                 <label>
                                     <span>更改头像</span>
@@ -39,24 +29,24 @@
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    会员ID:&nbsp;&nbsp;LWG1588
+                                    会员ID:&nbsp;&nbsp;LWG{$User[UserID]}
                                 </div>
                                 <div class="line">
-                                    注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    注册时间:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$User[AddTime])}
                                 </div>
                                 <div class="line">
-                                    注册IP:&nbsp;&nbsp;110.84.32.35
+                                    注册IP:&nbsp;&nbsp;{$User[AddIP]}
                                 </div>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    账号等级:&nbsp;&nbsp;个人会员(认证中)
+                                    账号等级:&nbsp;&nbsp;{$UserInfo[Identity]}({$UserInfo[IdentityState]})
                                 </div>
                                 <div class="line">
-                                    最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
                                 </div>
                                 <div class="line">
-                                    上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                                    上次登陆IP:&nbsp;&nbsp;{$UserInfo[IP]}
                                 </div>
                             </div>
                         </div>
@@ -71,18 +61,18 @@
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    昵称<span class="form-need">*</span>
+                                    公司名称<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="nickName" maxlength="5" onblur="validateNeed(this)" placeholder="不超过5个字" value="聂风">
+                                    <input type="text" onblur="validateChinese(this)" name="companyName" value="厦门雄霸催收公司">
                                 </div>
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    真实姓名<span class="form-need">*</span>
+                                    注册人姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="name" onblur="validateChinese(this)" value="李霸">
+                                    <input type="text" onblur="validateChinese(this)" name="registrantName" value="吴霸">
                                 </div>
                             </div>
                             <div class="line">
@@ -90,20 +80,20 @@
                                     身份证号<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350523219444285514">
+                                    <input type="text" onblur="validateIDNumber(this, true)" name="idNum" value="350235135823541355">
                                 </div>
                             </div>
                             <div class="line-img">
                                 <div class="if">
                                     证件照<span class="form-need">*</span>
                                 </div>
-                                <div class="cont">
+                                <div class="cont" id="i_registrant">
                                     <div class="bx">
                                         <div class="img-wrap">
                                             <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                                         </div>
                                         <label>
-                                            <span>+ 身份证正面照</span>
+                                            <span>+ 身份证正面</span>
                                             <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                                         </label>
                                     </div>
@@ -112,7 +102,31 @@
                                             <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
                                         </div>
                                         <label>
-                                            <span>+ 身份证反面照</span>
+                                            <span>+ 身份证反面</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="if">
+                                    信用代码<span class="form-need">*</span>
+                                </div>
+                                <div class="cont">
+                                    <input type="text" name="creditNum" onblur="validateCreditNum(this)" placeholder="统一社会信用代码" value="ASDFASSDDSSDD31313">
+                                </div>
+                            </div>
+                            <div class="line-img">
+                                <div class="if">
+                                    营业执照<span class="form-need">*</span>
+                                </div>
+                                <div class="cont" id="i_license">
+                                    <div class="bx">
+                                        <div class="img-wrap">
+                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                        </div>
+                                        <label>
+                                            <span>+ 营业执照副本</span>
                                             <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                                         </label>
                                     </div>
@@ -194,4 +208,4 @@
 </div>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
-<script src='{echo JsURL}/debt/noAuthPersonCenter.js'></script>
+<script src='{echo JsURL}/debt/noAuthCompanyCenter.js'></script>

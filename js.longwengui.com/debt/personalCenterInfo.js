@@ -1,6 +1,6 @@
+//个人会员资料修改
 $(function(){
   initArea();
-
   //保存修改
   $('#save').click(function(){
     var nick_name = $('input[name="nickName"]').val();
@@ -77,15 +77,19 @@ $(function(){
       "areaDetail": area_detail, //详细地址
       "qq": qq, //qq
       "email": email, //邮箱
-      "headImg": head_img //头像
+      "headImg": head_img//头像
+
     });
   });
   function ajax(formData){
     $.ajax({
-      type: "get",
-      url: "/Templates/Debt/data/personalInfoEdit.json",
+      type: "post",
+      url: "/loginajax.html",
       dataType: "json",
-      data: JSON.stringify(formData),
+        data: {
+            "Intention":"fdgd",
+            "AjaxJSON":JSON.stringify(formData),
+        },
       beforeSend: function(){
         showLoading();
       },
@@ -122,9 +126,9 @@ function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
       type: "get",
       dataType: "json",
-      url: "/Templates/Debt/data/imageUpload.json",
+      url: "/loginajax.html",
       data: {
-          "Intention":"AddRewardImage",
+          "Intention":"AddCardImage",
           "ImgBaseData": ImgBaseData,
       },
       beforeSend: function () {
@@ -150,7 +154,7 @@ function changeHeadImg(tar, ImgBaseData, index){
 //上传证件照
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
         url: "/Templates/Debt/data/imageUpload.json",
         data: {

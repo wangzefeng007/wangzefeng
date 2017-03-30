@@ -8,12 +8,20 @@ class MemberPerson
 
     }
     /**
+     * @desc  判断是否登录并返回登录页面
+     */
+    public static function IsLogin()
+    {
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }
+    }
+    /**
      * @desc 个人会员中心(个人信息)
      */
     public function Index()
     {
-
-        MemberService::IsLogin();
+        $this->IsLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         //会员基本信息
@@ -25,8 +33,14 @@ class MemberPerson
     /**
      * @desc 催收公司会员中心(完善个人资料)
      */
-    public function PerfectInfo()
+    public function EditInfo()
     {
-        include template('MemberPersonPerfectInfo');
+        MemberService::IsLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberPersonEditInfo');
     }
 }
