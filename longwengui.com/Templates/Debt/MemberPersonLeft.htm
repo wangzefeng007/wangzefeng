@@ -1,7 +1,7 @@
 <div class="menu-bar">
-    <img src="{$_SESSION['Avatar']}" class="u-img" alt="">
+    <img src="{$UserInfo['Avatar']}" class="u-img" alt="">
     <div class="nick-name">
-        昵称
+        {$UserInfo[NickName]}
     </div>
     <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
     <div class="menu-level-1  menu-level-1-act">
