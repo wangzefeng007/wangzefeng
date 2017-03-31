@@ -72,6 +72,7 @@
 .debtor-auth .wrap .bx-wraper .cont .info-form .line .cont-in,
 .debtor-auth .wrap .bx-wraper .cont .info-form .line-1 .cont-in {
   width: 530px;
+  min-height: 46px;
   float: left;
 }
 .debtor-auth .wrap .bx-wraper .cont .info-form .line .cont-in .p-dropdown,
