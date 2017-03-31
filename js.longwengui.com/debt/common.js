@@ -445,7 +445,7 @@ function validate(type, text){
     case 'qq':
       return /^[1-9][0-9]{4,9}$/.test(text);
     case 'creditNum':
-      return /^[0-9A-Z]{18}$/.test(text);
+      return /^[0-9A-Za-z]+$/.test(text);
     case 'lawJobNo':
       return /^[0-9]{17}$/.test(text);
     default:
