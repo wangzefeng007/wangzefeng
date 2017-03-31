@@ -15,7 +15,7 @@ Class MemberUserInfoModule extends CommonModule  {
      * @var array
      */
     public $IdentityStatus = array(
-        '1' => '未提交认证',
+        '1' => '提交认证',
         '2' => '认证中',
         '3' => '认证通过',
         '4' => '认证不通过',

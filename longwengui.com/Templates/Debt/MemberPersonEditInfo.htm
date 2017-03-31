@@ -15,6 +15,10 @@
                             <div class="head-portrait">
                                 <img src="{$UserInfo[Avatar]}" alt="">
                                 <br>
+                                <label>
+                                    <span>更改头像</span>
+                                    <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                </label>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
@@ -29,7 +33,7 @@
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    账号等级:&nbsp;&nbsp;{$UserInfo[Identity]}({$UserInfo[IdentityState]})
+                                    账号等级:&nbsp;&nbsp;{$Identity[$UserInfo[Identity]]}({$IdentityStatus[$UserInfo[IdentityState]]})
                                 </div>
                                 <div class="line">
                                     最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
@@ -169,7 +173,7 @@
                 <div class="to-opt">
                     <div class="cont">
                         <button type="button" id="save" name="save" data-type="{$UserInfo[Identity]}">保存</button>
-                        <button type="button" name="cancel">取消</button>
+                        <button type="button" name="cancel" onclick="window.history.go(-1);">取消</button>
                     </div>
                 </div>
             </div>
