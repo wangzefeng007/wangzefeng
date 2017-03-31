@@ -5,7 +5,7 @@
   <div class="wrap">
     <div class="current-loc">
       <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-      当前位置 > 个人中心 > <span>浏览过的债务</span>
+      当前位置 > 个人中心 > <span>提前关注</span>
     </div>
     <div class="menu-cont-wrap">
       <div class="menu-bar">
@@ -78,20 +78,48 @@
       <div class="menu-cont">
         <div class="tab-hd">
           <div class="tb act">
-            浏览过的债务
-          </div>
-          <div class="tb">
-            浏览过的债权转让
-          </div>
-          <div class="tb">
-            浏览过的悬赏
+            提前关注
           </div>
         </div>
         <div class="info-cont">
-					<div class="cont-hd">
-						<span>浏览过的债务列表：</span>
-					</div>
-
+          <div class="care-search-wrap">
+            <input type="text" placeholder="*关注人姓名" name="name" value="">
+            <input type="text" placeholder="*请输入您要关注的身份证号" name="idNum" value="">
+            <button type="button" name="button">关注</button>
+            <span>注：提前关注身份证，可获取查看对方相关的债务信息！</span>
+          </div>
+          <div class="cared">
+            请选择已关注人：
+            <div class="m-dropdown">
+              <label type="checkbox">
+                <i></i>
+                <span>请选择</span>
+                <input type="checkbox" name="" value="">
+                <ul>
+                  <li>张三</li>
+                  <li>李四</li>
+                </ul>
+              </label>
+            </div>
+          </div>
+          <div class="care-sel">
+            <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
+            您当前选择了<span class="c-b">350920598314201161(王五)</span>
+            <div class="fr">
+              <div class="m-dropdown">
+                <label type="checkbox">
+                  <i></i>
+                  <span data-type="1">债务</span>
+                  <input type="checkbox" name="" value="">
+                  <ul>
+                    <li data-type="1">债务</li>
+                    <li data-type="2">债权转让</li>
+                    <li data-type="3">悬赏</li>
+                  </ul>
+                </label>
+              </div>
+            </div>
+          </div>
 					<div class="debt">
 						<table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
 							<thead>
@@ -104,7 +132,6 @@
 									<td>发布时间</td>
 									<td>当前状态</td>
 									<td>查看</td>
-									<td>操作</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -112,56 +139,51 @@
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-1">未接单</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-2">催收中</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-3">已退款</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-3">已完成</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-3">已曝光</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
 								</tr>
 							</tbody>
 						</table>

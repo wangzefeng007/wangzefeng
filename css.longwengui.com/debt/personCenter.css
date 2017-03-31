@@ -862,3 +862,175 @@
   vertical-align: middle;
   margin-top: -2px;
 }
+
+/*提前关注的债务*/
+.care-search-wrap{
+  margin: 20px 10px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.care-search-wrap input[name="name"]{
+  width: 130px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+}
+.care-search-wrap input[name="idNum"]{
+  width: 300px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+}
+.care-search-wrap span{
+  font-size: 14px;
+  color: #999999;
+  margin-left: 10px;
+}
+.care-search-wrap button{
+  width: 80px;
+  line-height: 36px;
+  font-size: 14px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+}
+.cared{
+  font-size: 14px;
+  padding: 0 10px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+.cared .m-dropdown{
+  display: inline-block;
+  width: 160px;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.cared .m-dropdown label{
+  color: #666;
+  width: 100%;
+  display: inline-block;
+}
+.cared .m-dropdown label i{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.cared .m-dropdown label input[type="checkbox"]{
+  display: none;
+}
+.cared .m-dropdown label ul{
+  display: none;
+  width: 178px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.cared .m-dropdown label ul li{
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.cared .m-dropdown label ul li:hover{
+  background-color: #35bdfc;
+  color: #fff;
+}
+.cared .m-dropdown label input[type="checkbox"]:checked + ul{
+  display: block;
+}
+.care-sel{
+  padding: 0 10px;
+  line-height: 40px;
+}
+.care-sel .c-b{
+  color: #35bdfc;
+}
+.care-sel img{
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.care-sel .fr{
+  float: right;
+}
+.care-sel .fr .m-dropdown{
+  display: inline-block;
+  width: 160px;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.care-sel .fr .m-dropdown label{
+  color: #666;
+  width: 100%;
+  display: inline-block;
+}
+.care-sel .fr .m-dropdown label i{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.care-sel .fr .m-dropdown label input[type="checkbox"]{
+  display: none;
+}
+.care-sel .fr .m-dropdown label ul{
+  display: none;
+  width: 178px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.care-sel .fr .m-dropdown label ul li{
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.care-sel .fr .m-dropdown label ul li:hover{
+  background-color: #35bdfc;
+  color: #fff;
+}
+.care-sel .fr .m-dropdown label input[type="checkbox"]:checked + ul{
+  display: block;
+}

@@ -78,20 +78,25 @@
       <div class="menu-cont">
         <div class="tab-hd">
           <div class="tb act">
-            浏览过的债务
-          </div>
-          <div class="tb">
-            浏览过的债权转让
-          </div>
-          <div class="tb">
-            浏览过的悬赏
+            我关注的债务
           </div>
         </div>
         <div class="info-cont">
 					<div class="cont-hd">
-						<span>浏览过的债务列表：</span>
+						<span>已关注的债务列表：</span>
 					</div>
-
+          <dl class="cont-select">
+						<dt>债务状态：</dt>
+						<dd class="cont-select-act">全部</dd>
+						<dd>未接单</dd>
+						<dd>催收中</dd>
+						<dd>未付款</dd>
+						<dd>未完成</dd>
+						<dd>已完成</dd>
+						<dd>退款中</dd>
+						<dd>退款成功</dd>
+						<dd>已曝光</dd>
+					</dl>
 					<div class="debt">
 						<table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
 							<thead>
@@ -112,60 +117,81 @@
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-1">未接单</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
+									<td><button type="button">取消关注</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-2">催收中</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
+									<td><button type="button">取消关注</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-3">已退款</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
+									<td><button type="button">取消关注</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-3">已完成</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
+									<td><button type="button">取消关注</button></td>
 								</tr>
 								<tr>
 									<td>L201702270000</td>
 									<td>张三</td>
 									<td>福建省-厦门市-思明区</td>
-									<td>￥100000000.00</td>
+									<td class="color-red">￥100000000.00</td>
 									<td>30天</td>
 									<td>2017-02-25</td>
 									<td class="sta-3">已曝光</td>
 									<td><a href="" class="details-enter">详情</a></td>
-									<td><button type="button">删除记录</button></td>
+									<td><button type="button">取消关注</button></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
+        </div>
+      </div>
+    </div>
+    <div class="fr-win">
+      <div class="pub-btn">
+        <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+        <br>
+        发布
+      </div>
+      <div class="pub-btn-list">
+        <div class="lin" onclick="selDebtWayPop()">
+          发布债务
+        </div>
+        <div class="lin">
+          寻找处置方
+        </div>
+        <div class="lin">
+          资产转让
+        </div>
+        <div class="lin">
+          发布悬赏
         </div>
       </div>
     </div>
