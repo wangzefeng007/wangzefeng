@@ -111,7 +111,7 @@ $(function(){
       url: "/loginajax.html",
       dataType: "json",
         data: {
-            "Intention":"profileInfo",//保存个人资料
+            "Intention":"AddInformation",//保存个人资料
             "AjaxJSON": JSON.stringify(formData),
         },
       beforeSend: function(){

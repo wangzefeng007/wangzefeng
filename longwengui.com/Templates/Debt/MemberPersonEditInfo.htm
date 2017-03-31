@@ -58,7 +58,7 @@
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    真实姓名1<span class="form-need">*</span>
+                                    真实姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
                                     <input type="text" name="name" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
@@ -92,6 +92,15 @@
                                         </div>
                                         <label>
                                             <span>+ 身份证反面照</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
+                                    </div>
+                                    <div class="bx">
+                                        <div class="img-wrap">
+                                            <img src="{$UserInfo[CardHold]}" alt="">
+                                        </div>
+                                        <label>
+                                            <span>+ 手持身份证</span>
                                             <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                                         </label>
                                     </div>
@@ -142,7 +151,7 @@
                                 </div>
                                 <div class="cont">
                                   <!-- {$UserInfo[QQ]} -->
-                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
+                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="{$UserInfo[QQ]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -151,7 +160,7 @@
                                 </div>
                                 <div class="cont">
                                   <!-- {$User['E-Mail']} -->
-                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="">
+                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="{$UserInfo['E-Mail']}">
                                 </div>
                             </div>
                         </div>
@@ -161,11 +170,6 @@
                     <div class="cont">
                         <button type="button" id="save" name="save" data-type="{$UserInfo[Identity]}">保存</button>
                         <button type="button" name="cancel">取消</button>
-                    </div>
-                    <div class="for-auth">
-                    <span class="waiting">
-                      认证审核中，请耐心等待！
-                    </span>
                     </div>
                 </div>
             </div>

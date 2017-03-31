@@ -21,13 +21,14 @@ $(function(){
     }
 
     $.ajax({
-      type: 'get',
-      url: '/Templates/Debt/data/changePass.json',
+      type: 'post',
+      url: '/loginajax.html',
       dataType: "json",
-      data: JSON.stringify({
+      data: {
+        "Intention": "ChangePassword", //修改密码
         "oldPass": old_pass, //旧密码
         "newPass": new_pass  //新密码
-      }),
+      },
       beforeSend: function(){
         showLoading();
       },
@@ -35,7 +36,11 @@ $(function(){
         if(data.ResultCode == 200){
           showMsg('修改成功');
           //路由跳转
-
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
+        }else {
+            showMsg(data.Message);
         }
       },
       complete: function(){
