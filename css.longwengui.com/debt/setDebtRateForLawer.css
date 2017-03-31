@@ -137,7 +137,7 @@
 }
 .set-debt .wrap .form-wrap .box .c .blo .line {
   font-size: 14px;
-  height: 30px;
+  min-height: 30px;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line .left {
   width: 50%;
@@ -177,7 +177,26 @@
 .set-debt .wrap .form-wrap .box .c .blo .line .right {
   display: inline-block;
   width: 50%;
-  height: 20px;
+  min-height: 20px;
+}
+.set-debt .wrap .form-wrap .box .c .blo .line .right .fir .lin{
+  display: inline-block;
+}
+.set-debt .wrap .form-wrap .box .c .blo .line .right .fir .lin .lef{
+  float: left;
+  width: 88px;
+  line-height: 30px;
+  height: 30px;
+}
+.set-debt .wrap .form-wrap .box .c .blo .line .right .fir input{
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 12px;
+  margin-left: 10px;
+  font-size: 14px;
+  width: 80px;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line .right .info {
   width: 90px;
