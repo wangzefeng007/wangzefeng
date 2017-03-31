@@ -452,11 +452,17 @@ a{
 .mb-100{
   margin-bottom: 100px;
 }
+.mb-10{
+  margin-bottom: 10px;
+}
 .ml-36 {
   margin-left: 36px;
 }
 .mr-99{
   margin-right: 99px;
+}
+.ml-46{
+  margin-left: 46px;
 }
 .fl-r {
   float: right;

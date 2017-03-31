@@ -443,9 +443,9 @@ function validate(type, text){
     case 'email':
       return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(text);
     case 'qq':
-      return /^[1-9][0-9]{4,9}$/.test(text);
+      return /^[1-9][0-9]{6,12}$/.test(text);
     case 'creditNum':
-      return /^[0-9A-Z]{18}$/.test(text);
+      return /^[0-9A-Za-z]+$/.test(text);
     case 'lawJobNo':
       return /^[0-9]{17}$/.test(text);
     default:
