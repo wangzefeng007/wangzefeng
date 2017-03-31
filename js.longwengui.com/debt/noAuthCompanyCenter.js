@@ -144,7 +144,7 @@ function initArea(){
 //修改头像
 function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
-      type: "get",
+      type: "post",
       dataType: "json",
       url: "/Templates/Debt/data/imageUpload.json",
       data: {

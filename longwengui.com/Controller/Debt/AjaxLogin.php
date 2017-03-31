@@ -29,11 +29,11 @@ class AjaxLogin
      */
     private function Login()
     {
-        $ImageCode = strtolower($_POST['ImageCode']);
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $ImageCode = strtolower($AjaxData['ImageCode']);
         if ($_COOKIE['PasswordErrTimes'] < 3) {
             $_SESSION['authnum_session'] = $ImageCode;
         }
-        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         if ($ImageCode == $_SESSION['authnum_session']) {
             $Account = trim($AjaxData['phoneNumber']);
             $User = new MemberUserModule();
@@ -59,7 +59,8 @@ class AjaxLogin
                 $_SESSION['Account'] = $Account;
                 setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
                 $UserInfoModule = new MemberUserInfoModule();
-                $Data['LastLogin'] = date('Y-m-d H:i:s', time());
+                $Data['LastLogin'] = time();
+                $Data['IP'] = GetIP();
                 $UserInfoModule->UpdateInfoByWhere($Data,' UserID = '.$UserID);
                 $UserInfo=$UserInfoModule->GetInfoByUserID($UserID);
                 if($UserInfo){
@@ -94,7 +95,7 @@ class AjaxLogin
         exit;
     }
     /**
-     * @desc  发送 注册/找回密码 验证码
+     * @desc  发送注册验证码
      */
     private function RegisterSendCode(){
         $ImageCode = $_POST['ImageCode'];
@@ -108,6 +109,51 @@ class AjaxLogin
         echo json_encode($json_result);exit;
     }
     /**
+     * @desc 修改密码/找回密码 手机验证码
+     */
+    private function RegisterVerifyCode(){
+        $Account = $_POST['phoneNumber'];
+        $UserModule = new MemberUserModule();
+        if (!$UserModule->AccountExists($Account)) {
+            $json_result = array('ResultCode' => 106, 'Message' => '该帐号未注册,请先注册帐号');
+        }else{
+            $json_result = MemberService::SendMobileVerificationCode($Account);
+            if($json_result['ResultCode'] == 200 ){
+                $_SESSION['temp_account'] = $_POST['User'];
+            }
+        }
+        echo json_encode($json_result);exit;
+    }
+    /**
+     * @desc  注册页忘记密码
+     */
+    private function RetrievePassword(){
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $Account = $AjaxData['phoneNumber'];
+        $PassWord = md5($AjaxData ['password']);
+        $VerifyCode = $AjaxData['Code'];
+        $Authentication = new MemberAuthenticationModule ();
+        $TempUserInfo = $Authentication->GetAccountInfo($Account, $VerifyCode, 0);
+        if ($TempUserInfo) {
+            $CurrentTime = time();
+            if ($CurrentTime > $TempUserInfo['XpirationDate']) {
+                $json_result = array('ResultCode' => 103, 'Message' => '短信验证码过期');
+            }else{
+                $MemberUserModule = new MemberUserModule ();
+                $UserInfo = $MemberUserModule->GetInfoByWhere(' and Mobile ='.$Account);
+                $Result = $MemberUserModule->UpdateInfoByWhere(array('PassWord'=>$PassWord), ' UserID ='.$UserInfo['UserID']);
+                if($Result || $Result === 0){
+                    $json_result = array('ResultCode' => 200, 'Message' => '重置成功', 'Url' =>WEB_MAIN_URL);
+                }else{
+                    $json_result = array('ResultCode' => 103, 'Message' => '重置失败');
+                }
+            }
+        }else{
+            $json_result = array('ResultCode' => 104, 'Message' => '短信验证码输入错误',);
+        }
+        echo json_encode($json_result);
+    }
+    /**
      * @desc  注册
      */
     private function Register()
@@ -119,7 +165,7 @@ class AjaxLogin
             $json_result = array('ResultCode' => 101, 'Message' => '该帐号已被注册过了,请更换号码注册', 'Url' => '');
         } else {
             $VerifyCode = $AjaxData['code'];
-            $Authentication = new MemberAuthenticationModule ();
+            $Authentication = new MemberAuthenticationModule();
             $TempUserInfo = $Authentication->GetAccountInfo($Account, $VerifyCode, 0);
             if ($TempUserInfo) {
                 $CurrentTime = time();
@@ -164,5 +210,110 @@ class AjaxLogin
             }
         }
         echo json_encode($json_result);exit;
+    }
+
+    /**
+     * @desc 添加证件图片
+     */
+    public function AddCardImage(){
+        //上传图片
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $ImageUrl = SendToImgServ($ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        if ($Data['ImageUrl'] !==''){
+            $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 完善个人资料（个人、催客、公司、律师事务所）
+     */
+    public function AddInformation(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        if ($AjaxData['type']===1){
+            $Data['NickName'] = $AjaxData['nickName'];//昵称
+            $Data['RealName'] = $AjaxData['name'];//姓名
+            $Data['CardNum'] = $AjaxData['idNum'];//身份证号
+            $Data['Province'] = $AjaxData['province'];//省
+            $Data['City'] = $AjaxData['city'];//市
+            $Data['Area'] = $AjaxData['area']; //县
+            $Data['Address'] = $AjaxData['areaDetail'];//详细地址
+            $Data['CardPositive'] = $AjaxData['images'][0];//身份证正面
+            $Data['CardNegative'] = $AjaxData['images'][1];//身份证背面
+            $Data['QQ'] = $AjaxData['qq'];//qq
+            $Data['E-Mail'] = $AjaxData['email'];//邮箱
+            $Data['Identity'] = $AjaxData['type'];//类型
+            $Url =WEB_MAIN_URL.'/memberperson/';
+        }elseif ($AjaxData['type']===2){
+            $Data['NickName'] = $AjaxData['nickName']; //昵称
+            $Data['RealName'] = $AjaxData['name']; //姓名
+            $Data['CardNum'] = $AjaxData['idNum']; //身份证号
+            $Data['Province'] = $AjaxData['province'];//省
+            $Data['City'] = $AjaxData['city'];//市
+            $Data['Area'] = $AjaxData['area']; //县
+            $Data['Address'] = $AjaxData['areaDetail'];//详细地址
+            $Data['CardPositive'] = $AjaxData['images'][0];//身份证正面
+            $Data['CardNegative'] = $AjaxData['images'][1];//身份证背面
+            $Data['CardHold'] = $AjaxData['images'][1];//手持身份证
+            $Data['QQ'] = $AjaxData['qq'];//qq
+            $Data['E-Mail'] = $AjaxData['email']; //邮箱
+            $Data['Identity'] = $AjaxData['type']; //类型
+            $Url =WEB_MAIN_URL.'/memberperson/';
+        }elseif ($AjaxData['type']===3){
+            $Data['CompanyName'] = $AjaxData['companyName'];//催收公司名称
+            $Data['RealName'] = $AjaxData['registrantName'];//公司注册人姓名
+            $Data['CardNum'] = $AjaxData['idNum'];//注册人身份证号
+            $Data['CreditCode'] = $AjaxData['creditNum'];//信用代码
+            $Data['Province'] = $AjaxData['province'];//省
+            $Data['City'] = $AjaxData['city'];//市
+            $Data['Area'] = $AjaxData['area'];//县
+            $Data['Address'] = $AjaxData['areaDetail']; //详细地址
+            $Data['CardPositive'] = $AjaxData['registrantImages'][0];//注册人身份证照正面
+            $Data['CardNegative'] = $AjaxData['registrantImages'][1];//注册人身份证照背面
+            $Data['BusinessImage'] = $AjaxData['license'];//营业执照照片
+            $Data['QQ'] = $AjaxData['qq'];//qq
+            $Data['E-Mail'] = $AjaxData['email']; //邮箱
+            $Data['Identity'] = $AjaxData['type'];//类型
+            $Url =WEB_MAIN_URL.'/memberfirm/';
+        }elseif ($AjaxData['type']===4){
+            $Data['RealName'] = $AjaxData['name'];//姓名
+            $Data['CardNum'] = $AjaxData['idNum'];//身份证号
+            $Data['ProfessionalNum'] = $AjaxData['jobNo'];//执业证号
+            $Data['CompanyName'] = $AjaxData['office'];//所属律师事务所
+            $Data['AnnualDueDate'] = $AjaxData['inspectionDate'];//年检时间
+            $Data['Province'] = $AjaxData['province'];//省
+            $Data['City'] = $AjaxData['city'];//市
+            $Data['Area'] = $AjaxData['area'];//县
+            $Data['Address'] = $AjaxData['areaDetail']; //详细地址
+            $Data['LawyerCertificatePhoto'] = $AjaxData['images'][0];//律师资格证照片页
+            $Data['LawyerCertificateYear'] = $AjaxData['images'][1];//律师资格证年检页
+            $Data['QQ'] = $AjaxData['qq'];//qq
+            $Data['E-Mail'] = $AjaxData['email']; //邮箱
+            $Data['Identity'] = $AjaxData['type'];//类型
+            $Url =WEB_MAIN_URL.'/memberlawyer/';
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'数据出错！');
+            EchoResult($result_json);
+            exit;
+        }
+        $Data['IdentityState'] =2;
+        $_SESSION['Identity'] = $AjaxData['type'];
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UpdateInfo = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID='.$_SESSION['UserID']);
+        if ($UpdateInfo){
+            $result_json = array('ResultCode'=>200,'Message'=>'保存成功！', 'Url' => $Url);
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'保存失败！');
+        }
+        EchoResult($result_json);
+        exit;
     }
 }

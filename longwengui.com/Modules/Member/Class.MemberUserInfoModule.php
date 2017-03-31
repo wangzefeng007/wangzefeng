@@ -15,10 +15,10 @@ Class MemberUserInfoModule extends CommonModule  {
      * @var array
      */
     public $IdentityStatus = array(
-        '1' => '未提交审核',
-        '2' => '审核中',
-        '3' => '审核通过',
-        '4' => '审核不通过',
+        '1' => '未提交认证',
+        '2' => '认证中',
+        '3' => '认证通过',
+        '4' => '认证不通过',
     );
     /**
      * @desc 用户身份
@@ -27,8 +27,8 @@ Class MemberUserInfoModule extends CommonModule  {
     public $Identity = array(
         '0' => '注册用户',
         '1' => '个人用户',
-        '2' => '催客',
-        '3' => '公司会员',
+        '2' => '催客会员',
+        '3' => '催收公司会员',
         '4' => '律师企业会员',
     );
    /**

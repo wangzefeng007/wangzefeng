@@ -4,81 +4,83 @@
     <div class="wrap">
         <div class="filt-parm">
             <div class="line" id="way">
-              <span>催收方式 :</span>
-              <span class="sel span-1" data-id="0">全部</span>
-              <span class="span-2" data-id="1">
+                <span>催收方式 :</span>
+                <span class="sel span-1" data-id="0">全部</span>
+                <span class="span-2" data-id="1">
                 选择律师的债权
               </span>
-              <span class="span-2" data-id="2">
+                <span class="span-2" data-id="2">
                 选择催收团队的债权
               </span>
             </div>
             <div class="line" id="area">
-              <span>催收地区 :</span>
-              <span class="sel span-1" data-id="0">全部</span>
-              {loop $AreaList $lists}
+                <span>催收地区 :</span>
+                <span class="sel span-1" data-id="0">全部</span>
+                {loop $AreaList $lists}
                 <span class="span-2" data-id="{$lists[AreaID]}">
                   {$lists[CnName]}
                 </span>
-              {/loop}
-              <span onclick="openCitySelector(otherCitySel)"><l id="other_city">其他城市</l><img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span>
+                {/loop}
+                <span onclick="openCitySelector(otherCitySel)"><l id="other_city">其他城市</l><img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span>
             </div>
             <div class="line" id="money">
-              <span>催收金额 :</span>
-              <span class="sel span-1" data-id="0">全部</span>
-              <span class="span-2" data-id="1">
+                <span>催收金额 :</span>
+                <span class="sel span-1" data-id="0">全部</span>
+                <span class="span-2" data-id="1">
                 3万以下
               </span>
-              <span class="span-2" data-id="2">
+                <span class="span-2" data-id="2">
                 3万到10万
               </span>
-              <span class="span-2" data-id="3">
+                <span class="span-2" data-id="3">
                 10万到50万
               </span>
-              <span class="span-2" data-id="4">
+                <span class="span-2" data-id="4">
                 50万到100万
               </span>
-              <span class="span-2" data-id="5">
+                <span class="span-2" data-id="5">
                 100万以上
               </span>
             </div>
             <div class="line" id="day">
-              <span>逾期时间 :</span>
-              <span class="sel span-1" data-id="0">全部</span>
-              <span class="span-2" data-id="1">
+                <span>逾期时间 :</span>
+                <span class="sel span-1" data-id="0">全部</span>
+                <span class="span-2" data-id="1">
                 0-60天
               </span>
-              <span class="span-2" data-id="2">
+                <span class="span-2" data-id="2">
                 61-180天
               </span>
-              <span class="span-2" data-id="3">
+                <span class="span-2" data-id="3">
                 181-365天
               </span>
-              <span class="span-2" data-id="4">
+                <span class="span-2" data-id="4">
                 366-1095天
               </span>
-              <span class="span-2" data-id="5">
+                <span class="span-2" data-id="5">
                 1096天以上
               </span>
             </div>
             <div class="search">
-              <span>债务搜索 :</span>
-              <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
-              <button type="button" id="btn_search" name="search">
-                  搜索
-              </button>
-              <div class="pub-wrap" onclick="selDebtWayPop()">
-                <img src="/Uploads/Debt/imgs/edit.png" alt="">
-                <button type="button" name="pub">
-                   发布债务
+                <span>债务搜索 :</span>
+                <input type="text" name="" id="keyword" placeholder="请输入姓名或身份证号">
+                <button type="button" id="btn_search" name="search">
+                    搜索
                 </button>
-              </div>
+                {if $_SESSION['Identity']==1 || $_SESSION['Identity']==3}
+                <div class="pub-wrap" onclick="selDebtWayPop()">
+                    <img src="/Uploads/Debt/imgs/edit.png" alt="">
+                    <button type="button" name="pub">
+                        发布债务
+                    </button>
+                </div>
+                {/if}
             </div>
         </div>
         <div class="table">
             <div class="t">催收列表分类 : <span id="choices"></span></div>
             <div class="no-data">
-              <img src="/Uploads/Debt/imgs/no_data.png" alt="">
+                <img src="/Uploads/Debt/imgs/no_data.png" alt="">
             </div>
             <div id="collection_info">
                 <table>
@@ -95,7 +97,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                     {loop $Data['Data'] $lists}
+                    {loop $Data['Data'] $lists}
                     <tr>
                         <td>{$lists[DebtNum]}</td>
                         <td>{$lists[Name]}</td>
@@ -113,8 +115,8 @@
         </div>
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="collection_page_pagination">
-            <a href="/debtlists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
-            {$ShowPage}
+                <a href="/debtlists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                {$ShowPage}
             </div>
         </div>
     </div>

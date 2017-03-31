@@ -43,7 +43,8 @@ function ajax(Page, isSearched){
   resetChoices();
 
   var col_way = $('#way .sel').attr('data-id');
-  var col_area = $('#area .sel').attr('data-id') || $('#other_city').attr('data-id');
+  var col_city = $('#area .sel').attr('data-id');
+  var col_area = $('#other_city').attr('data-id');
   var col_money = $('#money .sel').attr('data-id');
   var col_day = $('#day .sel').attr('data-id');
   var Keyword = $('#keyword').val();
@@ -55,7 +56,8 @@ function ajax(Page, isSearched){
         data: {
             'Intention':'GetDebtList',//提交方法
             'col_way': col_way == 0 ? 'all' : col_way, //催收方式 1-选择律师债权 2-选择催收团队债权
-            'col_area': col_area == 0 ? 'all' : col_area, //催收地区 1-北京市 2-上海市 3-深圳市 4-广州市 5-厦门市
+            'col_city': col_city == 0 ? 'all' : col_city, //催收地区 1-北京市 2-上海市 3-深圳市 4-广州市 5-厦门市
+            'col_area': col_area == 0 ? 'all' : col_area, //催收地区 其他城市
             'col_money': col_money == 0 ? 'all' : col_money, //催收金额 1- <3w; 2- 3~10w; 3- 10~50w; 4- 50~100w; 5- >100w
             'col_day': col_day == 0 ? 'all' : col_day, //逾期时间 1- 0~60d; 2- 61~180d; 3- 181~365d; 4- 366~1095; 5- 1096d以上
             'Page': Page, //当前页

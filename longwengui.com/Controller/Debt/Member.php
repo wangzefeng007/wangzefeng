@@ -19,15 +19,7 @@ class Member
      */
     public function  Login(){
         //如果已登陆，直接跳转到会员中心
-        if (isset($_SESSION['UserID']) && !empty($_SESSION['UserID'])) {
-            if ($_SESSION['Identity'] <=2){
-                header('Location:' . WEB_MAIN_URL.'/memberperson/');
-            }elseif($_SESSION['Identity'] ==3){
-                header('Location:' . WEB_MAIN_URL.'/memberfirm/');
-            }elseif($_SESSION['Identity'] ==4){
-                header('Location:' . WEB_MAIN_URL.'/memberlawyer/');
-            }
-        }
+        MemberService::IsLogin();
         include template('MemberLogin');
     }
     /**
@@ -47,18 +39,26 @@ class Member
      */
     public function Register()
     {
-        $this->Login();
+        //如果已登陆，直接跳转到会员中心
+        MemberService::IsLogin();
         $Title = '会员登录_注册';
         include template('MemberRegister');
     }
     /**
-     * @desc  会员注册完善资料
+     * @desc  会员注册加入催收行业
      */
     public function RegisterTwo()
     {
-        MemberService::IsLogin();
         $Title = '会员注册完善资料';
         include template('MemberRegisterTwo');
+    }
+    /**
+     * @desc  会员注册完善资料
+     */
+    public function RegisterThree()
+    {
+        $Title = '会员注册完善资料';
+        include template('MemberRegisterThree');
     }
     /**
      * @desc  找回密码

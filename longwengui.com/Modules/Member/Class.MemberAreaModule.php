@@ -8,6 +8,24 @@ class MemberAreaModule extends CommonModule {
 
     public $KeyID = 'AreaID';
     public $TableName = 'member_area';
+    /**
+     * @desc  账号验证
+     * @param $Account
+     * @param $VerifyCode
+     * @param int $Type
+     * @return bool
+     */
+    public function GetCnNameByKeyID($KeyID = '')
+    {
+        global $DB;
+        $sql = 'select CnName  from ' . $this->TableName . ' where '. $this->KeyID . '=' . $KeyID;
+        $result = $DB->GetOne($sql);
+        if ($result) {
+            return $result['CnName'];
+        } else {
+            return false;
+        }
+    }
     public $Province= array(
         "1001"=> "北京市",
         "1002"=> "天津市",

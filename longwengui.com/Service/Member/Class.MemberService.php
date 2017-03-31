@@ -8,8 +8,15 @@ class MemberService
      * @desc  判断是否登录并返回登录页面
      */
     public static function IsLogin(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            header('Location:' . WEB_MAIN_URL . '/member/login/');
+
+        if (isset($_SESSION['UserID']) && !empty($_SESSION['UserID'])) {
+            if ($_SESSION['Identity'] <=2){
+                header('Location:' . WEB_MAIN_URL.'/memberperson/');
+            }elseif($_SESSION['Identity'] ==3){
+                header('Location:' . WEB_MAIN_URL.'/memberfirm/');
+            }elseif($_SESSION['Identity'] ==4){
+                header('Location:' . WEB_MAIN_URL.'/memberlawyer/');
+            }
         }
     }
 

@@ -713,7 +713,8 @@ function doLogin(){
       success: function(data){
         if(data.ResultCode == 200){
           closeAll();
-          setTimeout(function(){
+            location.reload();
+            setTimeout(function(){
             showMsg('登录成功');
           }, 300);
         }else{
@@ -798,7 +799,7 @@ function toLogin(){
             +     '</div>'
             +   '</div>'
             +   '<div class="hav">'
-            +     '还没有账号 <span>立即注册</span>'
+            +     '还没有账号 <a href="/member/register/"><span>立即注册</span></a>'
             +   '</div>'
             +  '</div>'
             + '</div>'
