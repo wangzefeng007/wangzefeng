@@ -12,7 +12,7 @@ $(function(){
     var area = $('input[name="dd_area"]').siblings('span').attr('data-id');
     var lawer_images = []; //证明图片
     var inspection_date = $('#mydatepicker').val();
-
+    var type = $('#save').attr('data-type'); //类型
 
     if(name == ''){
       showMsg('请输入您的姓名');
@@ -100,15 +100,19 @@ $(function(){
       "areaDetail": area_detail, //详细地址
       "qq": qq, //qq
       "email": email, //邮箱
-      "headImg": head_img //头像
+      "headImg": head_img, //头像
+      "type":type //类型
     });
   });
   function ajax(formData){
     $.ajax({
-      type: "get",
-      url: "/Templates/Debt/data/personalInfoEdit.json",
+      type: "post",
+      url: "/loginajax.html",
       dataType: "json",
-      data: JSON.stringify(formData),
+        data: {
+            "Intention":"profileInfo",//保存个人资料
+            "AjaxJSON": JSON.stringify(formData),
+        },
       beforeSend: function(){
         showLoading();
       },
@@ -116,7 +120,9 @@ $(function(){
         if(data.ResultCode == 200){
           showMsg('保存成功');
           //路由跳转展示页面
-
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
         }else{
           showMsg(data.Message);
         }

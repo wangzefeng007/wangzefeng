@@ -189,6 +189,7 @@ class AjaxLogin
                         $InfoData['LastLogin'] =  $Data['AddTime'];
                         $InfoData['Identity'] =0;
                         $InfoData['IdentityState'] =3;
+                        $Data['IP'] = GetIP();
                         $InfoData['Avatar']='/Uploads/Debt/imgs/head_img.png';
                         $UserInfo->InsertInfo($InfoData);
                         // 同步SESSIONID
@@ -216,6 +217,22 @@ class AjaxLogin
      * @desc 添加证件图片
      */
     public function AddCardImage(){
+        //上传图片
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $ImageUrl = SendToImgServ($ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        if ($Data['ImageUrl'] !==''){
+            $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 添加头像图片
+     */
+    public function AddHeadImage(){
         //上传图片
         $ImgBaseData = $_POST['ImgBaseData'];
         $ImageUrl = SendToImgServ($ImgBaseData);
@@ -316,4 +333,11 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 保存个人资料（个人、催客、公司、律师事务所）
+     */
+    public function profileInfo(){
+
+    }
+
 }

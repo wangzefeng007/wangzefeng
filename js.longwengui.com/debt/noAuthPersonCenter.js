@@ -10,6 +10,7 @@ $(function(){
     var city = $('input[name="dd_city"]').siblings('span').attr('data-id');
     var area = $('input[name="dd_area"]').siblings('span').attr('data-id');
     var images = []; //证明图片
+    var type = $('#save').attr('data-type'); //类型
 
     if(nick_name == ''){
       showMsg('昵称不能为空');
@@ -77,7 +78,8 @@ $(function(){
       "areaDetail": area_detail, //详细地址
       "qq": qq, //qq
       "email": email, //邮箱
-      "headImg": head_img //头像
+      "headImg": head_img, //头像
+      "type":type //类型
     });
   });
   function ajax(formData){
@@ -85,15 +87,20 @@ $(function(){
       type: "post",
       url: "/loginajax.html",
       dataType: "json",
-      data: JSON.stringify(formData),
+        data: {
+            "Intention":"profileInfo",//保存个人资料
+            "AjaxJSON": JSON.stringify(formData),
+        },
       beforeSend: function(){
         showLoading();
       },
       success: function(data){
         if(data.ResultCode == 200){
           showMsg('保存成功');
-          //路由跳转未认证展示页面
-
+          //路由跳转
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
         }else{
           showMsg(data.Message);
         }
@@ -124,7 +131,7 @@ function changeHeadImg(tar, ImgBaseData, index){
       dataType: "json",
       url: "/loginajax.html",
       data: {
-          "Intention":"AddRewardImage",
+          "Intention":"AddHeadImage",
           "ImgBaseData": ImgBaseData,
       },
       beforeSend: function () {
@@ -152,9 +159,9 @@ function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/Templates/Debt/data/imageUpload.json",
+        url: "/loginajax.html",
         data: {
-            "Intention":"AddRewardImage",
+            "Intention":"AddCardImage",
             "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {
@@ -162,7 +169,6 @@ function imagesInput(tar, ImgBaseData, index) {
         },
         success: function(data) {
           if(data.ResultCode=='200'){
-              showMsg('上传成功');
               $(tar).parent().siblings('.img-wrap').html(
                 "<img src='" + data.url + "' alt=''>"
               );
