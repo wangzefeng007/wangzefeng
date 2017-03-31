@@ -1,7 +1,7 @@
 <div class="menu-bar">
     <img src="{$UserInfo[Avatar]}" class="u-img" alt="">
     <div class="nick-name">
-        昵称
+        {$UserInfo[NickName]}
     </div>
     <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
     <div class="menu-level-1  menu-level-1-act">
@@ -37,7 +37,7 @@
 <div class="menu-cont">
     <div class="tab-hd">
         <div class="tb {if $Nav=='memberfirm'}act{/if} " onclick="go('/memberfirm/')">
-                个人信息
+                企业信息
         </div>
         <div class="tb {if $Nav=='editpassword'}act{/if}"  onclick="go('/member/editpassword/')">
                 修改密码

@@ -81,7 +81,9 @@ class Member
     {
         $this->IsLogin();
         $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $Nav = 'changemobile';
         $Title = '会员_更改绑定手机';
         include template('MemberChangeMobile');
@@ -90,8 +92,10 @@ class Member
      * @desc 修改密码
      */
     public function EditPassWord(){
+        $this->IsLogin();
         $Nav = 'editpassword';
-        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberEditPassWord');
     }
 }

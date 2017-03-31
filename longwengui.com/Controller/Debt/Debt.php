@@ -30,9 +30,6 @@ class Debt
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
-        $Province = $MemberAreaModule->Province;
-        $City = $MemberAreaModule->City;
-        $Area = $MemberAreaModule->Area;
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
@@ -58,9 +55,12 @@ class Debt
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Data['Data'][$key]['Province'] = $Province[$DebtorsInfo['Province']];
-                $Data['Data'][$key]['City'] = $City[$DebtorsInfo['City']];
-                $Data['Data'][$key]['Area'] = $Area[$DebtorsInfo['Area']];
+                if ($DebtorsInfo['Province'])
+                $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
@@ -77,6 +77,7 @@ class Debt
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberDebtImageModule = new MemberDebtImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
         $ID = intval($_GET['ID']);
         //债务信息
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($ID);
@@ -97,10 +98,17 @@ class Debt
         //债务人信息
         $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$ID,true);
         foreach ($DebtorsInfo as $key=>$value){
+            $DebtorsInfo[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $DebtorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $DebtorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
             $DebtorsInfo[$key]['Card'] = strlen($value['Card']) ? substr_replace($value['Card'], '****', 10, 4) : '';
         }
         //债务人图片
         $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$ID,true);
+        if (isset ($_SESSION ['UserID']) || !empty ($_SESSION ['UserID'])){
+            //浏览人信息
+            $browseUserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $_SESSION['UserID']);
+        }
         $Title="债务详情-隆文贵不良资产处置";
         include template('DebtDetails');
     }
