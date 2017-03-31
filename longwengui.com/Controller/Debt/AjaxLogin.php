@@ -295,8 +295,8 @@ class AjaxLogin
             $Data['Address'] = $AjaxData['areaDetail']; //详细地址
             $Data['LawyerCertificatePhoto'] = $AjaxData['images'][0];//律师资格证照片页
             $Data['LawyerCertificateYear'] = $AjaxData['images'][1];//律师资格证年检页
-            $Data['type'] = $AjaxData['qq'];//qq
-            $Data['type'] = $AjaxData['email']; //邮箱
+            $Data['QQ'] = $AjaxData['qq'];//qq
+            $Data['E-Mail'] = $AjaxData['email']; //邮箱
             $Data['Identity'] = $AjaxData['type'];//类型
             $Url =WEB_MAIN_URL.'/memberlawyer/';
         }else{
@@ -305,6 +305,7 @@ class AjaxLogin
             exit;
         }
         $Data['IdentityState'] =2;
+        $_SESSION['Identity'] = $AjaxData['type'];
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UpdateInfo = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID='.$_SESSION['UserID']);
         if ($UpdateInfo){

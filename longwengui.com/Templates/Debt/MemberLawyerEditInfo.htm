@@ -10,18 +10,11 @@
         </div>
         <div class="menu-cont-wrap">
             {template MemberLawyerLeft}
-            <div class="menu-cont">
-                <div class="tab-hd">
-                    <div class="tb act">
-                        企业信息
-                    </div>
-                </div>
-
                 <div class="show-info">
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
-                                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                                <img src="{$UserInfo['Avatar']}" alt="">
                                 <br>
                                 <label>
                                     <span>更改头像</span>
@@ -30,24 +23,24 @@
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    会员ID:&nbsp;&nbsp;LWG1588
+                                    会员ID:&nbsp;&nbsp;LWG{$User[UserID]}
                                 </div>
                                 <div class="line">
-                                    注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    注册时间:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$User[AddTime])}
                                 </div>
                                 <div class="line">
-                                    注册IP:&nbsp;&nbsp;110.84.32.35
+                                    注册IP:&nbsp;&nbsp;{$User[AddIP]}
                                 </div>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    账号等级:&nbsp;&nbsp;律师团队(认证中)
+                                    账号等级:&nbsp;&nbsp;{$UserInfo[Identity]}({$UserInfo[IdentityState]})
                                 </div>
                                 <div class="line">
-                                    最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
                                 </div>
                                 <div class="line">
-                                    上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                                    上次登陆IP:&nbsp;&nbsp;{$UserInfo[IP]}
                                 </div>
                             </div>
                         </div>
@@ -57,7 +50,7 @@
                                     手机号
                                 </div>
                                 <div class="cont">
-                                    13546588777
+                                    {if $User[Mobile]!==''}{$User[Mobile]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -65,7 +58,7 @@
                                     真实姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="name" onblur="validateChinese(this)" value="钱学喜">
+                                    <input type="text" name="name" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -73,7 +66,7 @@
                                     身份证号<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="350526199311280014">
+                                    <input type="text" name="idNum" onblur="validateIDNumber(this, true)" value="{$UserInfo[CardNum]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -81,7 +74,7 @@
                                     执业证号<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="jobNo" onblur="validateLawJobNo(this)" value="ASFDAS588777">
+                                    <input type="text" name="jobNo" onblur="validateLawJobNo(this)" value="{$UserInfo[ProfessionalNum]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -89,7 +82,7 @@
                                     所属事务所<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateChinese(this)" name="office" value="厦门市方圆律师事务所">
+                                    <input type="text" onblur="validateChinese(this)" name="office" value="{$UserInfo[CompanyName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -97,7 +90,7 @@
                                     年检到期日<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input id='mydatepicker' type='text' value="2017-10-25"/> 
+                                    <input id='mydatepicker' type='text' value="{$UserInfo[AnnualDueDate]}"/> 
                                 </div>
                             </div>
                             <div class="line-img">
@@ -107,7 +100,7 @@
                                 <div class="cont">
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[LawyerCertificatePhoto]}" alt="">
                                         </div>
                                         <label>
                                             <span>+ 律师资格证照片页</span>
@@ -116,7 +109,7 @@
                                     </div>
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[LawyerCertificateYear]}" alt="">
                                         </div>
                                         <label>
                                             <span>+ 律师资格证年检页</span>
@@ -132,7 +125,7 @@
                                 <div class="cont">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="1013">福建省</span>
+                                            <span data-id="{$UserInfo[Province]}">{$UserInfo[province]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>
@@ -140,7 +133,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="1153">厦门市</span>
+                                            <span data-id="$UserInfo[City]}">$UserInfo[city]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
@@ -148,7 +141,7 @@
                                     </div>
                                     <div class="a-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="2538">思明区</span>
+                                            <span data-id="{$UserInfo[Area]}">{$UserInfo[area]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_area" value="">
                                             <ul></ul>
@@ -161,7 +154,7 @@
                                     详细地址
                                 </div>
                                 <div class="cont">
-                                    <textarea name="areaDetail" placeholder="不超过50个字" rows="2" maxlength="50" cols="80"></textarea>
+                                    <textarea name="areaDetail" placeholder="不超过50个字" rows="2" maxlength="50" cols="80">{$UserInfo[Address]}</textarea>
                                 </div>
                             </div>
                             <div class="line">
@@ -169,7 +162,7 @@
                                     QQ号码
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
+                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="{$UserInfo[QQ]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -177,7 +170,7 @@
                                     邮箱地址
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="">
+                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="{$UserInfo['E-Mail']}">
                                 </div>
                             </div>
                         </div>

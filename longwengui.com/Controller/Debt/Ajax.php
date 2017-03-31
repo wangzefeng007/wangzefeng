@@ -99,12 +99,13 @@ class Ajax
             $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
             $Type = trim($_POST['col_way']); //催收方式
-            if($Type!=''){
+            if($Type!='all'){
                 $MysqlWhere .=" and CollectionType IN ($Type)";
             }
             $Area =trim($_POST['col_area']); //催收地区
-            if($Area!=''){
-                $AreaWhere = " and Type=1 and City IN ($Area)";
+            $City =trim($_POST['col_city']); //催收地区
+            if(!empty($Area) && $Area!='all'){
+                $AreaWhere = " and Type=1 and Area IN ($Area)";
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
@@ -116,77 +117,50 @@ class Ajax
                     $MysqlWhere .= " and DebtID<0";
                 }
             }
-            $DebtAmount = $_POST['col_money'];//债务金额
-            if($DebtAmount!=''){
-                if ($DebtAmount=='0-3'){
-                    $MysqlWhere .= ' and DebtAmount <= 30000 ';
-                }elseif ($DebtAmount=='3-10'){
-                    $MysqlWhere .= ' and DebtAmount >= 30000 and DebtAmount <=100000 ';
-                }elseif ($DebtAmount=='10-50'){
-                    $MysqlWhere .= ' and DebtAmount >= 100000 and DebtAmount <=500000 ';
-                }elseif ($DebtAmount=='50-100'){
-                    $MysqlWhere .= ' and DebtAmount >= 500000 and DebtAmount <=1000000 ';
-                }elseif ($DebtAmount=='100-All'){
-                    $MysqlWhere .= ' and DebtAmount >= 1000000 ';
+            if(!empty($City) && $City!='all'){
+                $CityWhere = " and Type=1 and City IN ($City)";
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($CityWhere,true);
+                if ($DebtorsInfo){
+                    foreach ($DebtorsInfo  as $key=>$value){
+                        $data[]=$value['DebtID'];
+                    }
+                    $data=implode(',',array_unique($data));
+                    $MysqlWhere .= " and DebtID IN ($data)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
                 }
-                if (strstr($DebtAmount,',')){
-                    $MysqlWhere .='and (';
-                    if (strstr($DebtAmount,'0-3') && $DebtAmount!='0-3'){
-                        $MysqlWhere .= ' or (DebtAmount <= 100000) ';
-                    }
-                    if (strstr($DebtAmount,'3-10') && $DebtAmount!='3-10'){
-                        $MysqlWhere .= ' or (DebtAmount >= 30000 and DebtAmount <=100000) ';
-                    }
-                    if (strstr($DebtAmount,'10-50') && $DebtAmount!='10-50'){
-                        $MysqlWhere .= ' or (DebtAmount >= 100000 and DebtAmount <=500000) ';
-                    }
-                    if (strstr($DebtAmount,'50-100') && $DebtAmount!='50-100'){
-                        $MysqlWhere .= ' or (DebtAmount >= 500000 and DebtAmount <=1000000) ';
-                    }
-                    if (strstr($DebtAmount,'100-All') && $DebtAmount!='100-All'){
-                        $MysqlWhere .= ' or (DebtAmount >= 1000000) ';
-                    }
-                    $MysqlWhere .=')';
+            }
+            $DebtAmount = $_POST['col_money'];//债务金额
+            if($DebtAmount!='all'){
+                if ($DebtAmount=='1'){
+                    $MysqlWhere .= ' and DebtAmount <= 30000 ';
+                }elseif ($DebtAmount=='2'){
+                    $MysqlWhere .= ' and DebtAmount >= 30000 and DebtAmount <=100000 ';
+                }elseif ($DebtAmount=='3'){
+                    $MysqlWhere .= ' and DebtAmount >= 100000 and DebtAmount <=500000 ';
+                }elseif ($DebtAmount=='4'){
+                    $MysqlWhere .= ' and DebtAmount >= 500000 and DebtAmount <=1000000 ';
+                }elseif ($DebtAmount=='5'){
+                    $MysqlWhere .= ' and DebtAmount >= 1000000 ';
                 }
                 $MysqlWhere =preg_replace('/or/','',$MysqlWhere,1);
             }
             $Overduetime = $_POST['col_day'];//逾期时间
-            if($Overduetime!=''){
-                if ($Overduetime=='0-60'){
+            if($Overduetime!='all'){
+                if ($Overduetime=='1'){
                     $MysqlWhere .= ' and Overduetime <= 60 ';
-                }elseif ($Overduetime=='61-180'){
+                }elseif ($Overduetime=='2'){
                     $MysqlWhere .= ' and Overduetime >= 61 and Overduetime <=180 ';
-                }elseif ($Overduetime=='181-365'){
+                }elseif ($Overduetime=='3'){
                     $MysqlWhere .= ' and Overduetime >= 181 and Overduetime <=365 ';
-                }elseif ($Overduetime=='366-1095'){
+                }elseif ($Overduetime=='4'){
                     $MysqlWhere .= ' and Overduetime >= 366 and Overduetime <=1095 ';
-                }elseif ($Overduetime=='1096-All'){
+                }elseif ($Overduetime=='5'){
                     $MysqlWhere .= ' and Overduetime >= 1096 ';
                 }
-                if (strstr($Overduetime,',')){
-                    $OverduetimeWhere =' and (';
-                    if (strstr($Overduetime,'0-60') && $Overduetime!='0-60'){
-                        $OverduetimeWhere .= ' or (Overduetime <= 60) ';
-                    }
-                    if (strstr($Overduetime,'61-180') && $Overduetime!='61-180'){
-                        $OverduetimeWhere .= ' or (Overduetime >= 61 and Overduetime <=180) ';
-                    }
-                    if (strstr($Overduetime,'181-365') && $Overduetime!='181-365'){
-                        $OverduetimeWhere .= ' or (Overduetime >= 181 and Overduetime <=365) ';
-                    }
-                    if (strstr($Overduetime,'366-1095') && $Overduetime!='366-1095'){
-                        $OverduetimeWhere .= ' or (Overduetime >= 366 and Overduetime <=1095) ';
-                    }
-                    if (strstr($Overduetime,'1096-All') && $Overduetime!='1096-All'){
-                        $OverduetimeWhere .= ' or (Overduetime >= 1096) ';
-                    }
-                    $OverduetimeWhere .=')';
-                    $OverduetimeWhere =preg_replace('/or/','',$OverduetimeWhere,1);
-                }
-                $MysqlWhere .= $OverduetimeWhere;
             }
             $Page = trim($_POST['Page']);
-            if ($Keyword != '') {
+            if ($Keyword != 'all') {
                 $KeywordWhere = ' and Type=1 and (Name like \'%'.$Keyword.'%\' or Card =\'' .$Keyword.'\')';
                 $KeywordInfo = $MemberDebtorsInfoModule->GetInfoByWhere($KeywordWhere,true);
                 if ($KeywordInfo){

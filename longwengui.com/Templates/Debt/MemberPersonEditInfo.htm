@@ -9,12 +9,6 @@
         </div>
         <div class="menu-cont-wrap">
             {template MemberPersonLeft}
-            <div class="menu-cont">
-                <div class="tab-hd">
-                    <div class="tb act">
-                        个人信息
-                    </div>
-                </div>
                 <div class="show-info">
                     <div class="info-cont">
                         <div class="info-m">
@@ -110,7 +104,7 @@
                                 <div class="cont">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="1013">{$UserInfo[Province]}</span>
+                                            <span data-id="{$UserInfo[Province]}">{$UserInfo[province]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>
@@ -118,7 +112,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="1153">{$UserInfo[City]}</span>
+                                            <span data-id="{$UserInfo[City]}">{$UserInfo[city]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
@@ -126,7 +120,7 @@
                                     </div>
                                     <div class="a-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="2538">{$UserInfo[Area]}</span>
+                                            <span data-id="{$UserInfo[Area]}">{$UserInfo[area]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_area" value="">
                                             <ul></ul>

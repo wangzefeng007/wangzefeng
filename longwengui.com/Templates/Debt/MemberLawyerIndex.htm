@@ -4,45 +4,39 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            当前位置 > 个人中心 > <span>企业信息</span>
+            当前位置 > 个人中心 > <span>事务所信息</span>
         </div>
         <div class="menu-cont-wrap">
             {template MemberLawyerLeft}
-            <div class="menu-cont">
-                <div class="tab-hd">
-                    <div class="tb act">
-                        企业信息
-                    </div>
-                </div>
 
                 <div class="show-info">
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
-                                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                                <img src="{$UserInfo['Avatar']}" alt="">
                                 <br>
                                 <span>更改头像</span>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    会员ID:&nbsp;&nbsp;LWG1588
+                                    会员ID:&nbsp;&nbsp;LWG{$User[UserID]}
                                 </div>
                                 <div class="line">
-                                    注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    注册时间:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$User[AddTime])}
                                 </div>
                                 <div class="line">
-                                    注册IP:&nbsp;&nbsp;110.84.32.35
+                                    注册IP:&nbsp;&nbsp;{$User[AddIP]}
                                 </div>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
-                                    账号等级:&nbsp;&nbsp;律师团队
+                                    账号等级:&nbsp;&nbsp;{$UserInfo[Identity]}({$UserInfo[IdentityState]})
                                 </div>
                                 <div class="line">
-                                    最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                                    最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
                                 </div>
                                 <div class="line">
-                                    上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                                    上次登陆IP:&nbsp;&nbsp;{$UserInfo[IP]}
                                 </div>
                             </div>
                         </div>
@@ -52,7 +46,7 @@
                                     手机号码:
                                 </div>
                                 <div class="cont">
-                                    13546588777
+                                    {if $User[Mobile]!==''}{$User[Mobile]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -60,7 +54,7 @@
                                     真实姓名:
                                 </div>
                                 <div class="cont">
-                                    钱学喜
+                                    {if $UserInfo[RealName]!==''}{$UserInfo[RealName]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -68,7 +62,7 @@
                                     身份证号:
                                 </div>
                                 <div class="cont">
-                                    350526199311280014
+                                    {if !empty($UserInfo[CardNum])}{$UserInfo[CardNum]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -76,7 +70,7 @@
                                     职业证号:
                                 </div>
                                 <div class="cont">
-                                    ASFDAS588777
+                                    {if !empty($UserInfo[ProfessionalNum])}{$UserInfo[ProfessionalNum]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -84,7 +78,7 @@
                                     所属事务所:
                                 </div>
                                 <div class="cont">
-                                    厦门市方圆律师事务所
+                                    {if !empty($UserInfo[CompanyName])}{$UserInfo[CompanyName]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -92,7 +86,7 @@
                                     年检到期日:
                                 </div>
                                 <div class="cont">
-                                    2017-10-25
+                                    {if !empty($UserInfo[AnnualDueDate])}{$UserInfo[AnnualDueDate]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line-img">
@@ -102,11 +96,17 @@
                                 <div class="cont">
                                     <div class="bx">
                                         <div class="img-wrap">
+                                            {if !empty($UserInfo[LawyerCertificatePhoto])}
+                                            <img src="{$UserInfo[LawyerCertificatePhoto]}" height="100" width="150" alt="">
+                                            {/if}
                                         </div>
                                         律师资格证照片页
                                     </div>
                                     <div class="bx">
                                         <div class="img-wrap">
+                                            {if !empty($UserInfo[LawyerCertificateYear])}
+                                            <img src="{$UserInfo[LawyerCertificateYear]}" height="100" width="150" alt="">
+                                            {/if}
                                         </div>
                                         律师资格证年检页
                                     </div>
@@ -117,7 +117,7 @@
                                     所在地区:
                                 </div>
                                 <div class="cont">
-                                    福建省-厦门市-思明区
+                                    {$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}
                                 </div>
                             </div>
                             <div class="line">
@@ -125,7 +125,7 @@
                                     详细地址:
                                 </div>
                                 <div class="cont">
-                                    无
+                                    {if !empty($UserInfo[Address])}{$UserInfo[Address]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -133,7 +133,7 @@
                                     QQ号码:
                                 </div>
                                 <div class="cont">
-                                    无
+                                    {if !empty($UserInfo[QQ])}{$UserInfo[QQ]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -141,7 +141,7 @@
                                     邮箱地址:
                                 </div>
                                 <div class="cont">
-                                    无
+                                    {if !empty($UserInfo['E-Mail'])}{$UserInfo['E-Mail']}{else}无{/if}
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
 
                 <div class="to-opt">
                     <div class="cont">
-                        <button type="button" name="edit">修改信息</button>
+                        <button type="button" name="edit" onclick="javascript:window.location.href='/memberlawyer/editinfo/'">修改信息</button>
                     </div>
                 </div>
             </div>

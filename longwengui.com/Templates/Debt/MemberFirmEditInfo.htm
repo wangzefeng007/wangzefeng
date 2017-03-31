@@ -9,13 +9,6 @@
         </div>
         <div class="menu-cont-wrap">
             {template MemberFirmLeft}
-            <div class="menu-cont">
-                <div class="tab-hd">
-                    <div class="tb act">
-                        企业信息
-                    </div>
-                </div>
-
                 <div class="show-info">
                     <div class="info-cont">
                         <div class="info-m">
@@ -56,7 +49,7 @@
                                     手机号
                                 </div>
                                 <div class="cont">
-                                    13546588777
+                                    {if !empty($User[Mobile])}{$User[Mobile]}{else}无{/if}
                                 </div>
                             </div>
                             <div class="line">
@@ -64,7 +57,7 @@
                                     公司名称<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateChinese(this)" name="companyName" value="厦门雄霸催收公司">
+                                    <input type="text" onblur="validateChinese(this)" name="companyName" value="{$UserInfo[CompanyName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -72,7 +65,7 @@
                                     注册人姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateChinese(this)" name="registrantName" value="吴霸">
+                                    <input type="text" onblur="validateChinese(this)" name="registrantName" value="{$UserInfo[RealName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -80,7 +73,7 @@
                                     身份证号<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateIDNumber(this, true)" name="idNum" value="350235135823541355">
+                                    <input type="text" onblur="validateIDNumber(this, true)" name="idNum" value="{$UserInfo[CardNum]}">
                                 </div>
                             </div>
                             <div class="line-img">
@@ -90,7 +83,7 @@
                                 <div class="cont" id="i_registrant">
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[CardPositive]}" alt="">
                                         </div>
                                         <label>
                                             <span>+ 身份证正面</span>
@@ -99,7 +92,7 @@
                                     </div>
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[CardNegative]}" alt="">
                                         </div>
                                         <label>
                                             <span>+ 身份证反面</span>
@@ -113,7 +106,7 @@
                                     信用代码<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="creditNum" onblur="validateCreditNum(this)" placeholder="统一社会信用代码" value="ASDFASSDDSSDD31313">
+                                    <input type="text" name="creditNum" onblur="validateCreditNum(this)" placeholder="统一社会信用代码" value="{$UserInfo[CreditCode]}">
                                 </div>
                             </div>
                             <div class="line-img">
@@ -123,7 +116,7 @@
                                 <div class="cont" id="i_license">
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt="">
+                                            <img src="{$UserInfo[BusinessImage]}" alt="">
                                         </div>
                                         <label>
                                             <span>+ 营业执照副本</span>
@@ -139,7 +132,7 @@
                                 <div class="cont">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="1013">福建省</span>
+                                            <span data-id="{$UserInfo[Province]}">{$UserInfo[province]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>
@@ -147,7 +140,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="1153">厦门市</span>
+                                            <span data-id="{$UserInfo[City]}">{$UserInfo[city]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
@@ -155,7 +148,7 @@
                                     </div>
                                     <div class="a-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="2538">思明区</span>
+                                            <span data-id="{$UserInfo[Area]}">{$UserInfo[area]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_area" value="">
                                             <ul></ul>
@@ -168,7 +161,7 @@
                                     详细地址
                                 </div>
                                 <div class="cont">
-                                    <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
+                                    <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80">{$UserInfo[Address]}</textarea>
                                 </div>
                             </div>
                             <div class="line">
@@ -176,7 +169,7 @@
                                     QQ号码
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="">
+                                    <input type="text" onblur="validateQQ(this, false)" name="qq" value="{$UserInfo[QQ]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -184,7 +177,7 @@
                                     邮箱地址
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="">
+                                    <input type="text" onblur="validateEmail(this, false)" name="email" value="{$UserInfo['E-Mail']}">
                                 </div>
                             </div>
                         </div>
@@ -194,12 +187,7 @@
                 <div class="to-opt">
                     <div class="cont">
                         <button type="button" id="save" name="save">保存</button>
-                        <button type="button" name="cancel">取消</button>
-                    </div>
-                    <div class="for-auth">
-            <span class="waiting">
-              认证审核中，请耐心等待！
-            </span>
+                        <button type="button" name="cancel" onclick="window.history.go(-1);" >取消</button>
                     </div>
                 </div>
             </div>

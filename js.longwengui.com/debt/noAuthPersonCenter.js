@@ -82,8 +82,8 @@ $(function(){
   });
   function ajax(formData){
     $.ajax({
-      type: "get",
-      url: "/Templates/Debt/data/personalInfoEdit.json",
+      type: "post",
+      url: "/loginajax.html",
       dataType: "json",
       data: JSON.stringify(formData),
       beforeSend: function(){
@@ -120,9 +120,9 @@ function initArea(){
 //修改头像
 function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/imageUpload.json",
+      url: "/loginajax.html",
       data: {
           "Intention":"AddRewardImage",
           "ImgBaseData": ImgBaseData,
