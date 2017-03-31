@@ -21,6 +21,7 @@ class MemberFirm
      */
     public function Index()
     {
+        $Nav='memberfirm';
         $this->IsLogin();
         $Title = '会员中心首页';
         $MemberUserModule = new MemberUserModule();
@@ -42,7 +43,9 @@ class MemberFirm
      */
     public function EditInfo()
     {
+        $Nav='memberfirm';
         $this->IsLogin();
+        //会员基本信息
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();
@@ -57,4 +60,5 @@ class MemberFirm
             $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberFirmEditInfo');
     }
+
 }

@@ -16,13 +16,14 @@ $(function(){
     }
 
     $.ajax({
-      type: 'get',
+      type: 'post',
       dataType: 'json',
-      url: '/Templates/Debt/data/bindPhoneStep1.json',
-      data: JSON.stringify({
+      url: '/loginajax.html',
+      data: {
+        "Intention":"ChangeMobileFirst",//修改绑定手机发送验证码
         "phoneNumber": phoneNumber,
         "code": code
-      }),
+      },
       beforeSend: function(){
         showLoading();
       },
@@ -74,14 +75,15 @@ $(function(){
     }
 
     $.ajax({
-      type: 'get',
+      type: 'post',
       dataType: 'json',
-      url: '/Templates/Debt/data/bindPhoneStep1.json',
-      data: JSON.stringify({
+      url: '/loginajax.html',
+      data: {
+        "Intention":"ChangeMobileSecond",//修改绑定手机
         "phoneNumber": phoneNumber,
         "code": code,
         "random": ran
-      }),
+      },
       beforeSend: function(){
         showLoading();
       },
@@ -93,6 +95,7 @@ $(function(){
 
           $('.step-wrap').eq(2).children('.step').addClass('step-act');
           $('.step-wrap').eq(2).children('.step-tri-pre').addClass('step-tri-pre-act');
+          $('#bind_phone').html(data.Mobile);
 
         }else{
           showMsg(data.Message);
@@ -136,10 +139,11 @@ function getCode(tar, inp){
     return;
   }
   $.ajax({
-    type: 'get',
+    type: 'post',
     dataType: 'json',
-    url: '/Templates/Debt/data/getCode.json',
+    url: '/loginajax.html',
     data: {
+      "Intention":"ChangeMobileCode",//修改绑定手机发送验证码
       "phoneNumber": _phoneNumber
     },
     success: function(data){

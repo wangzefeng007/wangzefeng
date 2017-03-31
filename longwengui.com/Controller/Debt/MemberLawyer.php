@@ -20,7 +20,8 @@ class MemberLawyer
      */
     public function Index()
     {
-
+        $this->IsLogin();
+        $Nav='memberlawyer';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();
@@ -42,6 +43,7 @@ class MemberLawyer
     public function EditInfo()
     {
         $this->IsLogin();
+        $Nav='memberlawyer';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();

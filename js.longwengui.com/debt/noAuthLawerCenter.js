@@ -110,7 +110,7 @@ $(function(){
       url: "/loginajax.html",
       dataType: "json",
         data: {
-            "Intention":"profileInfo",//保存个人资料
+            "Intention":"AddInformation",//保存个人资料
             "AjaxJSON": JSON.stringify(formData),
         },
       beforeSend: function(){
@@ -149,11 +149,11 @@ function initArea(){
 //修改头像
 function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/imageUpload.json",
+      url: "/loginajax.html",
       data: {
-          "Intention":"AddRewardImage",
+          "Intention":"AddHeadImage",
           "ImgBaseData": ImgBaseData,
       },
       beforeSend: function () {
@@ -179,11 +179,11 @@ function changeHeadImg(tar, ImgBaseData, index){
 //上传证件照
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: "/Templates/Debt/data/imageUpload.json",
+        url: "/loginajax.html",
         data: {
-            "Intention":"AddRewardImage",
+            "Intention":"AddCardImage",
             "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {

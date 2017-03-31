@@ -3,7 +3,7 @@
     <div class="nick-name">
         昵称
     </div>
-    <button type="button" name="button">已认证</button>
+    <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
     <div class="menu-level-1  menu-level-1-act">
         <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
         企业信息
@@ -36,19 +36,13 @@
 </div>
 <div class="menu-cont">
     <div class="tab-hd">
-        <a href="/memberfirm/editinfo/">
-            <div class="tb act">
-                企业信息
-            </div>
-        </a>
-        <a href="/memberfirm/editinfo/">
-            <div class="tb">
+        <div class="tb {if $Nav=='memberfirm'}act{/if} " onclick="go('/memberfirm/')">
+                个人信息
+        </div>
+        <div class="tb {if $Nav=='editpassword'}act{/if}"  onclick="go('/member/editpassword/')">
                 修改密码
-            </div>
-        </a>
-        <a href="/memberfirm/editinfo/">
-            <div class="tb">
+        </div>
+        <div class="tb {if $Nav=='changemobile'}act{/if}" onclick="go('/member/changemobile/')">
                 绑定手机
-            </div>
-        </a>
+        </div>
     </div>

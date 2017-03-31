@@ -1,13 +1,20 @@
 <div class="menu-bar">
-    <img src="{$UserInfo['Avatar']}" class="u-img" alt="">
+    <img src="{$_SESSION['Avatar']}" class="u-img" alt="">
     <div class="nick-name">
         昵称
     </div>
-    <button type="button" name="button">已认证</button>
+    <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
     <div class="menu-level-1  menu-level-1-act">
         <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
         个人信息
     </div>
+    {if $_SESSION[Identity]==0}
+    <div class="menu-level-1   menu-level-1-act">
+        <img src="/Uploads/Debt/imgs/user_center.png" class="i-left" alt="">
+        用户中心
+    </div>
+    {/if}
+    {if $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
     <div class="menu-level-1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         债权管理
@@ -15,7 +22,7 @@
         <div class="menu-level-2-wrap">
             <div class="menu-level-2">我的债权</div>
             <div class="menu-level-2">我的负债</div>
-            <div class="menu-level-2">订单管理</div>
+            <!--<div class="menu-level-2">订单管理</div>-->
             <div class="menu-level-2">浏览过的债务</div>
         </div>
     </div>
@@ -32,6 +39,8 @@
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         范本下载
     </div>
+    {/if}
+    {if $_SESSION[Identity]==2}
     <div class="menu-level-1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         代理
@@ -56,6 +65,7 @@
             <div class="menu-level-2">联盟催客</div>
         </div>
     </div>
+    {/if}
     <div class="menu-level-1">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息
@@ -67,13 +77,13 @@
 </div>
 <div class="menu-cont">
     <div class="tab-hd">
-        <div class="tb act">
+        <div class="tb {if $Nav=='memberperson'}act{/if}" onclick="go('/memberperson/')">
             个人信息
         </div>
-        <div class="tb">
+        <div class="tb {if $Nav=='editpassword'}act{/if}"  onclick="go('/member/editpassword/')">
             修改密码
         </div>
-        <div class="tb">
+        <div class="tb {if $Nav=='changemobile'}act{/if}" onclick="go('/member/changemobile/')">
             绑定手机
         </div>
     </div>

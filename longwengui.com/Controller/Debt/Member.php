@@ -60,12 +60,17 @@ class Member
         $Title = '会员注册完善资料';
         include template('MemberRegisterThree');
     }
+    public function IsLogin(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }
+    }
     /**
      * @desc  找回密码
      */
     public function FindPasswd()
     {
-        MemberService::IsLogin();
+        $this->IsLogin();
         $Title = '会员登录_找回密码';
         include template('MemberFindPasswd');
     }
@@ -74,8 +79,19 @@ class Member
      */
     public function ChangeMobile()
     {
-        MemberService::IsLogin();
-        $Title = '会员_绑定手机';
+        $this->IsLogin();
+        $MemberUserModule = new MemberUserModule();
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $Nav = 'changemobile';
+        $Title = '会员_更改绑定手机';
         include template('MemberChangeMobile');
+    }
+    /**
+     * @desc 修改密码
+     */
+    public function EditPassWord(){
+        $Nav = 'editpassword';
+        $MemberUserModule = new MemberUserModule();
+        include template('MemberEditPassWord');
     }
 }
