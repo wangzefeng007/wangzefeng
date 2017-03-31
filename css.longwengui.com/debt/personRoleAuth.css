@@ -62,6 +62,7 @@
 .person-role-auth .wrap .bx-wraper .cont .info-form .line-1 .cont-in {
   width: 530px;
   float: left;
+  min-height: 46px;
 }
 .person-role-auth .wrap .bx-wraper .cont .info-form .line .cont-in .p-dropdown,
 .person-role-auth .wrap .bx-wraper .cont .info-form .line .cont-in .c-dropdown,
