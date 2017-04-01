@@ -76,7 +76,7 @@ class AjaxLogin
                 }else{
                     $Url = WEB_MAIN_URL.'/memberperson/';
                 }
-                $json_result = array('ResultCode' => 200, 'Message' => '登录成功', 'Url' => $Url);
+                $json_result = array('ResultCode' => 200, 'Message' => '登录成功');
             }
             else {
                 // 设置密码超过三次
@@ -372,7 +372,7 @@ class AjaxLogin
             $Data['Address'] = trim($AjaxData['areaDetail']);//详细地址
             $Data['CardPositive'] = $AjaxData['images'][0];//身份证正面
             $Data['CardNegative'] = $AjaxData['images'][1];//身份证背面
-            $Data['QQ'] = trim($AjaxData['qq']);//qq
+            $Data['QQ'] = intval($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']);//邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Url =WEB_MAIN_URL.'/memberperson/';
@@ -387,7 +387,7 @@ class AjaxLogin
             $Data['CardPositive'] = $AjaxData['images'][0];//身份证正面
             $Data['CardNegative'] = $AjaxData['images'][1];//身份证背面
             $Data['CardHold'] = $AjaxData['images'][2];//手持身份证
-            $Data['QQ'] = trim($AjaxData['qq']);//qq
+            $Data['QQ'] = intval($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']); //类型
             $Url =WEB_MAIN_URL.'/memberperson/';
@@ -403,7 +403,7 @@ class AjaxLogin
             $Data['CardPositive'] = $AjaxData['registrantImages'][0];//注册人身份证照正面
             $Data['CardNegative'] = $AjaxData['registrantImages'][1];//注册人身份证照背面
             $Data['BusinessImage'] = $AjaxData['license'];//营业执照照片
-            $Data['QQ'] = trim($AjaxData['qq']);//qq
+            $Data['QQ'] = intval($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Url =WEB_MAIN_URL.'/memberfirm/';
@@ -419,7 +419,7 @@ class AjaxLogin
             $Data['Address'] = trim($AjaxData['areaDetail']); //详细地址
             $Data['LawyerCertificatePhoto'] = $AjaxData['images'][0];//律师资格证照片页
             $Data['LawyerCertificateYear'] = $AjaxData['images'][1];//律师资格证年检页
-            $Data['QQ'] = trim($AjaxData['qq']);//qq
+            $Data['QQ'] = intval($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Url =WEB_MAIN_URL.'/memberlawyer/';
