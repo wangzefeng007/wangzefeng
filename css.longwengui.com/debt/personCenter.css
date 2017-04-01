@@ -781,6 +781,16 @@
   color: #ff2d2d;
   margin-bottom: 30px;
 }
+.pop-to-hint .pop .info{
+  color: #35bdfc;
+  text-align: center;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+.pop-to-hint .pop .info img{
+  vertical-align: middle;
+  margin-top: -4px;
+}
 .pop-to-hint .pop .btn{
   text-align: center;
 }
