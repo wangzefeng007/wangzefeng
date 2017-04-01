@@ -585,17 +585,22 @@
 	line-height: 44px;
 	border-bottom: 1px dashed #E6E6E6;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select *{
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dt, .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
 	display: inline;
 	margin: 0;
 	cursor: default;
 	font-size: 14px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dt{
+  min-width: 100px;
+  display: inline-block;
 }
 .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
 	padding: 5px 10px;
 	margin: 0 5px;
 	font-size: 12px;
 	border-radius: 5px;
+  cursor: pointer;
 }
 .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd.cont-select-act{
 	background-color: #35bdfc;
@@ -973,10 +978,10 @@
   vertical-align: middle;
   margin-top: -2px;
 }
-.care-sel .fr{
+.fr{
   float: right;
 }
-.care-sel .fr .m-dropdown{
+.fr .m-dropdown{
   display: inline-block;
   width: 160px;
   margin-left: 10px;
@@ -988,12 +993,12 @@
   padding: 0 10px;
   position: relative;
 }
-.care-sel .fr .m-dropdown label{
+.fr .m-dropdown label{
   color: #666;
   width: 100%;
   display: inline-block;
 }
-.care-sel .fr .m-dropdown label i{
+.fr .m-dropdown label i{
   display: inline-block;
   vertical-align: middle;
   float: right;
@@ -1003,10 +1008,10 @@
   width: 10px;
   height: 6px;
 }
-.care-sel .fr .m-dropdown label input[type="checkbox"]{
+.fr .m-dropdown label input[type="checkbox"]{
   display: none;
 }
-.care-sel .fr .m-dropdown label ul{
+.fr .m-dropdown label ul{
   display: none;
   width: 178px;
   position: absolute;
@@ -1022,16 +1027,16 @@
   z-index: 100;
   border: 1px solid #e6e6e6;
 }
-.care-sel .fr .m-dropdown label ul li{
+.fr .m-dropdown label ul li{
   padding-left: 10px;
   line-height: 30px;
   cursor: pointer;
 }
-.care-sel .fr .m-dropdown label ul li:hover{
+.fr .m-dropdown label ul li:hover{
   background-color: #35bdfc;
   color: #fff;
 }
-.care-sel .fr .m-dropdown label input[type="checkbox"]:checked + ul{
+.fr .m-dropdown label input[type="checkbox"]:checked + ul{
   display: block;
 }
 
@@ -1071,4 +1076,67 @@
   border-top: 1px dashed #e6e6e6;
   line-height: 55px;
   margin-top: 90px;
+}
+
+/*代理*/
+.agent-apply{
+  margin: 0 10px;
+  padding: 10px 0;
+}
+.agent-apply p{
+  font-size: 14px;
+}
+.agent-apply .apply-form{
+  margin-top: 20px;
+  padding-top: 25px;
+  border-top: 1px dashed #e6e6e6;
+}
+.agent-apply .apply-form .line{
+  line-height: 30px;
+  min-height: 30px;
+  margin-bottom: 20px;
+}
+.agent-apply .apply-form .line .lef{
+  width: 160px;
+  float: left;
+  min-height: 30px;
+}
+.agent-apply .apply-form .line .rig{
+  min-height: 30px;
+}
+.agent-apply .apply-form .line .rig input[name="idNum"]{
+  width: 320px;
+}
+.agent-apply .apply-form .line .rig input{
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+}
+.agent-apply .apply-form .line .rig input[name="name"], .agent-apply .line .rig input[name="phoneNumber"]{
+  width: 240px;
+}
+.agent-apply .apply-form .line .rig textarea{
+  width: 600px;
+  height: 100px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+.agent-apply .apply-form .line .rig .proto{
+  color: #35bdfc;
+  cursor: pointer;
+}
+.agent-apply .apply-form .line .rig button{
+  min-width: 100px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.way-change{
+  min-height: 40px;
+  margin-top: 10px;
+  padding: 0 10px;
 }
