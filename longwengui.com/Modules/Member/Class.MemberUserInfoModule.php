@@ -26,7 +26,7 @@ Class MemberUserInfoModule extends CommonModule  {
      */
     public $Identity = array(
         '0' => '注册用户',
-        '1' => '个人用户',
+        '1' => '个人会员',
         '2' => '催客会员',
         '3' => '催收公司会员',
         '4' => '律师企业会员',

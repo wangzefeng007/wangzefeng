@@ -64,12 +64,14 @@ class User
     {
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
+        $Identity = $MemberUserInfoModule->Identity;
         if ($_POST['UserID']) {
             $Data['IdentityState'] = intval($_POST['Status']);
             $UserID = intval($_POST['UserID']);
             $result = $MemberUserInfoModule->UpdateInfoByWhere($Data, ' UserID= ' . $UserID);
             if ($result) {
-                alertandgotopage('操作成功!', '/index.php?Module=Member&Action=UserDetail&UserID=' . $UserID);
+                alertandgotopage('操作成功!', '/index.php?Module=User&Action=UserDetail&UserID=' . $UserID);
             } elseif ($result === 0) {
                 alertandback('状态未发生改变!');
             } else {
@@ -78,7 +80,7 @@ class User
         }
         if ($_GET['UserID']) {
             $UserID = $_GET['UserID'];
-            $UserInfo = $MemberUserInfoModule->GetInfoByKeyID($UserID);
+            $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID= '.$UserID);
             $UserInfo['LastLogin'] = !empty($UserInfo['LastLogin'])? date('Y-m-d H:i:s',$UserInfo['LastLogin']): '';
             $UserInfo['AnnualDueDate'] = !empty($UserInfo['AnnualDueDate'])? date('Y-m-d H:i:s',$UserInfo['AnnualDueDate']): '';
             $User = $MemberUserModule->GetInfoByKeyID($UserID);
