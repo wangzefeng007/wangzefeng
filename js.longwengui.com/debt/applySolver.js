@@ -62,22 +62,26 @@ $(function(){
         var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
 
         if(_name == ""){
+          $(this).find('input[name="name"]').focus();
           showMsg('请完善债权人信息');
           flag = false;
           return;
         }
 
         if(_name != '' && !validate('chinese', _name)){
+          $(this).find('input[name="name"]').focus();
           showMsg('请输入正确的债权人姓名');
           flag = false;
           return;
         }
         if(_idNum != '' && !validate('idNum', _idNum)){
+          $(this).find('input[name="idNum"]').focus();
           showMsg('请输入正确的债权人身份证');
           flag = false;
           return;
         }
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+          $(this).find('input[name="phoneNumber"]').focus();
           showMsg('请输入正确的债权人手机号');
           flag = false;
           return;
@@ -98,11 +102,13 @@ $(function(){
         //债权金额
         var _debt_money = $(this).find('input[name="debt_money"]').val();
         if(_debt_money == ''){
+          $(this).find('input[name="debt_money"]').focus();
           showMsg('请输入债务金额');
           flag = false;
           return;
         }
-        if(parseInt(_debt_money) < 0){
+        if(!validate('+money', _debt_money)){
+          $(this).find('input[name="debt_money"]').focus();
           showMsg('请输入正确的债权金额');
           flag = false;
           return;
@@ -133,21 +139,25 @@ $(function(){
         var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
 
         if(_name == ""){
+          $(this).find('input[name="name"]').focus();
           showMsg('请完善债务人信息');
           flag = false;
           return;
         }
         if(_name != '' && !validate('chinese', _name)){
+          $(this).find('input[name="name"]').focus();
           showMsg('请输入正确的债务人姓名');
           flag = false;
           return;
         }
         if(_idNum != '' && !validate('idNum', _idNum)){
+          $(this).find('input[name="idNum"]').focus();
           showMsg('请输入正确的债务人身份证');
           flag = false;
           return;
         }
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+          $(this).find('input[name="phoneNumber"]').focus();
           showMsg('请输入正确的债务人手机号');
           flag = false;
           return;
@@ -167,11 +177,13 @@ $(function(){
         //债权金额
         var _debt_money = $(this).find('input[name="debt_money"]').val();
         if(_debt_money == ''){
+          $(this).find('input[name="debt_money"]').focus();
           showMsg('请输入债务金额');
           flag = false;
           return;
         }
-        if(parseInt(_debt_money) < 0){
+        if(!validate('+money', _debt_money)){
+          $(this).find('input[name="debt_money"]').focus();
           showMsg('请输入正确的债务金额');
           flag = false;
           return;
@@ -218,21 +230,25 @@ $(function(){
           var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
 
           if(_name == ""){
+            $(this).find('input[name="name"]').focus();
             showMsg('请完善保证人信息');
             flag = false;
             return;
           }
           if(_name != '' && !validate('chinese', _name)){
+            $(this).find('input[name="name"]').focus();
             showMsg('请输入正确的保证人姓名');
             flag = false;
             return;
           }
           if(_idNum != '' && !validate('idNum', _idNum)){
+            $(this).find('input[name="idNum"]').focus();
             showMsg('请输入正确的保证人身份证');
             flag = false;
             return;
           }
           if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+            $(this).find('input[name="phoneNumber"]').focus();
             showMsg('请输入正确的保证人手机号');
             flag = false;
             return;
@@ -259,6 +275,7 @@ $(function(){
           var _details = $(this).find('textarea[name="good_detail"]').val();
 
           if(_name == ""){
+            $(this).find('input[name="name"]').focus();
             showMsg('请完善抵押物信息');
             flag = false;
             return;

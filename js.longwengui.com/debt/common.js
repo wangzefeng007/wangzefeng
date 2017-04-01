@@ -210,13 +210,6 @@ function adaptIE8_forEach(){
   }
 }
 
-//显示提示
-function showTip(id, text){
-  layer.tips(text, '#' + id, {
-    tips: [1, '#35bdfc'] //还可配置颜色
-  });
-}
-
 //错误提示
 function showErr(text){
   layer.open({
