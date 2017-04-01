@@ -557,7 +557,7 @@
 .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-hd{
 	line-height: 60px;
 	height: 60px;
-	margin: 0 10px;
+	margin: 0 15px;
 	border-bottom: 1px dashed #E6E6E6;
 }
 .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-hd .send{
@@ -1266,4 +1266,65 @@
 }
 .my-recommand-form{
   padding: 0 15px;
+}
+
+.union-search{
+  padding: 0 15px;
+  margin: 30px 0 20px;
+}
+.union-search>span{
+  margin-right: 10px;
+}
+.union-search button{
+  min-width: 100px;
+  line-height: 30px;
+  border: 0;
+  margin-left: 15px;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.union-result{
+  margin-bottom: 10px;
+  padding: 10px 0;
+  margin: 0 15px 10px;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.debt .union-table{
+	border-top: 1px solid #e6e6e6;
+	border-left: 1px solid #e6e6e6;
+}
+.debt .union-table td{
+	border-right: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+	font-size: 13px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.debt .union-table thead{
+	background-color: #f2f2f2;
+	font-weight: bold;
+}
+.debt .union-table tr:hover{
+	background-color: #f8f8f8;
+}
+.debt .union-table button{
+  min-width: 60px;
+  line-height: 24px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.debt .union-table button[name="ok"], .debt .union-table button[name="cancel-apply"], .debt .union-table button[name="del"]{
+  background-color: #35bdfc;
+}
+.debt .union-table button[name="reject"]{
+  background-color: #b3b3b3;
+  margin-left: 10px;
+}
+.debt .union-table button[name="cancel-union"]{
+  background-color: #328bb4;
 }
