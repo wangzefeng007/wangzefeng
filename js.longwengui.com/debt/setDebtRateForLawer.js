@@ -56,7 +56,11 @@ $(
           //获取比例信息
           var _from = $(this).find('input[name="from"]').val();
           var _to = $(this).find('input[name="to"]').val();
-          var _rate = $(this).find('input[name="rate"]').val();
+          var is_fee = $(this).find('input[name="is_fee"]')[0].checked;
+          var fee = $(this).find('input[name="fee"]').val();
+          var is_pre_fee = $(this).find('input[name="is_pre_fee"]')[0].checked;
+          var pre_fee = $(this).find('input[name="pre_fee"]').val();
+          var pre_fee_deposit = $(this).find('input[name="pre_fee_deposit"]').val();
 
           if(_from == ''){
             $(this).find('input[name="from"]').focus();
@@ -72,16 +76,16 @@ $(
             return;
           }
 
-          if(!validate('+money', _to)){
+          if(_to == ''){
             $(this).find('input[name="to"]').focus();
-            showMsg('请输入正确的债务金额');
+            showMsg('请完善佣金比例信息');
             flag = false;
             return;
           }
 
-          if(_to == ''){
+          if(!validate('+money', _to)){
             $(this).find('input[name="to"]').focus();
-            showMsg('请完善佣金比例信息');
+            showMsg('请输入正确的债务金额');
             flag = false;
             return;
           }
@@ -93,26 +97,62 @@ $(
             return;
           }
 
-          if(_rate == ''){
-            $(this).find('input[name="rate"]').focus();
-            showMsg('请完善佣金比例信息');
-            flag = false;
-            return;
-          }
-
-          if(!validate('+number', _rate) || !(_rate > 0 && _rate <= 100)){
-            $(this).find('input[name="rate"]').focus();
-            showMsg('佣金比例请输入0-100整数');
-            flag = false;
-            return;
-          }
-
-          fee_rate_info.push({
+          var i = {
             "from": _from,
-            "to": _to,
-            "rate": _rate
-          });
+            "to": _to
+          };
 
+          if(is_fee){
+            i.isFee = 1;
+            if(fee == ''){
+              $(this).find('input[name="fee"]').focus();
+              showMsg('请设置债务费用');
+              flag = false;
+              return;
+            }
+            if(!validate('+money', fee)){
+              $(this).find('input[name="fee"]').focus();
+              showMsg('请设置正确的债务费用');
+              flag = false;
+              return;
+            }
+            i.fee = fee;
+          }else{
+            i.isFee = 0;
+          }
+
+          if(is_pre_fee){
+            i.isPreFee = 1;
+            if(pre_fee == ''){
+              $(this).find('input[name="pre_fee"]').focus();
+              showMsg('请设置前期费用');
+              flag = false;
+              return;
+            }
+            if(!validate('+money', pre_fee)){
+              $(this).find('input[name="pre_fee"]').focus();
+              showMsg('请设置正确的前期费用');
+              flag = false;
+              return;
+            }
+            if(pre_fee_deposit == ''){
+              $(this).find('input[name="pre_fee_deposit"]').focus();
+              showMsg('请设置前期费用回款押金');
+              flag = false;
+              return;
+            }
+            if(!validate('+money', pre_fee_deposit)){
+              $(this).find('input[name="pre_fee_deposit"]').focus();
+              showMsg('请设置正确的前期费用回款押金');
+              flag = false;
+              return;
+            }
+            i.preFee = pre_fee;
+            i.preFeeDeposit = pre_fee_deposit;
+          }else{
+            i.isPreFee = 0;
+          }
+          fee_rate_info.push(i);
         }
       });
 
@@ -130,20 +170,14 @@ $(
         return;
       }
 
-      var searchedAnytime = $('input[name="searchedAnytime"]:checked').val();
-      var fee = $('input[name="fee"]:checked').val();
-      var abilityDebt = $('input[name="abilityDebt"]:checked').val();
-
       $.ajax({
         type: "get",
         dataType: "json",
         url: "../data/setDebt.json",
         data: JSON.stringify({
-          "case_name": case_name,  //方案名称
-          "searchedAnytime": searchedAnytime, //是否随时找到 1 是 0 否
-          "fee": fee,  //是否有前期费用
-          "abilityDebt": abilityDebt, //是否有还款能力
-          "fee_rate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; rate: 比例 }
+          "caseName": case_name,  //方案名称
+          "feeRate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; isFee: 1 表示有费用(此时多传fee)，0 表示无费用;
+                                  //isPreFee: 1表示有前期费用(此时多传preFee-前期费用 preFeeDeposit-回款后押金)}； 0表示无前期费用
           "area": area_info //地区数组
         }),
         beforeSend: function(){
