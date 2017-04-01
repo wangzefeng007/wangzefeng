@@ -4,7 +4,7 @@
         {{$UserInfo[NickName]}
     </div>
     <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
-    <div class="menu-level-1  menu-level-1-act">
+    <div class="menu-level-1  menu-level-1-act" onclick="go('/memberlawyer/')">
         <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
         事务所信息
     </div>
@@ -19,16 +19,17 @@
             <div class="menu-level-2">发布悬赏</div>
         </div>
     </div>
-    <div class="menu-level-1">
+    <div class="menu-level-1"  onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息
     </div>
-    <div class="menu-level-1">
+    <div class="menu-level-1" onclick="go('/member/advice/')">
         <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
         投诉建议
     </div>
 </div>
 <div class="menu-cont">
+    {if $Nav=='memberlawyer' || $Nav=='editpassword' || $Nav=='changemobile'}
     <div class="tab-hd">
         <div class="tb {if $Nav=='memberlawyer'}act{/if}" onclick="go('/memberlawyer/')">
             事务所信息
@@ -40,3 +41,4 @@
             绑定手机
         </div>
     </div>
+    {/if}

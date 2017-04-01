@@ -97,4 +97,41 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberEditPassWord');
     }
+    /**
+     * @desc 系统消息
+     */
+    public function SystemMessage(){
+        $this->IsLogin();
+        $Nav = 'systemmessage';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberSystemMessage');
+    }
+    /**
+     * @desc 投诉建议
+     */
+    public function Advice(){
+        $this->IsLogin();
+        $Nav = 'advice';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberAdvice');
+    }
+    /**
+     * @desc 注册会员用户中心选择
+     */
+    public function Center(){
+        $this->IsLogin();
+        $Nav = 'center';
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }else{
+            if ($_SESSION['Identity']!=0)
+                alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberCenter');
+    }
+
 }

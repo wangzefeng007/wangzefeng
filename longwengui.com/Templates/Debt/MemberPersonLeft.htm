@@ -4,12 +4,12 @@
         {$UserInfo[NickName]}
     </div>
     <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
-    <div class="menu-level-1  menu-level-1-act">
+    <div class="menu-level-1 {if $Nav=='memberperson'}menu-level-1-act{/if}"  onclick="go('/memberperson/')">
         <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
         个人信息
     </div>
     {if $_SESSION[Identity]==0}
-    <div class="menu-level-1   menu-level-1-act">
+    <div class="menu-level-1 {if $Nav=='center'}menu-level-1-act{/if}" onclick="go('/member/center/')">
         <img src="/Uploads/Debt/imgs/user_center.png" class="i-left" alt="">
         用户中心
     </div>
@@ -66,16 +66,17 @@
         </div>
     </div>
     {/if}
-    <div class="menu-level-1">
+    <div class="menu-level-1 {if $Nav=='systemmessage'}menu-level-1-act{/if}"  onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息
     </div>
-    <div class="menu-level-1">
+    <div class="menu-level-1 {if $Nav=='advice'}menu-level-1-act{/if}" onclick="go('/member/advice/')">
         <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
         投诉建议
     </div>
 </div>
 <div class="menu-cont">
+    {if $Nav=='memberperson' || $Nav=='editpassword' || $Nav=='changemobile'}
     <div class="tab-hd">
         <div class="tb {if $Nav=='memberperson'}act{/if}" onclick="go('/memberperson/')">
             个人信息
@@ -87,3 +88,4 @@
             绑定手机
         </div>
     </div>
+    {/if}
