@@ -789,7 +789,7 @@ function toLogin(){
             +     '</div>'
             +   '</div>'
             +   '<div class="forget-pass">'
-            +     '<span>忘记密码？</span>'
+            +     '<span onclick="go(\'/member/findpasswd/\')">忘记密码？</span>'
             +   '</div>'
             +   '<div class="line">'
             +     '<div class="info">'
