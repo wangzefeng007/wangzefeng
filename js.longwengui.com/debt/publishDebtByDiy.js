@@ -312,7 +312,9 @@ $(function(){
         if(data.ResultCode == 200){
             layer.msg(data.Message);
           //路由跳转
-
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
         }else{
             layer.msg(data.Message);
         }
