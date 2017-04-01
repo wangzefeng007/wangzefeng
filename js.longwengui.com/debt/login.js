@@ -108,7 +108,7 @@ function login(){
         if(data.ResultCode == 200){
             layer.msg("登录成功");
             setTimeout(function() {
-                window.location = data.Url;
+                location.reload();
             }, 10);
           //路由跳转
         }else{

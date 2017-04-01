@@ -92,6 +92,7 @@
                                     </div>
                                     身份证反面照
                                 </div>
+                                {if $UserInfo[Identity]==2}
                                 <div class="bx">
                                     <div class="img-wrap">
                                         {if !empty($UserInfo[CardHold])}
@@ -100,6 +101,7 @@
                                     </div>
                                     手持身份证照
                                 </div>
+                                {/if}
                             </div>
                         </div>
                         <div class="line">
