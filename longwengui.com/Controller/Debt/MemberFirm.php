@@ -14,8 +14,6 @@ class MemberFirm
             alertandgotopage("访问被拒绝", WEB_MAIN_URL);
         }
     }
-
-
     /**
      * @desc 催收公司会员中心(个人信息)
      */
@@ -65,4 +63,16 @@ class MemberFirm
         include template('MemberFirmEditInfo');
     }
 
+    /**
+     * @desc 催收公司主动申请的债权列表
+     */
+    public function  ApplyDebtOrder(){
+        include template('MemberFirmApplyDebtOrder');
+    }
+    /**
+     * @desc 催收公司债权接单
+     */
+    public function CreditOrder(){
+        include template('MemberFirmCreditOrder');
+    }
 }

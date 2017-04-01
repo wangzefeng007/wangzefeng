@@ -43,7 +43,7 @@ class MemberPerson
         include template('MemberPersonIndex');
     }
     /**
-     * @desc 催收公司会员中心(完善个人资料)
+     * @desc 个人会员中心(完善个人资料)
      */
     public function EditInfo()
     {
@@ -67,5 +67,27 @@ class MemberPerson
         if ($UserInfo['Area'])
         $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberPersonEditInfo');
+    }
+
+    /**
+     * @desc 个人会员我的债权
+     */
+    public function BondList()
+    {
+        include template('MemberPersonBondList');
+    }
+    /**
+     * @desc 个人会员我的负债
+     */
+    public function DebtList()
+    {
+        include template('MemberPersonDebtList');
+    }
+    /**
+     * @desc 个人会员主动申请的债权
+     */
+    public function ApplyDebtOrder()
+    {
+        include template('MemberPersonApplyDebtOrder');
     }
 }

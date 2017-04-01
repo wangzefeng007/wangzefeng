@@ -61,4 +61,16 @@ class MemberLawyer
             $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberLawyerEditInfo');
     }
+    /**
+     * @desc 律师主动申请的债权列表
+     */
+    public function  ApplyDebtOrder(){
+        include template('MemberLawyerApplyDebtOrder');
+    }
+    /**
+     * @desc 律师债权接单
+     */
+    public function CreditOrder(){
+        include template('MemberLawyerCreditOrder');
+    }
 }
