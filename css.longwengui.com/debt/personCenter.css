@@ -577,32 +577,31 @@
 	margin-top: -3px;
 	margin-right: 5px;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select{
+.person-center .wrap .menu-cont-wrap .cont-select{
 	padding: 0;
-	margin: 0;
-	margin: 0 10px;
+	margin: 0 15px;
 	height: 44px;
 	line-height: 44px;
 	border-bottom: 1px dashed #E6E6E6;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dt, .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
+.person-center .wrap .menu-cont-wrap .cont-select dt, .person-center .wrap .menu-cont-wrap .cont-select dd{
 	display: inline;
 	margin: 0;
 	cursor: default;
 	font-size: 14px;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dt{
+.person-center .wrap .menu-cont-wrap .cont-select dt{
   min-width: 100px;
   display: inline-block;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
+.person-center .wrap .menu-cont-wrap .cont-select dd{
 	padding: 5px 10px;
 	margin: 0 5px;
 	font-size: 12px;
 	border-radius: 5px;
   cursor: pointer;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd.cont-select-act{
+.person-center .wrap .menu-cont-wrap .cont-select dd.cont-select-act{
 	background-color: #35bdfc;
 	color: #fff;
 }
@@ -1080,7 +1079,7 @@
 
 /*代理*/
 .agent-apply{
-  margin: 0 10px;
+  margin: 0 15px;
   padding: 10px 0;
 }
 .agent-apply p{
@@ -1139,4 +1138,132 @@
   min-height: 40px;
   margin-top: 10px;
   padding: 0 10px;
+}
+
+/*推荐*/
+.recommand{
+  margin: 0 20px;
+  padding: 10px 0;
+}
+.recommand .apply-form{
+  margin-top: 20px;
+  padding-top: 25px;
+}
+.recommand .apply-form p{
+  font-size: 14px;
+  color: #ff2d2d;
+}
+.recommand .apply-form .line{
+  line-height: 30px;
+  min-height: 30px;
+  margin-bottom: 20px;
+}
+.recommand .apply-form .line .lef{
+  width: 110px;
+  float: left;
+  min-height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.recommand .apply-form .line .rig{
+  min-height: 30px;
+}
+.recommand .apply-form .line .rig input{
+  padding: 10px;
+  width: 240px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.recommand .apply-form .line .rig button{
+  min-width: 100px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.my-recommand{
+  font-size: 14px;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+.my-recommand .divi{
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e6e6e6;
+  margin-bottom: 15px;
+}
+.my-recommand .m-dropdown{
+  display: inline-block;
+  width: 160px;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.my-recommand .m-dropdown label{
+  color: #666;
+  width: 100%;
+  display: inline-block;
+}
+.my-recommand .m-dropdown label i{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.my-recommand .m-dropdown label input[type="checkbox"]{
+  display: none;
+}
+.my-recommand .m-dropdown label ul{
+  display: none;
+  width: 178px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.my-recommand .m-dropdown label ul li{
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.my-recommand .m-dropdown label ul li:hover{
+  background-color: #35bdfc;
+  color: #fff;
+}
+.my-recommand .m-dropdown label input[type="checkbox"]:checked + ul{
+  display: block;
+}
+.my-recommand .rec-sel{
+  line-height: 40px;
+  margin-top: 10px;
+}
+.my-recommand .rec-sel .c-b{
+  color: #35bdfc;
+}
+.my-recommand .rec-sel img{
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.my-recommand-form{
+  padding: 0 15px;
 }
