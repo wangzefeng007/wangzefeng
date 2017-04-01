@@ -450,7 +450,10 @@ a{
   padding-top: 15px;
 }
 .mb-15{
-  margin-bottom: 15px;
+  margin-bottom: 15px!important;
+}
+.mt-10{
+  margin-top: 10px!important;
 }
 .mb-100{
   margin-bottom: 100px;
