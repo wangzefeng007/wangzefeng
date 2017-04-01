@@ -1,0 +1,37 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>投诉建议</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {if $_SESSION[Identity]==0 || $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
+            {template MemberPersonLeft}
+            {elseif $_SESSION[Identity]==3}
+            {template MemberFirmLeft}
+            {elseif $_SESSION[Identity]==4}
+            {template MemberLawyerLeft}
+            {/if}
+                <div class="tab-hd">
+                    <div class="tb act">
+                        投诉建议
+                    </div>
+                </div>
+                <div class="info-cont">
+                    <div class="complaint">
+                        <div class="complaint-info">
+                            <span class="leb">投诉/建议:</span>
+                            <textarea class="complaint-inp" placeholder="填写您的意见或建议，字数不超过150字"></textarea>
+                            <button type="submit" name="submit">提交</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}

@@ -5,7 +5,6 @@
 class MemberLawyer
 {
     public function __construct() {
-        //$_SESSION ['UserID']=1;
     }
     public function IsLogin(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {

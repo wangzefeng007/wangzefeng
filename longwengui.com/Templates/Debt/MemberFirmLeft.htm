@@ -4,7 +4,7 @@
         {$UserInfo[NickName]}
     </div>
     <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
-    <div class="menu-level-1  menu-level-1-act">
+    <div class="menu-level-1 {if $Nav=='memberfirm'}menu-level-1-act{/if}"  onclick="go('/memberfirm/')">
         <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
         企业信息
     </div>
@@ -20,21 +20,22 @@
             <div class="menu-level-2">
                 浏览过的债权
             </div>
-            <div class="menu-level-2">
+            <div class="menu-level-2"  onclick="selDebtWayPop()">
                 发布债务
             </div>
         </div>
     </div>
-    <div class="menu-level-1">
+    <div class="menu-level-1 {if $Nav=='systemmessage'}menu-level-1-act{/if}" onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息
     </div>
-    <div class="menu-level-1">
+    <div class="menu-level-1 {if $Nav=='advice'}menu-level-1-act{/if}" onclick="go('/member/advice/')">
         <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
         投诉建议
     </div>
 </div>
 <div class="menu-cont">
+    {if $Nav=='memberfirm' || $Nav=='editpassword' || $Nav=='changemobile'}
     <div class="tab-hd">
         <div class="tb {if $Nav=='memberfirm'}act{/if} " onclick="go('/memberfirm/')">
                 企业信息
@@ -46,3 +47,4 @@
                 绑定手机
         </div>
     </div>
+    {/if}

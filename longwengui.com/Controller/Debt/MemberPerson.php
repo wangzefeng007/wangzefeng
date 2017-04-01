@@ -5,15 +5,6 @@
 class MemberPerson
 {
     public function __construct() {
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberAreaModule = new MemberAreaModule();
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        if ($UserInfo['Province'])
-            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
-        if ($UserInfo['City'])
-            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
-        if ($UserInfo['Area'])
-            $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
     }
     /**
      * @desc  判断是否登录并返回登录页面

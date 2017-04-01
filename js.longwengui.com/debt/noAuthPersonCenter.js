@@ -41,7 +41,7 @@ $(function(){
             }
         });
         if (type ==1){
-            if(images.length != 2){
+            if(images.length < 2){
                 showMsg('请上传所需的证件照片');
                 return;
             }

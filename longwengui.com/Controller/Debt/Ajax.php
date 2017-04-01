@@ -10,7 +10,6 @@ class Ajax
 {
     public function __construct()
     {
-        $_SESSION ['UserID']=1;
     }
 
     public function Index()

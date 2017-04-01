@@ -1,0 +1,63 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>系统消息</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {if $_SESSION[Identity]==0 || $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
+            {template MemberPersonLeft}
+            {elseif $_SESSION[Identity]==3}
+            {template MemberFirmLeft}
+            {elseif $_SESSION[Identity]==4}
+            {template MemberLawyerLeft}
+            {/if}
+                <div class="tab-hd">
+                    <div class="tb act">
+                        系统消息
+                    </div>
+                </div>
+
+                <div class="info-cont">
+                    <div class="sys-info">
+                        <ul class="sys-info-list">
+                            <li class="sys-info-li"><a href="">
+                                <img src="/Uploads/Debt/imgs/Notview.png" alt="系统消息" />
+                                您发布的债务已被接单，请知悉
+                                <span>2017-02-03 16:00</span>
+                            </a>
+                            </li>
+                            <li class="sys-info-li"><a href="">
+                                <img src="/Uploads/Debt/imgs/Notview.png" alt="系统消息" />
+                                您推荐的人发布的债务已完成，您将获得律师团队给予的200元现金奖励
+                                <span>2017-02-03 16:00</span>
+                            </a>
+                            </li>
+                            <li class="sys-info-li"><a href="">
+                                <img src="/Uploads/Debt/imgs/view.png" alt="系统消息" />
+                                您推荐的人发布的债务信息已完成，请知悉
+                                <span>2017-02-03 16:00</span>
+                            </a>
+                            </li>
+                            <li class="sys-info-li"><a href="">
+                                <img src="/Uploads/Debt/imgs/view.png" alt="系统消息" />
+                                您推荐的人发布的债务信息已被接单，请知悉
+                                <span>2017-02-03 16:00</span>
+                            </a>
+                            </li>
+                            <li class="sys-info-li"><a href="">
+                                <img src="/Uploads/Debt/imgs/view.png" alt="系统消息" />
+                                您推荐的人已发布债务信息，请知悉
+                                <span>2017-02-03 16:00</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
