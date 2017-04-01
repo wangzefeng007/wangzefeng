@@ -1034,3 +1034,41 @@
 .care-sel .fr .m-dropdown label input[type="checkbox"]:checked + ul{
   display: block;
 }
+
+/*提前关注*/
+#debt_trans_list, #debt_reword_list{
+  display: none;
+}
+
+/*范本详情*/
+.debt-model-detail{
+  border: 1px solid #e6e6e6;
+  -moz-box-shadow: 0 0 2px #e6e6e6;
+  box-shadow: 0 0 2px #e6e6e6;
+  min-height: 1300px;
+  margin-bottom: 60px;
+  padding: 0 40px;
+  font-size: 14px;
+}
+.debt-model-detail h2{
+  text-align: center;
+  color: #319bcc;
+  margin-bottom: 40px;
+  margin-top: 36px;
+}
+.debt-model-detail p{
+  text-indent: 28px;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+.debt-model-detail .n{
+  margin-left: 36px;
+}
+.debt-model-detail .up-time{
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px dashed #e6e6e6;
+  line-height: 55px;
+  margin-top: 90px;
+}
