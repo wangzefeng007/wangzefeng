@@ -72,6 +72,7 @@ class Debt
         include template('DebtLists');
     }
     public function DebtDetails(){
+
         $Nav='debt';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
@@ -81,6 +82,9 @@ class Debt
         $ID = intval($_GET['ID']);
         //债务信息
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($ID);
+        if ($DebtInfo['Status'] ==8  && $DebtInfo['UserID']!=$_SESSION['UserID']){
+            alertandgotopage("访问被拒绝", WEB_MAIN_URL.'/debtlists/');
+        }
         //保证人信息
         if ($DebtInfo['Warrantor']){
             $WarrantorInfo = json_decode($DebtInfo['WarrantorInfo'],true);

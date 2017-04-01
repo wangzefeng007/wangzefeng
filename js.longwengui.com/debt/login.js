@@ -107,10 +107,10 @@ function login(){
       success: function(data){
         if(data.ResultCode == 200){
             layer.msg("登录成功");
+          //路由跳转
             setTimeout(function() {
                 location.reload();
             }, 10);
-          //路由跳转
         }else{
             layer.msg(data.Message);
             times = getCookie('PasswordErrTimes');

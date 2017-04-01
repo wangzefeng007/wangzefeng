@@ -656,11 +656,11 @@ class Ajax
                                 $result_json = array('ResultCode'=>102,'Message'=>'添加借款凭证失败');
                             }else{
                                 $DB->query("COMMIT");//执行事务
-                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
                             }
                         }else{
                             $DB->query("COMMIT");//执行事务
-                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！');
+                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
                         }
                     }else{
                         $result_json = array('ResultCode' => 106, 'Message' => '录入债务人信息失败');
@@ -757,11 +757,11 @@ class Ajax
                     $result_json = array('ResultCode'=>102,'Message'=>'添加悬赏图片失败');
                 }else{
                     $DB->query("COMMIT");//执行事务
-                    $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+                    $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！','Url'=>WEB_MAIN_URL.'/member/login');
                 }
             }else{
                 $DB->query("COMMIT");//执行事务
-                $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！');
+                $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！','Url'=>WEB_MAIN_URL.'/member/login');
             }
 
         }
