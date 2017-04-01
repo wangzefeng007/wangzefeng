@@ -427,6 +427,8 @@ function validate(type, text){
       return /^\d{17}(\d|X|x)$/.test(text);
     case '+number':
       return /^[0-9]*[1-9][0-9]*$/.test(text);
+    case 'day':
+      return /^[0-9]*[0-9]*$/.test(text);
     case '+money':
       return /^[0-9]+(\.[0-9]{1,2})?$/.test(text);
     case 'mobilePhone':
@@ -443,6 +445,19 @@ function validate(type, text){
       return /^[0-9]{17}$/.test(text);
     default:
       return false;
+  }
+}
+
+//验证时间
+function validateDay(tar, isNeed){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+  if(!validate('day', _text)){
+    showTip(tar, '请输入正确的天数');
+    return;
   }
 }
 
