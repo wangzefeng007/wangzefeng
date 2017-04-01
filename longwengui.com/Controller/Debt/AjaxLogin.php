@@ -329,11 +329,19 @@ class AjaxLogin
      */
     public function AddHeadImage(){
         //上传图片
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID']);
         $ImgBaseData = $_POST['ImgBaseData'];
         $ImageUrl = SendToImgServ($ImgBaseData);
-        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
-        if ($Data['ImageUrl'] !==''){
-            $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+        $Data['Avatar'] = $ImageUrl ? $ImageUrl : '';
+        if ($Data['Avatar'] !==''){
+            $UpdateAvatar = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID =' .$_SESSION['UserID']);
+            if ($UpdateAvatar){
+                $_SESSION['Avatar'] = $Data['Avatar'];
+                $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['Avatar']);
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'上传失败！');
+            }
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
         }
@@ -424,7 +432,7 @@ class AjaxLogin
         if ($UpdateInfo){
             $result_json = array('ResultCode'=>200,'Message'=>'保存成功！', 'Url' => $Url);
         }else{
-            $result_json = array('ResultCode'=>102,'Message'=>'保存失败！');
+            $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
         }
         EchoResult($result_json);
         exit;

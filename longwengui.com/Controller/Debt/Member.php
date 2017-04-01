@@ -70,7 +70,6 @@ class Member
      */
     public function FindPasswd()
     {
-        $this->IsLogin();
         $Title = '会员登录_找回密码';
         include template('MemberFindPasswd');
     }

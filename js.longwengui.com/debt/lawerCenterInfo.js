@@ -12,8 +12,6 @@ $(function(){
     var area = $('input[name="dd_area"]').siblings('span').attr('data-id');
     var lawer_images = []; //证明图片
     var inspection_date = $('#mydatepicker').val();
-
-
     if(name == ''){
       showMsg('请输入您的姓名');
       return;
