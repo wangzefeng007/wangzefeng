@@ -2,6 +2,34 @@
   width: 1180px;
   margin: 0 auto;
   color: #666;
+  position: relative;
+}
+.person-center .wrap .fr-win{
+  position: absolute;
+  right: -100px;
+  top: 105px;
+  width: 100px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.person-center .wrap .fr-win .pub-btn-list .lin{
+  padding: 8px 12px;
+  background-color: #34aae1;
+  margin-bottom: 1px;
+}
+.person-center .wrap .fr-win .pub-btn-list .lin:hover{
+  background-color: #2f88b1;
+}
+.person-center .wrap .fr-win .pub-btn{
+  width: 50px;
+  height: 50px;
+  background-color: #2f88b1;
+  text-align: center;
+  margin-bottom: 1px;
+}
+.person-center .wrap .fr-win .pub-btn img{
+  margin-top: 6px;
 }
 .person-center .wrap .current-loc {
   padding-top: 26px;
@@ -557,17 +585,22 @@
 	line-height: 44px;
 	border-bottom: 1px dashed #E6E6E6;
 }
-.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select *{
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dt, .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
 	display: inline;
 	margin: 0;
 	cursor: default;
 	font-size: 14px;
+}
+.person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dt{
+  min-width: 100px;
+  display: inline-block;
 }
 .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd{
 	padding: 5px 10px;
 	margin: 0 5px;
 	font-size: 12px;
 	border-radius: 5px;
+  cursor: pointer;
 }
 .person-center .wrap .menu-cont-wrap .menu-cont .info-cont .cont-select dd.cont-select-act{
 	background-color: #35bdfc;
@@ -833,4 +866,277 @@
 .msg-det .right .cont-wrap .cont .line img{
   vertical-align: middle;
   margin-top: -2px;
+}
+
+/*提前关注的债务*/
+.care-search-wrap{
+  margin: 20px 10px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.care-search-wrap input[name="name"]{
+  width: 130px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+}
+.care-search-wrap input[name="idNum"]{
+  width: 300px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+}
+.care-search-wrap span{
+  font-size: 14px;
+  color: #999999;
+  margin-left: 10px;
+}
+.care-search-wrap button{
+  width: 80px;
+  line-height: 36px;
+  font-size: 14px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+}
+.cared{
+  font-size: 14px;
+  padding: 0 10px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+.cared .m-dropdown{
+  display: inline-block;
+  width: 160px;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.cared .m-dropdown label{
+  color: #666;
+  width: 100%;
+  display: inline-block;
+}
+.cared .m-dropdown label i{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.cared .m-dropdown label input[type="checkbox"]{
+  display: none;
+}
+.cared .m-dropdown label ul{
+  display: none;
+  width: 178px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.cared .m-dropdown label ul li{
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.cared .m-dropdown label ul li:hover{
+  background-color: #35bdfc;
+  color: #fff;
+}
+.cared .m-dropdown label input[type="checkbox"]:checked + ul{
+  display: block;
+}
+.care-sel{
+  padding: 0 10px;
+  line-height: 40px;
+}
+.care-sel .c-b{
+  color: #35bdfc;
+}
+.care-sel img{
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.fr{
+  float: right;
+}
+.fr .m-dropdown{
+  display: inline-block;
+  width: 160px;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 10px;
+  position: relative;
+}
+.fr .m-dropdown label{
+  color: #666;
+  width: 100%;
+  display: inline-block;
+}
+.fr .m-dropdown label i{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -66px -41px;
+  width: 10px;
+  height: 6px;
+}
+.fr .m-dropdown label input[type="checkbox"]{
+  display: none;
+}
+.fr .m-dropdown label ul{
+  display: none;
+  width: 178px;
+  position: absolute;
+  top: 36px;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fff;
+  max-height: 182px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid #e6e6e6;
+}
+.fr .m-dropdown label ul li{
+  padding-left: 10px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.fr .m-dropdown label ul li:hover{
+  background-color: #35bdfc;
+  color: #fff;
+}
+.fr .m-dropdown label input[type="checkbox"]:checked + ul{
+  display: block;
+}
+
+/*提前关注*/
+#debt_trans_list, #debt_reword_list{
+  display: none;
+}
+
+/*范本详情*/
+.debt-model-detail{
+  border: 1px solid #e6e6e6;
+  -moz-box-shadow: 0 0 2px #e6e6e6;
+  box-shadow: 0 0 2px #e6e6e6;
+  min-height: 1300px;
+  margin-bottom: 60px;
+  padding: 0 40px;
+  font-size: 14px;
+}
+.debt-model-detail h2{
+  text-align: center;
+  color: #319bcc;
+  margin-bottom: 40px;
+  margin-top: 36px;
+}
+.debt-model-detail p{
+  text-indent: 28px;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+.debt-model-detail .n{
+  margin-left: 36px;
+}
+.debt-model-detail .up-time{
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px dashed #e6e6e6;
+  line-height: 55px;
+  margin-top: 90px;
+}
+
+/*代理*/
+.agent-apply{
+  margin: 0 10px;
+  padding: 10px 0;
+}
+.agent-apply p{
+  font-size: 14px;
+}
+.agent-apply .apply-form{
+  margin-top: 20px;
+  padding-top: 25px;
+  border-top: 1px dashed #e6e6e6;
+}
+.agent-apply .apply-form .line{
+  line-height: 30px;
+  min-height: 30px;
+  margin-bottom: 20px;
+}
+.agent-apply .apply-form .line .lef{
+  width: 160px;
+  float: left;
+  min-height: 30px;
+}
+.agent-apply .apply-form .line .rig{
+  min-height: 30px;
+}
+.agent-apply .apply-form .line .rig input[name="idNum"]{
+  width: 320px;
+}
+.agent-apply .apply-form .line .rig input{
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+}
+.agent-apply .apply-form .line .rig input[name="name"], .agent-apply .line .rig input[name="phoneNumber"]{
+  width: 240px;
+}
+.agent-apply .apply-form .line .rig textarea{
+  width: 600px;
+  height: 100px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+.agent-apply .apply-form .line .rig .proto{
+  color: #35bdfc;
+  cursor: pointer;
+}
+.agent-apply .apply-form .line .rig button{
+  min-width: 100px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.way-change{
+  min-height: 40px;
+  margin-top: 10px;
+  padding: 0 10px;
 }

@@ -431,7 +431,7 @@ function validate(type, text){
       return true;
       break;
     case 'idNum':
-      return /^\d{15}$/.test(text) || /^\d{17}(\d|X|x)$/.test(text);
+      return /^\d{17}(\d|X|x)$/.test(text);
     case '+number':
       return /^[0-9]*[1-9][0-9]*$/.test(text);
     case '+money':

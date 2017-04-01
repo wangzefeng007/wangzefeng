@@ -143,12 +143,12 @@ $(function(){
           return;
         }
         if(_idNum != '' && !validate('idNum', _idNum)){
-          showMsg('请输入正确的债权人身份证');
+          showMsg('请输入正确的债务人身份证');
           flag = false;
           return;
         }
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
-          showMsg('请输入正确的债权人手机号');
+          showMsg('请输入正确的债务人手机号');
           flag = false;
           return;
         }

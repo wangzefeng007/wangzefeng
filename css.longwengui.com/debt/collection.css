@@ -109,34 +109,6 @@
 .collection .wrap .table .m-c {
   color: #f85951;
 }
-.collection .wrap .table .sta-1 {
-  font-weight: 600;
-  color: #f85951;
-}
-.collection .wrap .table .sta-2 {
-  font-weight: 600;
-  color: #fbab10;
-}
-.collection .wrap .table .sta-3{
-  font-weight: 600;
-  color: #0f83b9;
-}
-.collection .wrap .table .sta-4{
-  font-weight: 600;
-  color: #0f83b9;
-}
-.collection .wrap .table .sta-5{
-  font-weight: 600;
-  color: #0f83b9;
-}
-.collection .wrap .table .sta-6{
-  font-weight: 600;
-  color: #0f83b9;
-}
-.collection .wrap .table .sta-7{
-  font-weight: 600;
-  color: #0f83b9;
-}
 .collection .wrap .table .det {
   cursor: pointer;
 }

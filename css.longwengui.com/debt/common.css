@@ -446,6 +446,9 @@ a{
 .mr-40{
   margin-right: 40px;
 }
+.pt-15{
+  padding-top: 15px;
+}
 .mb-15{
   margin-bottom: 15px;
 }
@@ -466,6 +469,34 @@ a{
 }
 .fl-r {
   float: right;
+}
+.sta-1 {
+  font-weight: 600;
+  color: #f85951;
+}
+.sta-2 {
+  font-weight: 600;
+  color: #fbab10;
+}
+.sta-3{
+  font-weight: 600;
+  color: #0f83b9;
+}
+.sta-4{
+  font-weight: 600;
+  color: #0f83b9;
+}
+.sta-5{
+  font-weight: 600;
+  color: #0f83b9;
+}
+.sta-6{
+  font-weight: 600;
+  color: #0f83b9;
+}
+.sta-7{
+  font-weight: 600;
+  color: #0f83b9;
 }
 .pl-130 {
   padding-left: 130px;

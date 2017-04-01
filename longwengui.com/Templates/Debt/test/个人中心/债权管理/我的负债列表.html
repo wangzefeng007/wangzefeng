@@ -1,0 +1,178 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="person-center">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      当前位置 > 个人中心 > <span>我的债权</span>
+    </div>
+    <div class="menu-cont-wrap">
+      <div class="menu-bar">
+        <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+        <div class="nick-name">
+          昵称
+        </div>
+        <button type="button" name="button">已认证</button>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+          个人信息
+        </div>
+        <div class="menu-level-1  menu-level-1-act" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          债权管理
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2 menu-level-2-act">我的债权</div>
+            <div class="menu-level-2">我的负债</div>
+            <div class="menu-level-2">订单管理</div>
+            <div class="menu-level-2">浏览过的债务</div>
+          </div>
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          关注
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2">我关注的债务</div>
+            <div class="menu-level-2">提前关注</div>
+          </div>
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          范本下载
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          代理
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2">申请代理</div>
+            <div class="menu-level-2">已代理区域</div>
+          </div>
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          推荐人/我的推荐人
+        </div>
+        <div class="menu-level-1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          催客权益
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+          <div class="menu-level-2-wrap">
+            <div class="menu-level-2">申请的债权</div>
+            <div class="menu-level-2">浏览过的债权</div>
+            <div class="menu-level-2">寻找同城催客</div>
+            <div class="menu-level-2">联盟催客</div>
+          </div>
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          系统信息
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+          投诉建议
+        </div>
+      </div>
+      <div class="menu-cont">
+        <div class="tab-hd">
+          <div class="tb act">
+            我的负债
+          </div>
+        </div>
+        <div class="info-cont">
+					<div class="cont-hd">
+						<span>我的负债列表</span>
+					</div>
+					<div class="debt">
+						<table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<td>债务编号</td>
+									<td>债务人名称</td>
+									<td>债务人地区</td>
+									<td>债务金额（元）</td>
+									<td>发布时间</td>
+									<td>发布人</td>
+									<td>查看</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>L201702270000</td>
+									<td>张三</td>
+									<td>福建省-厦门市-思明区</td>
+									<td class="color-red">￥100000000.00</td>
+									<td>2017-02-25</td>
+									<td>张三</td>
+									<td><a href="" class="details-enter">详情</a></td>
+								</tr>
+								<tr>
+									<td>L201702270000</td>
+									<td>张三</td>
+									<td>福建省-厦门市-思明区</td>
+									<td class="color-red">￥100000000.00</td>
+									<td>2017-02-25</td>
+									<td>张三</td>
+									<td><a href="" class="details-enter">详情</a></td>
+								</tr>
+								<tr>
+									<td>L201702270000</td>
+									<td>张三</td>
+									<td>福建省-厦门市-思明区</td>
+									<td class="color-red">￥100000000.00</td>
+									<td>2017-02-25</td>
+									<td>张三</td>
+									<td><a href="" class="details-enter">详情</a></td>
+								</tr>
+								<tr>
+									<td>L201702270000</td>
+									<td>张三</td>
+									<td>福建省-厦门市-思明区</td>
+									<td class="color-red">￥100000000.00</td>
+									<td>2017-02-25</td>
+									<td>张三</td>
+									<td><a href="" class="details-enter">详情</a></td>
+								</tr>
+								<tr>
+									<td>L201702270000</td>
+									<td>张三</td>
+									<td>福建省-厦门市-思明区</td>
+									<td class="color-red">￥100000000.00</td>
+									<td>2017-02-25</td>
+									<td>张三</td>
+									<td><a href="" class="details-enter">详情</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+        </div>
+      </div>
+    </div>
+    <div class="fr-win">
+      <div class="pub-btn">
+        <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+        <br>
+        发布
+      </div>
+      <div class="pub-btn-list">
+        <div class="lin" onclick="selDebtWayPop()">
+          发布债务
+        </div>
+        <div class="lin">
+          寻找处置方
+        </div>
+        <div class="lin">
+          资产转让
+        </div>
+        <div class="lin">
+          发布悬赏
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>
