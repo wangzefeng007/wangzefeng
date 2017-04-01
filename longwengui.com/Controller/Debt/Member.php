@@ -5,8 +5,6 @@
 class Member
 {
     public function __construct() {
-       // echo 1;exit;
-       //$_SESSION ['UserID']=1;
     }
     /**
      * @desc 会员中心首页(我的主页)
@@ -18,6 +16,7 @@ class Member
      * @desc 登入页或登录操作
      */
     public function  Login(){
+        $Title = '会员登录';
         //如果已登陆，直接跳转到会员中心
         MemberService::IsLogin();
         include template('MemberLogin');
@@ -41,7 +40,7 @@ class Member
     {
         //如果已登陆，直接跳转到会员中心
         MemberService::IsLogin();
-        $Title = '会员登录_注册';
+        $Title = '注册会员';
         include template('MemberRegister');
     }
     /**
@@ -91,6 +90,7 @@ class Member
      * @desc 修改密码
      */
     public function EditPassWord(){
+        $Title = '会员-修改密码';
         $this->IsLogin();
         $Nav = 'editpassword';
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -101,6 +101,7 @@ class Member
      * @desc 系统消息
      */
     public function SystemMessage(){
+        $Title = '会员-系统消息';
         $this->IsLogin();
         $Nav = 'systemmessage';
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -111,6 +112,7 @@ class Member
      * @desc 投诉建议
      */
     public function Advice(){
+        $Title = '会员-投诉建议';
         $this->IsLogin();
         $Nav = 'advice';
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -121,6 +123,7 @@ class Member
      * @desc 注册会员用户中心选择
      */
     public function Center(){
+        $Title = '会员-用户中心';
         $this->IsLogin();
         $Nav = 'center';
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {

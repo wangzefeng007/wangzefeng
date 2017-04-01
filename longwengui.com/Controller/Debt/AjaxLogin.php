@@ -359,6 +359,10 @@ class AjaxLogin
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         if ($AjaxData['type']==1){
+            if (count($AjaxData['images'])==3){//升级催客
+                $AjaxData['type'] =2;
+                $Data['CardHold'] = $AjaxData['images'][2];//手持身份证
+            }
             $Data['NickName'] = trim($AjaxData['nickName']);//昵称
             $Data['RealName'] = trim($AjaxData['name']);//姓名
             $Data['CardNum'] = trim($AjaxData['idNum']);//身份证号
