@@ -28,7 +28,7 @@
                             <td colspan="3" class="t-h">会员详情：</td>
                         </tr>
                         <tr>
-                            <td>会员ID：{$UserInfo[InfoID]}</td>
+                            <td>会员ID：{$UserInfo[UserID]}</td>
                             {if $UserInfo[Identity] == 3}<td>公司名称：{$UserInfo[CompanyName]}</td>
                             {elseif $UserInfo[Identity]==4} <td>所属事务所：{$UserInfo[CompanyName]}</td>
                             {else} <td>昵称：{$UserInfo[NickName]}</td>
@@ -42,11 +42,11 @@
                             {else}
                             <td>真实姓名：{$UserInfo[RealName]}</td>
                             {/if}
-                            <td>性别：{if $UserInfo[Sex]==0}保密{elseif $UserInfo[Sex]==1}女{elseif $UserInfo[Sex]==2}男{/if}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>审核状态：{if $UserInfo[IdentityState]==1}未提交审核{elseif $UserInfo[IdentityState]==2}审核中{elseif $UserInfo[IdentityState]==3}审核通过{elseif $UserInfo[IdentityState]==4}审核不通过{/if}</td>
-                            <td>身份：{if $UserInfo[Identity]==1}个人用户{elseif $UserInfo[Identity]==2}催客{elseif $UserInfo[Identity]==3}公司会员{elseif $UserInfo[Identity]==4}律师企业会员{/if}</td>
+                            <td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>
+                            <td>身份：{$Identity[$UserInfo[Identity]]}</td>
                             <td>QQ：{$UserInfo[QQ]}</td>
                         </tr>
                         <tr>

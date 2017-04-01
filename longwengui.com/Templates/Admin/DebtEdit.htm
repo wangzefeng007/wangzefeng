@@ -34,11 +34,11 @@
                             </tr>
                             <tr>
                                 <td>债务编号：{$DebtInfo[DebtNum]}</td>
-                                <td>催收类型：{if $DebtInfo[CollectionType]==1}自助催收{elseif $DebtInfo[CollectionType]==2}委托催收{/if}</td>
+                                <td>催收类型：{$CollectionType[$DebtInfo[CollectionType]]}</td>
                                 <td>债务曝光：{if $DebtInfo[DebtExposure]==0}隐藏{elseif $DebtInfo[DebtExposure]==1}曝光{/if}</td>
                             </tr>
                             <tr>
-                                <td>地区：{$DebtorsInfo[Province]}-{$DebtorsInfo[City]}-{$DebtorsInfo[City]}</td>
+                                <td>地区：{$Province[$DebtorsInfo[Province]]}-{$City[$DebtorsInfo[City]]}-{$Area[$DebtorsInfo[Area]]}</td>
                                 <td>金额：{$DebtorsInfo[Money]}</td>
                                 <td>逾期时间：{$DebtInfo[Overduetime]}</td>
                             </tr>
@@ -61,7 +61,7 @@
                                 <td>联系电话：{$CreditorsInfo[Phone]}</td>
                             </tr>
                             <tr>
-                                <td>地区：{$CreditorsInfo[Province]}-{$CreditorsInfo[City]}-{$CreditorsInfo[City]}</td>
+                                <td>地区：{$Province[$CreditorsInfo[Province]]}-{$City[$CreditorsInfo[City]]}-{$Area[$CreditorsInfo[Area]]}</td>
                                 <td>详细地址：{$CreditorsInfo[Address]}</td>
                                 <td>债权金额：{$CreditorsInfo[Money]}</td>
                             </tr>
@@ -93,14 +93,14 @@
                                     <td class="t-r" width="150">当前状态：</td>
                                     <td>
                                         <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
-                                            <option value="1" {if $DebtInfo[Status] == 1}selected="selected"{/if}>未接单</option>
-                                            <option value="2" {if $DebtInfo[Status] == 2}selected="selected"{/if}>催收中</option>
-                                            <option value="3" {if $DebtInfo[Status] == 3}selected="selected"{/if}>未完成</option>
-                                            <option value="4" {if $DebtInfo[Status] == 4}selected="selected"{/if}>部分收回(已完成)</option>
-                                            <option value="5" {if $DebtInfo[Status] == 5}selected="selected"{/if}>全部收回(已完成)</option>
-                                            <option value="6" {if $DebtInfo[Status] == 6}selected="selected"{/if}>未曝光</option>
-                                            <option value="7" {if $DebtInfo[Status] == 7}selected="selected"{/if}>已曝光</option>
-                                            <option value="8" {if $DebtInfo[Status] == 8}selected="selected"{/if}>待审核</option>
+                                            <option value="1" {if $DebtInfo[Status] ==1}selected="selected"{/if}>未接单</option>
+                                            <option value="2" {if $DebtInfo[Status] ==2}selected="selected"{/if}>催收中</option>
+                                            <option value="3" {if $DebtInfo[Status] ==3}selected="selected"{/if}>未完成</option>
+                                            <option value="4" {if $DebtInfo[Status] ==4}selected="selected"{/if}>部分收回(已完成)</option>
+                                            <option value="5" {if $DebtInfo[Status] ==5}selected="selected"{/if}>全部收回(已完成)</option>
+                                            <option value="6" {if $DebtInfo[Status] ==6}selected="selected"{/if}>未曝光</option>
+                                            <option value="7" {if $DebtInfo[Status] ==7}selected="selected"{/if}>已曝光</option>
+                                            <option value="8" {if $DebtInfo[Status] ==8}selected="selected"{/if}>待审核</option>
                                         </select>
                                         <input type="hidden" name="DebtID" value="{$DebtID}" />
                                         <input class="btn btn-danger" type="submit" name="submit" value="修改">

@@ -93,6 +93,7 @@ class Debt {
         $Province = $MemberAreaModule->Province;
         $City = $MemberAreaModule->City;
         $Area = $MemberAreaModule->Area;
+        $CollectionType = $MemberDebtInfoModule->CollectionType;
         //编辑当前状态
 
         if ($_POST['DebtID']) {
