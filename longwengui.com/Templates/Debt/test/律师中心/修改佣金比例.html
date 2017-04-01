@@ -21,7 +21,7 @@
                   方案名称:
                 </div>
                 <div class="det">
-                  <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="厦漳泉佣金收费比例" placeholder="*请输入方案名称">
+                  <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="厦漳泉佣金收费比例" placeholder="请输入方案名称(*必填)">
                 </div>
               </div>
               <div class="right">
@@ -110,7 +110,7 @@
                     <div class="lef">
                       <div class="m-checkbox">
                         <label  type="checkbox">
-                          <input type="checkbox" name="" checked value="">
+                          <input type="checkbox" name="is_fee" checked value="">
                           <i></i>
                           费用:
                         </label>
@@ -124,19 +124,19 @@
                     <div class="lef">
                       <div class="m-checkbox">
                         <label  type="checkbox">
-                          <input type="checkbox" name="" checked value="">
+                          <input type="checkbox" name="is_pre_fee" checked value="">
                           <i></i>
                           前期费用:
                         </label>
                       </div>
                     </div>
-                    <input type="text" name="fee" onblur="validateForm('money', this)" value="100" placeholder="*3000"> 元
+                    <input type="text" name="pre_fee" onblur="validateForm('money', this)" value="100" placeholder="*3000"> 元
                   </div>
                   <div class="lin ml-46">
                     <div class="lef">
                       回款后押金:
                     </div>
-                    <input type="text" name="fee" onblur="validateForm('money', this)" value="50" placeholder="*3000"> 元
+                    <input type="text" name="pre_fee_deposit" onblur="validateForm('money', this)" value="50" placeholder="*3000"> 元
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@
             <div class="lef">
               <div class="m-checkbox">
                 <label  type="checkbox">
-                  <input type="checkbox" name="" checked value="">
+                  <input type="checkbox" name="is_fee" checked value="">
                   <i></i>
                   费用:
                 </label>
@@ -188,19 +188,19 @@
             <div class="lef">
               <div class="m-checkbox">
                 <label  type="checkbox">
-                  <input type="checkbox" name="" checked value="">
+                  <input type="checkbox" name="is_pre_fee" checked value="">
                   <i></i>
                   前期费用:
                 </label>
               </div>
             </div>
-            <input type="text" name="fee" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
+            <input type="text" name="pre_fee" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
           </div>
           <div class="lin ml-46">
             <div class="lef">
               回款后押金:
             </div>
-            <input type="text" name="fee" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
+            <input type="text" name="pre_fee_deposit" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
           </div>
         </div>
       </div>
@@ -250,4 +250,4 @@
   </div>
 </script>
 {template Footer}
-<!-- <script src='{echo JsURL}/debt/setDebtRate.js'></script> -->
+<script src='{echo JsURL}/debt/setDebtRateForLawer.js'></script>
