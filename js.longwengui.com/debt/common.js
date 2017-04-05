@@ -1163,3 +1163,34 @@ function toDelete(text, id, intention){
       });
     });
 }
+
+//左边菜单二级菜单下拉
+$('.menu-level-1').each(function(){
+  if($(this).attr('can-down') == 1){
+    add_menu_event($(this));
+  }
+});
+//初始化已进入页面是否展开
+$('.menu-level-2-act').each(function(){
+  var _for = $(this).parent().attr('data-for');
+  $(this).parent().show();
+  $('#' + _for).children('.i-right').addClass('img-sel');
+  $('#' + _for).siblings('.menu-level-2-wrap').eq(0).show();
+  $('#' + _for).attr('data-open', 1);
+});
+function add_menu_event(tar){
+  tar.click(function(e){
+    var c = tar.children('.i-right');
+    if(tar.attr('data-open') == 0){
+      //表示此时是闭合状态
+      tar.children('.i-right').addClass('img-sel');
+      tar.next().show();
+      tar.attr('data-open', 1);
+    }else{
+      //表示此时是展开状态
+      tar.children('.i-right').removeClass('img-sel');
+      tar.next().hide();
+      tar.attr('data-open', 0);
+    }
+  });
+}
