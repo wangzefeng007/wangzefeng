@@ -472,22 +472,72 @@ class AjaxLogin
         $MemberSetCollectionModule = new MemberSetCollectionModule();
         if (!empty($_POST['ID'])){
             $ID = intval($_POST['ID']);
+            $Data['UpdateTime'] = time();
             $Result = $MemberSetCollectionModule->UpdateInfoByKeyID($Data,$ID);
             if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！');
+                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberfirm/demandlist/');
             }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
+                $result_json = array('ResultCode'=>103,'Message'=>'信息未修改！');
             }
         }else{
+            $Data['AddTime'] = time();
+            $Data['UpdateTime'] = $Data['AddTime'];
             $Insert = $MemberSetCollectionModule->InsertInfo($Data);
             if ($Insert){
-                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！');
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberfirm/demandlist/');
             }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
+                $result_json = array('ResultCode'=>104,'Message'=>'信息未修改！');
             }
         }
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 律师团队设置佣金方案
+     */
+    public function SetLawyerDemand(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        if (count($AjaxData['fee_rate'])==2){
+            if ($AjaxData['fee_rate'][1]['from'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['from'] < $AjaxData['fee_rate'][0]['to']){
+                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
+                EchoResult($result_json);
+            }
+            if ($AjaxData['fee_rate'][1]['to'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['to'] < $AjaxData['fee_rate'][0]['to']){
+                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
+                EchoResult($result_json);
+            }
+        }
+        $Data['UserID'] = $_SESSION['UserID'];
+        $Data['CaseName']= $AjaxData['case_name'];
+        $Data['Commission'] =json_encode($AjaxData['fee_rate']);//佣金范围和金额
+        $Data['Area'] = json_encode($AjaxData['area']) ;//服务地区
 
+        $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
+        if (!empty($_POST['ID'])){
+            $ID = intval($_POST['ID']);
+            $Data['UpdateTime'] = time();
+            $Result = $MemberSetLawyerfeeModule->UpdateInfoByKeyID($Data,$ID);
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberlawyer/demandlist/');
+            }else{
+                $result_json = array('ResultCode'=>103,'Message'=>'信息未修改！');
+            }
+        }else{
+            $Data['AddTime'] = time();
+            $Data['UpdateTime'] = $Data['AddTime'];
+            $Insert = $MemberSetLawyerfeeModule->InsertInfo($Data);
+            if ($Insert){
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberlawyer/demandlist/');
+            }else{
+                $result_json = array('ResultCode'=>104,'Message'=>'信息未修改！');
+            }
+        }
+        EchoResult($result_json);
+        exit;
+    }
 }
