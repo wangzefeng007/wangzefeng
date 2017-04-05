@@ -1,12 +1,17 @@
 $(
   function(){
-    //保存点击事件
+    //新建佣金比例方案
     $('#save').click(function(){
       ajax();
     });
 
+    //修改佣金比例方案
+    $('#edit').click(function(){
+      ajax($(this).attr('data-id'));
+    });
+
     //提交表单
-    function ajax(){
+    function ajax(id){
       var area_info = [];
       var fee_rate_info = [];
       //决定程序是否往下执行
@@ -140,6 +145,7 @@ $(
         url: "/loginajax.html",
         data: {
             "Intention":"SetFirmDemand",//催收公司设置佣金方案
+            'ID': id,
             "AjaxJSON": JSON.stringify({
                 "case_name": case_name,  //方案名称
                 "searchedAnytime": searchedAnytime, //是否随时找到 1 是 0 否
@@ -156,9 +162,9 @@ $(
           if(data.ResultCode == 200){
             showMsg('保存成功');
             //路由跳转
-              setTimeout(function() {
-                  window.location = data.Url;
-              }, 10);
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
           }else{
             showMsg(data.Message);
           }

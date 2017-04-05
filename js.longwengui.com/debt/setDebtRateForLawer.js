@@ -1,12 +1,17 @@
 $(
   function(){
-    //保存点击事件
+    //保存新建佣金比例
     $('#save').click(function(){
       ajax();
     });
 
+    //修改佣金比例
+    $('#edit').click(function(){
+      ajax($(this).attr('data-id'));
+    });
+
     //提交表单
-    function ajax(){
+    function ajax(id){
       var area_info = [];
       var fee_rate_info = [];
       //决定程序是否往下执行
@@ -58,9 +63,10 @@ $(
           var _to = $(this).find('input[name="to"]').val();
           var is_fee = $(this).find('input[name="is_fee"]')[0].checked;
           var fee = $(this).find('input[name="fee"]').val();
-          var is_pre_fee = $(this).find('input[name="is_pre_fee"]')[0].checked;
-          var pre_fee = $(this).find('input[name="pre_fee"]').val();
-          var pre_fee_deposit = $(this).find('input[name="pre_fee_deposit"]').val();
+          // 二期版本
+          // var is_pre_fee = $(this).find('input[name="is_pre_fee"]')[0].checked;
+          // var pre_fee = $(this).find('input[name="pre_fee"]').val();
+          // var pre_fee_deposit = $(this).find('input[name="pre_fee_deposit"]').val();
 
           if(_from == ''){
             $(this).find('input[name="from"]').focus();
@@ -121,37 +127,38 @@ $(
             i.isFee = 0;
           }
 
-          if(is_pre_fee){
-            i.isPreFee = 1;
-            if(pre_fee == ''){
-              $(this).find('input[name="pre_fee"]').focus();
-              showMsg('请设置前期费用');
-              flag = false;
-              return;
-            }
-            if(!validate('+money', pre_fee)){
-              $(this).find('input[name="pre_fee"]').focus();
-              showMsg('请设置正确的前期费用');
-              flag = false;
-              return;
-            }
-            if(pre_fee_deposit == ''){
-              $(this).find('input[name="pre_fee_deposit"]').focus();
-              showMsg('请设置前期费用回款押金');
-              flag = false;
-              return;
-            }
-            if(!validate('+money', pre_fee_deposit)){
-              $(this).find('input[name="pre_fee_deposit"]').focus();
-              showMsg('请设置正确的前期费用回款押金');
-              flag = false;
-              return;
-            }
-            i.preFee = pre_fee;
-            i.preFeeDeposit = pre_fee_deposit;
-          }else{
-            i.isPreFee = 0;
-          }
+          // 前期费用及回款后佣金，二期版本加
+          // if(is_pre_fee){
+          //   i.isPreFee = 1;
+          //   if(pre_fee == ''){
+          //     $(this).find('input[name="pre_fee"]').focus();
+          //     showMsg('请设置前期费用');
+          //     flag = false;
+          //     return;
+          //   }
+          //   if(!validate('+money', pre_fee)){
+          //     $(this).find('input[name="pre_fee"]').focus();
+          //     showMsg('请设置正确的前期费用');
+          //     flag = false;
+          //     return;
+          //   }
+          //   if(pre_fee_deposit == ''){
+          //     $(this).find('input[name="pre_fee_deposit"]').focus();
+          //     showMsg('请设置前期费用回款押金');
+          //     flag = false;
+          //     return;
+          //   }
+          //   if(!validate('+money', pre_fee_deposit)){
+          //     $(this).find('input[name="pre_fee_deposit"]').focus();
+          //     showMsg('请设置正确的前期费用回款押金');
+          //     flag = false;
+          //     return;
+          //   }
+          //   i.preFee = pre_fee;
+          //   i.preFeeDeposit = pre_fee_deposit;
+          // }else{
+          //   i.isPreFee = 0;
+          // }
           fee_rate_info.push(i);
         }
       });
@@ -174,12 +181,16 @@ $(
         type: "get",
         dataType: "json",
         url: "../data/setDebt.json",
-        data: JSON.stringify({
-          "caseName": case_name,  //方案名称
-          "feeRate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; isFee: 1 表示有费用(此时多传fee)，0 表示无费用;
-                                  //isPreFee: 1表示有前期费用(此时多传preFee-前期费用 preFeeDeposit-回款后押金)}； 0表示无前期费用
-          "area": area_info //地区数组
-        }),
+        data: {
+            "Intention":"",//律师团队设置佣金方案
+            'ID': id,
+            JSON.stringify({
+              "caseName": case_name,  //方案名称
+              "feeRate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; isFee: 1 表示有费用(此时多传fee)，0 表示无费用;
+                                      //(二期版本)isPreFee: 1表示有前期费用(此时多传preFee-前期费用 preFeeDeposit-回款后押金)}； 0表示无前期费用
+              "area": area_info //地区数组
+            })
+        },
         beforeSend: function(){
           showLoading();
         },
