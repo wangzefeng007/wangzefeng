@@ -6,13 +6,13 @@
     <div class="wrap">
         <div class="bx-wraper" >
             <div class="tl">
-                <div class="tb act" data-tab="person">
+                <div class="tb {if $type==0}act{/if}" data-tab="person">
                     催客(个人)
                 </div>
-                <div class="tb" data-tab="company">
+                <div class="tb {if $type==1}act{/if}" data-tab="company">
                     催收公司
                 </div>
-                <div class="tb" data-tab="lawer">
+                <div class="tb {if $type==2}act{/if}" data-tab="lawer">
                     律师团队
                 </div>
             </div>

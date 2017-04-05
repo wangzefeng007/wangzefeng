@@ -1,0 +1,63 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>处置方要求方案</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberFirmLeft}
+            <div class="tab-hd">
+                <div class="tb" onclick="go('/memberfirm/creditorder/')">债权接单</div>
+                <div class="tb act" onclick="go('/memberfirm/demandlist/')">处置方要求方案</div>
+            </div>
+            <div class="info-cont">
+                <div class="cont-hd">
+                    <span>已有处置方要求方案：</span>
+                    <button class="send" ><img src="/Uploads/Debt/imgs/add_w.png">新增方案</button>
+                </div>
+                <div class="debt">
+                    <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <td>处置方要求方案名称</td>
+                            <td>创建时间</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>厦门地区处置佣金比例</td>
+                            <td>2017-03-16</td>
+                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>福州地区处置佣金比例</td>
+                            <td>2017-03-16</td>
+                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>漳州地区处置佣金比例</td>
+                            <td>2017-03-16</td>
+                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>宁德地区处置佣金比例</td>
+                            <td>2017-03-16</td>
+                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>南平地区处置佣金比例</td>
+                            <td>2017-03-16</td>
+                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{template Footer}

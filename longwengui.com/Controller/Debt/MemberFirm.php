@@ -43,6 +43,7 @@ class MemberFirm
      */
     public function EditInfo()
     {
+        $Title = '会员中心-完善个人资料';
         $Nav='memberfirm';
         $this->IsLogin();
         //会员基本信息
@@ -67,12 +68,39 @@ class MemberFirm
      * @desc 催收公司主动申请的债权列表
      */
     public function  ApplyDebtOrder(){
+        $Nav ='applydebtorder';
+        $Title = '会员中心-申请的债权';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberFirmApplyDebtOrder');
     }
     /**
      * @desc 催收公司债权接单
      */
     public function CreditOrder(){
+        $Nav='creditorder';
+        $Title = '会员中心-债权接单';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberFirmCreditOrder');
+    }
+    /**
+     * @desc 催收公司债权接单的要求方案列表
+     */
+    public function DemandList(){
+        $Nav='creditorder';
+        $Title = '会员中心-要求方案';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberFirmDemandList');
     }
 }
