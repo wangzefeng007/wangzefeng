@@ -429,7 +429,7 @@ class AjaxLogin
             exit;
         }
         if ($AjaxData['headImg'])
-        $Data['Avatar'] = $AjaxData['headImg']; //头像
+            $Data['Avatar'] = $AjaxData['headImg']; //头像
         $Data['IdentityState'] =2;
         $_SESSION['Identity'] = $AjaxData['type'];
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -452,8 +452,15 @@ class AjaxLogin
             exit;
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        foreach($AjaxData['fee_rate'] as $key =>$value){//佣金范围和金额
-            if ($value['from'])
+        if (count($AjaxData['fee_rate'])==2){
+            if ($AjaxData['fee_rate'][1]['from'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['from'] < $AjaxData['fee_rate'][0]['to']){
+                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
+                EchoResult($result_json);
+            }
+            if ($AjaxData['fee_rate'][1]['to'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['to'] < $AjaxData['fee_rate'][0]['to']){
+                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
+                EchoResult($result_json);
+            }
         }
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['CaseName']= $AjaxData['case_name'];
@@ -462,11 +469,23 @@ class AjaxLogin
         $Data['RepaymentDebtor'] = $AjaxData['abilityDebt'];//债务人有无还款能力
         $Data['Commission'] =json_encode($AjaxData['fee_rate']);//佣金范围和金额
         $Data['Area'] = json_encode($AjaxData['area']) ;//服务地区
-
         $MemberSetCollectionModule = new MemberSetCollectionModule();
-        var_dump($Data);exit;
-        $MemberSetCollectionModule->InsertInfo($Data);
-
+        if ($_POST['ID']){
+            $ID = intval($_POST['ID']);
+            $Result = $MemberSetCollectionModule->UpdateInfoByKeyID($Data,$ID);
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
+            }
+        }else{
+            $Insert = $MemberSetCollectionModule->InsertInfo($Data);
+            if ($Insert){
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
+            }
+        }
         EchoResult($result_json);
         exit;
     }
