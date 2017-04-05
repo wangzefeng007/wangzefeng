@@ -33,6 +33,7 @@ $(function(){
 function ajax(){
   var percent_money = $('#percent_money').val();
   var detail_info = $('#detail_info').val();
+  var DebtId = $('button[name="button"]').attr('data-id');
   if(percent_money == "" || detail_info == ""){
     showMsg('完善表单信息');
     return;
@@ -49,7 +50,8 @@ function ajax(){
     data: {
       "Intention":"ApplyOrder",
       "percent_money": percent_money,
-      "detail_info":　detail_info
+      "detail_info":　detail_info,
+      "DebtId":　DebtId
     },
     beforeSend: function () { //加载过程效果
         showLoading();
@@ -57,6 +59,10 @@ function ajax(){
     success: function(data){
       if(data.ResultCode=='200'){
         showMsg('申请成功');
+          //路由跳转展示页面
+          setTimeout(function() {
+              window.location = data.Url;
+          }, 10);
       }else{
         showMsg(data.Message)
       }

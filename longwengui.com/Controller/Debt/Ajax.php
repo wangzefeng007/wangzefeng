@@ -222,16 +222,23 @@ class Ajax
         exit;
     }
     /**
-     * @desc 处置方接单申请
+     * @desc 催客、催收公司和律师接单申请
      */
     public function ApplyOrder(){
-
-        $_POST['DebtID']=1;
-        $Data['DebtID'] = trim($_POST['DebtID']);
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请先登录',
+            );
+            EchoResult($json_result);exit;
+        }
+        $Data['DebtID'] = trim($_POST['DebtId']);
         $Data['Money'] = trim($_POST['percent_money']);
         $Data['AdvantageInfo'] =trim($_POST['detail_info']);
         $Data['MandatorID'] = $_SESSION ['UserID'];//委托人用户ID
+        $Data['Type'] = 1;//(1-普通债务申请）
         $Data['DelegateTime'] = time();//委托时间
+        $Data['Status'] = 1;//债权当前状态
         if ( $Data['Money']==='' && $Data['AdvantageInfo']===''){
             $json_result = array(
                 'ResultCode' => 102,
@@ -247,7 +254,7 @@ class Ajax
             $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
         }else{
             $json_result = array(
-                'ResultCode' => 101,
+                'ResultCode' => 103,
                 'Message' => '您已申请此债务订单，请勿重复提交',
             );
             echo json_encode($json_result);
@@ -257,10 +264,11 @@ class Ajax
             $json_result = array(
                 'ResultCode' => 200,
                 'Message' => '申请成功',
+                'Url'=>'/memberfirm/applydebtorder/',
             );
         }else{
             $json_result = array(
-                'ResultCode' => 103,
+                'ResultCode' => 104,
                 'Message' => '申请失败',
             );
         }

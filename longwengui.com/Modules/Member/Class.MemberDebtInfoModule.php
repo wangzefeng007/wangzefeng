@@ -11,7 +11,7 @@ Class MemberDebtInfoModule extends CommonModule {
      * @var array
      */
     public $NStatus = array(
-        '1' => '未接单',
+        '1' => '待接单',
         '2' => '催收中',
         '3' => '未完成',
         '4' => '已完成',
