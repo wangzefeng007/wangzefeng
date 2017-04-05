@@ -814,6 +814,8 @@ function toLogin(){
             + '</div>'
             + '</div>'
    });
+   $('input[name="phoneNumber"]').placeholder();
+   $('input[name="pass"]').placeholder();
    times = getCookie('PasswordErrTimes');
    if($('#code').attr('data-show') == 0 && times == 3){
      $('#code').show();
