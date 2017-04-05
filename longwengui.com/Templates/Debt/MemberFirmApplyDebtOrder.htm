@@ -10,20 +10,19 @@
             {template MemberFirmLeft}
             <div class="tab-hd">
                 <div class="tb act">申请的债权</div>
-                <!--<div class="tb">处置方要求方案</div>-->
             </div>
 
             <div class="info-cont">
                 <div class="cont-hd">
-                    <span>已向我申请的债权列表：</span>
+                    <span>我申请的债权列表：</span>
                 </div>
                 <dl class="cont-select">
                     <dt>债权状态：</dt>
-                    <dd class="cont-select-act">全部</dd>
-                    <dd>正在接单的债权</dd>
-                    <dd>催收中的债权</dd>
-                    <dd>完成的债权</dd>
-                    <dd>未完成的债权</dd>
+                    <dd {if $Status==''}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/')">全部</dd>
+                    <dd {if $Status==1}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=1')">正在接单的债权</dd>
+                    <dd {if $Status==2}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=2')">催收中的债权</dd>
+                    <dd {if $Status==3}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=3')">完成的债权</dd>
+                    <dd {if $Status==4}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=4')">未完成的债权</dd>
                 </dl>
                 <div class="debt">
                     <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -41,105 +40,19 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {loop $Data['Data'] $lists}
                         <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-red">已接单未付款</td>
-                            <td class="details-enter">详情</td>
-                            <td class="oper">取消</td>
+                            <td>{$lists['DebtNum']}</td>
+                            <td>{$lists['Name']}</td>
+                            <td>{$lists['Province']}{if $lists['City']}-{$lists['City']}{/if}{if $lists['Area']}-{$lists['Area']}{/if}</td>
+                            <td>￥{$lists['DebtAmount']}</td>
+                            <td>{$lists['Overduetime']}天</td>
+                            <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
+                            <td class="color-red">{$NStatus[$lists[Status]]}</td>
+                            <td><a href="javascript:viod(0)" class="details-enter">详情</a></td>
+                            <td><a href="javascript:viod(0)" class="oper">取消</a></td>
                         </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-red">催收中</td>
-                            <td class="details-enter">详情</td>
-                            <td class="oper">取消</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-red">退款中</td>
-                            <td class="details-enter">详情</td>
-                            <td class="oper">同意退款</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-red">付款超时</td>
-                            <td class="details-enter">详情</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-red">未完成</td>
-                            <td class="details-enter">详情</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-blue">已完成</td>
-                            <td class="details-enter">详情</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-blue">已完成</td>
-                            <td class="details-enter">详情</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-blue">已曝光</td>
-                            <td class="details-enter">详情</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>L201702270000</td>
-                            <td>张三</td>
-                            <td>福建省-厦门市-思明区</td>
-                            <td>￥100000000.00</td>
-                            <td>30天</td>
-                            <td>2017-02-25</td>
-                            <td class="color-blue">已完成</td>
-                            <td class="details-enter">详情</td>
-                            <td>无</td>
-                        </tr>
+                        {/loop}
                         </tbody>
                     </table>
                 </div>

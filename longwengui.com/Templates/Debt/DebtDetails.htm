@@ -78,12 +78,12 @@
                     </div>
                     <div class="line">
                         <div class="l">
-                            借款原因：{$lists[ReasonsBorrowing]}
+                            借款原因：{$DebtInfo[ReasonsBorrowing]}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            债务近况：{$lists[DebtRecent]}
+                            债务近况：{$DebtInfo[DebtRecent]}
                         </div>
                     </div>
                     <div class="line-img" id="debt_imgs">
@@ -141,6 +141,7 @@
                 关联债务人被催收过次数：律师 <span class="act-r">1次</span>  催收公司<span class="act-r">0次</span>  催客<span class="act-r">0次</span>
               </div>
             </div>
+            {if $DebtInfo[Status]==1}
             {if ($DebtInfo[CollectionType]==1 && $browseUserInfo['Identity']==4 && $browseUserInfo['IdentityState']==3) || ($DebtInfo[CollectionType]==2 &&  ($browseUserInfo['Identity']==2 || $browseUserInfo['Identity']==3) && $browseUserInfo['IdentityState']==3)}
             <div class="t-hd">
                 处置方接单申请
@@ -160,9 +161,10 @@
                     <textarea name="name" id="detail_info" maxlength="150" rows="3" cols="80" placeholder="处置方优势填写150字内"></textarea>
                 </div>
                 <div class="sub-btn">
-                    <button type="button" onclick="ajax()" name="button">申请接单</button>
+                    <button type="button" onclick="ajax()" name="button" data-id="{$DebtInfo[DebtID]}">申请接单</button>
                 </div>
             </div>
+            {/if}
             {/if}
         </div>
     </div>
