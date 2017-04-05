@@ -1,12 +1,17 @@
 $(
   function(){
-    //保存点击事件
+    //保存新建佣金比例
     $('#save').click(function(){
-      ajax();
+      ajax(1);
+    });
+
+    //修改佣金比例
+    $('#edit').click(function(){
+      ajax(2);
     });
 
     //提交表单
-    function ajax(){
+    function ajax(type){
       var area_info = [];
       var fee_rate_info = [];
       //决定程序是否往下执行
@@ -176,12 +181,16 @@ $(
         type: "get",
         dataType: "json",
         url: "../data/setDebt.json",
-        data: JSON.stringify({
-          "caseName": case_name,  //方案名称
-          "feeRate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; isFee: 1 表示有费用(此时多传fee)，0 表示无费用;
-                                  //(二期版本)isPreFee: 1表示有前期费用(此时多传preFee-前期费用 preFeeDeposit-回款后押金)}； 0表示无前期费用
-          "area": area_info //地区数组
-        }),
+        data: {
+            "Intention":"",//律师团队设置佣金方案
+            'Type': type,
+            JSON.stringify({
+              "caseName": case_name,  //方案名称
+              "feeRate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; isFee: 1 表示有费用(此时多传fee)，0 表示无费用;
+                                      //(二期版本)isPreFee: 1表示有前期费用(此时多传preFee-前期费用 preFeeDeposit-回款后押金)}； 0表示无前期费用
+              "area": area_info //地区数组
+            })
+        },
         beforeSend: function(){
           showLoading();
         },
