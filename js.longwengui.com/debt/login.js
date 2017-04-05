@@ -1,4 +1,8 @@
-var times;
+times = getCookie('PasswordErrTimes');
+if($('#code').attr('data-show') == 0 && times == 3){
+  $('#code').show();
+  $('#code').attr('data-show', 1);
+}
 //失去焦点时表单验证
 function validateErr(type, tar){
   $('.error-hint').hide();
@@ -114,10 +118,10 @@ function login(){
         }else{
             layer.msg(data.Message);
             times = getCookie('PasswordErrTimes');
-          if($('#code').attr('data-show') == 0 && times == 3){
-            $('#code').show();
-            $('#code').attr('data-show', 1);
-          }
+            if($('#code').attr('data-show') == 0 && times == 3){
+              $('#code').show();
+              $('#code').attr('data-show', 1);
+            }
         }
       },
       complete: function(){
