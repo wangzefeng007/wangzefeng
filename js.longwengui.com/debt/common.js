@@ -703,6 +703,7 @@ function getCookie(name){
   return null;
 }
 
+var times;
 //弹窗登录表单
 function doLogin(){
   var formData = validateForm();
@@ -813,6 +814,11 @@ function toLogin(){
             + '</div>'
             + '</div>'
    });
+   times = getCookie('PasswordErrTimes');
+   if($('#code').attr('data-show') == 0 && times == 3){
+     $('#code').show();
+     $('#code').attr('data-show', 1);
+   }
 }
 
 //打开城市选择弹窗
