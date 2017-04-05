@@ -105,10 +105,18 @@ class MemberPerson
         include template('MemberPersonDebtList');
     }
     /**
-     * @desc 个人会员主动申请的债权
+     * @desc (悬赏的债务)
      */
-    public function ApplyDebtOrder()
-    {
-        include template('MemberPersonApplyDebtOrder');
+    public function RewordList(){
+        include template('MemberPersonRewordList');
     }
+    /**
+     * @desc 个人会员主动申请的债权(向处置方申请的债务)
+     */
+    public function findteam()
+    {
+        $Nav='findteam';
+        include template('MemberPersonFindTeam');
+    }
+
 }
