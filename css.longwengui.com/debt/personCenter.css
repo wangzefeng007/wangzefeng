@@ -566,8 +566,8 @@
 	line-height: 32px;
 	margin-top: 14px;
 	border: none;
-	outline: none;
-	padding: 0 15px;
+  cursor: pointer;
+  padding: 0 15px;
 	background-color: #35BDFC;
 	color: #FFFFFF;
 	border-radius: 5px;
@@ -731,6 +731,7 @@
 .debt-table td .see,.debt-table td .modify,.debt-table td .del{
 	color: #fff;
 	margin: 0 10px;
+  cursor: pointer;
 	text-decoration: none;
 	border-radius: 5px;
 }
