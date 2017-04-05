@@ -37,8 +37,9 @@
                                 匹配区域:
                             </div>
                             <div class="g-det">
-                                <span>福建省-厦门市</span>
-                                <span>福建省-泉州市</span>
+                                {loop $Area $lists}
+                                <span>{$lists['province']}{if $lists['city']}-{$lists['city']}{/if}{if $lists['area']}-{$lists['area']}{/if}</span>
+                                {/loop}
                             </div>
                         </div>
                     </div>
@@ -50,13 +51,14 @@
                 </div>
                 <div class="c">
                     <div class="blo">
+                        {loop $Commission $lists}
                         <div class="line">
                             <div class="left">
                                 <div class="g-info">
                                     债务金额：
                                 </div>
                                 <div class="g-det">
-                                    <span>￥0.00-30000.00元</span>
+                                    <span>￥{$lists['from']}-{$lists['to']}元</span>
                                 </div>
                             </div>
                             <div class="right">
@@ -64,56 +66,32 @@
                                     佣金比例：
                                 </div>
                                 <div class="g-det">
-                                    <span>40%（元）</span>
+                                    <span>{$lists['rate']}%（元）</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="line">
-                            <div class="left">
-                                <div class="g-info">
-                                    债务金额：
-                                </div>
-                                <div class="g-det">
-                                    <span>￥0.00-30000.00元</span>
-                                </div>
-                            </div>
-                            <div class="right">
-                                <div class="g-info">
-                                    佣金比例：
-                                </div>
-                                <div class="g-det">
-                                    <span>40%（元）</span>
-                                </div>
-                            </div>
-                        </div>
-
+                        {/loop}
                     </div>
                 </div>
 
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
                     <span>债务人是否随时能寻找到 : </span>
-                    <span class="tx">
-            是
-          </span>
+                    <span class="tx">{if $CollectionInfo[FindDebtor]==1} 是{else}否{/if}</span>
                 </div>
                 <div class="c"></div>
 
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
                     <span>债务人是否有还款能力 : </span>
-                    <span class="tx">
-            是
-          </span>
+                    <span class="tx">{if $CollectionInfo[RepaymentDebtor]==1} 是{else}否{/if}</span>
                 </div>
                 <div class="c"></div>
 
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
                     <span>是否有前期费用 : </span>
-                    <span class="tx">
-            是
-          </span>
+                    <span class="tx">{if $CollectionInfo[EarlyCost]==1} 是{else}否{/if}</span>
                 </div>
                 <div class="c mb-100"></div>
 
