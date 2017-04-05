@@ -50,6 +50,7 @@ $(function(){
     var _debtor_owner_money = 0, _debtor_money = 0;
     var _loan_reason, _loan_recent; //借款原因、借款近况
     var img_voucher = []; //债务凭证图片地址
+    var overDay; //逾期时间
 
     //决定程序是否往下执行
     var flag = true;
@@ -64,22 +65,26 @@ $(function(){
 
         if(_name == ""){
           showMsg('请完善债权人信息');
+          $(this).find('input[name="name"]').focus();
           flag = false;
           return;
         }
 
-        if(_name != '' && !validate('chinese', _name)){
+        if(!validate('chinese', _name)){
           showMsg('请输入正确的债权人姓名');
+          $(this).find('input[name="name"]').focus();
           flag = false;
           return;
         }
         if(_idNum != '' && !validate('idNum', _idNum)){
           showMsg('请输入正确的债权人身份证');
+          $(this).find('input[name="idNum"]').focus();
           flag = false;
           return;
         }
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
           showMsg('请输入正确的债权人手机号');
+          $(this).find('input[name="phoneNumber"]').focus();
           flag = false;
           return;
         }
@@ -100,11 +105,13 @@ $(function(){
         var _debt_money = $(this).find('input[name="debt_money"]').val();
         if(_debt_money == ''){
           showMsg('请输入债务金额');
+          $(this).find('input[name="debt_money"]').focus();
           flag = false;
           return;
         }
         if(!validate('+money', _debt_money)){
           showMsg('请输入正确的债权金额');
+          $(this).find('input[name="debt_money"]').focus();
           flag = false;
           return;
         }
@@ -135,21 +142,25 @@ $(function(){
 
         if(_name == ""){
           showMsg('请完善债务人信息');
+          $(this).find('input[name="name"]').focus();
           flag = false;
           return;
         }
-        if(_name != '' && !validate('chinese', _name)){
+        if(!validate('chinese', _name)){
           showMsg('请输入正确的债务人姓名');
+          $(this).find('input[name="name"]').focus();
           flag = false;
           return;
         }
         if(_idNum != '' && !validate('idNum', _idNum)){
           showMsg('请输入正确的债权人身份证');
+          $(this).find('input[name="idNum"]').focus();
           flag = false;
           return;
         }
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
           showMsg('请输入正确的债权人手机号');
+          $(this).find('input[name="phoneNumber"]').focus();
           flag = false;
           return;
         }
@@ -169,11 +180,13 @@ $(function(){
         var _debt_money = $(this).find('input[name="debt_money"]').val();
         if(_debt_money == ''){
           showMsg('请输入债务金额');
+          $(this).find('input[name="debt_money"]').focus();
           flag = false;
           return;
         }
         if(!validate('+money', _debt_money)){
           showMsg('请输入正确的债务金额');
+          $(this).find('input[name="debt_money"]').focus();
           flag = false;
           return;
         }
@@ -199,6 +212,18 @@ $(function(){
       return;
     }
 
+    overDay = $('input[name="overDay"]').val();
+    if(overDay == ''){
+      showMsg('请设置逾期时间');
+      $('input[name="overDay"]').focus();
+      return;
+    }
+    if(!validate('day', overDay)){
+      showMsg('请输入正确的逾期时间');
+      $('input[name="overDay"]').focus();
+      return;
+    }
+
     //是否能随时找到
     _searchedAnytime = $('input[name="searchedAnytime"]:checked').val();
 
@@ -217,21 +242,25 @@ $(function(){
 
           if(_name == ""){
             showMsg('请完善保证人信息');
+            $(this).find('input[name="name"]').focus();
             flag = false;
             return;
           }
-          if(_name != '' && !validate('chinese', _name)){
+          if(!validate('chinese', _name)){
             showMsg('请输入正确的保证人姓名');
+            $(this).find('input[name="name"]').focus();
             flag = false;
             return;
           }
           if(_idNum != '' && !validate('idNum', _idNum)){
             showMsg('请输入正确的保证人身份证');
+            $(this).find('input[name="idNum"]').focus();
             flag = false;
             return;
           }
           if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
             showMsg('请输入正确的保证人手机号');
+            $(this).find('input[name="phoneNumber"]').focus();
             flag = false;
             return;
           }
@@ -258,6 +287,7 @@ $(function(){
 
           if(_name == ""){
             showMsg('请完善抵押物信息');
+            $(this).find('input[name="name"]').focus();
             flag = false;
             return;
           }
@@ -294,6 +324,7 @@ $(function(){
       "loan_reason": _loan_reason, //借款原因
       "loan_recent": _loan_recent, //借款近况
       "images": img_voucher, //债务凭证图片
+      "overDay": overDay //逾期时间
     }
 
     $.ajax({
