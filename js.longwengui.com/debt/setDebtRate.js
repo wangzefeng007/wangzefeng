@@ -156,9 +156,9 @@ $(
           if(data.ResultCode == 200){
             showMsg('保存成功');
             //路由跳转
-              setTimeout(function() {
-                  window.location = data.Url;
-              }, 10);
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
           }else{
             showMsg(data.Message);
           }
