@@ -1338,3 +1338,9 @@
 .debt .union-table button[name="cancel-union"]{
   background-color: #328bb4;
 }
+
+/*设置分页*/
+.pagination-wrap{
+  margin-top: 20px;
+  padding-right: 10px;
+}
