@@ -446,9 +446,27 @@ class AjaxLogin
      * @desc 催收公司设置佣金方案
      */
     public function SetFirmDemand(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        $Data['']= $AjaxData['case_name'];
-        var_dump($AjaxData);exit;
+        foreach($AjaxData['fee_rate'] as $key =>$value){//佣金范围和金额
+            if ($value['from'])
+        }
+        $Data['UserID'] = $_SESSION['UserID'];
+        $Data['CaseName']= $AjaxData['case_name'];
+        $Data['EarlyCost'] = $AjaxData['fee'];//有无前期费用
+        $Data['FindDebtor'] = $AjaxData['searchedAnytime'];//债务人是否随时找得到
+        $Data['RepaymentDebtor'] = $AjaxData['abilityDebt'];//债务人有无还款能力
+        $Data['Commission'] =json_encode($AjaxData['fee_rate']);//佣金范围和金额
+        $Data['Area'] = json_encode($AjaxData['area']) ;//服务地区
+
+        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        var_dump($Data);exit;
+        $MemberSetCollectionModule->InsertInfo($Data);
+
         EchoResult($result_json);
         exit;
     }
