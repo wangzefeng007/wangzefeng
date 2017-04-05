@@ -206,7 +206,7 @@
   border-right: 1px solid #e6e6e6;
 }
 .collection-details .wrap .info-wrap .apply-wrap .cont-wrap{
-  padding: 0 120px;
+  padding: 0 120px 0 0;
   height: 120px;
 }
 .collection-details .wrap .info-wrap .apply-wrap .l{
@@ -217,9 +217,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.collection-details .wrap .info-wrap .apply-wrap .l:not(:last-child){
-  border-bottom: 1px solid #e6e6e6;
 }
 .collection-details .wrap .info-wrap .apply-wrap .opt-btn{
   width: 120px;
