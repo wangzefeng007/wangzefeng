@@ -470,7 +470,7 @@ class AjaxLogin
         $Data['Commission'] =json_encode($AjaxData['fee_rate']);//佣金范围和金额
         $Data['Area'] = json_encode($AjaxData['area']) ;//服务地区
         $MemberSetCollectionModule = new MemberSetCollectionModule();
-        if ($_POST['ID']){
+        if (!empty($_POST['ID'])){
             $ID = intval($_POST['ID']);
             $Result = $MemberSetCollectionModule->UpdateInfoByKeyID($Data,$ID);
             if ($Result){
