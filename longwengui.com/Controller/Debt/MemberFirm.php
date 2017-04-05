@@ -129,8 +129,15 @@ class MemberFirm
         $MemberSetCollectionModule = new MemberSetCollectionModule();
         $ID = intval($_GET['ID']);
         $CollectionInfo = $MemberSetCollectionModule->GetInfoByKeyID($ID);
-        var_dump($CollectionInfo);
+        //佣金范围和比例
         $Commission = json_decode($CollectionInfo['Commission'],true);
+        //服务地区
+        $Area = json_decode($CollectionInfo['Area'],true);
+        foreach ($Area as $key =>$value){
+            $Area[$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
+            $Area[$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
+            $Area[$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+        }
         include template('MemberFirmDemandDetails');
     }
     /**
@@ -140,6 +147,7 @@ class MemberFirm
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCollectionModule = new MemberSetCollectionModule();
         $ID = intval($_GET['ID']);
+
         $Data= $MemberSetCollectionModule->GetInfoByKeyID($ID);
         include template('MemberFirmSetDemand');
     }
