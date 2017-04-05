@@ -65,12 +65,82 @@ class MemberLawyer
      * @desc 律师主动申请的债权列表
      */
     public function  ApplyDebtOrder(){
+        $this->IsLogin();
+        $Nav ='applydebtorder';
+        $Title = '会员中心-申请的债权';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberClaimsDisposalModule->NStatus;
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+
+        //分页Start
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
+
+        $Status = $_GET['S']? intval($_GET['S']) : 0;
+        if ($Status==1 || $Status==0){
+            $MysqlWhere .=' and `Status` = 1';//正在接单的债务
+        }elseif($Status==2){
+            $MysqlWhere .=' and `Status` = 2';//催款中的债务
+        }elseif($Status==3){
+            $MysqlWhere .=' and `Status` IN (4,5)';//完成的债务
+        }elseif($Status==4){
+            $MysqlWhere .=' and `Status` = 3';//未完成的债务
+        }
+        $Rscount = $MemberClaimsDisposalModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=10;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberClaimsDisposalModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and Type= 1 and DebtID = '.$value['DebtID']);
+                $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
+                $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
+                $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];
+                $Data['Data'][$key]['AddTime']= $DebtInfo['AddTime'];
+                $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                $value[''];
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberLawyerApplyDebtOrder');
     }
     /**
      * @desc 律师债权接单
      */
     public function CreditOrder(){
+        $this->IsLogin();
+        $Title = '会员中心-债权接单';
+        $Nav='creditorder';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberLawyerCreditOrder');
     }
 }
