@@ -3,6 +3,21 @@ $(function(){
     $('#mydatepicker').dcalendarpicker({format: 'yyyy-mm-dd', width: '340px'}); //初始化日期选择器
     $('#mycalendar').dcalendar(); //初始化日历
 
+    //根据url参数初始化选项卡
+    var tab_cur = getQueryString('T');
+    if(tab_cur == 2){
+      $('.bx-wraper .tl .act').removeClass('act');
+      $('.bx-wraper .tl .tb').eq(1).addClass('act');
+      $('.tab-person').hide();
+      $('.tab-company').show();
+    }else if(tab_cur == 3){
+      $('.bx-wraper .tl .act').removeClass('act');
+      $('.bx-wraper .tl .tb').eq(2).addClass('act');
+      $('.tab-person').hide();
+      $('.tab-lawer').show();
+    }
+
+
     $('.tb').click(function(){
         var tab_name = $(this).attr('data-tab');
         var pre_tab_name = $('.bx-wraper .act').attr('data-tab');
