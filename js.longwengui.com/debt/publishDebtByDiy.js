@@ -313,8 +313,8 @@ $(function(){
 
 
     var submitData = {
-      "debtOwnerInfos": _debtOwnerInfos, //债权人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债权金额}
-      "debtorInfos": _debtorInfos, //债务人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债务金额}
+      "debtOwnerInfos": _debtOwnerInfos, //债权人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债权金额 areaDetail 详细地址}
+      "debtorInfos": _debtorInfos, //债务人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债务金额 areaDetail 详细地址}
       "searchedAnytime": _searchedAnytime, //是否随时能找到 0 不能 1能
       "abilityDebt": _abilityDebt, //是否有能力还债 0 不能 1 能
       "haveBondsMan": haveBondsMan, //是否有保证人 0 无 1 有

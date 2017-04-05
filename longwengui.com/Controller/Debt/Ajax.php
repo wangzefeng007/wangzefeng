@@ -615,7 +615,7 @@ class Ajax
                     $Datb['Province'] = trim($value['province']);
                     $Datb['City'] = trim($value['city']);
                     $Datb['Area'] = trim($value['area']);
-                    $Datb['Address'] = trim($value['area']);
+                    $Datb['Address'] = trim($value['areaDetail']);
                     $InsertCreditorsInfo = $MemberCreditorsInfoModule->InsertInfo($Datb);
                     if (!$InsertCreditorsInfo) {
                         $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -638,7 +638,7 @@ class Ajax
                         $Datc['Province'] = trim($value['province']);
                         $Datc['City'] = trim($value['city']);
                         $Datc['Area'] = trim($value['area']);
-                        $Datc['Address'] = trim($value['area']);
+                        $Datc['Address'] = trim($value['areaDetail']);
                         $InsertDebtorsInfo = $MemberDebtorsInfoModule->InsertInfo($Datc);
                         if (!$InsertDebtorsInfo) {
                             $DB->query("ROLLBACK");//判断当执行失败时回滚
