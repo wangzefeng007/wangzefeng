@@ -13,8 +13,8 @@
         债权管理
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
         <div class="menu-level-2-wrap">
-            <div class="menu-level-2">申请的债权</div>
-            <div class="menu-level-2">债权接单</div>
+            <div class="menu-level-2 {if $Nav=='applydebtorder'}menu-level-2-act{/if}" onclick="go('/memberfirm/applydebtorder/')">申请的债权</div>
+            <div class="menu-level-2 {if $Nav=='creditorder'}menu-level-2-act{/if}" onclick="go('/memberlawyer/creditorder/')">债权接单</div>
             <div class="menu-level-2">浏览过的债权</div>
             <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
         </div>
