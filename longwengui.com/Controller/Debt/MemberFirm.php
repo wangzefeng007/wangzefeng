@@ -98,10 +98,37 @@ class MemberFirm
         $Title = '会员中心-要求方案';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberSetCollectionModule = new MemberSetCollectionModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere ='';
+        $Rscount = $MemberSetCollectionModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=15;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberSetCollectionModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberFirmDemandList');
+    }
+    public function DemandDetails(){
+        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $ID = intval($_GET['ID']);
+        $CollectionInfo = $MemberSetCollectionModule->GetInfoByKeyID($ID);
+        include template('MemberFirmDemandDetails');
     }
     /**
      * @desc 催收公司要求方案(新增方案)

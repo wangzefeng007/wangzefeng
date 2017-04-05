@@ -27,21 +27,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {loop $Data['Data'] $lists}
                         <tr>
-                            <td>厦门地区处置佣金比例</td>
-                            <td>2017-03-16</td>
-                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                            <td>{$lists['CaseName']}</td>
+                            <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
+                            <td><a class="see" href="/demanddetails/{$lists['SetID']}.html">查看</a><a class="modify" href="">修改</a><a class="del" href="" data-id="{$lists['SetID']}">删除</a></td>
                         </tr>
-                        <tr>
-                            <td>厦门地区处置佣金比例</td>
-                            <td>2017-03-16</td>
-                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
-                        </tr>
-                        <tr>
-                            <td>厦门地区处置佣金比例</td>
-                            <td>2017-03-16</td>
-                            <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
-                        </tr>
+                        {/loop}
                         </tbody>
                     </table>
                 </div>

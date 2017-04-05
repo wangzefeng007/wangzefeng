@@ -21,11 +21,12 @@ RewriteRule ^choicefind(|\/)$ /index.php?Module=Find&Action=ChoiceFind [QSA]
 RewriteRule ^find/team/([0-9]+)(|\/)$ /index.php?Module=Find&Action=Team&T=$1 [QSA]
 
 #搜索老赖
-RewriteRule ^deadbeat(|\/)$ /index.php?Module=DeadBeat&Action=Index [QSA]
 RewriteRule ^ajax.html$ /index.php?Module=Ajax&Action=Index [QSA]
 
 #会员中心
 RewriteRule ^loginajax.html$ /index.php?Module=AjaxLogin&Action=Index [QSA]
+RewriteRule ^demanddetails/([0-9]+).html$ /index.php?Module=MemberFirm&Action=DemandDetails&ID=$1 [QSA]
+
 #通用地址
 RewriteRule ^([a-z]+)(|\/)$ /index.php?Module=$1 [QSA]
 RewriteRule ^([a-z]+)/([a-z]+)(|\/)$ /index.php?Module=$1&Action=$2 [QSA]
