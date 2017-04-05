@@ -50,13 +50,14 @@
                 </div>
                 <div class="c">
                     <div class="blo">
+                        {loop $Commission $lists}
                         <div class="line">
                             <div class="left">
                                 <div class="g-info">
                                     债务金额：
                                 </div>
                                 <div class="g-det">
-                                    <span>￥0.00-30000.00元</span>
+                                    <span>￥{$lists['from']}-{$lists['to']}元</span>
                                 </div>
                             </div>
                             <div class="right">
@@ -64,29 +65,11 @@
                                     佣金比例：
                                 </div>
                                 <div class="g-det">
-                                    <span>40%（元）</span>
+                                    <span>{$lists['rate']}%（元）</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="line">
-                            <div class="left">
-                                <div class="g-info">
-                                    债务金额：
-                                </div>
-                                <div class="g-det">
-                                    <span>￥0.00-30000.00元</span>
-                                </div>
-                            </div>
-                            <div class="right">
-                                <div class="g-info">
-                                    佣金比例：
-                                </div>
-                                <div class="g-det">
-                                    <span>40%（元）</span>
-                                </div>
-                            </div>
-                        </div>
-
+                        {/loop}
                     </div>
                 </div>
 

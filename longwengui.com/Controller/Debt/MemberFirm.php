@@ -125,15 +125,22 @@ class MemberFirm
         include template('MemberFirmDemandList');
     }
     public function DemandDetails(){
+        $MemberAreaModule = new MemberAreaModule();
         $MemberSetCollectionModule = new MemberSetCollectionModule();
         $ID = intval($_GET['ID']);
         $CollectionInfo = $MemberSetCollectionModule->GetInfoByKeyID($ID);
+        var_dump($CollectionInfo);
+        $Commission = json_decode($CollectionInfo['Commission'],true);
         include template('MemberFirmDemandDetails');
     }
     /**
      * @desc 催收公司要求方案(新增方案)
      */
     public function SetDemand(){
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $ID = intval($_GET['ID']);
+        $Data= $MemberSetCollectionModule->GetInfoByKeyID($ID);
         include template('MemberFirmSetDemand');
     }
 }
