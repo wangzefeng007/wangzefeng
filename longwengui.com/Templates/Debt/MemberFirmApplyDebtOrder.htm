@@ -18,7 +18,7 @@
                 </div>
                 <dl class="cont-select">
                     <dt>债权状态：</dt>
-                    <dd {if $Status==''}class="cont-select-act"{/if}><a href="/memberfirm/applydebtorder/">全部</a></dd>
+                    <dd {if $Status==''}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/')">全部</dd>
                     <dd {if $Status==1}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=1')">正在接单的债权</dd>
                     <dd {if $Status==2}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=2')">催收中的债权</dd>
                     <dd {if $Status==3}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=3')">完成的债权</dd>
