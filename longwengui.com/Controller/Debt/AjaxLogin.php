@@ -446,7 +446,8 @@ class AjaxLogin
      * @desc 催收公司设置佣金方案
      */
     public function SetFirmDemand(){
-        $AjaxData =  $_POST['AjaxJSON'];
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $Data['']= $AjaxData['case_name'];
         var_dump($AjaxData);exit;
         EchoResult($result_json);
         exit;
