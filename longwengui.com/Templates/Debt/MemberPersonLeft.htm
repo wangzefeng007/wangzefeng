@@ -15,26 +15,26 @@
     </div>
     {/if}
     {if $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
-    <div class="menu-level-1" id="menu_1" data-open="0" can-down='1'>
+    <div class="menu-level-1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         债权管理
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+        <div class="menu-level-2-wrap">
+            <div class="menu-level-2 {if $Nav=='bondlist'}menu-level-2-act{/if}" onclick="go('/memberperson/bondlist/')">我的债权</div>
+            <div class="menu-level-2 {if $Nav=='debtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/debtlist/')">我的负债</div>
+            <!--<div class="menu-level-2">订单管理</div>-->
+            <div class="menu-level-2">浏览过的债务</div>
+            <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
+        </div>
     </div>
-    <div class="menu-level-2-wrap" data-for="menu_1">
-      <div class="menu-level-2">我的债权</div>
-      <div class="menu-level-2">我的负债</div>
-      <!--<div class="menu-level-2">订单管理</div>-->
-      <div class="menu-level-2">浏览过的债务</div>
-      <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
-    </div>
-    <div class="menu-level-1" id="menu_2" data-open="0" can-down='1'>
+    <div class="menu-level-1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         关注
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
-    </div>
-    <div class="menu-level-2-wrap" data-for="menu_2">
-      <div class="menu-level-2">我关注的债务</div>
-      <div class="menu-level-2">提前关注</div>
+        <div class="menu-level-2-wrap">
+            <div class="menu-level-2">我关注的债务</div>
+            <div class="menu-level-2">提前关注</div>
+        </div>
     </div>
     <div class="menu-level-1">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
@@ -42,29 +42,29 @@
     </div>
     {/if}
     {if $_SESSION[Identity]==2}
-    <div class="menu-level-1" id="menu_3" data-open="0" can-down='1'>
+    <div class="menu-level-1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         代理
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
-    </div>
-    <div class="menu-level-2-wrap" data-for="menu_3">
-      <div class="menu-level-2">申请代理</div>
-      <div class="menu-level-2">已代理区域</div>
+        <div class="menu-level-2-wrap">
+            <div class="menu-level-2">申请代理</div>
+            <div class="menu-level-2">已代理区域</div>
+        </div>
     </div>
     <div class="menu-level-1">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         推荐人/我的推荐人
     </div>
-    <div class="menu-level-1" id="menu_4" data-open="0" can-down='1'>
+    <div class="menu-level-1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         催客权益
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
-    </div>
-    <div class="menu-level-2-wrap" data-for="menu_4">
-      <div class="menu-level-2">申请的债权</div>
-      <div class="menu-level-2">浏览过的债权</div>
-      <div class="menu-level-2">寻找同城催客</div>
-      <div class="menu-level-2">联盟催客</div>
+        <div class="menu-level-2-wrap">
+            <div class="menu-level-2">申请的债权</div>
+            <div class="menu-level-2">浏览过的债权</div>
+            <div class="menu-level-2">寻找同城催客</div>
+            <div class="menu-level-2">联盟催客</div>
+        </div>
     </div>
     {/if}
     <div class="menu-level-1 {if $Nav=='systemmessage'}menu-level-1-act{/if}"  onclick="go('/member/systemmessage/')">
