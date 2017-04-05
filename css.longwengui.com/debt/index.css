@@ -84,6 +84,7 @@
   line-height: 40px;
   background-color: #35bdfc;
   color: #fff;
+  border: 0;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
@@ -132,6 +133,7 @@
   line-height: 40px;
   background-color: #35bdfc;
   color: #fff;
+  border: 0;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;

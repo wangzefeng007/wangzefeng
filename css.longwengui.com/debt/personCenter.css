@@ -566,8 +566,8 @@
 	line-height: 32px;
 	margin-top: 14px;
 	border: none;
-	outline: none;
-	padding: 0 15px;
+  cursor: pointer;
+  padding: 0 15px;
 	background-color: #35BDFC;
 	color: #FFFFFF;
 	border-radius: 5px;
@@ -705,12 +705,12 @@
 .debt .debt-table tr:hover{
 	background-color: #f8f8f8;
 }
-.debt .debt-table a.details-enter{
+.debt .debt-table .details-enter{
 	text-decoration: none;
 	color: #666;
 	padding: 0 8px;
 }
-.debt .debt-table a.details-enter:hover{
+.debt .debt-table .details-enter:hover{
 	text-decoration: underline;
 }
 .debt .debt-table button{
@@ -721,7 +721,7 @@
 	cursor: pointer;
 	color: #666;
 }
-.debt .debt-table a.oper{
+.debt .debt-table .oper{
 	color: #f00;
 	margin: 0 5px;
 }
@@ -731,18 +731,19 @@
 .debt-table td .see,.debt-table td .modify,.debt-table td .del{
 	color: #fff;
 	margin: 0 10px;
+  cursor: pointer;
 	text-decoration: none;
 	border-radius: 5px;
 }
-.debt-table td a.see{
+.debt-table td .see{
 	background-color: #35bdfc;
 	padding: 2px 8px;
 }
-.debt-table td a.modify{
+.debt-table td .modify{
 	background-color: #328bb4;
 	padding: 2px 8px;
 }
-.debt-table td a.del{
+.debt-table td .del{
 	background-color: #999;
 	padding: 2px 8px;
 }

@@ -53,26 +53,21 @@ function validateForm(){
     _code = $("input[name='code']").val();
   }
 
-  if(_code && _code == ''){
-    showMsg('请输入验证码');
-    return;
-  }
+
 
   if(_phoneNumber == ''){
-    showMsg('请填写手机号');
+    $('input[name="phoneNumber"]').parent().siblings('.error-hint').eq(0).show();
     return false;
   }
-
-  if(_pass == ''){
-    showMsg('请填写登录密码');
-    return false;
-  }
-
   if(!validate("mobilePhone", _phoneNumber)){
     $('input[name="phoneNumber"]').parent().siblings('.error-hint').eq(1).show();
     return false;
   }
 
+  if(_pass == ''){
+  $('input[name="pass"]').parent().siblings('.error-hint').eq(0).show();
+    return false;
+  }
   if(_pass.length < 6){
     $('input[name="pass"]').parent().siblings('.error-hint').eq(1).show();
     return false;
@@ -80,6 +75,11 @@ function validateForm(){
 
   if(!validate('password', _pass)){
     $('input[name="pass"]').parent().siblings('.error-hint').eq(2).show();
+    return false;
+  }
+
+  if(_code && _code == ''){
+    showMsg('请输入验证码');
     return false;
   }
 
