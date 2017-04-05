@@ -74,17 +74,17 @@
   margin-left: 5px;
   vertical-align: middle;
 }
-.reword .wrap .filt-parm .line span:nth-child(1) {
-  font-weight: bold;
+.reword .wrap .filt-parm .line .span-1 {
   margin-right: 16px;
 }
-.reword .wrap .filt-parm .line span:nth-child(n+2) {
+.reword .wrap .filt-parm .line span {
   padding: 4px 6px;
   margin-right: 10px;
 }
 .reword .wrap .filt-parm .line .sel {
   background-color: #35bdfc;
   color: #fff;
+  font-weight: bold;
   border-radius: 5px;
 }
 .reword .wrap .box-wrap {

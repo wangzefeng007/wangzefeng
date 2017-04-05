@@ -5,13 +5,13 @@
         <div class="filt-parm">
             <div class="line">
                 <span >悬赏方式 :</span>
-                <span id="way_all" {if empty($Type)}class="sel"{/if}><a href="{$MyUrl}{$Area}">全部</a></span>
+                <span id="way_all" {if empty($Type)}class="sel span-1"{/if}><a href="{$MyUrl}{$Area}">全部</a></span>
                 <span {if $Type=='a1'}class="sel"{/if}><a href="{$MyUrl}{$Area}a1/">找人</a></span>
                 <span {if $Type=='a2'}class="sel"{/if}><a href="{$MyUrl}{$Area}a2/">找财产</a></span>
             </div>
             <div class="line">
                 <span>悬赏地区 :</span>
-                <span {if empty($Area)}class="sel"{/if} id="area_all"><a href="{$MyUrl}{$Type}">全部</a></span>
+                <span {if empty($Area)}class="sel span-1"{/if} id="area_all"><a href="{$MyUrl}{$Type}">全部</a></span>
                 {loop $AreaList $lists}
                 <span {if $Area==$lists['AreaID']}class="sel"{/if}>
                   <a href="{$MyUrl}{$lists[AreaID]}{$Type}/">{$lists[CnName]}</a>
