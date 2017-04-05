@@ -1,6 +1,6 @@
 <?php
 /**
- * @desc 会员中心登陆、注册、忘记密码
+ * @desc
  * Class AjaxLogin
  */
 class AjaxLogin
@@ -442,4 +442,14 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 催收公司设置佣金方案
+     */
+    public function SetFirmDemand(){
+        $AjaxData =  $_POST['AjaxJSON'];
+        var_dump($AjaxData);exit;
+        EchoResult($result_json);
+        exit;
+    }
+
 }
