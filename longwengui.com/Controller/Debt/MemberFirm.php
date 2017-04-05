@@ -103,4 +103,10 @@ class MemberFirm
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberFirmDemandList');
     }
+    /**
+     * @desc 催收公司要求方案(新增方案)
+     */
+    public function SetDemand(){
+        include template('MemberFirmSetDemand');
+    }
 }

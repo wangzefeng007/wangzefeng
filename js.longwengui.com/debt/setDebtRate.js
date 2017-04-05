@@ -135,17 +135,20 @@ $(
       var abilityDebt = $('input[name="abilityDebt"]:checked').val();
 
       $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: "../data/setDebt.json",
-        data: JSON.stringify({
-          "case_name": case_name,  //方案名称
-          "searchedAnytime": searchedAnytime, //是否随时找到 1 是 0 否
-          "fee": fee,  //是否有前期费用
-          "abilityDebt": abilityDebt, //是否有还款能力
-          "fee_rate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; rate: 比例 }
-          "area": area_info //地区数组
-        }),
+        url: "/loginajax.html",
+        data: {
+            "Intention":"SetFirmDemand",//催收公司设置佣金方案
+            "AjaxJSON": JSON.stringify({
+                "case_name": case_name,  //方案名称
+                "searchedAnytime": searchedAnytime, //是否随时找到 1 是 0 否
+                "fee": fee,  //是否有前期费用
+                "abilityDebt": abilityDebt, //是否有还款能力
+                "fee_rate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; rate: 比例 }
+                "area": area_info //地区数组
+            }),
+        },
         beforeSend: function(){
           showLoading();
         },
@@ -153,7 +156,9 @@ $(
           if(data.ResultCode == 200){
             showMsg('保存成功');
             //路由跳转
-
+              setTimeout(function() {
+                  window.location = data.Url;
+              }, 10);
           }else{
             showMsg(data.Message);
           }
