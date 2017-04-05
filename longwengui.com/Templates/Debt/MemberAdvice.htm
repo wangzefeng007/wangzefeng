@@ -23,8 +23,8 @@
                     <div class="complaint">
                         <div class="complaint-info">
                             <span class="leb">投诉/建议:</span>
-                            <textarea class="complaint-inp" placeholder="填写您的意见或建议，字数不超过150字"></textarea>
-                            <button type="submit" name="submit">提交</button>
+                            <textarea class="complaint-inp" name="advice_text" maxlength="150" placeholder="填写您的意见或建议，字数不超过150字"></textarea>
+                            <button id="advice" name="submit">提交</button>
                         </div>
                     </div>
                 </div>
@@ -35,3 +35,4 @@
     </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/memberAdvice.js'></script>
