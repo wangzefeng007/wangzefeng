@@ -44,15 +44,16 @@ class Member
         include template('MemberRegister');
     }
     /**
-     * @desc  会员注册加入催收行业
+     * @desc  会员注册完善资料(加入催收行业)
      */
     public function RegisterTwo()
     {
+        $type = intval($_GET['T']);
         $Title = '会员注册完善资料';
         include template('MemberRegisterTwo');
     }
     /**
-     * @desc  会员注册完善资料
+     * @desc  会员注册完善资料(加入发布债务)
      */
     public function RegisterThree()
     {
