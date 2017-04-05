@@ -74,6 +74,17 @@ class MemberPerson
      */
     public function BondList()
     {
+        $this->IsLogin();
+        $Nav ='bondlist';
+        if ($_SESSION['Identity']!=0 && $_SESSION['Identity']!=1 && $_SESSION['Identity']!=2){
+            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+
         include template('MemberPersonBondList');
     }
     /**
@@ -81,6 +92,16 @@ class MemberPerson
      */
     public function DebtList()
     {
+        $this->IsLogin();
+        $Nav ='debtlist';
+        if ($_SESSION['Identity']!=0 && $_SESSION['Identity']!=1 && $_SESSION['Identity']!=2){
+            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberPersonDebtList');
     }
     /**

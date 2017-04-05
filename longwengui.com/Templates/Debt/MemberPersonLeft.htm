@@ -20,8 +20,8 @@
         债权管理
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
         <div class="menu-level-2-wrap">
-            <div class="menu-level-2">我的债权</div>
-            <div class="menu-level-2">我的负债</div>
+            <div class="menu-level-2 {if $Nav=='bondlist'}menu-level-2-act{/if}" onclick="go('/memberperson/bondlist/')">我的债权</div>
+            <div class="menu-level-2 {if $Nav=='debtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/debtlist/')">我的负债</div>
             <!--<div class="menu-level-2">订单管理</div>-->
             <div class="menu-level-2">浏览过的债务</div>
             <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
