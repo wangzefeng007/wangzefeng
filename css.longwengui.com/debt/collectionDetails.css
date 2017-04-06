@@ -36,6 +36,9 @@
 .collection-details .wrap .current-loc .cur {
   color: #999;
 }
+.collection-details .wrap .info-wrap {
+  margin-bottom: 120px;
+}
 .collection-details .wrap .info-wrap .hd {
   text-align: center;
   line-height: 40px;
@@ -173,7 +176,6 @@
 .collection-details .wrap .info-wrap .form-wrap .sub-btn {
   text-align: center;
   margin-top: 80px;
-  margin-bottom: 120px;
 }
 .collection-details .wrap .info-wrap .form-wrap .sub-btn button {
   min-width: 140px;
