@@ -331,8 +331,8 @@ class Ajax
             }
             $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
         }
-        $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
-        $debtorInfos = $AjaxData['debtorInfos'];
+        $debtOwnerInfos = $AjaxData['debtOwnerInfos'];//债权人信息
+        $debtorInfos = $AjaxData['debtorInfos'];//债务人信息
         $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
         $Data['DebtorNum'] = count($debtorInfos);//债务人数量
         //计算债务人和债权人金额start
@@ -401,7 +401,7 @@ class Ajax
                 //债务人信息
                 $Datc['AddTime'] = $Data['AddTime'];
                 $Datc['DebtID'] = $DebtID;
-                foreach ($debtOwnerInfos as $key=>$value){
+                foreach ($debtorInfos as $key=>$value){
                     $Datc['Name'] = trim($value['name']);
                     $Datc['Card'] = trim($value['idNum']);
                     $Datc['Money'] = trim($value['debt_money']);
@@ -423,21 +423,28 @@ class Ajax
                     $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
                     $MemberUserInfoModule = new MemberUserInfoModule();
                     $MemberUserModule = new MemberUserModule();
+                    foreach ($debtorInfos  as $key=>$value){
+                        $Area[] = $value['area'];
+                    }
                     //1律师团队，2催收公司
                     if ($Data['Type']==1){
                         $UserInfoWhere = ' and Identity =4 ';
+                        $Area=implode(',',array_unique($Area));
+                        $MysqlWhere = " and Area IN ($Area)";//匹配条件待完善
+                        $Commission = $MemberSetLawyerFeeModule->GetInfoByWhere($MysqlWhere,true);
+                        if (!$Commission){
+                            $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
+                            EchoResult($result_json);exit;
+                        }
                     }elseif($Data['Type']==2){
                         $UserInfoWhere = ' and Identity =3 ';
-                    }
-                    foreach ($debtOwnerInfos  as $key=>$value){
-                        $Area[] = $value['area'];
-                    }
-                    $Area=implode(',',array_unique($Area));
-                    $MysqlWhere = " and AreaService IN ($Area)";//匹配条件待完善
-                    $Commission = $MemberSetCollectionModule->GetInfoByWhere($MysqlWhere,true);
-                    if (!$Commission){
-                        $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
-                        EchoResult($result_json);exit;
+                        $Area=implode(',',array_unique($Area));
+                        $MysqlWhere = " and Area IN ($Area)";//匹配条件待完善
+                        $Commission = $MemberSetCollectionModule->GetInfoByWhere($MysqlWhere,true);
+                        if (!$Commission){
+                            $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
+                            EchoResult($result_json);exit;
+                        }
                     }
                     foreach ($Commission as $key =>$value){
                         $UserID[] = $value['UserID'];
@@ -454,7 +461,7 @@ class Ajax
                             $Result['Data'][$key]['area'] = $value['Area'];
                             $User = $MemberUserModule->GetInfoByKeyID($value['UserID']);
                             $Result['Data'][$key]['phoneNumber'] = $User['Mobile'];
-                            $Result['Data'][$key]['fee'] = 1111;//佣金比例待完善
+                            $Result['Data'][$key]['fee'] = 1111;
                         }
                         $Result['ResultCode'] = 200;
                         $Result['Page'] = 1;
@@ -561,7 +568,8 @@ class Ajax
             $Data['ReasonsBorrowing'] = trim($AjaxData['loan_reason']);
             //借款近况
             $Data['DebtRecent'] = trim($AjaxData['loan_recent']);
-
+            //逾期时间
+            $Data['Overduetime'] = trim($AjaxData['overDay']);
             $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
             $debtorInfos = $AjaxData['debtorInfos'];
             $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
@@ -758,7 +766,7 @@ class Ajax
                     }else{
                         $Date['IsDefault']= 0;
                     }
-                  $UpdateRewardImage = $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                    $UpdateRewardImage = $MemberRewardImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
                 }
                 if (!$UpdateRewardImage){
                     $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -787,12 +795,12 @@ class Ajax
         $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
         $Data['IsDefault'] = 0;
         if ($Data['ImageUrl'] !==''){
-           $RewardImage = $MemberRewardImageModule->InsertInfo($Data);
-           if ($RewardImage){
-               $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
-           }else{
-               $result_json = array('ResultCode'=>101,'Message'=>'上传失败！');
-           }
+            $RewardImage = $MemberRewardImageModule->InsertInfo($Data);
+            if ($RewardImage){
+                $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'上传失败！');
+            }
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
         }

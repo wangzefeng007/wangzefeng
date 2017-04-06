@@ -10,12 +10,41 @@ $RouteArr=array(
     //线索悬赏
     'reword@index'=>'Reword@Index',
     'reword@publish'=>'Reword@RewordPublish',
-
     //寻找处置方
     'find@choicefind'=>'Find@ChoiceFind',
     'find@team'=>'Find@Team',
     //搜索老赖
     'deadbeat@index'=>'DeadBeat@Index',
-    //普通会员中心
+    //会员中心
     'member@login'=>'Member@Login',
+    'member@signout'=>'Member@SignOut',
+    'member@register'=>'Member@Register',
+    'member@registertwo'=>'Member@RegisterTwo',
+    'member@registerthree'=>'Member@RegisterThree',
+    'member@findpasswd'=>'Member@FindPasswd',
+    'member@changemobile'=>'Member@ChangeMobile',
+    'member@editpassword'=>'Member@EditPassWord',
+    'member@systemmessage'=>'Member@SystemMessage',
+    'member@advice'=>'Member@Advice',
+    'member@center'=>'Member@Center',
+    //普通会员中心
+    'memberperson@index'=>'MemberPerson@Index',
+    'memberperson@editinfo'=>'MemberPerson@EditInfo',
+    'memberperson@bondlist'=>'MemberPerson@BondList',
+    'memberperson@debtlist'=>'MemberPerson@DebtList',
+    'memberperson@rewordlist'=>'MemberPerson@RewordList',
+    'memberperson@findteam'=>'MemberPerson@FindTeam',
+    //律师会员中心
+    'memberlawyer@index'=>'MemberLawyer@Index',
+    'memberlawyer@editinfo'=>'MemberLawyer@EditInfo',
+    'memberlawyer@applydebtorder'=>'MemberLawyer@ApplyDebtOrder',
+    'memberlawyer@creditorder'=>'MemberLawyer@CreditOrder',
+    //催收公司会员中心
+    'memberfirm@index'=>'MemberFirm@Index',
+    'memberfirm@editinfo'=>'MemberFirm@EditInfo',
+    'memberfirm@applydebtorder'=>'MemberFirm@ApplyDebtOrder',
+    'memberfirm@creditorder'=>'MemberFirm@CreditOrder',
+    'memberfirm@demandlist'=>'MemberFirm@DemandList',
+    'memberfirm@demanddetails'=>'MemberFirm@DemandDetails',
+    'memberfirm@setdemand'=>'MemberFirm@SetDemand',
 );
