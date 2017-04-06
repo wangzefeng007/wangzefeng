@@ -55,6 +55,16 @@ $(
         return;
       }
 
+      if(area_info.length == 0){
+        showMsg('请完善地区信息');
+        return;
+      }
+
+      if(area_info.length > 1 && !areaRepeatTest(area_info)){
+        showMsg('地区不能重叠');
+        return;
+      }
+
       //添加佣金比例设置
       $('#set_fee_rate').find('.blo').each(function(){
         if(flag){
@@ -77,13 +87,6 @@ $(
             return;
           }
 
-          if(!validate('+money', _to)){
-            $(this).find('input[name="to"]').focus();
-            showMsg('请输入正确的债务金额');
-            flag = false;
-            return;
-          }
-
           if(_to == ''){
             $(this).find('input[name="to"]').focus();
             showMsg('请完善佣金比例信息');
@@ -91,7 +94,14 @@ $(
             return;
           }
 
-          if(_to <= _from){
+          if(!validate('+money', _to)){
+            $(this).find('input[name="to"]').focus();
+            showMsg('请输入正确的债务金额');
+            flag = false;
+            return;
+          }
+
+          if(parseFloat(_to) <= parseFloat(_from)){
             $(this).find('input[name="from"]').focus();
             showMsg('请设置正确的债务金额区间');
             flag = false;
@@ -125,13 +135,13 @@ $(
         return;
       }
 
-      if(area_info.length == 0){
-        showMsg('请完善地区信息');
+      if(fee_rate_info.length == 0){
+        showMsg('请完善佣金比例信息');
         return;
       }
 
-      if(fee_rate_info.length == 0){
-        showMsg('请完善佣金比例信息');
+      if(fee_rate_info.length > 1 && !rateRepeatTest(fee_rate_info)){
+        showMsg('佣金比例区间不能重叠');
         return;
       }
 
@@ -249,5 +259,65 @@ function resetAreaDropdown(tar, selName){
       +  '<ul></ul>'
       + '</label>'
     );
+  }
+}
+
+//提交佣金比例重复检测; rate长度至少为2
+function rateRepeatTest(rate){
+  var a;
+  for(var i=0; i<rate.length-1; i++){
+    a = rate[i];
+    for(var j=i+1; j<rate.length; j++){
+      if(isRateRepeated(a, rate[j])){
+        return false;
+      }
+    }
+  }
+  return true;
+}
+//检测佣金比例是否重叠
+function isRateRepeated(a, b){
+  if(parseFloat(a.from) > parseFloat(b.to) || parseFloat(a.to) < parseFloat(b.from) || parseFloat(b.from) > parseFloat(a.to) || parseFloat(b.to) < parseFloat(a.from)){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+//提交地区数据重复监测; area长度至少为2
+function areaRepeatTest(area){
+  var a;
+  for(var i=0; i<area.length-1; i++){
+    a = area[i];
+    for(var j=i+1; j<area.length; j++){
+      if(isAreaRepeated(a, area[j])){
+        return false;
+      }
+    }
+  }
+  return true;
+}
+//检测两个地址是否有重叠
+function isAreaRepeated(a, b){
+  if(a.province == b.province){
+    if(a.city && b.city){
+      if(a.city == b.city){
+        if(a.area && b.area){
+          if(a.area == b.area){
+            return true;
+          }else{
+            return false;
+          }
+        }else{
+          return true;
+        }
+      }else{
+        return false;
+      }
+    }else{
+      return true;
+    }
+  }else{
+    return false;
   }
 }
