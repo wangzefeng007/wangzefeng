@@ -277,7 +277,7 @@ function rateRepeatTest(rate){
 }
 //检测佣金比例是否重叠
 function isRateRepeated(a, b){
-  if(a.from > b.to || a.to < b.from || b.from > a.to || b.to < a.from){
+  if(parseFloat(a.from) > parseFloat(b.to) || parseFloat(a.to) < parseFloat(b.from) || parseFloat(b.from) > parseFloat(a.to) || parseFloat(b.to) < parseFloat(a.from)){
     return false;
   }else{
     return true;
