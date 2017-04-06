@@ -124,7 +124,7 @@ class MemberPerson
     /**
      * @desc 个人会员主动申请的债权(向处置方申请的债务)
      */
-    public function findteam()
+    public function FindTeam()
     {
         $this->IsLogin();
         if ($_SESSION['Identity']!=0 && $_SESSION['Identity']!=1 && $_SESSION['Identity']!=2){
