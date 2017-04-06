@@ -52,7 +52,7 @@ class Debt
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])

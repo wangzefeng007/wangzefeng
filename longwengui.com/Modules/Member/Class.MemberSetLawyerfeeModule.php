@@ -1,11 +1,9 @@
 <?php
 /**
  * @desc 律师佣金设置表
- * Class MemberSetLawyerfeeModule
+ * Class MemberSetLawyerFeeModule
  */
-class MemberSetLawyerfeeModule extends CommonModule{
-
+class MemberSetLawyerFeeModule extends CommonModule{
     public $KeyID = 'SetID';
     public $TableName = 'member_set_lawyerfee';
-
 }

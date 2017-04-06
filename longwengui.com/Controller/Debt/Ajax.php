@@ -40,7 +40,7 @@ class Ajax
         }
         $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = ' and `Status` < 8 and `CollectionType` < 3';
+        $MysqlWhere = ' and `Status` != 8 and `CollectionType` != 3';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }
@@ -66,7 +66,7 @@ class Ajax
                 $Data['Data'][$key]['DebtNum'] = $value['DebtNum'];
                 $Data['Data'][$key]['DebtAmount'] = $value['DebtAmount'];
                 $Data['Data'][$key]['Overduetime'] = $value['Overduetime'];
-                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 $Province = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Province']);
@@ -85,26 +85,32 @@ class Ajax
         }else{
             $Data['ResultCode'] = 101;
             $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
-
             EchoResult($Data);exit;
         }
-
         unset($Lists);
         EchoResult($Data);exit;
     }
     public function GetMysqlWhere($Intention = ''){
+        $MemberAreaModule = new MemberAreaModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         if ($Intention=='GetDebtList'){
             $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
             $Type = trim($_POST['col_way']); //催收方式
             if($Type!='all'){
-                $MysqlWhere .=" and CollectionType IN ($Type)";
+                $MysqlWhere .=" and CollectionType = $Type";
             }
             $Area =trim($_POST['col_area']); //催收地区
             $City =trim($_POST['col_city']); //催收地区
             if(!empty($Area) && $Area!='all'){
-                $AreaWhere = " and Type=1 and Area IN ($Area)";
+                $Areas = $MemberAreaModule->GetInfoByKeyID($Area);
+                if ($Areas['Level']==1){
+                    $AreaWhere = " and Province = $Area";
+                }elseif($Areas['Level']==2){
+                    $AreaWhere = " and City = $Area";
+                }elseif($Areas['Level']==3){
+                    $AreaWhere = " and Area = $Area";
+                }
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
@@ -112,12 +118,17 @@ class Ajax
                     }
                     $data=implode(',',array_unique($data));
                     $MysqlWhere .= " and DebtID IN ($data)";
-                }else{
-                    $MysqlWhere .= " and DebtID<0";
                 }
             }
             if(!empty($City) && $City!='all'){
-                $CityWhere = " and Type=1 and City IN ($City)";
+                $AreaInfo = $MemberAreaModule->GetInfoByKeyID($City);
+                if ($AreaInfo['Level']==1){
+                    $CityWhere = " and Province = $City";
+                }elseif($AreaInfo['Level']==2){
+                    $CityWhere = " and City = $City";
+                }elseif($AreaInfo['Level']==3){
+                    $CityWhere = " and Area = $City";
+                }
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($CityWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
@@ -125,8 +136,6 @@ class Ajax
                     }
                     $data=implode(',',array_unique($data));
                     $MysqlWhere .= " and DebtID IN ($data)";
-                }else{
-                    $MysqlWhere .= " and DebtID<0";
                 }
             }
             $DebtAmount = $_POST['col_money'];//债务金额
@@ -142,8 +151,8 @@ class Ajax
                 }elseif ($DebtAmount=='5'){
                     $MysqlWhere .= ' and DebtAmount >= 1000000 ';
                 }
-                $MysqlWhere =preg_replace('/or/','',$MysqlWhere,1);
             }
+
             $Overduetime = $_POST['col_day'];//逾期时间
             if($Overduetime!='all'){
                 if ($Overduetime=='1'){
@@ -159,8 +168,8 @@ class Ajax
                 }
             }
             $Page = trim($_POST['Page']);
-            if ($Keyword != 'all') {
-                $KeywordWhere = ' and Type=1 and (Name like \'%'.$Keyword.'%\' or Card =\'' .$Keyword.'\')';
+            if ($Keyword != '') {
+                $KeywordWhere = ' and (Name like \'%'.$Keyword.'%\' or Card =\'' .$Keyword.'\')';
                 $KeywordInfo = $MemberDebtorsInfoModule->GetInfoByWhere($KeywordWhere,true);
                 if ($KeywordInfo){
                     foreach ($KeywordInfo  as $key=>$value){
@@ -168,10 +177,7 @@ class Ajax
                     }
                     $KeywordData=implode(',',array_unique($KeywordData));
                     $MysqlWhere .= " and DebtID IN ($KeywordData)";
-                }else{
-                    $MysqlWhere .= " and DebtID<0";
                 }
-
             }
             return $MysqlWhere;
         }
@@ -236,7 +242,6 @@ class Ajax
         $Data['Money'] = trim($_POST['percent_money']);
         $Data['AdvantageInfo'] =trim($_POST['detail_info']);
         $Data['UserID'] = $_SESSION ['UserID'];//委托人用户ID
-        $Data['Type'] = 1;//(1-普通债务申请）
         $Data['DelegateTime'] = time();//委托时间
         $Data['Status'] = 1;//债权当前状态
         if ( $Data['Money']==='' && $Data['AdvantageInfo']===''){
@@ -247,7 +252,6 @@ class Ajax
             echo json_encode($json_result);
             exit;
         }
-        $_POST['Type']=1;//1-普通债务申请
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and UserID = '.$Data['UserID']);
         if (!$ClaimsDisposal){
@@ -288,9 +292,9 @@ class Ajax
             );
             EchoResult($json_result);exit;
         }
-        $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
-        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
-        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberFindCreditorsModule = new MemberFindCreditorsModule();
+        $MemberFindDebtorsModule = new MemberFindDebtorsModule();
         $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
         $Data['UserID'] = $_SESSION ['UserID'];
         $Data['AddTime'] = time();
@@ -367,14 +371,13 @@ class Ajax
         //开启事务
         global $DB;
         $DB->query("BEGIN");//开始事务定义
-        $DebtID = $MemberFindDisposalDebtModule->InsertInfo($Data);
+        $DebtID = $MemberFindDebtModule->InsertInfo($Data);
         if (!$DebtID){
             $DB->query("ROLLBACK");//判断当执行失败时回滚
             $result_json = array('ResultCode'=>102,'Message'=>'录入债务基本信息失败');
         }else{
             $DB->query("COMMIT");//执行事务
             //债权人信息
-            $Datb['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
             $Datb['AddTime'] = $Data['AddTime'];
             $Datb['DebtID'] = $DebtID;
             foreach ($debtOwnerInfos as $key => $value) {
@@ -386,7 +389,7 @@ class Ajax
                 $Datb['City'] = trim($value['city']);
                 $Datb['Area'] = trim($value['area']);
                 $Datb['Address'] = trim($value['area']);
-                $InsertCreditorsInfo = $MemberCreditorsInfoModule->InsertInfo($Datb);
+                $InsertCreditorsInfo = $MemberFindCreditorsModule->InsertInfo($Datb);
                 if(!$InsertCreditorsInfo){
                     $DB->query("ROLLBACK");//判断当执行失败时回滚
                     $result_json = array('ResultCode'=>102,'Message'=>'录入债权人信息失败');
@@ -396,7 +399,6 @@ class Ajax
             if ($InsertCreditorsInfo){
                 $DB->query("COMMIT");//执行事务
                 //债务人信息
-                $Datc['Type'] = 2;//类型(1:普通发布债务；2:寻找处置方债务；)
                 $Datc['AddTime'] = $Data['AddTime'];
                 $Datc['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key=>$value){
@@ -408,7 +410,7 @@ class Ajax
                     $Datc['City'] = trim($value['city']);
                     $Datc['Area'] = trim($value['area']);
                     $Datc['Address'] = trim($value['area']);
-                    $InsertDebtorsInfo = $MemberDebtorsInfoModule->InsertInfo($Datc);
+                    $InsertDebtorsInfo = $MemberFindDebtorsModule->InsertInfo($Datc);
                     if(!$InsertDebtorsInfo){
                         $DB->query("ROLLBACK");//判断当执行失败时回滚
                         $result_json = array('ResultCode'=>103,'Message'=>'录入债务人信息失败');
@@ -417,7 +419,8 @@ class Ajax
                 }
                 if ($InsertDebtorsInfo){
                     $DB->query("COMMIT");//执行事务
-                    $MemberSetCommissionModule = new MemberSetCommissionModule();
+                    $MemberSetCollectionModule = new MemberSetCollectionModule();
+                    $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
                     $MemberUserInfoModule = new MemberUserInfoModule();
                     $MemberUserModule = new MemberUserModule();
                     //1律师团队，2催收公司
@@ -431,7 +434,7 @@ class Ajax
                     }
                     $Area=implode(',',array_unique($Area));
                     $MysqlWhere = " and AreaService IN ($Area)";//匹配条件待完善
-                    $Commission = $MemberSetCommissionModule->GetInfoByWhere($MysqlWhere,true);
+                    $Commission = $MemberSetCollectionModule->GetInfoByWhere($MysqlWhere,true);
                     if (!$Commission){
                         $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                         EchoResult($result_json);exit;
@@ -493,7 +496,6 @@ class Ajax
         $Rscount = $MemberClaimsDisposalModule->GetListsNum(' and Type =2 and DebtID = '.$Data['DebtID']);
         if ($Rscount ['Num']>='3'){
             $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，您最多只可申请三个处置方');
-
         }else{
             $InsertDisposal = $MemberClaimsDisposalModule->InsertInfo($Data);
             if (!$InsertDisposal){
@@ -604,7 +606,6 @@ class Ajax
             if ($DebtID){
                 $DB->query("COMMIT");//执行事务
                 //债权人信息
-                $Datb['Type'] = 1;//类型(1:普通发布债务)
                 $Datb['AddTime'] = $Data['AddTime'];
                 $Datb['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key => $value) {
@@ -627,7 +628,6 @@ class Ajax
                 if ($InsertCreditorsInfo) {
                     $DB->query("COMMIT");//执行事务
                     //债务人信息
-                    $Datc['Type']  =1;//类型(1:普通发布债务)
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
                     foreach ($debtOwnerInfos as $key => $value) {
