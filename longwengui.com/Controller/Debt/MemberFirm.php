@@ -83,8 +83,7 @@ class MemberFirm
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
 
         //分页Start
-        $MysqlWhere ='';
-
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
         $Status = $_GET['S']? intval($_GET['S']) : 0;
         if ($Status==1 || $Status==0){
             $MysqlWhere .=' and `Status` = 1';//正在接单的债务
@@ -130,13 +129,13 @@ class MemberFirm
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
-
         include template('MemberFirmApplyDebtOrder');
     }
     /**
      * @desc 催收公司债权接单
      */
     public function CreditOrder(){
+        $this->IsLogin();
         $Nav='creditorder';
         $Title = '会员中心-债权接单';
         $MemberUserModule = new MemberUserModule();
@@ -150,6 +149,7 @@ class MemberFirm
      * @desc 催收公司债权接单的要求方案列表
      */
     public function DemandList(){
+        $this->IsLogin();
         $Nav='creditorder';
         $Title = '会员中心-要求方案';
         $MemberUserModule = new MemberUserModule();

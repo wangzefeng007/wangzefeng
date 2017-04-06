@@ -235,7 +235,7 @@ class Ajax
         $Data['DebtID'] = trim($_POST['DebtId']);
         $Data['Money'] = trim($_POST['percent_money']);
         $Data['AdvantageInfo'] =trim($_POST['detail_info']);
-        $Data['MandatorID'] = $_SESSION ['UserID'];//委托人用户ID
+        $Data['UserID'] = $_SESSION ['UserID'];//委托人用户ID
         $Data['Type'] = 1;//(1-普通债务申请）
         $Data['DelegateTime'] = time();//委托时间
         $Data['Status'] = 1;//债权当前状态
@@ -249,7 +249,7 @@ class Ajax
         }
         $_POST['Type']=1;//1-普通债务申请
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
-        $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and MandatorID = '.$Data['MandatorID']);
+        $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and UserID = '.$Data['UserID']);
         if (!$ClaimsDisposal){
             $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
         }else{
@@ -484,7 +484,7 @@ class Ajax
             );
             EchoResult($json_result);exit;
         }
-        $Data['MandatorID'] = $_POST['uid'];
+        $Data['UserID'] = $_POST['uid'];
         $Data['DebtID'] = $_POST['debtId'];
         $Data['Type'] = 2;//类型：2-寻找处置方接单申请
         $Data['Money'] = $_POST['money'];

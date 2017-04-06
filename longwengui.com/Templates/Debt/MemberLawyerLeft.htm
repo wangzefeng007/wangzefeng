@@ -1,10 +1,10 @@
 <div class="menu-bar">
     <img src="{$UserInfo['Avatar']}" class="u-img" alt="">
     <div class="nick-name">
-        {{$UserInfo[NickName]}
+        {$UserInfo[NickName]}
     </div>
     <button type="button" name="button">{if $UserInfo['IdentityState']==3}已认证{else}未认证{/if}</button>
-    <div class="menu-level-1  menu-level-1-act" onclick="go('/memberlawyer/')">
+    <div class="menu-level-1  {if $Nav=='memberlawyer'}menu-level-1-act{/if}" onclick="go('/memberlawyer/')">
         <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
         事务所信息
     </div>
@@ -14,12 +14,12 @@
         <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
     </div>
     <div class="menu-level-2-wrap" data-for="menu_1">
-      <div class="menu-level-2 {if $Nav=='applydebtorder'}menu-level-2-act{/if}" onclick="go('/memberfirm/applydebtorder/')">申请的债权</div>
+      <div class="menu-level-2 {if $Nav=='applydebtorder'}menu-level-2-act{/if}" onclick="go('/memberlawyer/applydebtorder/')">申请的债权</div>
       <div class="menu-level-2 {if $Nav=='creditorder'}menu-level-2-act{/if}" onclick="go('/memberlawyer/creditorder/')">债权接单</div>
       <div class="menu-level-2">浏览过的债权</div>
-      <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
+      <div class="menu-level-2" onclick="go('/reword/publish/')">发布悬赏</div>
     </div>
-    <div class="menu-level-1"  onclick="go('/member/systemmessage/')">
+    <div class="menu-level-1  {if $Nav=='systemmessage'}menu-level-1-act{/if}"  onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息
     </div>

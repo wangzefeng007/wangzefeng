@@ -104,8 +104,8 @@ class DisposalMatch
         //处置方会员信息
         $Disposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and Type =2 and DebtID = '.$DebtID,true);
         foreach ($Disposal as $key=>$value){
-            $Disposal[$key]['UserID'] = $value['MandatorID'];
-            $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $value['MandatorID']);
+            $Disposal[$key]['UserID'] = $value['UserID'];
+            $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $value['UserID']);
             $Disposal[$key]['CompanyName'] = $UserInfo['CompanyName'];
         }
         include template('DisposalMatchEdit');

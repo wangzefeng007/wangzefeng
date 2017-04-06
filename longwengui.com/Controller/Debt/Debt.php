@@ -33,7 +33,7 @@ class Debt
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and `Status` < 8 order by Status asc';
+        $MysqlWhere = ' and `Status` != 8 order by Status asc';
         //关键字
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
@@ -51,7 +51,7 @@ class Debt
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
-            foreach (  $Data['Data'] as $key=>$value){
+            foreach ($Data['Data'] as $key=>$value){
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
@@ -72,7 +72,6 @@ class Debt
         include template('DebtLists');
     }
     public function DebtDetails(){
-
         $Nav='debt';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();

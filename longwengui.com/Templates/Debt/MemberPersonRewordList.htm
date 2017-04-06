@@ -1,0 +1,126 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>我的债权</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberPersonLeft}
+            <div class="tab-hd">
+                <div class="tb {if $Nav=='bondlist'}act{/if}" onclick="go('/memberperson/bondlist/')">
+                    发布的债务
+                </div>
+                <div class="tb" hidden>
+                    转让的债务
+                </div>
+                <div class="tb {if $Nav=='rewordlist'}act{/if}" onclick="go('/memberperson/rewordlist/')">
+                    悬赏的债务
+                </div>
+                <div class="tb {if $Nav=='findteam'}act{/if}" onclick="go('/memberperson/findteam/')">
+                    向处置方申请的债务
+                </div>
+            </div>
+            <div class="info-cont">
+                <div class="cont-hd">
+                    <span>已发布悬赏列表：</span>
+                </div>
+                <dl class="cont-select">
+                    <dt>悬赏状态：</dt>
+                    <dd class="cont-select-act">全部</dd>
+                    <dd>未完成</dd>
+                    <dd>已完成</dd>
+                </dl>
+                <div class="clue">
+                    <div class="clue-list">
+                        <div class="list-details">
+                            <div class="details-pt">
+                                <div class="details-pt-big"><img></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                            </div>
+                            <div class="details-txt">
+                                <div class="details-txt-cont">债务人名字：刘备<span>（找财产）</span></div>
+                                <div class="details-txt-cont">债务人身份证：330350175205142541</div>
+                                <div class="details-txt-cont">债务人地区：福建省-厦门市-思明区</div>
+                                <div class="details-txt-cont">详细地址：软件园二期观日落30号5楼5205室一区  </div>
+                                <div class="details-txt-cont">债务人电话： 13542548726</div>
+                                <div class="details-txt-cont-last">债权人联系方式：13520462135<button type="button">完成</button></div>
+                            </div>
+                        </div>
+                        <div class="list-details">
+                            <div class="details-pt">
+                                <div class="details-pt-big"><img></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                            </div>
+                            <div class="details-txt">
+                                <div class="details-txt-cont">债务人名字：刘备<span>（找人）</span></div>
+                                <div class="details-txt-cont">债务人身份证：330350175205142541</div>
+                                <div class="details-txt-cont">债务人地区：福建省-厦门市-思明区</div>
+                                <div class="details-txt-cont">详细地址：软件园二期观日落30号5楼5205室一区  </div>
+                                <div class="details-txt-cont">债务人电话： 13542548726</div>
+                                <div class="details-txt-cont-last">债权人联系方式：13520462135<button type="button">完成</button></div>
+                            </div>
+                        </div>
+                        <div class="list-details">
+                            <div class="details-pt">
+                                <div class="details-pt-big"><img></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-small"><img src="" alt="" /></div>
+                            </div>
+                            <div class="details-txt">
+                                <div class="details-txt-cont">债务人名字：刘备<span>（找财产）</span></div>
+                                <div class="details-txt-cont">债务人身份证：330350175205142541</div>
+                                <div class="details-txt-cont">债务人地区：福建省-厦门市-思明区</div>
+                                <div class="details-txt-cont">详细地址：软件园二期观日落30号5楼5205室一区  </div>
+                                <div class="details-txt-cont">债务人电话： 13542548726</div>
+                                <div class="details-txt-cont-last">债权人联系方式：13520462135</div>
+                            </div>
+                            <!--已完成的悬赏，加水印-->
+                            <img class="details-over" src="/Uploads/Debt/imgs/over.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="fr-win">
+        <div class="pub-btn">
+            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+            <br>
+            发布
+        </div>
+        <div class="pub-btn-list">
+            <div class="lin" onclick="selDebtWayPop()">
+                发布债务
+            </div>
+            <div class="lin">
+                寻找处置方
+            </div>
+            <div class="lin">
+                资产转让
+            </div>
+            <div class="lin">
+                发布悬赏
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{template Footer}
+<!-- <script src='{echo JsURL}/debt/personalCenterInfo.js'></script> -->
