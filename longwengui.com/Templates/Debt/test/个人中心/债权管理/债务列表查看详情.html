@@ -6,7 +6,8 @@
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
             <span>当前位置 : 债权管理 > 我的债权 > 催收的债务 > <span class="cur">查看详情</span></span>
         </div>
-        <div class="info-wrap">
+        <!-- 债务id: data-id  -->
+        <div class="info-wrap" data-id="1212">
             <div class="hd">
                 <!-- <button type="button" name="button">关注</button> -->
                 债务编号：{$DebtInfo[DebtNum]}--处置方偏向：{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{/if}
@@ -147,9 +148,6 @@
             </div>
             <div class="mb-100">
               <div class="apply-wrap">
-                <div class="no">
-                  1
-                </div>
                 <div class="cont-wrap">
                   <div class="l">
                     处置方名称： 厦门资产解决有限公司
@@ -162,14 +160,11 @@
                   </div>
                 </div>
                 <div class="opt-btn">
-                  <button type="button" name="agree">同意</button>
-                  <button type="button" name="reject">拒绝</button>
+                  <button type="button" onclick="agreeApply('厦门资产解决有限公司', 1212)" name="agree">同意</button>
+                  <button type="button" onclick="rejectApply('厦门资产解决有限公司', 1212)" name="reject">拒绝</button>
                 </div>
               </div>
               <div class="apply-wrap">
-                <div class="no">
-                  2
-                </div>
                 <div class="cont-wrap">
                   <div class="l">
                     处置方名称： 厦门资产解决有限公司
@@ -182,8 +177,8 @@
                   </div>
                 </div>
                 <div class="opt-btn">
-                  <button type="button" name="agree">同意</button>
-                  <button type="button" name="reject">拒绝</button>
+                  <button type="button" onclick="agreeApply('厦门资产解决有限公司', 1212)" name="agree">同意</button>
+                  <button type="button" onclick="rejectApply('厦门资产解决有限公司', 1212)" name="reject">拒绝</button>
                 </div>
               </div>
             </div>
