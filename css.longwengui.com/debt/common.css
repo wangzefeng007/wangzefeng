@@ -741,19 +741,19 @@ a{
   line-height: 56px;
   background-color: #fff;
 }
-.copy-right .wrap {
+.copy-right .wraper {
   width: 460px;
   margin: 0 auto;
   color: #999;
   font-size: 12px;
 }
-.copy-right .wrap span:nth-child(1) {
+.copy-right .wraper span:nth-child(1) {
   margin-right: 46px;
 }
-.copy-right .wrap span:nth-child(2) {
+.copy-right .wraper span:nth-child(2) {
   margin-right: 36px;
 }
-.copy-right .wrap img {
+.copy-right .wraper img {
   vertical-align: middle;
   margin-top: -4px;
 }
