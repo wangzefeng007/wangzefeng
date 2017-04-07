@@ -33,16 +33,9 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/area_icon.png" alt="">
           <span>设置地区</span>
-          <div class="opt" onclick="addAreaSet()">
-            <img src="/Uploads/Debt/imgs/add_b.png" alt="">
-            添加
-          </div>
         </div>
         <div class="c" id="set_area">
           <div class="blo">
-            <div class="to-del" onclick="removeParentDom(this, 'blo')">
-              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
             <div class="line">
               <div class="left">
                 <div class="info">
@@ -84,16 +77,9 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/rate_icon.png" alt="">
           <span>设置佣金比例</span>
-          <div class="opt" onclick="addFeeRateSet()">
-            <img src="/Uploads/Debt/imgs/add_b.png" alt="">
-            添加
-          </div>
         </div>
         <div class="c" id="set_fee_rate">
           <div class="blo">
-            <div class="to-del" onclick="removeParentDom(this, 'blo')">
-              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
             <div class="line">
               <div class="left">
                 <div class="info">
@@ -184,73 +170,5 @@
     </div>
   </div>
 </div>
-<script type="text/x-jquery-tmpl" id="set_fee_rate_tmpl">
-  <div class="blo">
-    <div class="to-del" onclick="removeParentDom(this, 'blo')">
-      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-    </div>
-    <div class="line">
-      <div class="left">
-        <div class="info">
-          债务金额:
-        </div>
-        <div class="det">
-          <input type="text" name="from" onblur="validateForm('money', this)" value="" placeholder="*0.00">元 -
-          <input type="text" name="to" onblur="validateForm('money', this)" value="" placeholder="*3000.00">元
-        </div>
-      </div>
-      <div class="right">
-        <div class="info">
-          佣金比例:
-        </div>
-        <div class="det">
-          <input type="text" name="rate" onblur="validateForm('rate', this)" value="" placeholder="*百分比">% 人民币
-        </div>
-      </div>
-    </div>
-  </div>
-</script>
-<script type="text/x-jquery-tmpl" id="set_area_tmpl">
-  <div class="blo">
-    <div class="to-del" onclick="removeParentDom(this, 'blo')">
-      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-    </div>
-    <div class="line">
-      <div class="left">
-        <div class="info">
-          匹配区域:
-        </div>
-        <div class="det">
-          <div class="p-dropdown">
-            <label type="checkbox">
-              <span>*省份</span>
-              <i></i>
-              <input type="checkbox" name="dd_province" value="">
-              <ul></ul>
-            </label>
-          </div>
-          <div class="c-dropdown">
-            <label type="checkbox">
-              <span>城市</span>
-              <i></i>
-              <input type="checkbox" name="dd_city" value="">
-              <ul></ul>
-            </label>
-          </div>
-          <div class="a-dropdown">
-            <label type="checkbox">
-              <span>区县/市</span>
-              <i></i>
-              <input type="checkbox" name="dd_area" value="">
-              <ul></ul>
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="right">
-      </div>
-    </div>
-  </div>
-</script>
 {template Footer}
 <script src='{echo JsURL}/debt/setDebtRate.js'></script>
