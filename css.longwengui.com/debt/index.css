@@ -66,15 +66,13 @@
 }
 .index .block .wrap .func-1 .left p {
   margin: 12px 0;
+  color: #999999;
+  font-size: 16px;
 }
-.index .block .wrap .func-1 .left p:nth-child(1) {
+.index .block .wrap .func-1 .left .p-1 {
   color: #666666;
   font-size: 36px;
   padding-bottom: 30px;
-}
-.index .block .wrap .func-1 .left p:nth-child(n+2) {
-  color: #999999;
-  font-size: 16px;
 }
 .index .block .wrap .func-1 .left .btn-more {
   padding-top: 26px;
@@ -115,15 +113,13 @@
 }
 .index .block .wrap .func-2 .right p {
   margin: 12px 0;
+  color: #999999;
+  font-size: 16px;
 }
-.index .block .wrap .func-2 .right p:nth-child(1) {
+.index .block .wrap .func-2 .right .p-1 {
   color: #666666;
   font-size: 36px;
   padding-bottom: 30px;
-}
-.index .block .wrap .func-2 .right p:nth-child(n+2) {
-  color: #999999;
-  font-size: 16px;
 }
 .index .block .wrap .func-2 .right .btn-more {
   padding-top: 26px;

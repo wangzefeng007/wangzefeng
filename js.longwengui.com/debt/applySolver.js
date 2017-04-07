@@ -2,6 +2,7 @@ $(function(){
   var haveBondsMan = 0;
   var haveBondsGood = 0;
   getProvinceData();
+  initIE8Label();
 
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){

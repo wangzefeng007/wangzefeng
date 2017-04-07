@@ -862,6 +862,12 @@ a{
   width: 20px;
   height: 20px;
 }
+.m-radio label i.m-checked {
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -82px -52px;
+  width: 20px;
+  height: 20px;
+}
 .m-checkbox {
   vertical-align: middle;
   display: inline-block;
@@ -883,6 +889,12 @@ a{
   display: none;
 }
 .m-checkbox label input[type="checkbox"]:checked + i {
+  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-position: -20px -109px;
+  width: 16px;
+  height: 16px;
+}
+.m-checkbox label i.m-checked {
   background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
   background-position: -20px -109px;
   width: 16px;

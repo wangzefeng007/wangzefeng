@@ -267,6 +267,7 @@ function addDom(targetID, tempID, callback){
     $('#' + targetID).find('input').each(function(){
       $(this).placeholder();
     });
+    fixIE8Label();
   }
   if(typeof callback == "function"){
     callback();
@@ -281,6 +282,7 @@ function removeParentDom(self, className){
 
 //获得省级元素
 function getProvinceData(){
+  fixIE8Label();
   $.ajax({
     type: 'get',
     dataType: 'json',
@@ -295,6 +297,7 @@ function getProvinceData(){
                   +  "</li>";
         }
         _t.html(_html);
+        fixIE8Label();
         _t.children('li').click(function(){
           resetAreaDropdown($(this), 'p-dropdown');
           var _id = $(this).attr("data-id");
@@ -330,6 +333,7 @@ function getCityData(_pid, _sel){
         }
         var _t = _sel.parents('.p-dropdown').siblings('.c-dropdown').find('ul');
         _t.html(_html);
+        fixIE8Label();
         _t.children('li').click(function(){
           resetAreaDropdown($(this), 'c-dropdown');
           var _id = $(this).attr("data-id");
@@ -366,6 +370,7 @@ function getAreaData(_pid, _sel){
         }
         var _t = _sel.parents('.c-dropdown').siblings('.a-dropdown').find('ul');
         _t.html(_html);
+        fixIE8Label();
         _t.children('li').click(function(){
           var _id = $(this).attr("data-id");
           var _name = $(this).attr("data-name");
@@ -605,11 +610,55 @@ function codeTimedown(tar){
 //适配ie8 label定制单选、多选、下拉、文件上传框无法使用
 function fixIE8Label(){
   if(isIE8()){
-    $('label').children('input').click(function(e){
-      e.stopPropagation();
+    $('label').each(function(){
+      if(!$(this).attr('data-add')){
+        $(this).attr('data-add', '1'); //添加事件添加后的标记
+        $(this).children('input').click(function(e){
+          e.stopPropagation();  //阻止事件冒泡
+        });
+        $(this).click(function(){
+          $(this).children('input').click(); //模拟label点击事件
+          if($(this).children('input')[0].checked){
+            //如果是下拉框
+            if($(this).children('input').siblings('ul')){
+              $(this).children('input').siblings('ul').show();
+            }
+          }else{
+            //如果是下拉框
+            if($(this).children('input').siblings('ul')){
+              $(this).children('input').siblings('ul').hide();
+            }
+          }
+          //如果是单多选框
+          if($(this).parents('.m-checkbox') || $(this).parents('.m-radio')){
+            var name = $(this).children('input').attr('name');
+            $('input[name="' + name + '"]').each(function(){
+              if($(this)[0].checked){
+                $(this).siblings('i').addClass('m-checked');
+              }else{
+                $(this).siblings('i').removeClass('m-checked');
+              }
+            });
+          }
+        });
+      }else{
+        return;
+      }
     });
-    $('label').click(function(){
-      $(this).children('input').click();
+  }
+}
+//适配ie8 label 单选、多选状态初始化
+function initIE8Label(){
+  if(isIE8()){
+    $('.m-checkbox').each(function(){
+      if($(this).find('input')[0].checked){
+        $(this).find('i').addClass('m-checked');
+      }
+    });
+    $('.m-radio').each(function(){
+      if($(this).find('input')[0].checked){
+        $(this).find('i').addClass('m-checked');
+      }
     });
   }
 }
