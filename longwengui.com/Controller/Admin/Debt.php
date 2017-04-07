@@ -56,7 +56,7 @@ class Debt {
             foreach ($Data['Data']as $key => $value) {
                 $Data['Data'][$key]['Status'] = $StatusInfo[$value['Status']];
                 $Data['Data'][$key]['CollectionType'] = $CollectionType[$value['CollectionType']];
-                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$value['DebtID']);
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
@@ -110,8 +110,8 @@ class Debt {
         }
         $DebtID = intval($_GET ['DebtID']);
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($DebtID);
-        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$DebtID);
-        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere("  and Type =1 and DebtID = ".$DebtID);
+        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$DebtID);
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(" and DebtID = ".$DebtID);
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
