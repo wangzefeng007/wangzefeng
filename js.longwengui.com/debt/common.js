@@ -1232,12 +1232,12 @@ function add_menu_event(tar){
     var c = tar.children('.i-right');
     if(tar.attr('data-open') == 0){
       //表示此时是闭合状态
-      tar.children('.i-right').addClass('img-sel');
+      tar.children('.i-right').attr('src', '/Uploads/Debt/imgs/tri_arrow_up.png');
       tar.next().show();
       tar.attr('data-open', 1);
     }else{
       //表示此时是展开状态
-      tar.children('.i-right').removeClass('img-sel');
+      tar.children('.i-right').attr('src', '/Uploads/Debt/imgs/arrow_tri_down.png');
       tar.next().hide();
       tar.attr('data-open', 0);
     }
