@@ -1,0 +1,141 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/setDebtRateForLawer.css">
+<div class="set-debt">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a>债权管理</a> > <span class="cur">债权接单</span></span>
+        </div>
+        <div class="form-wrap">
+            <div class="box">
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/name_icon.png" alt="">
+                    <span>设置方案名称</span>
+                </div>
+                <div class="c">
+                    <div class="blo">
+                        <div class="line">
+                            <div class="left">
+                                <div class="info">
+                                    方案名称:
+                                </div>
+                                <div class="det">
+                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="" placeholder="请输入方案名称(*必填)">
+                                </div>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/area_icon.png" alt="">
+                    <span>设置地区</span>
+                </div>
+                <div class="c" id="set_area">
+                    <div class="blo">
+                        <div class="line">
+                            <div class="left">
+                                <div class="info">
+                                    匹配区域:
+                                </div>
+                                <div class="det">
+                                    <div class="p-dropdown">
+                                        <label type="checkbox">
+                                            <span>*省份</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_province" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="c-dropdown">
+                                        <label type="checkbox">
+                                            <span>城市</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_city" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="a-dropdown">
+                                        <label type="checkbox">
+                                            <span>区县/市</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_area" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/rate_icon.png" alt="">
+                    <span>设置佣金比例</span>
+                </div>
+                <div class="c" id="set_fee_rate">
+                    <div class="blo">
+                        <div class="line">
+                            <div class="left">
+                                <div class="info">
+                                    债务金额:
+                                </div>
+                                <div class="det">
+                                    <input type="text" name="from" onblur="validateForm('money', this)" value="" placeholder="*0.00">元 -
+                                    <input type="text" name="to" onblur="validateForm('money', this)" value="" placeholder="*3000.00">元
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="fir mb-10">
+                                    <div class="lin">
+                                        <div class="lef">
+                                            <div class="m-checkbox">
+                                                <label  type="checkbox">
+                                                    <input type="checkbox" name="is_fee" checked value="">
+                                                    <i></i>
+                                                    费用:
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="fee" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
+                                    </div>
+                                </div>
+                                <!-- <div class="fir">
+                                  <div class="lin">
+                                    <div class="lef">
+                                      <div class="m-checkbox">
+                                        <label  type="checkbox">
+                                          <input type="checkbox" name="is_pre_fee" checked value="">
+                                          <i></i>
+                                          前期费用:
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <input type="text" name="pre_fee" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
+                                  </div>
+                                  <div class="lin ml-46">
+                                    <div class="lef">
+                                      回款后佣金:
+                                    </div>
+                                    <input type="text" name="pre_fee_deposit" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
+                                  </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comfirm-btns">
+                    <button type="button" id="save" name="button">保存</button>
+                    <button type="button" id="reset" onclick="javascript:window.location.reload();" name="button">重置</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {template Footer}
+    <script src='{echo JsURL}/debt/setDebtRateForLawer.js'></script>

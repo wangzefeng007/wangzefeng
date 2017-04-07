@@ -9,10 +9,8 @@
         <div class="menu-cont-wrap">
             {template MemberLawyerLeft}
                 <div class="tab-hd">
-                    <div class="tb act">
-                        债权接单
-                    </div>
-                    <div class="tb">处置方要求方案</div>
+                    <div class="tb {if $Nav=='creditorder'}act{/if}"  onclick="go('/memberlawyer/creditorder/')">债权接单</div>
+                    <div class="tb {if $Nav=='demandlist'}act{/if}"  onclick="go('/memberlawyer/demandlist/')">处置方要求方案</div>
                 </div>
                 <div class="info-cont">
                     <div class="cont-hd">
@@ -156,6 +154,7 @@
         </div>
     </div>
 </div>
+{if $count==1}
 <div class="pop-to-hint">
     <div class="pop">
         <div class="tl">
@@ -171,4 +170,5 @@
         </div>
     </div>
 </div>
+{/if}
 {template Footer}

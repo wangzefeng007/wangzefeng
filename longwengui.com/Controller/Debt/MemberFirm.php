@@ -180,6 +180,10 @@ class MemberFirm
         }
         include template('MemberFirmDemandList');
     }
+
+    /**
+     * @desc 催收公司要求方案(方案详情)
+     */
     public function DemandDetails(){
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCollectionModule = new MemberSetCollectionModule();
