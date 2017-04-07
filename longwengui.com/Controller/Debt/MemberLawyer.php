@@ -148,7 +148,7 @@ class MemberLawyer
      */
     public function DemandList(){
         $this->IsLogin();
-        $Nav='creditorder';
+        $Nav='demandlist';
         $Title = '会员中心-要求方案';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -182,6 +182,7 @@ class MemberLawyer
      * @desc 律师要求方案(方案详情)
      */
     public function DemandDetails(){
+        $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
         $ID = intval($_GET['ID']);
@@ -201,10 +202,11 @@ class MemberLawyer
      * @desc 律师要求方案(新增方案)
      */
     public function SetDemand(){
+        $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
         $ID = intval($_GET['ID']);
-        $Data= $MemberSetCollectionModule->GetInfoByKeyID($ID);
+        $Data= $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
         include template('MemberLawyerSetDemand');
     }
 }
