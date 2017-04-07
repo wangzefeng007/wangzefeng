@@ -18,7 +18,7 @@ class DisposalMatch
         $MemberFindDebtorsModule = new MemberFindDebtorsModule();
         $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberFindDebtModule->NStatus;
-        $SqlWhere = ' order by AddTime desc';
+        $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
         $keyword = trim($_GET['keyword']);
@@ -42,6 +42,7 @@ class DisposalMatch
         $PageSize = 10;
         $Rscount = $MemberFindDebtModule->GetListsNum($SqlWhere);
         if ($Rscount['Num']) {
+            $SqlWhere = ' order by AddTime desc';
             $Data = array();
             $Data['RecordCount'] = $Rscount['Num'];
             $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
