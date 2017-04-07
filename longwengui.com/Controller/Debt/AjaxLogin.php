@@ -452,16 +452,6 @@ class AjaxLogin
             exit;
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        if (count($AjaxData['fee_rate'])==2){
-            if ($AjaxData['fee_rate'][1]['from'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['from'] < $AjaxData['fee_rate'][0]['to']){
-                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
-                EchoResult($result_json);
-            }
-            if ($AjaxData['fee_rate'][1]['to'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['to'] < $AjaxData['fee_rate'][0]['to']){
-                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
-                EchoResult($result_json);
-            }
-        }
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['CaseName']= $AjaxData['case_name'];
         $Data['EarlyCost'] = $AjaxData['fee'];//有无前期费用
@@ -502,21 +492,15 @@ class AjaxLogin
             exit;
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        if (count($AjaxData['fee_rate'])==2){
-            if ($AjaxData['fee_rate'][1]['from'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['from'] < $AjaxData['fee_rate'][0]['to']){
-                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
-                EchoResult($result_json);
-            }
-            if ($AjaxData['fee_rate'][1]['to'] >$AjaxData['fee_rate'][0]['from'] && $AjaxData['fee_rate'][1]['to'] < $AjaxData['fee_rate'][0]['to']){
-                $result_json = array('ResultCode' => 102, 'Message' => '佣金范围不能重叠！');
-                EchoResult($result_json);
-            }
-        }
-        $Data['UserID'] = $_SESSION['UserID'];
-        $Data['CaseName']= $AjaxData['case_name'];
-        $Data['Commission'] =json_encode($AjaxData['fee_rate']);//佣金范围和金额
-        $Data['Area'] = json_encode($AjaxData['area']) ;//服务地区
 
+        $Data['UserID'] = $_SESSION['UserID'];
+        $Data['CaseName']= $AjaxData['caseName'];
+        $Data['FromMoney'] =($AjaxData['feeRate'][0]['from']);
+        $Data['ToMoney'] =($AjaxData['feeRate'][0]['to']);
+        $Data['Money'] =($AjaxData['feeRate'][0]['fee']);
+        $Data['Province'] = ($AjaxData['area'][0]['province']);
+        $Data['City'] = ($AjaxData['area'][0]['city']);
+        $Data['Area'] = ($AjaxData['area'][0]['area']);
         $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
         if (!empty($_POST['ID'])){
             $ID = intval($_POST['ID']);
