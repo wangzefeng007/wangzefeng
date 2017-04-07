@@ -195,7 +195,7 @@ $(
         data: {
             "Intention":"",//律师团队设置佣金方案
             'ID': id,
-            JSON.stringify({
+            "AjaxJSON": JSON.stringify({
               "caseName": case_name,  //方案名称
               "feeRate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; isFee: 1 表示有费用(此时多传fee)，0 表示无费用;
                                       //(二期版本)isPreFee: 1表示有前期费用(此时多传preFee-前期费用 preFeeDeposit-回款后押金)}； 0表示无前期费用
