@@ -14,10 +14,10 @@ class DisposalMatch
      */
     public function DisposalMatchLists()
     {
-        $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
-        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberFindDebtorsModule = new MemberFindDebtorsModule();
         $MemberAreaModule = new MemberAreaModule();
-        $StatusInfo = $MemberFindDisposalDebtModule->NStatus;
+        $StatusInfo = $MemberFindDebtModule->NStatus;
         $SqlWhere = ' order by AddTime desc';
         // 搜索条件
         $PageUrl = '';
@@ -40,7 +40,7 @@ class DisposalMatch
         $Page = intval($_GET['Page']);
         $Page = $Page ? $Page : 1;
         $PageSize = 10;
-        $Rscount = $MemberFindDisposalDebtModule->GetListsNum($SqlWhere);
+        $Rscount = $MemberFindDebtModule->GetListsNum($SqlWhere);
         if ($Rscount['Num']) {
             $Data = array();
             $Data['RecordCount'] = $Rscount['Num'];
@@ -50,9 +50,9 @@ class DisposalMatch
             $Offset = ($Page - 1) * $Data['PageSize'];
             if ($Page > $Data['PageCount'])
                 $page = $Data['PageCount'];
-            $Data['Data'] = $MemberFindDisposalDebtModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
+            $Data['Data'] = $MemberFindDebtModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
-                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere("  and Type =2 and DebtID = ".$value['DebtID']);
+                $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Money'] = $DebtorsInfo['Money'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 $Province = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Province']);
@@ -73,15 +73,15 @@ class DisposalMatch
     public function DisposalMatchEdit()
     {
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberFindDisposalDebtModule = new MemberFindDisposalDebtModule();
-        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
-        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberFindDebtorsModule = new MemberFindDebtorsModule();
+        $MemberFindCreditorsModule = new MemberFindCreditorsModule();
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         //编辑当前状态
         if ($_POST['DebtID']) {
             $Data['Status'] = intval($_POST['Status']);
             $DebtID = intval($_POST['DebtID']);
-            $result = $MemberFindDisposalDebtModule->UpdateInfoByWhere($Data, ' DebtID= '.$DebtID);
+            $result = $MemberFindDebtModule->UpdateInfoByWhere($Data, ' DebtID= '.$DebtID);
             if ($result) {
                 alertandgotopage('操作成功!', '/index.php?Module=DisposalMatch&Action=DisposalMatchEdit&DebtID=' . $DebtID);
             } elseif ($result === 0) {
@@ -91,18 +91,18 @@ class DisposalMatch
             }
         }
         $DebtID = intval($_GET ['DebtID']);
-        $DebtInfo = $MemberFindDisposalDebtModule->GetInfoByKeyID($DebtID);
+        $DebtInfo = $MemberFindDebtModule->GetInfoByKeyID($DebtID);
         //债务人信息
-        $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and Type =2 and DebtID = " . $DebtID,true);
+        $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(" and DebtID = " . $DebtID,true);
         //债权人信息
-        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(" and Type =2 and DebtID = " . $DebtID,true);
+        $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(" and DebtID = " . $DebtID,true);
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
         $DebtInfo['GuaranteeInfo'] = json_decode($DebtInfo['GuaranteeInfo'], true);
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $DebtInfo['UserID']);
         //处置方会员信息
-        $Disposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and Type =2 and DebtID = '.$DebtID,true);
+        $Disposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID = '.$DebtID,true);
         foreach ($Disposal as $key=>$value){
             $Disposal[$key]['UserID'] = $value['UserID'];
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $value['UserID']);
