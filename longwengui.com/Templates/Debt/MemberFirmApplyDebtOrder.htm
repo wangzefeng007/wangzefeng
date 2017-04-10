@@ -18,7 +18,7 @@
                 </div>
                 <dl class="cont-select">
                     <dt>债权状态：</dt>
-                    <dd {if $Status==''}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/')">全部</dd>
+                    <dd {if $Status==0}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/')">全部</dd>
                     <dd {if $Status==1}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=1')">正在接单的债权</dd>
                     <dd {if $Status==2}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=2')">催收中的债权</dd>
                     <dd {if $Status==3}class="cont-select-act"{/if} onclick="go('/memberfirm/applydebtorder/?S=3')">完成的债权</dd>
@@ -49,17 +49,19 @@
                             <td>{$lists['Overduetime']}天</td>
                             <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
                             <td class="color-red">{$NStatus[$lists[Status]]}</td>
-                            <td><a href="javascript:viod(0)" class="details-enter">详情</a></td>
+                            <td><a href="/debt/{$lists[DebtID]}.html" class="details-enter">详情</a></td>
                             {if $lists[Status]==1}
-                              <td class="oper">无</td>
+                              <td>无</td>
                             {elseif $lists[Status]==2}
-                              <td class="oper">完成情况</td>
+                              <td class="oper" onclick="debtCompleteStatus(1212)"><span>完成情况</span></td>
                             {elseif $lists[Status]==3}
-                              <td class="oper">无</td>
+                              <td>无</td>
                             {elseif $lists[Status]==4}
-                              <td class="oper">无</td>
+                              <td>无</td>
                             {elseif $lists[Status]==5}
-                              <td class="oper">无</td>
+                              <td>无</td>
+                            {else}
+                              <td>无</td>
                             {/if}
                         </tr>
                         {/loop}
