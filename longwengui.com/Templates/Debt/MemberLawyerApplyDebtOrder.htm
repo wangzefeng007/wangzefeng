@@ -17,11 +17,11 @@
             <div class="info-cont">
                 <dl class="cont-select">
                     <dt>债权状态：</dt>
-                    <dd class="cont-select-act">全部</dd>
-                    <dd>正在接单的债权</dd>
-                    <dd>催收中的债权</dd>
-                    <dd>完成的债权</dd>
-                    <dd>未完成的债权</dd>
+                    <dd onclick="go('/memberlawyer/applydebtorder/')" {if $Status==0}class="cont-select-act"{/if}>全部</dd>
+                    <dd onclick="go('/memberlawyer/applydebtorder/?S=1')" {if $Status==1}class="cont-select-act"{/if}>正在接单的债权</dd>
+                    <dd onclick="go('/memberlawyer/applydebtorder/?S=2')" {if $Status==2}class="cont-select-act"{/if}>催收中的债权</dd>
+                    <dd onclick="go('/memberlawyer/applydebtorder/?S=3')" {if $Status==3}class="cont-select-act"{/if}>完成的债权</dd>
+                    <dd onclick="go('/memberlawyer/applydebtorder/?S=4')" {if $Status==4}class="cont-select-act"{/if}>未完成的债权</dd>
                 </dl>
                 <div class="debt">
                     <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
