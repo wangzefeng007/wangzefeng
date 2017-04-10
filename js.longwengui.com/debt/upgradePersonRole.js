@@ -213,7 +213,6 @@ $('#person_save').click(function(){
 
 });
 
-//type: 1 保存为催客 2 保存为催收公司 3 保存为律师团队
 function ajax(type, formData){
     $.ajax({
         type: "post",
