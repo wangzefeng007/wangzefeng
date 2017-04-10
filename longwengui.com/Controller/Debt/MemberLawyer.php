@@ -74,7 +74,7 @@ class MemberLawyer
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
-        $NStatus = $MemberDebtInfoModule->NStatus;
+        $NStatus = $MemberClaimsDisposalModule->NStatus;
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
