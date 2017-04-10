@@ -1462,3 +1462,12 @@ a{
 .warn-hint .btn button[name="cancel"]{
   background-color: #b2b2b2;
 }
+.warn-hint textarea[name="otherReason"]{
+  vertical-align: top;
+  width: 410px;
+  font-size: 14px;
+  margin-left: 34px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
