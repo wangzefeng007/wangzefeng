@@ -434,6 +434,9 @@ a{
 .tx-l {
   text-align: left!important;
 }
+.tx-c{
+  text-align: center;
+}
 .ml-160 {
   margin-left: 160px;
 }

@@ -176,3 +176,10 @@
 .tab-company, .tab-lawer{
   display: none;
 }
+.tl-2{
+  text-align: center;
+  color: #35bdfc;
+  line-height: 64px;
+  font-size: 20px;
+  background-color: #f5f5f5;
+}
