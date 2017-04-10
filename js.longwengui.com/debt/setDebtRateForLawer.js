@@ -189,11 +189,11 @@ $(
       }
 
       $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: "../data/setDebt.json",
+        url: "/loginajax.html",
         data: {
-            "Intention":"",//律师团队设置佣金方案
+            "Intention":"SetLawyerDemand",//律师团队设置佣金方案
             'ID': id,
             "AjaxJSON": JSON.stringify({
               "caseName": case_name,  //方案名称
@@ -209,7 +209,9 @@ $(
           if(data.ResultCode == 200){
             showMsg('保存成功');
             //路由跳转
-
+              setTimeout(function() {
+                  window.location = data.Url;
+              }, 10);
           }else{
             showMsg(data.Message);
           }
