@@ -214,7 +214,6 @@ class MemberPerson
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
-        var_dump($Data['Data']);
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
