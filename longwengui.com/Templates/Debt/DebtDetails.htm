@@ -23,7 +23,7 @@
         </div>
         <div class="info-wrap" data-id="{$DebtInfo[DebtID]}">
             <div class="hd">
-                <!-- <button type="button" name="button">关注</button> -->
+                <button type="button" onclick="concernDebt('{$DebtInfo[DebtID]}')" name="concern">关注</button>
                 债务编号：{$DebtInfo[DebtNum]}--处置方偏向：{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{elseif $DebtInfo[CollectionType]==3}自助催收{/if}
             </div>
             <div class="pubman-info">

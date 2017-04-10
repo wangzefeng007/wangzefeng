@@ -28,7 +28,6 @@ $(function(){
     $('#slide-tmpl').tmpl(_imgData).appendTo('.slide-container');
     $('.slide-container').slide({"effect": "fold"});
   }
-
 });
 function ajax(){
   var percent_money = $('#percent_money').val();
@@ -71,4 +70,58 @@ function ajax(){
         closeLoading();
     }
   });
+}
+
+//关注债务
+function concernDebt(debtId){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint" id="concern_debt">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '是否关注该条债务?'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#concern_debt button[name="ok"]').click(function(){
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": 'ConcernDebt',
+          "debtId": debtId
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            window.location.reload();
+          }else if(data.ResultCode == 101){
+            showMsg(data.Message);
+            //路由跳转展示页面
+            toLogin();
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+    $('#concern_debt button[name="cancel"]').click(function(){
+      layer.close(index);
+    });
 }
