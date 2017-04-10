@@ -112,7 +112,7 @@ class MemberFirm
             $Data['Data'] = $MemberClaimsDisposalModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
               $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
-              $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and Type=1 and DebtID = '.$value['DebtID']);
+              $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
                 $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
                 $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];

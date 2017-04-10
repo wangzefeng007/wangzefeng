@@ -650,7 +650,9 @@ class AjaxLogin
             $Data['Status'] = 9;//取消发布
             $Data['UpdateTime'] = time();
             $UpdateDebtInfo = $MemberDebtInfoModule->UpdateInfoByKeyID($Data,$DebtID);
-            $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2,'Status'=>9),' DebtID = '.$DebtID);//更改申请表状态，状态为拒绝。债务状态为取消发布
+            if ($MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID = '.$DebtID)){
+                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2,'Status'=>9),' DebtID = '.$DebtID);//更改申请表状态，状态为拒绝。债务状态为取消发布
+            }
             if ($UpdateDebtInfo){
                 $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
             }else{

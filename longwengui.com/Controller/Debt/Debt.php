@@ -33,7 +33,7 @@ class Debt
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and `Status` != 8 order by Status asc , AddTime desc';
+        $MysqlWhere = ' and `Status` != 8 and `Status` != 9 order by Status asc , AddTime desc';
         //关键字
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
@@ -121,7 +121,11 @@ class Debt
             $Data['Data'] = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$DebtInfo['DebtID'],true);
             foreach ( $Data['Data'] as $key=>$value){
                $ClaimsUserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
-                $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['CompanyName'];
+               if ($ClaimsUserInfo['Identity']==3 ||$ClaimsUserInfo['Identity']==4){
+                   $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['CompanyName'];
+               }elseif ($ClaimsUserInfo['Identity']==2){
+                   $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['RealName'];
+               }
             }
         }
         include template('DebtDetails');
