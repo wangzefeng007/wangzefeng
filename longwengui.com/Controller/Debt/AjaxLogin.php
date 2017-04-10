@@ -567,4 +567,95 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 委托方申请接单，发布者同意接单申请
+     */
+    public function AgreeApply(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        if ($_POST){
+            //开始事务
+            global $DB;
+            $DB->query("BEGIN");
+            $DebtID = $_POST['debtId'];
+            $ID = $_POST['id'];
+            $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
+            if ($UpdateDebtInfo){
+                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
+                $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1,'Status'=>2),$ID);
+                if ($UpdateInfo){
+                    $DB->query("COMMIT");//执行事务
+                    $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+                }else{
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>101,'Message'=>'操作失败！','Remarks'=>'更新申请表状态失败');
+                }
+            }else{
+                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                $result_json = array('ResultCode'=>102,'Message'=>'操作失败！','Remarks'=>'更新债务状态失败');
+            }
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+
+    /**
+     * @desc 委托方申请接单，发布者拒绝接单申请
+     */
+    public function RejectApply(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        if ($_POST){
+            $DebtID = $_POST['debtId'];
+            $ID = $_POST['id'];
+            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>2),$ID);
+            if ($UpdateInfo){
+                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 待接单发布者取消发布
+     */
+    public function CancelDebt(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        if($_POST){
+            $MemberDebtInfoModule = new MemberDebtInfoModule();
+            $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+            $DebtID = $_POST['id'];
+            $Data['Remarks'] = $_POST['reason'];
+            $Data['Status'] = 9;//取消发布
+            $Data['UpdateTime'] = time();
+            $UpdateDebtInfo = $MemberDebtInfoModule->UpdateInfoByKeyID($Data,$DebtID);
+            $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2,'Status'=>9),' DebtID = '.$DebtID);//更改申请表状态，状态为拒绝。债务状态为取消发布
+            if ($UpdateDebtInfo){
+                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+            }
+            EchoResult($result_json);
+            exit;
+        }
+    }
 }

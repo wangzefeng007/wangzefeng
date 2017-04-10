@@ -32,51 +32,17 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {loop $Data['Data'] $lists}
                             <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td class="color-red">￥100000000.00</td>
-                                <td>2017-02-25</td>
-                                <td>张三</td>
-                                <td><a href="" class="details-enter">详情</a></td>
+                                <td>{$lists[DebtNum]}</td>
+                                <td>{$lists[Name]}</td>
+                                <td>{$lists[Province]}-{$lists[City]}-{$lists[Area]}</td>
+                                <td class="color-red">￥{$lists[DebtAmount]}</td>
+                                <td>{$lists[AddTime]}</td>
+                                <td>{$lists[RealName]}</td>
+                                <td><a href="/debt/{$lists[DebtID]}.html" target="_blank" class="details-enter">详情</a></td>
                             </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td class="color-red">￥100000000.00</td>
-                                <td>2017-02-25</td>
-                                <td>张三</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td class="color-red">￥100000000.00</td>
-                                <td>2017-02-25</td>
-                                <td>张三</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td class="color-red">￥100000000.00</td>
-                                <td>2017-02-25</td>
-                                <td>张三</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td class="color-red">￥100000000.00</td>
-                                <td>2017-02-25</td>
-                                <td>张三</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                            </tr>
+                            {/loop}
                             </tbody>
                         </table>
                     </div>
