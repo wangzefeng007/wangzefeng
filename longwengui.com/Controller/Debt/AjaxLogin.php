@@ -549,16 +549,17 @@ class AjaxLogin
         if($_POST['id']){
             $ID  = intval($_POST['id']);
             $MemberRewardInfoModule = new MemberRewardInfoModule();
-            $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID ='.$ID.'and UserID = '.$_SESSION['UserID']);
-            if ($RewardInfo){
-                $UpdateReward = $MemberRewardInfoModule->UpdateInfoByKeyID(array('Status'=>4),$ID);
+            $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+            if ($RewardInfo['Status']==3){
+                $Data['Status']=4;
+                $UpdateReward = $MemberRewardInfoModule->UpdateInfoByKeyID($Data,$ID);
                 if ($UpdateReward){
                     $result_json = array('ResultCode'=>200,'Message'=>'更新成功！');
                 }else{
                     $result_json = array('ResultCode'=>101,'Message'=>'更新失败！');
                 }
             }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'更新失败，数据出错');
+                $result_json = array('ResultCode'=>102,'Message'=>'当前状态是待审核，待发布之后方可确认');
             }
         }else{
             $result_json = array('ResultCode'=>103,'Message'=>'更新失败，未提交相应数据');

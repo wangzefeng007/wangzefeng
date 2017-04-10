@@ -135,7 +135,7 @@ class CommonModule {
         global $DB;
         if ($KeyID == '' || count($Array) == 0)
             return 0;
-        $DB->updateWhere($this->TableName, $Array, '`' . $this->KeyID . '`=' . intval($KeyID));
+        return $DB->updateWhere($this->TableName, $Array, '`' . $this->KeyID . '`=' . intval($KeyID));
     }
 
     /**

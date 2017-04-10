@@ -19,6 +19,7 @@ Class MemberDebtInfoModule extends CommonModule {
         '6' => '未曝光',
         '7' => '已曝光',
         '8' => '待审核',
+        '9' => '取消发布',
     );
     /**
      * @desc 后台订单状态
@@ -33,6 +34,7 @@ Class MemberDebtInfoModule extends CommonModule {
         '6' => '未曝光',
         '7' => '已曝光',
         '8' => '待审核',
+        '9' => '取消发布',
     );
     /**
      * @desc 催收方式

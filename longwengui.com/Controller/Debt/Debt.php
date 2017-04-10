@@ -33,7 +33,7 @@ class Debt
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and `Status` != 8 order by Status asc';
+        $MysqlWhere = ' and `Status` != 8 order by Status asc , AddTime desc';
         //关键字
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
@@ -112,6 +112,8 @@ class Debt
             //浏览人信息
             $browseUserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $_SESSION['UserID']);
         }
+        //关联的债务信息
+        $AssociatedDebt = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID != ".$ID.' and Card = \''.$DebtorsInfo[0]['Card'].'\'');
         $Title="债务详情-隆文贵不良资产处置";
         include template('DebtDetails');
     }
