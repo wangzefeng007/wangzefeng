@@ -149,9 +149,39 @@ class MemberPerson
         $Nav ='debtlist';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        if ($UserInfo['CardNum']){
+            $Data['Data'] =array();
+            $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and Card = \''.$UserInfo['CardNum'].'\'',true);
+            if ($DebtorsInfo){
+                foreach ($DebtorsInfo  as $key=>$value){
+                    $data[]=$value['DebtID'];
+                }
+                $data=implode(',',array_unique($data));
+                $MysqlWhere = " and DebtID IN ($data)";
+                $Data['Data'] = $MemberDebtInfoModule->GetLists($MysqlWhere, 0,30);
+                foreach ($Data['Data'] as $key =>$value){
+                    $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
+                    $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                    $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                    if ($DebtorsInfo['Province'])
+                        $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                    if ($DebtorsInfo['City'])
+                        $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                    if ($DebtorsInfo['Area'])
+                        $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                    $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+                    //发布人姓名
+                    $MemberUserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                    $Data['Data'][$key]['RealName'] =$MemberUserInfo['RealName'];
+                }
+            }
+        }
         include template('MemberPersonDebtList');
     }
     /**
