@@ -62,7 +62,25 @@
                             <td>{$lists[AddTime]}</td>
                             <td class="color-red">{$NStatus[$lists[Status]]}</td>
                             <td><a href="/debt/{$lists[DebtID]}.html" class="details-enter">详情</a></td>
+                            {if $lists[Status]==1}
                             <td><a href="javascript:void (0)" class="oper">取消</a></td>
+                            {elseif $lists[Status]==2}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==3}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==4}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==5}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==6}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==7}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==8}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {elseif $lists[Status]==9}
+                            <td><a href="javascript:void (0)" class="oper">无</a></td>
+                            {/if}
                         </tr>
                         {/loop}
                         </tbody>
