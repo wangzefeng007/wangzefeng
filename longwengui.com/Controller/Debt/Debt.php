@@ -115,6 +115,15 @@ class Debt
         //关联的债务信息
         $AssociatedDebt = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID != ".$ID.' and Card = \''.$DebtorsInfo[0]['Card'].'\'');
         $Title="债务详情-隆文贵不良资产处置";
+        //处置方接单申请
+        if ($DebtInfo['UserID']==$_SESSION['UserID']){
+            $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+            $Data['Data'] = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$DebtInfo['DebtID'],true);
+            foreach ( $Data['Data'] as $key=>$value){
+               $ClaimsUserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['CompanyName'];
+            }
+        }
         include template('DebtDetails');
     }
     /**

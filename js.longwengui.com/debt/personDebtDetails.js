@@ -28,7 +28,7 @@ function agreeApply(name, id){
         dataType: 'json',
         url: '/loginajax.html',
         data: {
-          "Intention": '',
+          "Intention": 'AgreeApply',
           "id": id,
           "debtId": debtId
         },
@@ -78,7 +78,7 @@ function rejectApply(name, id){
         dataType: 'json',
         url: '/loginajax.html',
         data: {
-          "Intention": '',
+          "Intention": 'RejectApply',
           "id": id,
           "debtId": debtId
         },

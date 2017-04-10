@@ -567,4 +567,56 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 委托方申请接单，发布者同意接单申请
+     */
+    public function AgreeApply(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        if ($_POST){
+            $DebtID = $_POST['debtId'];
+            $ID = $_POST['id'];
+            $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
+            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1),$ID);
+            if ($UpdateInfo){
+                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+
+    /**
+     * @desc 委托方申请接单，发布者拒绝接单申请
+     */
+    public function RejectApply(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        if ($_POST){
+            $DebtID = $_POST['debtId'];
+            $ID = $_POST['id'];
+            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>2),$ID);
+            if ($UpdateInfo){
+                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
 }

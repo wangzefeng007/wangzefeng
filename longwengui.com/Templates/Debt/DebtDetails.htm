@@ -6,7 +6,7 @@
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
             <span>当前位置 : <a href="/debtlists/">债务催收</a> > <span class="cur">查看详情</span></span>
         </div>
-        <div class="info-wrap">
+        <div class="info-wrap" data-id="{$DebtInfo[DebtID]}">
             <div class="hd">
                 <!-- <button type="button" name="button">关注</button> -->
                 债务编号：{$DebtInfo[DebtNum]}--处置方偏向：{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{elseif $DebtInfo[CollectionType]==3}自助催收{/if}
@@ -157,6 +157,38 @@
             </div>
             {/if}
             {/if}
+            {if $UserInfo[UserID]==$_SESSION ['UserID']}
+            <div class="t-hd">
+                处置方接单申请
+            </div>
+            <div class="mb-100">
+                {loop $Data['Data'] $lists}
+                <div class="apply-wrap">
+                    <div class="cont-wrap">
+                        <div class="l">
+                            处置方名称：{$lists['CompanyName']}
+                        </div>
+                        <div class="l">
+                            处置方报价： 债务金额{$lists['Money']}%的佣金(人民币)
+                        </div>
+                        <div class="l">
+                            处置方优势： {$lists['AdvantageInfo']}
+                        </div>
+                    </div>
+                    <div class="opt-btn">
+                        {if $lists[Agreed]==1}
+                        <button type="button" onclick="agreeApply('{$lists[CompanyName]}','{$lists[ID]}')" name="agree">已同意</button>
+                        {elseif $lists[Agreed]==2}
+                        <button type="button" onclick="rejectApply('{$lists[CompanyName]}','{$lists[ID]}')" name="reject">已拒绝</button>
+                        {else}
+                        <button type="button" onclick="agreeApply('{$lists[CompanyName]}','{$lists[ID]}')" name="agree">同意</button>
+                        <button type="button" onclick="rejectApply('{$lists[CompanyName]}','{$lists[ID]}')" name="reject">拒绝</button>
+                        {/if}
+                    </div>
+                </div>
+                {/loop}
+            </div>
+            {/if}
         </div>
     </div>
 </div>
@@ -170,6 +202,8 @@
   <div class="next"><img src="/Uploads/Debt/imgs/right.png" alt=""></div>
 </script>
 {template Footer}
-
 <script src='{echo JsURL}/debt/lib/SuperSlide/jquery.SuperSlide.2.1.1.js'></script>
 <script src='{echo JsURL}/debt/debtDetails.js'></script>
+{if $UserInfo[UserID]==$_SESSION ['UserID']}
+<script src='{echo JsURL}/debt/personDebtDetails.js'></script>
+{/if}

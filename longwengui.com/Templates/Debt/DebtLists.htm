@@ -83,6 +83,7 @@
                 <img src="/Uploads/Debt/imgs/no_data.png" alt="">
             </div>
             <div id="collection_info">
+                {if $Data['Data']}
                 <table>
                     <thead>
                     <tr>
@@ -111,14 +112,21 @@
                     {/loop}
                     </tbody>
                 </table>
+                {else}
+                <div class="no-data" style="display: block;">
+                    <img src="/Uploads/Debt/imgs/no_data.png" alt="">
+                </div>
+                {/if}
             </div>
         </div>
+        {if $ShowPage}
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="collection_page_pagination">
                 <a href="/debtlists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
                 {$ShowPage}
             </div>
         </div>
+        {/if}
     </div>
 </div>
 <script id="collection_table_body" type="text/x-jquery-tmpl">
