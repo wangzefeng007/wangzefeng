@@ -726,9 +726,11 @@
 	cursor: pointer;
 	color: #666;
 }
-.debt .debt-table .oper{
-	color: #f00;
+.debt .debt-table .oper span{
+  color: #35bdfc;
+  cursor: pointer;
 	margin: 0 5px;
+  text-decoration: underline;
 }
 
 
