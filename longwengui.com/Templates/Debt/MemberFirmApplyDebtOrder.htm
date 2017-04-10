@@ -50,7 +50,17 @@
                             <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
                             <td class="color-red">{$NStatus[$lists[Status]]}</td>
                             <td><a href="javascript:viod(0)" class="details-enter">详情</a></td>
-                            <td><a href="javascript:viod(0)" class="oper">取消</a></td>
+                            {if $lists[Status]==1}
+                              <td class="oper">无</td>
+                            {elseif $lists[Status]==2}
+                              <td class="oper">完成情况</td>
+                            {elseif $lists[Status]==3}
+                              <td class="oper">无</td>
+                            {elseif $lists[Status]==4}
+                              <td class="oper">无</td>
+                            {elseif $lists[Status]==5}
+                              <td class="oper">无</td>
+                            {/if}
                         </tr>
                         {/loop}
                         </tbody>
@@ -69,3 +79,4 @@
 </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/memberOptWindow.js'></script>
