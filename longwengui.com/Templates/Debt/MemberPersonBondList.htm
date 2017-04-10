@@ -63,11 +63,11 @@
                             <td class="color-red">{$NStatus[$lists[Status]]}</td>
                             <td><a href="/debt/{$lists[DebtID]}.html" class="details-enter">详情</a></td>
                             {if $lists[Status]==1}
-                              <td class="oper"><span onclick="cancelDebt({$lists[DebtID]})">取消</span></td>
+                              <td class="oper"><span onclick="cancelDebt('{$lists[DebtID]}')">取消</span></td>
                             {elseif $lists[Status]==2}
                               <td>无</td>
                             {elseif $lists[Status]==3}
-                              <td class="oper"><span onclick="publishAgain({$lists[DebtID]})">继续发布</span><span onclick="goExport({$lists[DebtID]})">去曝光</span></td>
+                              <td class="oper"><span onclick="publishAgain('{$lists[DebtID]}')">继续发布</span><span onclick="goExport('{$lists[DebtID]}')">去曝光</span></td>
                             {elseif $lists[Status]==4}
                               <td>无</td>
                             {elseif $lists[Status]==5}

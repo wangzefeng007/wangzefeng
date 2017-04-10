@@ -584,7 +584,9 @@ class AjaxLogin
             $DB->query("BEGIN");
             $DebtID = $_POST['debtId'];
             $ID = $_POST['id'];
-            $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
+            $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByKeyID($ID);
+            //更新债务信息表，更改状态和委托用户ID
+            $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2,'MandatorID'=>$ClaimsDisposal['UserID']),$DebtID);
             if ($UpdateDebtInfo){
                 $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
                 $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1,'Status'=>2),$ID);
@@ -686,4 +688,94 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 发布者债务未完成选择继续发布债务
+     */
+    public function PublishAgain(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $DebtID = intval($_POST['id']);
+        $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($DebtID);
+        if ($DebtInfo){
+            $DebtInfo['AddTime'] = time();
+            $DebtInfo['Status'] = 1;
+            $DebtInfo['EntrustNum'] = 1;//委托数量
+            $DebtInfo['UpdateTime'] = $DebtInfo['AddTime'];
+            $DebtInfo['DebtNum'] ='DB'.date("YmdHis").rand(100, 999);
+            unset($DebtInfo['Remarks'],$DebtInfo['BrowseNum'],$DebtInfo['MandatorID']);
+            //开始事务
+            global $DB;
+            $DB->query("BEGIN");
+            $NewDebtID = $MemberDebtorsInfoModule->InsertInfo($DebtInfo);
+            if ($NewDebtID){
+                $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(' and DebtID ='.$DebtID,true);
+                //债权人信息
+                $Datb['AddTime'] = $DebtInfo['AddTime'];
+                $Datb['DebtID'] = $NewDebtID;
+                foreach ($CreditorsInfo as $key => $value) {
+                    $Datb['Name'] = trim($value['name']);
+                    $Datb['Card'] = trim($value['idNum']);
+                    $Datb['Money'] = trim($value['debt_money']);
+                    $Datb['Phone'] = trim($value['phoneNumber']);
+                    $Datb['Province'] = trim($value['province']);
+                    $Datb['City'] = trim($value['city']);
+                    $Datb['Area'] = trim($value['area']);
+                    $Datb['Address'] = trim($value['areaDetail']);
+                    $InsertCreditorsInfo = $MemberCreditorsInfoModule->InsertInfo($Datb);
+                    if (!$InsertCreditorsInfo) {
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $result_json = array('ResultCode' => 201, 'Message' => '录入债权人信息失败');
+                        EchoResult($result_json);
+                        exit;
+                    }
+                }
+                if ($InsertCreditorsInfo){
+                    $DB->query("COMMIT");//执行事务
+                    //债务人信息
+                    $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID ='.$DebtID,true);
+                    $Datc['AddTime'] = $DebtInfo['AddTime'];
+                    $Datc['DebtID'] = $NewDebtID;
+                    foreach ($DebtorsInfo as $key => $value) {
+                        $Datc['Name'] = trim($value['name']);
+                        $Datc['Card'] = trim($value['idNum']);
+                        $Datc['Money'] = trim($value['debt_money']);
+                        $Datc['Phone'] = trim($value['phoneNumber']);
+                        $Datc['Province'] = trim($value['province']);
+                        $Datc['City'] = trim($value['city']);
+                        $Datc['Area'] = trim($value['area']);
+                        $Datc['Address'] = trim($value['areaDetail']);
+                        $InsertDebtorsInfo = $MemberDebtorsInfoModule->InsertInfo($Datc);
+                        if (!$InsertDebtorsInfo) {
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
+                            $result_json = array('ResultCode' => 101, 'Message' => '录入债务人信息失败');
+                            EchoResult($result_json);
+                            exit;
+                        }
+                    }
+                    if ($InsertDebtorsInfo){
+                        $DB->query("COMMIT");//执行事务
+                        $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
+                    }else{
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $result_json = array('ResultCode'=>103,'Message'=>'操作失败！');
+                    }
+                }else{
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>104,'Message'=>'操作失败！');
+                }
+            }else{
+                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
+            }
+        }
+        EchoResult($result_json);
+        exit;
+    }
+
 }
