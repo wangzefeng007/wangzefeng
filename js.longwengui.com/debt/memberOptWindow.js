@@ -49,7 +49,7 @@ function debtCompleteStatus(id){
         dataType: 'json',
         url: '/loginajax.html',
         data: {
-          "Intention": '',
+          "Intention": 'ConfirmCompletion',//委托方选择完成情况
           "id": id,
           "Status": status
         },

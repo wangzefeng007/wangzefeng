@@ -53,7 +53,7 @@
                             {if $lists[Status]==1}
                               <td>无</td>
                             {elseif $lists[Status]==2}
-                              <td class="oper" onclick="debtCompleteStatus(1212)"><span>完成情况</span></td>
+                              <td class="oper" onclick="debtCompleteStatus('{$lists[DebtID]}')"><span>完成情况</span></td>
                             {elseif $lists[Status]==3}
                               <td>无</td>
                             {elseif $lists[Status]==4}

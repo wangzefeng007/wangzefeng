@@ -658,4 +658,32 @@ class AjaxLogin
             exit;
         }
     }
+    /**
+     * @desc 委托方选择完成情况（确认完成情况）
+     */
+    public function ConfirmCompletion(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $Data['Status'] =intval($_POST['Status']);//完成情况
+        $DebtID = intval($_POST['id']);
+        //开始事务
+        global $DB;
+        $DB->query("BEGIN");
+        $UpdateDebtInfo = $MemberDebtInfoModule->UpdateInfoByKeyID($Data,$DebtID);
+        $UpdateClaimsDisposal = $MemberClaimsDisposalModule->UpdateInfoByWhere($Data, ' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
+        if ($UpdateDebtInfo && $UpdateClaimsDisposal){
+            $DB->query("COMMIT");//执行事务
+            $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+        }else{
+            $DB->query("ROLLBACK");//判断当执行失败时回滚
+            $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
 }
