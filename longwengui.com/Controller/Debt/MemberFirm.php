@@ -85,7 +85,7 @@ class MemberFirm
         //分页Start
         $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
         $Status = $_GET['S']? intval($_GET['S']) : 0;
-        if ($Status==1 || $Status==0){
+        if ($Status==1){
             $MysqlWhere .=' and `Status` = 1';//正在接单的债务
         }elseif($Status==2){
             $MysqlWhere .=' and `Status` = 2';//催款中的债务
