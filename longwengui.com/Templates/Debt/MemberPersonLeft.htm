@@ -41,6 +41,12 @@
         范本下载
     </div>
     {/if}
+    {if $_SESSION[Identity]==1}
+    <div class="menu-level-1" onclick="upgradPersonRole()">
+        <img src="/Uploads/Debt/imgs/cuikequanyi.png" class="i-left" alt="">
+        催客权益
+    </div>
+    {/if}
     {if $_SESSION[Identity]==2}
     <div class="menu-level-1" id="menu_3" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/daili.png" class="i-left" alt="">
