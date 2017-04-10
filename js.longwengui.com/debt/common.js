@@ -1213,6 +1213,56 @@ function toDelete(text, id, intention){
     });
 }
 
+//悬赏完成确认弹窗
+function comfirmReword(id){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '是否确认该悬赏已完成？'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_no').click(function(){
+      layer.close(index);
+    });
+    $('#win_yes').click(function(){
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": intention,
+          "id": id
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            window.location.reload();
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+}
+
 //左边菜单二级菜单下拉
 $('.menu-level-1').each(function(){
   if($(this).attr('can-down') == 1){
