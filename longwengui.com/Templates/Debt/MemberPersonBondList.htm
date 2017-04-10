@@ -9,201 +9,97 @@
         </div>
         <div class="menu-cont-wrap">
             {template MemberPersonLeft}
-                <div class="tab-hd">
-                    <div class="tb {if $Nav=='bondlist'}act{/if}" onclick="go('/memberperson/bondlist/')">
-                        发布的债务
-                    </div>
-                    <div class="tb" hidden>
-                        转让的债务
-                    </div>
-                    <div class="tb {if $Nav=='rewordlist'}act{/if}" onclick="go('/memberperson/rewordlist/')">
-                        悬赏的债务
-                    </div>
-                    <div class="tb {if $Nav=='findteam'}act{/if}" onclick="go('/memberperson/findteam/')">
-                        向处置方申请的债务
-                    </div>
+            <div class="tab-hd">
+                <div class="tb {if $Nav=='bondlist'}act{/if}" onclick="go('/memberperson/bondlist/')">
+                    发布的债务
                 </div>
-                <div class="info-cont">
-                    <div class="cont-hd">
-                        <span>已发布债务列表</span>
-                    </div>
-                    <dl class="cont-select">
-                        <dt>债务状态：</dt>
-                        <dd class="cont-select-act">全部</dd>
-                        <dd>未接单</dd>
-                        <dd>催收中</dd>
-                        <dd>未付款</dd>
-                        <dd>未完成</dd>
-                        <dd>已完成</dd>
-                        <dd>退款中</dd>
-                        <dd>退款成功</dd>
-                        <dd>已曝光</dd>
-                    </dl>
-                    <div class="debt">
-                        <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <td>债务编号</td>
-                                <td>债务人名称</td>
-                                <td>债务人地区</td>
-                                <td>债务金额（元）</td>
-                                <td>逾期时间</td>
-                                <td>发布时间</td>
-                                <td>当前状态</td>
-                                <td>查看</td>
-                                <td>操作</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">未接单</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td><a href="" class="oper">取消</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">已接单未付款</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td><a href="" class="oper">去付款</a><a href="" class="oper">取消</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">催收中</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td><a href="" class="oper">完成</a><a href="" class="oper">申请退款</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">退款中</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">退款成功</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">未完成</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td><a href="" class="oper">去曝光</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">已超时</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td><a href="" class="oper">继续发布</a></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">已完成</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">已完成</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">已曝光</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">已完成</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="tb" hidden>
+                    转让的债务
+                </div>
+                <div class="tb {if $Nav=='rewordlist'}act{/if}" onclick="go('/memberperson/rewordlist/')">
+                    悬赏的债务
+                </div>
+                <div class="tb {if $Nav=='findteam'}act{/if}" onclick="go('/memberperson/findteam/')">
+                    向处置方申请的债务
                 </div>
             </div>
+            <div class="info-cont">
+                <div class="cont-hd">
+                    <span>已发布债务列表</span>
+                </div>
+                <dl class="cont-select">
+                    <dt>债务状态：</dt>
+                    <dd onclick="go('/memberperson/bondlist/')" {if $Status==0}class="cont-select-act"{/if}>全部</dd>
+                    <dd onclick="go('/memberperson/bondlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>未接单</dd>
+                    <dd onclick="go('/memberperson/bondlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>催收中</dd>
+                    <dd onclick="go('/memberperson/bondlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>未完成</dd>
+                    <dd onclick="go('/memberperson/bondlist/?S=4')" {if $Status==4}class="cont-select-act"{/if}>已完成</dd>
+                    <dd onclick="go('/memberperson/bondlist/?S=5')" {if $Status==5}class="cont-select-act"{/if}>已曝光</dd>
+                </dl>
+                <div class="debt">
+                    <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <td>债务编号</td>
+                            <td>债务人名称</td>
+                            <td>债务人地区</td>
+                            <td>债务金额（元）</td>
+                            <td>逾期时间</td>
+                            <td>发布时间</td>
+                            <td>当前状态</td>
+                            <td>查看</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $Data['Data'] $lists}
+                        <tr>
+                            <td>{$lists[DebtNum]}</td>
+                            <td>{$lists[Name]}</td>
+                            <td>{$lists[Province]}-{$lists[City]}-{$lists[Area]}</td>
+                            <td>￥{$lists[DebtAmount]}</td>
+                            <td>{$lists[Overduetime]}天</td>
+                            <td>{$lists[AddTime]}</td>
+                            <td class="color-red">{$NStatus[$lists[Status]]}</td>
+                            <td><a href="/debt/{$lists[DebtID]}.html" class="details-enter">详情</a></td>
+                            <td><a href="javascript:void (0)" class="oper">取消</a></td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {if $ShowPage}
+            <div class="pagination-wrap">
+                <div class="pagination fl-r" id="page_pagination">
+                    {$ShowPage}
+                </div>
+            </div>
+            {/if}
         </div>
-        <div class="fr-win">
-            <div class="pub-btn">
-                <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
-                <br>
-                发布
+    </div>
+    <div class="fr-win">
+        <div class="pub-btn">
+            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+            <br>
+            发布
+        </div>
+        <div class="pub-btn-list">
+            <div class="lin" onclick="selDebtWayPop()">
+                发布债务
             </div>
-            <div class="pub-btn-list">
-                <div class="lin" onclick="selDebtWayPop()">
-                    发布债务
-                </div>
-                <div class="lin">
-                    寻找处置方
-                </div>
-                <div class="lin">
-                    资产转让
-                </div>
-                <div class="lin">
-                    发布悬赏
-                </div>
+            <div class="lin">
+                寻找处置方
+            </div>
+            <div class="lin">
+                资产转让
+            </div>
+            <div class="lin">
+                发布悬赏
             </div>
         </div>
     </div>
+</div>
 </div>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>

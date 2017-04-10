@@ -176,6 +176,7 @@ class MemberLawyer
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
+
         include template('MemberLawyerDemandList');
     }
     /**

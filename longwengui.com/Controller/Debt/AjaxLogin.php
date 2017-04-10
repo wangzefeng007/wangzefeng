@@ -453,12 +453,13 @@ class AjaxLogin
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         $Data['UserID'] = $_SESSION['UserID'];
-        $Data['CaseName']= $AjaxData['case_name'];
-        $Data['EarlyCost'] = $AjaxData['fee'];//有无前期费用
-        $Data['FindDebtor'] = $AjaxData['searchedAnytime'];//债务人是否随时找得到
-        $Data['RepaymentDebtor'] = $AjaxData['abilityDebt'];//债务人有无还款能力
-        $Data['Commission'] =json_encode($AjaxData['fee_rate']);//佣金范围和金额
-        $Data['Area'] = json_encode($AjaxData['area']) ;//服务地区
+        $Data['CaseName']= $AjaxData['caseName'];
+        $Data['FromMoney'] =($AjaxData['feeRate'][0]['from']);
+        $Data['ToMoney'] =($AjaxData['feeRate'][0]['to']);
+        $Data['Money'] =($AjaxData['feeRate'][0]['fee']);
+        $Data['Province'] = ($AjaxData['area'][0]['province']);
+        $Data['City'] = ($AjaxData['area'][0]['city']);
+        $Data['Area'] = ($AjaxData['area'][0]['area']);
         $MemberSetCollectionModule = new MemberSetCollectionModule();
         if (!empty($_POST['ID'])){
             $ID = intval($_POST['ID']);
@@ -523,5 +524,17 @@ class AjaxLogin
         }
         EchoResult($result_json);
         exit;
+    }
+    /**
+     * @desc 删除律师团队佣金方案
+     */
+    public function DeleteLawyerDemand(){
+        $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
+    }
+    /**
+     * @desc 删除催收公司佣金方案
+     */
+    public function DeleteFirmDemand(){
+        $MemberSetCollectionModule = new MemberSetCollectionModule();
     }
 }

@@ -132,4 +132,11 @@ class Debt
         }
 
     }
+    /**
+     * @desc  债权转让/股权转让暂定
+     */
+    public function Transfer(){
+        $Nav ='transfer';
+        include template('DebtTransfer');
+    }
 }

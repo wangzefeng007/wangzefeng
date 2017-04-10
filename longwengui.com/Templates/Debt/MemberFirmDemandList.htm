@@ -31,7 +31,7 @@
                         <tr>
                             <td>{$lists['CaseName']}</td>
                             <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
-                            <td><a class="see" href="/demanddetails/{$lists['SetID']}.html">查看</a><a class="modify" href="/memberfirm/setdemand/?ID={$lists['SetID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', 1231, 'sdsds')" data-id="{$lists['SetID']}">删除</span></td>
+                            <td><a class="see" href="/firmdemanddetails/{$lists['SetID']}.html">查看</a><a class="modify" href="/memberfirm/setdemand/?ID={$lists['SetID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', '{$lists[SetID]}', 'DeleteFirmDemand')" data-id="{$lists['SetID']}">删除</span></td>
                         </tr>
                         {/loop}
                         </tbody>

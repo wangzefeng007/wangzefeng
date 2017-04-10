@@ -81,10 +81,60 @@ class MemberPerson
         $Nav ='bondlist';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberDebtInfoModule->NStatus;
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-
+        //分页查询开始-------------------------------------------------
+        $MysqlWhere ='';
+        $Status = $_GET['S']?intval($_GET['S']):0;
+        if ($Status==1){
+            $MysqlWhere .= ' and ( Status =1 or Status =8 ) ';
+        }elseif($Status==2){
+            $MysqlWhere .= ' and Status =2 ';
+        }elseif($Status==3){
+            $MysqlWhere .= ' and Status =3 ';
+        }elseif($Status==4){
+            $MysqlWhere .= ' and ( Status =4 or Status =5 ) ';
+        }elseif($Status==5){
+            $MysqlWhere .= ' and Status =7 ';
+        }
+        $MysqlWhere .= ' and UserID ='.$_SESSION['UserID'].' order by AddTime desc';
+        //关键字
+        $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberPersonBondList');
     }
     /**
@@ -115,6 +165,55 @@ class MemberPerson
         $Nav='rewordlist';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
+        $MemberAreaModule = new MemberAreaModule();
+        //分页查询开始-------------------------------------------------
+
+        $MysqlWhere ='';
+        $Status = $_GET['S']?intval($_GET['S']):0;
+        if ($Status==1){
+            $MysqlWhere .= ' and Status =3 ';
+        }elseif($Status==2){
+            $MysqlWhere .= ' and Status =4 ';
+        }
+        $MysqlWhere .= ' and UserID ='.$_SESSION['UserID'].' order by AddTime desc';
+        //关键字
+        $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                if ($value['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                if ($value['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                if ($value['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+                $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['ID'],true);
+                foreach ($RewardImage as $K=>$V){
+                    if ($V['IsDefault']==1){
+                        $Data['Data'][$key]['DefaultImage'] = $V['ImageUrl'];
+                    }else{
+                        $Data['Data'][$key]['Image'][] = $V['ImageUrl'];
+                    }
+                }
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
