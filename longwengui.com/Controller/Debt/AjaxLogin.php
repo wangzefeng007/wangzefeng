@@ -631,4 +631,31 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 待接单发布者取消发布
+     */
+    public function CancelDebt(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        if($_POST){
+            $MemberDebtInfoModule = new MemberDebtInfoModule();
+            $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+            $DebtID = $_POST['id'];
+            $Data['Remarks'] = $_POST['reason'];
+            $Data['Status'] = 9;//取消发布
+            $Data['UpdateTime'] = time();
+            $UpdateDebtInfo = $MemberDebtInfoModule->UpdateInfoByKeyID($Data,$DebtID);
+            $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2,'Status'=>9),' DebtID = '.$DebtID);//更改申请表状态，状态为拒绝。债务状态为取消发布
+            if ($UpdateDebtInfo){
+                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            }else{
+                $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+            }
+            EchoResult($result_json);
+            exit;
+        }
+    }
 }
