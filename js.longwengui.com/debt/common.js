@@ -1225,7 +1225,7 @@ function confirmReword(id){
             +      '提示'
             +     '</div>'
             +    '<div class="tx">'
-            +      '是否确认该悬赏已完成？'
+            +      '是否确认该悬赏已完成?'
             +    '</div>'
             +    '<div class="btn">'
             +      '<button type="button" id="win_yes" name="ok">确定</button>'
