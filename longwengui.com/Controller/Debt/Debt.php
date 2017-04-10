@@ -121,7 +121,11 @@ class Debt
             $Data['Data'] = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$DebtInfo['DebtID'],true);
             foreach ( $Data['Data'] as $key=>$value){
                $ClaimsUserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
-                $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['CompanyName'];
+               if ($ClaimsUserInfo['Identity']==3 ||$ClaimsUserInfo['Identity']==4){
+                   $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['CompanyName'];
+               }elseif ($ClaimsUserInfo['Identity']==2){
+                   $Data['Data'][$key]['CompanyName'] = $ClaimsUserInfo['RealName'];
+               }
             }
         }
         include template('DebtDetails');
