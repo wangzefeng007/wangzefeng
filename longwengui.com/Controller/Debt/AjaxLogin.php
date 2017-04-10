@@ -537,4 +537,33 @@ class AjaxLogin
     public function DeleteFirmDemand(){
         $MemberSetCollectionModule = new MemberSetCollectionModule();
     }
+    /**
+     * @desc 用户确认完成发布悬赏
+     */
+    public function ConfirmReword(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
+        if($_POST['id']){
+            $ID  = intval($_POST['id']);
+            $MemberRewardInfoModule = new MemberRewardInfoModule();
+            $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID ='.$ID.'and UserID = '.$_SESSION['UserID']);
+            if ($RewardInfo){
+                $UpdateReward = $MemberRewardInfoModule->UpdateInfoByKeyID(array('Status'=>4),$ID);
+                if ($UpdateReward){
+                    $result_json = array('ResultCode'=>200,'Message'=>'更新成功！');
+                }else{
+                    $result_json = array('ResultCode'=>101,'Message'=>'更新失败！');
+                }
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'更新失败，数据出错');
+            }
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'更新失败，未提交相应数据');
+        }
+        EchoResult($result_json);
+        exit;
+    }
 }
