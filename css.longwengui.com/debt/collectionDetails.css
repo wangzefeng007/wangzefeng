@@ -247,3 +247,29 @@
 .collection-details .wrap .info-wrap .apply-wrap .opt-btn button[name="reject"]{
   background-color: #999999;
 }
+.collection-details .wrap .info-wrap .apply-wrap .opt-btn .agreed{
+  width: 60px;
+  position: absolute;
+  top: 50%;
+  margin-top: -13px;
+  left: 50%;
+  margin-left: -30px;
+  line-height: 26px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+  background-color: #35bdfc;
+}
+.collection-details .wrap .info-wrap .apply-wrap .opt-btn .rejected{
+  width: 60px;
+  line-height: 26px;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  margin-top: -13px;
+  left: 50%;
+  margin-left: -30px;
+  color: #fff;
+  font-size: 14px;
+  background-color: #999999;
+}

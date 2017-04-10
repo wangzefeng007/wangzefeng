@@ -177,9 +177,9 @@
                     </div>
                     <div class="opt-btn">
                         {if $lists[Agreed]==1}
-                        <button type="button" onclick="agreeApply('{$lists[CompanyName]}','{$lists[ID]}')" name="agree">已同意</button>
+                        <div class="agreed">已同意</div>
                         {elseif $lists[Agreed]==2}
-                        <button type="button" onclick="rejectApply('{$lists[CompanyName]}','{$lists[ID]}')" name="reject">已拒绝</button>
+                        <div class="rejected">已拒绝</div>
                         {else}
                         <button type="button" onclick="agreeApply('{$lists[CompanyName]}','{$lists[ID]}')" name="agree">同意</button>
                         <button type="button" onclick="rejectApply('{$lists[CompanyName]}','{$lists[ID]}')" name="reject">拒绝</button>
