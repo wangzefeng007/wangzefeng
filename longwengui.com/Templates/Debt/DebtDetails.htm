@@ -148,7 +148,7 @@
               <!--</div>-->
             <!--</div>-->
             {if $DebtInfo[Status]==1}
-            {if ($DebtInfo[CollectionType]==1 && $browseUserInfo['Identity']==4 && $browseUserInfo['IdentityState']==3) || ($DebtInfo[CollectionType]==2 &&  ($browseUserInfo['Identity']==2 || $browseUserInfo['Identity']==3) && $browseUserInfo['IdentityState']==3)}
+            {if ($DebtInfo[CollectionType]==1 && $browseUserInfo['Identity']==4 && $browseUserInfo['IdentityState']==3) || (($DebtInfo[CollectionType]==2 &&  ($browseUserInfo['Identity']==2 || $browseUserInfo['Identity']==3) && $browseUserInfo['IdentityState']==3))}
             <div class="t-hd">
                 处置方接单申请
             </div>

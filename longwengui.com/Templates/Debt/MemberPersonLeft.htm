@@ -61,10 +61,10 @@
         <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
     </div>
     <div class="menu-level-2-wrap" data-for="menu_4">
-      <div class="menu-level-2">申请的债权</div>
+      <div class="menu-level-2 {if $Nav=='applydebtorder'}menu-level-2-act{/if}" onclick="go('/memberperson/applydebtorder/')">申请的债权</div>
       <div class="menu-level-2">浏览过的债权</div>
-      <div class="menu-level-2">寻找同城催客</div>
-      <div class="menu-level-2">联盟催客</div>
+      <!--<div class="menu-level-2">寻找同城催客</div>-->
+      <!--<div class="menu-level-2">联盟催客</div>-->
     </div>
     {/if}
     <div class="menu-level-1 {if $Nav=='systemmessage'}menu-level-1-act{/if}"  onclick="go('/member/systemmessage/')">

@@ -40,7 +40,7 @@ class Ajax
         }
         $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = ' and `Status` != 8 and `CollectionType` != 3';
+        $MysqlWhere = ' and `Status` != 8 and `Status` != 9 and `CollectionType` != 3';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }
