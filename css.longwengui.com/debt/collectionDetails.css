@@ -19,6 +19,7 @@
   width: 1180px;
   margin: 0 auto;
   color: #666666;
+  position: relative;
 }
 .collection-details .wrap .current-loc {
   padding-top: 26px;
@@ -272,4 +273,12 @@
   color: #fff;
   font-size: 14px;
   background-color: #999999;
+}
+.collection-details .wrap .status-img{
+  position: absolute;
+  right: 40px;
+  top: 120px;
+}
+.collection-details .wrap .status-img img{
+  width: 110px;
 }

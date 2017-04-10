@@ -6,6 +6,21 @@
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
             <span>当前位置 : <a href="/debtlists/">债务催收</a> > <span class="cur">查看详情</span></span>
         </div>
+        <div class="status-img">
+          {if $DebtInfo[Status]==1}
+            <img src="/Uploads/Debt/imgs/OrderReceiving.png" alt="">
+          {elseif $DebtInfo[Status]==2}
+            <img src="/Uploads/Debt/imgs/Collectting.png" alt="">
+          {elseif $DebtInfo[Status]==3}
+            <img src="/Uploads/Debt/imgs/Undone.png" alt="">
+          {elseif $DebtInfo[Status]==4}
+            <img src="/Uploads/Debt/imgs/Completed.png" alt="">
+          {elseif $DebtInfo[Status]==5}
+            <img src="/Uploads/Debt/imgs/Completed.png" alt="">
+          {else $DebtInfo[Status]==8}
+            <img src="/Uploads/Debt/imgs/Toaudit.png" alt="">
+          {/if}
+        </div>
         <div class="info-wrap" data-id="{$DebtInfo[DebtID]}">
             <div class="hd">
                 <!-- <button type="button" name="button">关注</button> -->
