@@ -577,18 +577,30 @@ class AjaxLogin
             exit;
         }
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
         if ($_POST){
+            //开始事务
+            global $DB;
+            $DB->query("BEGIN");
             $DebtID = $_POST['debtId'];
             $ID = $_POST['id'];
-            $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
-            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1),$ID);
-            if ($UpdateInfo){
-                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
+            if ($UpdateDebtInfo){
+                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
+                $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1,'Status'=>2),$ID);
+                if ($UpdateInfo){
+                    $DB->query("COMMIT");//执行事务
+                    $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+                }else{
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode'=>101,'Message'=>'操作失败！','Remarks'=>'更新申请表状态失败');
+                }
             }else{
-                $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                $result_json = array('ResultCode'=>102,'Message'=>'操作失败！','Remarks'=>'更新债务状态失败');
             }
         }else{
-            $result_json = array('ResultCode'=>102,'Message'=>'操作失败！');
+            $result_json = array('ResultCode'=>103,'Message'=>'操作失败！');
         }
         EchoResult($result_json);
         exit;
