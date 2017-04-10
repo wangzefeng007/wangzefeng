@@ -74,7 +74,7 @@ class MemberLawyer
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
-        $NStatus = $MemberClaimsDisposalModule->NStatus;
+        $NStatus = $MemberDebtInfoModule->NStatus;
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
@@ -83,7 +83,7 @@ class MemberLawyer
         $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
 
         $Status = $_GET['S']? intval($_GET['S']) : 0;
-        if ($Status==1 || $Status==0){
+        if ($Status==1){
             $MysqlWhere .=' and `Status` = 1';//正在接单的债务
         }elseif($Status==2){
             $MysqlWhere .=' and `Status` = 2';//催款中的债务
@@ -115,6 +115,7 @@ class MemberLawyer
                 $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
                 $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];
                 $Data['Data'][$key]['AddTime']= $DebtInfo['AddTime'];
+                $Data['Data'][$key]['Status']= $DebtInfo['Status'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
