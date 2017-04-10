@@ -259,9 +259,7 @@ function goExport(id){
         success: function(data){
           if(data.ResultCode == 200){
             showMsg('操作成功');
-            layer.close(index);
-            //去曝光路由跳转
-
+            window.location.reload();
           }else{
             showMsg(data.Message);
           }
