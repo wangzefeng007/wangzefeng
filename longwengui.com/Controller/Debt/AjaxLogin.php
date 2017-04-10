@@ -700,7 +700,10 @@ class AjaxLogin
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $DebtID = intval($_POST['id']);
+        $MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>6),$DebtID);//更改债务表债务状态为未曝光
+        $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Status'=>6),' DebtID = '.$DebtID);//更改申请表债务状态为未曝光
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($DebtID);
         if ($DebtInfo){
             $DebtInfo['AddTime'] = time();
@@ -708,25 +711,25 @@ class AjaxLogin
             $DebtInfo['EntrustNum'] = 1;//委托数量
             $DebtInfo['UpdateTime'] = $DebtInfo['AddTime'];
             $DebtInfo['DebtNum'] ='DB'.date("YmdHis").rand(100, 999);
-            unset($DebtInfo['Remarks'],$DebtInfo['BrowseNum'],$DebtInfo['MandatorID']);
+            unset($DebtInfo['DebtID'],$DebtInfo['Remarks'],$DebtInfo['BrowseNum'],$DebtInfo['MandatorID']);
             //开始事务
             global $DB;
             $DB->query("BEGIN");
-            $NewDebtID = $MemberDebtorsInfoModule->InsertInfo($DebtInfo);
+            $NewDebtID = $MemberDebtInfoModule->InsertInfo($DebtInfo);
             if ($NewDebtID){
                 $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(' and DebtID ='.$DebtID,true);
                 //债权人信息
                 $Datb['AddTime'] = $DebtInfo['AddTime'];
                 $Datb['DebtID'] = $NewDebtID;
                 foreach ($CreditorsInfo as $key => $value) {
-                    $Datb['Name'] = trim($value['name']);
-                    $Datb['Card'] = trim($value['idNum']);
-                    $Datb['Money'] = trim($value['debt_money']);
-                    $Datb['Phone'] = trim($value['phoneNumber']);
-                    $Datb['Province'] = trim($value['province']);
-                    $Datb['City'] = trim($value['city']);
-                    $Datb['Area'] = trim($value['area']);
-                    $Datb['Address'] = trim($value['areaDetail']);
+                    $Datb['Name'] = trim($value['Name']);
+                    $Datb['Card'] = trim($value['Card']);
+                    $Datb['Money'] = trim($value['Money']);
+                    $Datb['Phone'] = trim($value['Phone']);
+                    $Datb['Province'] = trim($value['Province']);
+                    $Datb['City'] = trim($value['City']);
+                    $Datb['Area'] = trim($value['Area']);
+                    $Datb['Address'] = trim($value['Address']);
                     $InsertCreditorsInfo = $MemberCreditorsInfoModule->InsertInfo($Datb);
                     if (!$InsertCreditorsInfo) {
                         $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -742,14 +745,14 @@ class AjaxLogin
                     $Datc['AddTime'] = $DebtInfo['AddTime'];
                     $Datc['DebtID'] = $NewDebtID;
                     foreach ($DebtorsInfo as $key => $value) {
-                        $Datc['Name'] = trim($value['name']);
-                        $Datc['Card'] = trim($value['idNum']);
-                        $Datc['Money'] = trim($value['debt_money']);
-                        $Datc['Phone'] = trim($value['phoneNumber']);
-                        $Datc['Province'] = trim($value['province']);
-                        $Datc['City'] = trim($value['city']);
-                        $Datc['Area'] = trim($value['area']);
-                        $Datc['Address'] = trim($value['areaDetail']);
+                        $Datc['Name'] = trim($value['Name']);
+                        $Datc['Card'] = trim($value['Card']);
+                        $Datc['Money'] = trim($value['Money']);
+                        $Datc['Phone'] = trim($value['Phone']);
+                        $Datc['Province'] = trim($value['Province']);
+                        $Datc['City'] = trim($value['City']);
+                        $Datc['Area'] = trim($value['Area']);
+                        $Datc['Address'] = trim($value['Address']);
                         $InsertDebtorsInfo = $MemberDebtorsInfoModule->InsertInfo($Datc);
                         if (!$InsertDebtorsInfo) {
                             $DB->query("ROLLBACK");//判断当执行失败时回滚
