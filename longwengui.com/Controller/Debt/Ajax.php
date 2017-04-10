@@ -253,6 +253,15 @@ class Ajax
             exit;
         }
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
+        if ($UserInfo['Identity']==2){
+            $Url = '/memberperson/applydebtorder/';
+        }elseif ($UserInfo['Identity']==3){
+            $Url = '/memberfirm/applydebtorder/';
+        }elseif ($UserInfo['Identity']==4){
+            $Url = '/memberlawyer/applydebtorder/';
+        }
         $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID ='.$Data['DebtID'].' and UserID = '.$Data['UserID']);
         if (!$ClaimsDisposal){
             $Result = $MemberClaimsDisposalModule->InsertInfo($Data);
@@ -268,7 +277,7 @@ class Ajax
             $json_result = array(
                 'ResultCode' => 200,
                 'Message' => '申请成功',
-                'Url'=>'/memberfirm/applydebtorder/',
+                'Url'=>$Url,
             );
         }else{
             $json_result = array(

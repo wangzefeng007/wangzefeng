@@ -48,7 +48,7 @@
                                 <div class="details-txt-cont">债务人地区：{$lists[Province]}-{$lists[City]}-{$lists[Area]}</div>
                                 <div class="details-txt-cont">详细地址：{$lists[Address]}</div>
                                 <div class="details-txt-cont">债务人电话： {$lists[DebtPhone]}</div>
-                                <div class="details-txt-cont-last">债权人联系方式：{$lists[CreditorsPhone]}{if $lists['Status']==3}<button type="button">完成</button>{/if}</div>
+                                <div class="details-txt-cont-last">债权人联系方式：{$lists[CreditorsPhone]}{if $lists['Status']==3}<button onclick="confirmReword('{$lists[ID]}')" type="button">完成</button>{/if}</div>
                             </div>
                             <!--已完成的悬赏，加水印-->
                             {if $lists['Status']==4}

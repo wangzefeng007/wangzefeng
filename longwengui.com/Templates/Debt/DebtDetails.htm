@@ -9,7 +9,7 @@
         <div class="info-wrap">
             <div class="hd">
                 <!-- <button type="button" name="button">关注</button> -->
-                债务编号：{$DebtInfo[DebtNum]}--处置方偏向：{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{/if}
+                债务编号：{$DebtInfo[DebtNum]}--处置方偏向：{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{elseif $DebtInfo[CollectionType]==3}自助催收{/if}
             </div>
             <div class="pubman-info">
                 <span>发布人: {$UserInfo[RealName]}</span>
@@ -114,16 +114,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                          <td>L201702270000</td>
-                          <td>孙某某</td>
-                          <td>福建省-厦门市-思明区</td>
-                          <td class="m-c">￥100000.00</td>
-                          <td>50天</td>
-                          <td>2017-01-25</td>
-                          <td>催收中</td>
-                          <td class="det">查看详情>></td>
-                      </tr>
+
                       <tr>
                           <td>L201702270000</td>
                           <td>孙某某</td>
@@ -138,7 +129,7 @@
                   </table>
               </div>
               <div class="info-det">
-                关联债务人被催收过次数：律师 <span class="act-r">1次</span>  催收公司<span class="act-r">0次</span>  催客<span class="act-r">0次</span>
+                关联债务人被催收过次数：律师 <span class="act-r">0次</span>  催收公司<span class="act-r">0次</span>  催客<span class="act-r">0次</span>
               </div>
             </div>
             {if $DebtInfo[Status]==1}
