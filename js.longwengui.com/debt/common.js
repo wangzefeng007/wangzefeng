@@ -1214,7 +1214,7 @@ function toDelete(text, id, intention){
 }
 
 //悬赏完成确认弹窗
-function comfirmReword(id){
+function confirmReword(id){
   var index = layer.open({
     type: 1,
     title: 0,
@@ -1242,7 +1242,7 @@ function comfirmReword(id){
         dataType: 'json',
         url: '/loginajax.html',
         data: {
-          "Intention": intention,
+          "Intention": 'ConfirmReword',
           "id": id
         },
         beforeSend: function(){
