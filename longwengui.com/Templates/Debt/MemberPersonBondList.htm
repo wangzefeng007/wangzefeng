@@ -67,7 +67,7 @@
                             {elseif $lists[Status]==2}
                               <td>无</td>
                             {elseif $lists[Status]==3}
-                              <td class="oper"><span>继续发布</span><span>去曝光</span></td>
+                              <td class="oper"><span onclick="publishAgain({$lists[DebtID]})">继续发布</span><span onclick="goExport({$lists[DebtID]})">去曝光</span></td>
                             {elseif $lists[Status]==4}
                               <td>无</td>
                             {elseif $lists[Status]==5}

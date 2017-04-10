@@ -171,3 +171,104 @@ function cancelDebt(id){
       });
     });
 }
+
+//继续发布
+function publishAgain(id){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '债务未能完成，是否继续发布?'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_no').click(function(){
+      layer.close(index);
+    });
+    $('#win_yes').click(function(){
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": 'PublishAgain',
+          "id": id
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            window.location.reload();
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+}
+//去曝光
+function goExport(id){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '债务未能完成，是否立即曝光该债务?'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_no').click(function(){
+      layer.close(index);
+    });
+    $('#win_yes').click(function(){
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": 'GoExport',
+          "id": id
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            layer.close(index);
+            //去曝光路由跳转
+
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+}
