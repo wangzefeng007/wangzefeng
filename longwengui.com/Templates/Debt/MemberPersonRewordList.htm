@@ -34,65 +34,28 @@
                 </dl>
                 <div class="clue">
                     <div class="clue-list">
+                        {loop $Data['Data'] $lists}
                         <div class="list-details">
                             <div class="details-pt">
-                                <div class="details-pt-big"><img></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
+                                <div class="details-pt-big"><img src="{$lists['DefaultImage']}"></div>
+                                {loop $lists[Image] $value}
+                                <div class="details-pt-small"><img src="{$value}" alt="" /></div>
+                                {/loop}
                             </div>
                             <div class="details-txt">
-                                <div class="details-txt-cont">债务人名字：刘备<span>（找财产）</span></div>
-                                <div class="details-txt-cont">债务人身份证：330350175205142541</div>
-                                <div class="details-txt-cont">债务人地区：福建省-厦门市-思明区</div>
-                                <div class="details-txt-cont">详细地址：软件园二期观日落30号5楼5205室一区  </div>
-                                <div class="details-txt-cont">债务人电话： 13542548726</div>
-                                <div class="details-txt-cont-last">债权人联系方式：13520462135<button type="button">完成</button></div>
-                            </div>
-                        </div>
-                        <div class="list-details">
-                            <div class="details-pt">
-                                <div class="details-pt-big"><img></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                            </div>
-                            <div class="details-txt">
-                                <div class="details-txt-cont">债务人名字：刘备<span>（找人）</span></div>
-                                <div class="details-txt-cont">债务人身份证：330350175205142541</div>
-                                <div class="details-txt-cont">债务人地区：福建省-厦门市-思明区</div>
-                                <div class="details-txt-cont">详细地址：软件园二期观日落30号5楼5205室一区  </div>
-                                <div class="details-txt-cont">债务人电话： 13542548726</div>
-                                <div class="details-txt-cont-last">债权人联系方式：13520462135<button type="button">完成</button></div>
-                            </div>
-                        </div>
-                        <div class="list-details">
-                            <div class="details-pt">
-                                <div class="details-pt-big"><img></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                                <div class="details-pt-small"><img src="" alt="" /></div>
-                            </div>
-                            <div class="details-txt">
-                                <div class="details-txt-cont">债务人名字：刘备<span>（找财产）</span></div>
-                                <div class="details-txt-cont">债务人身份证：330350175205142541</div>
-                                <div class="details-txt-cont">债务人地区：福建省-厦门市-思明区</div>
-                                <div class="details-txt-cont">详细地址：软件园二期观日落30号5楼5205室一区  </div>
-                                <div class="details-txt-cont">债务人电话： 13542548726</div>
-                                <div class="details-txt-cont-last">债权人联系方式：13520462135</div>
+                                <div class="details-txt-cont">债务人名字：{$lists[DebtName]}<span>{if $lists[Type]==1}（找人）{elseif $lists[Type]==2}（找财产）{/if}</span></div>
+                                <div class="details-txt-cont">债务人身份证：{$lists[DebtCard]}</div>
+                                <div class="details-txt-cont">债务人地区：{$lists[Province]}-{$lists[City]}-{$lists[Area]}</div>
+                                <div class="details-txt-cont">详细地址：{$lists[Address]}</div>
+                                <div class="details-txt-cont">债务人电话： {$lists[DebtPhone]}</div>
+                                <div class="details-txt-cont-last">债权人联系方式：{$lists[CreditorsPhone]}{if $lists['Status']==3}<button type="button">完成</button>{/if}</div>
                             </div>
                             <!--已完成的悬赏，加水印-->
+                            {if $lists['Status']==4}
                             <img class="details-over" src="/Uploads/Debt/imgs/over.png">
+                            {/if}
                         </div>
+                        {/loop}
                     </div>
                 </div>
             </div>
