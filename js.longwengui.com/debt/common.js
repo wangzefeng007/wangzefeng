@@ -1293,3 +1293,34 @@ function add_menu_event(tar){
     }
   });
 }
+
+//升级成为催客
+function upgradPersonRole(){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="upgrad-person-role">'
+            +  '<div class="pop">'
+            +    '<div class="tl">'
+            +      '升级提示'
+            +    '</div>'
+            +    '<p>您尚未设置处置方匹配要求</p>'
+            +    '<div class="info">'
+            +      '<img src="/Uploads/Debt/imgs/rock.png" alt="">请先完善处置方要求'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" name="ok">确定</button>'
+            +      '<button type="button" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+            + '</div>'
+    });
+    $('.upgrad-person-role button[name="ok"]').click(function(){
+
+    });
+    $('.upgrad-person-role button[name="cancel"]').click(function(){
+      layer.close(index);
+    });
+}
