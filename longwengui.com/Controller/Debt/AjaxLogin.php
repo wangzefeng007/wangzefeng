@@ -843,13 +843,15 @@ class AjaxLogin
              EchoResult($result_json);
              exit;
          }
+         $MemberFindDebtModule = new MemberFindDebtModule();
          $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
          $DebtID = intval($_POST['id']);
          if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID'])){
              $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID']);
          }
+         $UpdateFindDebt = $MemberFindDebtModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
          $Result = $MemberFindDebtOrderModule->UpdateInfoByWhere(array('Agreed'=>1,'Status'=>2),' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
-        if ($Result){
+        if ($UpdateFindDebt && $Result){
             $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
         }else{
             $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
