@@ -384,17 +384,26 @@ function addDebtDom(targetID, tempID){
 
 //申请处置方
 function applyToSearch(UserID, money, tar){
-  layer.open({
-    content: '确定申请该处置方进行处理',
+  var index = layer.open({
+    type: 1,
     title: 0,
-    btnAlign: 'c',
-    shadeClose: 'true',
     closeBtn: 0,
-    btn: ['确定'],
-    yes: function(index, layero){
-      toApply(UserID, money, tar);
-      layer.close(index);
-    }
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '确定申请该处置方进行处理?'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+  $('#win_yes').click(function(){
+    layer.close(index);
+    toApply(UserID, money, tar);
   });
   function toApply(uid, money, tar){
     $.ajax(
