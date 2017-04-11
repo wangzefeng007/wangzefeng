@@ -210,7 +210,6 @@ class MemberFirm
         $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
         $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
         $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
-
         include template('MemberFirmSetDemand');
     }
 }

@@ -207,7 +207,10 @@ class MemberLawyer
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
         $ID = intval($_GET['ID']);
-        $Data= $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
+        $LawyerFeeDemand= $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
+        $LawyerFeeDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Province']);
+        $LawyerFeeDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['City']);
+        $LawyerFeeDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Area']);
         include template('MemberLawyerSetDemand');
     }
 }
