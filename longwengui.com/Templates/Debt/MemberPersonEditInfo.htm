@@ -13,11 +13,11 @@
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
-                                <img src="{$UserInfo[Avatar]}" alt="">
-                                <br>
                                 <label>
-                                    <span>更改头像</span>
-                                    <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                  <img src="{$UserInfo[Avatar]}" alt="">
+                                  <br>
+                                  <span>更改头像</span>
+                                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
                                 </label>
                             </div>
                             <div class="info-blk">
@@ -54,10 +54,10 @@
                             </div>
                             <div class="line">
                                 <div class="if">
-                                    昵称<span class="form-need">*</span>
+                                    昵称
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="nickName" maxlength="5" onblur="validateNeed(this)" placeholder="不超过5个字" value="{$UserInfo[NickName]}">
+                                    <input type="text" name="nickName" maxlength="5" placeholder="不超过5个字" value="{$UserInfo[NickName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -65,7 +65,7 @@
                                     真实姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" name="name" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
+                                    <input type="text" name="name" maxlength="12" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
                                 </div>
                             </div>
                             <div class="line">

@@ -12,11 +12,6 @@ $(function(){
         var images = []; //证明图片
         var type = $('#save').attr('data-type'); //类型
 
-        if(nick_name == ''){
-            showMsg('昵称不能为空');
-            return;
-        }
-
         if(name == ''){
             showMsg('姓名不能为空');
             return;
