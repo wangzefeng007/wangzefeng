@@ -1,6 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/setDebtRate.css">
-<div class="set-debt">
+<div class="set-debt" data-id="{$ID}">
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
@@ -21,7 +21,7 @@
                                     方案名称:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="" placeholder="*请输入方案名称">
+                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="{$CompanyDemand[CaseName]}" placeholder="*请输入方案名称">
                                 </div>
                             </div>
                             <div class="right">
@@ -43,7 +43,7 @@
                                 <div class="det">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            <span>*省份</span>
+                                            {if $CompanyDemand[Province]}<span data-id="{$CompanyDemand[Province]}">{$CompanyDemand[province]}</span>{else}<span>*省份</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            <span>城市</span>
+                                            {if $CompanyDemand[City]}<span data-id="{$CompanyDemand[City]}">{$CompanyDemand[city]}</span>{else}<span>城市</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="a-dropdown">
                                         <label type="checkbox">
-                                            <span>区县/市</span>
+                                            {if $CompanyDemand[Area]}<span data-id="{$CompanyDemand[Area]}">{$CompanyDemand[area]}</span>{else}<span>区县/市</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_area" value="">
                                             <ul></ul>
@@ -85,8 +85,8 @@
                                     债务金额:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="from" onblur="validateForm('money', this)" value="" placeholder="*0.00">元 -
-                                    <input type="text" name="to" onblur="validateForm('money', this)" value="" placeholder="*3000.00">元
+                                    <input type="text" name="from" onblur="validateForm('money', this)" value="{$CompanyDemand[FromMoney]}" placeholder="*0.00">元 -
+                                    <input type="text" name="to" onblur="validateForm('money', this)" value="{$CompanyDemand[ToMoney]}" placeholder="*3000.00">元
                                 </div>
                             </div>
                             <div class="right">
@@ -94,7 +94,7 @@
                                     佣金比例:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="rate" onblur="validateForm('rate', this)" value="" placeholder="*百分比">% 人民币
+                                    <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*百分比">% 人民币
                                 </div>
                             </div>
                         </div>
@@ -106,14 +106,14 @@
                     <span>债务人是否随时能寻找到 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="searchedAnytime" value="1" checked>
+                            <input type="radio" name="searchedAnytime" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="searchedAnytime" value="0">
+                            <input type="radio" name="searchedAnytime" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>
@@ -126,14 +126,14 @@
                     <span>债务人是否有还款能力 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="abilityDebt" value="1" checked>
+                            <input type="radio" name="abilityDebt" value="1" {if $CompanyDemand[RepaymentDebtor]==1 || empty($CompanyDemand[RepaymentDebtor])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="abilityDebt" value="0">
+                            <input type="radio" name="abilityDebt" value="0" {if $CompanyDemand[RepaymentDebtor]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>
@@ -146,14 +146,14 @@
                     <span>是否有前期费用 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="fee" value="1" checked>
+                            <input type="radio" name="fee" value="1" {if $CompanyDemand[EarlyCost]==1 || empty($CompanyDemand[EarlyCost])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="fee" value="0">
+                            <input type="radio" name="fee" value="0" {if $CompanyDemand[EarlyCost]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>

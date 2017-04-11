@@ -206,8 +206,11 @@ class MemberFirm
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
+        $CompanyDemand = $MemberSetCompanyModule->GetInfoByKeyID($ID);
+        $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
+        $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
+        $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
 
-        $Data= $MemberSetCompanyModule->GetInfoByKeyID($ID);
         include template('MemberFirmSetDemand');
     }
 }
