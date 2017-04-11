@@ -13,11 +13,11 @@
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
-                                <img src="{$UserInfo[Avatar]}" alt="">
-                                <br>
                                 <label>
-                                    <span>更改头像</span>
-                                    <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                  <img src="{$UserInfo[Avatar]}" alt="">
+                                  <br>
+                                  <span>更改头像</span>
+                                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
                                 </label>
                             </div>
                             <div class="info-blk">
@@ -65,7 +65,7 @@
                                     注册人姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" onblur="validateChinese(this)" name="registrantName" value="{$UserInfo[RealName]}">
+                                    <input type="text" maxlength="12" onblur="validateChinese(this)" name="registrantName" value="{$UserInfo[RealName]}">
                                 </div>
                             </div>
                             <div class="line">
