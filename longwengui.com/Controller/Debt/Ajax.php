@@ -428,7 +428,7 @@ class Ajax
                 }
                 if ($InsertDebtorsInfo){
                     $DB->query("COMMIT");//执行事务
-                    $MemberSetCollectionModule = new MemberSetCollectionModule();
+                    $MemberSetCompanyModule = new MemberSetCompanyModule();
                     $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
                     $MemberUserInfoModule = new MemberUserInfoModule();
                     $MemberUserModule = new MemberUserModule();
@@ -449,7 +449,7 @@ class Ajax
                         $UserInfoWhere = ' and Identity =3 ';
                         $Area=implode(',',array_unique($Area));
                         $MysqlWhere = " and Area IN ($Area)";//匹配条件待完善
-                        $Commission = $MemberSetCollectionModule->GetInfoByWhere($MysqlWhere,true);
+                        $Commission = $MemberSetCompanyModule->GetInfoByWhere($MysqlWhere,true);
                         if (!$Commission){
                             $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                             EchoResult($result_json);exit;

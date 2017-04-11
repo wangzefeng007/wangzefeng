@@ -460,11 +460,11 @@ class AjaxLogin
         $Data['Province'] = ($AjaxData['area'][0]['province']);
         $Data['City'] = ($AjaxData['area'][0]['city']);
         $Data['Area'] = ($AjaxData['area'][0]['area']);
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
         if (!empty($_POST['ID'])){
             $ID = intval($_POST['ID']);
             $Data['UpdateTime'] = time();
-            $Result = $MemberSetCollectionModule->UpdateInfoByKeyID($Data,$ID);
+            $Result = $MemberSetCompanyModule->UpdateInfoByKeyID($Data,$ID);
             if ($Result){
                 $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberfirm/demandlist/');
             }else{
@@ -473,7 +473,7 @@ class AjaxLogin
         }else{
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
-            $Insert = $MemberSetCollectionModule->InsertInfo($Data);
+            $Insert = $MemberSetCompanyModule->InsertInfo($Data);
             if ($Insert){
                 $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberfirm/demandlist/');
             }else{
@@ -535,7 +535,7 @@ class AjaxLogin
      * @desc 删除催收公司佣金方案
      */
     public function DeleteFirmDemand(){
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
     }
     /**
      * @desc 用户确认完成发布悬赏

@@ -153,12 +153,12 @@ class MemberFirm
         $Title = '会员中心-要求方案';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $MysqlWhere ='';
-        $Rscount = $MemberSetCollectionModule->GetListsNum($MysqlWhere);
+        $Rscount = $MemberSetCompanyModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
             $Page = 1;
@@ -173,7 +173,7 @@ class MemberFirm
                 $Page = $Data['PageCount'];
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberSetCollectionModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $Data['Data'] = $MemberSetCompanyModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
@@ -185,9 +185,9 @@ class MemberFirm
      */
     public function DemandDetails(){
         $MemberAreaModule = new MemberAreaModule();
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
-        $CollectionInfo = $MemberSetCollectionModule->GetInfoByKeyID($ID);
+        $CollectionInfo = $MemberSetCompanyModule->GetInfoByKeyID($ID);
         //佣金范围和比例
         $Commission = json_decode($CollectionInfo['Commission'],true);
         //服务地区
@@ -204,10 +204,10 @@ class MemberFirm
      */
     public function SetDemand(){
         $MemberAreaModule = new MemberAreaModule();
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
 
-        $Data= $MemberSetCollectionModule->GetInfoByKeyID($ID);
+        $Data= $MemberSetCompanyModule->GetInfoByKeyID($ID);
         include template('MemberFirmSetDemand');
     }
 }
