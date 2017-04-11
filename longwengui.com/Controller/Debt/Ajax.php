@@ -446,11 +446,12 @@ class Ajax
                                 $Result['Data'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
                                 $Result['Data'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
                                 $Result['Data'][$key]['phoneNumber'] = $value['mobile'];
-                                $Result['Data'][$key]['fee'] = $value['MoneyScale']/100*$Data['DebtAmount'];
+                                $Result['Data'][$key]['fee'] = $value['Money'];
                             }
                             $Result['ResultCode'] = 200;
                             $Result['Page'] = 1;
                             $Result['PageCount'] = 1;
+                            $Result['DebtId'] = $DebtID;
                             EchoResult($Result);exit;
                         }else{
                             $result_json = array('ResultCode'=>105,'Message'=>'非常抱歉，暂无找到相应的处置方！');
@@ -492,7 +493,7 @@ class Ajax
         EchoResult($result_json);exit;
     }
     /**
-     * @desc 普通用户申请委托方受理
+     * @desc 普通用户申请委托方受理（寻找处置方）
      */
     public function DisposeApply(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
