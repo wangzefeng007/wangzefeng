@@ -284,9 +284,14 @@ class AjaxLogin
                         $InfoData['LastLogin'] =  $Data['AddTime'];
                         $InfoData['Identity'] =0;
                         $InfoData['IdentityState'] =1;
-                        $Data['IP'] = $Data['AddIP'];
+                        $Data['IP'] = GetIP();
                         $InfoData['Avatar']='/Uploads/Debt/imgs/head_img.png';
-                        $UserInfo->InsertInfo($InfoData);
+                        $InsertInfo =$UserInfo->InsertInfo($InfoData);
+                        if (!$InsertInfo){
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
+                            $json_result = array('ResultCode' => 105, 'Message' => '注册失败',);
+                            echo json_encode($json_result);exit;
+                        }
                         // 同步SESSIONID
                         setcookie("session_id", session_id(), time() + 3600 * 24, "/", WEB_HOST_URL);
                         $_SESSION['UserID'] = $InfoData['UserID'];
@@ -452,19 +457,23 @@ class AjaxLogin
             exit;
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        var_dump($AjaxData);exit;
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['CaseName']= $AjaxData['caseName'];
-        $Data['FromMoney'] =($AjaxData['feeRate'][0]['from']);
-        $Data['ToMoney'] =($AjaxData['feeRate'][0]['to']);
-        $Data['Money'] =($AjaxData['feeRate'][0]['fee']);
+        $Data['FindDebtor']= $AjaxData['searchedAnytime'];
+        $Data['EarlyCost']= $AjaxData['fee'];
+        $Data['RepaymentDebtor']= $AjaxData['abilityDebt'];
+        $Data['FromMoney'] =($AjaxData['fee_rate'][0]['from']);
+        $Data['ToMoney'] =($AjaxData['fee_rate'][0]['to']);
+        $Data['MoneyScale'] =($AjaxData['fee_rate'][0]['rate']);
         $Data['Province'] = ($AjaxData['area'][0]['province']);
         $Data['City'] = ($AjaxData['area'][0]['city']);
         $Data['Area'] = ($AjaxData['area'][0]['area']);
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
         if (!empty($_POST['ID'])){
             $ID = intval($_POST['ID']);
             $Data['UpdateTime'] = time();
-            $Result = $MemberSetCollectionModule->UpdateInfoByKeyID($Data,$ID);
+            $Result = $MemberSetCompanyModule->UpdateInfoByKeyID($Data,$ID);
             if ($Result){
                 $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberfirm/demandlist/');
             }else{
@@ -473,7 +482,7 @@ class AjaxLogin
         }else{
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
-            $Insert = $MemberSetCollectionModule->InsertInfo($Data);
+            $Insert = $MemberSetCompanyModule->InsertInfo($Data);
             if ($Insert){
                 $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberfirm/demandlist/');
             }else{
@@ -535,7 +544,7 @@ class AjaxLogin
      * @desc 删除催收公司佣金方案
      */
     public function DeleteFirmDemand(){
-        $MemberSetCollectionModule = new MemberSetCollectionModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
     }
     /**
      * @desc 用户确认完成发布悬赏
@@ -590,7 +599,7 @@ class AjaxLogin
             //更新债务信息表，更改状态和委托用户ID
             $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2,'MandatorID'=>$ClaimsDisposal['UserID']),$DebtID);
             if ($UpdateDebtInfo){
-                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
+                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2,'Status'=>10),' DebtID = '.$DebtID.' and ID != '.$ID);//拒绝的同时，该申请债务状态为已拒绝。
                 $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1,'Status'=>2),$ID);
                 if ($UpdateInfo){
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($ClaimsDisposal['UserID']);//委托方用户信息
@@ -627,7 +636,7 @@ class AjaxLogin
         if ($_POST){
             $DebtID = $_POST['debtId'];
             $ID = $_POST['id'];
-            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>2),$ID);
+            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>2,'Status'=>10),$ID);//拒绝的同时，该申请债务状态为已拒绝。
             if ($UpdateInfo){
                 $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
             }else{

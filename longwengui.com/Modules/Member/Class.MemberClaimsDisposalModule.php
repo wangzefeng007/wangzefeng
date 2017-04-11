@@ -21,5 +21,6 @@ Class MemberClaimsDisposalModule extends CommonModule {
         '7' => '已曝光',
         '8' => '待审核',
         '9' => '取消发布',
+        '10' => '已拒绝',
     );
 }
