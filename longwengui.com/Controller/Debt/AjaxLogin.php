@@ -457,9 +457,9 @@ class AjaxLogin
             exit;
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        var_dump($AjaxData);exit;
+
         $Data['UserID'] = $_SESSION['UserID'];
-        $Data['CaseName']= $AjaxData['caseName'];
+        $Data['CaseName']= $AjaxData['case_name'];
         $Data['FindDebtor']= $AjaxData['searchedAnytime'];
         $Data['EarlyCost']= $AjaxData['fee'];
         $Data['RepaymentDebtor']= $AjaxData['abilityDebt'];
