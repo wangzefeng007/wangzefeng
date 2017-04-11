@@ -51,11 +51,23 @@
   line-height: 18px;
   border: 0;
   background-color: #fd7777;
-  border-radius: 5px;
   color: #fff;
   cursor: pointer;
   border-radius: 0;
   font-size: 12px;
+}
+.collection-details .wrap .info-wrap .hd .concerned {
+  min-width: 40px;
+  display: inline-block;
+  line-height: 24px;
+  padding: 0 5px;
+  background-color: #009f95;
+  color: #fff;
+  font-size: 12px;
+}
+.collection-details .wrap .info-wrap .hd .concerned img{
+  vertical-align: middle;
+  margin-top: -1px;
 }
 .collection-details .wrap .info-wrap .pubman-info {
   line-height: 50px;
