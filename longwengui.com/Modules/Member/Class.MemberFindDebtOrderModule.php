@@ -1,8 +1,7 @@
 <?php
-
 /**
- * @desc 寻找处置方债务订单表
- * Class MemberDebtOrderModule
+ * @desc 寻找处置方债务接单表
+ * Class MemberFindDebtOrderModule
  */
 class MemberFindDebtOrderModule extends CommonModule {
     public $KeyID = 'OrderID';

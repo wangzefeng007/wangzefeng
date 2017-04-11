@@ -430,56 +430,55 @@ class Ajax
                     $DB->query("COMMIT");//执行事务
                     $MemberSetCompanyModule = new MemberSetCompanyModule();
                     $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
-                    $MemberUserInfoModule = new MemberUserInfoModule();
-                    $MemberUserModule = new MemberUserModule();
                     foreach ($debtorInfos  as $key=>$value){
-                        $Area[] = $value['area'];
+                        $Province[] = $value['province'];
                     }
-                    //1律师团队，2催收公司
-                    if ($Data['Type']==1){
-                        $UserInfoWhere = ' and Identity =4 ';
-                        $Area=implode(',',array_unique($Area));
-                        $MysqlWhere = " and Area IN ($Area)";//匹配条件待完善
-                        $Commission = $MemberSetLawyerFeeModule->GetInfoByWhere($MysqlWhere,true);
-                        if (!$Commission){
-                            $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
+                    $Result['Data'] = array();
+                    if ($Data['Type']==1){ //1匹配律师团队
+                        $MysqlWhere=implode(',',array_unique($Province));
+                        $CompanyInfo = $MemberSetLawyerFeeModule->GetTeamInfoByWhere($MysqlWhere);
+                        if ($CompanyInfo){
+                            $MemberAreaModule = new MemberAreaModule();
+                            foreach ($CompanyInfo  as $key=>$value){
+                                $Result['Data'][$key]['CompanyName'] = $value['CompanyName'];
+                                $Result['Data'][$key]['UserID'] = $value['UserID'];
+                                $Result['Data'][$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                                $Result['Data'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                                $Result['Data'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+                                $Result['Data'][$key]['phoneNumber'] = $value['mobile'];
+                                $Result['Data'][$key]['fee'] = $value['MoneyScale']/100*$Data['DebtAmount'];
+                            }
+                            $Result['ResultCode'] = 200;
+                            $Result['Page'] = 1;
+                            $Result['PageCount'] = 1;
+                            EchoResult($Result);exit;
+                        }else{
+                            $result_json = array('ResultCode'=>105,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                             EchoResult($result_json);exit;
                         }
-                    }elseif($Data['Type']==2){
-                        $UserInfoWhere = ' and Identity =3 ';
-                        $Area=implode(',',array_unique($Area));
-                        $MysqlWhere = " and Area IN ($Area)";//匹配条件待完善
-                        $Commission = $MemberSetCompanyModule->GetInfoByWhere($MysqlWhere,true);
-                        if (!$Commission){
-                            $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
+                    }elseif($Data['Type']==2){ //匹配催收公司
+                        $MysqlWhere=implode(',',array_unique($Province));
+                        $CompanyInfo = $MemberSetCompanyModule->GetTeamInfoByWhere($MysqlWhere);
+                        if ($CompanyInfo){
+                            $MemberAreaModule = new MemberAreaModule();
+                            foreach ($CompanyInfo  as $key=>$value){
+                                $Result['Data'][$key]['CompanyName'] = $value['CompanyName'];
+                                $Result['Data'][$key]['UserID'] = $value['UserID'];
+                                $Result['Data'][$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                                $Result['Data'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                                $Result['Data'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+                                $Result['Data'][$key]['phoneNumber'] = $value['mobile'];
+                                $Result['Data'][$key]['fee'] = $value['MoneyScale']/100*$Data['DebtAmount'];
+                            }
+                            $Result['ResultCode'] = 200;
+                            $Result['Page'] = 1;
+                            $Result['PageCount'] = 1;
+                            $Result['DebtId'] = $DebtID;
+                            EchoResult($Result);exit;
+                        }else{
+                            $result_json = array('ResultCode'=>106,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                             EchoResult($result_json);exit;
                         }
-                    }
-                    foreach ($Commission as $key =>$value){
-                        $UserID[] = $value['UserID'];
-                    }
-                    $UserIDLists=implode(',',array_unique($UserID));
-                    $UserInfoWhere .= " and IdentityState=3 and UserID IN ($UserIDLists)";
-                    $UserInfo = $MemberUserInfoModule->GetLists($UserInfoWhere, 0,10);
-                    if ($UserInfo){
-                        foreach ($UserInfo as $key=>$value){
-                            $Result['Data'][$key]['UserID'] = $value['UserID'];
-                            $Result['Data'][$key]['CompanyName'] = $value['CompanyName'];
-                            $Result['Data'][$key]['province'] = $value['Province'];
-                            $Result['Data'][$key]['city'] = $value['City'];
-                            $Result['Data'][$key]['area'] = $value['Area'];
-                            $User = $MemberUserModule->GetInfoByKeyID($value['UserID']);
-                            $Result['Data'][$key]['phoneNumber'] = $User['Mobile'];
-                            $Result['Data'][$key]['fee'] = 1111;
-                        }
-                        $Result['ResultCode'] = 200;
-                        $Result['Page'] = 1;
-                        $Result['PageCount'] = 1;
-                        $Result['DebtId'] = $DebtID;
-                        EchoResult($Result);exit;
-                    }else{
-                        $result_json = array('ResultCode'=>104,'Message'=>'非常抱歉，暂无找到相应的处置方！');
-                        EchoResult($result_json);exit;
                     }
                 }else{
                     $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -493,7 +492,7 @@ class Ajax
         EchoResult($result_json);exit;
     }
     /**
-     * @desc 申请处置方
+     * @desc 普通用户申请委托方受理
      */
     public function DisposeApply(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
@@ -505,19 +504,23 @@ class Ajax
         }
         $Data['UserID'] = $_POST['uid'];
         $Data['DebtID'] = $_POST['debtId'];
-        $Data['Type'] = 2;//类型：2-寻找处置方接单申请
         $Data['Money'] = $_POST['money'];
         $Data['DelegateTime'] = time();
-        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
-        $Rscount = $MemberClaimsDisposalModule->GetListsNum(' and Type =2 and DebtID = '.$Data['DebtID']);
+        $Data['Status'] =1;
+        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $Rscount = $MemberFindDebtOrderModule->GetListsNum(' and DebtID = '.$Data['DebtID']);
         if ($Rscount ['Num']>='3'){
             $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，您最多只可申请三个处置方');
         }else{
-            $InsertDisposal = $MemberClaimsDisposalModule->InsertInfo($Data);
-            if (!$InsertDisposal){
-                $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
+            if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and UserID = '.$Data['UserID'])){
+                $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，不能重复申请');
             }else{
-                $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
+                $InsertFindDebtOrder = $MemberFindDebtOrderModule->InsertInfo($Data);
+                if (!$InsertFindDebtOrder){
+                    $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
+                }else{
+                    $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
+                }
             }
         }
         EchoResult($result_json);exit;

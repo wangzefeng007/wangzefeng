@@ -319,8 +319,8 @@ $(function(){
       },
       success: function(data){
           //设置匹配按钮不可点击
-          $('#match')[0].disabled = true;
-          $('#match').addClass('btn-disabled');
+         // $('#match')[0].disabled = true;
+         // $('#match').addClass('btn-disabled');
         if(data.ResultCode == 200){
           debtId = data.DebtId;
           dataSuccess(data.Data);
