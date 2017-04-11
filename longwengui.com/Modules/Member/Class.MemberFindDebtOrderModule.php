@@ -18,5 +18,6 @@ class MemberFindDebtOrderModule extends CommonModule {
         '5' => '已完成',
         '6' => '未曝光',
         '7' => '已曝光',
+        '9' => '取消发布',
     ];
 }

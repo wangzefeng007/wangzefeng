@@ -18,6 +18,7 @@ Class MemberFindDebtModule extends CommonModule {
         '5' => '已完成',
         '6' => '未曝光',
         '7' => '已曝光',
+        '9' => '取消发布',
     ];
     /**
      * @desc 后台订单状态
@@ -31,5 +32,6 @@ Class MemberFindDebtModule extends CommonModule {
         '5' => '全部收回',
         '6' => '未曝光',
         '7' => '已曝光',
+        '9' => '取消发布',
     ];
 }
