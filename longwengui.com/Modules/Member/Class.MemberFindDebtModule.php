@@ -7,7 +7,7 @@ Class MemberFindDebtModule extends CommonModule {
     public $KeyID = 'DebtID';
     public $TableName = 'member_find_debt';
     /**
-     * @desc 后台订单状态
+     * @desc 前台订单状态
      * @var array
      */
     public $NStatus = [
@@ -20,7 +20,7 @@ Class MemberFindDebtModule extends CommonModule {
         '7' => '已曝光',
     ];
     /**
-     * @desc 前台订单状态
+     * @desc 后台订单状态
      * @var array
      */
     public $Status = [
