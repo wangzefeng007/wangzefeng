@@ -21,7 +21,7 @@
                                     方案名称:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="" placeholder="请输入方案名称(*必填)">
+                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="{$LawyerFeeDemand[CaseName]}" placeholder="请输入方案名称(*必填)">
                                 </div>
                             </div>
                             <div class="right">
@@ -44,7 +44,7 @@
                                 <div class="det">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            <span>*省份</span>
+                                            {if $LawyerFeeDemand[Province]}<span data-id="{$CompanyDemand[Province]}">{$LawyerFeeDemand[province]}</span>{else}<span>*省份</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            <span>城市</span>
+                                            {if $LawyerFeeDemand[City]}<span data-id="{$LawyerFeeDemand[City]}">{$LawyerFeeDemand[city]}</span>{else}<span>城市</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="a-dropdown">
                                         <label type="checkbox">
-                                            <span>区县/市</span>
+                                            {if $LawyerFeeDemand[Area]}<span data-id="{$LawyerFeeDemand[Area]}">{$LawyerFeeDemand[area]}</span>{else}<span>区县/市</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_area" value="">
                                             <ul></ul>
@@ -86,8 +86,8 @@
                                     债务金额:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="from" onblur="validateForm('money', this)" value="" placeholder="*0.00">元 -
-                                    <input type="text" name="to" onblur="validateForm('money', this)" value="" placeholder="*3000.00">元
+                                    <input type="text" name="from" onblur="validateForm('money', this)" value="{$LawyerFeeDemand[FromMoney]}" placeholder="*0.00">元 -
+                                    <input type="text" name="to" onblur="validateForm('money', this)" value="{$LawyerFeeDemand[ToMoney]}" placeholder="*3000.00">元
                                 </div>
                             </div>
                             <div class="right">
@@ -102,7 +102,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <input type="text" name="fee" onblur="validateForm('money', this)" value="" placeholder="*3000"> 元
+                                        <input type="text" name="fee" onblur="validateForm('money', this)" value="{$LawyerFeeDemand[Money]}" placeholder="*3000"> 元
                                     </div>
                                 </div>
                                 <!-- <div class="fir">
