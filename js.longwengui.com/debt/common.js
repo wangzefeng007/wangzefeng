@@ -1273,8 +1273,8 @@ $('.menu-level-1').each(function(){
 $('.menu-level-2-act').each(function(){
   var _for = $(this).parent().attr('data-for');
   $(this).parent().show();
-  $('#' + _for).children('.i-right').addClass('img-sel');
-  $('#' + _for).siblings('.menu-level-2-wrap').eq(0).show();
+  $('#' + _for).children('.i-right').attr('src', '/Uploads/Debt/imgs/tri_arrow_up.png');
+  $('#' + _for).next().show();
   $('#' + _for).attr('data-open', 1);
 });
 function add_menu_event(tar){
