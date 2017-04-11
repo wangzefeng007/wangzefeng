@@ -284,9 +284,14 @@ class AjaxLogin
                         $InfoData['LastLogin'] =  $Data['AddTime'];
                         $InfoData['Identity'] =0;
                         $InfoData['IdentityState'] =1;
-                        $Data['IP'] = $Data['AddIP'];
+                        $Data['IP'] = GetIP();
                         $InfoData['Avatar']='/Uploads/Debt/imgs/head_img.png';
-                        $UserInfo->InsertInfo($InfoData);
+                        $InsertInfo =$UserInfo->InsertInfo($InfoData);
+                        if (!$InsertInfo){
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
+                            $json_result = array('ResultCode' => 105, 'Message' => '注册失败',);
+                            echo json_encode($json_result);exit;
+                        }
                         // 同步SESSIONID
                         setcookie("session_id", session_id(), time() + 3600 * 24, "/", WEB_HOST_URL);
                         $_SESSION['UserID'] = $InfoData['UserID'];
@@ -452,11 +457,15 @@ class AjaxLogin
             exit;
         }
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        var_dump($AjaxData);exit;
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['CaseName']= $AjaxData['caseName'];
-        $Data['FromMoney'] =($AjaxData['feeRate'][0]['from']);
-        $Data['ToMoney'] =($AjaxData['feeRate'][0]['to']);
-        $Data['Money'] =($AjaxData['feeRate'][0]['fee']);
+        $Data['FindDebtor']= $AjaxData['searchedAnytime'];
+        $Data['EarlyCost']= $AjaxData['fee'];
+        $Data['RepaymentDebtor']= $AjaxData['abilityDebt'];
+        $Data['FromMoney'] =($AjaxData['fee_rate'][0]['from']);
+        $Data['ToMoney'] =($AjaxData['fee_rate'][0]['to']);
+        $Data['MoneyScale'] =($AjaxData['fee_rate'][0]['rate']);
         $Data['Province'] = ($AjaxData['area'][0]['province']);
         $Data['City'] = ($AjaxData['area'][0]['city']);
         $Data['Area'] = ($AjaxData['area'][0]['area']);
