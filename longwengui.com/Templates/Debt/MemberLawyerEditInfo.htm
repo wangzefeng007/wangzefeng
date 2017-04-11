@@ -14,11 +14,11 @@
                     <div class="info-cont">
                         <div class="info-m">
                             <div class="head-portrait">
+                                <img src="{$UserInfo['Avatar']}" alt="">
+                                <br>
                                 <label>
-                                  <img src="{$UserInfo['Avatar']}" alt="">
-                                  <br>
-                                  <span>更改头像</span>
-                                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                    <span>更改头像</span>
+                                    <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
                                 </label>
                             </div>
                             <div class="info-blk">
@@ -58,7 +58,7 @@
                                     真实姓名<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
-                                    <input type="text" maxlength="12" name="name" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
+                                    <input type="text" name="name" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            <span data-id="$UserInfo[City]}">$UserInfo[city]}</span>
+                                            <span data-id="{$UserInfo[City]}">{$UserInfo[city]}</span>
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
