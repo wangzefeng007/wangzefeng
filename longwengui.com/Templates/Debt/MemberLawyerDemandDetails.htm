@@ -4,7 +4,7 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>债权管理</a> > <span>债权接单</span> > <span class="cur">查看详情</span></span>
+            <span>当前位置 : <a>债权管理</a> > <a href="/memberlawyer/creditorder/">债权接单</a> > <span class="cur">查看详情</span></span>
         </div>
         <div class="form-wrap">
             <div class="box">
@@ -20,7 +20,7 @@
                                 方案名称:
                             </div>
                             <div class="g-det">
-                                厦漳泉佣金收费比例
+                                {$LawyerFeeDemand[CaseName]}
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 匹配区域:
                             </div>
                             <div class="g-det">
-                                <span>福建省-厦门市</span>
+                                <span>{$LawyerFeeDemand['province']}{if $LawyerFeeDemand['city']}-{$LawyerFeeDemand['city']}{/if}{if $LawyerFeeDemand['area']}-{$LawyerFeeDemand['area']}{/if}</span>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                     债务金额：
                                 </div>
                                 <div class="g-det">
-                                    <span>￥0.00-30000.00元</span>
+                                    <span>￥{$LawyerFeeDemand['FromMoney']}-{$LawyerFeeDemand['ToMoney']}元</span>
                                 </div>
                             </div>
                             <div class="right">
@@ -63,7 +63,7 @@
                                     佣金比例：
                                 </div>
                                 <div class="g-det">
-                                    <span>500（元）</span>
+                                    <span>{$LawyerFeeDemand['Money']}（元）</span>
                                 </div>
                             </div>
                         </div>

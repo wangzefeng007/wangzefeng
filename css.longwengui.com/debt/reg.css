@@ -104,22 +104,11 @@
   color: #35bdfc;
   cursor: pointer;
 }
-.reg .protocal-pop {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 100;
-  display: none;
-}
 .reg .protocal-pop .popup {
   width: 600px;
   margin: 0 auto;
   height: 504px;
   background-color: #fff;
-  margin-top: 144px;
 }
 .reg .protocal-pop .popup .hd {
   line-height: 60px;

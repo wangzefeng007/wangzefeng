@@ -1,13 +1,11 @@
 $(
   function(){
+    //初始化地址信息
+    initArea();
+
     //保存新建佣金比例
     $('#save').click(function(){
-      ajax();
-    });
-
-    //修改佣金比例
-    $('#edit').click(function(){
-      ajax($(this).attr('data-id'));
+      ajax($('.set-debt').attr('data-id'));
     });
 
     //提交表单
@@ -224,6 +222,18 @@ $(
     }
   }
 );
+
+//初始化省市县信息
+function initArea(){
+  var p_tar = $('input[name="dd_province"]');
+  var p_id = p_tar.siblings('span').attr('data-id');
+  var c_tar = $('input[name="dd_city"]');
+  var c_id = c_tar.siblings('span').attr('data-id');
+
+  getProvinceData();
+  getCityData(p_id, p_tar);
+  getAreaData(c_id, c_tar);
+}
 
 //失去焦点校验
 function validateForm(type, tar){

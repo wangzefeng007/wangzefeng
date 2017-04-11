@@ -187,16 +187,13 @@ class MemberLawyer
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
         $ID = intval($_GET['ID']);
-        $CollectionInfo = $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
-        //佣金范围和比例
-        $Commission = json_decode($CollectionInfo['Commission'],true);
-        //服务地区
-        $Area = json_decode($CollectionInfo['Area'],true);
-        foreach ($Area as $key =>$value){
-            $Area[$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
-            $Area[$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
-            $Area[$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
-        }
+        $LawyerFeeDemand = $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
+        if ($LawyerFeeDemand['Province'])
+        $LawyerFeeDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Province']);
+        if ($LawyerFeeDemand['City'])
+        $LawyerFeeDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['City']);
+        if ($LawyerFeeDemand['Area'])
+        $LawyerFeeDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Area']);
         include template('MemberLawyerDemandDetails');
     }
     /**
@@ -207,10 +204,15 @@ class MemberLawyer
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
         $ID = intval($_GET['ID']);
-        $LawyerFeeDemand= $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
-        $LawyerFeeDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Province']);
-        $LawyerFeeDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['City']);
-        $LawyerFeeDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Area']);
+        if ($ID){
+            $LawyerFeeDemand= $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
+            if ($LawyerFeeDemand['Province'])
+            $LawyerFeeDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Province']);
+            if ($LawyerFeeDemand['City'])
+            $LawyerFeeDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['City']);
+            if ($LawyerFeeDemand['Area'])
+            $LawyerFeeDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Area']);
+        }
         include template('MemberLawyerSetDemand');
     }
 }

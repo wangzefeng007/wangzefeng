@@ -538,13 +538,50 @@ class AjaxLogin
      * @desc 删除律师团队佣金方案
      */
     public function DeleteLawyerDemand(){
-        $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        if ($_POST['id']){
+          $ID = intval($_POST['id']);
+            $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
+            $Result = $MemberSetLawyerfeeModule->DeleteByKeyID($ID);
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'删除成功！');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'删除成功！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'删除成功！');
+        }
+        EchoResult($result_json);
+        exit;
     }
     /**
      * @desc 删除催收公司佣金方案
      */
     public function DeleteFirmDemand(){
-        $MemberSetCompanyModule = new MemberSetCompanyModule();
+
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        if ($_POST['id']){
+            $ID = intval($_POST['id']);
+            $MemberSetCompanyModule = new MemberSetCompanyModule();
+            $Result = $MemberSetCompanyModule->DeleteByKeyID($ID);
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'删除成功！');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'删除失败！');
+            }
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'删除失败！');
+        }
+        EchoResult($result_json);
+        exit;
     }
     /**
      * @desc 用户确认完成发布悬赏

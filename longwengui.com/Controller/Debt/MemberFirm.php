@@ -11,7 +11,7 @@ class MemberFirm
             header('Location:' . WEB_MAIN_URL . '/member/login/');
         }else{
             if ($_SESSION['Identity']!=3)
-            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+                alertandgotopage("访问被拒绝", WEB_MAIN_URL);
         }
     }
     /**
@@ -111,15 +111,15 @@ class MemberFirm
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberClaimsDisposalModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-              $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
-              $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
                 $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
                 $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];
                 $Data['Data'][$key]['AddTime']= $DebtInfo['AddTime'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
-               if ($DebtorsInfo['Province'])
-                   $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
                 if ($DebtorsInfo['City'])
                     $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
                 if ($DebtorsInfo['Area'])
@@ -187,16 +187,13 @@ class MemberFirm
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
-        $CollectionInfo = $MemberSetCompanyModule->GetInfoByKeyID($ID);
-        //佣金范围和比例
-        $Commission = json_decode($CollectionInfo['Commission'],true);
-        //服务地区
-        $Area = json_decode($CollectionInfo['Area'],true);
-        foreach ($Area as $key =>$value){
-            $Area[$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
-            $Area[$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
-            $Area[$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
-        }
+        $CompanyDemand = $MemberSetCompanyModule->GetInfoByKeyID($ID);
+        if ($CompanyDemand['Province'])
+        $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
+        if ($CompanyDemand['City'])
+        $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
+        if ($CompanyDemand['Area'])
+        $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
         include template('MemberFirmDemandDetails');
     }
     /**
@@ -206,10 +203,15 @@ class MemberFirm
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
-        $CompanyDemand = $MemberSetCompanyModule->GetInfoByKeyID($ID);
-        $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
-        $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
-        $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
+        if ($ID) {
+            $CompanyDemand = $MemberSetCompanyModule->GetInfoByKeyID($ID);
+            if ($CompanyDemand['Province'])
+            $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
+            if ($CompanyDemand['City'])
+            $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
+            if ($CompanyDemand['Area'])
+            $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
+        }
         include template('MemberFirmSetDemand');
     }
 }

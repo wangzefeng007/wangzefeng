@@ -1,13 +1,11 @@
 $(
   function(){
+    //初始化地址信息
+    initArea();
+
     //新建佣金比例方案
     $('#save').click(function(){
-      ajax();
-    });
-
-    //修改佣金比例方案
-    $('#edit').click(function(){
-      ajax($(this).attr('data-id'));
+      ajax($('.set-debt').attr('data-id'));
     });
 
     //提交表单
@@ -215,6 +213,18 @@ function validateForm(type, tar){
 
 //初始化省市县联动
 getProvinceData();
+
+//初始化省市县信息
+function initArea(){
+  var p_tar = $('input[name="dd_province"]');
+  var p_id = p_tar.siblings('span').attr('data-id');
+  var c_tar = $('input[name="dd_city"]');
+  var c_id = c_tar.siblings('span').attr('data-id');
+
+  getProvinceData();
+  getCityData(p_id, p_tar);
+  getAreaData(c_id, c_tar);
+}
 
 //添加设置区域
 function addAreaSet(){
