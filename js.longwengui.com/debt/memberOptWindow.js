@@ -371,3 +371,174 @@ function goExport(id){
       });
     });
 }
+
+//处置方申请同意、拒绝
+function debtMatchAgree(id, debtNum){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '是否同意(债务编号: <span class="debt-num">' + debtNum + '</span>)处置方申请?'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_no').click(function(){
+      layer.close(index);
+    });
+    $('#win_yes').click(function(){
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": 'DebtMatchAgree',
+          "id": id
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            window.location.reload();
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+}
+function debtMatchReject(id, debtNum){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '是否拒绝(债务编号: <span class="debt-num">' + debtNum + '</span>)处置方申请?'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_no').click(function(){
+      layer.close(index);
+    });
+    $('#win_yes').click(function(){
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": 'DebtMatchReject',
+          "id": id
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            window.location.reload();
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+}
+
+//律师团队、催收公司、催客处置方债权完成情况操作
+function debtMatchCompleteStatus(id){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint" id="debt_match_complete">'
+            +    '<div class="tl">'
+            +      '请选择完成情况'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '<div class="m-radio ml-10">'
+            +        '<label type="radio">'
+            +          '<input type="radio" name="completeStatus" checked value="3">'
+            +          '<i></i>'
+            +          '未完成'
+            +        '</label>'
+            +      '</div>'
+            +      '<div class="m-radio ml-10">'
+            +        '<label type="radio">'
+            +          '<input type="radio" name="completeStatus" value="4">'
+            +          '<i></i>'
+            +          '部分完成'
+            +        '</label>'
+            +      '</div>'
+            +      '<div class="m-radio ml-10">'
+            +        '<label type="radio">'
+            +          '<input type="radio" name="completeStatus" value="5">'
+            +          '<i></i>'
+            +          '全部完成'
+            +        '</label>'
+            +      '</div>'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '<button type="button" id="win_no" name="cancel">取消</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_no').click(function(){
+      layer.close(index);
+    });
+    $('#win_yes').click(function(){
+      var status = $('#debt_match_complete input[name="completeStatus"]:checked').val();
+      // Type 1 未完成 2 部分完成 3 全部完成
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+          "Intention": 'DebtMatchConfirmCompletion',//委托方选择完成情况
+          "id": id,
+          "Status": status
+        },
+        beforeSend: function(){
+          showLoading();
+        },
+        success: function(data){
+          if(data.ResultCode == 200){
+            showMsg('操作成功');
+            window.location.reload();
+          }else{
+            showMsg(data.Message);
+          }
+        },
+        complete: function(){
+          closeLoading();
+        }
+      });
+    });
+}

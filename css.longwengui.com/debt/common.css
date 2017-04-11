@@ -1425,6 +1425,9 @@ a{
 .warn-hint{
   padding: 22px 20px;
 }
+.warn-hint .debt-num{
+  color: #f00;
+}
 .warn-hint .tl{
   text-align: center;
   font-size: 18px;
