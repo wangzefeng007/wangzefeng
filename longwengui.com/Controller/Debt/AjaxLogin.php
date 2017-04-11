@@ -590,7 +590,7 @@ class AjaxLogin
             //更新债务信息表，更改状态和委托用户ID
             $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2,'MandatorID'=>$ClaimsDisposal['UserID']),$DebtID);
             if ($UpdateDebtInfo){
-                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2),' DebtID = '.$DebtID.' and ID != '.$ID);
+                $MemberClaimsDisposalModule->UpdateInfoByWhere(array('Agreed'=>2,'Status'=>10),' DebtID = '.$DebtID.' and ID != '.$ID);//拒绝的同时，该申请债务状态为已拒绝。
                 $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1,'Status'=>2),$ID);
                 if ($UpdateInfo){
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($ClaimsDisposal['UserID']);//委托方用户信息
@@ -627,7 +627,7 @@ class AjaxLogin
         if ($_POST){
             $DebtID = $_POST['debtId'];
             $ID = $_POST['id'];
-            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>2),$ID);
+            $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>2,'Status'=>10),$ID);//拒绝的同时，该申请债务状态为已拒绝。
             if ($UpdateInfo){
                 $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
             }else{
