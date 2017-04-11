@@ -284,7 +284,7 @@ class AjaxLogin
                         $InfoData['LastLogin'] =  $Data['AddTime'];
                         $InfoData['Identity'] =0;
                         $InfoData['IdentityState'] =1;
-                        $Data['IP'] = GetIP();
+                        $InfoData['IP'] = GetIP();
                         $InfoData['Avatar']='/Uploads/Debt/imgs/head_img.png';
                         $InsertInfo =$UserInfo->InsertInfo($InfoData);
                         if (!$InsertInfo){
