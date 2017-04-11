@@ -1405,3 +1405,9 @@
   margin-top: 20px;
   padding-right: 10px;
 }
+
+/*无数据显示*/
+.person-center .wrap .no-data{
+  text-align: center;
+  margin-top: 200px;
+}
