@@ -34,7 +34,6 @@
                                 <td>债务人地区</td>
                                 <td>债务金额（元）</td>
                                 <td>佣金金额（元）</td>
-                                <td>逾期时间</td>
                                 <td>发布时间</td>
                                 <td>当前状态</td>
                                 <td>查看</td>
@@ -42,76 +41,35 @@
                             </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                  <td>L201702270000</td>
-                                  <td>张三</td>
-                                  <td>福建省-厦门市-思明区</td>
-                                  <td>￥100000000.00</td>
-                                  <td>￥100000000.00</td>
-                                  <td>30天</td>
-                                  <td>2017-02-25</td>
-                                  <td class="color-red">申请中</td>
-                                  <td><a href="" class="details-enter">详情</a></td>
-                                  <td class="oper"><span onclick="debtMatchAgree(1212, 'L201702270000')">同意</span><span onclick="debtMatchReject(1212, 'L201702270000')">拒绝</span></td>
-                              </tr>
-                              <tr>
-                                  <td>L201702270000</td>
-                                  <td>张三</td>
-                                  <td>福建省-厦门市-思明区</td>
-                                  <td>￥100000000.00</td>
-                                  <td>￥100000000.00</td>
-                                  <td>30天</td>
-                                  <td>2017-02-25</td>
-                                  <td class="color-red">催收中</td>
-                                  <td><a href="" class="details-enter">详情</a></td>
-                                  <td class="oper"><span onclick="debtMatchCompleteStatus(12121)">完成情况</span></td>
-                              </tr>
-                              <tr>
-                                  <td>L201702270000</td>
-                                  <td>张三</td>
-                                  <td>福建省-厦门市-思明区</td>
-                                  <td>￥100000000.00</td>
-                                  <td>￥100000000.00</td>
-                                  <td>30天</td>
-                                  <td>2017-02-25</td>
-                                  <td class="color-red">未完成</td>
-                                  <td><a href="" class="details-enter">详情</a></td>
-                                  <td>无</td>
-                              </tr>
-                              <tr>
-                                  <td>L201702270000</td>
-                                  <td>张三</td>
-                                  <td>福建省-厦门市-思明区</td>
-                                  <td>￥100000000.00</td>
-                                  <td>￥100000000.00</td>
-                                  <td>30天</td>
-                                  <td>2017-02-25</td>
-                                  <td class="color-blue">已完成</td>
-                                  <td><a href="" class="details-enter">详情</a></td>
-                                  <td>无</td>
-                              </tr>
-                              <tr>
-                                  <td>L201702270000</td>
-                                  <td>张三</td>
-                                  <td>福建省-厦门市-思明区</td>
-                                  <td>￥100000000.00</td>
-                                  <td>￥100000000.00</td>
-                                  <td>30天</td>
-                                  <td>2017-02-25</td>
-                                  <td class="color-blue">已曝光</td>
-                                  <td><a href="" class="details-enter">详情</a></td>
-                                  <td>无</td>
-                              </tr>
+                            {loop $Data['Data'] $lists}
+                            <tr>
+                                <td>{$lists['DebtNum']}</td>
+                                <td>{$lists['Name']}</td>
+                                <td>{$lists['Province']}-{$lists['City']}-{$lists['Area']}</td>
+                                <td>￥{$lists['DebtAmount']}</td>
+                                <td>￥{$lists['Money']}</td>
+                                <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
+                                <td class="color-red">{$NStatus[$lists[Status]]}</td>
+                                <td><a href="javascript:void (0)" class="details-enter">详情</a></td>
+                                {if $lists[Status]==1}
+                                <td class="oper"><span onclick="debtMatchAgree('{$lists[DebtID]}', '{$lists[DebtNum]}')">同意</span><span onclick="debtMatchReject('{$lists[DebtID]}', '{$lists[DebtNum]}')">拒绝</span></td>
+                                {elseif $lists[Status]==2}
+                                <td class="oper"><span onclick="debtMatchCompleteStatus('{$lists[DebtID]}')">完成情况</span></td>
+                                {else}
+                                <td>无</td>
+                                {/if}
+                            </tr>
+                            {/loop}
                             </tbody>
                         </table>
                     </div>
+                    {if $ShowPage}
                     <div class="pagination-wrap">
                         <div class="pagination fl-r" id="page_pagination">
-                            <a><div class="b">首页</div></a>
-                            <a><div class="b">1</div></a>
-                            <a><div class="b">末页</div></a>
+                            {$ShowPage}
                         </div>
                     </div>
+                    {/if}
                 </div>
             </div>
         </div>

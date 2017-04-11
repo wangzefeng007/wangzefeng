@@ -834,5 +834,75 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
-
+    /**
+     * @desc 用户寻找处置方，处置方同意申请
+     */
+     public function DebtMatchAgree(){
+         if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+             $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+             EchoResult($result_json);
+             exit;
+         }
+         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+         $DebtID = intval($_POST['id']);
+         if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID'])){
+             $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID']);
+         }
+         $Result = $MemberFindDebtOrderModule->UpdateInfoByWhere(array('Agreed'=>1,'Status'=>2),' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
+        if ($Result){
+            $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
+        }else{
+            $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
+        }
+         EchoResult($result_json);
+         exit;
+     }
+    /**
+     * @desc 用户寻找处置方，处置方拒绝申请
+     */
+    public function DebtMatchReject(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $DebtID = intval($_POST['id']);
+        $Result = $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID = '.$_SESSION['UserID']);
+        if ($Result){
+            $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
+        }else{
+            $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 寻找处置方（委托方确认完成情况）
+     */
+    public function DebtMatchConfirmCompletion(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $Data['Status'] =intval($_POST['Status']);//完成情况
+        $DebtID = intval($_POST['id']);
+        //开始事务
+        global $DB;
+        $DB->query("BEGIN");
+        $UpdateDebtInfo = $MemberFindDebtModule->UpdateInfoByKeyID($Data,$DebtID);
+        $UpdateFindDebtOrder = $MemberFindDebtOrderModule->UpdateInfoByWhere($Data, ' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
+        if ($UpdateDebtInfo && $UpdateFindDebtOrder){
+            $DB->query("COMMIT");//执行事务
+            $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+        }else{
+            $DB->query("ROLLBACK");//判断当执行失败时回滚
+            $result_json = array('ResultCode'=>101,'Message'=>'操作失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
 }
