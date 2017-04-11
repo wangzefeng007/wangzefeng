@@ -156,7 +156,7 @@ class MemberLawyer
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        $MysqlWhere ='';
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
         $Rscount = $MemberSetLawyerFeeModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
@@ -187,7 +187,10 @@ class MemberLawyer
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
         $ID = intval($_GET['ID']);
-        $LawyerFeeDemand = $MemberSetLawyerFeeModule->GetInfoByKeyID($ID);
+        $LawyerFeeDemand = $MemberSetLawyerFeeModule->GetInfoByWhere(' and SetID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+        if (!$LawyerFeeDemand){
+            alertandback("该方案不存在！");
+        }
         if ($LawyerFeeDemand['Province'])
         $LawyerFeeDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($LawyerFeeDemand['Province']);
         if ($LawyerFeeDemand['City'])

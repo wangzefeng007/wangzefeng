@@ -157,7 +157,7 @@ class MemberFirm
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        $MysqlWhere ='';
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
         $Rscount = $MemberSetCompanyModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
@@ -184,10 +184,14 @@ class MemberFirm
      * @desc 催收公司要求方案(方案详情)
      */
     public function DemandDetails(){
+        $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
-        $CompanyDemand = $MemberSetCompanyModule->GetInfoByKeyID($ID);
+        $CompanyDemand = $MemberSetCompanyModule->GetInfoByWhere(' and SetID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+        if (!$CompanyDemand){
+            alertandback("该方案不存在！");
+        }
         if ($CompanyDemand['Province'])
         $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
         if ($CompanyDemand['City'])
@@ -200,6 +204,7 @@ class MemberFirm
      * @desc 催收公司要求方案(新增方案)
      */
     public function SetDemand(){
+        $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
         $MemberSetCompanyModule = new MemberSetCompanyModule();
         $ID = intval($_GET['ID']);
