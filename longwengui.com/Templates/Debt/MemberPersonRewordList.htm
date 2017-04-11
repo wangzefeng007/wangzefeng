@@ -32,6 +32,7 @@
                     <dd onclick="go('/memberperson/rewordlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>未完成</dd>
                     <dd onclick="go('/memberperson/rewordlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>已完成</dd>
                 </dl>
+                {if $Data['Data']}
                 <div class="clue">
                     <div class="clue-list">
                         {loop $Data['Data'] $lists}
@@ -58,6 +59,11 @@
                         {/loop}
                     </div>
                 </div>
+                {else}
+                <div class="no-data">
+                  <img src="/Uploads/Debt/imgs/no_data.png" alt="">
+                </div>
+                {/if}
             </div>
             {if $ShowPage}
             <div class="pagination-wrap">

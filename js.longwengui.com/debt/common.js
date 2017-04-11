@@ -1324,3 +1324,27 @@ function upgradPersonRole(){
       layer.close(index);
     });
 }
+
+//认证中权限弹窗
+function authingHint(){
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="warn-hint">'
+            +    '<div class="tl">'
+            +      '提示'
+            +     '</div>'
+            +    '<div class="tx">'
+            +      '认证审核中，请您耐心等待!'
+            +    '</div>'
+            +    '<div class="btn">'
+            +      '<button type="button" id="win_yes" name="ok">确定</button>'
+            +    '</div>'
+            +  '</div>'
+    });
+    $('#win_yes').click(function(){
+      layer.close(index);
+    });
+}
