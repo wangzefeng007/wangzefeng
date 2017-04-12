@@ -1207,8 +1207,16 @@ a{
   background-color: #fff;
   max-height: 182px;
   overflow-y: auto;
-  z-index: 100;
   border: 1px solid #e6e6e6;
+}
+.p-dropdown label ul{
+  z-index: 100;
+}
+.c-dropdown label ul{
+  z-index: 99;
+}
+.a-dropdown label ul{
+  z-index: 98;
 }
 .p-dropdown label ul li,
 .c-dropdown label ul li,
