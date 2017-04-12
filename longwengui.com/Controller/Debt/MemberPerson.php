@@ -301,19 +301,15 @@ class MemberPerson
             $Data['Data'] = $MemberFindDebtModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
                 $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByKeyID($value['DebtID']);
-                if (!$FindDebtOrder){
-                    unset($Data['Data'][$key]);
-                }else{
-                    $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
-                    $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
-                    $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
-                    if ($DebtorsInfo['Province'])
-                        $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
-                    if ($DebtorsInfo['City'])
-                        $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
-                    if ($DebtorsInfo['Area'])
-                        $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-                }
+                $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
+                $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
