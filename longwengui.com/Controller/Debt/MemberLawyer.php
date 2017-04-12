@@ -141,6 +141,7 @@ class MemberLawyer
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindDebtorsModule = new MemberFindDebtorsModule();
+        $MemberFindCreditorsModule = new MemberFindCreditorsModule();
         $MemberAreaModule = new MemberAreaModule();
         $NStatus = $MemberFindDebtOrderModule->NStatus;
         //会员基本信息
@@ -177,21 +178,39 @@ class MemberLawyer
             foreach ($Data['Data'] as $key=>$value){
                 $DebtInfo = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);
                 $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $ClientInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $ClientUser = $MemberUserModule->GetInfoByKeyID($value['UserID']);
                 $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
                 $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];
                 $Data['Data'][$key]['AddTime']= $DebtInfo['AddTime'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])
-                    $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                    $DebtorsInfo['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
                 if ($DebtorsInfo['City'])
-                    $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                    $DebtorsInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
                 if ($DebtorsInfo['Area'])
-                    $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                    $DebtorsInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                if ($CreditorsInfo['Province'])
+                    $CreditorsInfo['Province']= $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Province']);
+                if ($CreditorsInfo['City'])
+                    $CreditorsInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['City']);
+                if ($CreditorsInfo['Area'])
+                    $CreditorsInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Area']);
+                $Data['Data'][$key]['Json'] = $DebtInfo;
+                $Data['Data'][$key]['Json']['DebtorInfos'] =$DebtorsInfo;
+                $Data['Data'][$key]['Json']['DebtorOwnerInfos'] =$CreditorsInfo;
+                $Data['Data'][$key]['Json']['Client']['CompanyName'] =$ClientInfo['CompanyName'];
+                $Data['Data'][$key]['Json']['Client']['Mobile'] =$ClientUser['Mobile'];
+                $Data['Data'][$key]['Json'] = json_encode($Data['Data'][$key]['Json'],JSON_UNESCAPED_UNICODE);
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
+
         include template('MemberLawyerCreditOrder');
     }
     /**

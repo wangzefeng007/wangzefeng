@@ -595,7 +595,7 @@ function debtMatchCompleteStatus(id){
 */
 function debtMatchDetails(details){
   var html = '';
-  details = JSON.parse(details);
+  console.log(details);
   html += '<div class="debt-match">'
           +    '<div class="warn-hint">'
           +      '<div class="tl">'
@@ -606,22 +606,32 @@ function debtMatchDetails(details){
           +        '<div class="debtor-info">'
           +          '<div class="debtor-wrap">'
           +            '<div class="debtor-wrap-l">'
-          +              '<p><span class="i-l">债务总额:</span>' + details.DebtTotalMoney + '元</p>'
+          +              '<p><span class="i-l">债务总额:</span>' + details.DebtAmount + '元</p>'
           +            '</div>'
           +            '<div class="debtor-wrap-r">'
-          +              '<p><span class="i-l">前期费用:</span>' + (details.PreFee == 1 ? '有' : '无') + '</p>'
+          +              '<p><span class="i-l">前期费用:</span>' + (details.EarlyCost == 1 ? '有' : '无') + '</p>'
           +            '</div>'
-          +            '<p class="m-0"><span class="i-l">保证人:</span>' + injectbminfo(details.BondsmanInfos) + '</p>'
-          +            '<p><span class="i-l">抵押物:</span>' + injectbgInfo(details.BondsgoodInfos) + '</p>'
-          +            '<p><span class="i-l">委托人信息:</span>' + details.Client.Name + '(' + details.Client.PhoneNumber + ')' + '</p>'
+          +            '<p class="m-0"><span class="i-l">保证人:</span>' + injectbminfo(details.WarrantorInfo) + '</p>'
+          +            '<p><span class="i-l">抵押物:</span>' + injectbgInfo(details.GuaranteeInfo) + '</p>'
+          +          '</div>'
+          +        '</div>'
+          +        '<div class="tt">处置方信息</div>'
+          +        '<div class="debtor-info">'
+          +          '<div class="debtor-wrap">'
+          +            '<div class="debtor-wrap-l">'
+          +              '<p><span class="i-l">公司名称:</span>' + details.Client.CompanyName + '</p>'
+          +            '</div>'
+          +            '<div class="debtor-wrap-r">'
+          +              '<p><span class="i-l">电 话:</span>' + details.Client.Mobile + '</p>'
+          +            '</div>'
           +          '</div>'
           +        '</div>'
           +        '<div class="tt">债务人信息</div>'
           +        '<div class="debtor-info">'
           +          injectDebtorInfo(details.DebtorInfos)
           +          '<div class="debtor-wrap">'
-          +            '<p><span class="i-l">还款能力:</span>' + (details.AbilityDebt == 1 ? '有' : '无') + '</p>'
-          +            '<p><span class="i-l">随时能找到:</span>' + (details.SearchedAnytime == 1 ? '是' : '否') + '</p>'
+          +            '<p><span class="i-l">还款能力:</span>' + (details.RepaymentDebtor == 1 ? '有' : '无') + '</p>'
+          +            '<p><span class="i-l">随时能找到:</span>' + (details.FindDebtor == 1 ? '是' : '否') + '</p>'
           +          '</div>'
           +        '</div>'
           +        '<div class="tt">债权人信息</div>'
@@ -630,7 +640,7 @@ function debtMatchDetails(details){
           +        '</div>'
           +      '</div>'
           +      '<div class="btn mt-10">'
-          +        '<button type="button" id="win_yes" name="ok">确定</button>'
+          +        '<button type="button" id="win_yes" name="ok">关闭</button>'
           +      '</div>'
           +  '</div>'
 
@@ -638,7 +648,7 @@ function debtMatchDetails(details){
   var index = layer.open({
     type: 1,
     title: 0,
-    area: '806px',
+    area: ['810px', '710px'],
     closeBtn: 0,
     shadeClose: true,
     content: html
@@ -656,9 +666,9 @@ function debtMatchDetails(details){
       var temp = '';
       for(var i=0; i<bondsmanInfos.length; i++){
         if(i == 0){
-          temp += bondsmanInfos[i].Name + (bondsmanInfos[i].PhoneNumber ? '(' + bondsmanInfos[i].PhoneNumber + ')' : '');
+          temp += bondsmanInfos.Name + (bondsmanInfos.PhoneNumber ? '(' + bondsmanInfos.PhoneNumber + ')' : '');
         }else{
-          temp += '、' + bondsmanInfos[i].Name + (bondsmanInfos[i].PhoneNumber ? '(' + bondsmanInfos[i].PhoneNumber + ')' : '');
+          temp += '、' + bondsmanInfos.Name + (bondsmanInfos.PhoneNumber ? '(' + bondsmanInfos.PhoneNumber + ')' : '');
         }
       }
       return temp == '' ? '无' : temp;
@@ -681,19 +691,17 @@ function debtMatchDetails(details){
     //返回注入债务人信息
     function injectDebtorInfo(debtorInfos){
       var temp = '';
-      for(var i=0; i<debtorInfos.length; i++){
         temp += '<div class="debtor-wrap">'
               +   '<div class="debtor-wrap-l">'
-              +     '<p><span class="i-l">姓 名:</span>' + debtorInfos[i].Name + '</p>'
-              +     '<p><span class="i-l">身份证:</span>' + debtorInfos[i].IdNum + '</p>'
+              +     '<p><span class="i-l">姓 名:</span>' + debtorInfos.Name + '</p>'
+              +     '<p><span class="i-l">身份证:</span>' + (debtorInfos.Card ? debtorInfos.Card : '无') + '</p>'
               +    '</div>'
               +    '<div class="debtor-wrap-r">'
-              +      '<p><span class="i-l">电 话:</span>' + debtorInfos[i].PhoneNumber + '</p>'
-              +      '<p><span class="i-l">债务金额:</span>' + debtorInfos[i].DebtMoney + '元</p>'
+              +      '<p><span class="i-l">电 话:</span>' + (debtorInfos.Phone ? debtorInfos.Phone : '无') + '</p>'
+              +      '<p><span class="i-l">债务金额:</span>' + debtorInfos.Money + '元</p>'
               +    '</div>'
-              +      '<p class="m-0"><span class="i-l">地 址:</span>' + debtorInfos[i].Province + '-' + debtorInfos[i].City + '-' + debtorInfos[i].Area + ' ' + debtorInfos[i].AreaDetail + '</p>'
+              +      '<p class="m-0"><span class="i-l">地 址:</span>' + debtorInfos.Province + '-' + debtorInfos.City + '-' + debtorInfos.Area + ' ' + debtorInfos.Address + '</p>'
               +    '</div>'
-      }
       return temp;
     }
 }
