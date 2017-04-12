@@ -934,4 +934,31 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 关注债务
+     */
+    public function ConcernDebt(){
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
+            EchoResult($result_json);
+            exit;
+        }
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
+        $Data['DebtID'] = $_POST['debtId'];
+        $Data['UserID'] = $_SESSION['UserID'];
+        $Data['AddTime'] = time();
+        $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and UserID = '.$_SESSION['UserID']);
+        if ($FocusDebt){
+            $result_json = array('ResultCode'=>102,'Message'=>'您已关注！');
+        }else{
+            $InsertFocu = $MemberFocusDebtModule->InsertInfo($Data);
+            if ($InsertFocu){
+                $result_json = array('ResultCode'=>200,'Message'=>'关注成功！');
+            }else{
+                $result_json = array('ResultCode'=>103,'Message'=>'关注失败！');
+            }
+        }
+        EchoResult($result_json);
+        exit;
+    }
 }

@@ -454,6 +454,7 @@ class Ajax
                             $Result['DebtId'] = $DebtID;
                             EchoResult($Result);exit;
                         }else{
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
                             $result_json = array('ResultCode'=>105,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                             EchoResult($result_json);exit;
                         }
@@ -477,6 +478,7 @@ class Ajax
                             $Result['DebtId'] = $DebtID;
                             EchoResult($Result);exit;
                         }else{
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
                             $result_json = array('ResultCode'=>106,'Message'=>'非常抱歉，暂无找到相应的处置方！');
                             EchoResult($result_json);exit;
                         }

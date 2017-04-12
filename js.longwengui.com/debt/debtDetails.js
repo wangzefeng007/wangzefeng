@@ -87,7 +87,7 @@ function concernDebt(debtId){
     },
     success: function(data){
       if(data.ResultCode == 200){
-        showMsg('操作成功');
+        showMsg(data.Message);
         window.location.reload();
       }else if(data.ResultCode == 101){
         showMsg(data.Message);

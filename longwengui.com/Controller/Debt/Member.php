@@ -48,10 +48,37 @@ class Member
      */
     public function RegisterTwo()
     {
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }else{
+            if ($_SESSION['Identity']!=0)
+                alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
         $type = intval($_GET['T']);
         $Title = '会员注册完善资料';
         include template('MemberRegisterTwo');
     }
+    /**
+     * @desc  普通会员升级为催客
+     */
+    public function Upgrade(){
+        $this->IsLogin();
+        if ($_SESSION['Identity']!=1){
+            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        //会员基本信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        if ($UserInfo['Province'])
+            $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        include template('MemberUpgrade');
+    }
+
     /**
      * @desc  会员注册完善资料(加入发布债务)
      */
