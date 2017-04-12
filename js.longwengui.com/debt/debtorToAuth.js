@@ -5,12 +5,12 @@ $(function(){
 
     //根据url参数初始化选项卡
     var tab_cur = getQueryString('T');
-    if(tab_cur == 2){
+    if(tab_cur == 1){
       $('.bx-wraper .tl .act').removeClass('act');
       $('.bx-wraper .tl .tb').eq(1).addClass('act');
       $('.tab-person').hide();
       $('.tab-company').show();
-    }else if(tab_cur == 3){
+    }else if(tab_cur == 2){
       $('.bx-wraper .tl .act').removeClass('act');
       $('.bx-wraper .tl .tb').eq(2).addClass('act');
       $('.tab-person').hide();
@@ -162,7 +162,7 @@ $(function(){
             );
         }
     }
-
+//个人资料保存
     $('#person_save').click(function(){
         var nick_name = $('.tab-person input[name="nickName"]').val();
         var name = $('.tab-person input[name="name"]').val();
@@ -236,7 +236,7 @@ $(function(){
         });
 
     });
-
+//催收公司个人资料保存
     $('#company_save').click(function(){
         var company_name = $('.tab-company input[name="companyName"]').val();
         var registrant_name = $('.tab-company input[name="registrantName"]').val();
@@ -337,7 +337,7 @@ $(function(){
             "type":3
         });
     });
-
+//律师资料保存
     $('#lawer_save').click(function(){
         var name = $('.tab-lawer input[name="name"]').val();
         var idNum = $('.tab-lawer input[name="idNum"]').val();

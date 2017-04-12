@@ -1318,7 +1318,7 @@ function upgradPersonRole(){
             + '</div>'
     });
     $('.upgrad-person-role button[name="ok"]').click(function(){
-
+      window.location.href = "/member/upgrade/";
     });
     $('.upgrad-person-role button[name="cancel"]').click(function(){
       layer.close(index);
