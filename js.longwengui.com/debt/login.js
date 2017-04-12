@@ -45,36 +45,34 @@ function validateErr(type, tar){
 
 //提交表单前验证
 function validateForm(){
-  var _phoneNumber = $("input[name='phoneNumber']").val();
-  var _pass = $("input[name='pass']").val();
+  var _phoneNumber = $("#login input[name='phoneNumber']").val();
+  var _pass = $("#login input[name='pass']").val();
   var _code;
 
   if($('#code').attr('data-show') == 1 && getCookie('PasswordErrTimes') == 3){
     _code = $("input[name='code']").val();
   }
 
-
-
   if(_phoneNumber == ''){
-    $('input[name="phoneNumber"]').parent().siblings('.error-hint').eq(0).show();
+    $('#login input[name="phoneNumber"]').parent().siblings('.error-hint').eq(0).show();
     return false;
   }
   if(!validate("mobilePhone", _phoneNumber)){
-    $('input[name="phoneNumber"]').parent().siblings('.error-hint').eq(1).show();
+    $('#login input[name="phoneNumber"]').parent().siblings('.error-hint').eq(1).show();
     return false;
   }
 
   if(_pass == ''){
-  $('input[name="pass"]').parent().siblings('.error-hint').eq(0).show();
+  $('#login input[name="pass"]').parent().siblings('.error-hint').eq(0).show();
     return false;
   }
   if(_pass.length < 6){
-    $('input[name="pass"]').parent().siblings('.error-hint').eq(1).show();
+    $('#login input[name="pass"]').parent().siblings('.error-hint').eq(1).show();
     return false;
   }
 
   if(!validate('password', _pass)){
-    $('input[name="pass"]').parent().siblings('.error-hint').eq(2).show();
+    $('#login input[name="pass"]').parent().siblings('.error-hint').eq(2).show();
     return false;
   }
 
