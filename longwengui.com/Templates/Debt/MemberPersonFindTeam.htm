@@ -28,15 +28,11 @@
                     </div>
                     <dl class="cont-select">
                         <dt>债务状态：</dt>
-                        <dd class="cont-select-act">全部</dd>
-                        <dd>申请中</dd>
-                        <dd>催收中</dd>
-                        <!-- <dd>未付款</dd> -->
-                        <dd>未完成</dd>
-                        <dd>已完成</dd>
-                        <!-- <dd>退款中</dd>
-                        <dd>退款成功</dd> -->
-                        <dd>已曝光</dd>
+                        <dd onclick="go('/memberperson/findteam/')" {if $Status==0}class="cont-select-act"{/if}>全部</dd>
+                        <dd onclick="go('/memberperson/findteam/?S=1')" {if $Status==1}class="cont-select-act"{/if}>申请中</dd>
+                        <dd onclick="go('/memberperson/findteam/?S=2')" {if $Status==2}class="cont-select-act"{/if}>催收中</dd>
+                        <dd onclick="go('/memberperson/findteam/?S=3')" {if $Status==3}class="cont-select-act"{/if}>未完成</dd>
+                        <dd onclick="go('/memberperson/findteam/?S=4')" {if $Status==4}class="cont-select-act"{/if}>未完成</dd>
                     </dl>
                     <div class="debt">
                         <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -54,72 +50,25 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {loop $Data['Data'] $lists}
                             <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">申请中</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td class="oper"><span onclick="cancelDebtMatch(1212)">取消申请</span></td>
-                            </tr>
-                            <tr>
-                              <td>L201702270000</td>
-                              <td>张三</td>
-                              <td>福建省-厦门市-思明区</td>
-                              <td>￥100000000.00</td>
-                              <td>30天</td>
-                              <td>2017-02-25</td>
-                              <td class="color-red">催收中</td>
-                              <td><a href="" class="details-enter">详情</a></td>
-                              <td>无</td>
-                            </tr>
-                            <tr>
-                              <td>L201702270000</td>
-                              <td>张三</td>
-                              <td>福建省-厦门市-思明区</td>
-                              <td>￥100000000.00</td>
-                              <td>30天</td>
-                              <td>2017-02-25</td>
-                              <td class="color-red">已拒绝</td>
-                              <td><a href="" class="details-enter">详情</a></td>
-                              <td class="oper"><span onclick="selDebtWayPop()">发布债务</span><span onclick="go('/choicefind/')">继续匹配</span></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-red">未完成</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td class="oper"><span onclick="selDebtWayPop()">发布债务</span><span onclick="goExport(1212)">去曝光</span></td>
-                            </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">已完成</td>
-                                <td><a href="" class="details-enter">详情</a></td>
+                                <td>{$lists['DebtNum']}</td>
+                                <td>{$lists['Name']}</td>
+                                <td>{$lists['Province']}-{$lists['City']}-{$lists['Area']}</td>
+                                <td>￥{$lists['DebtAmount']}</td>
+                                <td>￥{$lists['Money']}</td>
+                                <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
+                                <td class="color-red">{$NStatus[$lists[Status]]}</td>
+                                <td><a href="javascript:void (0)" class="details-enter">详情</a></td>
+                                {if $lists[Status]==1}
+                                <td class="oper"><span onclick="cancelDebtMatch('{$lists[DebtID]}')">取消申请</span></td>
+                                {elseif $lists[Status]==3}
+                                <td class="oper"><span onclick="selDebtWayPop()">发布债务</span><span onclick="goExport('{$lists[DebtID]}')">去曝光</span></td>
+                                {else}
                                 <td>无</td>
+                                {/if}
                             </tr>
-                            <tr>
-                                <td>L201702270000</td>
-                                <td>张三</td>
-                                <td>福建省-厦门市-思明区</td>
-                                <td>￥100000000.00</td>
-                                <td>30天</td>
-                                <td>2017-02-25</td>
-                                <td class="color-blue">已曝光</td>
-                                <td><a href="" class="details-enter">详情</a></td>
-                                <td>无</td>
-                            </tr>
+                            {/loop}
                             </tbody>
                         </table>
                     </div>
