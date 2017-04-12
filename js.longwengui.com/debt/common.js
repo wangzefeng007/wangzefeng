@@ -797,7 +797,7 @@ function toLogin(){
     area: '460px',
     closeBtn: 0,
     shadeClose: true,
-    content:  '<div class="login">'
+    content:  '<div class="login" id="login">'
             +'<div class="form-login">'
             + '<div class="hd">'
             +   '会员登录'
