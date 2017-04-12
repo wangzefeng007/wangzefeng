@@ -63,6 +63,9 @@ class Member
      */
     public function Upgrade(){
         $this->IsLogin();
+        if ($_SESSION['Identity']!=1){
+            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         //会员基本信息
