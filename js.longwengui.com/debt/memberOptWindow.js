@@ -542,3 +542,158 @@ function debtMatchCompleteStatus(id){
       });
     });
 }
+
+/*查看处置方详情
+    details: {
+      "DebtTotalMoney": 1000,
+      "PreFee": 1, // 前期费用 0 无 1 有
+      "SearchedAnytime": 1, // 是否随时找到 0 否 1 是
+      "AbilityDebt": 1, //是否有偿还能力 0 否 1 是
+      "Client": { //委托人信息
+        "Name": "离地地",
+        "PhoneNumber": "15763948801"
+      }
+      "DebtorInfos": [ //债务人信息 数组
+        {
+          "Name": "李霸天",
+          "IdNum": 333333333333333333,
+          "PhoneNumber": 15763948801,
+          "DebtMoney": 111,
+          "Province": '福建省',
+          "City": '厦门市',
+          "Area": '思明区',
+          "AreaDetail": '软件园二期'
+        }
+      ],
+      "DebtorOwnerInfos": [ //债权人信息 数组
+        {
+          "Name": "李霸天",
+          "IdNum": 333333333333333333,
+          "PhoneNumber": 15763948801,
+          "DebtMoney": 111,
+          "Province": '福建省',
+          "City": '厦门市',
+          "Area": '思明区',
+          "AreaDetail": '软件园二期'
+        }
+      ],
+      "BondsmanInfos": [ //保证人信息
+        {
+          "Name": "李霸天",
+          "IdNum": 333333333333333333,
+          "PhoneNumber": 15763948801,
+          "BondsManRole": "个人"
+        }
+      ],
+      "BondsgoodInfos": [ //保证无信息
+        {
+          "Name": "阿斯顿",
+          "Details": "很牛逼的东西"
+        }
+      ]
+    }
+*/
+function debtMatchDetails(details){
+  var html = '';
+  details = JSON.parse(details);
+  html += '<div class="debt-match">'
+          +    '<div class="warn-hint">'
+          +      '<div class="tl">'
+          +        '处置方债务详情'
+          +      '</div>'
+          +      '<div class="debt-match-info">'
+          +        '<div class="tt">债务基本信息</div>'
+          +        '<div class="debtor-info">'
+          +          '<div class="debtor-wrap">'
+          +            '<div class="debtor-wrap-l">'
+          +              '<p><span class="i-l">债务总额:</span>' + details.DebtTotalMoney + '元</p>'
+          +            '</div>'
+          +            '<div class="debtor-wrap-r">'
+          +              '<p><span class="i-l">前期费用:</span>' + (details.PreFee == 1 ? '有' : '无') + '</p>'
+          +            '</div>'
+          +            '<p class="m-0"><span class="i-l">保证人:</span>' + injectbminfo(details.BondsmanInfos) + '</p>'
+          +            '<p><span class="i-l">抵押物:</span>' + injectbgInfo(details.BondsgoodInfos) + '</p>'
+          +            '<p><span class="i-l">委托人信息:</span>' + details.Client.Name + '(' + details.Client.PhoneNumber + ')' + '</p>'
+          +          '</div>'
+          +        '</div>'
+          +        '<div class="tt">债务人信息</div>'
+          +        '<div class="debtor-info">'
+          +          injectDebtorInfo(details.DebtorInfos)
+          +          '<div class="debtor-wrap">'
+          +            '<p><span class="i-l">还款能力:</span>' + (details.AbilityDebt == 1 ? '有' : '无') + '</p>'
+          +            '<p><span class="i-l">随时能找到:</span>' + (details.SearchedAnytime == 1 ? '是' : '否') + '</p>'
+          +          '</div>'
+          +        '</div>'
+          +        '<div class="tt">债权人信息</div>'
+          +        '<div class="debtor-info">'
+          +         injectDebtorInfo(details.DebtorOwnerInfos)
+          +        '</div>'
+          +      '</div>'
+          +      '<div class="btn mt-10">'
+          +        '<button type="button" id="win_yes" name="ok">确定</button>'
+          +      '</div>'
+          +  '</div>'
+
+
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    area: '806px',
+    closeBtn: 0,
+    shadeClose: true,
+    content: html
+    });
+
+    $('#win_yes').click(function(){
+      layer.close(index);
+    });
+
+    //返回注入的保证人信息
+    function injectbminfo(bondsmanInfos){
+      if(!bondsmanInfos){
+        return '无';
+      }
+      var temp = '';
+      for(var i=0; i<bondsmanInfos.length; i++){
+        if(i == 0){
+          temp += bondsmanInfos[i].Name + (bondsmanInfos[i].PhoneNumber ? '(' + bondsmanInfos[i].PhoneNumber + ')' : '');
+        }else{
+          temp += '、' + bondsmanInfos[i].Name + (bondsmanInfos[i].PhoneNumber ? '(' + bondsmanInfos[i].PhoneNumber + ')' : '');
+        }
+      }
+      return temp == '' ? '无' : temp;
+    }
+    //返回注入抵押物信息
+    function injectbgInfo(bondsgoodInfos){
+      if(!bondsgoodInfos){
+        return '无';
+      }
+      var temp = '';
+      for(var i=0; i<bondsgoodInfos.length; i++){
+        if(i == 0){
+          temp += bondsgoodInfos[i].Name;
+        }else{
+          temp += '、' + bondsgoodInfos[i].Name;
+        }
+      }
+      return temp == '' ? '无' : temp;
+    }
+    //返回注入债务人信息
+    function injectDebtorInfo(debtorInfos){
+      var temp = '';
+      for(var i=0; i<debtorInfos.length; i++){
+        temp += '<div class="debtor-wrap">'
+              +   '<div class="debtor-wrap-l">'
+              +     '<p><span class="i-l">姓 名:</span>' + debtorInfos[i].Name + '</p>'
+              +     '<p><span class="i-l">身份证:</span>' + debtorInfos[i].IdNum + '</p>'
+              +    '</div>'
+              +    '<div class="debtor-wrap-r">'
+              +      '<p><span class="i-l">电 话:</span>' + debtorInfos[i].PhoneNumber + '</p>'
+              +      '<p><span class="i-l">债务金额:</span>' + debtorInfos[i].DebtMoney + '元</p>'
+              +    '</div>'
+              +      '<p class="m-0"><span class="i-l">地 址:</span>' + debtorInfos[i].Province + '-' + debtorInfos[i].City + '-' + debtorInfos[i].Area + ' ' + debtorInfos[i].AreaDetail + '</p>'
+              +    '</div>'
+      }
+      return temp;
+    }
+}

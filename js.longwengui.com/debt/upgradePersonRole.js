@@ -1,5 +1,5 @@
-getProvinceData();
-
+//初始化省市县
+initArea();
 
 //获得省级元素
 function getProvinceData(){
@@ -50,8 +50,7 @@ function getCityData(_pid, _sel){
                         +     _city[i].CnName
                         +  "</li>";
                 }
-                var tab_name = _sel.parents('.cont').attr('data-tab');
-                var _t = $('.tab-' + tab_name + ' .c-dropdown').find('ul');
+                var _t = $('.c-dropdown').find('ul');
                 _t.html(_html);
                 _t.children('li').click(function(){
                     resetAreaDropdown($(this), 'c-dropdown');
@@ -87,8 +86,7 @@ function getAreaData(_pid, _sel){
                         +     _area[i].CnName
                         +  "</li>";
                 }
-                var tab_name = _sel.parents('.cont').attr('data-tab');
-                var _t = $('.tab-' + tab_name + ' .a-dropdown').find('ul');
+                var _t = $('.a-dropdown').find('ul');
                 _t.html(_html);
                 _t.children('li').click(function(){
                     var _id = $(this).attr("data-id");
@@ -103,9 +101,8 @@ function getAreaData(_pid, _sel){
 }
 //重置省市县下拉框
 function resetAreaDropdown(tar, selName){
-    var tab_name = tar.parents('.cont').attr('data-tab');
     if(selName == 'p-dropdown'){
-        $('.tab-' + tab_name + ' .c-dropdown').html(
+        $('.c-dropdown').html(
             '<label type="checkbox">'
             +  '<span>请选择</span>'
             +  '<i></i>'
@@ -113,7 +110,7 @@ function resetAreaDropdown(tar, selName){
             +  '<ul></ul>'
             + '</label>'
         );
-        $('.tab-' + tab_name + ' .a-dropdown').html(
+        $('.a-dropdown').html(
             '<label type="checkbox">'
             +  '<span>请选择</span>'
             +  '<i></i>'
@@ -123,7 +120,7 @@ function resetAreaDropdown(tar, selName){
         );
     }
     if(selName == 'c-dropdown'){
-        $('.tab-' + tab_name + ' .a-dropdown').html(
+        $('.a-dropdown').html(
             '<label type="checkbox">'
             +  '<span>请选择</span>'
             +  '<i></i>'
@@ -270,4 +267,16 @@ function imagesInput(tar, ImgBaseData, index) {
             closeLoading();
         }
     });
+}
+
+//初始化省市县信息
+function initArea(){
+  var p_tar = $('input[name="dd_province"]');
+  var p_id = p_tar.siblings('span').attr('data-id');
+  var c_tar = $('input[name="dd_city"]');
+  var c_id = c_tar.siblings('span').attr('data-id');
+
+  getProvinceData();
+  getCityData(p_id, p_tar);
+  getAreaData(c_id, c_tar);
 }
