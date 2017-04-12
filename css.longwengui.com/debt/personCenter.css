@@ -714,6 +714,7 @@
 	text-decoration: none;
 	color: #666;
 	padding: 0 8px;
+  cursor: pointer;
 }
 .debt .debt-table .details-enter:hover{
 	text-decoration: underline;

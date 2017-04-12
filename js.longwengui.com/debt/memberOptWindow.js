@@ -542,3 +542,117 @@ function debtMatchCompleteStatus(id){
       });
     });
 }
+
+/*查看处置方详情
+    details: {
+      "DebtTotalMoney": 1000,
+      "PreFee": 1,
+      "SearchedAnytime": 1,
+      "AbilityDebt": 1,
+      "DebtorInfos": [
+        {
+          "Name": "李霸天",
+          "IdNum": 333333333333333333,
+          "PhoneNumber": 15763948801,
+          "DebtMoney": 111,
+          "Province": '福建省',
+          "City": '厦门市',
+          "Area": '思明区',
+          "AreaDetail": '软件园二期'
+        }
+      ],
+      "DebtorOwnerInfos": [
+        {
+          "Name": "李霸天",
+          "IdNum": 333333333333333333,
+          "PhoneNumber": 15763948801,
+          "DebtMoney": 111,
+          "Province": '福建省',
+          "City": '厦门市',
+          "Area": '思明区',
+          "AreaDetail": '软件园二期'
+        }
+      ],
+      "BondsmanInfos": [
+        {
+          "Name": "李霸天",
+          "IdNum": 333333333333333333,
+          "PhoneNumber": 15763948801,
+          "BondsManRole": "个人"
+        }
+      ],
+      "BondsgoodInfos": [
+        {
+          "Name": "阿斯顿",
+          "Details": "很牛逼的东西"
+        }
+      ]
+    }
+*/
+function debtMatchDetails(details){
+  var html;
+
+  var index = layer.open({
+    type: 1,
+    title: 0,
+    area: '806px',
+    closeBtn: 0,
+    shadeClose: true,
+    content: '<div class="debt-match">'
+            +    '<div class="warn-hint">'
+            +      '<div class="tl">'
+            +        '处置方债务详情'
+            +      '</div>'
+            +      '<div class="debt-match-info">'
+            +        '<div class="tt">债务基本信息</div>'
+            +        '<div class="debtor-info">'
+            +          '<div class="debtor-wrap">'
+            +            '<div class="debtor-wrap-l">'
+            +              '<p><span class="i-l">债务总额:</span>10000元</p>'
+            +            '</div>'
+            +            '<div class="debtor-wrap-r">'
+            +              '<p><span class="i-l">前期费用:</span>有</p>'
+            +            '</div>'
+            +            '<p class="m-0"><span class="i-l">保证人:</span>李清河(15763948802)</p>'
+            +            '<p><span class="i-l">抵押物:</span>车</p>'
+            +          '</div>'
+            +        '</div>'
+            +        '<div class="tt">债务人信息</div>'
+            +        '<div class="debtor-info">'
+            +          '<div class="debtor-wrap">'
+            +            '<div class="debtor-wrap-l">'
+            +              '<p><span class="i-l">姓 名:</span>李霸天</p>'
+            +              '<p><span class="i-l">身份证:</span>333333333333333333</p>'
+            +            '</div>'
+            +            '<div class="debtor-wrap-r">'
+            +              '<p><span class="i-l">电 话:</span>15763948801</p>'
+            +              '<p><span class="i-l">债务金额:</span>10000元</p>'
+            +            '</div>'
+            +            '<p class="m-0"><span class="i-l">地 址:</span>福建省-厦门市-思明区 软件园二期</p>'
+            +          '</div>'
+            +          '<div class="debtor-wrap">'
+            +            '<p><span class="i-l">还款能力:</span>有</p>'
+            +            '<p><span class="i-l">随时能找到:</span>是</p>'
+            +          '</div>'
+            +        '</div>'
+            +        '<div class="tt">债权人信息</div>'
+            +        '<div class="debtor-info">'
+            +          '<div class="debtor-wrap">'
+            +            '<div class="debtor-wrap-l">'
+            +              '<p><span class="i-l">姓 名:</span>让你不还钱</p>'
+            +              '<p><span class="i-l">身份证:</span>333333333333333333</p>'
+            +            '</div>'
+            +            '<div class="debtor-wrap-r">'
+            +              '<p><span class="i-l">电 话:</span>15763948801</p>'
+            +              '<p><span class="i-l">债务金额:</span>10000元</p>'
+            +            '</div>'
+            +            '<p class="m-0"><span class="i-l">地 址:</span>福建省-厦门市-思明区 软件园二期</p>'
+            +        '</div>'
+            +      '</div>'
+            +    '</div>'
+            +      '<div class="btn mt-10">'
+            +        '<button type="button" id="win_yes" name="ok">确定</button>'
+            +      '</div>'
+            +  '</div>'
+    });
+}

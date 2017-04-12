@@ -455,6 +455,9 @@ a{
 .mb-15{
   margin-bottom: 15px!important;
 }
+.m-0{
+  margin: 0;
+}
 .mt-10{
   margin-top: 10px!important;
 }
@@ -1473,4 +1476,46 @@ a{
   border: 1px solid #e6e6e6;
   padding: 10px;
   border-radius: 5px;
+}
+
+.debt-match{
+  border: 1px solid #e6e6e6;
+  width: 800px;
+  margin: 0 auto;
+}
+.debt-match .debt-match-info{
+  max-height: 560px;
+  overflow-y: auto;
+}
+.debt-match .debtor-info{
+  position: relative;
+}
+.debt-match .tt{
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.debt-match p{
+  font-size: 14px;
+}
+.debt-match p .i-l{
+  min-width: 80px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.debt-match .debtor-wrap{
+  text-align: left;
+  margin-bottom: 18px;
+}
+.debt-match .debtor-wrap-l{
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+.debt-match .debtor-wrap-r{
+  display: inline-block;
+}
+.debt-match button[name="ok"]{
+  width: 140px;
 }
