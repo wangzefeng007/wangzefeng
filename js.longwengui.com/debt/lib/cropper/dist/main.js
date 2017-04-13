@@ -15,15 +15,11 @@ $('#avatarInput').on('change', function(e) {
     //获取上传的图片大小
     var target = $(e.target);
     var Size = target[0].files[0].size / 1024;
-
     //获取当前url
     var URL = window.URL || window.webkitURL;
 
     //创建图片
     var blobURL = URL.createObjectURL(target[0].files[0]);
-
-    console.log(1111, blobURL);
-
 
 
 
