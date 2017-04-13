@@ -373,12 +373,18 @@ function addBondsMan(){
 function addBondsGood(){
   if($('#bonds_good_info').children('.blo').length < 5){
     addDom('bonds_good_info', 'bonds_good_tepl');
+    if(isIE8()){
+      $('#bonds_good_info textarea').placeholder();
+    }
   }
 }
 //添加债权人事件
 function addDebtDom(targetID, tempID){
   if($('#' + targetID).children('.blo').length < 3){
     addDom(targetID, tempID, getProvinceData);
+    if(isIE8()){
+      $('#' + targetID + ' textarea').placeholder();
+    }
   }
 }
 
