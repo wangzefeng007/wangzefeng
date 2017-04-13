@@ -35,10 +35,19 @@ class Reword
         if ($Keyword !=''){
             $MysqlWhere .= ' and Type=1 and (DebtName like \'%'.$Keyword.'%\' or DebtCard =\'' .$Keyword.'\')';
         }
-        $Area = $this->GetArea($SoUrl);
-        if ($Area>0){
-            $AreaInfo = $MemberAreaModule->GetInfoByKeyID($Area);
-            $MysqlWhere .= ' and City =\''.$AreaInfo['CnName'].'\'';
+        if (strstr ($SoUrl, 'a' )){
+            $Area = strstr($SoUrl,"a",true);
+        }else{
+            $Area = $SoUrl;
+        }
+        if ($Area){
+            if ($Area==1009 || $Area==1001){
+                $MysqlWhere .= ' and Province = '.$Area;
+            }elseif ($Area==1153 || $Area==1236){
+                $MysqlWhere .= ' and City = '.$Area;
+            }else{
+                $MysqlWhere .= ' and Area = '.$Area;
+            }
         }
         //分页查询开始-------------------------------------------------
         $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
@@ -79,20 +88,6 @@ class Reword
             $ShowPage = $ClassPage->showpage();
         }
         include template('RewordLists');
-    }
-    private function GetArea($SoUrl = '') {
-        if ($SoUrl == '')
-            return '';
-        $Area ='';
-        if (strstr ( $SoUrl, '1153' ))
-            $Area = '1153';
-        if (strstr ( $SoUrl, '1236' ))
-            $Area = '1236';
-        if (strstr ( $SoUrl, '1009' ))
-            $Area = '1009';
-        if (strstr ( $SoUrl, '1001' ))
-            $Area = '1001';
-        return $Area;
     }
     /**
      * @desc  发布悬赏
