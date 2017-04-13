@@ -725,14 +725,21 @@ class AjaxLogin
         }
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberUserModule = new MemberUserModule();
         $Data['Status'] =intval($_POST['Status']);//完成情况
         $DebtID = intval($_POST['id']);
+        $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($DebtID);
         //开始事务
         global $DB;
         $DB->query("BEGIN");
         $UpdateDebtInfo = $MemberDebtInfoModule->UpdateInfoByKeyID($Data,$DebtID);
         $UpdateClaimsDisposal = $MemberClaimsDisposalModule->UpdateInfoByWhere($Data, ' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
         if ($UpdateDebtInfo && $UpdateClaimsDisposal){
+            $MandatorUser = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);//委托方用户信息
+            $User = $MemberUserModule->GetInfoByKeyID($DebtInfo['UserID']);//发布方用户信息
+            ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您的受理债务已确认完成情况，感谢您的配合，谢谢！');//发送短信给委托方
+            ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$DebtInfo['DebtNum'].'，已确认完成情况，请及时核实相关，联系处置方。');//发送短信给发布者
+            ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
             $DB->query("COMMIT");//执行事务
             $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
         }else{
@@ -845,13 +852,22 @@ class AjaxLogin
          }
          $MemberFindDebtModule = new MemberFindDebtModule();
          $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+         $MemberUserModule = new MemberUserModule();
+         $MemberUserInfoModule = new MemberUserInfoModule();
          $DebtID = intval($_POST['id']);
+         $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($DebtID);
          if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID'])){
-             $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID']);
+             $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID']);//处置方同意之后删除其他申请
          }
          $UpdateFindDebt = $MemberFindDebtModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
          $Result = $MemberFindDebtOrderModule->UpdateInfoByWhere(array('Agreed'=>1,'Status'=>2),' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
         if ($UpdateFindDebt && $Result){
+            $MandatorUser = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);//委托方用户信息
+            $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);//委托方用户基本信息
+            $User = $MemberUserModule->GetInfoByKeyID($FindDebt['UserID']);//发布方用户信息
+            ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您已同意债务申请，债务编号：'.$FindDebt['DebtNum'].'，债权人联系电话：'.$User['Mobile'].'，如有疑问可咨询客服电话：0592-5253262，感谢您的配合，谢谢！');//发送短信给委托方
+            ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$FindDebt['DebtNum'].'，处置方已同意申请，该处置方公司名称：'.$UserInfo['CompanyName'].'，联系电话：'.$MandatorUser['Mobile']);//发送短信给发布者
+            ToolService::SendSMSNotice(18039847468, '站内客服，（寻找处置方）有债务处置方同意申请，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
             $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
         }else{
             $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
@@ -890,14 +906,21 @@ class AjaxLogin
         }
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $MemberUserModule = new MemberUserModule();
         $Data['Status'] =intval($_POST['Status']);//完成情况
         $DebtID = intval($_POST['id']);
+        $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($DebtID);
         //开始事务
         global $DB;
         $DB->query("BEGIN");
         $UpdateDebtInfo = $MemberFindDebtModule->UpdateInfoByKeyID($Data,$DebtID);
         $UpdateFindDebtOrder = $MemberFindDebtOrderModule->UpdateInfoByWhere($Data, ' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
         if ($UpdateDebtInfo && $UpdateFindDebtOrder){
+            $MandatorUser = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);//委托方用户信息
+            $User = $MemberUserModule->GetInfoByKeyID($FindDebt['UserID']);//发布方用户信息
+            ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您的受理债务已确认完成情况，感谢您的配合，谢谢！');//发送短信给委托方
+            ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$FindDebt['DebtNum'].'，已确认完成情况，请及时核实相关，联系处置方。');//发送短信给发布者
+            ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
             $DB->query("COMMIT");//执行事务
             $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
         }else{

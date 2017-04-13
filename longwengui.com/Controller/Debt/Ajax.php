@@ -436,7 +436,7 @@ class Ajax
                     $Result['Data'] = array();
                     if ($Data['Type']==1){ //1匹配律师团队
                         $MysqlWhere=implode(',',array_unique($Province));
-                        $CompanyInfo = $MemberSetLawyerFeeModule->GetTeamInfoByWhere($MysqlWhere);
+                        $CompanyInfo = $MemberSetLawyerFeeModule->GetTeamInfoByWhere($MysqlWhere,$Data['DebtAmount']);
                         if ($CompanyInfo){
                             $MemberAreaModule = new MemberAreaModule();
                             foreach ($CompanyInfo  as $key=>$value){
@@ -460,7 +460,7 @@ class Ajax
                         }
                     }elseif($Data['Type']==2){ //匹配催收公司
                         $MysqlWhere=implode(',',array_unique($Province));
-                        $CompanyInfo = $MemberSetCompanyModule->GetTeamInfoByWhere($MysqlWhere);
+                        $CompanyInfo = $MemberSetCompanyModule->GetTeamInfoByWhere($MysqlWhere,$Data['DebtAmount']);
                         if ($CompanyInfo){
                             $MemberAreaModule = new MemberAreaModule();
                             foreach ($CompanyInfo  as $key=>$value){
@@ -511,6 +511,9 @@ class Ajax
         $Data['DelegateTime'] = time();
         $Data['Status'] =1;
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberUserModule = new MemberUserModule();
+        $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($Data['DebtID']);
         $Rscount = $MemberFindDebtOrderModule->GetListsNum(' and DebtID = '.$Data['DebtID']);
         if ($Rscount ['Num']>='3'){
             $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，您最多只可申请三个处置方');
@@ -522,6 +525,9 @@ class Ajax
                 if (!$InsertFindDebtOrder){
                     $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
                 }else{
+                    $MandatorUser = $MemberUserModule->GetInfoByKeyID($Data['UserID']);//处置方用户信息
+                    ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，有债务申请委托您处理，请及时处理，登录http://www.longwengui.com/，及时查看您的受理债务信息。感谢您的配合！');//发送短信给委托方
+                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务申请处置方受理，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
                     $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
                 }
             }
