@@ -78,6 +78,7 @@ class Debt
         $MemberDebtImageModule = new MemberDebtImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberDebtInfoModule->NStatus;
         $ID = intval($_GET['ID']);
         //债务信息
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($ID);
@@ -113,7 +114,20 @@ class Debt
             $browseUserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $_SESSION['UserID']);
         }
         //关联的债务信息
-        $AssociatedDebt = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID != ".$ID.' and Card = \''.$DebtorsInfo[0]['Card'].'\'');
+        if ($DebtorsInfo[0]['Card'] !==''){
+            $AssociatedDebtors = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID != ".$ID.' and Card = \''.$DebtorsInfo[0]['Card'].'\'',true);
+            foreach ($AssociatedDebtors as $key =>$value){
+                $AssociatedDebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
+                $AssociatedDebtors[$key]['DebtNum'] = $AssociatedDebtInfo['DebtNum'];
+                $AssociatedDebtors[$key]['Overduetime'] = $AssociatedDebtInfo['Overduetime'];
+                $AssociatedDebtors[$key]['AddTime'] = $AssociatedDebtInfo['AddTime'];
+                $AssociatedDebtors[$key]['DebtAmount'] = $AssociatedDebtInfo['DebtAmount'];
+                $AssociatedDebtors[$key]['Status'] = $AssociatedDebtInfo['Status'];
+                $AssociatedDebtors[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                $AssociatedDebtors[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                $AssociatedDebtors[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+            }
+        }
         $Title="债务详情-隆文贵不良资产处置";
         //处置方接单申请
         if ($DebtInfo['UserID']==$_SESSION['UserID']){
