@@ -678,64 +678,63 @@ function imageUpload(tar, callback){
 
   //获取上传的图片大小
   var target = $(tar);
+
   if(!target[0].files[0]){
     return;
   }
-  var Size = target[0].files[0].size / 1024;
-
-  //获取当前url
-  var URL = window.URL || window.webkitURL;
-
-  //创建图片
-  var blobURL = URL.createObjectURL(target[0].files[0]);
-
-  //验证图大小
-  if(Size > filemaxsize) {
-      layer.msg('图片大小请不要超过' + _msg + '');
-      return;
-  }
-
-
   //验证图片格式
   if(!target[0].files[0].type.match(/image.*/)) {
     layer.msg('图片格式不正确!');
-  }else{
-    layer.open({
-        type: 1,
-        skin: 'UpAvatar',
-        area: ['486px','495px'], //宽高
-        closeBtn:0,
-        title:'头像裁剪',
-        content:"<div style=\"max-height:380px;max-width:480px;\"><img src=\"\" id=\"AvatarFile\"/></div>",
-        btn: ['保存', '关闭'],
-        yes: function(index, layero){
-            //图片BASE64处理
-            var ImgBaseData = $image.cropper("getCroppedCanvas").toDataURL('image/jpeg');
-            //执行提交方法
-            if(typeof callback == 'function'){
-              callback(tar, ImgBaseData, index, _type);
-            }else{
-              imagesInput(tar, ImgBaseData, index, _type);
-            }
-            //执行提交方法B
-            // imagesInputB(ImgBaseData,index);
-        },
-        success:function(index, layero){
-            $image = $("#AvatarFile");
-            $image.one('built.cropper', function () {
-                // Revoke when load complete
-                URL.revokeObjectURL(blobURL);
-            }).cropper({
-                aspectRatio: _ratio, //图裁剪比例
-                minContainerHeight: 380,
-                minContainerWidth: 480,
-            }).cropper('replace', blobURL);
-        },
-        end:function(index, layero){
-            layer.close(index);
-        }
-    });
+    return;
   }
+  var Size = target[0].files[0].size / 1024;
+  //获取当前url
+  var URL = window.URL || window.webkitURL;
+  //创建图片
+  var blobURL = URL.createObjectURL(target[0].files[0]);
+  //验证图大小
+  if(Size > filemaxsize) {
+    layer.msg('图片大小请不要超过' + _msg + '');
+    return;
+  }
+
+  layer.open({
+    type: 1,
+    skin: 'UpAvatar',
+    area: ['486px','495px'], //宽高
+    closeBtn:0,
+    title:'头像裁剪',
+    content:"<div style=\"max-height:380px;max-width:480px;\"><img src=\"\" id=\"AvatarFile\"/></div>",
+    btn: ['保存', '关闭'],
+    yes: function(index, layero){
+      //图片BASE64处理
+      var ImgBaseData = $image.cropper("getCroppedCanvas").toDataURL('image/jpeg');
+      //执行提交方法
+      if(typeof callback == 'function'){
+        callback(tar, ImgBaseData, index, _type);
+      }else{
+        imagesInput(tar, ImgBaseData, index, _type);
+      }
+      //执行提交方法B
+      // imagesInputB(ImgBaseData,index);
+    },
+    success:function(index, layero){
+      $image = $("#AvatarFile");
+      $image.one('built.cropper', function () {
+        if(!isIE8()){
+          // Revoke when load complete
+          URL.revokeObjectURL(blobURL);
+        }
+      }).cropper({
+        aspectRatio: _ratio, //图裁剪比例
+        minContainerHeight: 380,
+        minContainerWidth: 480,
+      }).cropper('replace', blobURL);
+    },
+    end:function(index, layero){
+      layer.close(index);
+    }
+  });
 }
 
 //关闭弹窗

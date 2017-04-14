@@ -22,6 +22,7 @@ $(function(){
     var id_num = $("#id_num").val();
 
     if(key == ''){
+      $("#keyword").focus();
       showMsg('请输入必填');
       return;
     }

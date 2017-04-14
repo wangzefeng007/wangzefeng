@@ -129,7 +129,8 @@
 .person-center .wrap .menu-cont-wrap .menu-cont {
   background-color: #fff;
   width: 970px;
-  min-height: 1100px;
+  min-height: 1085px;
+  padding-bottom: 15px;
   -moz-box-shadow: 0 0 2px #e6e6e6;
   box-shadow: 0 0 2px #e6e6e6;
   border-radius: 5px;
@@ -610,13 +611,13 @@
 .clue .list-details{
 	padding: 10px 10px 0 10px;
 	margin-bottom: 10px;
-	height: 170px;
+	height: 280px;
 	border: 1px solid #e6e6e6;
 	position: relative;
 }
 .clue .details-pt{
 	float: left;
-	width: 350px;
+	width: 240px;
 	margin-right: 10px;
 }
 .clue .details-pt .details-pt-big{
@@ -631,11 +632,12 @@
   height: 100%;
 }
 .clue .details-pt .details-pt-small{
-	float: left;
+  float: left;
 	width: 60px;
 	height: 48px;
 	margin-right: 10px;
-	margin-bottom: 8px;
+	margin-bottom: 5px;
+	margin-top: 5px;
 	background-color: #999;
 }
 .clue .details-pt .details-pt-small img{
@@ -644,10 +646,10 @@
 }
 .clue .details-txt{
 	float: left;
-	width: 560px;
+	width: 672px;
 }
 .clue .details-txt .details-txt-cont{
-	line-height: 25px;
+	line-height: 30px;
 	font-size: 14px;
 }
 .clue .details-txt .details-txt-cont span{
@@ -658,6 +660,8 @@
 	height: 36px;
 	border-top: 1px dashed #E6E6E6;
 	font-style: italic;
+  padding-top: 25px;
+  margin-top: 25px;
 }
 .clue .details-txt .details-txt-cont-last button{
 	height: 24px;
@@ -676,7 +680,7 @@
 	width: 120px;
 	height: 120px;
 	right: 30px;
-	top: 30px;
+	top: 140px;
 }
 
 /*浏览过的债务*/
@@ -1405,6 +1409,7 @@
 .pagination-wrap{
   margin-top: 20px;
   padding-right: 10px;
+  height: 36px;
 }
 
 /*无数据显示*/
