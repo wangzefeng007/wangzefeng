@@ -38,13 +38,13 @@
                         <div class="l">
                             债务人姓名: {$lists[Name]}
                         </div>
-                        债务人身份证: {$lists[Card]}
+                        债务人身份证: {if $lists[Card]} {$lists[Card]} {else} 无 {/if}
                     </div>
                     <div class="line">
                         <div class="l">
                             债务人地区: {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
                         </div>
-                        详细地址: {$lists[Address]}
+                        详细地址: {if $lists[Address]} {$lists[Address]} {else} 无 {/if}
                     </div>
                 </div>
                 {/loop}
@@ -94,19 +94,23 @@
                     </div>
                     <div class="line">
                         <div class="l">
-                            借款原因：{$DebtInfo[ReasonsBorrowing]}
+                            借款原因：{if $DebtInfo[ReasonsBorrowing]} {$DebtInfo[ReasonsBorrowing]} {else} 无 {/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            债务近况：{$DebtInfo[DebtRecent]}
+                            债务近况：{if $DebtInfo[DebtRecent]} {$DebtInfo[DebtRecent]} {else} 无 {/if}
                         </div>
                     </div>
                     <div class="line-img" id="debt_imgs">
                         <span>借款凭证 :</span>
+                        {if $DebtImage}
                         {loop $DebtImage $lists}
                         <img src="{$lists[ImageUrl]}" alt="">
                         {/loop}
+                        {else}
+                        无
+                        {/if}
                     </div>
                 </div>
             </div>
