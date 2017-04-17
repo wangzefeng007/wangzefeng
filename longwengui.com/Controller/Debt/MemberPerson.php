@@ -283,6 +283,7 @@ class MemberPerson
         }elseif($Status==4){
             $MysqlWhere .=' and `Status` IN (4,5)';//完成的债务
         }
+        $MysqlWhere .=' order by AddTime desc';
         $Rscount = $MemberFindDebtModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
