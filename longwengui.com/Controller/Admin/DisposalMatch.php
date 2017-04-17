@@ -77,7 +77,8 @@ class DisposalMatch
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindDebtorsModule = new MemberFindDebtorsModule();
         $MemberFindCreditorsModule = new MemberFindCreditorsModule();
-        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $MemberAreaModule = new MemberAreaModule();
         //编辑当前状态
         if ($_POST['DebtID']) {
             $Data['Status'] = intval($_POST['Status']);
@@ -95,19 +96,29 @@ class DisposalMatch
         $DebtInfo = $MemberFindDebtModule->GetInfoByKeyID($DebtID);
         //债务人信息
         $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(" and DebtID = " . $DebtID,true);
+        foreach ($DebtorsInfo as $key =>$value){
+            $DebtorsInfo[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $DebtorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $DebtorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
         //债权人信息
         $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(" and DebtID = " . $DebtID,true);
+        foreach ($CreditorsInfo as $key =>$value){
+            $CreditorsInfo[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $CreditorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $CreditorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
         $DebtInfo['DebtInfo'] = json_decode($DebtInfo['DebtInfo'], true);
         $DebtInfo['CreditorsInfo'] = json_decode($DebtInfo['CreditorsInfo'], true);
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
         $DebtInfo['GuaranteeInfo'] = json_decode($DebtInfo['GuaranteeInfo'], true);
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $DebtInfo['UserID']);
         //处置方会员信息
-        $Disposal = $MemberClaimsDisposalModule->GetInfoByWhere(' and DebtID = '.$DebtID,true);
-        foreach ($Disposal as $key=>$value){
-            $Disposal[$key]['UserID'] = $value['UserID'];
+        $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$DebtID,true);
+        foreach ($FindDebtOrder as $key=>$value){
+            $FindDebtOrder[$key]['UserID'] = $value['UserID'];
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $value['UserID']);
-            $Disposal[$key]['CompanyName'] = $UserInfo['CompanyName'];
+            $FindDebtOrder[$key]['CompanyName'] = $UserInfo['CompanyName'];
         }
         include template('DisposalMatchEdit');
     }

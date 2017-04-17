@@ -64,6 +64,7 @@ class User
     {
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
         $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
         $Identity = $MemberUserInfoModule->Identity;
         if ($_POST['UserID']) {
@@ -81,12 +82,13 @@ class User
         if ($_GET['UserID']) {
             $UserID = $_GET['UserID'];
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID= '.$UserID);
+            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+            $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
             $UserInfo['LastLogin'] = !empty($UserInfo['LastLogin'])? date('Y-m-d H:i:s',$UserInfo['LastLogin']): '';
             $UserInfo['AnnualDueDate'] = !empty($UserInfo['AnnualDueDate'])? date('Y-m-d H:i:s',$UserInfo['AnnualDueDate']): '';
             $User = $MemberUserModule->GetInfoByKeyID($UserID);
         }
-
-
         include template("UserDetail");
     }
 

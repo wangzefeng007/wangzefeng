@@ -58,29 +58,30 @@
                             <td>证件号码：{$UserInfo[CardNum]}</td>
                             {if $UserInfo[Identity] == 3}
                             <td>信用代码：{$UserInfo[CreditCode]}</td>
-                            {/if} 
+                            {/if}
                             {if $UserInfo[Identity] == 4}
                             <td>职业证号：{$UserInfo[ProfessionalNum]}</td>
                             <td>年检到期日：{$UserInfo[AnnualDueDate]}</td>
-                            {/if} 
+                            {/if}
                         </tr>
                         <tr>
-                            <td colspan="5" class="t-h"><h5>&nbsp;&nbsp;身份证图片：</h5> </td>
-
+                            <td colspan="3" class="t-h">证件图片：</td>
                         </tr>
                         <tr>
-                            {if $UserInfo[Identity] != 4}
-                            <td>身份证正面:<a href="{$UserInfo[CardPositive]}" target="_blank"><img src="{$UserInfo[CardPositive]}" height="150px" width="150px" title="点击显示大图"></a></td>
-                            <td>身份证反面:<a href="{$UserInfo[CardNegative]}" target="_blank"><img src="{$UserInfo[CardNegative]}" width="150px" height="150px" title="点击显示大图"></a></td>
+                            {if $UserInfo[Identity] == 1 || $UserInfo[Identity] ==2}
+                            <td>身份证正面: {if $UserInfo[CardPositive]!=''}<a href="{$UserInfo[CardPositive]}" target="_blank"><img src="{$UserInfo[CardPositive]}" height="150px" width="150px" title="点击显示大图"></a></td>{else}无{/if}
+                            <td>身份证反面: {if $UserInfo[CardNegative]!=''}<a href="{$UserInfo[CardNegative]}" target="_blank"><img src="{$UserInfo[CardNegative]}" width="150px" height="150px" title="点击显示大图"></a></td>{else}无{/if}
+                            <td>手持身份证: {if $UserInfo[CardHold]!=''}<a href="{$UserInfo[CardHold]}" target="_blank"><img src="{$UserInfo[CardHold]}" width="150px" height="150px" title="点击显示大图"></a></td>{else}无{/if}
+                            {/if}
+                            {if $UserInfo[Identity]==3}
+                            <td>营业执照注册号图片: {if $UserInfo[BusinessImage]!=''}<a href="{$UserInfo[BusinessImage]}" target="_blank"><img src="{$UserInfo[BusinessImage]}" width="150px" height="150px"  title="点击显示大图"></a></td>{else}无{/if}
+                            <td></td>
+                            <td></td>
                             {/if}
                             {if $UserInfo[Identity]==4}
-                            <td>律师资格证件照<a href="{$UserInfo[LawyerCertificatePhoto]}" target="_blank"><img src="{$UserInfo[LawyerCertificatePhoto]}" height="150px" width="150px" title="点击显示大图"></a></td>
-                            <td>律师资格证年检照:<a href="{$UserInfo[LawyerCertificateYear]}" target="_blank"><img src="{$UserInfo[LawyerCertificateYear]}" width="150px" height="150px" title="点击显示大图"></a></td>
-                            {/if}
-                            {if $UserInfo[Identity] == 2}
-                            <td>手持身份证:<a href="{$UserInfo[CardHold]}" target="_blank"><img src="{$UserInfo[CardHold]}" width="150px" height="150px"  title="点击显示大图"></a></td>
-                            {elseif $UserInfo[Identity]==3}
-                            <td>营业执照注册号图片:<a href="{$UserInfo[BusinessImage]}" target="_blank"><img src="{$UserInfo[BusinessImage]}" width="150px" height="150px"  title="点击显示大图"></a></td>
+                            <td>律师资格证件照： {if $UserInfo['LawyerCertificatePhoto']!=''}<a href="{$UserInfo['LawyerCertificatePhoto']}" target="_blank"><img src="{$UserInfo['LawyerCertificatePhoto']}" height="150px" width="150px" title="点击显示大图"></a></td>{else}无{/if}
+                            <td>律师资格证年检照: {if $UserInfo['LawyerCertificateYear']!=''}<a href="{$UserInfo['LawyerCertificateYear']}" target="_blank"><img src="{$UserInfo['LawyerCertificateYear']}" width="150px" height="150px" title="点击显示大图"></a></td>{else}无{/if}
+                            <td></td>
                             {/if}
                         </tr>
                     </table>
@@ -112,5 +113,4 @@
     </div>
 </div>
 <!-- 底部 -->
-<!--{template Foot}-->
-
+{template Foot}
