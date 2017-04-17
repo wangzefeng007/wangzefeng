@@ -7,6 +7,14 @@ class Find
     public function __construct() {
 
     }
+    public function IsLogin(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }else{
+            if ($_SESSION['Identity']!=1)
+                alertandgotopage("访问被拒绝,目前只有普通会员可以寻找处置方！", WEB_MAIN_URL.'/choicefind/');
+        }
+    }
     /**
      * @desc  寻找处置方
      */
@@ -16,6 +24,7 @@ class Find
         include template('DebtChoiceFind');
     }
     public function Team(){
+        $this->IsLogin();
         $Nav ='find';
         $Type = intval($_GET['T']);
         if ($Type===1){

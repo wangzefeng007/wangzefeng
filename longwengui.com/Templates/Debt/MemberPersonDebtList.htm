@@ -49,27 +49,27 @@
                 </div>
             </div>
         </div>
-        <div class="fr-win">
-            <div class="pub-btn">
-                <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
-                <br>
-                发布
+    <div class="fr-win">
+        <div class="pub-btn">
+            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+            <br>
+            发布
+        </div>
+        <div class="pub-btn-list">
+            <div class="lin" onclick="selDebtWayPop()">
+                发布债务
             </div>
-            <div class="pub-btn-list">
-                <div class="lin" onclick="selDebtWayPop()">
-                    发布债务
-                </div>
-                <div class="lin">
-                    寻找处置方
-                </div>
-                <div class="lin">
-                    资产转让
-                </div>
-                <div class="lin">
-                    发布悬赏
-                </div>
+            <div class="lin" onclick="go('/choicefind/')">
+                寻找处置方
+            </div>
+            <div class="lin" onclick="go('/debt/transfer/')">
+                资产转让
+            </div>
+            <div class="lin" onclick="go('/reword/')">
+                发布悬赏
             </div>
         </div>
+    </div>
     </div>
 </div>
 {template Footer}
