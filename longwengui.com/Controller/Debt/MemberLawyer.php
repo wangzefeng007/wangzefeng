@@ -174,11 +174,11 @@ class MemberLawyer
                 $Page = $Data['PageCount'];
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberFindDebtOrderModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $Data['Data'] = $MemberFindDebtOrderModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);//处置方申请信息
             foreach ($Data['Data'] as $key=>$value){
-                $DebtInfo = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);
-                $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
-                $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $DebtInfo = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);//债务基本信息
+                $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);//债务人信息
+                $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);//债权人信息
                 $ClientInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
                 $ClientUser = $MemberUserModule->GetInfoByKeyID($value['UserID']);
                 $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
