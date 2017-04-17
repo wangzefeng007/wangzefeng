@@ -768,9 +768,35 @@ a{
 }
 .bk-1 {
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 .bk-1 img {
   width: 100%;
+}
+.bk-1 .hd{
+  position: absolute;
+  color: #666;
+  z-index: 100;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -45px;
+  font-size: 14px;
+}
+.bk-1 .hd li li{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+}
+.bk-1 .hd li li.on{
+  color: #fff;
+  background-color: #35bdfc;
 }
 .block-t {
   width: 606px;
