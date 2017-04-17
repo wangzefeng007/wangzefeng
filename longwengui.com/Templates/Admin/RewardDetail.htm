@@ -28,31 +28,36 @@
                             <td colspan="3" class="t-h">悬赏详情：</td>
                         </tr>
                         <tr>
-                            <td>悬赏ID：{$UserInfo[ID]}</td>
-                            <td>悬赏编号：{$UserInfo[RewardNum]}</td>
-                            <td>用户ID：{$UserInfo[UserID]}</td>
+                            <td>悬赏ID：{$RewardInfo[ID]}</td>
+                            <td>悬赏编号：{$RewardInfo[RewardNum]}</td>
+                            <td>用户ID：{$RewardInfo[UserID]}</td>
                         </tr>
                         <tr>
-                            <td>发布时间：{$UserInfo['AddTime']}</td>
-                            <td>债权人电话：{$UserInfo[CreditorsPhone]}</td>
-                            <td>类型：{if $UserInfo[Type]==0}找人{elseif $UserInfo[Type]==1}找财产{/if}</td>
+                            <td>发布时间：{$RewardInfo['AddTime']}</td>
+                            <td>债权人电话：{$RewardInfo[CreditorsPhone]}</td>
+                            <td>类型：{if $RewardInfo[Type]==0}找人{elseif $RewardInfo[Type]==1}找财产{/if}</td>
                         </tr>
                         <tr>
-                            <td>债务人姓名：{$UserInfo[DebtName]}</td>
-                            <td>债务人身份证：{$UserInfo[DebtCard]}</td>
-                            <td>债务人电话：{$UserInfo[DebtPhone]}</td>
+                            <td>债务人姓名：{$RewardInfo[DebtName]}</td>
+                            <td>债务人身份证：{$RewardInfo[DebtCard]}</td>
+                            <td>债务人电话：{$RewardInfo[DebtPhone]}</td>
                         </tr>
                         <tr>
-                            <td>债务人地区：{$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}</td>
-                            <td>详细地址：{$UserInfo[Address]}</td>
+                            <td>债务人地区：{$RewardInfo[Province]}-{$RewardInfo[City]}-{$RewardInfo[Area]}</td>
+                            <td>详细地址：{$RewardInfo[Address]}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="t-h"><h5>&nbsp;&nbsp;债务人照片：</h5> </td>
-
+                            <td colspan="3" class="t-h">债务人照片：</td>
                         </tr>
                         <tr>
-                            <td>:<a href="{$RewardImg[ImageUrl]}" target="_blank"><img src="{$RewardImg[ImageUrl]}" height="100px" width="100px" title="点击显示大图"></a></td>
-                            <td>:<a href="{$RewardImg[ImageUrl2]}" target="_blank"><img src="{$RewardImg[ImageUrl2]}" height="100px" width="100px" title="点击显示大图"></a></td>
+                            <td>
+                            {loop $RewardImg $lists}
+                            <a href="{$lists[ImageUrl]}" target="_blank"><img src="{$lists[ImageUrl]}" height="100px" width="100px" title="点击显示大图"></a>
+                            {/loop}
+                            </td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                     <table class="table table-bordered table-striped table-hover">
@@ -61,7 +66,7 @@
                             <tr>
                                 <td class="t-r" width="150">审核状态：</td>
                                 <td>
-                                    <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
+                                    <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px">
                                         <option value="1" {if $UserInfo[Status] == 1}selected="selected"{/if}>未提交审核</option>
                                         <option value="2" {if $UserInfo[Status] == 2}selected="selected"{/if}>审核中</option>
                                         <option value="3" {if $UserInfo[Status] == 3}selected="selected"{/if}>悬赏中</option>

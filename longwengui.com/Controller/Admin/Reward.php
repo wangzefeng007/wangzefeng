@@ -57,6 +57,7 @@ class Reward
     public function RewardLists()
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberRewardInfoModule->NStatus;
         $SqlWhere = '';
         // 搜索条件
@@ -94,6 +95,9 @@ class Reward
             }
             $Data['Data'] = $MemberRewardInfoModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
+                $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
                 $Data['Data'][$key]['AddTime'] = !empty($value['AddTime']) ? date('Y-m-d H:i:s', $value['AddTime']) : '';
             }
             MultiPage($Data, $Data['PageCount']);
@@ -107,6 +111,7 @@ class Reward
     {
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
+        $MemberAreaModule = new MemberAreaModule();
         if ($_POST['ID']) {
             $Data['Status'] = intval($_POST['Status']);
             $ID = intval($_POST['ID']);
@@ -121,8 +126,11 @@ class Reward
         }
         if ($_GET['ID']) {
             $ID = $_GET['ID'];
-            $UserInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID = '.$ID);
-            $RewardImg = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID);
+            $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID = '.$ID);
+            $RewardInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Province']);
+            $RewardInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['City']);
+            $RewardInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Area']);
+            $RewardImg = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID,true);
             $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
         }
         include template('RewardDetail');
