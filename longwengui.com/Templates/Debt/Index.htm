@@ -1,7 +1,18 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/index.css">
-<div class="bk-1">
-    <img src="/Uploads/Debt/imgs/b1.png" alt="">
+<div class="bk-1" id="index_banner">
+  <div class="bd">
+    <li><img src="/Uploads/Debt/imgs/banner02.jpg" alt=""></li>
+    <li><img src="/Uploads/Debt/imgs/banner01.png" alt=""></li>
+    <li><img src="/Uploads/Debt/imgs/banner03.jpg" alt=""></li>
+  </div>
+  <div class="hd">
+    <li>
+      <a>1</a>
+      <a>2</a>
+      <a>3</a>
+    </li>
+  </div>
 </div>
 <div class="index">
     <div class="block bc-fff">
@@ -159,3 +170,5 @@
     </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/SuperSlide/jquery.SuperSlide.2.1.1.js'></script>
+<script src='{echo JsURL}/debt/index.js'></script>

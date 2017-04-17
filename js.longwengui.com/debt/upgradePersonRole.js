@@ -140,11 +140,6 @@ $('#person_save').click(function(){
     var area = $('.tab-person input[name="dd_area"]').siblings('span').attr('data-id');
     var images = []; //证明图片
 
-    if(nick_name == ''){
-        showMsg('请输入您的昵称');
-        return;
-    }
-
     if(name == ''){
         showMsg('请输入您的姓名');
         return;
