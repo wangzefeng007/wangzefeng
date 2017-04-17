@@ -111,6 +111,7 @@ class Ajax
                 }elseif($Areas['Level']==3){
                     $AreaWhere = " and Area = $Area";
                 }
+
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
@@ -118,6 +119,8 @@ class Ajax
                     }
                     $data=implode(',',array_unique($data));
                     $MysqlWhere .= " and DebtID IN ($data)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
                 }
             }
             if(!empty($City) && $City!='all'){
@@ -136,8 +139,11 @@ class Ajax
                     }
                     $data=implode(',',array_unique($data));
                     $MysqlWhere .= " and DebtID IN ($data)";
+                }else{
+                    $MysqlWhere .= " and DebtID<0";
                 }
             }
+
             $DebtAmount = $_POST['col_money'];//债务金额
             if($DebtAmount!='all'){
                 if ($DebtAmount=='1'){

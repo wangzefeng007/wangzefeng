@@ -83,7 +83,17 @@
                             </tr>
                             <tr>
                                 <td>抵押物名称：{$DebtInfo[GuaranteeInfo][0]['name']}</td>
-                                <td colspan="2">抵押物介绍：{$DebtInfo[GuaranteeInfo][0]['content']}</td>
+                                <td>抵押物介绍：{$DebtInfo[GuaranteeInfo][0]['content']}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="t-h">借款凭证：</td>
+                            </tr>
+                            <tr>
+                                {loop $DebtImage $lists}
+                                <td>
+                                    <a href="{$lists[ImageUrl]}" target="_blank"><img src="{$lists[ImageUrl]}" width="150px" height="150px" title="点击显示大图"></a></td>
+                                {/loop}
                             </tr>
                         </table>
                     <table class="table table-bordered table-striped table-hover">
@@ -101,6 +111,8 @@
                                             <option value="6" {if $DebtInfo[Status] ==6}selected="selected"{/if}>未曝光</option>
                                             <option value="7" {if $DebtInfo[Status] ==7}selected="selected"{/if}>已曝光</option>
                                             <option value="8" {if $DebtInfo[Status] ==8}selected="selected"{/if}>待审核</option>
+                                            <option value="9" {if $DebtInfo[Status] ==9}selected="selected"{/if}>取消发布</option>
+                                            <option value="10" {if $DebtInfo[Status] ==10}selected="selected"{/if}>审核失败</option>
                                         </select>
                                         <input type="hidden" name="DebtID" value="{$DebtID}" />
                                         <input class="btn btn-danger" type="submit" name="submit" value="修改">

@@ -89,6 +89,7 @@ class Debt {
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtImageModule = new MemberDebtImageModule();
         $MemberAreaModule = new MemberAreaModule();
         $Province = $MemberAreaModule->Province;
         $City = $MemberAreaModule->City;
@@ -117,6 +118,7 @@ class Debt {
         $DebtInfo['WarrantorInfo'] = json_decode($DebtInfo['WarrantorInfo'], true);
         $DebtInfo['GuaranteeInfo'] = json_decode($DebtInfo['GuaranteeInfo'], true);
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $DebtInfo['UserID']);
+        $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$DebtID,true);
         include template("DebtEdit");
     }
 }
