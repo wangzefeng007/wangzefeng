@@ -16,8 +16,24 @@
   position: fixed;
   height: 100%;
 }
+.login-page .login-logo{
+  text-align:center;
+  margin-top: 110px;
+}
+.login-page .login-logo img{
+  width: 360px;
+}
+.login-page .login-copyright{
+  text-align: center;
+}
+.login-page .login-copyright p{
+  margin: 0;
+  color: #fff;
+  line-height: 24px;
+  font-size: 14px;
+}
 .login{
-  margin: 100px auto;
+  margin: 20px auto;
   width: 460px;
 }
 .login .form-login {
