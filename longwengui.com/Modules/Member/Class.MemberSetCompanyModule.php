@@ -16,7 +16,7 @@ class MemberSetCompanyModule extends CommonModule{
         $sql = "select  me.*,b.mobile,c.* from (SELECT SetID,min(MoneyScale) from member_set_company GROUP BY UserID) a
 left JOIN member_set_company me ON me.SetID = a.SetID 
 left JOIN member_user b ON me.UserID = b.UserID 
-left JOIN member_user_info c ON me.UserID = c.UserID where me.Province IN ($MysqlWhere) and $Money >= me.FromMoney and me.FromMoney=< $Money order by me.MoneyScale asc";
+left JOIN member_user_info c ON me.UserID = c.UserID where me.Province IN ($MysqlWhere) and  me.FromMoney <= $Money and me.ToMoney >= $Money order by me.MoneyScale asc";
         return $DB->select($sql);
     }
 }
