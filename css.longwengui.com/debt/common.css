@@ -670,6 +670,7 @@ a{
   height: 82px;
   -moz-box-shadow: 0 0 2px #e6e6e6;
   box-shadow: 0 0 2px #e6e6e6;
+  background-color: #fff;
 }
 .header .wrap {
   width: 1180px;

@@ -15,134 +15,136 @@
 </head>
 <body>
 
-<div class="top">
-    <div class="wrap">
-        <span class="span-1">您好 , 欢迎访问 隆文贵 ！</span>
-        <span>服务热线 : 13960658585</span>
+<div class="login-page">
+  <div class="top">
+      <div class="wrap">
+          <span class="span-1">您好 , 欢迎访问 隆文贵 ！</span>
+          <span>服务热线 : 13960658585</span>
 
-        {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
-        <span id="after-login">
-          <img src="/Uploads/Debt/imgs/toper_head_img.png" alt="">
-          <span class="user-name">{$_SESSION[NickName]}</span>
-            <!--<div class="m">-->
-            <!--5-->
-            <!--</div>-->
-          <div class="det">
-            <div class="info">
-              <img src="{$_SESSION[Avatar]}" alt="{$_SESSION[NickName]}">
-              <div class="name">
-                <p>{$_SESSION[NickName]}</p>
-                <p>{$_SESSION[Account]}</p>
+          {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
+          <span id="after-login">
+            <img src="/Uploads/Debt/imgs/toper_head_img.png" alt="">
+            <span class="user-name">{$_SESSION[NickName]}</span>
+              <!--<div class="m">-->
+              <!--5-->
+              <!--</div>-->
+            <div class="det">
+              <div class="info">
+                <img src="{$_SESSION[Avatar]}" alt="{$_SESSION[NickName]}">
+                <div class="name">
+                  <p>{$_SESSION[NickName]}</p>
+                  <p>{$_SESSION[Account]}</p>
+                </div>
               </div>
-            </div>
-            <div class="opt">
-              <a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{/if}/">
-              <div class="line">
-                <img src="/Uploads/Debt/imgs/toper_pc.png" alt="">用户中心
-              </div>
-              </a>
-              <div class="line" onclick="go('/member/systemmessage/')">
-                <img src="/Uploads/Debt/imgs/toper_msg.png" alt="">系统消息
-                  <!--<div class="tip">-->
-                  <!--5-->
-                  <!--</div>-->
-              </div>
-            </div>
-            <div class="l"></div>
-            <div class="opt">
-                <a href="/member/signout/">
-              <div class="line" id="">
-                <img src="/Uploads/Debt/imgs/toper_out.png" alt="退出登录">退出登录
-              </div>
+              <div class="opt">
+                <a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{/if}/">
+                <div class="line">
+                  <img src="/Uploads/Debt/imgs/toper_pc.png" alt="">用户中心
+                </div>
                 </a>
+                <div class="line" onclick="go('/member/systemmessage/')">
+                  <img src="/Uploads/Debt/imgs/toper_msg.png" alt="">系统消息
+                    <!--<div class="tip">-->
+                    <!--5-->
+                    <!--</div>-->
+                </div>
+              </div>
+              <div class="l"></div>
+              <div class="opt">
+                  <a href="/member/signout/">
+                <div class="line" id="">
+                  <img src="/Uploads/Debt/imgs/toper_out.png" alt="退出登录">退出登录
+                </div>
+                  </a>
+              </div>
             </div>
+          </span>
+          {else}
+          <span id="no-login">
+            <span class="span-3" onclick="go('/member/login/')">登录</span>
+            <span class="span-4" onclick="go('/member/register/')">注册</span>
+          </span>
+          {/if}
+      </div>
+  </div>
+  <div class="header">
+      <div class="wrap">
+          <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/logo.png" alt=""></a>
+          <div class="nav-wrap">
+              <a href="{echo WEB_MAIN_URL}"><li {if $Nav=='index'}class="nav-active"{/if}>首页</li></a>
+              <a href="/debtlists/"><li {if $Nav=='debt'}class="nav-active"{/if}>债务催收</li></a>
+              <a href="/debt/transfer/"><li {if $Nav=='transfer'}class="nav-active"{/if}>债权转让</li></a>
+              <a href="/reword/"><li {if $Nav =='rewordlists'}class="nav-active"{/if}>线索悬赏</li></a>
+              <a href="/choicefind/"><li {if $Nav =='find'}class="nav-active"{/if}>寻找处置方</li></a>
+              <a href="/deadbeat/"><li {if $Nav =='deadbeat'}class="nav-active"{/if}>查询老赖</li></a>
           </div>
-        </span>
-        {else}
-        <span id="no-login">
-          <span class="span-3" onclick="go('/member/login/')">登录</span>
-          <span class="span-4" onclick="go('/member/register/')">注册</span>
-        </span>
-        {/if}
-    </div>
-</div>
-<div class="header">
-    <div class="wrap">
-        <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/logo.png" alt=""></a>
-        <div class="nav-wrap">
-            <a href="{echo WEB_MAIN_URL}"><li {if $Nav=='index'}class="nav-active"{/if}>首页</li></a>
-            <a href="/debtlists/"><li {if $Nav=='debt'}class="nav-active"{/if}>债务催收</li></a>
-            <a href="/debt/transfer/"><li {if $Nav=='transfer'}class="nav-active"{/if}>债权转让</li></a>
-            <a href="/reword/"><li {if $Nav =='rewordlists'}class="nav-active"{/if}>线索悬赏</li></a>
-            <a href="/choicefind/"><li {if $Nav =='find'}class="nav-active"{/if}>寻找处置方</li></a>
-            <a href="/deadbeat/"><li {if $Nav =='deadbeat'}class="nav-active"{/if}>查询老赖</li></a>
-        </div>
-    </div>
-</div>
-<link rel="stylesheet" href="{echo CssURL}/debt/login.css">
-<div class="login" id="login">
-    <div class="form-login">
-        <div class="hd">
-            会员登录
-        </div>
-        <div class="cont">
-            <div class="line">
-                <div class="info">
-                    手 机
-                </div>
-                <div class="det">
-                    <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
-                </div>
-                <div class="error-hint">
-                    请输入手机号！
-                </div>
-                <div class="error-hint">
-                    您输入的手机号有误！
-                </div>
-            </div>
-            <div class="line">
-                <div class="info">
-                    密 码
-                </div>
-                <div class="det">
-                    <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="请输入密码">
-                </div>
-                <div class="error-hint">
-                    请输入密码!
-                </div>
-                <div class="error-hint">
-                    密码不能少于6位！
-                </div>
-                <div class="error-hint">
-                    密码格式有误！
-                </div>
-            </div>
-            <div class="line" id="code" data-show="0">
-                <div class="info">
-                    验证码
-                </div>
-                <div class="det">
-                    <input type="text" name="code" class="input-3" maxlength="4" onblur="validateErr('code', this)"  placeholder="验证码">
-                    <img src="/code/pic.jpg" onclick="this.src='/code/pic.jpg?'+Math.random();" class="v-code" alt="">
-                </div>
-                <div class="error-hint">
-                    请输入验证码!
-                </div>
-            </div>
-            <div class="forget-pass">
-                <span onclick="go('/member/findpasswd/')">忘记密码？</span>
-            </div>
-            <div class="line">
-                <div class="info">
-                </div>
-                <div class="det">
-                    <button type="button" class="btn-login" onclick="login()" name="button">登 录</button>
-                </div>
-            </div>
-            <div class="hav">
-                还没有账号 <a href="/member/register/"><span>立即注册</span></a>
-            </div>
-        </div>
-    </div>
+      </div>
+  </div>
+  <link rel="stylesheet" href="{echo CssURL}/debt/login.css">
+  <div class="login" id="login">
+      <div class="form-login">
+          <div class="hd">
+              会员登录
+          </div>
+          <div class="cont">
+              <div class="line">
+                  <div class="info">
+                      手 机
+                  </div>
+                  <div class="det">
+                      <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
+                  </div>
+                  <div class="error-hint">
+                      请输入手机号！
+                  </div>
+                  <div class="error-hint">
+                      您输入的手机号有误！
+                  </div>
+              </div>
+              <div class="line">
+                  <div class="info">
+                      密 码
+                  </div>
+                  <div class="det">
+                      <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="请输入密码">
+                  </div>
+                  <div class="error-hint">
+                      请输入密码!
+                  </div>
+                  <div class="error-hint">
+                      密码不能少于6位！
+                  </div>
+                  <div class="error-hint">
+                      密码格式有误！
+                  </div>
+              </div>
+              <div class="line" id="code" data-show="0">
+                  <div class="info">
+                      验证码
+                  </div>
+                  <div class="det">
+                      <input type="text" name="code" class="input-3" maxlength="4" onblur="validateErr('code', this)"  placeholder="验证码">
+                      <img src="/code/pic.jpg" onclick="this.src='/code/pic.jpg?'+Math.random();" class="v-code" alt="">
+                  </div>
+                  <div class="error-hint">
+                      请输入验证码!
+                  </div>
+              </div>
+              <div class="forget-pass">
+                  <span onclick="go('/member/findpasswd/')">忘记密码？</span>
+              </div>
+              <div class="line">
+                  <div class="info">
+                  </div>
+                  <div class="det">
+                      <button type="button" class="btn-login" onclick="login()" name="button">登 录</button>
+                  </div>
+              </div>
+              <div class="hav">
+                  还没有账号 <a href="/member/register/"><span>立即注册</span></a>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 {template Footer}

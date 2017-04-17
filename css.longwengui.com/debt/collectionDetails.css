@@ -87,11 +87,11 @@
 }
 .collection-details .wrap .info-wrap .debt-det .bx .line {
   width: 100%;
-  height: 20px;
+  min-height: 20px;
 }
 .collection-details .wrap .info-wrap .debt-det .bx .line .l {
   min-width: 50%;
-  float: left;
+  display: inline-block;
 }
 .collection-details .wrap .info-wrap .debt-det .bx .line .l span {
   margin-left: 20px;

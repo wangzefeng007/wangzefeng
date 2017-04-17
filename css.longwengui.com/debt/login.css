@@ -10,8 +10,14 @@
   width: 10px;
   height: 6px;
 }
+.login-page{
+  background-image: url('http://www.longwengui.net/Uploads/Debt/imgs/reg_banner.jpg');
+  width: 100%;
+  position: fixed;
+  height: 100%;
+}
 .login{
-  margin: 40px auto;
+  margin: 100px auto;
   width: 460px;
 }
 .login .form-login {

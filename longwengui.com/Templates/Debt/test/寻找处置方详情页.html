@@ -1,0 +1,104 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/collectionDetails.css">
+<div class="collection-details">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a href="/debtlists/">处置方债务</a> > <span class="cur">查看详情</span></span>
+        </div>
+        <div class="info-wrap" data-id="{$DebtInfo[DebtID]}">
+            <div class="hd">
+                债务编号:&nbsp;&nbsp;DB20170412093429819--处置方偏向:&nbsp;&nbsp;律师团队
+            </div>
+            <div class="pubman-info">
+                <span>发布人:&nbsp;&nbsp;张远</span>
+                发布时间:&nbsp;&nbsp;{echo date("Y-m-d",$DebtInfo[AddTime])}
+            </div>
+            <div class="debt-det">
+              <div class="bx">
+                  <div class="line">
+                      <div class="l">
+                          债务人姓名:&nbsp;&nbsp;埃杜阿多
+                      </div>
+                      债务人身份证:&nbsp;&nbsp;333333333333333333
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                        电话:&nbsp;&nbsp;15763948807
+                      </div>
+                      债务金额(元):&nbsp;&nbsp;￥1000.00
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          债务人地区:&nbsp;&nbsp;福建省-厦门市-思明区
+                      </div>
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          详细地址:&nbsp;&nbsp;软件园二期
+                      </div>
+                  </div>
+              </div>
+              <div class="bx">
+                <div class="line">
+                    <div class="l">
+                        债务人是否随时能寻找到:&nbsp;&nbsp;{if $DebtInfo[FindDebtor]==1}是{else}否{/if}
+                    </div>
+                    债务人是否有还款能力:&nbsp;&nbsp;{if $DebtInfo[RepaymentDebtor]==1}是{else}否{/if}
+                </div>
+                <div class="line">
+                    <div class="l">
+                        是否有前期费用:&nbsp;&nbsp;有
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="l">
+                        是否有保证人:&nbsp;&nbsp;有
+                        <span>个人 速度 15763948807 333333333333333333</span><span>个人 速度 15763948807 333333333333333333</span>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="l">
+                        是否有抵押物:&nbsp;&nbsp;有
+                        <span>车 撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生</span><span>车 撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生</span>
+                        <span>车 撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生</span><span>车 撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生撒旦发射点发生</span>
+                    </div>
+                </div>
+              </div>
+              <div class="bx">
+                <div class="line">
+                  <div class="l">
+                    处置方公司名称:&nbsp;&nbsp;雄霸天下有限公司
+                  </div>
+                  电话:&nbsp;&nbsp;15763948807
+                </div>
+              </div>
+              <div class="bx">
+                  <div class="line">
+                      <div class="l">
+                          债权人姓名:&nbsp;&nbsp;埃杜阿多
+                      </div>
+                      债权人身份证:&nbsp;&nbsp;333333333333333333
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                        电话:&nbsp;&nbsp;15763948807
+                      </div>
+                      债务金额(元):&nbsp;&nbsp;￥1000.00
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          债权人地区:&nbsp;&nbsp;福建省-厦门市-思明区
+                      </div>
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          详细地址:&nbsp;&nbsp;软件园二期
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
