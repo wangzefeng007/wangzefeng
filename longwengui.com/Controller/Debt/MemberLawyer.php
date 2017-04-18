@@ -178,34 +178,17 @@ class MemberLawyer
             foreach ($Data['Data'] as $key=>$value){
                 $DebtInfo = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);//债务基本信息
                 $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);//债务人信息
-                $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);//债权人信息
-                $ClientInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
-                $ClientUser = $MemberUserModule->GetInfoByKeyID($value['UserID']);
                 $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
                 $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];
                 $Data['Data'][$key]['AddTime']= $DebtInfo['AddTime'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])
-                    $DebtorsInfo['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
-                $Data['Data'][$key]['Province'] = $DebtorsInfo['Province'];
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
                 if ($DebtorsInfo['City'])
-                    $DebtorsInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
-                $Data['Data'][$key]['City'] = $DebtorsInfo['City'];
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
                 if ($DebtorsInfo['Area'])
-                    $DebtorsInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-                if ($CreditorsInfo['Province'])
-                    $CreditorsInfo['Province']= $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Province']);
-                if ($CreditorsInfo['City'])
-                    $CreditorsInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['City']);
-                if ($CreditorsInfo['Area'])
-                    $CreditorsInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Area']);
-                $Data['Data'][$key]['Json'] = $DebtInfo;
-                $Data['Data'][$key]['Json']['DebtorInfos'] =$DebtorsInfo;
-                $Data['Data'][$key]['Json']['DebtorOwnerInfos'] =$CreditorsInfo;
-                $Data['Data'][$key]['Json']['Client']['CompanyName'] =$ClientInfo['CompanyName'];
-                $Data['Data'][$key]['Json']['Client']['Mobile'] =$ClientUser['Mobile'];
-                $Data['Data'][$key]['Json'] = json_encode($Data['Data'][$key]['Json'],JSON_UNESCAPED_UNICODE);
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
