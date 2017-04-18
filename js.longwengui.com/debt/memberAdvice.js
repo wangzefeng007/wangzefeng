@@ -9,8 +9,9 @@ $(function(){
     $.ajax({
       type: "post",
       dataType: "json",
-      url: "",
+      url: "/loginajax.html",
       data: {
+        "Intention":"AddAdvice",//投诉建议
         "advice": adviceText
       },
       beforeSend: function(){
@@ -19,7 +20,10 @@ $(function(){
       success: function(data){
         if(data.ResultCode == 200){
           showMsg('提交成功');
-
+            //路由跳转展示页面
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
         }else{
           showMsg(data.Message);
         }
