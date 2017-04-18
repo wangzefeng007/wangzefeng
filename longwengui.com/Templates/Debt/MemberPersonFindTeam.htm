@@ -59,7 +59,7 @@
                                 <td>￥{$lists['Money']}</td>
                                 <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
                                 <td class="color-red">{$NStatus[$lists[Status]]}</td>
-                                <td onclick="go('/find/details/?ID={$lists[DebtID]}')" class="details-enter">详情</td>
+                                <td onclick="go('/find/details/?ID={$lists[DebtID]}&OrderID={$lists[OrderID]}')" class="details-enter">详情</td>
                                 {if $lists[Status]==1}
                                 <td class="oper"><span onclick="cancelDebtMatch('{$lists[DebtID]}')">取消申请</span></td>
                                 {elseif $lists[Status]==3}

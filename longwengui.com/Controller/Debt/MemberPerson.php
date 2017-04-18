@@ -303,11 +303,14 @@ class MemberPerson
                 $DebtID[] = $value['DebtID'];
             }
             $DebtID=implode(',',array_unique($DebtID));
-            $sqlWhere = " and DebtID IN ($DebtID)";
+            $sqlWhere = " and DebtID IN ($DebtID) order by AddTime desc";
             $Data['Data'] = $MemberFindDebtModule->GetLists($sqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
                 $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);
                 $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $Data['Data'][$key]['OrderID']= $FindDebtOrder['OrderID'];
+                $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
                 $Data['Data'][$key]['DebtNum']= $FindDebt['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $FindDebt['DebtAmount'];

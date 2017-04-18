@@ -39,12 +39,13 @@ class Find
         include template('DebtFindTeam');
     }
     /**
-     * @desc  寻找处置方
+     * @desc  寻找处置方债务详情
      */
     public function Details(){
         $Title="寻找处置方债务详情页-隆文贵不良资产处置";
         $Nav ='find';
         $ID = intval($_GET['ID']);
+        $OrderID = intval($_GET['OrderID']);
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindDebtorsModule = new MemberFindDebtorsModule();
@@ -83,10 +84,9 @@ class Find
         //发布人信息
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $FindDebt['UserID']);
         //处置方信息
-        $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$ID);
+        $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByKeyID($OrderID);
         $FindUserInfo = $MemberUserInfoModule->GetInfoByUserID($FindDebtOrder['UserID']);
         $FindUser = $MemberUserModule->GetInfoByKeyID($FindDebtOrder['UserID']);
-        $Data['Data'][$key]['AddTime']= $FindDebt['AddTime'];
         include template('FindDebtDetails');
     }
 
