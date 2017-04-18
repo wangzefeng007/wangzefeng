@@ -33,7 +33,7 @@ class Debt
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and `Status` <= 7 order by Status asc , AddTime desc';
+        $MysqlWhere = ' and `Status` <= 7 and `CollectionType`<= 2 order by Status asc , AddTime desc';
         //关键字
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;

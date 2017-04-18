@@ -38,13 +38,12 @@ class Ajax
             $Data['ResultCode'] = 100;
             EchoResult($Data);exit;
         }
-        $Keyword = trim($_POST['Keyword']);
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = ' and `Status` != 8 and `Status` != 9 and `CollectionType` != 3';
+        $MysqlWhere = ' and `Status` <= 7 and `CollectionType`<= 2';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }
-        $MysqlWhere .= ' order by Status asc';
+        $MysqlWhere .= ' order by Status asc , AddTime desc';
         $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         $PageSize = 7;
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);

@@ -33,7 +33,7 @@ class Reword
         }
         $Keyword = trim($_GET['K']);
         if ($Keyword !=''){
-            $MysqlWhere .= ' and Type=1 and (DebtName like \'%'.$Keyword.'%\' or DebtCard =\'' .$Keyword.'\')';
+            $MysqlWhere .= ' and (DebtName like \'%'.$Keyword.'%\' or DebtCard =\'' .$Keyword.'\')';
         }
         if (strstr ($SoUrl, 'a' )){
             $Area = strstr($SoUrl,"a",true);

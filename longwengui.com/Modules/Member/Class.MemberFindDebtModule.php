@@ -34,4 +34,5 @@ Class MemberFindDebtModule extends CommonModule {
         '7' => '已曝光',
         '9' => '取消发布',
     ];
+
 }

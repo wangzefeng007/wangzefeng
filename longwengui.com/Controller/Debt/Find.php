@@ -36,4 +36,51 @@ class Find
         }
         include template('DebtFindTeam');
     }
+    /**
+     * @desc  寻找处置方
+     */
+    public function Details(){
+        $Title="寻找处置方债务详情页-隆文贵不良资产处置";
+        $Nav ='find';
+        $ID = intval($_GET['ID']);
+        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberFindDebtorsModule = new MemberFindDebtorsModule();
+        $MemberFindCreditorsModule = new MemberFindCreditorsModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($ID);
+        if (!$FindDebt){
+            alertandback('不存在该债务！');
+        }
+        $FindDebt['WarrantorInfo'] = json_decode($FindDebt['WarrantorInfo'],JSON_UNESCAPED_UNICODE);
+        $FindDebt['GuaranteeInfo'] = json_decode($FindDebt['GuaranteeInfo'],JSON_UNESCAPED_UNICODE);
+        $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$ID,true);//债务人信息
+        if ($DebtorsInfo){
+            foreach ($DebtorsInfo as $key=>$value){
+                if ($value['Province'])
+                    $DebtorsInfo[$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                if ($value['City'])
+                    $DebtorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                if ($value['Area'])
+                    $DebtorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+            }
+        }
+        $CreditorsInfo = $MemberFindCreditorsModule->GetInfoByWhere(' and DebtID = '.$ID,true);//债权人信息
+        if ($CreditorsInfo){
+            foreach ($CreditorsInfo as $key=>$value){
+                if ($value['Province'])
+                    $CreditorsInfo[$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                if ($value['City'])
+                    $CreditorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                if ($value['Area'])
+                    $CreditorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+            }
+        }
+        //发布人信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $FindDebt['UserID']);
+        include template('FindDebtDetails');
+    }
+
+
 }
