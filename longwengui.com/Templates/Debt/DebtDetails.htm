@@ -23,8 +23,11 @@
         </div>
         <div class="info-wrap" data-id="{$DebtInfo[DebtID]}">
             <div class="hd">
-                <!-- <div class="concerned"><img src="/Uploads/Debt/imgs/gou_white.png" alt="">已关注</div> -->
+                {if $FocusDebt}
+                 <div class="concerned"><img src="/Uploads/Debt/imgs/gou_white.png" alt="">已关注</div>
+                {else}
                 <button type="button" onclick="concernDebt('{$DebtInfo[DebtID]}')" name="concern">关注</button>
+                {/if}
                 债务编号:&nbsp;&nbsp;{$DebtInfo[DebtNum]}--处置方偏向:&nbsp;&nbsp;{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{elseif $DebtInfo[CollectionType]==3}自助催收{/if}
             </div>
             <div class="pubman-info">

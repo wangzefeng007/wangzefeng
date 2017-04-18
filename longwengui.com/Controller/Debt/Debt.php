@@ -78,6 +78,7 @@ class Debt
         $MemberDebtImageModule = new MemberDebtImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
         $NStatus = $MemberDebtInfoModule->NStatus;
         $ID = intval($_GET['ID']);
         //债务信息
@@ -85,6 +86,8 @@ class Debt
         if ($DebtInfo['Status'] ==8  && $DebtInfo['UserID']!=$_SESSION['UserID']){
             alertandgotopage("访问被拒绝", WEB_MAIN_URL.'/debtlists/');
         }
+        //债务关注
+        $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
         //保证人信息
         if ($DebtInfo['Warrantor']){
             $WarrantorInfo = json_decode($DebtInfo['WarrantorInfo'],true);
