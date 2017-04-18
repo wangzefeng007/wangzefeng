@@ -15,97 +15,103 @@
 </head>
 <body>
 <div class="reg-page">
-  <div class="reg-logo">
-    <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/com_logo.png" alt=""></a>
-  </div>
-  <div class="reg" style="display: none;" id="regForm">
-      <form class="form-reg">
-          <div class="hd">
-              会员注册
-          </div>
-          <div class="cont">
-              <div class="line">
-                  <div class="info">
-                      手机号
-                  </div>
-                  <div class="det">
-                      <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
-                  </div>
-                  <div class="error-hint">
-                      请输入手机号！
-                  </div>
-                  <div class="error-hint">
-                      您输入的手机号有误！
-                  </div>
-              </div>
-              <div class="line">
-                  <div class="info">
-                      密 码
-                  </div>
-                  <div class="det">
-                      <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="6-20位密码字母、数字、下划线">
-                  </div>
-                  <div class="error-hint">
-                      请设置密码！
-                  </div>
-                  <div class="error-hint">
-                      密码不能少于6位！
-                  </div>
-                  <div class="error-hint">
-                      密码格式有误！
-                  </div>
-              </div>
-              <div class="line">
-                  <div class="info">
-                      确认密码
-                  </div>
-                  <div class="det">
-                      <input type="password" name="confirmPass" onblur="validateErr('confirm', this)" class="input-1" placeholder="确认您的密码">
-                  </div>
-                  <div class="error-hint">
-                      两次密码不一致！
-                  </div>
-              </div>
-              <div class="line">
-                  <div class="info">
-                      验证码
-                  </div>
-                  <div class="det">
-                      <input type="text" name="code" maxlength="4" onblur="validateErr('code', this)" class="input-2" placeholder="请输入验证码">
-                      <button type="button" class="comfirm-code" onclick="getCode(this)" name="button">发送验证码</button>
-                  </div>
-                  <div class="error-hint">
-                      请输入验证码！
-                  </div>
-                  <div class="error-hint">
-                      您输入的验证码有误！
-                  </div>
-              </div>
-              <div class="agreen-protocal">
-                  <div class="m-checkbox">
-                      <label type="checkbox">
-                          <input type="checkbox" name="agreement"  checked>
-                          <i></i>
-                          我已阅读并同意
-                      </label>
-                      <span onclick="openProtocalWindow()">《用户协议》</span>
-                  </div>
-              </div>
-              <div class="btn-reg">
-                  <button type="button" onclick="reg()">注  册</button>
-              </div>
-              <div class="hav">
-                  已有账号 <a href="/member/login/"><span>立即登录</span></a>
-              </div>
-          </div>
-      </form>
-      <div class="reg-copyright">
-        <p>版权所有：隆文贵 Copyright2017</p>
-        <p>闽ICP备16032488号-1</p>
+  <div class="reg-wrap">
+    <div class="reg" id="regForm">
+      <div class="reg-logo">
+        <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/com_logo.png" alt=""></a>
       </div>
+        <form class="form-reg">
+            <div class="hd">
+                会员注册
+            </div>
+            <div class="cont">
+                <div class="line">
+                    <div class="info">
+                        手机号
+                    </div>
+                    <div class="det">
+                        <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
+                    </div>
+                    <div class="error-hint">
+                        请输入手机号！
+                    </div>
+                    <div class="error-hint">
+                        您输入的手机号有误！
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="info">
+                        密 码
+                    </div>
+                    <div class="det">
+                        <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="6-20位密码字母、数字、下划线">
+                    </div>
+                    <div class="error-hint">
+                        请设置密码！
+                    </div>
+                    <div class="error-hint">
+                        密码不能少于6位！
+                    </div>
+                    <div class="error-hint">
+                        密码格式有误！
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="info">
+                        确认密码
+                    </div>
+                    <div class="det">
+                        <input type="password" name="confirmPass" onblur="validateErr('confirm', this)" class="input-1" placeholder="确认您的密码">
+                    </div>
+                    <div class="error-hint">
+                        两次密码不一致！
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="info">
+                        验证码
+                    </div>
+                    <div class="det">
+                        <input type="text" name="code" maxlength="4" onblur="validateErr('code', this)" class="input-2" placeholder="请输入验证码">
+                        <button type="button" class="comfirm-code" onclick="getCode(this)" name="button">发送验证码</button>
+                    </div>
+                    <div class="error-hint">
+                        请输入验证码！
+                    </div>
+                    <div class="error-hint">
+                        您输入的验证码有误！
+                    </div>
+                </div>
+                <div class="agreen-protocal">
+                    <div class="m-checkbox">
+                        <label type="checkbox">
+                            <input type="checkbox" name="agreement"  checked>
+                            <i></i>
+                            我已阅读并同意
+                        </label>
+                        <span onclick="openProtocalWindow()">《用户协议》</span>
+                    </div>
+                </div>
+                <div class="btn-reg">
+                    <button type="button" onclick="reg()">注  册</button>
+                </div>
+                <div class="hav">
+                    已有账号 <a href="/member/login/"><span>立即登录</span></a>
+                </div>
+            </div>
+        </form>
+        <div class="reg-copyright">
+          <p>版权所有：隆文贵 Copyright2017</p>
+          <p>闽ICP备16032488号-1</p>
+        </div>
+    </div>
   </div>
 
-  <div class="sel-role" style="display: block;">
+
+  <div class="sel-role">
+    <div class="reg-logo">
+      <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/com_logo.png" alt=""></a>
+    </div>
       <div class="wrap">
           <div class="tl">
               请选择下一步操作 或 <span onclick="go('/memberperson/')">跳过</span>
@@ -132,7 +138,6 @@
 <script src='{echo JsURL}/debt/lib/jquery.placeholder/jquery.placeholder.min.js'></script>
 <script src='{echo JsURL}/debt/lib/layer/src/layer.js'></script>
 <script src='{echo JsURL}/debt/common.js'></script>
-<script type="text/javascript" src="{echo JsURL}/debt/login.js"></script>
 <script src='{echo JsURL}/debt/reg.js'></script>
 </body>
 </html>
