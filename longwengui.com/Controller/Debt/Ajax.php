@@ -260,6 +260,14 @@ class Ajax
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
+        if ($UserInfo['IdentityState']!=3){
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请等待审核通过后方可接单，感谢您的配合！',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
         if ($UserInfo['Identity']==2){
             $Url = '/memberperson/applydebtorder/';
         }elseif ($UserInfo['Identity']==3){
