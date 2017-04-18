@@ -55,7 +55,7 @@
                                 <td>{$lists[AddTime]}</td>
                                 <td class="sta-{$lists[Status]}">{$NStatus[$lists[Status]]}</td>
                                 <td><a href="/debt/{$lists[DebtID]}.html" class="details-enter">详情</a></td>
-                                <td><button type="button">取消关注</button></td>
+                                <td><button type="button" onclick="cancelConcern('{$lists[ID]}')">取消关注</button></td>
                             </tr>
                             {/loop}
                             </tbody>
@@ -95,3 +95,4 @@
     </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/memberOptWindow.js'></script>

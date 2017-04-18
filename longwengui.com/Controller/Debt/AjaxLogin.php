@@ -926,7 +926,22 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
-
+    /**
+     * @desc 取消关注债务
+     */
+    public function CancelConcern(){
+        $this->IsLogin();
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
+        $ID = $_POST['id'];
+        $Delete = $MemberFocusDebtModule->DeleteByKeyID($ID);
+        if ($Delete){
+            $result_json = array('ResultCode'=>200,'Message'=>'取消关注成功！');
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'取消关注失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
     /**
      * @desc 投诉建议
      */

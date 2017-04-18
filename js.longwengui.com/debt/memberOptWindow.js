@@ -744,3 +744,29 @@ function showImgs(imgs){
   $('#slide-tmpl').tmpl(_imgData).appendTo('.slide-container');
   $('.slide-container').slide({"effect": "fold"});
 }
+//取消债务关注
+function cancelConcern(id){
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+            "Intention": 'CancelConcern',
+            "id": id
+        },
+        beforeSend: function(){
+            showLoading();
+        },
+        success: function(data){
+            if(data.ResultCode == 200){
+                showMsg('操作成功');
+                window.location.reload();
+            }else{
+                showMsg(data.Message);
+            }
+        },
+        complete: function(){
+            closeLoading();
+        }
+    });
+}
