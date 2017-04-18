@@ -283,7 +283,7 @@ class MemberPerson
         }elseif($Status==4){
             $MysqlWhere .=' and `Status` IN (4,5)';//完成的债务
         }
-        $Rscount = $MemberFindDebtModule->GetListsNum($MysqlWhere);
+        $Rscount = $MemberFindDebtOrderModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
             $Page = 1;
@@ -298,12 +298,14 @@ class MemberPerson
                 $Page = $Data['PageCount'];
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberFindDebtModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $Data['Data'] = $MemberFindDebtOrderModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-                $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByKeyID($value['DebtID']);
+                $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);
                 $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
-                $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
+                $Data['Data'][$key]['DebtNum']= $FindDebt['DebtNum'];
+                $Data['Data'][$key]['DebtAmount']= $FindDebt['DebtAmount'];
+                $Data['Data'][$key]['AddTime']= $FindDebt['AddTime'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
                 if ($DebtorsInfo['City'])
