@@ -272,7 +272,7 @@ class MemberPerson
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         //分页Start
-        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
+        $MysqlWhere ='';
         $Status = $_GET['S']? intval($_GET['S']) : 0;
         if ($Status==1){
             $MysqlWhere .=' and `Status` = 1';//正在申请的债务
@@ -283,22 +283,28 @@ class MemberPerson
         }elseif($Status==4){
             $MysqlWhere .=' and `Status` IN (4,5)';//完成的债务
         }
-        $Rscount = $MemberFindDebtOrderModule->GetListsNum($MysqlWhere);
+        $FindDebtInfo = $MemberFindDebtModule->GetFindDebtInfoByUserID($_SESSION['UserID'],$MysqlWhere);
+        $RscountNum = count($FindDebtInfo);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
             $Page = 1;
         }
-        if ($Rscount['Num']) {
+        if ($RscountNum) {
             $PageSize=10;
             $Data = array();
-            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['RecordCount'] = $RscountNum;
             $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
             $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
             if ($Page > $Data['PageCount'])
                 $Page = $Data['PageCount'];
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberFindDebtOrderModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($FindDebtInfo as $value){
+                $DebtID[] = $value['DebtID'];
+            }
+            $DebtID=implode(',',array_unique($DebtID));
+            $sqlWhere = " and DebtID IN ($DebtID)";
+            $Data['Data'] = $MemberFindDebtModule->GetLists($sqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
                 $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);
                 $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
@@ -313,7 +319,7 @@ class MemberPerson
                 if ($DebtorsInfo['Area'])
                     $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
             }
-            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ClassPage = new Page($RscountNum, $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
         include template('MemberPersonFindTeam');

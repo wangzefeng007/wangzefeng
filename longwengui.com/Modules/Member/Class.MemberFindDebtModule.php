@@ -34,5 +34,14 @@ Class MemberFindDebtModule extends CommonModule {
         '7' => '已曝光',
         '9' => '取消发布',
     ];
-
+    /**
+     * @desc  向处置方申请债权列表
+     */
+    public function GetFindDebtInfoByUserID($UserID = '',$MysqlWhere=''){
+        global $DB;
+        $sql = "SELECT A.*, B.*
+FROM  (SELECT DebtID from member_find_debt WHERE UserID= $UserID)  A inner JOIN member_find_debt_order B
+ON A.DebtID = B.DebtID".$MysqlWhere;
+        return $DB->select($sql);
+    }
 }
