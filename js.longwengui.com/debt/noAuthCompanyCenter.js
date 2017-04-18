@@ -164,7 +164,8 @@ function changeHeadImg(tar, ImgBaseData, index){
       success: function(data) {
         if(data.ResultCode=='200'){
             showMsg('上传成功');
-            $(tar).parent().siblings('img').attr("src", data.url);
+            $('.head-portrait img').attr("src", data.url);
+            $('.menu-bar .u-img').attr("src", data.url);
             setTimeout(function(){
               layer.close(index);
             }, 200);
