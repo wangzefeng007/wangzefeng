@@ -60,7 +60,7 @@ class AjaxLogin
             $UserID = $User->CheckUser($Account, $PassWord);
             //发送系统消息
             if ($UserID) {
-                $XpirationDate = time() + 3600 * 24;
+                $XpirationDate = time() + 60;
                 if ($_POST['AutoLogin'] == 1) {
                     setcookie("UserID", $UserID, $XpirationDate, "/", WEB_HOST_URL);
                     setcookie("Account", $Account, $XpirationDate, "/", WEB_HOST_URL);
@@ -69,7 +69,7 @@ class AjaxLogin
                 setcookie("session_id", session_id(), $XpirationDate, "/", WEB_HOST_URL);
                 $_SESSION['UserID'] = $UserID;
                 $_SESSION['Account'] = $Account;
-                setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
+                //setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
                 $UserInfoModule = new MemberUserInfoModule();
                 $Data['LastLogin'] = time();
                 $Data['IP'] = GetIP();
