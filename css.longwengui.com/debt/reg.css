@@ -10,6 +10,28 @@
   width: 10px;
   height: 6px;
 }
+.reg-page{
+  background-image: url('http://www.longwengui.net/Uploads/Debt/imgs/reg_banner.jpg');
+  width: 100%;
+  position: fixed;
+  height: 100%;
+}
+.reg-page .reg-logo{
+  text-align:center;
+  margin-top: 110px;
+}
+.reg-page .reg-logo img{
+  width: 360px;
+}
+.reg-page .reg-copyright{
+  text-align: center;
+}
+.reg-page .reg-copyright p{
+  margin: 0;
+  color: #fff;
+  line-height: 24px;
+  font-size: 14px;
+}
 .reg .form-reg {
   width: 604px;
   height: 483px;
@@ -155,19 +177,24 @@
   color: #666666;
 }
 .sel-role .wrap .tl {
-  font-size: 30px;
+  color: #fff;
+  font-size: 24px;
   text-align: center;
   margin-bottom: 90px;
 }
 .sel-role .wrap .tl span {
-  color: #35bdfc;
+  color: #43dbfa;
   cursor: pointer;
+}
+.sel-role .wrap .sel-next span{
+  color: #43dbfa;
 }
 .sel-role .wrap .cont {
   height: 280px;
 }
 .sel-role .wrap .cont .bx {
   float: left;
+  color: #fff;
   width: 590px;
   text-align: center;
 }
@@ -175,7 +202,7 @@
   min-width: 140px;
   line-height: 37px;
   border: 0;
-  background-color: #35bdfc;
+  background-color: #43dbfa;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;

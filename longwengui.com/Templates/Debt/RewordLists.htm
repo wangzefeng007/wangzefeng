@@ -41,6 +41,7 @@
             <span>平台警告：平台不承担任何线索担保，请用户自己核实提供的信息是否属实!!!</span>
         </div>
         <div class="box-wrap" id="reword_info">
+            {if $Data['Data']}
             {loop $Data['Data'] $lists}
             <div class="box">
                 <div class="content">
@@ -71,11 +72,11 @@
                         </div>
                         <div class="line">
                             <div class="t">债务人身份证 : </div>
-                            <div class="c">{$lists[DebtCard]}</div>
+                            <div class="c">{if $lists[DebtCard]} {$lists[DebtCard]} {else} 无 {/if}</div>
                         </div>
                         <div class="line">
                             <div class="t">详细地址 : </div>
-                            <div class="c">{$lists[Address]}</div>
+                            <div class="c">{if $lists[Address]} {$lists[Address]} {else} 无 {/if}</div>
                         </div>
                         <div class="ower-contact">
                             <div class="t">债权人联系方式 :</div>
@@ -90,6 +91,11 @@
                 {/if}
             </div>
             {/loop}
+            {else}
+            <div class="no-data" style="display: block;">
+                <img src="/Uploads/Debt/imgs/no_data.png" alt="">
+            </div>
+            {/if}
         </div>
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="reword_page_pagination">

@@ -90,6 +90,13 @@
 .reword .wrap .box-wrap {
   min-height: 400px;
 }
+.reword .wrap .box-wrap .no-data{
+  text-align: center;
+  display: none;
+  line-height: 360px;
+  height: 360px;
+  padding-top: 50px;
+}
 .reword .wrap .box-wrap .box {
   box-sizing: border-box;
   width: 577px;

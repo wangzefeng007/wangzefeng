@@ -11,179 +11,128 @@
     <meta name="keywords" content="催收平台,催收系统，债务清算,债务追讨,欠款催收,债务案源">
     <title>{$Title}</title>
     <link rel="stylesheet" href="{echo CssURL}/debt/common.css">
-    <link rel="stylesheet" href="{echo CssURL}/debt/login.css">
+    <link rel="stylesheet" href="{echo CssURL}/debt/reg.css">
 </head>
 <body>
-
-<div class="top">
-    <div class="wrap">
-        <span class="span-1">您好 , 欢迎访问 隆文贵 ！</span>
-        <span>服务热线 : 13960658585</span>
-
-        {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
-        <span id="after-login">
-          <img src="/Uploads/Debt/imgs/toper_head_img.png" alt="">
-          <span class="user-name">{$_SESSION[NickName]}</span>
-            <!--<div class="m">-->
-            <!--5-->
-            <!--</div>-->
-          <div class="det">
-            <div class="info">
-              <img src="{$_SESSION[Avatar]}" alt="{$_SESSION[NickName]}">
-              <div class="name">
-                <p>{$_SESSION[NickName]}</p>
-                <p>{$_SESSION[Account]}</p>
-              </div>
-            </div>
-            <div class="opt">
-              <a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{/if}/">
-              <div class="line">
-                <img src="/Uploads/Debt/imgs/toper_pc.png" alt="">用户中心
-              </div>
-              </a>
-              <div class="line" onclick="go('/member/systemmessage/')">
-                <img src="/Uploads/Debt/imgs/toper_msg.png" alt="">系统消息
-                  <!--<div class="tip">-->
-                  <!--5-->
-                  <!--</div>-->
-              </div>
-            </div>
-            <div class="l"></div>
-            <div class="opt">
-                <a href="/member/signout/">
-              <div class="line" id="">
-                <img src="/Uploads/Debt/imgs/toper_out.png" alt="退出登录">退出登录
-              </div>
-                </a>
-            </div>
+<div class="reg-page">
+  <div class="reg-logo">
+    <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/com_logo.png" alt=""></a>
+  </div>
+  <div class="reg" style="display: none;" id="regForm">
+      <form class="form-reg">
+          <div class="hd">
+              会员注册
           </div>
-        </span>
-        {else}
-        <span id="no-login">
-          <span class="span-3" onclick="go('/member/login/')">登录</span>
-          <span class="span-4" onclick="go('/member/register/')">注册</span>
-        </span>
-        {/if}
-    </div>
-</div>
-<div class="header">
-    <div class="wrap">
-        <a href="{echo WEB_MAIN_URL}"><img src="/Uploads/Debt/imgs/logo.png" alt=""></a>
-        <div class="nav-wrap">
-            <a href="{echo WEB_MAIN_URL}"><li {if $Nav=='index'}class="nav-active"{/if}>首页</li></a>
-            <a href="/debtlists/"><li {if $Nav=='debt'}class="nav-active"{/if}>债务催收</li></a>
-            <a href="/debt/transfer/"><li {if $Nav=='transfer'}class="nav-active"{/if}>债权转让</li></a>
-            <a href="/reword/"><li {if $Nav =='rewordlists'}class="nav-active"{/if}>线索悬赏</li></a>
-            <a href="/choicefind/"><li {if $Nav =='find'}class="nav-active"{/if}>寻找处置方</li></a>
-            <a href="/deadbeat/"><li {if $Nav =='deadbeat'}class="nav-active"{/if}>查询老赖</li></a>
-        </div>
-    </div>
-</div>
+          <div class="cont">
+              <div class="line">
+                  <div class="info">
+                      手机号
+                  </div>
+                  <div class="det">
+                      <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
+                  </div>
+                  <div class="error-hint">
+                      请输入手机号！
+                  </div>
+                  <div class="error-hint">
+                      您输入的手机号有误！
+                  </div>
+              </div>
+              <div class="line">
+                  <div class="info">
+                      密 码
+                  </div>
+                  <div class="det">
+                      <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="6-20位密码字母、数字、下划线">
+                  </div>
+                  <div class="error-hint">
+                      请设置密码！
+                  </div>
+                  <div class="error-hint">
+                      密码不能少于6位！
+                  </div>
+                  <div class="error-hint">
+                      密码格式有误！
+                  </div>
+              </div>
+              <div class="line">
+                  <div class="info">
+                      确认密码
+                  </div>
+                  <div class="det">
+                      <input type="password" name="confirmPass" onblur="validateErr('confirm', this)" class="input-1" placeholder="确认您的密码">
+                  </div>
+                  <div class="error-hint">
+                      两次密码不一致！
+                  </div>
+              </div>
+              <div class="line">
+                  <div class="info">
+                      验证码
+                  </div>
+                  <div class="det">
+                      <input type="text" name="code" maxlength="4" onblur="validateErr('code', this)" class="input-2" placeholder="请输入验证码">
+                      <button type="button" class="comfirm-code" onclick="getCode(this)" name="button">发送验证码</button>
+                  </div>
+                  <div class="error-hint">
+                      请输入验证码！
+                  </div>
+                  <div class="error-hint">
+                      您输入的验证码有误！
+                  </div>
+              </div>
+              <div class="agreen-protocal">
+                  <div class="m-checkbox">
+                      <label type="checkbox">
+                          <input type="checkbox" name="agreement"  checked>
+                          <i></i>
+                          我已阅读并同意
+                      </label>
+                      <span onclick="openProtocalWindow()">《用户协议》</span>
+                  </div>
+              </div>
+              <div class="btn-reg">
+                  <button type="button" onclick="reg()">注  册</button>
+              </div>
+              <div class="hav">
+                  已有账号 <a href="/member/login/"><span>立即登录</span></a>
+              </div>
+          </div>
+      </form>
+      <div class="reg-copyright">
+        <p>版权所有：隆文贵 Copyright2017</p>
+        <p>闽ICP备16032488号-1</p>
+      </div>
+  </div>
 
-<link rel="stylesheet" href="{echo CssURL}/debt/reg.css">
-<div class="reg" id="regForm">
-    <form class="form-reg">
-        <div class="hd">
-            会员注册
-        </div>
-        <div class="cont">
-            <div class="line">
-                <div class="info">
-                    手机号
-                </div>
-                <div class="det">
-                    <input type="text" name="phoneNumber" onblur="validateErr('phoneNumber', this)" class="input-1" placeholder="请输入您的手机号">
-                </div>
-                <div class="error-hint">
-                    请输入手机号！
-                </div>
-                <div class="error-hint">
-                    您输入的手机号有误！
-                </div>
-            </div>
-            <div class="line">
-                <div class="info">
-                    密 码
-                </div>
-                <div class="det">
-                    <input type="password" name="pass" maxlength="20" onblur="validateErr('pass', this)" class="input-1" placeholder="6-20位密码字母、数字、下划线">
-                </div>
-                <div class="error-hint">
-                    请设置密码！
-                </div>
-                <div class="error-hint">
-                    密码不能少于6位！
-                </div>
-                <div class="error-hint">
-                    密码格式有误！
-                </div>
-            </div>
-            <div class="line">
-                <div class="info">
-                    确认密码
-                </div>
-                <div class="det">
-                    <input type="password" name="confirmPass" onblur="validateErr('confirm', this)" class="input-1" placeholder="确认您的密码">
-                </div>
-                <div class="error-hint">
-                    两次密码不一致！
-                </div>
-            </div>
-            <div class="line">
-                <div class="info">
-                    验证码
-                </div>
-                <div class="det">
-                    <input type="text" name="code" maxlength="4" onblur="validateErr('code', this)" class="input-2" placeholder="请输入验证码">
-                    <button type="button" class="comfirm-code" onclick="getCode(this)" name="button">发送验证码</button>
-                </div>
-                <div class="error-hint">
-                    请输入验证码！
-                </div>
-                <div class="error-hint">
-                    您输入的验证码有误！
-                </div>
-            </div>
-            <div class="agreen-protocal">
-                <div class="m-checkbox">
-                    <label type="checkbox">
-                        <input type="checkbox" name="agreement"  checked>
-                        <i></i>
-                        我已阅读并同意
-                    </label>
-                    <span onclick="openProtocalWindow()">《用户协议》</span>
-                </div>
-            </div>
-            <div class="btn-reg">
-                <button type="button" onclick="reg()">注  册</button>
-            </div>
-            <div class="hav">
-                已有账号 <a href="/member/login/"><span>立即登录</span></a>
-            </div>
-        </div>
-    </form>
+  <div class="sel-role" style="display: block;">
+      <div class="wrap">
+          <div class="tl">
+              请选择下一步操作 或 <span onclick="go('/memberperson/')">跳过</span>
+          </div>
+          <div class="cont">
+              <div class="bx">
+                  <img src="/Uploads/Debt/imgs/money.png" alt="">
+                  <p>通过平台发布债务信息，进行自助催收或委托处置</p>
+                  <p>方协助债务催收</p>
+                  <button type="button" name="button" onclick="javascript:window.location.href='/member/registerthree/'">发布债务</button>
+              </div>
+              <div class="bx">
+                  <img src="/Uploads/Debt/imgs/debt_phone.png" alt="">
+                  <p>可以选择以催客（个人）、催收公司或律师团队身份</p>
+                  <p>加入催收行业，进行债务催收接单</p>
+                  <button type="button" name="button" onclick="javascript:window.location.href='/member/registertwo/'">加入催收行业</button>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-
-<div class="sel-role">
-    <div class="wrap">
-        <div class="tl">
-            请选择下一步操作 或 <span onclick="go('/memberperson/')">跳过</span>
-        </div>
-        <div class="cont">
-            <div class="bx">
-                <img src="/Uploads/Debt/imgs/money.png" alt="">
-                <p>通过平台发布债务信息，进行自助催收或委托处置方协助</p>
-                <p>债务催收</p>
-                <button type="button" name="button" onclick="javascript:window.location.href='/member/registerthree/'">发布债务</button>
-            </div>
-            <div class="bx">
-                <img src="/Uploads/Debt/imgs/debt_phone.png" alt="">
-                <p>可以选择以催客（个人）、催收公司或律师团队身份加入</p>
-                <p>催收行业，进行债务催收接单</p>
-                <button type="button" name="button" onclick="javascript:window.location.href='/member/registertwo/'">加入催收行业</button>
-            </div>
-        </div>
-    </div>
-</div>
-{template Footer}
+<script src='{echo JsURL}/debt/lib/jquery/jquery.min.js'></script>
+<script src='{echo JsURL}/debt/lib/jquery-tmpl/dist/jquery.tmpl.min.js'></script>
+<script src='{echo JsURL}/debt/lib/jquery.placeholder/jquery.placeholder.min.js'></script>
+<script src='{echo JsURL}/debt/lib/layer/src/layer.js'></script>
+<script src='{echo JsURL}/debt/common.js'></script>
+<script type="text/javascript" src="{echo JsURL}/debt/login.js"></script>
 <script src='{echo JsURL}/debt/reg.js'></script>
+</body>
+</html>
