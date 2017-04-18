@@ -768,6 +768,16 @@ class Ajax
             );
             EchoResult($json_result);exit;
         }
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
+        if ($UserInfo['IdentityState']!=3){
+            $json_result = array(
+                'ResultCode' => 101,
+                'Message' => '请等待审核通过，感谢您的配合！',
+            );
+            echo json_encode($json_result);
+            exit;
+        }
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
