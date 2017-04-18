@@ -11,6 +11,14 @@ class Debt
     public function __construct() {
 
     }
+    public function IsLogin(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }else{
+            if ($_SESSION['Identity']!=1 && $_SESSION['Identity']!=2 )
+                alertandgotopage("访问被拒绝,目前只有普通会员和催客可以发布债务！", WEB_MAIN_URL.'/debtlists/');
+        }
+    }
     public function Index(){
         $Title ='隆文贵不良资产处置';
         $Nav='index';
@@ -152,6 +160,9 @@ class Debt
      */
     public function DebtPublish()
     {
+        $this->IsLogin();
+        if ($_SESSION['IdentityState']!=3)
+            alertandgotopage("请等待审核通过方可发布债务！", WEB_MAIN_URL.'/debtlists/');
         $Nav='debt';
         $Type = intval($_GET['T']);
         $Title="发布债务-隆文贵不良资产处置";
@@ -162,7 +173,6 @@ class Debt
         }elseif ($Type===3){
             include template('DebtPublishDiy');
         }
-
     }
     /**
      * @desc  债权转让/股权转让暂定

@@ -852,6 +852,7 @@ class Ajax
         $Data ['Account'] = $_POST ['Account'];
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$Data ['UserID']);
         $Data ['Identity'] = $UserInfo['Identity'];
+        $Data ['IdentityState'] = $UserInfo['IdentityState'];
         $Data ['NickName'] = $UserInfo ['NickName'];
         $Data ['Level'] = $UserInfo ['Level'];
         $Data ['Avatar'] = $UserInfo ['Avatar'];
