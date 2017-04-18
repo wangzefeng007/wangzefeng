@@ -435,6 +435,7 @@ class MemberPerson
                 $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
                 $Data['Data'][$key]['DebtNum'] = $DebtInfo['DebtNum'];
                 $Data['Data'][$key]['DebtAmount'] = $DebtInfo['DebtAmount'];
+                $Data['Data'][$key]['Overduetime'] = $DebtInfo['Overduetime'];
                 $Data['Data'][$key]['Status'] = $DebtInfo['Status'];
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
