@@ -50,6 +50,7 @@ class Find
         $MemberFindDebtorsModule = new MemberFindDebtorsModule();
         $MemberFindCreditorsModule = new MemberFindCreditorsModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
         $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($ID);
         if (!$FindDebt){
@@ -81,6 +82,11 @@ class Find
         }
         //发布人信息
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID=' . $FindDebt['UserID']);
+        //处置方信息
+        $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$ID);
+        $FindUserInfo = $MemberUserInfoModule->GetInfoByUserID($FindDebtOrder['UserID']);
+        $FindUser = $MemberUserModule->GetInfoByKeyID($FindDebtOrder['UserID']);
+        $Data['Data'][$key]['AddTime']= $FindDebt['AddTime'];
         include template('FindDebtDetails');
     }
 
