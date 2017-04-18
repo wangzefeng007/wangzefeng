@@ -15,101 +15,105 @@
                 发布时间:&nbsp;&nbsp;{echo date("Y-m-d",$FindDebt[AddTime])}
             </div>
             <div class="debt-det">
-                {loop $DebtorsInfo $lists}
-                <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            债务人姓名:&nbsp;&nbsp;{$lists[Name]}
-                        </div>
-                        债务人身份证:&nbsp;&nbsp;{$lists[Card]}
+              <div class="bx">
+                <h3>债务基本信息</h3>
+                <div class="line">
+                    <div class="l">
+                    债务总额(元):&nbsp;&nbsp;￥1000
                     </div>
-                    <div class="line">
-                        <div class="l">
-                            电话:&nbsp;&nbsp;{$lists[Phone]}
-                        </div>
-                        债务金额(元):&nbsp;&nbsp;￥{$lists[Money]}
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            债务人地区:&nbsp;&nbsp;{$lists[Province]}-{$lists[City]}-{$lists[Area]}
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            详细地址:&nbsp;&nbsp;{$lists[Address]}
-                        </div>
-                    </div>
+                    是否有前期费用:&nbsp;&nbsp;{if $FindDebt[EarlyCost]==1}有{else}无{/if}
                 </div>
-                {/loop}
-                <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            债务人是否随时能寻找到:&nbsp;&nbsp;{if $FindDebt[FindDebtor]==1}是{else}否{/if}
-                        </div>
-                        债务人是否有还款能力:&nbsp;&nbsp;{if $FindDebt[RepaymentDebtor]==1}是{else}否{/if}
+                <div class="line">
+                    <div class="l">
+                        债务人是否随时能寻找到:&nbsp;&nbsp;{if $FindDebt[FindDebtor]==1}是{else}否{/if}
                     </div>
-                    <div class="line">
-                        <div class="l">
-                            是否有前期费用:&nbsp;&nbsp;{if $FindDebt[EarlyCost]==1}有{else}无{/if}
-                        </div>
-                    </div>
-
-                    <div class="line">
-                        <div class="l">
-                            是否有保证人:&nbsp;&nbsp;{if $FindDebt[Warrantor]==1}有{else}无{/if}
-                            {if $FindDebt[Warrantor]==1}
-                            {loop $FindDebt['WarrantorInfo'] $lists}
-                            <span> 类型:{$lists[type]} 姓名:{$lists[name]} 身份证:{$lists[card]} 联系电话：{$lists[phone]} </span>
-                            {/loop}
-                            {/if}
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            是否有抵押物:&nbsp;&nbsp;{if $FindDebt[Guarantee]==1}有{else}无{/if}
-                            {if $FindDebt[Guarantee]==1}
-                            {loop $FindDebt['GuaranteeInfo'] $lists}
-                            <span>抵押物名称{$lists[name]} 抵押物内容：{$lists[content]}</span>
-                            {/loop}
-                            {/if}
-                        </div>
-                    </div>
-                </div>
-                {loop $CreditorsInfo $lists}
-                <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            债权人姓名:&nbsp;&nbsp;{$lists[Name]}
-                        </div>
-                        债权人身份证:&nbsp;&nbsp;{$lists[Card]}
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            电话:&nbsp;&nbsp;{$lists[Phone]}
-                        </div>
-                        债务金额(元):&nbsp;&nbsp;￥{$lists[Money]}
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            债权人地区:&nbsp;&nbsp;{$lists[Province]}-{$lists[City]}-{$lists[Area]}
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            详细地址:&nbsp;&nbsp;{$lists[Address]}
-                        </div>
-                    </div>
-                </div>
-                {/loop}
-                <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            处置方公司名称:&nbsp;&nbsp;{$lists[CompanyName]}
-                        </div>
-                        电话:&nbsp;&nbsp;{$lists[Mobile]}
-                    </div>
+                    债务人是否有还款能力:&nbsp;&nbsp;{if $FindDebt[RepaymentDebtor]==1}是{else}否{/if}
                 </div>
 
+                <div class="line">
+                    <div class="l">
+                        是否有保证人:&nbsp;&nbsp;{if $FindDebt[Warrantor]==1}有{else}无{/if}
+                        {if $FindDebt[Warrantor]==1}
+                        {loop $FindDebt['WarrantorInfo'] $lists}
+                        <span> 类型:{$lists[type]} 姓名:{$lists[name]} 身份证:{$lists[card]} 联系电话：{$lists[phone]} </span>
+                        {/loop}
+                        {/if}
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="l">
+                        是否有抵押物:&nbsp;&nbsp;{if $FindDebt[Guarantee]==1}有{else}无{/if}
+                        {if $FindDebt[Guarantee]==1}
+                        {loop $FindDebt['GuaranteeInfo'] $lists}
+                        <span>抵押物名称{$lists[name]} 抵押物内容：{$lists[content]}</span>
+                        {/loop}
+                        {/if}
+                    </div>
+                </div>
+              </div>
+              <h3>债务人信息</h3>
+              {loop $DebtorsInfo $lists}
+              <div class="bx">
+                  <div class="line">
+                      <div class="l">
+                          债务人姓名:&nbsp;&nbsp;{$lists[Name]}
+                      </div>
+                      债务人身份证:&nbsp;&nbsp;{$lists[Card]}
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          电话:&nbsp;&nbsp;{$lists[Phone]}
+                      </div>
+                      债务金额(元):&nbsp;&nbsp;￥{$lists[Money]}
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          债务人地区:&nbsp;&nbsp;{$lists[Province]}-{$lists[City]}-{$lists[Area]}
+                      </div>
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          详细地址:&nbsp;&nbsp;{$lists[Address]}
+                      </div>
+                  </div>
+              </div>
+              {/loop}
+              <h3>债权人信息</h3>
+              {loop $CreditorsInfo $lists}
+              <div class="bx">
+                  <div class="line">
+                      <div class="l">
+                          债权人姓名:&nbsp;&nbsp;{$lists[Name]}
+                      </div>
+                      债权人身份证:&nbsp;&nbsp;{$lists[Card]}
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          电话:&nbsp;&nbsp;{$lists[Phone]}
+                      </div>
+                      债务金额(元):&nbsp;&nbsp;￥{$lists[Money]}
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          债权人地区:&nbsp;&nbsp;{$lists[Province]}-{$lists[City]}-{$lists[Area]}
+                      </div>
+                  </div>
+                  <div class="line">
+                      <div class="l">
+                          详细地址:&nbsp;&nbsp;{$lists[Address]}
+                      </div>
+                  </div>
+              </div>
+              {/loop}
+              <h3>处置方信息</h3>
+              <div class="bx">
+                  <div class="line">
+                      <div class="l">
+                          处置方公司名称:&nbsp;&nbsp;雄霸天下有限公司
+                      </div>
+                      电话:&nbsp;&nbsp;15763948807
+                  </div>
+              </div>
             </div>
         </div>
     </div>
