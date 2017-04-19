@@ -25,7 +25,9 @@ class Find
     }
     public function Team(){
         $this->IsLogin();
-        if ($_SESSION['IdentityState']!=3 )
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
+        if ($UserInfo['IdentityState']!=3 )
             alertandgotopage("请等待审核通过方可寻找处置方！", WEB_MAIN_URL.'/choicefind/');
         $Nav ='find';
         $Type = intval($_GET['T']);

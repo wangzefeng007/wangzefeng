@@ -23,7 +23,6 @@
     <div class="menu-level-2-wrap" data-for="menu_1">
       <div class="menu-level-2 {if $Nav=='bondlist' || $Nav=='rewordlist' || $Nav=='findteam'}menu-level-2-act{/if}" onclick="go('/memberperson/bondlist/')">我的债权</div>
       <div class="menu-level-2 {if $Nav=='debtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/debtlist/')">我的负债</div>
-      <!--<div class="menu-level-2">订单管理</div>-->
       <div class="menu-level-2">浏览过的债务</div>
       <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
     </div>
@@ -34,7 +33,7 @@
     </div>
     <div class="menu-level-2-wrap" data-for="menu_2">
       <div class="menu-level-2 {if $Nav=='focusdebtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/focusdebtlist/')" >我关注的债务</div>
-      <div class="menu-level-2">提前关注</div>
+      <div class="menu-level-2" hidden>提前关注</div>
     </div>
     <div class="menu-level-1">
         <img src="/Uploads/Debt/imgs/download.png" class="i-left" alt="">

@@ -161,7 +161,9 @@ class Debt
     public function DebtPublish()
     {
         $this->IsLogin();
-        if ($_SESSION['IdentityState']!=3)
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
+        if ($UserInfo['IdentityState']!=3)
             alertandgotopage("请等待审核通过方可发布债务！", WEB_MAIN_URL.'/debtlists/');
         $Nav='debt';
         $Type = intval($_GET['T']);
