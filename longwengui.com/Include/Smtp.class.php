@@ -47,7 +47,7 @@ $header .= "To: ".$to."\r\n";
 if ($cc != "") {
 $header .= "Cc: ".$cc."\r\n";
 }
-$header .= "From: 57美国网<".'admin@57us.com'.">\r\n";
+$header .= "From: 隆文贵网<".'admin@longwengui.com'.">\r\n";
 $header .= "Subject: ".$subject."\r\n";
 $header .= $additional_headers;
 $header .= "Date: ".date("r")."\r\n";
