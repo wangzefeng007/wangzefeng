@@ -311,10 +311,10 @@ class MemberPerson
                 $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
                 $Data['Data'][$key]['OrderID']= $FindDebtOrder['OrderID'];
                 $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
+                $Data['Data'][$key]['DelegateTime']= $FindDebtOrder['DelegateTime'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
                 $Data['Data'][$key]['DebtNum']= $FindDebt['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $FindDebt['DebtAmount'];
-                $Data['Data'][$key]['AddTime']= $FindDebt['AddTime'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
                 if ($DebtorsInfo['City'])

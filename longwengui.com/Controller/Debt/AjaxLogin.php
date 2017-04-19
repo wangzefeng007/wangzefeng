@@ -308,6 +308,7 @@ class AjaxLogin
                         $_SESSION['Identity'] = $InfoData['Identity'];
                         setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
                         $DB->query("COMMIT");//执行事务
+                        ToolService::SendSMSNotice(18039847468, '站内客服，有用户注册，请及时审核');//发送短信给内部客服人员
                         $json_result = array('ResultCode' => 200, 'Message' => '注册成功',);
                     }else{
                         $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -444,6 +445,7 @@ class AjaxLogin
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UpdateInfo = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID='.$_SESSION['UserID']);
         if ($UpdateInfo){
+            ToolService::SendSMSNotice(18039847468, '站内客服，有用户完善个人资料，请及时审核，用户ID:'.$_SESSION['UserID'].'，手机号：'. $_SESSION['Account']);//发送短信给内部客服人员
             $result_json = array('ResultCode'=>200,'Message'=>'保存成功！', 'Url' => $Url);
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');

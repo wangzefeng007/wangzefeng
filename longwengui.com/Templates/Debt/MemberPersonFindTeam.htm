@@ -43,7 +43,7 @@
                                 <td>债务人地区</td>
                                 <td>债务金额（元）</td>
                                 <td>佣金金额（元）</td>
-                                <td>发布时间</td>
+                                <td>委托时间</td>
                                 <td>当前状态</td>
                                 <td>查看</td>
                                 <td>操作</td>
@@ -57,7 +57,7 @@
                                 <td>{$lists['Province']}-{$lists['City']}-{$lists['Area']}</td>
                                 <td>￥{$lists['DebtAmount']}</td>
                                 <td>￥{$lists['Money']}</td>
-                                <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
+                                <td>{echo date("Y-m-d",$lists['DelegateTime'])}</td>
                                 <td class="color-red">{$NStatus[$lists[Status]]}</td>
                                 <td onclick="go('/find/details/?ID={$lists[DebtID]}&OrderID={$lists[OrderID]}')" class="details-enter">详情</td>
                                 {if $lists[Status]==1}
