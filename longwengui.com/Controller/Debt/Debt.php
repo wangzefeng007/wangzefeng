@@ -134,8 +134,11 @@ class Debt
                 $AssociatedDebtors[$key]['AddTime'] = $AssociatedDebtInfo['AddTime'];
                 $AssociatedDebtors[$key]['DebtAmount'] = $AssociatedDebtInfo['DebtAmount'];
                 $AssociatedDebtors[$key]['Status'] = $AssociatedDebtInfo['Status'];
+                if ($value['Province'])
                 $AssociatedDebtors[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                if ($value['City'])
                 $AssociatedDebtors[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                if ($value['Area'])
                 $AssociatedDebtors[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
             }
         }
