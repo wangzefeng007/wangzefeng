@@ -33,7 +33,7 @@
         <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
     </div>
     <div class="menu-level-2-wrap" data-for="menu_2">
-      <div class="menu-level-2">我关注的债务</div>
+      <div class="menu-level-2 {if $Nav=='focusdebtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/focusdebtlist/')" >我关注的债务</div>
       <div class="menu-level-2">提前关注</div>
     </div>
     <div class="menu-level-1">
@@ -48,7 +48,7 @@
     </div>
     {/if}
     {if $_SESSION[Identity]==2}
-    <div class="menu-level-1" id="menu_3" data-open="0" can-down='1'>
+    <div class="menu-level-1" id="menu_3" data-open="0" can-down='1' hidden>
         <img src="/Uploads/Debt/imgs/daili.png" class="i-left" alt="">
         代理
         <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
@@ -57,7 +57,7 @@
       <div class="menu-level-2">申请代理</div>
       <div class="menu-level-2">已代理区域</div>
     </div>
-    <div class="menu-level-1">
+    <div class="menu-level-1" hidden>
         <img src="/Uploads/Debt/imgs/tuijian.png" class="i-left" alt="">
         推荐人/我的推荐人
     </div>

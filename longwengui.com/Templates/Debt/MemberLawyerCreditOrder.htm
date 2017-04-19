@@ -32,7 +32,7 @@
                                 <td>债务人名称</td>
                                 <td>债务人地区</td>
                                 <td>债务金额（元）</td>
-                                <td>逾期时间</td>
+                                <td>佣金金额</td>
                                 <td>发布时间</td>
                                 <td>当前状态</td>
                                 <td>查看</td>
@@ -49,7 +49,7 @@
                                 <td>￥{$lists['Money']}</td>
                                 <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
                                 <td class="color-red">{$NStatus[$lists[Status]]}</td>
-                                <td onclick='debtMatchDetails({$lists[Json]})'>详情</td>
+                                <td onclick="go('/find/details/?ID={$lists[DebtID]}&OrderID={$lists[OrderID]}')">详情</td>
                                 {if $lists[Status]==1}
                                 <td class="oper"><span onclick="debtMatchAgree('{$lists[DebtID]}', '{$lists[DebtNum]}')">同意</span><span onclick="debtMatchReject('{$lists[DebtID]}', '{$lists[DebtNum]}')">拒绝</span></td>
                                 {elseif $lists[Status]==2}

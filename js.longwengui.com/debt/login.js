@@ -1,5 +1,5 @@
 times = getCookie('PasswordErrTimes');
-if($('#code').attr('data-show') == 0 && times == 3){
+if($('#code').attr('data-show') == 0 && times >= 3){
   $('#code').show();
   $('#code').attr('data-show', 1);
 }
@@ -49,7 +49,7 @@ function validateForm(){
   var _pass = $("#login input[name='pass']").val();
   var _code;
 
-  if($('#code').attr('data-show') == 1 && getCookie('PasswordErrTimes') == 3){
+  if($('#code').attr('data-show') == 1 && getCookie('PasswordErrTimes') >= 3){
     _code = $("input[name='code']").val();
   }
 

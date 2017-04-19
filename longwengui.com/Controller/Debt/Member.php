@@ -146,18 +146,6 @@ class Member
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        if ($_POST['advice']){
-            var_dump($_POST);exit;
-            $Data['Content'] = trim($_POST['advice']);
-            $Data['UserID'] = $_SESSION['UserID'];
-            $Data['AddTime'] = time();
-            $Insert = $MemberComplaintAdviceModule->InsertInfo($Data);
-            if ($Insert){
-                alertandback("提交成功");
-            }else{
-                alertandback("提交失败");
-            }
-        }
         include template('MemberAdvice');
     }
     /**

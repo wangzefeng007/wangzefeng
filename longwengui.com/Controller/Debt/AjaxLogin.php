@@ -25,6 +25,18 @@ class AjaxLogin
         $this->$Intention ();
     }
     /**
+     * @desc  判断是否登录
+     */
+    private function IsLogin()
+    {
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
+    }
+
+    /**
      * @desc  PC端登陆
      */
     private function Login()
@@ -48,7 +60,7 @@ class AjaxLogin
             $UserID = $User->CheckUser($Account, $PassWord);
             //发送系统消息
             if ($UserID) {
-                $XpirationDate = time() + 3600 * 24;
+                $XpirationDate = time() + 60;
                 if ($_POST['AutoLogin'] == 1) {
                     setcookie("UserID", $UserID, $XpirationDate, "/", WEB_HOST_URL);
                     setcookie("Account", $Account, $XpirationDate, "/", WEB_HOST_URL);
@@ -57,7 +69,7 @@ class AjaxLogin
                 setcookie("session_id", session_id(), $XpirationDate, "/", WEB_HOST_URL);
                 $_SESSION['UserID'] = $UserID;
                 $_SESSION['Account'] = $Account;
-                setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
+                //setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
                 $UserInfoModule = new MemberUserInfoModule();
                 $Data['LastLogin'] = time();
                 $Data['IP'] = GetIP();
@@ -157,11 +169,7 @@ class AjaxLogin
      * @desc  会员中心修改密码
      */
     private function ChangePassword(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $NewPassword = md5(trim($_POST['newPass']));
         $OldPassword = md5(trim($_POST['oldPass']));
         $MemberUserModule = new MemberUserModule();
@@ -357,11 +365,7 @@ class AjaxLogin
      * @desc 完善个人资料（个人、催客、公司、律师事务所）
      */
     public function AddInformation(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         if ($AjaxData['type']==1){
             if (count($AjaxData['images'])==3){//升级催客
@@ -451,13 +455,8 @@ class AjaxLogin
      * @desc 催收公司设置佣金方案
      */
     public function SetFirmDemand(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['CaseName']= $AjaxData['case_name'];
         $Data['FindDebtor']= $AjaxData['searchedAnytime'];
@@ -496,11 +495,7 @@ class AjaxLogin
      * @desc 律师团队设置佣金方案
      */
     public function SetLawyerDemand(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
 
         $Data['UserID'] = $_SESSION['UserID'];
@@ -538,13 +533,9 @@ class AjaxLogin
      * @desc 删除律师团队佣金方案
      */
     public function DeleteLawyerDemand(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         if ($_POST['id']){
-          $ID = intval($_POST['id']);
+            $ID = intval($_POST['id']);
             $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
             $Result = $MemberSetLawyerfeeModule->DeleteByKeyID($ID);
             if ($Result){
@@ -562,12 +553,7 @@ class AjaxLogin
      * @desc 删除催收公司佣金方案
      */
     public function DeleteFirmDemand(){
-
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         if ($_POST['id']){
             $ID = intval($_POST['id']);
             $MemberSetCompanyModule = new MemberSetCompanyModule();
@@ -587,11 +573,7 @@ class AjaxLogin
      * @desc 用户确认完成发布悬赏
      */
     public function ConfirmReword(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         if($_POST['id']){
             $ID  = intval($_POST['id']);
             $MemberRewardInfoModule = new MemberRewardInfoModule();
@@ -617,11 +599,7 @@ class AjaxLogin
      * @desc 委托方申请接单，发布者同意接单申请
      */
     public function AgreeApply(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberUserModule = new MemberUserModule();
@@ -664,11 +642,7 @@ class AjaxLogin
      * @desc 委托方申请接单，发布者拒绝接单申请
      */
     public function RejectApply(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         if ($_POST){
             $DebtID = $_POST['debtId'];
@@ -689,11 +663,7 @@ class AjaxLogin
      * @desc 待接单发布者取消发布
      */
     public function CancelDebt(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         if($_POST){
             $MemberDebtInfoModule = new MemberDebtInfoModule();
             $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
@@ -718,11 +688,7 @@ class AjaxLogin
      * @desc 委托方选择完成情况（确认完成情况）
      */
     public function ConfirmCompletion(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
         $MemberUserModule = new MemberUserModule();
@@ -753,11 +719,7 @@ class AjaxLogin
      * @desc 发布者债务未完成选择继续发布债务
      */
     public function PublishAgain(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
@@ -844,23 +806,19 @@ class AjaxLogin
     /**
      * @desc 用户寻找处置方，处置方同意申请
      */
-     public function DebtMatchAgree(){
-         if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-             $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-             EchoResult($result_json);
-             exit;
-         }
-         $MemberFindDebtModule = new MemberFindDebtModule();
-         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
-         $MemberUserModule = new MemberUserModule();
-         $MemberUserInfoModule = new MemberUserInfoModule();
-         $DebtID = intval($_POST['id']);
-         $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($DebtID);
-         if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID'])){
-             $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID']);//处置方同意之后删除其他申请
-         }
-         $UpdateFindDebt = $MemberFindDebtModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
-         $Result = $MemberFindDebtOrderModule->UpdateInfoByWhere(array('Agreed'=>1,'Status'=>2),' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
+    public function DebtMatchAgree(){
+        $this->IsLogin();
+        $MemberFindDebtModule = new MemberFindDebtModule();
+        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $DebtID = intval($_POST['id']);
+        $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($DebtID);
+        if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID'])){
+            $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID != '.$_SESSION['UserID']);//处置方同意之后删除其他申请
+        }
+        $UpdateFindDebt = $MemberFindDebtModule->UpdateInfoByKeyID(array('Status'=>2),$DebtID);
+        $Result = $MemberFindDebtOrderModule->UpdateInfoByWhere(array('Agreed'=>1,'Status'=>2),' DebtID = '.$DebtID.' and UserID= '.$_SESSION['UserID']);
         if ($UpdateFindDebt && $Result){
             $MandatorUser = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);//委托方用户信息
             $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);//委托方用户基本信息
@@ -872,18 +830,14 @@ class AjaxLogin
         }else{
             $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
         }
-         EchoResult($result_json);
-         exit;
-     }
+        EchoResult($result_json);
+        exit;
+    }
     /**
      * @desc 用户寻找处置方，处置方拒绝申请
      */
     public function DebtMatchReject(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
         $DebtID = intval($_POST['id']);
         $Result = $MemberFindDebtOrderModule->DeleteByWhere(' and DebtID = '.$DebtID.' and UserID = '.$_SESSION['UserID']);
@@ -899,11 +853,7 @@ class AjaxLogin
      * @desc 寻找处置方（委托方确认完成情况）
      */
     public function DebtMatchConfirmCompletion(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
         $MemberUserModule = new MemberUserModule();
@@ -934,11 +884,7 @@ class AjaxLogin
      * @desc 寻找处置方（发布方取消申请）
      */
     public function CancelDebtMatch(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
         $DebtID = $_POST['id'];
@@ -961,11 +907,7 @@ class AjaxLogin
      * @desc 关注债务
      */
     public function ConcernDebt(){
-        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录');
-            EchoResult($result_json);
-            exit;
-        }
+        $this->IsLogin();
         $MemberFocusDebtModule = new MemberFocusDebtModule();
         $Data['DebtID'] = $_POST['debtId'];
         $Data['UserID'] = $_SESSION['UserID'];
@@ -983,5 +925,43 @@ class AjaxLogin
         }
         EchoResult($result_json);
         exit;
+    }
+    /**
+     * @desc 取消关注债务
+     */
+    public function CancelConcern(){
+        $this->IsLogin();
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
+        $ID = $_POST['id'];
+        $Delete = $MemberFocusDebtModule->DeleteByKeyID($ID);
+        if ($Delete){
+            $result_json = array('ResultCode'=>200,'Message'=>'取消关注成功！');
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'取消关注失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 投诉建议
+     */
+    public function AddAdvice(){
+        $this->IsLogin();
+        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $Data['UserID'] = $_SESSION['UserID'];
+        $Data['AddTime'] = time();
+        $Data['Content'] = trim($_POST['advice']);
+        $Data['Status'] = 0;
+        if ($Data['Content']==''){
+            $result_json = array('ResultCode'=>102,'Message'=>'不能为空！');
+            EchoResult($result_json);
+        }
+        $InsertAdvice = $MemberComplaintAdviceModule->InsertInfo($Data);
+        if ($InsertAdvice){
+            $result_json = array('ResultCode'=>200,'Message'=>'返回成功！','Url'=>'/member/advice/');
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'返回失败！');
+        }
+        EchoResult($result_json);
     }
 }
