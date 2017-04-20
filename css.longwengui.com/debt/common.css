@@ -1563,21 +1563,49 @@ a{
   margin-top: -5px;
 }
 .service-way .way-bx{
-  background-color: #35bdfc;
-  width: 60px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
+  position: relative;
+  margin-bottom: 1px;
 }
 .service-way .way-bx .icon{
-
+  width: 50px;
+  line-height: 46px;
+  height: 46px;
+  text-align: center;
+  background-color: #35bdfc;
 }
 .service-way .way-bx .icon img{
-  
+  width: 26px;
+  vertical-align: middle;
+  margin-top: -4px;
 }
-.service-way .way-bx .icon .cont{
+.service-way .way-bx .cont{
   position: absolute;
   display: none;
+  border-radius: 5px;
+  top: 0;
+  background-color: #f9f9f9;
+  padding: 5px 12px;
+  color: #666;
+  font-size: 12px;
+  line-height: 24px;
+}
+.service-way .way-bx .cont-1{
+  left: -200px;
+  width: 150px;
+  display: block;
+}
+.service-way .way-bx .cont-2{
+  left: -220px;
+  width: 180px;
+}
+.service-way .way-bx .cont-3{
+  left: -220px;
+  width: 180px;
+}
+.service-way .way-bx .cont .qq_icon{
+  width: 18px;
+  vertical-align: middle;
+  margin-top: -2px;
 }
 .service-way .way-bx .icon:hover+.cont{
   display: block;
