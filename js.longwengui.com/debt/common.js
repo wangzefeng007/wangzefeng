@@ -682,6 +682,8 @@ function imageUpload(tar, callback){
   if(!target[0].files[0]){
     return;
   }
+
+
   //验证图片格式
   if(!target[0].files[0].type.match(/image.*/)) {
     layer.msg('图片格式不正确!');
@@ -693,10 +695,10 @@ function imageUpload(tar, callback){
   //创建图片
   var blobURL = URL.createObjectURL(target[0].files[0]);
   //验证图大小
-  if(Size > filemaxsize) {
-    layer.msg('图片大小请不要超过' + _msg + '');
-    return;
-  }
+  // if(Size > filemaxsize) {
+  //   layer.msg('图片大小请不要超过' + _msg + '');
+  //   return;
+  // }
 
   layer.open({
     type: 1,
