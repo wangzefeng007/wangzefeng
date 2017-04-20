@@ -1556,3 +1556,29 @@ a{
 .debt-match button[name="ok"]{
   width: 140px;
 }
+.service-way{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  margin-top: -5px;
+}
+.service-way .way-bx{
+  background-color: #35bdfc;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.service-way .way-bx .icon{
+
+}
+.service-way .way-bx .icon img{
+  
+}
+.service-way .way-bx .icon .cont{
+  position: absolute;
+  display: none;
+}
+.service-way .way-bx .icon:hover+.cont{
+  display: block;
+}
