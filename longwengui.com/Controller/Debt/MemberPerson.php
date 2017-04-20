@@ -311,10 +311,10 @@ class MemberPerson
                 $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
                 $Data['Data'][$key]['OrderID']= $FindDebtOrder['OrderID'];
                 $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
+                $Data['Data'][$key]['DelegateTime']= $FindDebtOrder['DelegateTime'];
                 $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
                 $Data['Data'][$key]['DebtNum']= $FindDebt['DebtNum'];
                 $Data['Data'][$key]['DebtAmount']= $FindDebt['DebtAmount'];
-                $Data['Data'][$key]['AddTime']= $FindDebt['AddTime'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
                 if ($DebtorsInfo['City'])
@@ -332,9 +332,6 @@ class MemberPerson
      */
     public function ApplyDebtOrder(){
         $this->IsLogin();
-        if ($_SESSION['Identity']!=2 && $_SESSION['IdentityState']!=3){
-            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
-        }
         $Nav='applydebtorder';
         $Title = '会员中心-申请的债权';
         $MemberUserModule = new MemberUserModule();
@@ -346,6 +343,9 @@ class MemberPerson
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        if ($UserInfo['Identity']!=2 && $UserInfo['IdentityState']!=3){
+            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
         $NStatus = $MemberClaimsDisposalModule->NStatus;
         //分页Start
         $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
