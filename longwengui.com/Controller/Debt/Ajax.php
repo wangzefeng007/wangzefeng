@@ -672,7 +672,7 @@ class Ajax
                     //债务人信息
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
-                    foreach ($debtOwnerInfos as $key => $value) {
+                    foreach ($debtorInfos as $key => $value) {
                         $Datc['Name'] = trim($value['name']);
                         $Datc['Card'] = trim($value['idNum']);
                         $Datc['Money'] = trim($value['debt_money']);
