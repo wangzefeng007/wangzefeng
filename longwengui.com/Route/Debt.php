@@ -30,6 +30,7 @@ $RouteArr=array(
     //普通会员中心
     'memberperson@index'=>'MemberPerson@Index',
     'memberperson@editinfo'=>'MemberPerson@EditInfo',
+    'memberperson@applydebtorder'=>'MemberPerson@ApplyDebtOrder',
     'memberperson@bondlist'=>'MemberPerson@BondList',
     'memberperson@debtlist'=>'MemberPerson@DebtList',
     'memberperson@rewordlist'=>'MemberPerson@RewordList',
