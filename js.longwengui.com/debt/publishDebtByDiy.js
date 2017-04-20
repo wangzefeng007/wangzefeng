@@ -359,6 +359,7 @@ $(function(){
 });
 
 //适配ie8label
+initIE8Label();
 fixIE8Label();
 
 //打开协议窗口

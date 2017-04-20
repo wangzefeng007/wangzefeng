@@ -369,6 +369,7 @@ $(function(){
 });
 
 //适配ie8label
+initIE8Label();
 fixIE8Label();
 
 //打开协议窗口
@@ -416,6 +417,7 @@ function openProtocalWindow(){
     $('#agree_protocal').click(function(){
       var _tar = $('.m-checkbox input[name="agreement"]')[0];
       _tar.checked = true;
+      $('.m-checkbox input[name="agreement"]').siblings('i').addClass('m-checked');
       layer.close(index);
     });
 }
