@@ -20,7 +20,7 @@ class Debt
         }
     }
     public function Index(){
-        $Title ='隆文贵不良资产处置';
+        $Title ='隆文贵债务处置';
         $Nav='index';
         include template('Index');
     }
@@ -74,9 +74,9 @@ class Debt
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
-        $Title="债务案源|催收系统|债务追讨-隆文贵不良资产处置";
+        $Title="债务催收|债务追讨-隆文贵债务处置";
         $Keywords="催收平台,催收系统，债务清算,债务追讨,欠款催收,债务案源";
-        $Description="债权人在隆文贵不良资产处置平台发布单笔或多笔债权信息后，债务信息展现在隆文贵不良资产处置债务催收栏目版块，执业律师或催收公司在此页面可根据地域分布和佣金比例等因素选择接单，进行催收，从而赚取佣金。";
+        $Description="债权人在隆文贵债务处置平台发布单笔或多笔债权信息后，债务信息展现在隆文贵债务处置债务催收栏目版块，执业律师或催收公司在此页面可根据地域分布和佣金比例等因素选择接单，进行催收，从而赚取佣金。";
         include template('DebtLists');
     }
     public function DebtDetails(){
@@ -95,7 +95,10 @@ class Debt
             alertandgotopage("访问被拒绝", WEB_MAIN_URL.'/debtlists/');
         }
         //债务关注
-        $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
+        if (!empty ($_SESSION ['UserID'])){
+            $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
+        }
+
         //保证人信息
         if ($DebtInfo['Warrantor']){
             $WarrantorInfo = json_decode($DebtInfo['WarrantorInfo'],true);
@@ -142,7 +145,7 @@ class Debt
                 $AssociatedDebtors[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
             }
         }
-        $Title="债务详情-隆文贵不良资产处置";
+        $Title="债务详情-隆文贵债务处置";
         //处置方接单申请
         if ($DebtInfo['UserID']==$_SESSION['UserID']){
             $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
@@ -170,7 +173,7 @@ class Debt
             alertandgotopage("请等待审核通过方可发布债务！", WEB_MAIN_URL.'/debtlists/');
         $Nav='debt';
         $Type = intval($_GET['T']);
-        $Title="发布债务-隆文贵不良资产处置";
+        $Title="发布债务-隆文贵债务处置";
         if ($Type===1){
             include template('DebtPublishLawer');
         }elseif ($Type===2){
@@ -183,6 +186,7 @@ class Debt
      * @desc  债权转让/股权转让暂定
      */
     public function Transfer(){
+        $Title="债权转让-隆文贵债务处置";
         $Nav ='transfer';
         include template('DebtTransfer');
     }
