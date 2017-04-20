@@ -714,18 +714,28 @@ a{
   margin: 0 auto;
 }
 .footer .wrap .content {
-  padding: 55px 100px 0;
-  height: 145px;
+  padding: 60px 100px 0;
+  height: 200px;
   color: #fff;
+  font-size: 14px;
+}
+.footer .wrap .content .int{
+  display: inline-block;
+  width: 70px;
+}
+.footer .wrap .content h2{
+  font-weight: 400;
 }
 .footer .wrap .content .c img {
   float: left;
 }
-.footer .wrap .content .c p {
-  margin: 0 66px 0 46px;
-  padding: 3px 0;
-  font-size: 12px;
+.footer .wrap .content .c .line-wrap{
   color: #e5e5e5;
+  margin: 10px 0;
+  padding: 3px 0;
+}
+.footer .wrap .content .c .w-t{
+  color: #b2b2b2;
 }
 .footer .wrap .content .b1 {
   float: left;
@@ -734,7 +744,7 @@ a{
 .footer .wrap .content .b2 {
   float: left;
   width: 226px;
-  padding-top: 46px;
+  margin-left: 150px;
 }
 .footer .wrap .content .coop {
   float: left;
@@ -742,8 +752,8 @@ a{
 }
 .footer .wrap .content .wetchat-img {
   float: left;
-  margin-left: 140px;
-  text-align: right;
+  margin-left: 220px;
+  text-align: center;
 }
 .copy-right {
   width: 100%;
