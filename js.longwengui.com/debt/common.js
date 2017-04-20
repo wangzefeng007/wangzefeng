@@ -683,7 +683,6 @@ function imageUpload(tar, callback){
     return;
   }
 
-
   //验证图片格式
   if(!target[0].files[0].type.match(/image.*/)) {
     layer.msg('图片格式不正确!');
