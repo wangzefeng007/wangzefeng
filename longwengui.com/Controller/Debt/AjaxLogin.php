@@ -613,6 +613,7 @@ class AjaxLogin
             $DebtID = $_POST['debtId'];
             $ID = $_POST['id'];
             $ClaimsDisposal = $MemberClaimsDisposalModule->GetInfoByKeyID($ID);
+            $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($DebtID);
             //更新债务信息表，更改状态和委托用户ID
             $UpdateDebtInfo =$MemberDebtInfoModule->UpdateInfoByKeyID(array('Status'=>2,'MandatorID'=>$ClaimsDisposal['UserID']),$DebtID);
             if ($UpdateDebtInfo){
@@ -620,9 +621,9 @@ class AjaxLogin
                 $UpdateInfo = $MemberClaimsDisposalModule->UpdateInfoByKeyID(array('Agreed'=>1,'Status'=>2),$ID);
                 if ($UpdateInfo){
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($ClaimsDisposal['UserID']);//委托方用户信息
-                    ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户');//发送短信给委托方
-                    ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户');//发送短信给发布者
-                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认，请及时跟进，债务编号：');//发送短信给内部客服人员
+                    ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户,您申请的债务编号:'.$DebtInfo['DebtNum'].'，发布方已同意申请，请继续完成后续催收工作。发布者联系电话:'.$User['Mobile']);//发送短信给委托方
+                    ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务已同意处置方处理。债务编号：'.$DebtInfo['DebtNum']);//发送短信给发布者
+                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认，请及时跟进，债务编号:'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
                     $DB->query("COMMIT");//执行事务
                     $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
                 }else{
