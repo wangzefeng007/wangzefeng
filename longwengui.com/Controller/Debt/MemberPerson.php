@@ -163,7 +163,7 @@ class MemberPerson
                     $data[]=$value['DebtID'];
                 }
                 $data=implode(',',array_unique($data));
-                $MysqlWhere = " and DebtID IN ($data)";
+                $MysqlWhere = " and Status>=1 and Status<=3 and DebtID IN ($data)";//未收回、催收中、待接单的债务为负债
                 $Data['Data'] = $MemberDebtInfoModule->GetLists($MysqlWhere, 0,30);
                 foreach ($Data['Data'] as $key =>$value){
                     $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
