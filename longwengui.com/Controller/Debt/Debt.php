@@ -1,15 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * Member: 123456
- * Date: 2017/3/8
- * Time: 18:46
+ * @desc  债务催收
  */
 class Debt
 {
     public function __construct() {
-
     }
     public function IsLogin(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {

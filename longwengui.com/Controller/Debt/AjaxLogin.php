@@ -967,4 +967,17 @@ class AjaxLogin
         }
         EchoResult($result_json);
     }
+    /**
+     * @desc 上传图片
+     */
+    public function AddImageUrl(){
+        //上传图片
+        include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
+        if ($_FILES['Image']['size'][0] > 0) {
+            $Upload = new MultiUpload('Image');
+            $Image = $Upload->upload();
+            $Picture = $Image ? $Image : '';
+            $Image['Image'] = $Picture;
+        }
+    }
 }

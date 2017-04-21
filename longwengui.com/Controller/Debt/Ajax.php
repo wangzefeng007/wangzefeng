@@ -1,10 +1,7 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * Member: 123456
- * Date: 2017/3/9
- * Time: 16:42
+ * @desc
+ * Class Ajax
  */
 class Ajax
 {

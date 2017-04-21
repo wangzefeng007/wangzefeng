@@ -4,6 +4,7 @@
  */
 class DeadBeat
 {
+
     public function index(){
         $Nav='deadbeat';
         $Title="债务案源|催收系统|债务追讨-隆文贵债务处置";
