@@ -712,6 +712,7 @@ a{
 .footer .wrap {
   width: 1180px;
   margin: 0 auto;
+  background-color: #30383d;
 }
 .footer .wrap .content {
   padding: 60px 100px 0;
@@ -758,14 +759,16 @@ a{
 .copy-right {
   width: 100%;
   height: 56px;
-  line-height: 56px;
   background-color: #30383d;
+  line-height: 56px;
   border-top: 1px solid #666;
 }
 .copy-right .wraper {
-  width: 600px;
+  width: 1180px;
   margin: 0 auto;
   color: #999;
+  text-align: center;
+  background-color: #30383d;
   font-size: 12px;
 }
 .copy-right .wraper span:nth-child(1) {
@@ -1571,7 +1574,7 @@ a{
   position: fixed;
   right: 0;
   top: 50%;
-  margin-top: -5px;
+  margin-top: -39px;
 }
 .service-way .way-bx{
   position: relative;
@@ -1593,31 +1596,40 @@ a{
   position: absolute;
   display: none;
   border-radius: 5px;
-  top: 0;
-  background-color: #f9f9f9;
+  top: 50%;
+  background-color: #d7f2fe;
   padding: 5px 12px;
   color: #666;
   font-size: 12px;
   line-height: 24px;
 }
+.service-way .way-bx .cont .tri{
+  border-left: 10px solid #d7f2fe;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  margin-top: -10px;
+}
 .service-way .way-bx .cont-1{
-  left: -200px;
+  left: -190px;
   width: 150px;
-  display: block;
+  margin-top: -16px;
 }
 .service-way .way-bx .cont-2{
-  left: -220px;
-  width: 180px;
-}
-.service-way .way-bx .cont-3{
-  left: -220px;
-  width: 180px;
+  left: -180px;
+  width: 140px;
+  margin-top: -80px;
+  text-align: center;
+  padding-top: 13px;
 }
 .service-way .way-bx .cont .qq_icon{
   width: 18px;
   vertical-align: middle;
   margin-top: -2px;
 }
-.service-way .way-bx .icon:hover+.cont{
+.service-way .way-bx:hover .cont{
   display: block;
 }
