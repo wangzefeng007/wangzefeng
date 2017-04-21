@@ -1627,6 +1627,6 @@ a{
   vertical-align: middle;
   margin-top: -2px;
 }
-.service-way .way-bx .icon:hover+.cont{
+.service-way .way-bx:hover .cont{
   display: block;
 }
