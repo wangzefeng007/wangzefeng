@@ -71,7 +71,11 @@ class User
             $Data['IdentityState'] = intval($_POST['Status']);
             $UserID = intval($_POST['UserID']);
             $result = $MemberUserInfoModule->UpdateInfoByWhere($Data, ' UserID= ' . $UserID);
+            $User = $MemberUserModule->GetInfoByKeyID($UserID);
             if ($result) {
+                if ($Data['IdentityState']==3){
+                    ToolService::SendSMSNotice($User['Mobile'], '尊敬的用户，您的账户已审核通过，感谢您的使用，详情请登录http://www.longwengui.com/');//发送短信给内部客服人员
+                }
                 alertandgotopage('操作成功!', '/index.php?Module=User&Action=UserDetail&UserID=' . $UserID);
             } elseif ($result === 0) {
                 alertandback('状态未发生改变!');
