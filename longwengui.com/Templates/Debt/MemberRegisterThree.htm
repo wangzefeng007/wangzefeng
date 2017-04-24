@@ -4,10 +4,15 @@
 <div class="person-role-auth">
     <div class="wrap">
         <div class="bx-wraper">
-            <div class="tl">
-                个人用户
-            </div>
-            <div class="cont">
+          <div class="tl">
+              <div class="tb act" data-tab="person">
+                  个人用户
+              </div>
+              <div class="tb" data-tab="company">
+                  企业用户
+              </div>
+          </div>
+            <div class="cont tab-person" data-tab="person">
                 <div class="role-img">
                     <img src="/Uploads/Debt/imgs/user_for_auth.png" alt="">
                     <br><br>个人用户
@@ -135,6 +140,169 @@
                         </div>
                         <div class="cont-in">
                             <button type="button" id="person_role_auth_save" name="button">保 存</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="cont tab-company" data-tab="company">
+                <div class="role-img">
+                    <img src="/Uploads/Debt/imgs/company_i.png" alt="">
+                    <br><br>企业用户
+                </div>
+                <div class="info-form">
+                    <div class="line">
+                        <div class="if">
+                            机构名称<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" name="companyName" onblur="validateChinese(this)"  value="">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            法定代表人<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" maxlength="12" name="lawPerson" onblur="validateChinese(this)"  value="">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            固定电话<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" name="fixedPhone" onblur="validateFixedPhone(this)" placeholder="如：0592-5252323" value="">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            信用代码<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" name="creditNum" onblur="validateCreditNum(this)" value="" placeholder="统一社会信用代码">
+                        </div>
+                    </div>
+                    <div class="line-1">
+                        <div class="if">
+                            营业执照<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in" id="i_license">
+                            <div class="bx-1-1">
+                                <div class="i-wrap"></div>
+                                <label>
+                                    <span>+ 营业执照副本</span>
+                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            省份<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <div class="p-dropdown">
+                                <label type="checkbox">
+                                    <span>请选择</span>
+                                    <i></i>
+                                    <input type="checkbox" name="dd_province" value="">
+                                    <ul></ul>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            城市<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <div class="c-dropdown">
+                                <label type="checkbox">
+                                    <span>请选择</span>
+                                    <i></i>
+                                    <input type="checkbox" name="dd_city" value="">
+                                    <ul></ul>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            区县<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <div class="a-dropdown">
+                                <label type="checkbox">
+                                    <span>请选择</span>
+                                    <i></i>
+                                    <input type="checkbox" name="dd_area" value="">
+                                    <ul></ul>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line">
+                        <div class="if">
+                            详细地址
+                        </div>
+                        <div class="cont-in">
+                            <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            代理人姓名<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" name="agentName" maxlength="12" onblur="validateChinese(this)" value="">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            身份证号<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" name="agentIdNum" onblur="validateIDNumber(this, true)" value="">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="if">
+                            手机号
+                        </div>
+                        <div class="cont-in">
+                            <input type="text" disabled value="15763948807">
+                        </div>
+                    </div>
+                    <div class="line-1">
+                        <div class="if">
+                            证件照片<span class="form-need">*</span>
+                        </div>
+                        <div class="cont-in" id="agent_pic">
+                            <div class="bx-1">
+                                <div class="i-wrap"></div>
+                                <label>
+                                    <span>+ 身份证正面</span>
+                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                </label>
+                            </div>
+                            <div class="bx-1">
+                                <div class="i-wrap"></div>
+                                <label>
+                                    <span>+ 身份证反面</span>
+                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line">
+                        <div class="if">
+                        </div>
+                        <div class="cont-in">
+                            <button type="button" id="company_role_auth_save" name="button">保 存</button>
                         </div>
                     </div>
 

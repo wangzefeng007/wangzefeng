@@ -106,12 +106,29 @@
           </div>
         </div>
       </div>
-      <section id="editor" class="editor">
-        <div id='edit'></div>
-      </section>
+
+      <textarea id="contentqq" name="content"></textarea>
+
+      <div class="img-upload-wrap">
+        <div class="img-preview">
+          <img src="/Uploads/Debt/imgs/banner02.jpg" alt="">
+        </div>
+        <div class="add-img">
+          <img src="/Uploads/Debt/imgs/add_file.png" alt="">
+          <br>
+          <span>上传图片</span>
+          <br>
+          <span>(最多8张)</span>
+        </div>
+      </div>
     </div>
+
+
   </div>
 </div>
+
 {template Footer}
 <script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='/Js/kindeditor/kindeditor-min.js'></script>
+<script src='/Js/kindeditor/lang/zh_CN.js'></script>
 <script src='{echo JsURL}/debt/debtTranPublish.js'></script>

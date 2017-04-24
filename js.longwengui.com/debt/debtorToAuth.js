@@ -174,19 +174,23 @@ $(function(){
 
         if(name == ''){
             showMsg('请输入您的姓名');
+            $('.tab-person input[name="name"]').focus();
             return;
         }
         if(!validate('chinese', name)){
             showMsg('姓名只能为中文');
+            $('.tab-person input[name="name"]').focus();
             return;
         }
 
         if(idNum == ''){
             showMsg('请输入身份证号');
+            $('.tab-person input[name="idNum"]').focus();
             return;
         }
         if(!validate('idNum', idNum)){
             showMsg('请输入正确的身份证号');
+            $('.tab-person input[name="idNum"]').focus();
             return;
         }
 
@@ -213,11 +217,13 @@ $(function(){
 
         if(qq != '' && !validate('qq', qq)){
             showMsg('请输入正确的qq号');
+            $('.tab-person input[name="qq"]').focus();
             return;
         }
 
         if(email != '' && !validate('email', email)){
             showMsg('请输入正确的邮箱');
+            $('.tab-person input[name="email"]').focus();
             return;
         }
 
@@ -250,28 +256,34 @@ $(function(){
 
         if(company_name == ''){
             showMsg('请输入您的公司名称');
+            $('.tab-company input[name="companyName"]').focus();
             return;
         }
         if(!validate('chinese', company_name)){
             showMsg('公司名称只能为中文');
+            $('.tab-company input[name="companyName"]').focus();
             return;
         }
 
         if(registrant_name == ''){
             showMsg('请输入公司注册人姓名');
+            $('.tab-company input[name="registrantName"]').focus();
             return;
         }
         if(!validate('chinese', registrant_name)){
             showMsg('姓名只能为中文');
+            $('.tab-company input[name="registrantName"]').focus();
             return;
         }
 
         if(idNum == ''){
             showMsg('请输入公司注册人身份证号');
+            $('.tab-company input[name="idNum"]').focus();
             return;
         }
         if(!validate('idNum', idNum)){
             showMsg('请输入正确的身份证号');
+            $('.tab-company input[name="idNum"]').focus();
             return;
         }
 
@@ -288,10 +300,12 @@ $(function(){
 
         if(credit_num == ''){
             showMsg('请输入信用代码');
+            $('.tab-company input[name="creditNum"]').focus();
             return;
         }
         if(!validate('creditNum', credit_num)){
             showMsg('请输入正确的信用代码');
+            $('.tab-company input[name="creditNum"]').focus();
             return;
         }
 
@@ -313,11 +327,13 @@ $(function(){
 
         if(qq != '' && !validate('qq', qq)){
             showMsg('请输入正确的qq号');
+            $('.tab-company input[name="qq"]').focus();
             return;
         }
 
         if(email != '' && !validate('email', email)){
             showMsg('请输入正确的邮箱');
+            $('.tab-company input[name="qq"]').focus();
             return;
         }
 
@@ -352,37 +368,45 @@ $(function(){
 
         if(name == ''){
             showMsg('请输入您的姓名');
+            $('.tab-lawer input[name="name"]').focus();
             return;
         }
         if(!validate('chinese', name)){
             showMsg('姓名只能为中文');
+            $('.tab-lawer input[name="name"]').focus();
             return;
         }
 
         if(idNum == ''){
             showMsg('请输入身份证号');
+            $('.tab-lawer input[name="idNum"]').focus();
             return;
         }
         if(!validate('idNum', idNum)){
             showMsg('请输入正确的身份证号');
+            $('.tab-lawer input[name="idNum"]').focus();
             return;
         }
 
         if(jobNo == ''){
             showMsg('请输入执业证号');
+            $('.tab-lawer input[name="jobNo"]').focus();
             return;
         }
         if(!validate('lawJobNo', jobNo)){
             showMsg('请输入正确的执业证号');
+            $('.tab-lawer input[name="jobNo"]').focus();
             return;
         }
 
         if(office == ''){
             showMsg('请输入您的所属律师事务所');
+            $('.tab-lawer input[name="office"]').focus();
             return;
         }
         if(!validate('chinese', office)){
             showMsg('律师事务所名称为中文');
+            $('.tab-lawer input[name="office"]').focus();
             return;
         }
 
@@ -414,11 +438,13 @@ $(function(){
 
         if(qq != '' && !validate('qq', qq)){
             showMsg('请输入正确的qq号');
+            $('.tab-lawer input[name="qq"]').focus();
             return;
         }
 
         if(email != '' && !validate('email', email)){
             showMsg('请输入正确的邮箱');
+            $('.tab-lawer input[name="email"]').focus();
             return;
         }
 

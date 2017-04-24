@@ -1,0 +1,166 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>企业用户信息</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberPersonLeft}
+            <div class="show-info">
+                <div class="info-cont">
+                    <div class="info-m">
+                        <div class="head-portrait">
+                            <img src="{$UserInfo['Avatar']}" alt="">
+                        </div>
+                        <div class="info-blk">
+                            <div class="line">
+                                会员ID:&nbsp;&nbsp;LWG{$User[UserID]}
+                            </div>
+                            <div class="line">
+                                注册时间:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$User[AddTime])}
+                            </div>
+                            <div class="line">
+                                注册IP:&nbsp;&nbsp;{$User[AddIP]}
+                            </div>
+                        </div>
+                        <div class="info-blk">
+                            <div class="line">
+                                账号等级:&nbsp;&nbsp;{$Identity[$UserInfo[Identity]]}({$IdentityStatus[$UserInfo[IdentityState]]})
+                            </div>
+                            <div class="line">
+                                最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
+                            </div>
+                            <div class="line">
+                                上次登陆IP:&nbsp;&nbsp;{$UserInfo[IP]}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-o">
+                        <div class="line">
+                            <div class="if">
+                                机构名称:
+                            </div>
+                            <div class="cont">
+                                啊士大夫似的
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                法定代表人:
+                            </div>
+                            <div class="cont">
+                                阿斯蒂芬
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                固定电话:
+                            </div>
+                            <div class="cont">
+                                0592-5253666
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                信用代码:
+                            </div>
+                            <div class="cont">
+                                66666666666666666
+                            </div>
+                        </div>
+                        <div class="line-img">
+                            <div class="if">
+                                营业执照:
+                            </div>
+                            <div class="cont">
+                                <div class="bx">
+                                    <div class="img-wrap">
+                                      <img src="{$UserInfo[CardNegative]}" height="100" width="150" alt="">
+                                    </div>
+                                    营业执照副本
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                所在地区:
+                            </div>
+                            <div class="cont">
+                                福建省-厦门市-思明区
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                详细地址:
+                            </div>
+                            <div class="cont">
+                                啊士大夫似的
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                代理人姓名:
+                            </div>
+                            <div class="cont">
+                                阿斯蒂芬
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                身份证号:
+                            </div>
+                            <div class="cont">
+                                333333333333333333
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="if">
+                                手机号:
+                            </div>
+                            <div class="cont">
+                                15763948807
+                            </div>
+                        </div>
+                        <div class="line-img">
+                            <div class="if">
+                                证件照:
+                            </div>
+                            <div class="cont">
+                                <div class="bx">
+                                    <div class="img-wrap">
+
+                                    </div>
+                                    身份证正面照
+                                </div>
+                                <div class="bx">
+                                    <div class="img-wrap">
+
+                                    </div>
+                                    身份证反面照
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="to-opt">
+                {if $UserInfo[Identity]==1 || $UserInfo[Identity]==2}
+                <div class="cont">
+                    <button type="button" name="edit" onclick="javascript:window.location.href='/memberperson/editinfo/'">修改信息</button>
+                </div>
+                {elseif $UserInfo[Identity]==0}
+                <div class="for-auth">
+                    未认证，前往<button type="button" onclick="javascript:window.location.href='/member/registerthree/'">完善认证信息</button>
+                </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/personalCenterInfo.js'></script>
