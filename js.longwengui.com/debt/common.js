@@ -420,6 +420,9 @@ function validate(type, text){
     case 'phone':
       return /^1[3|4|5|8][0-9]\d{8}$/.test(text) || /^0[\d]{2,3}-[\d]{7,8}$/.test(text);
       break;
+    case 'fixedPhone':
+      return /^0[\d]{2,3}-[\d]{7,8}$/.test(text);
+      break;
     case 'chinese':
       for(var i=0; i<text.length; i++){
         if(!(/^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text[i]))){
@@ -462,6 +465,19 @@ function validateDay(tar, isNeed){
   }
   if(!validate('day', _text)){
     showTip(tar, '请输入正确的天数');
+    return;
+  }
+}
+
+//验证固定电话
+function validateFixedPhone(tar){
+  var _text = $(tar).val();
+  if(_text == ''){
+    showTip(tar, '请输入');
+    return;
+  }
+  if(!validate('fixedPhone', _text)){
+    showTip(tar, '请输入正确的固定电话号码');
     return;
   }
 }

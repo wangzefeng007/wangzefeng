@@ -1,0 +1,198 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>企业用户信息</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberPersonLeft}
+                <div class="show-info">
+                    <div class="info-cont">
+                        <div class="info-m">
+                            <div class="head-portrait">
+                                <label>
+                                  <img src="{$UserInfo[Avatar]}" alt="">
+                                  <br>
+                                  <span>更改头像</span>
+                                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                </label>
+                            </div>
+                            <div class="info-blk">
+                                <div class="line">
+                                    会员ID:&nbsp;&nbsp;LWG{$User[UserID]}
+                                </div>
+                                <div class="line">
+                                    注册时间:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$User[AddTime])}
+                                </div>
+                                <div class="line">
+                                    注册IP:&nbsp;&nbsp;{$User[AddIP]}
+                                </div>
+                            </div>
+                            <div class="info-blk">
+                                <div class="line">
+                                    账号等级:&nbsp;&nbsp;{$Identity[$UserInfo[Identity]]}({$IdentityStatus[$UserInfo[IdentityState]]})
+                                </div>
+                                <div class="line">
+                                    最后登录:&nbsp;&nbsp;{echo date("Y-m-d H:i:s",$UserInfo[LastLogin])}
+                                </div>
+                                <div class="line">
+                                    上次登陆IP:&nbsp;&nbsp;{$UserInfo[IP]}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-o">
+                          <div class="line">
+                              <div class="if">
+                                  机构名称<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <input type="text" name="companyName" onblur="validateChinese(this)"  value="">
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  法定代表人<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <input type="text" maxlength="12" name="lawPerson" onblur="validateChinese(this)"  value="">
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  固定电话<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <input type="text" name="fixedPhone" onblur="validateFixedPhone(this)" placeholder="如：0592-5252323" value="">
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  信用代码<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <input type="text" name="creditNum" onblur="validateCreditNum(this)" value="" placeholder="统一社会信用代码">
+                              </div>
+                          </div>
+                          <div class="line-img">
+                              <div class="if">
+                                  营业执照<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <div class="bx" id="i_license">
+                                    <div class="img-wrap">
+                                        <img src="{$UserInfo[CardPositive]}" alt="">
+                                    </div>
+                                    <label>
+                                        <span>+ 营业执照副本</span>
+                                        <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  所在地区<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <div class="p-dropdown">
+                                      <label type="checkbox">
+                                          <span data-id="{$UserInfo[Province]}">{$UserInfo[province]}</span>
+                                          <i></i>
+                                          <input type="checkbox" name="dd_province" value="">
+                                          <ul></ul>
+                                      </label>
+                                  </div>
+                                  <div class="c-dropdown">
+                                      <label type="checkbox">
+                                          <span data-id="{$UserInfo[City]}">{$UserInfo[city]}</span>
+                                          <i></i>
+                                          <input type="checkbox" name="dd_city" value="">
+                                          <ul></ul>
+                                      </label>
+                                  </div>
+                                  <div class="a-dropdown">
+                                      <label type="checkbox">
+                                          <span data-id="{$UserInfo[Area]}">{$UserInfo[area]}</span>
+                                          <i></i>
+                                          <input type="checkbox" name="dd_area" value="">
+                                          <ul></ul>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  详细地址
+                              </div>
+                              <div class="cont">
+                                  <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80">{$UserInfo[Address]}</textarea>
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  代理人姓名<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <input type="text" name="agentName" maxlength="12" onblur="validateChinese(this)" value="">
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  身份证号<span class="form-need">*</span>
+                              </div>
+                              <div class="cont">
+                                  <input type="text" name="agentIdNum" onblur="validateIDNumber(this, true)" value="">
+                              </div>
+                          </div>
+                          <div class="line">
+                              <div class="if">
+                                  手机号
+                              </div>
+                              <div class="cont">
+                                  <input type="text" disabled value="15763948807">
+                              </div>
+                          </div>
+                          <div class="line-img">
+                              <div class="if">
+                                  证件照<span class="form-need">*</span>
+                              </div>
+                              <div class="cont" id="agent_pic">
+                                  <div class="bx">
+                                    <div class="img-wrap">
+                                        <img src="{$UserInfo[CardPositive]}" alt="">
+                                    </div>
+                                    <label>
+                                        <span>+ 身份证正面照</span>
+                                        <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                    </label>
+                                  </div>
+                                  <div class="bx">
+                                    <div class="img-wrap">
+                                        <img src="{$UserInfo[CardPositive]}" alt="">
+                                    </div>
+                                    <label>
+                                        <span>+ 身份证反面照</span>
+                                        <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="to-opt">
+                    <div class="cont">
+                        <button type="button" id="save" name="save" data-type="{$UserInfo[Identity]}">保存</button>
+                        <button type="button" name="cancel" onclick="window.history.go(-1);">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/companyMember.js'></script>
