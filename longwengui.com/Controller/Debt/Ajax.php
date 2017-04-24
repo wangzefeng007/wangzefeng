@@ -536,7 +536,7 @@ class Ajax
                     $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
                 }else{
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($Data['UserID']);//处置方用户信息
-                    ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，有债务申请委托您处理，请及时处理，登录http://www.longwengui.net/，及时查看您的受理债务信息。感谢您的配合！');//发送短信给委托方
+                    ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，有债务申请委托您处理，请及时处理，登录http://www.longwengui.com/，及时查看您的受理债务信息。感谢您的配合！');//发送短信给委托方
                     ToolService::SendSMSNotice(18205092757, '站内客服，有债务申请处置方受理，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
                     $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
                 }
