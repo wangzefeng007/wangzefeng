@@ -30,6 +30,7 @@ Class MemberUserInfoModule extends CommonModule  {
         '2' => '催客会员',
         '3' => '催收公司会员',
         '4' => '律师企业会员',
+        '5' => '企业会员',
     );
    /**
 	 * @desc  根据keyID查询单条数据详情
