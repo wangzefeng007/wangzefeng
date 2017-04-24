@@ -34,4 +34,7 @@ RewriteRule ^([a-z]+)(|\/)$ /index.php?Module=$1 [QSA]
 RewriteRule ^([a-z]+)/([a-z]+)(|\/)$ /index.php?Module=$1&Action=$2 [QSA]
 RewriteRule ^([a-z]+)_([a-z]+)(|\/)$ /index.php?Module=$1&Action=$2 [QSA]
 
+#301重定向START
+RewriteCond %{http_host} ^longwengui.com [NC]
+RewriteRule ^(.*)$ http://www.longwengui.com/$1 [L,R=301]
 </IfModule>

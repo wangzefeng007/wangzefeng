@@ -308,7 +308,7 @@ class AjaxLogin
                         $_SESSION['Identity'] = $InfoData['Identity'];
                         setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
                         $DB->query("COMMIT");//执行事务
-                        ToolService::SendSMSNotice(18039847468, '站内客服，有用户注册，请及时审核');//发送短信给内部客服人员
+                        ToolService::SendSMSNotice(18205092757, '站内客服，有用户注册，请及时审核');//发送短信给内部客服人员
                         $json_result = array('ResultCode' => 200, 'Message' => '注册成功',);
                     }else{
                         $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -445,7 +445,7 @@ class AjaxLogin
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UpdateInfo = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID='.$_SESSION['UserID']);
         if ($UpdateInfo){
-            ToolService::SendSMSNotice(18039847468, '站内客服，有用户完善个人资料，请及时审核，用户ID:'.$_SESSION['UserID'].'，手机号：'. $_SESSION['Account']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18205092757, '站内客服，有用户完善个人资料，请及时审核，用户ID:'.$_SESSION['UserID'].'，手机号：'. $_SESSION['Account']);//发送短信给内部客服人员
             $result_json = array('ResultCode'=>200,'Message'=>'保存成功！', 'Url' => $Url);
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
@@ -623,7 +623,7 @@ class AjaxLogin
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($ClaimsDisposal['UserID']);//委托方用户信息
                     ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户,您申请的债务编号:'.$DebtInfo['DebtNum'].'，发布方已同意申请，请继续完成后续催收工作。发布者联系电话:'.$User['Mobile']);//发送短信给委托方
                     ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务已同意处置方处理。债务编号：'.$DebtInfo['DebtNum']);//发送短信给发布者
-                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认，请及时跟进，债务编号:'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
+                    ToolService::SendSMSNotice(18205092757, '站内客服，有债务已确认，请及时跟进，债务编号:'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
                     $DB->query("COMMIT");//执行事务
                     $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
                 }else{
@@ -708,7 +708,7 @@ class AjaxLogin
             $User = $MemberUserModule->GetInfoByKeyID($DebtInfo['UserID']);//发布方用户信息
             ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您的受理债务已确认完成情况，感谢您的配合，谢谢！');//发送短信给委托方
             ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$DebtInfo['DebtNum'].'，已确认完成情况，请及时核实相关，联系处置方。');//发送短信给发布者
-            ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18205092757, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
             $DB->query("COMMIT");//执行事务
             $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
         }else{
@@ -828,7 +828,7 @@ class AjaxLogin
             $User = $MemberUserModule->GetInfoByKeyID($FindDebt['UserID']);//发布方用户信息
             ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您已同意债务申请，债务编号：'.$FindDebt['DebtNum'].'，债权人联系电话：'.$User['Mobile'].'，如有疑问可咨询客服电话：0592-5253262，感谢您的配合，谢谢！');//发送短信给委托方
             ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$FindDebt['DebtNum'].'，处置方已同意申请，该处置方公司名称：'.$UserInfo['CompanyName'].'，联系电话：'.$MandatorUser['Mobile']);//发送短信给发布者
-            ToolService::SendSMSNotice(18039847468, '站内客服，（寻找处置方）有债务处置方同意申请，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18205092757, '站内客服，（寻找处置方）有债务处置方同意申请，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
             $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
         }else{
             $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
@@ -873,7 +873,7 @@ class AjaxLogin
             $User = $MemberUserModule->GetInfoByKeyID($FindDebt['UserID']);//发布方用户信息
             ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您的受理债务已确认完成情况，感谢您的配合，谢谢！');//发送短信给委托方
             ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$FindDebt['DebtNum'].'，已确认完成情况，请及时核实相关，联系处置方。');//发送短信给发布者
-            ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18205092757, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
             $DB->query("COMMIT");//执行事务
             $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
         }else{
@@ -966,5 +966,18 @@ class AjaxLogin
             $result_json = array('ResultCode'=>103,'Message'=>'返回失败！');
         }
         EchoResult($result_json);
+    }
+    /**
+     * @desc 上传图片
+     */
+    public function AddImageUrl(){
+        //上传图片
+        include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
+        if ($_FILES['Image']['size'][0] > 0) {
+            $Upload = new MultiUpload('Image');
+            $Image = $Upload->upload();
+            $Picture = $Image ? $Image : '';
+            $Image['Image'] = $Picture;
+        }
     }
 }

@@ -35,11 +35,15 @@ $RouteArr=array(
     'memberperson@debtlist'=>'MemberPerson@DebtList',
     'memberperson@rewordlist'=>'MemberPerson@RewordList',
     'memberperson@findteam'=>'MemberPerson@FindTeam',
+    'memberperson@focusdebtlist'=>'MemberPerson@FocusDebtList',
     //律师会员中心
     'memberlawyer@index'=>'MemberLawyer@Index',
     'memberlawyer@editinfo'=>'MemberLawyer@EditInfo',
     'memberlawyer@applydebtorder'=>'MemberLawyer@ApplyDebtOrder',
     'memberlawyer@creditorder'=>'MemberLawyer@CreditOrder',
+    'MemberLawyer@demandlist'=>'MemberLawyer@DemandList',
+    'memberlawyer@demanddetails'=>'MemberLawyer@DemandDetails',
+    'memberlawyer@setdemand'=>'MemberLawyer@SetDemand',
     //催收公司会员中心
     'memberfirm@index'=>'MemberFirm@Index',
     'memberfirm@editinfo'=>'MemberFirm@EditInfo',

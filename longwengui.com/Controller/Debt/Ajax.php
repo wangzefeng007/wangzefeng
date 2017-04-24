@@ -1,10 +1,7 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * Member: 123456
- * Date: 2017/3/9
- * Time: 16:42
+ * @desc
+ * Class Ajax
  */
 class Ajax
 {
@@ -540,7 +537,7 @@ class Ajax
                 }else{
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($Data['UserID']);//处置方用户信息
                     ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，有债务申请委托您处理，请及时处理，登录http://www.longwengui.net/，及时查看您的受理债务信息。感谢您的配合！');//发送短信给委托方
-                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务申请处置方受理，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
+                    ToolService::SendSMSNotice(18205092757, '站内客服，有债务申请处置方受理，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
                     $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
                 }
             }
@@ -706,10 +703,14 @@ class Ajax
                                 $result_json = array('ResultCode'=>102,'Message'=>'添加借款凭证失败');
                             }else{
                                 $DB->query("COMMIT");//执行事务
+                                ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在审核，请您耐心等待，如有不便请见谅');
+                                ToolService::SendSMSNotice(18205092757, '有用户上传债务请及时审核');
                                 $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
                             }
                         }else{
                             $DB->query("COMMIT");//执行事务
+                            ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在审核，请您耐心等待，如有不便请见谅');
+                            ToolService::SendSMSNotice(18205092757, '有用户上传债务请及时审核');
                             $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
                         }
                     }else{

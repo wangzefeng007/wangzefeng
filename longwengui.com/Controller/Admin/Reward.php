@@ -31,13 +31,14 @@ class Reward
             if ($_POST['CreditorsPhone'] == '' || $_POST['DebtName'] == '' || $_POST['DebtPhone'] == '' || $_POST['DebtPhone'] == '' || $_POST['Address'] == '') {
                // alertandback('信息填写不完整');
             }
+
             //上传图片
             include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
             if ($_FILES['Image']['size'][0] > 0) {
                 $Upload = new MultiUpload('Image');
                 $Image = $Upload->upload();
                 $Picture = $Image ? $Image : '';
-                $Image['Image'] = $Picture;
+                $Image['ImageUrl'] = $Picture;
             }
             $result = $MemberRewardInfoModule->InsertInfo($Data);
             $uploadImage = $MemberRewardImageModule->InsertInfo($Image);
@@ -95,8 +96,11 @@ class Reward
             }
             $Data['Data'] = $MemberRewardInfoModule->GetLists($SqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data']as $key => $value) {
+                if ($value['Province'])
                 $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                if ($value['City'])
                 $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                if ($value['Area'])
                 $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
                 $Data['Data'][$key]['AddTime'] = !empty($value['AddTime']) ? date('Y-m-d H:i:s', $value['AddTime']) : '';
             }
@@ -127,8 +131,11 @@ class Reward
         if ($_GET['ID']) {
             $ID = $_GET['ID'];
             $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID = '.$ID);
+            if ($RewardInfo['Province'])
             $RewardInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Province']);
+            if ($RewardInfo['City'])
             $RewardInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['City']);
+            if ($RewardInfo['Area'])
             $RewardInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Area']);
             $RewardImg = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID,true);
             $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';

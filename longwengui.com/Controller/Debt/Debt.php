@@ -1,15 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * Member: 123456
- * Date: 2017/3/8
- * Time: 18:46
+ * @desc  债务催收
  */
 class Debt
 {
     public function __construct() {
-
     }
     public function IsLogin(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
@@ -169,8 +165,8 @@ class Debt
         $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
-        if ($UserInfo['IdentityState']!=3)
-            alertandgotopage("请等待审核通过方可发布债务！", WEB_MAIN_URL.'/debtlists/');
+//        if ($UserInfo['IdentityState']!=3)
+//            alertandgotopage("请等待审核通过方可发布债务！", WEB_MAIN_URL.'/debtlists/');
         $Nav='debt';
         $Type = intval($_GET['T']);
         $Title="发布债务-隆文贵债务处置";

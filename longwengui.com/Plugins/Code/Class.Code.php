@@ -11,10 +11,10 @@ class ValidateCode {
 	private $fontcolor; //指定字体颜色
 	//构造方法初始化
 	public function __construct() {
-		$this->font = dirname ( __FILE__ ) . '/elephant.ttf'; //注意字体路径要写对，否则显示不了图片
+		$this->font = dirname ( __FILE__ ) . '/Elephant.ttf'; //注意字体路径要写对，否则显示不了图片
 	}
 	//生成随机码
-	private function createCode() {
+	private function createCode(){
 		$_len = strlen ( $this->charset ) - 1;
 		for($i = 0; $i < $this->codelen; $i ++) {
 			$this->code .= $this->charset [mt_rand ( 0, $_len )];
@@ -28,11 +28,13 @@ class ValidateCode {
 	}
 	//生成文字
 	private function createFont() {
+        header ( 'Content-type:image/jpg' );
 		$_x = $this->width / $this->codelen;
 		for($i = 0; $i < $this->codelen; $i ++) {
 			$this->fontcolor = imagecolorallocate ( $this->img, mt_rand ( 0, 156 ), mt_rand ( 0, 156 ), mt_rand ( 0, 156 ) );
 			imagettftext ( $this->img, $this->fontsize, mt_rand ( -1, 1 ), $_x * $i + mt_rand ( 1, 5 ), $this->height / 1.4, $this->fontcolor, $this->font, $this->code [$i] );
 		}
+
 	}
 	//生成线条、雪花
 	private function createLine() {
@@ -43,7 +45,7 @@ class ValidateCode {
 		}
 		//雪花
 		for($i = 0; $i < 100; $i ++) {
-			$color = imagecolorallocate ( $this->img, mt_rand ( 200, 255 ), mt_rand ( 200, 255 ), mt_rand ( 200, 255 ) );
+			$color = imagecolorallocate ( $this->img, mt_rand ( 100, 255 ), mt_rand ( 100, 255 ), mt_rand ( 100, 255 ) );
 			imagestring ( $this->img, mt_rand ( 1, 5 ), mt_rand ( 0, $this->width ), mt_rand ( 0, $this->height ), '*', $color );
 		}
 	}
