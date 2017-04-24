@@ -86,8 +86,11 @@ class User
         if ($_GET['UserID']) {
             $UserID = $_GET['UserID'];
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID= '.$UserID);
+            if ($UserInfo['Province'])
             $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+            if ($UserInfo['City'])
             $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+            if ($UserInfo['Area'])
             $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
             $UserInfo['LastLogin'] = !empty($UserInfo['LastLogin'])? date('Y-m-d H:i:s',$UserInfo['LastLogin']): '';
             $UserInfo['AnnualDueDate'] = !empty($UserInfo['AnnualDueDate'])? date('Y-m-d H:i:s',$UserInfo['AnnualDueDate']): '';
