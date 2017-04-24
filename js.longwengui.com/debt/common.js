@@ -727,9 +727,11 @@ function imageUpload(tar, callback){
           URL.revokeObjectURL(blobURL);
         }
       }).cropper({
-        aspectRatio: _ratio, //图裁剪比例
+        // aspectRatio: _ratio, //图裁剪比例
+        autoCropArea: 1,
         minContainerHeight: 380,
         minContainerWidth: 480,
+        zoomable: false
       }).cropper('replace', blobURL);
     },
     end:function(index, layero){
