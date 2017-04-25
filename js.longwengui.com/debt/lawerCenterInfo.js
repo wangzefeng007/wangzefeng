@@ -1,7 +1,7 @@
 $(function(){
   $('#mydatepicker').dcalendarpicker({format: 'yyyy-mm-dd', width: '340px'}); //初始化日期选择器
   initArea();
-
+  //保存提交
   $('#save').click(function(){
     var name = $('input[name="name"]').val();
     var idNum = $('input[name="idNum"]').val();

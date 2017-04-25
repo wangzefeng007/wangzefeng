@@ -150,10 +150,10 @@ function ajax(){
       data: {
           "Intention":"ReleaseReward",
           "AjaxJSON":JSON.stringify({
-              "debt_owner": debt_owner,
-              "debtor": debtor,
-              "images": img_voucher,
-              "reword_type": reword_type
+              "debt_owner": debt_owner, //债权人信息
+              "debtor": debtor, //债务人信息
+              "images": img_voucher, //债务凭证
+              "reword_type": reword_type //悬赏类型
           }),
       },
     beforeSend: function(){

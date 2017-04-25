@@ -9,7 +9,7 @@ $(function(){
     showImgs(_imgs);
   });
 
-
+  //展示图片
   function showImgs(imgs){
     layer.open({
       type: 1,

@@ -1,9 +1,10 @@
 $(function(){
-  var haveBondsMan = 0;
-  var haveBondsGood = 0;
+  var haveBondsMan = 0; //是否有保证人
+  var haveBondsGood = 0; //是否有保证物
   getProvinceData();
-  initIE8Label();
+  initIE8Label(); //ie8 label标签适配
 
+  //点击保证人打勾显示
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
@@ -21,6 +22,7 @@ $(function(){
     }
   });
 
+  //点击保证物打勾显示
   $('#bonds_good_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
@@ -37,6 +39,7 @@ $(function(){
     }
   });
 
+  //开始匹配
   $('#match').click(function(){
     ajax();
   });
@@ -62,25 +65,27 @@ $(function(){
         var _idNum = $(this).find('input[name="idNum"]').val();
         var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
 
+        //债权人姓名
         if(_name == ""){
           $(this).find('input[name="name"]').focus();
-          showMsg('请完善债权人信息');
+          showMsg('请完善债权人姓名信息');
           flag = false;
           return;
         }
-
         if(_name != '' && !validate('chinese', _name)){
           $(this).find('input[name="name"]').focus();
           showMsg('请输入正确的债权人姓名');
           flag = false;
           return;
         }
+        //债权人身份证
         if(_idNum != '' && !validate('idNum', _idNum)){
           $(this).find('input[name="idNum"]').focus();
           showMsg('请输入正确的债权人身份证');
           flag = false;
           return;
         }
+        //债权人电话
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
           $(this).find('input[name="phoneNumber"]').focus();
           showMsg('请输入正确的债权人手机号');
@@ -88,7 +93,7 @@ $(function(){
           return;
         }
 
-        //债权人地区
+        //债权人地区信息
         var _pid = $(this).find('.p-dropdown span').attr('data-id');
         var _cid = $(this).find('.c-dropdown span').attr('data-id');
         var _aid = $(this).find('.a-dropdown span').attr('data-id');
@@ -114,7 +119,7 @@ $(function(){
           flag = false;
           return;
         }
-        _debtor_owner_money += parseFloat(_debt_money);
+        _debtor_owner_money += parseFloat(_debt_money); //债权总额
         _debtOwnerInfos.push({
           "name": _name,
           "idNum": _idNum,
@@ -138,7 +143,7 @@ $(function(){
         var _name = $(this).find('input[name="name"]').val();
         var _idNum = $(this).find('input[name="idNum"]').val();
         var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
-
+        //债务人姓名
         if(_name == ""){
           $(this).find('input[name="name"]').focus();
           showMsg('请完善债务人信息');
@@ -151,19 +156,21 @@ $(function(){
           flag = false;
           return;
         }
+        //债务人身份证号
         if(_idNum != '' && !validate('idNum', _idNum)){
           $(this).find('input[name="idNum"]').focus();
           showMsg('请输入正确的债务人身份证');
           flag = false;
           return;
         }
+        //债务人电话
         if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
           $(this).find('input[name="phoneNumber"]').focus();
           showMsg('请输入正确的债务人手机号');
           flag = false;
           return;
         }
-        //债务人地区
+        //债务人地区信息
         var _pid = $(this).find('.p-dropdown span').attr('data-id');
         var _cid = $(this).find('.c-dropdown span').attr('data-id');
         var _aid = $(this).find('.a-dropdown span').attr('data-id');
@@ -175,7 +182,7 @@ $(function(){
           return;
         }
 
-        //债权金额
+        //债务金额
         var _debt_money = $(this).find('input[name="debt_money"]').val();
         if(_debt_money == ''){
           $(this).find('input[name="debt_money"]').focus();
@@ -189,7 +196,7 @@ $(function(){
           flag = false;
           return;
         }
-        _debtor_money += parseFloat(_debt_money);
+        _debtor_money += parseFloat(_debt_money); //债务总额
         _debtorInfos.push({
           "name": _name,
           "idNum": _idNum,
@@ -205,7 +212,7 @@ $(function(){
     if(!flag){
       return;
     }
-
+    //判断债权总额和债务总额是否一致
     if(_debtor_owner_money != _debtor_money){
       showMsg('债务人和债权人金额总和不一致');
       return;
@@ -225,11 +232,11 @@ $(function(){
       $('#bonds_man_info').find('.blo').each(function(){
         if(flag){
           //保证人信息
-          var _bonds_man_role = $(this).find('.m-dropdown span').text();
+          var _bonds_man_role = $(this).find('.m-dropdown span').text(); //保证人 个人或公司
           var _name = $(this).find('input[name="name"]').val();
           var _idNum = $(this).find('input[name="idNum"]').val();
           var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
-
+          //保证人姓名
           if(_name == ""){
             $(this).find('input[name="name"]').focus();
             showMsg('请完善保证人信息');
@@ -242,12 +249,14 @@ $(function(){
             flag = false;
             return;
           }
+          //保证人身份证号
           if(_idNum != '' && !validate('idNum', _idNum)){
             $(this).find('input[name="idNum"]').focus();
             showMsg('请输入正确的保证人身份证');
             flag = false;
             return;
           }
+          //保证人电话
           if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
             $(this).find('input[name="phoneNumber"]').focus();
             showMsg('请输入正确的保证人手机号');
@@ -273,8 +282,8 @@ $(function(){
         if(flag){
           //债务人信息
           var _name = $(this).find('input[name="name"]').val();
-          var _details = $(this).find('textarea[name="good_detail"]').val();
-
+          var _details = $(this).find('textarea[name="good_detail"]').val(); //债务详情
+          //债务人姓名
           if(_name == ""){
             $(this).find('input[name="name"]').focus();
             showMsg('请完善抵押物信息');
@@ -323,7 +332,7 @@ $(function(){
          $('#match').addClass('btn-disabled');
         if(data.ResultCode == 200){
           debtId = data.DebtId;
-          dataSuccess(data.Data);
+          dataSuccess(data.Data); //匹配数据注入
           //获得当前页
           cur_page = data.Page;
           //注入分页
@@ -346,7 +355,7 @@ $(function(){
 
   }
 
-  //数据注入
+  //匹配数据注入
   function dataSuccess(data){
     $('#result_data').show();
     $('#result_tbl').empty();
@@ -388,7 +397,7 @@ function addDebtDom(targetID, tempID){
   }
 }
 
-//申请处置方
+//申请处置方弹窗
 function applyToSearch(UserID, money, tar){
   var index = layer.open({
     type: 1,
@@ -411,6 +420,7 @@ function applyToSearch(UserID, money, tar){
     layer.close(index);
     toApply(UserID, money, tar);
   });
+  //申请处置方ajax提交
   function toApply(uid, money, tar){
     $.ajax(
       {

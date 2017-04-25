@@ -162,7 +162,7 @@ $(function(){
             );
         }
     }
-//个人资料保存
+    //个人资料保存
     $('#person_save').click(function(){
         var nick_name = $('.tab-person input[name="nickName"]').val();
         var name = $('.tab-person input[name="name"]').val();
@@ -242,7 +242,7 @@ $(function(){
         });
 
     });
-//催收公司个人资料保存
+    //催收公司个人资料保存
     $('#company_save').click(function(){
         var company_name = $('.tab-company input[name="companyName"]').val();
         var registrant_name = $('.tab-company input[name="registrantName"]').val();
@@ -353,7 +353,7 @@ $(function(){
             "type":3
         });
     });
-//律师资料保存
+    //律师资料保存
     $('#lawer_save').click(function(){
         var name = $('.tab-lawer input[name="name"]').val();
         var idNum = $('.tab-lawer input[name="idNum"]').val();
@@ -466,7 +466,7 @@ $(function(){
 
     });
 
-    //type: 1 保存为催客 2 保存为催收公司 3 保存为律师团队
+    //type: 2 保存为催客 3 保存为催收公司 4 保存为律师团队
     function ajax(type, formData){
         $.ajax({
             type: "post",

@@ -1,8 +1,9 @@
+//律师团队 发布债务
 $(function(){
-  var haveBondsMan = 0;
-  var haveBondsGood = 0;
+  var haveBondsMan = 0; //是否有保证人
+  var haveBondsGood = 0; //是否有保证物
   getProvinceData();
-
+  //切换是否有保证人
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
@@ -19,7 +20,7 @@ $(function(){
       addBondsManDpEvent();
     }
   });
-
+  //切换是否有保证物
   $('#bonds_good_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
       $(this).attr('data-checked', 0);
@@ -35,7 +36,7 @@ $(function(){
       haveBondsGood = 1;
     }
   });
-
+  //发布债务
   $('#publish').click(function(){
     ajax();
   });
@@ -123,10 +124,10 @@ $(function(){
         }
         _debtor_owner_money += parseFloat(_debt_money);
         _debtOwnerInfos.push({
-          "name": _name,
-          "idNum": _idNum,
-          "debt_money": _debt_money,
-          "phoneNumber": _phoneNumber,
+          "name": _name, //债权人姓名
+          "idNum": _idNum, //债权人身份证
+          "debt_money": _debt_money, //债权金额
+          "phoneNumber": _phoneNumber, //债权人电话
           "province": _pid,
           "city": _cid,
           "area": _aid,
@@ -198,10 +199,10 @@ $(function(){
         }
         _debtor_money += parseFloat(_debt_money);
         _debtorInfos.push({
-          "name": _name,
-          "idNum": _idNum,
-          "debt_money": _debt_money,
-          "phoneNumber": _phoneNumber,
+          "name": _name, //债务人姓名
+          "idNum": _idNum, //债务人身份证
+          "debt_money": _debt_money, //债务金额
+          "phoneNumber": _phoneNumber, //债务人电话
           "province": _pid,
           "city": _cid,
           "area": _aid,
@@ -271,10 +272,10 @@ $(function(){
             return;
           }
           _bondsmanInfos.push({
-            "name": _name,
-            "idNum": _idNum,
-            "phoneNumber": _phoneNumber,
-            "bonds_man_role": _bonds_man_role,
+            "name": _name, //保证人姓名
+            "idNum": _idNum, //保证人身份证号
+            "phoneNumber": _phoneNumber, //保证人电话
+            "bonds_man_role": _bonds_man_role //保证人 个人或企业
           });
         }
       });
@@ -298,8 +299,8 @@ $(function(){
             return;
           }
           _bondsgoodInfos.push({
-            "name": _name,
-            "details": _details
+            "name": _name, //保证物名称
+            "details": _details //保证物详情
           });
         }
       });
