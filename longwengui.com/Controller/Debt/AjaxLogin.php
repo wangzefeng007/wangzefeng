@@ -84,6 +84,8 @@ class AjaxLogin
                         $Url=WEB_MAIN_URL.'/memberfirm/';
                     }elseif($UserInfo['Identity']==4){
                         $Url=WEB_MAIN_URL.'/memberlawyer/';
+                    }elseif($UserInfo['Identity']==5){
+                        $Url=WEB_MAIN_URL.'/membercompany/';
                     }
                 }else{
                     $Url = WEB_MAIN_URL.'/memberperson/';
@@ -187,6 +189,8 @@ class AjaxLogin
                 $Url =WEB_MAIN_URL.'/memberfirm/';
             }elseif($UserInfo['Identity']==4){
                 $Url =WEB_MAIN_URL.'/memberlawyer/';
+            }elseif($UserInfo['Identity']==5){
+                $Url=WEB_MAIN_URL.'/membercompany/';
             }else{
                 $Url =WEB_MAIN_URL.'/memberperson/';
             }
@@ -308,7 +312,7 @@ class AjaxLogin
                         $_SESSION['Identity'] = $InfoData['Identity'];
                         setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
                         $DB->query("COMMIT");//执行事务
-                        ToolService::SendSMSNotice(18205092757, '站内客服，有用户注册，请及时审核');//发送短信给内部客服人员
+                        ToolService::SendSMSNotice(18039847468, '站内客服，有用户注册，请及时审核');//发送短信给内部客服人员
                         $json_result = array('ResultCode' => 200, 'Message' => '注册成功',);
                     }else{
                         $DB->query("ROLLBACK");//判断当执行失败时回滚
@@ -433,6 +437,19 @@ class AjaxLogin
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Url =WEB_MAIN_URL.'/memberlawyer/';
+        }elseif ($AjaxData['type']==5){
+            $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
+            $Data['RealName'] = trim($AjaxData['lawPerson']);//公司注册人姓名
+            $Data['FixedPhone'] = trim($AjaxData['fixedPhone']);//固定电话
+            $Data['CreditCode'] = trim($AjaxData['creditNum']);//信用代码
+            $Data['Province'] = trim($AjaxData['province']);//省
+            $Data['City'] = trim($AjaxData['city']);//市
+            $Data['Area'] = trim($AjaxData['area']);//县
+            $Data['Address'] = trim($AjaxData['areaDetail']); //详细地址
+            $Data['BusinessImage'] = $AjaxData['license'];//营业执照照片
+            $Data['Identity'] = intval($AjaxData['type']);//类型
+            $Data['PublicAgent'] = json_encode($AjaxData['agentInfo'],JSON_UNESCAPED_UNICODE);//代理人信息
+            $Url =WEB_MAIN_URL.'/membercompany/';
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'数据出错！');
             EchoResult($result_json);
@@ -445,7 +462,7 @@ class AjaxLogin
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UpdateInfo = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID='.$_SESSION['UserID']);
         if ($UpdateInfo){
-            ToolService::SendSMSNotice(18205092757, '站内客服，有用户完善个人资料，请及时审核，用户ID:'.$_SESSION['UserID'].'，手机号：'. $_SESSION['Account']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18039847468, '站内客服，有用户完善个人资料，请及时审核，用户ID:'.$_SESSION['UserID'].'，手机号：'. $_SESSION['Account']);//发送短信给内部客服人员
             $result_json = array('ResultCode'=>200,'Message'=>'保存成功！', 'Url' => $Url);
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'信息未修改！');
@@ -623,7 +640,7 @@ class AjaxLogin
                     $MandatorUser = $MemberUserModule->GetInfoByKeyID($ClaimsDisposal['UserID']);//委托方用户信息
                     ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户,您申请的债务编号:'.$DebtInfo['DebtNum'].'，发布方已同意申请，请继续完成后续催收工作。发布者联系电话:'.$User['Mobile']);//发送短信给委托方
                     ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务已同意处置方处理。债务编号：'.$DebtInfo['DebtNum']);//发送短信给发布者
-                    ToolService::SendSMSNotice(18205092757, '站内客服，有债务已确认，请及时跟进，债务编号:'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
+                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认，请及时跟进，债务编号:'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
                     $DB->query("COMMIT");//执行事务
                     $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
                 }else{
@@ -708,7 +725,7 @@ class AjaxLogin
             $User = $MemberUserModule->GetInfoByKeyID($DebtInfo['UserID']);//发布方用户信息
             ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您的受理债务已确认完成情况，感谢您的配合，谢谢！');//发送短信给委托方
             ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$DebtInfo['DebtNum'].'，已确认完成情况，请及时核实相关，联系处置方。');//发送短信给发布者
-            ToolService::SendSMSNotice(18205092757, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$DebtInfo['DebtNum']);//发送短信给内部客服人员
             $DB->query("COMMIT");//执行事务
             $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
         }else{
@@ -828,7 +845,7 @@ class AjaxLogin
             $User = $MemberUserModule->GetInfoByKeyID($FindDebt['UserID']);//发布方用户信息
             ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您已同意债务申请，债务编号：'.$FindDebt['DebtNum'].'，债权人联系电话：'.$User['Mobile'].'，如有疑问可咨询客服电话：0592-5253262，感谢您的配合，谢谢！');//发送短信给委托方
             ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$FindDebt['DebtNum'].'，处置方已同意申请，该处置方公司名称：'.$UserInfo['CompanyName'].'，联系电话：'.$MandatorUser['Mobile']);//发送短信给发布者
-            ToolService::SendSMSNotice(18205092757, '站内客服，（寻找处置方）有债务处置方同意申请，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18039847468, '站内客服，（寻找处置方）有债务处置方同意申请，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
             $result_json = array('ResultCode' => 200, 'Message' => '操作成功');
         }else{
             $result_json = array('ResultCode'=>105,'Message'=>'操作失败！');
@@ -873,7 +890,7 @@ class AjaxLogin
             $User = $MemberUserModule->GetInfoByKeyID($FindDebt['UserID']);//发布方用户信息
             ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，您的受理债务已确认完成情况，感谢您的配合，谢谢！');//发送短信给委托方
             ToolService::SendSMSNotice($User['Mobile'], '亲爱的隆文贵网用户，您的债务编号:'.$FindDebt['DebtNum'].'，已确认完成情况，请及时核实相关，联系处置方。');//发送短信给发布者
-            ToolService::SendSMSNotice(18205092757, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
+            ToolService::SendSMSNotice(18039847468, '站内客服，有债务已确认完成情况，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
             $DB->query("COMMIT");//执行事务
             $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
         }else{

@@ -72,13 +72,13 @@
 }
 .person-role-auth .wrap .bx-wraper .cont .info-form .line .if,
 .person-role-auth .wrap .bx-wraper .cont .info-form .line-1 .if {
-  width: 100px;
+  width: 130px;
   height: 36px;
   float: left;
 }
 .person-role-auth .wrap .bx-wraper .cont .info-form .line .cont-in,
 .person-role-auth .wrap .bx-wraper .cont .info-form .line-1 .cont-in {
-  width: 500px;
+  width: 490px;
   float: left;
   min-height: 46px;
 }

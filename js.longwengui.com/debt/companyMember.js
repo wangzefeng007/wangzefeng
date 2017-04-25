@@ -107,19 +107,19 @@ $(function(){
       }
 
       ajax({
-          "company_name": company_name, //机构名称
-          "law_person": law_person, //法定代表人
-          "fixed_phone": fixed_phone, //固定电话
+          "companyName": company_name, //机构名称
+          "lawPerson": law_person, //法定代表人
+          "fixedPhone": fixed_phone, //固定电话
           "province": province, //省
           "city": city, //市
           "area": area, //县
           "areaDetail": area_detail, //详细地址
-          "credit_num": credit_num, //统一社会信用代码
+          "creditNum": credit_num, //统一社会信用代码
           "license": license, //营业执照
           "agentInfo": {
-            "agent_name": agent_name, //代理人姓名
-            "agent_id_num": agent_id_num, //代理人身份证号
-            "registrant_images": registrant_images //代理人证件照
+            "agentName": agent_name, //代理人姓名
+            "agentIdNum": agent_id_num, //代理人身份证号
+            "registrantImages": registrant_images //代理人证件照
           }
       });
     });
