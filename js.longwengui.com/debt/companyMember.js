@@ -10,9 +10,10 @@ $(function(){
       var province = $('input[name="dd_province"]').siblings('span').attr('data-id');
       var city = $('input[name="dd_city"]').siblings('span').attr('data-id');
       var area = $('input[name="dd_area"]').siblings('span').attr('data-id');
-      var area_detail = $('input[name="areaDetail"]').val();
+      var area_detail = $('textarea[name="areaDetail"]').val();
       var agent_name = $('input[name="agentName"]').val();
       var agent_id_num = $('input[name="agentIdNum"]').val();
+      var type = $('#save').attr('data-type'); //类型
       var registrant_images = [];
       var license;
 
@@ -116,11 +117,13 @@ $(function(){
           "areaDetail": area_detail, //详细地址
           "creditNum": credit_num, //统一社会信用代码
           "license": license, //营业执照
+          "type":type, //类型
           "agentInfo": {
             "agentName": agent_name, //代理人姓名
             "agentIdNum": agent_id_num, //代理人身份证号
             "registrantImages": registrant_images //代理人证件照
           }
+
       });
     });
     function ajax(formData){

@@ -44,7 +44,7 @@
                                 机构名称:
                             </div>
                             <div class="cont">
-                                啊士大夫似的
+                                {$UserInfo[CompanyName]}
                             </div>
                         </div>
                         <div class="line">
@@ -52,7 +52,7 @@
                                 法定代表人:
                             </div>
                             <div class="cont">
-                                阿斯蒂芬
+                                {$UserInfo[RealName]}
                             </div>
                         </div>
                         <div class="line">
@@ -60,7 +60,7 @@
                                 固定电话:
                             </div>
                             <div class="cont">
-                                0592-5253666
+                                {$UserInfo[FixedPhone]}
                             </div>
                         </div>
                         <div class="line">
@@ -68,7 +68,7 @@
                                 信用代码:
                             </div>
                             <div class="cont">
-                                66666666666666666
+                                {$UserInfo[CreditCode]}
                             </div>
                         </div>
                         <div class="line-img">
@@ -78,7 +78,9 @@
                             <div class="cont">
                                 <div class="bx">
                                     <div class="img-wrap">
-                                        <img src="{$UserInfo[CardNegative]}" height="100" width="150" alt="">
+                                        {if !empty($UserInfo[BusinessImage])}
+                                        <img src="{$UserInfo[BusinessImage]}" height="100" width="150" alt="">
+                                        {/if}
                                     </div>
                                     营业执照副本
                                 </div>
@@ -89,7 +91,7 @@
                                 所在地区:
                             </div>
                             <div class="cont">
-                                福建省-厦门市-思明区
+                                {$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}
                             </div>
                         </div>
                         <div class="line">
@@ -97,7 +99,7 @@
                                 详细地址:
                             </div>
                             <div class="cont">
-                                啊士大夫似的
+                                {if !empty($UserInfo[Address])}{$UserInfo[Address]}{else}无{/if}
                             </div>
                         </div>
                         <div class="line">
@@ -105,23 +107,23 @@
                                 代理人姓名:
                             </div>
                             <div class="cont">
-                                阿斯蒂芬
+                                {if !empty($UserInfo[PublicAgent][agentName])}{$UserInfo[PublicAgent][agentName]}{else}无{/if}
                             </div>
                         </div>
                         <div class="line">
                             <div class="if">
-                                身份证号:
+                                代理人身份证号:
                             </div>
                             <div class="cont">
-                                333333333333333333
+                                {if !empty($UserInfo[PublicAgent][agentIdNum])}{$UserInfo[PublicAgent][agentIdNum]}{else}无{/if}
                             </div>
                         </div>
                         <div class="line">
                             <div class="if">
-                                手机号:
+                                代理人手机号:
                             </div>
                             <div class="cont">
-                                15763948807
+                                {$User[Mobile]}
                             </div>
                         </div>
                         <div class="line-img">
@@ -131,13 +133,17 @@
                             <div class="cont">
                                 <div class="bx">
                                     <div class="img-wrap">
-
+                                        {if !empty($UserInfo[PublicAgent][registrantImages][0])}
+                                        <img src="{$UserInfo[PublicAgent][registrantImages][0]}" height="100" width="150" alt="">
+                                        {/if}
                                     </div>
                                     身份证正面照
                                 </div>
                                 <div class="bx">
                                     <div class="img-wrap">
-
+                                        {if !empty($UserInfo[PublicAgent][registrantImages][1])}
+                                        <img src="{$UserInfo[PublicAgent][registrantImages][1]}" height="100" width="150" alt="">
+                                        {/if}
                                     </div>
                                     身份证反面照
                                 </div>
@@ -148,7 +154,7 @@
             </div>
             <div class="to-opt">
                 <div class="cont">
-                    <button type="button" name="edit" onclick="javascript:window.location.href='/memberperson/editinfo/'">修改信息</button>
+                    <button type="button" name="edit" onclick="javascript:window.location.href='/membercompany/editinfo/'">修改信息</button>
                 </div>
             </div>
         </div>
