@@ -1,6 +1,140 @@
-.icon-tri_arrow_down_b {
-  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
-  background-position: -141px -107px;
-  width: 14px;
-  height: 9px;
+.debt-trans{
+  width: 100%;
+  background-color: #fff;
+  margin-top: 20px;
+}
+.debt-trans .wrap {
+  width: 1180px;
+  margin: 0 auto;
+}
+.debt-trans .wrap .tab-wrap{
+  width: 1160px;
+  margin: 0 auto;
+  line-height: 40px;
+  background-color: #319bcc;
+  color: #fff;
+  position: relative;
+}
+.debt-trans .wrap .tab-wrap .tab{
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+.debt-trans .wrap .tab-wrap .tab-act{
+  background-color: #35bdfc;
+}
+.debt-trans .wrap .tab-wrap .publish-btn{
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #35bdfc;
+  background-color: #fff;
+  width: 116px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+}
+.debt-trans .wrap .search-wrap{
+  height: 62px;
+  background-color: #f2f2f2;
+  width: 1160px;
+  margin: 0 auto;
+}
+.debt-trans .wrap .search-wrap input{
+  width: 480px;
+  height: 36px;
+  line-height: 36px;
+  border: 1px solid #35bdfc;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.debt-trans .wrap .search-wrap button{
+  width: 74px;
+  height: 40px;
+  line-height: 38px;
+  font-size: 14px;
+  margin: 0;
+  margin-left: -4px;
+  color: #fff;
+  background-color: #35bdfc;
+  border: 0;
+}
+.debt-trans .wrap .result-wrap{
+  width: 1160px;
+  margin: 0 auto;
+  min-height: 300px;
+  margin-bottom: 60px;
+}
+.debt-trans .wrap .result-wrap .result{
+  width: 360px;
+  height: 450px;
+  margin: 30px 10px;
+  display: inline-block;
+  border: 1px solid #e6e6e6;
+  position: relative;
+}
+.debt-trans .wrap .result-wrap .result .cover{
+  width: 100%;
+  height: 200px;
+  background-color: #cccccc;
+}
+.debt-trans .wrap .result-wrap .result .cover img{
+  width: 100%;
+  height: 100%;
+}
+.debt-trans .wrap .result-wrap .result .head-img{
+  width: 56px;
+  height: 56px;
+  background-color: #cccccc;
+  border-radius: 50%;
+  position: absolute;
+  left: 16px;
+  top: 180px;
+}
+.debt-trans .wrap .result-wrap .result .head-img img{
+  width: 100%;
+  border-radius: 50%;
+  height: 100%;
+}
+.debt-trans .wrap .result-wrap .result .tip{
+  padding-left: 82px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.debt-trans .wrap .result-wrap .result .tip .p2{
+  float: right;
+  margin-right: 20px;
+}
+.debt-trans .wrap .result-wrap .result .tip .p2 i{
+  color: #35bdfc;
+  font-size: 16px;
+  margin-right: 5px;
+}
+.debt-trans .wrap .result-wrap .result .title{
+  margin: 20px 20px 10px;
+  font-weight: bold;
+}
+.debt-trans .wrap .result-wrap .result .money-wrap{
+  height: 72px;
+  border-top: 1px dashed #e6e6e6;
+}
+.debt-trans .wrap .result-wrap .result .money-wrap .money{
+  width: 150px;
+  display: inline-block;
+  margin-top: 20px;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.debt-trans .wrap .result-wrap .result .money-wrap .money span{
+  color: #35bdfc;
+  font-size: 16px;
+}
+.debt-trans .wrap .result-wrap .result .money-wrap .money span i{
+  margin-right: 5px;
 }
