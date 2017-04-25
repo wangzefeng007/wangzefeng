@@ -581,6 +581,21 @@
 	height: 44px;
 	line-height: 44px;
 	border-bottom: 1px dashed #E6E6E6;
+  position: relative;
+}
+.person-center .wrap .menu-cont-wrap .cont-select .order-rec{
+  position: absolute;
+  right: 10px;
+  font-size: 14px;
+  top: 0;
+  line-height: 44px;
+  color: #999999;
+  cursor: pointer;
+}
+.person-center .wrap .menu-cont-wrap .cont-select .order-rec img{
+  margin-top: -3px;
+  margin-right: 3px;
+  vertical-align: middle;
 }
 .person-center .wrap .menu-cont-wrap .cont-select dt, .person-center .wrap .menu-cont-wrap .cont-select dd{
 	display: inline;
@@ -1416,4 +1431,97 @@
 .person-center .wrap .no-data{
   text-align: center;
   margin-top: 200px;
+}
+
+/*订单管理*/
+.order-manage .order-tl{
+  background-color: #f2f1f1;
+  line-height: 40px;
+  height: 40px;
+  margin: 20px 15px 0;
+}
+.order-manage .t1, .order-manage .t2, .order-manage .t3, .order-manage .t4, .order-manage .t5, .order-manage .t6{
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  float: left;
+}
+.order-manage .t1{
+  width: 340px;
+}
+.order-manage .t2{
+  width: 154px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.order-manage .t3{
+  width: 74px;
+}
+.order-manage .t4{
+  width: 114px;
+}
+.order-manage .t5{
+  width: 140px;
+}
+.order-manage .t6{
+  width: 114px;
+}
+.order-manage .t6 img{
+  width: 34px;
+  cursor: pointer;
+}
+.order-manage .t6 .cancel-order{
+  cursor: pointer;
+}
+.order-manage .order-bd {
+  margin: 20px 15px 0;
+}
+.order-manage .order-bd .order-num{
+  line-height: 40px;
+  background-color: #c2ebfe;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.order-manage .order-bd .over-time{
+  background-color: #f2f1f1;
+}
+.order-manage .order-bd .over-time+.order-info{
+  border: 1px solid #f2f1f1;
+}
+.order-manage .order-bd .order-info{
+  height: 118px;
+  border: 1px solid #c2ebfe;
+}
+.order-manage .order-bd .order-info .info{
+  text-align: left;
+}
+.order-manage .order-bd .order-info .info .img-wrap{
+  width: 83px;
+  height: 83px;
+  float: left;
+  margin-left: 15px;
+  background-color: #cccccc;
+  margin-top: 18px;
+}
+.order-manage .order-bd .order-info .info .img-wrap img{
+  width: 100%;
+  height: 100%;
+}
+.order-manage .order-bd .order-info .info .item-info{
+  padding-left: 110px;
+  padding-right: 10px;
+  margin-top: 25px;
+}
+.order-manage .order-bd .order-info button[name="pay"]{
+  min-width: 80px;
+  line-height: 26px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.order-manage .order-bd .order-info p, .order-manage .order-bd .order-info span{
+  color: #999;
 }
