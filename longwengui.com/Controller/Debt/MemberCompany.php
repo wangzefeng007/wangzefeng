@@ -34,6 +34,7 @@ class MemberCompany
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $UserInfo['PublicAgent'] = json_decode($UserInfo['PublicAgent'],true);
         if ($UserInfo['Province'])
             $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
         if ($UserInfo['City'])
@@ -59,6 +60,7 @@ class MemberCompany
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $UserInfo['PublicAgent'] = json_decode($UserInfo['PublicAgent'],true);
         if ($UserInfo['Province'])
             $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
         if ($UserInfo['City'])

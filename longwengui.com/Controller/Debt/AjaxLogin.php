@@ -90,7 +90,7 @@ class AjaxLogin
                 }else{
                     $Url = WEB_MAIN_URL.'/memberperson/';
                 }
-                $json_result = array('ResultCode' => 200, 'Message' => '登录成功');
+                $json_result = array('ResultCode' => 200, 'Message' => '登录成功','Url'=>$Url);
             }
             else {
                 // 设置密码超过三次
@@ -372,6 +372,7 @@ class AjaxLogin
     public function AddInformation(){
         $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+
         if ($AjaxData['type']==1){
             if (count($AjaxData['images'])==3){//升级催客
                 $AjaxData['type'] =2;

@@ -49,7 +49,7 @@
                                 机构名称<span class="form-need">*</span>
                             </div>
                             <div class="cont">
-                                <input type="text" name="companyName" onblur="validateChinese(this)"  value="">
+                                <input type="text" name="companyName" onblur="validateChinese(this)"  value="{$UserInfo[CompanyName]}">
                             </div>
                         </div>
                         <div class="line">
@@ -57,7 +57,7 @@
                                 法定代表人<span class="form-need">*</span>
                             </div>
                             <div class="cont">
-                                <input type="text" maxlength="12" name="lawPerson" onblur="validateChinese(this)"  value="">
+                                <input type="text" maxlength="12" name="lawPerson" onblur="validateChinese(this)"  value="{$UserInfo[RealName]}">
                             </div>
                         </div>
                         <div class="line">
@@ -65,7 +65,7 @@
                                 固定电话<span class="form-need">*</span>
                             </div>
                             <div class="cont">
-                                <input type="text" name="fixedPhone" onblur="validateFixedPhone(this)" placeholder="如：0592-5252323" value="">
+                                <input type="text" name="fixedPhone" onblur="validateFixedPhone(this)" placeholder="如：0592-5252323" value="{$UserInfo[FixedPhone]}">
                             </div>
                         </div>
                         <div class="line">
@@ -73,7 +73,7 @@
                                 信用代码<span class="form-need">*</span>
                             </div>
                             <div class="cont">
-                                <input type="text" name="creditNum" onblur="validateCreditNum(this)" value="" placeholder="统一社会信用代码">
+                                <input type="text" name="creditNum" onblur="validateCreditNum(this)" value="{$UserInfo[CreditCode]}" placeholder="统一社会信用代码">
                             </div>
                         </div>
                         <div class="line-img">
@@ -83,7 +83,7 @@
                             <div class="cont">
                                 <div class="bx" id="i_license">
                                     <div class="img-wrap">
-                                        <img src="{$UserInfo[CardPositive]}" alt="">
+                                        <img src="{$UserInfo[BusinessImage]}" alt="">
                                     </div>
                                     <label>
                                         <span>+ 营业执照副本</span>
@@ -136,7 +136,7 @@
                                 代理人姓名<span class="form-need">*</span>
                             </div>
                             <div class="cont">
-                                <input type="text" name="agentName" maxlength="12" onblur="validateChinese(this)" value="">
+                                <input type="text" name="agentName" maxlength="12" onblur="validateChinese(this)" value="{$UserInfo[PublicAgent][agentName]}">
                             </div>
                         </div>
                         <div class="line">
@@ -144,7 +144,7 @@
                                 身份证号<span class="form-need">*</span>
                             </div>
                             <div class="cont">
-                                <input type="text" name="agentIdNum" onblur="validateIDNumber(this, true)" value="">
+                                <input type="text" name="agentIdNum" onblur="validateIDNumber(this, true)" value="{$UserInfo[PublicAgent][agentIdNum]}">
                             </div>
                         </div>
                         <div class="line">
@@ -152,7 +152,7 @@
                                 手机号
                             </div>
                             <div class="cont">
-                                <input type="text" disabled value="15763948807">
+                                <input type="text" disabled value="{$User[Mobile]}">
                             </div>
                         </div>
                         <div class="line-img">
@@ -161,18 +161,22 @@
                             </div>
                             <div class="cont" id="agent_pic">
                                 <div class="bx">
+                                    {if !empty($UserInfo[PublicAgent][registrantImages][0])}
                                     <div class="img-wrap">
-                                        <img src="{$UserInfo[CardPositive]}" alt="">
+                                        <img src="{$UserInfo[PublicAgent][registrantImages][0]}" alt="">
                                     </div>
+                                    {/if}
                                     <label>
                                         <span>+ 身份证正面照</span>
                                         <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                                     </label>
                                 </div>
                                 <div class="bx">
+                                    {if !empty($UserInfo[PublicAgent][registrantImages][1])}
                                     <div class="img-wrap">
-                                        <img src="{$UserInfo[CardPositive]}" alt="">
+                                        <img src="{$UserInfo[PublicAgent][registrantImages][1]}" alt="">
                                     </div>
+                                    {/if}
                                     <label>
                                         <span>+ 身份证反面照</span>
                                         <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
