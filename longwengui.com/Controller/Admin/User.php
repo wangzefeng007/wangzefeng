@@ -98,5 +98,10 @@ class User
         }
         include template("UserDetail");
     }
-
+     public function Test(){
+         require_once SYSTEM_ROOTPATH . '/Include/SmsYixinApi.php';
+         $SmsYixinApi = new SmsYixinApi ();
+         $result = $SmsYixinApi->yixinSMS();
+         var_dump($result);exit;
+     }
 }
