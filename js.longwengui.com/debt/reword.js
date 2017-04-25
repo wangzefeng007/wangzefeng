@@ -23,7 +23,7 @@ function showImgs(imgs){
   layer.open({
     type: 1,
     title: 0,
-    area: ["880px", "560px"],
+    area: "880px",
     closeBtn: 0,
     shadeClose: true,
     content:    '<div class="slide-container">'
@@ -50,7 +50,7 @@ function otherCitySel(){
       window.location.href = '/reword/' + sel_id + 'a1/'
       break;
     case '找财产':
-      window.location.href = '/reword/' + sel_id + 'a2/' 
+      window.location.href = '/reword/' + sel_id + 'a2/'
       break;
     default:
       return;

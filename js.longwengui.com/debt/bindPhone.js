@@ -4,12 +4,12 @@ $(function(){
   $('#step_1_next').click(function(){
     var phoneNumber = $('input[name="oldPhoneNumber"]').val();
     var code = $('input[name="code1"]').val();
-
+    //原手机号
     if(phoneNumber == '' || !validate("mobilePhone", phoneNumber)){
       showMsg('不能修改原始手机号');
       return;
     }
-
+    //验证码
     if(code.length < 4 || !validate("+number", code)){
       showMsg('验证码为4位数字');
       return;
@@ -53,22 +53,21 @@ $(function(){
   $('#step_2_next').click(function(){
     var phoneNumber = $('input[name="newPhoneNumber"]').val();
     var code = $('input[name="code2"]').val();
-
+    //后端返回随机数验证
     if(!ran){
       showMsg('验证手机失败，请重新验证');
       return;
     }
-
+    //新手机号
     if(phoneNumber == ''){
       showMsg('请输入手机号');
       return;
     }
-
     if(!validate("mobilePhone", phoneNumber)){
       showMsg('请输入正确的号码');
       return;
     }
-
+    //验证码
     if(code.length < 4 || !validate("+number", code)){
       showMsg('验证码为4位数字');
       return;

@@ -152,7 +152,7 @@ function　calcPageNums(pageCount, page){
   return _arr;
 }
 
-//错误提示窗
+//信息提示窗
 function showMsg(text){
   layer.msg(text, {
     offset: '320px'
@@ -417,13 +417,13 @@ function resetAreaDropdown(tar, selName){
 //验证方法
 function validate(type, text){
   switch (type) {
-    case 'phone':
+    case 'phone': //验证电话
       return /^1[3|4|5|8][0-9]\d{8}$/.test(text) || /^0[\d]{2,3}-[\d]{7,8}$/.test(text);
       break;
-    case 'fixedPhone':
+    case 'fixedPhone': //验证固定电话
       return /^0[\d]{2,3}-[\d]{7,8}$/.test(text);
       break;
-    case 'chinese':
+    case 'chinese': //验证中文
       for(var i=0; i<text.length; i++){
         if(!(/^[\u4E00-\u9FA5]|[\uF900-\uFA2D]$/.test(text[i]))){
           return false;
@@ -431,25 +431,25 @@ function validate(type, text){
       }
       return true;
       break;
-    case 'idNum':
+    case 'idNum': //验证身份证
       return /^\d{17}(\d|X|x)$/.test(text);
-    case '+number':
+    case '+number': //验证正整数
       return /^[0-9]*[1-9][0-9]*$/.test(text);
-    case 'day':
+    case 'day': //验证天数
       return /^[0-9]*[0-9]*$/.test(text);
-    case '+money':
+    case '+money': //验证金额
       return /^[0-9]+(\.[0-9]{1,2})?$/.test(text);
-    case 'mobilePhone':
+    case 'mobilePhone': //验证手机号码
       return /^1[3|4|5|7|8][0-9]\d{8}$/.test(text);
-    case 'password':
+    case 'password': //验证密码
       return /^(\w){6,20}$/.test(text);
-    case 'email':
+    case 'email': //验证邮箱
       return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(text);
-    case 'qq':
+    case 'qq': //验证qq
       return /^[1-9][0-9]{6,12}$/.test(text);
-    case 'creditNum':
+    case 'creditNum': //验证信用代码
       return /^[0-9A-Za-z]+$/.test(text);
-    case 'lawJobNo':
+    case 'lawJobNo': //验证执业证号
       return /^[0-9]{17}$/.test(text);
     default:
       return false;
@@ -1077,7 +1077,7 @@ function loginOut(){
   })
 }
 
-//选择债务催收方式弹窗
+//选择债务催收方式弹窗->发布债务
 function selDebtWayPop(){
   var index = layer.open({
     type: 1,
@@ -1125,7 +1125,7 @@ function selDebtWayPop(){
               +    '</div>'
               +  '</div>'
   });
-  //1 律师团队 2 催收公司 3 自助催收 /debt/publish/
+  //路由跳转  /debt/publish/ + 1 律师团队 2 催收公司 3 自助催收
   $('#sel_way_ok').click(function(){
     var way = $('input[name="selWay"]:checked').val();
     if(way == "a"){
@@ -1142,6 +1142,7 @@ function selDebtWayPop(){
     $(this).parent().siblings('span').attr('data-id', id);
     $(this).parent().siblings('span').html($(this).html());
   });
+  //取消提示窗口
   $('#sel_way_cancel').click(function(){
     layer.close(index);
     var index1 = layer.open({
@@ -1181,7 +1182,7 @@ function getQueryString(name) {
   if (r!=null) return (r[2]); return null;
 }
 
-//个人中心弹窗
+//个人中心弹窗，提示是否删除
 function toDelete(text, id, intention){
   var index = layer.open({
     type: 1,

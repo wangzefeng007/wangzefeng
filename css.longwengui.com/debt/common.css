@@ -1157,7 +1157,7 @@ a{
 }
 .slide-container .bd li img{
   width: 100%;
-  height: 560px;
+  /*height: 560px;*/
 }
 .layer-verf {
   padding-left: 55px;

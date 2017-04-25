@@ -196,7 +196,7 @@ $('#person_save').click(function(){
         "province": province, //省
         "city": city, //市
         "area": area, //县
-        "images": images, //身份证照
+        "images": images, //身份证照 多传一张手持身份证照片
         "areaDetail": area_detail, //详细地址
         "qq": qq, //qq
         "email": email, //邮箱

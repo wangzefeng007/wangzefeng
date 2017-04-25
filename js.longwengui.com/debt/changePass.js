@@ -1,9 +1,9 @@
 $(function(){
   //修改提交
   $('#change_pass').click(function(){
-    var old_pass = $('input[name="oldPass"]').val();
-    var new_pass = $('input[name="newPass"]').val();
-    var comfirm_pass = $('input[name="comfirmPass"]').val();
+    var old_pass = $('input[name="oldPass"]').val(); //旧密码
+    var new_pass = $('input[name="newPass"]').val(); //新密码
+    var comfirm_pass = $('input[name="comfirmPass"]').val(); //确认密码
 
     if(!validatePass($('input[name="oldPass"]'))){
       return;

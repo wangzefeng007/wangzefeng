@@ -1,4 +1,4 @@
-times = getCookie('PasswordErrTimes');
+times = getCookie('PasswordErrTimes'); //判断是否重复错误登录3次，如果是则需要添加验证码
 if($('#code').attr('data-show') == 0 && times >= 3){
   $('#code').show();
   $('#code').attr('data-show', 1);
@@ -9,7 +9,7 @@ function validateErr(type, tar){
   var text = $(tar).val();
   var err_hint = $(tar).parent().siblings('.error-hint');
   switch (type) {
-    case "phoneNumber":
+    case "phoneNumber": //验证手机号
       if(text == ''){
         err_hint.eq(0).show();
         return;
@@ -19,7 +19,7 @@ function validateErr(type, tar){
         return;
       }
       break;
-    case "pass":
+    case "pass": //验证密码
       if(text == ''){
         err_hint.eq(0).show();
         return;
@@ -33,7 +33,7 @@ function validateErr(type, tar){
         return;
       }
       break;
-    case "code":
+    case "code": //验证验证码
       if(text == ''){
         err_hint.eq(0).show();
         return;
@@ -82,9 +82,9 @@ function validateForm(){
   }
 
   return {
-    "phoneNumber": _phoneNumber,
-    "password": _pass,
-    "ImageCode": _code
+    "phoneNumber": _phoneNumber, //手机号
+    "password": _pass, //密码
+    "ImageCode": _code //图片验证码
   }
 }
 
@@ -108,18 +108,18 @@ function login(){
       },
       success: function(data){
         if(data.ResultCode == 200){
-            layer.msg("登录成功");
+          layer.msg("登录成功");
           //路由跳转
-            setTimeout(function() {
-                location.reload();
-            }, 10);
+          setTimeout(function() {
+              location.reload();
+          }, 10);
         }else{
-            layer.msg(data.Message);
-            times = getCookie('PasswordErrTimes');
-            if($('#code').attr('data-show') == 0 && times == 3){
-              $('#code').show();
-              $('#code').attr('data-show', 1);
-            }
+          layer.msg(data.Message);
+          times = getCookie('PasswordErrTimes');
+          if($('#code').attr('data-show') == 0 && times == 3){
+            $('#code').show();
+            $('#code').attr('data-show', 1);
+          }
         }
       },
       complete: function(){

@@ -1,10 +1,12 @@
+//重置密码
+
 //失去焦点时验证
 function validateErr(type, tar){
     $('.error-hint').hide();
     var text = $(tar).val();
     var err_hint = $(tar).parent().siblings('.error-hint');
     switch (type) {
-        case "phoneNumber":
+        case "phoneNumber": //验证手机号
             if(text == ''){
                 err_hint.eq(0).show();
                 return;
@@ -14,7 +16,7 @@ function validateErr(type, tar){
                 return;
             }
             break;
-        case "pass":
+        case "pass": //验证密码
             if(text == ''){
                 err_hint.eq(0).show();
                 return;
@@ -28,14 +30,14 @@ function validateErr(type, tar){
                 return;
             }
             break;
-        case "confirm":
+        case "confirm": //确认密码
             var _pass = $('input[name="pass"]').val();
             if(text != _pass){
                 err_hint.eq(0).show();
                 return;
             }
             break;
-        case "code":
+        case "code": //验证手机验证码
             if(text == ''){
                 err_hint.eq(0).show();
                 return;
@@ -88,9 +90,9 @@ function validateForm(){
     }
 
     return {
-        "phoneNumber": _phoneNumber,
-        "password": _pass,
-        "Code": _code
+        "phoneNumber": _phoneNumber, //手机号
+        "password": _pass, //密码
+        "Code": _code //验证码
     }
 }
 

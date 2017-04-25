@@ -11,7 +11,7 @@ $(function(){
     var area = $('input[name="dd_area"]').siblings('span').attr('data-id');
     var registrant_images = []; //证明图片
     var license;
-
+    
     if(company_name == ''){
       showMsg('请输入您的公司名称');
       return;

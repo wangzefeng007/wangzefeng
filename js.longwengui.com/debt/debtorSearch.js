@@ -75,7 +75,7 @@ $(function(){
       });
   };
 
-  //注入dom
+  //注入dom，显示搜索结果
   function dataSuccess(data){
     $('#result').empty();
     $('#search_result').tmpl(data).appendTo('#result');

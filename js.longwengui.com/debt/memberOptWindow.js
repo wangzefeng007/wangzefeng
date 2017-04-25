@@ -543,59 +543,9 @@ function debtMatchCompleteStatus(id){
     });
 }
 
-/*查看处置方详情
-    details: {
-      "DebtTotalMoney": 1000,
-      "PreFee": 1, // 前期费用 0 无 1 有
-      "SearchedAnytime": 1, // 是否随时找到 0 否 1 是
-      "AbilityDebt": 1, //是否有偿还能力 0 否 1 是
-      "Client": { //委托人信息
-        "Name": "离地地",
-        "PhoneNumber": "15763948801"
-      }
-      "DebtorInfos": [ //债务人信息 数组
-        {
-          "Name": "李霸天",
-          "IdNum": 333333333333333333,
-          "PhoneNumber": 15763948801,
-          "DebtMoney": 111,
-          "Province": '福建省',
-          "City": '厦门市',
-          "Area": '思明区',
-          "AreaDetail": '软件园二期'
-        }
-      ],
-      "DebtorOwnerInfos": [ //债权人信息 数组
-        {
-          "Name": "李霸天",
-          "IdNum": 333333333333333333,
-          "PhoneNumber": 15763948801,
-          "DebtMoney": 111,
-          "Province": '福建省',
-          "City": '厦门市',
-          "Area": '思明区',
-          "AreaDetail": '软件园二期'
-        }
-      ],
-      "BondsmanInfos": [ //保证人信息
-        {
-          "Name": "李霸天",
-          "IdNum": 333333333333333333,
-          "PhoneNumber": 15763948801,
-          "BondsManRole": "个人"
-        }
-      ],
-      "BondsgoodInfos": [ //保证无信息
-        {
-          "Name": "阿斯顿",
-          "Details": "很牛逼的东西"
-        }
-      ]
-    }
-*/
+/*查看处置方详情弹窗*/
 function debtMatchDetails(details){
   var html = '';
-  console.log(details);
   html += '<div class="debt-match">'
           +    '<div class="warn-hint">'
           +      '<div class="tl">'

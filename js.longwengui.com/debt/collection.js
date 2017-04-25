@@ -1,5 +1,6 @@
-//声明当前页
-var cur_page;
+//债务催收
+
+var cur_page; //声明当前页
 
 //给搜索添加点击事件
 addSearchEvent();
@@ -11,9 +12,8 @@ function addSearchEvent(){
   });
 };
 
-addSelectEvent(['way', 'area', 'money', 'day']);
-
 //添加选中事件
+addSelectEvent(['way', 'area', 'money', 'day']);
 function addSelectEvent(id_array){
   adaptIE8_forEach();
   id_array.forEach(function(id, i){
@@ -42,12 +42,12 @@ function addSelectEvent(id_array){
 function ajax(Page, isSearched){
   resetChoices();
 
-  var col_way = $('#way .sel').attr('data-id');
-  var col_city = $('#area .sel').attr('data-id');
-  var col_area = $('#other_city').attr('data-id');
-  var col_money = $('#money .sel').attr('data-id');
-  var col_day = $('#day .sel').attr('data-id');
-  var Keyword = $('#keyword').val();
+  var col_way = $('#way .sel').attr('data-id'); //催收方式
+  var col_city = $('#area .sel').attr('data-id'); //催收地区
+  var col_area = $('#other_city').attr('data-id'); //其他城市
+  var col_money = $('#money .sel').attr('data-id'); //催收金额
+  var col_day = $('#day .sel').attr('data-id'); //逾期时间
+  var Keyword = $('#keyword').val(); //搜索关键词
 
   $.ajax({
         type: "post",	//提交类型
@@ -71,7 +71,7 @@ function ajax(Page, isSearched){
                  $('.no-data').hide();
                  $('#collection_info').show();
                  $('#collection_page_pagination').show();
-                 dataSuccess(data.Data);
+                 dataSuccess(data.Data); //搜索结果数据注入
                  //获得当前页
                  cur_page = data.Page;
 

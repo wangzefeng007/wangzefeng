@@ -3,7 +3,7 @@ $(function(){
   $('#send_time').dcalendarpicker({format: 'yyyy-mm-dd', width: '424px'}); //初始化日期选择器
 });
 
-//截止时间改变
+//截止时间改变时计算距离时间
 function endTimeChange(){
   var end_time = $('#end_time').val();
   var day = calcTime(end_time);
@@ -37,13 +37,13 @@ KindEditor.ready(function(K) {
 				'justifyright' : '右对齐'
 			}
 		},
-		// 'plug-order' : {
-		// 	name : '编号',
-		// 	method : {
-		// 		'insertorderedlist' : '数字编号',
-		// 		'insertunorderedlist' : '项目编号'
-		// 	}
-		// },
+		'plug-order' : {
+			name : '编号',
+			method : {
+				'insertorderedlist' : '数字编号',
+				'insertunorderedlist' : '项目编号'
+			}
+		},
     'insertorderedlist' : '数字编号',
     'insertunorderedlist' : '项目编号',
 		'plug-indent' : {
@@ -80,7 +80,7 @@ KindEditor.ready(function(K) {
 	K.create('#contentqq', {
 		themeType : 'qq',
 		items : [
-			'bold', 'italic', 'underline','fontsize','forecolor','plug-align','insertorderedlist','plug-indent','link','image'
+			'bold', 'italic', 'underline','fontsize','forecolor','plug-align','plug-order','plug-indent','link','image'
 		]
 	});
 });

@@ -1,7 +1,7 @@
 /* container */
 .ke-container-qq {
 	display: block;
-	border: 1px solid #e6e6e6;
+	border: 1px solid #c3c3c3;
 	background-color: #FFF;
 	overflow: hidden;
 	margin: 0;
@@ -9,7 +9,7 @@
 }
 /* toolbar */
 .ke-container-qq .ke-toolbar {
-	border-bottom: 1px solid #e6e6e6;
+	border-bottom: 1px solid #c3c3c3;
 	background-color: #FFFFFF;
 	padding: 2px 5px;
 	text-align: left;
@@ -17,11 +17,11 @@
 	zoom: 1;
 }
 .ke-toolbar-icon-url {
-	background-image: url(editor_icon.png);
-	width:30px;
-	*xwidth:30px;
-	height:25px;
-	*xheight:25px;
+	background-image: url(editor.gif);
+	width:18px;
+	*xwidth:20px;
+	height:18px;
+	*xheight:20px;
 }
 .ke-icon-checked{
 	background-image: url(../default/default.png);
@@ -32,16 +32,19 @@
 	background-position: 4px 1px;
 }
 .ke-container-qq .ke-icon-italic{
-	background-position: -112px 1px;
+	background-position: -27px 1px;
+}
+.ke-container-qq .ke-icon-italic{
+	background-position: -28px 1px;
 }
 .ke-container-qq .ke-icon-underline{
 	background-position: -60px 1px;
 }
 .ke-container-qq .ke-icon-fontname{
-	background-position: -224px 1px;
+	background-position: -95px 1px;
 }
 .ke-container-qq .ke-icon-fontsize{
-	background-position: -224px 1px;
+	background-position: -128px 1px;
 }
 .ke-container-qq .ke-icon-forecolor{
 	background-position: -159px 1px;

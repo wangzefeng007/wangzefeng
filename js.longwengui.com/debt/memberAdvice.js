@@ -1,6 +1,6 @@
 $(function(){
   $('#advice').click(function(){
-    var adviceText = $('textarea[name="advice_text"]').val();
+    var adviceText = $('textarea[name="advice_text"]').val(); //建议内容
     if(adviceText == ''){
       showMsg('建议不能为空');
       return;
