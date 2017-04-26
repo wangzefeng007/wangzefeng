@@ -1525,3 +1525,102 @@
 .order-manage .order-bd .order-info p, .order-manage .order-bd .order-info span{
   color: #999;
 }
+.address-manage{
+  margin: 30px 15px;
+  font-size: 14px;
+}
+.address-manage .line{
+  margin-bottom: 15px;
+  min-height: 30px;
+}
+.address-manage .line .left{
+  width: 120px;
+  line-height: 30px;
+  float: left;
+  display: inline-block;
+}
+.address-manage .line .right{
+  display: inline-block;
+}
+.address-manage .a-t{
+  color: #35bdfc;
+}
+.address-manage .line .right textarea{
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+}
+.address-manage .line .right input{
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  padding-left: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.address-manage .line .right input[name="name"]{
+  width: 300px;
+}
+.address-manage .line .right input[name="phone"]{
+  width: 450px;
+}
+.address-manage .line .right button{
+  width: 90px;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #35bdfc;
+  border: 0;
+}
+.address-manage .address-list{
+  margin-top: 40px;
+}
+.address-manage .address-list .tip{
+  color: #35bdfc;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.address-manage .address-list .table tr{
+  line-height: 40px;
+  text-align: center;
+}
+.address-manage .address-list .table table{
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  color: #666;
+}
+.address-manage .address-list .table thead tr{
+  background-color: #e6e6e6;
+}
+.address-manage .address-list .table tbody td{
+  border-bottom: 1px solid #e6e6e6;
+}
+.address-manage .address-list .table .opt{
+  width: 100px;
+  display: inline-block;
+}
+.address-manage .address-list .table .opt span{
+  color: #35bdfc;
+  cursor: pointer;
+}
+.address-manage .address-list .table .default{
+  display: inline-block;
+  border: 1px solid #35bdfc;
+  line-height: 20px;
+  color: #35bdfc;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.address-manage .address-list .table .set-default{
+  display: inline-block;
+  background-color: #35bdfc;
+  line-height: 20px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 3px;
+}
