@@ -11,8 +11,8 @@ class Find
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
             header('Location:' . WEB_MAIN_URL . '/member/login/');
         }else{
-            if ($_SESSION['Identity']!=1 && $_SESSION['Identity']!=2)
-                alertandgotopage("访问被拒绝,目前只有普通会员和催客可以寻找处置方！", WEB_MAIN_URL.'/choicefind/');
+            if ($_SESSION['Identity']!=1 && $_SESSION['Identity']!=2 && $_SESSION['Identity']!=5)
+                alertandgotopage("访问被拒绝！您没有此项权限", WEB_MAIN_URL.'/choicefind/');
         }
     }
     /**
@@ -27,8 +27,6 @@ class Find
         $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
-//        if ($UserInfo['IdentityState']!=3 )
-//            alertandgotopage("请等待审核通过方可寻找处置方！", WEB_MAIN_URL.'/choicefind/');
         $Nav ='find';
         $Type = intval($_GET['T']);
         if ($Type===1){

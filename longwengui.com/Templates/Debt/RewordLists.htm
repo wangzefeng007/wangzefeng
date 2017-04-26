@@ -64,7 +64,7 @@
                         </div>
                         <div class="line">
                             <div class="t">债务人电话 : </div>
-                            <div class="c">{if $lists[Status]=='4'}{echo strlen($lists[DebtPhone]) ? substr_replace($lists[DebtPhone], '****', 7, 4) : '';}{else}{$lists[CreditorsPhone]}{/if}</div>
+                            <div class="c">{if $lists[Status]=='4'}{echo strlen($lists[DebtPhone]) ? substr_replace($lists[DebtPhone], '****', 7, 4) : '';}{else}{$lists[DebtPhone]}{/if}</div>
                         </div>
                         <div class="line">
                             <div class="t">债务人地区 : </div>

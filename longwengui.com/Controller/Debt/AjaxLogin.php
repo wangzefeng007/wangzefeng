@@ -210,7 +210,7 @@ class AjaxLogin
         $Account = $_POST['phoneNumber'];
         $json_result = MemberService::SendMobileVerificationCode($Account);
         if($json_result['ResultCode'] == 200 ){
-            $_SESSION['temp_account'] = $_POST['User'];
+            $_SESSION['Account'] = $Account;
         }
         echo json_encode($json_result);exit;
     }
