@@ -1,0 +1,121 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/orderPay.css">
+<div class="order-pay">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      <span>当前位置 : <a>债权转让</a> > <a>资产转让</a> > <span class="cur">订单支付</span></span>
+    </div>
+    <div class="tip">
+      资产转让名称 : 上品武夷山大红袍, 送礼好选择
+    </div>
+    <div class="left-box">
+      <div class="address-tip">
+        <span class="c1">选择收货地址</span>
+        <span class="c2">管理收货地址</span>
+      </div>
+      <div class="address-box">
+        <p>刘长勤 ( 收 ) 15763948807</p>
+        <p>福建省厦门市思明区软件园二期万物社</p>
+        <span>修改</span>
+        <img src="/Uploads/Debt/imgs/using.png" alt="">
+      </div>
+      <div class="address-box">
+        <p>刘长勤 ( 收 ) 15763948807</p>
+        <p>福建省厦门市思明区软件园二期万物社</p>
+        <span>修改</span>
+      </div>
+      <div class="address-box">
+        <p>刘长勤 ( 收 ) 15763948807</p>
+        <p>福建省厦门市思明区软件园二期万物社</p>
+        <span>修改</span>
+      </div>
+      <div class="add-adress" id="add_address">
+        +新增地址
+      </div>
+      <div class="order-info">
+        订单信息
+      </div>
+      <div class="table">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <td>资产名称</td>
+                <td>资产单价(元/份)</td>
+                <td>剩余债权金额(元)</td>
+                <td>份数</td>
+                <td>小计金额</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>上品武夷山大红袍</td>
+                <td>100.00</td>
+                <td>10000.00</td>
+                <td><div class="ra disabled">-</div><input type="text" name="num" value="1"><div class="ra">+</div></td>
+                <td><span class="money">100.00</span></td>
+              </tr>
+              <tr>
+                <td>上品武夷山大红袍</td>
+                <td>100.00</td>
+                <td>10000.00</td>
+                <td><div class="ra disabled">-</div><input type="text" name="num" value="1"><div class="ra">+</div></td>
+                <td><span class="money">100.00</span></td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="send-way">
+        <span>配送方式 :&nbsp;&nbsp;快递&nbsp;&nbsp;EMS</span>
+        <span class="m">10.00</span>
+      </div>
+      <div class="total-money">
+        <span>合计金额(含邮费) :</span>
+        <span class="m">￥1010.00</span>
+      </div>
+      <div class="submit-wrap">
+        <div class="actual-money">
+          <p><span class="t">实付款:</span><span class="m">￥1010.00</span></p>
+          <p><span class="t">寄送至:</span>福建省 厦门市 思明区 软件园二期玩物社a102</p>
+          <p><span class="t">收货人:</span>习大大 15763948807</p>
+        </div>
+        <div class="submit-btn">
+          <button type="button" name="button">提交订单</button>
+        </div>
+      </div>
+    </div>
+    <div class="right-box">
+      <div class="money-info">
+        <div class="bx-1">
+          债权金额<br><span class="money">20000元</span>
+        </div>
+        <div class="bx-2">
+          剩余金额<br><span class="money">20000元</span>
+        </div>
+        <div class="bx-3">
+          份额单价<br><span class="money">2000元/份</span>
+        </div>
+        <div class="bx-4">
+          市场单价<br><span class="money">2222元/份</span>
+        </div>
+      </div>
+      <div class="publish-info">
+        <div class="img-wrap">
+          <img src="/Uploads/Debt/imgs/img1.png" alt="">
+        </div>
+        <div class="info">
+          <span>发布者</span>
+          <span class="day">剩余<i>10</i>天</span>
+        </div>
+        <div class="date">
+          发布日期:&nbsp;&nbsp;2017-03-24
+        </div>
+        <div class="buyer">
+          已购买:<img src="/Uploads/Debt/imgs/img1.png" alt=""><img src="/Uploads/Debt/imgs/img1.png" alt=""><img src="/Uploads/Debt/imgs/img1.png" alt=""><img src="/Uploads/Debt/imgs/img1.png" alt=""><img src="/Uploads/Debt/imgs/img1.png" alt=""><img src="/Uploads/Debt/imgs/img1.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/orderPay.js'></script>

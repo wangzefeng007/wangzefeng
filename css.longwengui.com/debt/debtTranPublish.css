@@ -291,3 +291,42 @@
 .add-img img{
   margin-top: 22px;
 }
+.debt-tran-publish .wrap .form-wrap .agree-protocal {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+.debt-tran-publish .wrap .form-wrap .agree-protocal .protocal {
+  color: #35bdfc;
+  cursor: pointer;
+  margin-left: -8px;
+}
+.debt-tran-publish .wrap .form-wrap .sub-btn {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.debt-tran-publish .wrap .form-wrap .sub-btn .btn-pub {
+  min-width: 126px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 12px;
+}
+.debt-tran-publish .wrap .form-wrap .sub-btn .btn-reset {
+  min-width: 126px;
+  line-height: 36px;
+  border: 0;
+  background-color: #cccccc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.debt-tran-publish .wrap .form-wrap .arounce {
+  text-align: center;
+  color: #fc4c4c;
+  margin-bottom: 40px;
+}
