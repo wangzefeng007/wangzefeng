@@ -1,0 +1,330 @@
+.order-pay{
+  width: 100%;
+  background-color: #fff;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+.order-pay .wrap {
+  width: 1180px;
+  margin: 0 auto;
+}
+.order-pay .wrap .current-loc {
+  padding-top: 26px;
+  padding-bottom: 17px;
+  line-height: 20px;
+}
+.order-pay .wrap .current-loc img {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.order-pay .wrap .current-loc a {
+  text-decoration: none;
+  color: #666666;
+}
+.order-pay .wrap .current-loc span {
+  color: #999;
+}
+.order-pay .wrap .tip{
+  line-height: 40px;
+  color: #fff;
+  background-color: #35bdfc;
+  margin: 0 10px;
+  padding-left: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.order-pay .wrap .left-box{
+  width: 720px;
+  padding: 0 20px;
+  height: 800px;
+  display: inline-block;
+  margin-left: 10px;
+  border: 1px solid #e6e6e6;
+}
+.order-pay .wrap .left-box .address-tip{
+  line-height: 40px;
+  border-bottom: 1px dashed #e6e6e6;
+  margin-bottom: 20px;
+}
+.order-pay .wrap .left-box .address-tip .c1{
+  font-weight: bold;
+  color: #666;
+}
+.order-pay .wrap .left-box .address-tip .c2{
+  float: right;
+  font-size: 14px;
+  color: #35bdfc;
+  cursor: pointer;
+}
+.order-pay .wrap .left-box .address-box{
+  width: 200px;
+  height: 80px;
+  margin-right: 4px;
+  border: 1px solid #35bdfc;
+  font-size: 12px;
+  padding: 10px 15px;
+  position: relative;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.order-pay .wrap .left-box .address-box p{
+  margin: 8px 0;
+}
+.order-pay .wrap .left-box .address-box span{
+  color: #35bdfc;
+  cursor: pointer;
+}
+.order-pay .wrap .left-box .address-box img{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.order-pay .wrap .left-box .add-adress{
+  font-size: 14px;
+  line-height: 26px;
+  border: 1px solid #e6e6e6;
+  width: 70px;
+  color: #666;
+  cursor: pointer;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+.order-pay .wrap .left-box .add-adress:hover{
+  background-color: #f2f2f2;
+}
+.order-pay .wrap .left-box .order-info{
+  line-height: 36px;
+  border-bottom: 1px dashed #e6e6e6;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.order-pay .wrap .left-box .table{
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+}
+.order-pay .wrap .left-box .table table{
+  border: 1px solid #e6e6e6;
+}
+.order-pay .wrap .left-box .table table thead tr{
+  line-height: 30px;
+  background-color: #eaf8ff;
+}
+.order-pay .wrap .left-box .table table tbody tr{
+  line-height: 50px;
+}
+.order-pay .wrap .left-box .table .ra{
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background-color: #35bdfc;
+  display: inline-block;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+.order-pay .wrap .left-box .table .disabled{
+  color: #666;
+  background-color: #e6e6e6;
+  cursor: default;
+}
+.order-pay .wrap .left-box .table input[name="num"]{
+  width: 36px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  outline: 0;
+  border: 1px solid #e6e6e6;
+}
+.order-pay .wrap .left-box .money{
+  color: #35bdfc;
+}
+.order-pay .wrap .left-box .send-way, .order-pay .wrap .left-box .total-money{
+  line-height: 50px;
+  text-align: right;
+  padding-right: 20px;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 14px;
+}
+.order-pay .wrap .left-box .send-way .m{
+  margin-left: 50px;
+  color: #35bdfc;
+}
+.order-pay .wrap .left-box .total-money .m{
+  margin-left: 16px;
+  color: #fc3535;
+}
+.order-pay .wrap .left-box .submit-wrap{
+  float: right;
+}
+.order-pay .wrap .left-box .actual-money{
+  border: 1px solid #35bdfc;
+  width: 410px;
+  font-size: 14px;
+  text-align: right;
+  padding: 10px 15px;
+  margin-top: 20px;
+  color: #9a9a9a;
+}
+.order-pay .wrap .left-box .submit-btn{
+  float: right;
+  margin-top: 20px;
+}
+.order-pay .wrap .left-box .submit-btn button{
+  min-width: 120px;
+  line-height: 36px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.order-pay .wrap .left-box .actual-money p .t{
+  font-weight: bold;
+  margin-right: 10px;
+}
+.order-pay .wrap .left-box .actual-money p .m{
+  color: #fc3535;
+  font-size: 18px;
+}
+.right-box{
+  width: 380px;
+  display: inline-block;
+  margin-right: 10px;
+  float: right;
+}
+.right-box .money-info{
+  border: 1px solid #e6e6e6;
+  padding: 15px;
+  line-height: 24px;
+}
+.right-box .money-info .bx-1{
+  display: inline-block;
+  width: 170px;
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.right-box .money-info .bx-2{
+  display: inline-block;
+  width: 170px;
+  text-align: center;
+  padding: 20px 0;
+  border-left: 1px dashed #e6e6e6;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.right-box .money-info .bx-3{
+  display: inline-block;
+  width: 170px;
+  text-align: center;
+  padding: 20px 0;
+}
+.right-box .money-info .bx-4{
+  border-left: 1px dashed #e6e6e6;
+  display: inline-block;
+  width: 170px;
+  text-align: center;
+  padding: 20px 0;
+}
+.right-box .money-info .money{
+  color: #35bdfc;
+  font-size: 18px;
+}
+.right-box .publish-info{
+  padding: 15px;
+  border: 1px solid #e6e6e6;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+.right-box .publish-info .info{
+  line-height: 70px;
+  padding-left: 60px;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.right-box .publish-info .info .day{
+  float: right;
+}
+.right-box .publish-info .info .day i{
+  color: #35bdfc;
+  margin-right: 5px;
+}
+.right-box .publish-info .img-wrap{
+  width: 50px;
+  height: 50px;
+  background-color: #dadada;
+  margin-top: 10px;
+  border-radius: 50%;
+  float: left;
+}
+.right-box .publish-info .img-wrap img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.right-box .publish-info .date{
+  line-height: 66px;
+}
+.right-box .publish-info .buyer{
+  line-height: 40px;
+}
+.right-box .publish-info .buyer img{
+  width: 30px;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-top: -2px;
+  height: 30px;
+  margin-left: 6px;
+}
+.order-pay-address{
+  margin: 30px 15px;
+  font-size: 14px;
+}
+.order-pay-address .line{
+  margin-bottom: 15px;
+  min-height: 30px;
+}
+.order-pay-address .line .left{
+  width: 120px;
+  line-height: 30px;
+  float: left;
+  display: inline-block;
+}
+.order-pay-address .line .right{
+  display: inline-block;
+}
+.order-pay-address .a-t{
+  color: #35bdfc;
+}
+.order-pay-address .line .right textarea{
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+}
+.order-pay-address .line .right input{
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  padding-left: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.order-pay-address .line .right input[name="name"]{
+  width: 300px;
+}
+.order-pay-address .line .right input[name="phone"]{
+  width: 450px;
+}
+.order-pay-address .line .right button{
+  width: 90px;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #35bdfc;
+  border: 0;
+}
