@@ -201,7 +201,6 @@ class MemberCompany
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberCompanyRewordList');
-
     }
     /**
      * @desc 个人会员主动申请的债权(向处置方申请的债务)

@@ -65,12 +65,12 @@ class Ajax
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
-                $Province = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Province']);
-                $Data['Data'][$key]['Province'] = $Province['CnName'];
-                $City = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['City']);
-                $Data['Data'][$key]['City'] = $City['CnName'];
-                $Area = $MemberAreaModule->GetInfoByKeyID($DebtorsInfo['Area']);
-                $Data['Data'][$key]['Area'] = $Area['CnName'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
                 $Data['Data'][$key]['Status'] = $value['Status'];
                 $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];

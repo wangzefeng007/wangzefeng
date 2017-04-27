@@ -1,97 +1,7 @@
 <?php
 // -------------------------------- 主站公共调用 ----------------------------------------//
-/**
- * 主站获取广告
- *
- * @param $Key 广告关键字
- */
-function NewsGetAdInfo($Key)
-{
-    $AdModule = new TblAdModule();
-    $AdContentModule = new TblAdContentModule();
-    $AdInfo = $AdModule->GetInfoByWhere(" and `Key` = '{$Key}'");
-    $AdContent = $AdContentModule->GetInfoByWhere(" and ADID = " . $AdInfo['ADID'] . ' order by DisplayOrder asc', true);
-    return $AdContent;
-}
 
-// 替换关键字
-function _StrtrString($String = '')
-{
-    if ($String == '') {
-        return '';
-    }
-    if (is_array($String)) {
-        foreach ($String as $Key => $Value) {
-            $NewString = str_replace(array(
-                '途风',
-                '（携程旗下）'
-            ), array(
-                '57美国网',
-                ''
-            ), $Value);
-            $Search = array(
-                "'<script[^>]*?>.*?</script>'si",
-                '/<a.*>/isU',
-                '/<\/a>/isU'
-            );
-            $Replace = array(
-                "",
-                "",
-                ""
-            );
-            $NewString = preg_replace($Search, $Replace, $NewString);
-            // $NewString = html_entity_decode ( $NewString );
-            // $NewString = addslashes ( $NewString );
-            $String[$Key] = $NewString;
-        }
-    }
-    if (is_string($String)) {
-        $NewString = str_replace(array(
-            '途风',
-            '（携程旗下）'
-        ), array(
-            '57美国网',
-            ''
-        ), $String);
-        $Search = array(
-            "'<script[^>]*?>.*?</script>'si",
-            '/<a.*>/isU',
-            '/<\/a>/isU'
-        );
-        $Replace = array(
-            "",
-            "",
-            ""
-        );
-        $String = preg_replace($Search, $Replace, $NewString);
-        // $NewString = html_entity_decode ( $NewString );
-        // $NewString = addslashes ( $NewString );
-    }
-    return $String;
-}
 
-/**
- * 从内容截取图片地址
- * 
- * @param string $String            
- * @return mixed
- */
-function _GetPicToContent($String = '')
-{
-    preg_match_all('/<img.*src=\"(.*)\"/isU', $String, $Matches);
-    return $Matches[1];
-}
-
-/**
- * 从内容删除图片地址
- * 
- * @param string $String            
- * @return mixed
- */
-function _DelPicToContent($String = '')
-{
-    return preg_replace('/<img.*src=(.*)\/>/isU', '', $String);
-}
 
 /**
  * 以表单方式发送
@@ -296,102 +206,6 @@ function WriteTxtLog()
 ', FILE_APPEND);
 }
 
-/**
- * @desc 做数据库日志
- * @desc 传进的数据包含数据库里面的字段
- *
- */
-function WriteMysqlLog($Info=array())
-{
-    if (empty($InsertInfo))
-    {
-        return '';
-    }
-    
-    $SCRIPT_HOST = $_SERVER["HTTP_HOST"];
-
-    if ($_POST) {
-        $ST = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-        $Type = 'POST';
-    }
-    if ($_GET) {
-        $ST = json_encode($_GET, JSON_UNESCAPED_UNICODE);
-        $Type = 'GET';
-    }
-
-    $AdminID = $_SESSION['AdminID'];
-    $UserID = $_SESSION['UserID'];
-    $BackUrl = $_SERVER['HTTP_REFERER'];
-    $MyUrl = GetMyUrl();
-
-    $WriteString = '';
-    $WriteString .= $SCRIPT_HOST.' | ';
-    $WriteString .= $Type.' | ';
-    $WriteString .= $UserID.' | ';
-    $WriteString .= $AdminID.' | ';
-    $WriteString .= $BackUrl.' | ';
-    $WriteString .= $MyUrl.' | ';
-    $WriteString .= $ST;
-    
-    $InsertInfo['OtherInfo'] = $WriteString;
-    $InsertInfo['UserID'] = $Info['UserID'];
-    $InsertInfo['AdminID'] = $Info['AdminID'];
-    $InsertInfo['Domain'] = $Info['Domain'];
-    $InsertInfo['LogNo'] = $Info['LogNo'];
-    $InsertInfo['OrderNumber'] = $Info['OrderNumber'];
-    $InsertInfo['Describe'] = $Info['Describe'];
-    $InsertInfo['FromIP'] = GetIP();
-    $InsertInfo['AddTime'] = date("Y-m-d H:i:s");
-    
-    $LogModule = new LogModule();
-    $LogModule->InsertInfo($InsertInfo);
-}
-
-/**
- * 数组分页函数 核心函数 array_slice
- * 用此函数之前要先将数据库里面的所有数据按一定的顺序查询出来存入数组中
- * $count 每页多少条数据
- * $page 当前第几页
- * $array 查询出来的所有数组
- */
-function PageArray($count, $page, $array)
-{
-    global $countpage; // 定全局变量
-    $page = (empty($page)) ? '1' : $page; // 判断当前页面是否为空 如果为空就表示为第一页面
-    $start = ($page - 1) * $count; // 计算每次分页的开始位置
-    $totals = count($array);
-    $countpage = ceil($totals / $count); // 计算总页面数
-    $pagedata = array();
-    $pagedata = array_slice($array, $start, $count);
-    return $pagedata; // 返回查询数据
-}
-
-// 截取字符串
-function _substr($string, $length, $dot = '...', $ClearHtml = true, $charset = 'utf-8')
-{
-    if (mb_strlen($string) <= $length) {
-        return $string;
-    }
-    if ($ClearHtml) {
-        $string = str_replace(array(
-            '&amp;',
-            '&quot;',
-            '&lt;',
-            '&gt;',
-            '&nbsp;'
-        ), array(
-            '&',
-            '"',
-            '<',
-            '>',
-            ' '
-        ), $string);
-        $string = strip_tags($string);
-    }
-    $string = preg_replace('/([\s]{2,})/', '', $string);
-    $strcut = mb_substr($string, 0, $length, $charset);
-    return $strcut . (strlen($string) > strlen($strcut) ? $dot : '');
-}
 
 // 输出json
 function EchoResult($JsonResult = '')
@@ -611,16 +425,6 @@ function SendToFileServ($FileName, $File)
     return curl_postsend('http://images.57us.com/57usapi.php', $Data);
 }
 
-// 删除图片服务器图片
-function DelFromImgServ($Img)
-{
-    $Data = array(
-        'Action' => 'DelImage',
-        'Image' => $Img
-    );
-    $Data['Sign'] = ImageAPIVerify($Data);
-    curl_postsend('http://images.57us.com/57usapi.php', $Data);
-}
 
 // 验证图片信息
 function ImageAPIVerify($para)
