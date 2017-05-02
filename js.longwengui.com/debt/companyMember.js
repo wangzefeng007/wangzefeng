@@ -102,10 +102,10 @@ $(function(){
               registrant_images.push($(this).children('img').attr('src'));
           }
       });
-      if(registrant_images.length != 2){
-          showMsg('请上传所需的证件照片');
-          return;
-      }
+      // if(registrant_images.length != 2){
+      //     showMsg('请上传所需的证件照片');
+      //     return;
+      // }
 
       ajax({
           "companyName": company_name, //机构名称

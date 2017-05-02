@@ -35,12 +35,7 @@ $(function(){
                 images.push($(this).children('img').attr('src'));
             }
         });
-        if (type ==1){
-            if(images.length < 2){
-                showMsg('请上传所需的证件照片');
-                return;
-            }
-        }else if(type ==2){
+        if(type ==2){
             if(images.length != 3){
                 showMsg('请上传所需的证件照片');
                 return;
