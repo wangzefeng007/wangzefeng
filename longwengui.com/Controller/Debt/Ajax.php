@@ -36,7 +36,7 @@ class Ajax
             EchoResult($Data);exit;
         }
         $Intention = trim($_POST['Intention']);
-        $MysqlWhere = ' and `Status` <= 7 and `CollectionType`<= 2';
+        $MysqlWhere = ' and `Status` <= 7 ';
         if ($_POST) {
             $MysqlWhere .= $this->GetMysqlWhere($Intention);
         }

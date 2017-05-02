@@ -1,6 +1,5 @@
 <?php
 class ToolService {
-
     /**
      * @desc  发送短信通知
      * @param $Mobile
@@ -149,27 +148,68 @@ class ToolService {
         return $data;
     }
 
+
     /**
      * @desc  计算几秒几分几天几月几年前
      * @param $Time
      * @return string
      *
      */
-    public static function FormatDate($Time){
-        $T=time()-$Time;
-        $F=array(
-            '31536000'=>'年',
-            '2592000'=>'个月',
-            '604800'=>'星期',
-            '86400'=>'天',
-            '3600'=>'小时',
-            '60'=>'分钟',
-            '1'=>'秒'
+    public static function FormatDate($Time)
+    {
+        $T = time() - $Time;
+        $F = array(
+            '31536000' => '年',
+            '2592000' => '个月',
+            '604800' => '星期',
+            '86400' => '天',
+            '3600' => '小时',
+            '60' => '分钟',
+            '1' => '秒'
         );
-        foreach ($F as $key=>$val)    {
-            if (0 !=$C=floor($T/(int)$key)) {
-                return $C.$val.'前';
+        foreach ($F as $key => $val) {
+            if (0 != $C = floor($T / (int)$key)) {
+                return $C . $val . '前';
             }
+        }
+    }
+
+    /**
+     * @desc  以表单方式发送
+     * @param $Url
+     * @param $Data
+     */
+    public static function PostForm($Url, $Data){
+        $sHtml = "<form id='postform' name='postform' action='$Url' method='post'>";
+        foreach ($Data as $key => $val) {
+            $sHtml .= "<input type='hidden' name='$key' value='$val' />";
+        }
+        $sHtml = $sHtml . "</form>";
+        $sHtml = $sHtml . "<script>document.forms['postform'].submit();</script>";
+        return $sHtml;
+    }
+
+    /**
+     * @desc  数据验证
+     * @param $para
+     * @return bool|string
+     */
+    public static function VerifyData($para)
+    {
+        if (!is_array($para)) {
+            return false;
+        } else {
+            $arg = "";
+            while (list ($key, $val) = each($para)) {
+                $arg .= $key . "=" . $val . "&";
+            }
+            //去掉最后一个&字符
+            $arg = substr($arg, 0, count($arg) - 2);
+            //如果存在转义字符，那么去掉转义
+            $arg = stripslashes($arg);
+            $SignKey = '57us3cjq29vcu38cn2q0dj01d9c57is7';
+            $sign = md5($arg . $SignKey);
+            return $sign;
         }
     }
 

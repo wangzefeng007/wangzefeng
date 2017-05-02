@@ -37,7 +37,7 @@ class Debt
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and `Status` <= 7 and `CollectionType`<= 2 order by Status asc , AddTime desc';
+        $MysqlWhere = ' and `Status` <= 7 order by Status asc , AddTime desc';
         //关键字
         $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
@@ -66,6 +66,7 @@ class Debt
                 if ($DebtorsInfo['Area'])
                 $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
                 $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+                $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
