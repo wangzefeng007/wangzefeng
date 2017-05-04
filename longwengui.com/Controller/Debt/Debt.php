@@ -11,7 +11,7 @@ class Debt
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
             header('Location:' . WEB_MAIN_URL . '/member/login/');
         }else{
-            if ($_SESSION['Identity']!=1 && $_SESSION['Identity']!=2 )
+            if ($_SESSION['Identity']!=1 && $_SESSION['Identity']!=2 && $_SESSION['Identity']!=5)
                 alertandgotopage("访问被拒绝,目前只有普通会员和催客可以发布债务！", WEB_MAIN_URL.'/debtlists/');
         }
     }
@@ -65,7 +65,7 @@ class Debt
                 $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
                 if ($DebtorsInfo['Area'])
                 $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+                $Data['Data'][$key]['AddTime'] = !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
                 $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
