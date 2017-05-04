@@ -24,6 +24,34 @@ class Debt
      * @desc 前端测试静态页
      */
     public function Test(){
+//        $notify_url = WEB_MAIN_URL . '/pay/alipaynotify/';
+//        $return_url = WEB_MAIN_URL . '/pay/alipaynotify/'; //必填
+//        $out_trade_no = 'LWG3453dfgdfg4535453'; //必填
+//        $subject = stripslashes('订单名称'); //必填
+//        $total_fee = 0.01; //必填
+//        $body = stripslashes('订单描述');
+//        $show_url = WEB_MAIN_URL.'/myorder.html';
+//        $Data['OrderID'] = 23;
+//        $Data['NotifyUrl'] = WEB_MAIN_URL . '/ReturnUrl/';
+//        $Data['PayType'] = 0;
+//        $Data['CreateTime'] = time();
+//        $Data['ResultCode'] = 0;
+//        include SYSTEM_ROOTPATH.'/Include/AliPay/AliPay.php';
+//        $AliPay = new AliPay();
+//        $AliPay->SubmitOrder(1, $notify_url, $return_url, $out_trade_no, $subject, $total_fee, $body, $show_url);
+//        include SYSTEM_ROOTPATH . '/Include/WXPay/WxPay.NativePay.php';
+//        $notify = new NativePay();
+//        $input = new WxPayUnifiedOrder();
+//        $input->SetBody(stripslashes('订单号显示')); //订单描述
+//        $input->SetDetail(stripslashes('订单名称'));
+//        $input->SetOut_trade_no('LWG3453dfgdfg4535453'); //必填
+//        $input->SetTotal_fee(0.01 * 100); //必填
+//        $input->SetNotify_url(WEB_MAIN_URL . '/pay/wxpaynotify/'); //必填
+//        $input->SetTrade_type("NATIVE");
+//        $input->SetSpbill_create_ip(GetIP());
+//        $input->SetProduct_id('LWG3453dfgdfg4535453');
+//        $result = $notify->GetPayUrl($input);
+//        var_dump($result);exit;
       include template('Test');
     }
     /**
