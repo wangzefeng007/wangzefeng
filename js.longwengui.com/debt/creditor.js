@@ -17,7 +17,7 @@ var pageObj=$.extend({},pageObj,{
         _this.getList();  //执行查询列表
 
         /*
-         状态切换
+         排序方式切换
          * */
         $("#selectTab li").on("click",function(){
             var sort=$(this).attr("data-sort");
