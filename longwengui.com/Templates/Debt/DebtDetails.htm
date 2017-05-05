@@ -40,21 +40,21 @@
                 <div class="bx">
                     <div class="line clearfix">
                         <div class="l">
-                            <label for="">债务人姓名:</label>
+                            <label>债务人姓名:</label>
                             {$lists[Name]}
                         </div>
                         <div class="r">
-                            <label for="">债务人身份证:</label>
+                            <label>债务人身份证:</label>
                             {if $lists[Card]} {$lists[Card]} {else} 无 {/if}
                         </div>
                     </div>
                     <div class="line clearfix">
                         <div class="l">
-                            <label for="">债务人地区:</label>
+                            <label>债务人地区:</label>
                             {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
                         </div>
                         <div class="r">
-                            <label for="">详细地址:</label>
+                            <label>详细地址:</label>
                             {if $lists[Address]} {$lists[Address]} {else} 无 {/if}
                         </div>
 
@@ -64,10 +64,10 @@
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            <label for="">债务金额(元):</label>
+                            <label>债务金额(元):</label>
                             ￥{$DebtInfo[DebtAmount]}
                         </div>
-                        <label for="">逾期时间:</label>
+                        <label>逾期时间:</label>
                         {$DebtInfo[Overduetime]}
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            <label for="">是否有前期费用:</label>
+                            <label>是否有前期费用:</label>
                             {if $DebtInfo[EarlyCost]==1}有{else}无{/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            <label for="">是否有保证人:</label>
+                            <label>是否有保证人:</label>
                             {if $DebtInfo[Warrantor]==1}有{else}无{/if}
                             {if $DebtInfo[Warrantor]==1}
                             {loop $WarrantorInfo $lists}
@@ -92,7 +92,7 @@
                     </div>
                     <div class="line">
                         <div class="l">
-                            <label for="">是否有抵押物:</label>
+                            <label>是否有抵押物:</label>
                             {if $DebtInfo[Guarantee]==1}有{else}无{/if}
                             {if $DebtInfo[Guarantee]==1}
                             {loop $GuaranteeInfo $lists}
@@ -106,21 +106,21 @@
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            <label for="">债务人是否随时能寻找到</label>
+                            <label>债务人是否随时能寻找到</label>
                             {if $DebtInfo[FindDebtor]==1}是{else}否{/if}
                         </div>
-                        <label for="">债务人是否有还款能力:</label>
+                        <label>债务人是否有还款能力:</label>
                         {if $DebtInfo[RepaymentDebtor]==1}是{else}否{/if}
                     </div>
                     <div class="line">
                         <div class="l">
-                            <label for="">借款原因:</label>
+                            <label>借款原因:</label>
                             {if $DebtInfo[ReasonsBorrowing]} {$DebtInfo[ReasonsBorrowing]} {else} 无 {/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            <label for="">债务近况:</label>
+                            <label>债务近况:</label>
                             {if $DebtInfo[DebtRecent]} {$DebtInfo[DebtRecent]} {else} 无 {/if}
                         </div>
                     </div>
