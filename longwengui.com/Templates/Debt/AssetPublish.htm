@@ -52,7 +52,7 @@
                                     <input type="text" onblur="validateNeed(this)" class="inp-lg" name="sell_phone" placeholder="*请输入电话号码 1598***1598 / 0592-***0592">
                                 </div>
                             </div>
-                            <div class="line mt-30">
+                            <!--<div class="line mt-30">
                                 <div class="info">
                                 </div>
                                 <div class="details">
@@ -64,13 +64,13 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="line">
                                 <div class="info">
                                     运费:
                                 </div>
                                 <div class="details">
-                                    <input type="text" class="inp-lg" name="" placeholder="填写运费金额或包邮">
+                                    <input type="text" class="inp-lg" name="emsMoney" value="0" placeholder="填写运费金额或包邮">
                                 </div>
                             </div>
                             <div class="line">
@@ -97,7 +97,7 @@
                                     资产标题 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" class="inp-lg" name="" placeholder="填写文章标题（20个汉字以内）">
+                                    <input type="text" class="inp-lg" name="transTitle" placeholder="填写文章标题（20个汉字以内）">
                                 </div>
                             </div>
                         </div>
@@ -105,10 +105,10 @@
                 </div>
 
                 <div id="editor-container" class="container">
-                    <div id="editor-trigger"><p>请输入内容</p></div>
-                    <!-- <textarea id="editor-trigger" style="display:none;">
-                        <p>请输入内容...</p>
-                    </textarea> -->
+                    <div id="editor-trigger"></div>
+                    <textarea id="editor-trigger-val" name="transDetail" style="display:none;">
+
+                    </textarea>
                 </div>
 
                 <div class="img-upload-wrap">
@@ -120,7 +120,7 @@
                     <div class="add-img">
                         <label>
                             <img src="/Uploads/Debt/imgs/add_file.png" alt="">
-                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                            <input type="file" onchange="imageUpload(this)" name="transImg" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
                         </label>
                         <br>
                         <span>上传图片</span>
@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="sub-btn">
-                    <input type="submit" id="publish" class="btn-pub" value="发布资产转让" name="button" />
+                    <input type="button" id="publish" class="btn-pub" value="发布资产转让" name="button" />
                 </div>
 
                 <div class="arounce">
