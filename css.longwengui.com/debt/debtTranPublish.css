@@ -1,3 +1,8 @@
+*{
+  padding:0;
+  margin:0;
+}
+
 .icon-tri_arrow_down_b {
   background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
   background-position: -141px -107px;
@@ -163,19 +168,31 @@
 .debt-tran-publish .c-b{
   color: #35bdfc;
 }
+.blo .line .details input{
+  width:200px;
+  box-sizing:border-box;
+}
 .debt-tran-publish .wrap .form-wrap .box .c .blo .line .details input {
   line-height: 30px;
   height: 30px;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
-  padding: 0 12px;
-  margin-right: 10px;
+  padding: 0 12px 0 12px;
   font-size: 14px;
 }
-.debt-tran-publish .wrap .form-wrap .box .c .blo .line .details input[name="end_time"],
-.debt-tran-publish .wrap .form-wrap .box .c .blo .line .details input[name="sell_phone"],
-.debt-tran-publish .wrap .form-wrap .box .c .blo .line .details input[name="send_time"]{
+.debt-tran-publish .wrap .form-wrap .box .c .blo .line .details input.has-unit{
+  padding-right:32px;
+}
+.details .unit{
+  margin-left:-25px;
+}
+.debt-tran-publish .wrap .form-wrap .box .c .blo .line .details .inp-lg{
   width: 400px;
+}
+.line .details .form-txt{
+  line-height: 30px;
+  color: #b2b2b2;
+  font-size:14px;
 }
 .debt-tran-publish .wrap .form-wrap .box .c .blo .line .details textarea {
   width: 848px;
@@ -263,8 +280,7 @@
 }
 .img-upload-wrap{
   min-height: 112px;
-  margin-left: 36px;
-  margin-bottom: 40px;
+  margin:40px 36px;
 }
 .img-preview{
   width: 112px;
@@ -326,7 +342,29 @@
   cursor: pointer;
 }
 .debt-tran-publish .wrap .form-wrap .arounce {
+  height: 20px;
+  line-height:20px;
   text-align: center;
-  color: #fc4c4c;
+  color: #d81e06;
   margin-bottom: 40px;
+}
+i{
+  display: inline-block;
+}
+.icon-warning{
+  width: 30px;
+  height:20px;
+  background: url("images/icon-warning.png") no-repeat center;
+  vertical-align: top;
+}
+.debt-tran-publish .wrap .form-wrap .box .c .blo .line .select-group .m-dropdown{
+  width:100px;
+}
+#editor-trigger {
+  height: 400px;
+  /*max-height: 500px;*/
+}
+#editor-container {
+  margin: 0 36px;
+  position: relative;
 }

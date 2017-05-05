@@ -426,10 +426,20 @@ a{
   height: 9px;
 }
 * {
-  font-family: "微软雅黑", serif;
+  font-family: "\5FAE\8F6F\96C5\9ED1", serif;
+}
+.clearfix { *zoom: 1; }
+.clearfix:after {
+  content: "\200B";
+  display: block;
+  height: 0;
+  clear: both;
 }
 .c-warn {
   color: #fa4343;
+}
+.c-red{
+  color: #fc3535;
 }
 .tx-l {
   text-align: left!important;
@@ -467,11 +477,23 @@ a{
 .mt-10{
   margin-top: 10px!important;
 }
+.mt-20{
+  margin-top: 20px!important;
+}
+.mt-30{
+  margin-top: 30px!important;
+}
+.mt-40{
+  margin-top:40px!important;
+}
 .mb-100{
   margin-bottom: 100px;
 }
 .mb-10{
   margin-bottom: 10px;
+}
+.ml-20 {
+  margin-left: 20px;
 }
 .ml-36 {
   margin-left: 36px;
@@ -484,9 +506,6 @@ a{
 }
 .text-del{
   text-decoration: line-through;
-}
-.mt-40{
-  margin-top: 40px;
 }
 .lh-30{
   line-height: 30px;
@@ -1675,4 +1694,118 @@ a{
 }
 .service-way .way-bx:hover .cont{
   display: block;
+}
+/*edit lvpan 2017/5/4*/
+
+.wrap{
+  width: 1180px;
+  margin: 0 auto;
+  color: #666666;
+  position: relative;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.placeholder {color: #999;}
+/*面包屑样式*/
+.current-loc {
+  /*padding-top: 26px;*/
+  padding-bottom: 17px;
+  line-height: 20px;
+}
+.current-loc img {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.current-loc a {
+  text-decoration: none;
+  color: #666666;
+}
+.current-loc .cur {
+  color: #999;
+}
+
+
+/*tab切换样式*/
+.tab-panel{
+  height:40px;
+  background: #28abe7;
+}
+.tab-panel li{
+  float: left;
+}
+.tab-panel li.active,
+.tab-panel li:hover{
+  background: #21a2dd;
+}
+.tab-panel li a{
+  line-height:40px;
+  padding:0 20px;
+  color: #fff;
+}
+.tab-panel .tab-panel-right{
+  height:20px;
+  margin-top:10px;
+  float: right;
+  margin-right: 30px;
+}
+.tab-panel .tab-panel-right a{
+  line-height:20px;
+  color: #fff;
+}
+.tab-panel .tab-panel-right a i{
+  vertical-align: top;
+  margin-right:5px;
+}
+
+.protocal-pop .popup {
+  width: 600px;
+  margin: 0 auto;
+  height: 504px;
+  background-color: #fff;
+}
+.protocal-pop .popup .hd {
+  line-height: 60px;
+  background-color: #f5f5f5;
+  color: #35bdfc;
+  font-size: 20px;
+  padding-left: 20px;
+}
+.protocal-pop .popup .hd .close {
+  float: right;
+  padding-right: 20px;
+  cursor: pointer;
+}
+.protocal-pop .popup .cont .para {
+  height: 330px;
+  overflow-y: scroll;
+  padding: 16px;
+  font-size: 14px;
+  color: #666;
+}
+.protocal-pop .popup .cont .para p {
+  margin: 10px;
+  text-indent: 28px;
+  text-align: left;
+}
+.protocal-pop .popup .cont .confirm-btn {
+  margin-top: 15px;
+  text-align: center;
+}
+.protocal-pop .popup .cont .confirm-btn button {
+  min-width: 280px;
+  line-height: 40px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
 }

@@ -8,22 +8,6 @@
   width: 1180px;
   margin: 0 auto;
 }
-.order-pay .wrap .current-loc {
-  padding-top: 26px;
-  padding-bottom: 17px;
-  line-height: 20px;
-}
-.order-pay .wrap .current-loc img {
-  vertical-align: middle;
-  margin-top: -2px;
-}
-.order-pay .wrap .current-loc a {
-  text-decoration: none;
-  color: #666666;
-}
-.order-pay .wrap .current-loc span {
-  color: #999;
-}
 .order-pay .wrap .tip{
   line-height: 40px;
   color: #fff;
@@ -136,6 +120,7 @@
   text-align: center;
   outline: 0;
   border: 1px solid #e6e6e6;
+  color: #35bdfc;
 }
 .order-pay .wrap .left-box .money{
   color: #35bdfc;
@@ -154,8 +139,11 @@
   color: #35bdfc;
 }
 .order-pay .wrap .left-box .total-money .m{
+  color: #dadada;
   margin-left: 16px;
-  color: #fc3535;
+}
+.order-pay .wrap .left-box .total-money .m b{
+  font-weight:normal;
 }
 .order-pay .wrap .left-box .submit-wrap{
   float: right;
@@ -183,18 +171,28 @@
   cursor: pointer;
 }
 .order-pay .wrap .left-box .actual-money p .t{
-  font-weight: bold;
+  color: #666;
   margin-right: 10px;
 }
 .order-pay .wrap .left-box .actual-money p .m{
-  color: #fc3535;
+  color: #dadada;
   font-size: 18px;
+}
+.order-pay .wrap .left-box .actual-money p .m b{
+  font-weight:normal;
 }
 .right-box{
   width: 380px;
   display: inline-block;
   margin-right: 10px;
   float: right;
+}
+.right-box .adv{
+  height:200px;
+  overflow: hidden;
+}
+.right-box .adv img{
+  width: 100%;
 }
 .right-box .money-info{
   border: 1px solid #e6e6e6;
@@ -241,11 +239,11 @@
   color: #666;
 }
 .right-box .publish-info .info{
-  line-height: 70px;
-  padding-left: 60px;
+  height:60px;
   border-bottom: 1px dashed #e6e6e6;
 }
 .right-box .publish-info .info .day{
+  margin-top:20px;
   float: right;
 }
 .right-box .publish-info .info .day i{
@@ -278,6 +276,17 @@
   margin-top: -2px;
   height: 30px;
   margin-left: 6px;
+}
+.right-box .publish-info .publish-msg{
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
+.right-box .publish-info .publish-public{
+  height:16px;
+  line-height:16px;
+  padding:10px 0;
+  text-align: right;
 }
 .order-pay-address{
   margin: 30px 15px;

@@ -1,0 +1,142 @@
+*{
+    padding:0;
+    margin:0;
+}
+body{
+    font-size:14px;
+}
+i{
+    display: inline-block;
+}
+.icon-write{
+    width: 20px;
+    height:20px;
+    background: url("images/icon-write.png") no-repeat center;
+}
+.query-box{
+    height:36px;
+    padding:12px 0;
+    background: #f3f3f3;
+}
+.query-box li{
+    line-height:36px;
+    float: left;
+    padding:0 20px;
+    color: #676767;
+    cursor: pointer;
+}
+.query-box li.active,
+.query-box li:hover{
+    color: #319bcc;
+}
+.query-box .search-box{
+    height:34px;
+    margin-right:10px;
+    border:solid 1px #95d9f9;
+    -webkit-border-radius:17px;
+    -moz-border-radius:17px;
+    border-radius:17px;
+}
+
+.inp{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline:none;
+}
+.inp:focus{
+
+}
+.query-box .search-box .inp{
+    height:36px;
+    line-height:36px;
+    padding:6px 10px;
+    border:0;
+    background: transparent;
+}
+.query-box .search-box .icon-search{
+    width:20px;
+    height:20px;
+    float: right;
+    margin:7px 8px 0 0;
+    background: url("images/icon-search.png") no-repeat center;
+    cursor: pointer;
+}
+.result-list{
+    width:100%;
+    overflow: hidden;
+    margin-top:30px;
+}
+.result-list ul{
+    width: 105%;
+}
+.result-list li{
+    position: relative;
+    width:354px;
+    margin-right:55px;
+    margin-bottom:20px;
+    height:448px;
+    float: left;
+    border:solid 1px #f1f1f1;
+}
+.result-list li .pic{
+    height:200px;
+    overflow: hidden;
+}
+.result-list li .pic img{
+    width:100%;
+}
+.result-list li .des{
+    padding:15px;
+}
+.result-list .des .item-name{
+    color: #666;
+    font-weight:bold;
+}
+.result-list .des .item-msg{
+    padding:8px 0;
+    font-size: 12px;
+    color: #999;
+}
+.result-list .des .item-public{
+    height:16px;
+    line-height:16px;
+    padding:10px 0;
+}
+.result-list .des .item-public .icon-publicer{
+    height:16px;
+    width:16px;
+    background: url("images/icon-user-blue.png") no-repeat center;
+    vertical-align: top;
+}
+.result-list .des .item-money{
+    margin-top:20px;
+    font-size:12px;
+    color: #999;
+}
+.result-list .des .bold{
+    font-size: 18px;
+}
+.result-list .des .btn-favo{
+    display: inline-block;
+    width:40px;
+    height:20px;
+    line-height:20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size:12px;
+    color: #ccc;
+    border:solid 1px #e2e2e2;
+}
+.result-list li .link-detail{
+    position: absolute;
+    right:20px;
+    bottom:20px;
+}
+.result-list li .link-detail a{
+    font-size:12px;
+    color: #999;
+}
+.result-list li .link-detail a:hover{
+    text-decoration: underline;
+}

@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/collectionDetails.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css">
 <div class="collection-details">
     <div class="wrap">
         <div class="current-loc">
@@ -37,38 +38,51 @@
             <div class="debt-det">
                 {loop $DebtorsInfo $lists}
                 <div class="bx">
-                    <div class="line">
+                    <div class="line clearfix">
                         <div class="l">
-                            债务人姓名:&nbsp;&nbsp;{$lists[Name]}
+                            <label for="">债务人姓名:</label>
+                            {$lists[Name]}
                         </div>
-                        债务人身份证:&nbsp;&nbsp;{if $lists[Card]} {$lists[Card]} {else} 无 {/if}
+                        <div class="r">
+                            <label for="">债务人身份证:</label>
+                            {if $lists[Card]} {$lists[Card]} {else} 无 {/if}
+                        </div>
                     </div>
-                    <div class="line">
+                    <div class="line clearfix">
                         <div class="l">
-                            债务人地区:&nbsp;&nbsp;{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
+                            <label for="">债务人地区:</label>
+                            {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
                         </div>
-                        详细地址:&nbsp;&nbsp;{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
+                        <div class="r">
+                            <label for="">详细地址:</label>
+                            {if $lists[Address]} {$lists[Address]} {else} 无 {/if}
+                        </div>
+
                     </div>
                 </div>
                 {/loop}
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            债务金额(元):&nbsp;&nbsp;￥{$DebtInfo[DebtAmount]}
+                            <label for="">债务金额(元):</label>
+                            ￥{$DebtInfo[DebtAmount]}
                         </div>
-                        逾期时间:&nbsp;&nbsp;{$DebtInfo[Overduetime]}
+                        <label for="">逾期时间:</label>
+                        {$DebtInfo[Overduetime]}
                     </div>
                 </div>
 
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            是否有前期费用:&nbsp;&nbsp;{if $DebtInfo[EarlyCost]==1}有{else}无{/if}
+                            <label for="">是否有前期费用:</label>
+                            {if $DebtInfo[EarlyCost]==1}有{else}无{/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            是否有保证人:&nbsp;&nbsp;{if $DebtInfo[Warrantor]==1}有{else}无{/if}
+                            <label for="">是否有保证人:</label>
+                            {if $DebtInfo[Warrantor]==1}有{else}无{/if}
                             {if $DebtInfo[Warrantor]==1}
                             {loop $WarrantorInfo $lists}
                             <span>{$lists[type]}</span><span>{$lists[name]}</span><span>{$lists[card]}</span><span>{$lists[phone]}</span>
@@ -78,7 +92,8 @@
                     </div>
                     <div class="line">
                         <div class="l">
-                            是否有抵押物:&nbsp;&nbsp;{if $DebtInfo[Guarantee]==1}有{else}无{/if}
+                            <label for="">是否有抵押物:</label>
+                            {if $DebtInfo[Guarantee]==1}有{else}无{/if}
                             {if $DebtInfo[Guarantee]==1}
                             {loop $GuaranteeInfo $lists}
                             <span>{$lists[name]}</span><span>{$lists[content]}</span>
@@ -91,25 +106,29 @@
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            债务人是否随时能寻找到:&nbsp;&nbsp;{if $DebtInfo[FindDebtor]==1}是{else}否{/if}
+                            <label for="">债务人是否随时能寻找到</label>
+                            {if $DebtInfo[FindDebtor]==1}是{else}否{/if}
                         </div>
-                        债务人是否有还款能力:&nbsp;&nbsp;{if $DebtInfo[RepaymentDebtor]==1}是{else}否{/if}
+                        <label for="">债务人是否有还款能力:</label>
+                        {if $DebtInfo[RepaymentDebtor]==1}是{else}否{/if}
                     </div>
                     <div class="line">
                         <div class="l">
-                            借款原因:&nbsp;&nbsp;{if $DebtInfo[ReasonsBorrowing]} {$DebtInfo[ReasonsBorrowing]} {else} 无 {/if}
+                            <label for="">借款原因:</label>
+                            {if $DebtInfo[ReasonsBorrowing]} {$DebtInfo[ReasonsBorrowing]} {else} 无 {/if}
                         </div>
                     </div>
                     <div class="line">
                         <div class="l">
-                            债务近况:&nbsp;&nbsp;{if $DebtInfo[DebtRecent]} {$DebtInfo[DebtRecent]} {else} 无 {/if}
+                            <label for="">债务近况:</label>
+                            {if $DebtInfo[DebtRecent]} {$DebtInfo[DebtRecent]} {else} 无 {/if}
                         </div>
                     </div>
                     <div class="line-img" id="debt_imgs">
-                        <span>借款凭证:&nbsp;&nbsp;</span>
+                        <span>借款凭证:</span>
                         {if $DebtImage}
                         {loop $DebtImage $lists}
-                        <img src="{$lists[ImageUrl]}" alt="">
+                        <a class="grouped_elements" href="{$lists[ImageUrl]}" rel="group1"><img src="{$lists[ImageUrl]}" alt=""></a>
                         {/loop}
                         {else}
                         已隐藏
@@ -229,7 +248,8 @@
   <div class="next"><img src="/Uploads/Debt/imgs/right.png" alt=""></div>
 </script>
 {template Footer}
-<script src='{echo JsURL}/debt/lib/SuperSlide/jquery.SuperSlide.2.1.1.js'></script>
+<script src="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/jquery-1.4.3.min.js"></script>
+<script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
 <script src='{echo JsURL}/debt/debtDetails.js'></script>
 {if $UserInfo[UserID]==$_SESSION ['UserID']}
 <script src='{echo JsURL}/debt/personDebtDetails.js'></script>

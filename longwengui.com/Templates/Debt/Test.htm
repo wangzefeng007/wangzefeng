@@ -1,3 +1,158 @@
-test
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/debtTranPublish.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
+<link rel="stylesheet" type="text/css" href="/Js/wangEditor-2.1.23/dist/css/wangEditor.min.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="debt-tran-publish">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a>债权管理</a> &gt;<span class="cur">发布资产转让</span></span>
+        </div>
+        <div class="form-wrap">
+            <form id="myForm">
+                <div class="box">
+                    <div class="t">
+                        <img src="/Uploads/Debt/imgs/user.png" alt="">
+                        <span>资产转让基本信息</span>
+                    </div>
 
+                    <div class="c">
+                        <div class="blo">
 
+                            <div class="line">
+                                <div class="info">
+                                    转让金额 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" name="trans_money" class="has-unit" onblur="validateMoney(this)" placeholder="转让金额(*必填)"><span class="unit">元</span>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    资产种类 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" name="trans_type" placeholder="茶叶/汽车/房产...">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    有效日期 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" id='end_time' name="end_time" onchange="endTimeChange(this)" value="2017-05-05" placeholder="2016-06-06"><span id="left_time" class="ml-10"></span>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    售后电话 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" onblur="validateNeed(this)" class="inp-lg" name="sell_phone" placeholder="*请输入电话号码 1598***1598 / 0592-***0592">
+                                </div>
+                            </div>
+                            <div class="line mt-30">
+                                <div class="info">
+                                </div>
+                                <div class="details">
+                                    <div class="m-checkbox">
+                                        <label type="checkbox">
+                                            <input type="checkbox" name="" checked="">
+                                            <i></i>
+                                            需要购买者收件地址
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    运费:
+                                </div>
+                                <div class="details">
+                                    <input type="text" class="inp-lg" name="" placeholder="填写运费金额或包邮">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    发货时间:
+                                </div>
+                                <div class="details">
+                                    <div class="form-txt">48小时内发货</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="t">
+                        <img src="/Uploads/Debt/imgs/loan_icon.png" alt="">
+                        <span>资产转让介绍</span>
+                    </div>
+                    <div class="c">
+                        <div class="blo">
+                            <div class="line">
+                                <div class="info">
+                                    资产标题 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" class="inp-lg" name="" placeholder="填写文章标题（20个汉字以内）">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="editor-container" class="container">
+                    <div id="editor-trigger"><p>请输入内容</p></div>
+                    <!-- <textarea id="editor-trigger" style="display:none;">
+                        <p>请输入内容...</p>
+                    </textarea> -->
+                </div>
+
+                <div class="img-upload-wrap">
+                    <div class="uploaded-box" style="display: inline">
+                        <!--<div class="img-preview">
+                            <img src="/Uploads/Debt/imgs/banner02.jpg" alt="">
+                        </div>-->
+                    </div>
+                    <div class="add-img">
+                        <label>
+                            <img src="/Uploads/Debt/imgs/add_file.png" alt="">
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                        <br>
+                        <span>上传图片</span>
+                        <br>
+                        <span>(最多8张)</span>
+                    </div>
+                </div>
+
+                <div class="agree-protocal">
+                    <div class="m-checkbox">
+                        <label type="checkbox">
+                            <input type="checkbox" name="agreement" checked>
+                            <i></i>我已阅读并同意
+                        </label>
+                        <span class="protocal" onclick="openProtocalWindow()">《资产转让协议》</span>
+                    </div>
+                </div>
+
+                <div class="sub-btn">
+                    <input type="submit" id="publish" class="btn-pub" value="发布资产转让" name="button" />
+                </div>
+
+                <div class="arounce">
+                    <i class="icon-warning"></i>平台警告: 平台不承担任何线索担保, 请用户自己核实提供的信息是否属实!!!
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{template Footer}
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='/Js/wangEditor-2.1.23/dist/js/wangEditor.js'></script>
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/debtTranPublish.js'></script>
