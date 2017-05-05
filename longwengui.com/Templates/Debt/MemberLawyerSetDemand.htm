@@ -1,6 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/setDebtRateForLawer.css">
-<div class="set-debt">
+<div class="set-debt" data-id="{$ID}">
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
@@ -44,7 +44,7 @@
                                 <div class="det">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            {if $LawyerFeeDemand[Province]}<span data-id="{$CompanyDemand[Province]}">{$LawyerFeeDemand[province]}</span>{else}<span>*省份</span>{/if}
+                                            {if $LawyerFeeDemand[Province]}<span data-id="{$LawyerFeeDemand[Province]}">{$LawyerFeeDemand[province]}</span>{else}<span>*省份</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>

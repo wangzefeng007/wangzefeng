@@ -465,7 +465,7 @@ class Ajax
                             EchoResult($Result);exit;
                         }else{
                             $DB->query("ROLLBACK");//判断当执行失败时回滚
-                            $result_json = array('ResultCode'=>105,'Message'=>'非常抱歉，暂无找到相应的处置方！');
+                            $result_json = array('ResultCode'=>105,'Message'=>'无相应处置方，请通过普通债务发布债务！');
                             EchoResult($result_json);exit;
                         }
                     }elseif($Data['Type']==2){ //匹配催收公司
