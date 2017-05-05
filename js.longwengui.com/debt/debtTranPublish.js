@@ -151,7 +151,8 @@ editor.config.menus = [
 
 // onchange 事件
 editor.onchange = function () {
-    console.log(this.$txt.html());
+    //console.log(this.$txt.html());
+    $("#editor-trigger-val").val(this.$txt.html());
 };
 
 // 取消过滤js
@@ -183,27 +184,46 @@ editor.create();
 function validateForm(){
     var _trans_money = $("input[name='trans_money']").val();
     var _sell_phone = $("input[name='sell_phone']").val();
-    var _confirmPass = $("input[name='confirmPass']").val();
-    var _code = $("input[name='code']").val();
+    var _trans_type = $("input[name='trans_type']").val();
+    var _end_time = $("input[name='end_time']").val();
+    var _sell_phone = $("input[name='sell_phone']").val();
+    var _emsMoney = $("input[name='emsMoney']").val()||0;
+    var _transTitle = $("input[name='transTitle']").val();
     var agreement = $("input[name='agreement']")[0].checked;
-
     if(!agreement){
         showMsg('您还没有同意服务协议');
         return false;
     }
 
-    if(_trans_money == '' || _sell_phone == ''){
-        showMsg('请完善注册信息');
+    else if(_trans_money == '' || _trans_type=='' || _end_time=='' || _sell_phone == ''||_transTitle==''){
+        showMsg('请完善发布信息');
         return false;
+    }
+    else if($(".uploaded-box").find(".img-preview").length==0){
+        showMsg('请上传至少一张图片');
+        return false;
+    }
+    else{
+        return true;
     }
 }
 /*
 * 发布资产转让*/
 $(function(){
-	var $form=$("#myForm");
 	$("#publish").on("click",function(){
+        var paramObj={
+            _trans_money : $("input[name='trans_money']").val(),
+            _sell_phone : $("input[name='sell_phone']").val(),
+            _trans_type : $("input[name='trans_type']").val(),
+            _end_time : $("input[name='end_time']").val(),
+            _sell_phone : $("input[name='sell_phone']").val(),
+            _emsMoney : $("input[name='emsMoney']").val(),
+            _transTitle : $("input[name='transTitle']").val(),
+            transDetail:$("[name='transDetail']").val(),
+            agreement : $("input[name='agreement']")[0].checked
+        };
+         console.log(JSON.stringify(paramObj));
         var formData = validateForm();
-        console.log($form.serialize());
         if(!formData){
             return false;
         }
@@ -213,12 +233,12 @@ $(function(){
             dataType: "json",
 			data:{
                 "Intention":"Publish",
-                "AjaxJSON":$form.serialize(),
+                "AjaxJSON":JSON.stringify(paramObj)
 			},
             beforeSend:　function(){
                 showLoading();
-            },success:function(){
-
+            },success:function(data){
+                alert(data);
 			},complete: function(){
                 closeLoading();
             }
