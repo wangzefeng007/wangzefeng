@@ -48,7 +48,7 @@ class AjaxAsset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-           var_dump($AjaxData);exit;
+           var_dump($_POST['AjaxJSON']);exit;
         }
     }
 
