@@ -237,15 +237,19 @@ $(function(){
 			},
             beforeSend:　function(){
                 showLoading();
-            },success:function(data){
-                alert(data);
-			},complete: function(){
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    showMsg('操作成功');
+                    window.location.reload();
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
                 closeLoading();
             }
 		})
 	})
 })
-
 //个人证件照片上传裁剪方法
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
