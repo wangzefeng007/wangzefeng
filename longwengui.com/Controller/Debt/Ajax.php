@@ -24,6 +24,17 @@ class Ajax
         $this->$Intention ();
     }
     /**
+     * @desc  判断是否登录
+     */
+    private function IsLogin()
+    {
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
+    }
+    /**
      * @desc 债务催收信息
      */
     public function GetDebtList(){
@@ -233,13 +244,7 @@ class Ajax
      * @desc 催客、催收公司和律师接单申请
      */
     public function ApplyOrder(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请先登录',
-            );
-            EchoResult($json_result);exit;
-        }
+        $this->IsLogin();
         $Data['DebtID'] = trim($_POST['DebtId']);
         $Data['Money'] = trim($_POST['percent_money']);
         $Data['AdvantageInfo'] =trim($_POST['detail_info']);
@@ -304,13 +309,7 @@ class Ajax
      */
 
     public function FindTeam(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请先登录',
-            );
-            EchoResult($json_result);exit;
-        }
+        $this->IsLogin();
         $MemberFindDebtModule = new MemberFindDebtModule();
         $MemberFindCreditorsModule = new MemberFindCreditorsModule();
         $MemberFindDebtorsModule = new MemberFindDebtorsModule();
@@ -508,13 +507,7 @@ class Ajax
      * @desc 普通用户申请委托方受理（寻找处置方）
      */
     public function DisposeApply(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请先登录',
-            );
-            EchoResult($json_result);exit;
-        }
+        $this->IsLogin();
         $Data['UserID'] = $_POST['uid'];
         $Data['DebtID'] = $_POST['debtId'];
         $Data['Money'] = $_POST['money'];
@@ -548,13 +541,7 @@ class Ajax
      * @desc 发布债务
      */
     public function ReleaseDebt(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请先登录',
-            );
-            EchoResult($json_result);exit;
-        }
+        $this->IsLogin();
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
@@ -732,13 +719,7 @@ class Ajax
      * @desc 发布债务添加借款凭证
      */
     public function AddBorrowImage(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请先登录',
-            );
-            EchoResult($json_result);exit;
-        }
+        $this->IsLogin();
         $MemberDebtImageModule = new MemberDebtImageModule();
         //上传图片
         $ImgBaseData = $_POST['ImgBaseData'];
@@ -762,13 +743,7 @@ class Ajax
      * @desc 发布悬赏
      */
     public function ReleaseReward(){
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请先登录',
-            );
-            EchoResult($json_result);exit;
-        }
+        $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
         if ($UserInfo['IdentityState']!=3){

@@ -22,4 +22,34 @@ class AjaxAsset
         }
         $this->$Intention ();
     }
+    /**
+     * @desc  判断是否登录
+     */
+    private function IsLogin()
+    {
+        if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            EchoResult($result_json);
+            exit;
+        }
+    }
+    /**
+     * @desc 资产列表获取
+     */
+    public function Lists(){
+
+    }
+    /**
+     * @desc 发布资产
+     */
+    public function Publish(){
+        $this->IsLogin();
+        if ($_POST){
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+           var_dump($AjaxData);exit;
+        }
+    }
+
 }

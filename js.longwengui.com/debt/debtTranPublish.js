@@ -208,11 +208,11 @@ $(function(){
             return false;
         }
 		$.ajax({
-			type:"",
-			url:"",
+			type:"post",
+			url:"/ajaxasset/",
             dataType: "json",
 			data:{
-                "Intention":"",
+                "Intention":"Publish",
                 "AjaxJSON":$form.serialize(),
 			},
             beforeSend:　function(){

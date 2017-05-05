@@ -2,7 +2,7 @@
 /**
  * @desc  资产转让
  */
-class AssetDeal
+class Asset
 {
     public function __construct() {
 
@@ -19,6 +19,6 @@ class AssetDeal
      * @desc  发布资产转让
      */
     public function Publish(){
-        include template('AssetDealPublish');
+        include template('AssetPublish');
     }
 }
