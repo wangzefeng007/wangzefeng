@@ -39,7 +39,7 @@ function calcTime(obj,end_time){
 var editor = new wangEditor('editor-trigger');
 
 // 上传图片
-editor.config.uploadImgUrl = '/AjaxImage';
+editor.config.uploadImgUrl = '/ajaximage/';
 editor.config.uploadParams = {
     // token1: 'abcde',
     // token2: '12345'
@@ -266,8 +266,9 @@ function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/AjaxImage",
+        url: "/ajaximage/",
         data: {
+            "Intention":"AddImage",
             "ImgBaseData": ImgBaseData
         },
         beforeSend: function () {
