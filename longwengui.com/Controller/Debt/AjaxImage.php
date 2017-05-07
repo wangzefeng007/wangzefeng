@@ -15,7 +15,7 @@ class AjaxImage
         if ($Intention == '') {
             $targetDir = 'upload_tmp';
             $uploadDir = 'upload';
-            $cleanupTargetDir = true;
+            $cleanupTargetDir = true;var_dump($_REQUEST,$_POST,$_GET);exit;
             if (!file_exists($targetDir)) {
                 @mkdir($targetDir);
             }
