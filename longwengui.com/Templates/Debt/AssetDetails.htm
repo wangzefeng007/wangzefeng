@@ -1,0 +1,98 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/orderPay.css">
+<div class="order-pay">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a>债权转让</a> > <a href="/asset/lists/">资产转让</a> > <span class="cur">查看详情</span></span>
+        </div>
+        <div class="tip">
+            资产转让名称 : {$AssetInfo['Title']}
+        </div>
+        <div class="left-box">
+            <div class="address-tip">
+                <span class="c1">产品介绍：</span>
+            </div>
+            <div class="con">
+                {$AssetInfo['Content']}
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="publish-msg">
+                <p class="publish-er">
+                    发布人：{$UserInfo['RealName']}
+                </p>
+                <p class="publish-date">
+                    发布日期：{echo date("Y-m-d",$AssetInfo['AddTime'])}
+                </p>
+                <div class="publish-money clearfix">
+                    <div class="fl">
+                        <span>资产转让单价</span>
+                        <p><b class="c-red">{$AssetInfo['Price']}</b>元/份</p>
+                    </div>
+                    <div class="fl ml-25">
+                        <span>市场参考单价</span>
+                        <p><b class="">{$AssetInfo['MarketPrice']}</b>元/份</p>
+                    </div>
+                </div>
+            </div>
+            <div class="publish-msg mt-20">
+                <p class="publish-ems">
+                    配送方式：<i>EMS {$AssetInfo['Freight']}元</i>
+                </p>
+                <div class="publish-form">
+                    <div class="form-li clearfix">
+                        <label class="fl" for="">
+                            份数：
+                        </label>
+                        <div class="input-number fr">
+                            <div class="ra disabled">-</div><input type="text" name="num" value="1"><div class="ra">+</div>
+                        </div>
+                    </div>
+                    <div class="form-li clearfix">
+                        <label for="">
+                            合计金额：<b class="c-red">￥1010 元</b>
+                        </label>
+                        <div class="fr submit-btn">
+                            <button type="button" name="button">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="publish-msg mt-20">
+                <div class="publish-sale clearfix">
+                    <p class="fl">被购<span class="c-red">3213</span>元</p>
+                    <p class="fr">剩余<span class="c-rdd">67</span>份</p>
+                </div>
+                <div class="sale-list">
+                    <ul>
+                        <li class="clearfix">
+                            <p class="img">
+                                <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                            </p>
+                            <div class="con">
+                                上品武夷山大红袍，送礼好选择
+                            </div>
+                            <p class="sale-totle">
+                                购买 <b class="c-red">3</b> 份总共 <b class="c-red">3000</b> 元
+                            </p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="img">
+                                <img src="{echo CssURL}/debt/temp/pic-3.jpg" alt="">
+                            </p>
+                            <div class="con">
+                                海南、青海、宁夏、甘肃、补邮费差价发
+                                货，每10斤补邮费10元
+                            </div>
+                            <p class="sale-totle">
+                                购买 <b class="c-red">3</b> 份总共 <b class="c-red">3000</b> 元
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
