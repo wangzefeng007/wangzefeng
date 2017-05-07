@@ -183,8 +183,8 @@ editor.create();
 
 function validateForm(){
     var _trans_money = $("input[name='trans_money']").val();
-    _public_money : $("input[name='public_money']").val();
-    _trans_count : $("input[name='trans_count']").val();
+    var _public_money= $("input[name='public_money']").val();
+    var _trans_count= $("input[name='trans_count']").val();
     var _sell_phone = $("input[name='sell_phone']").val();
     var _trans_type = $("input[name='trans_type']").val();
     var _end_time = $("input[name='end_time']").val();
