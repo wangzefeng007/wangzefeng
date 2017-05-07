@@ -47,7 +47,7 @@ editor.config.uploadParams = {
 editor.config.uploadHeaders = {
     // 'Accept' : 'text/x-json'
 }
-// editor.config.uploadImgFileName = 'myFileName';
+ editor.config.uploadImgFileName = 'myFileName';
 
 // 隐藏网络图片
 // editor.config.hideLinkImg = true;
