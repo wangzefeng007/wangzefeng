@@ -1,3 +1,7 @@
+*{
+  padding:0;
+  margin:0;
+}
 .order-pay{
   width: 100%;
   background-color: #fff;
@@ -26,7 +30,11 @@
   border: 1px solid #e6e6e6;
 }
 .order-pay .left-box .con{
-
+  font-size: 14px;
+  line-height: 1.5;
+}
+.order-pay .left-box .con img{
+  margin:10px 0;
 }
 .order-pay .wrap .left-box .address-tip{
   line-height: 40px;
@@ -339,4 +347,122 @@
   border-radius: 5px;
   background-color: #35bdfc;
   border: 0;
+}
+
+.publish-msg{
+  border:solid 1px #e6e6e6;
+  padding:15px;
+}
+.publish-msg .publish-er{
+  font-size:14px;
+}
+.publish-msg .publish-date{
+  margin-top:10px;
+  font-size:14px;
+  color: #9a9a9a;
+}
+.publish-msg .publish-money{
+  margin-top:25px;
+  padding:16px 0;
+  border-top:dashed 1px #e5e5e5;
+  font-size:14px;
+  color: #9a9a9a;
+}
+.publish-msg .publish-money p{
+  margin-top:3px;
+}
+.publish-msg .publish-money b{
+  margin-right:6px;
+  font-size:18px;
+  font-weight: normal;
+}
+.publish-msg .publish-ems{
+  padding:5px 0;
+}
+.publish-form{
+  margin-top:20px;
+  padding-top:15px;
+  border-top:dashed 1px #e5e5e5;
+}
+.publish-form .form-li{
+  margin-bottom:25px;
+  height:30px;
+  line-height:30px;
+}
+.publish-form .form-li label{
+  font-size:14px;
+}
+.publish-form .form-li b{
+  font-size:16px;
+}
+.input-number .ra{
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background-color: #35bdfc;
+  display: inline-block;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+.input-number .disabled{
+  color: #666;
+  background-color: #e6e6e6;
+  cursor: default;
+}
+.input-number input{
+  width: 36px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  outline: 0;
+  border: 1px solid #e6e6e6;
+  color: #35bdfc;
+}
+
+.publish-form .submit-btn button{
+  min-width: 100px;
+  line-height: 30px;
+  border: 0;
+  background-color: #35bdfc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.publish-msg .publish-sale{
+  font-size:16px;
+}
+.sale-list{
+  margin-top:20px;
+}
+.sale-list li{
+  position: relative;
+  padding:25px 0;
+  border-top:dashed 1px #e5e5e5;
+}
+.sale-list li .img{
+  float: left;
+  width: 78px;
+  height:78px;
+  margin-right:10px;
+}
+.sale-list li .img img{
+  width: 100%;
+  height:100%;
+}
+.sale-list li .con{
+  width: 260px;
+  height:60px;
+  overflow: hidden;
+  float: left;
+  line-height:20px;
+  font-size:14px;
+  color: #9a9a9a;
+}
+.sale-list li .sale-totle{
+  position: absolute;
+  bottom:25px;
+  right:0;
+  font-size:14px;
 }
