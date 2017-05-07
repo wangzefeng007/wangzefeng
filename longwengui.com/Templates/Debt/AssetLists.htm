@@ -1,0 +1,83 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/creditor.css">
+
+<div class="wrap mt-40">
+    <div class="tab-panel">
+        <ul class="clearfix fl">
+            <li class="active">
+                <a href="javascrpt:;">资产转让</a>
+            </li>
+            <li>
+                <a href="javascrpt:;">股权转让</a>
+            </li>
+        </ul>
+        <div class="tab-panel-right">
+            <a href="#"><i class="icon-write"></i>发布资产</a>
+        </div>
+    </div>
+    <div class="query-box">
+        <ul id="selectTab" class="clearfix fl">
+            <li class="active" onclick="go('/asset/lists/')" data-sort="">
+               全部
+            </li>
+            <li data-sort="" onclick="go('/asset/lists/?S=1')">
+                最新
+            </li>
+            <li data-sort="" onclick="go('/asset/lists/?S=2')">
+                热卖
+            </li>
+            <li data-sort="" onclick="go('/asset/lists/?S=3')">
+                最后促销
+            </li>
+        </ul>
+        <div class="search-box fr">
+            <input class="inp" type="search" placeholder="请输入关键字搜索"/>
+            <i class="icon-search"></i>
+        </div>
+    </div>
+    <div class="result-list">
+        <ul class="clearfix">
+            <li>
+                <span class="btn-favo">
+                    收藏
+                </span>
+                <a href="#" title="">
+                    <div class="pic">
+                        <img src="{echo CssURL}/debt/temp/pic-1.jpg" alt="">
+                    </div>
+                    <div class="des">
+                        <div class="item-public">
+                            <p class="public-user">
+                                <img src="{echo CssURL}/debt/temp/photo-1.png" alt="">
+                            </p>
+                            发布人：王泽峰 <i class="icon-publicer"></i>
+                            <span class="public-date">7月24日</span>
+                        </div>
+                        <div class="item-msg clearfix">
+                            <p class="item-name ellipsis">上品武夷山大红袍</p>
+                            <p class="fr ellipsis">共 <span class="c-red">3646</span>份</p>
+                        </div>
+                        <div class="item-detail">
+                            <p class="title">商品详情</p>
+                            <div class="con">武夷山大红袍是武夷山最负盛名的茶，被誉为“茶中之王”，生长在九龙窠内的一座陡峭的岩壁上。</div>
+                        </div>
+                        <p class="item-money clearfix">
+                            <del class="fl">市价￥1200</del>
+                            <label class="fr"><span class="bold c-red">￥10011</span>/份</label>
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="pagination-wrap">
+            <div class="pagination fl-r" id="collection_page_pagination">
+                <a href="/debtlists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                {$ShowPage}
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/creditor.js'></script>
+</body>
+</html>
