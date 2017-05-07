@@ -39,7 +39,7 @@ function calcTime(obj,end_time){
 var editor = new wangEditor('editor-trigger');
 
 // 上传图片
-editor.config.uploadImgUrl = '/upload';
+editor.config.uploadImgUrl = '/AjaxImage';
 editor.config.uploadParams = {
     // token1: 'abcde',
     // token2: '12345'
