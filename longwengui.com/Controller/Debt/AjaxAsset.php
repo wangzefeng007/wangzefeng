@@ -48,7 +48,16 @@ class AjaxAsset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-           var_dump($_POST['AjaxJSON']);exit;
+        $Data['Content'] = addslashes($AjaxData['transDetail']);
+        $Data['Title'] = addslashes($AjaxData['_transTitle']);
+        $Data['Title'] = trim($AjaxData['_trans_money']);
+        $Data['AssetsAmount'] = trim($AjaxData['_trans_money']);
+        $Data['AfterPhone'] = trim($AjaxData['_sell_phone']);
+        $Data['Category'] = trim($AjaxData['_trans_type']);
+        $Data['Title'] = trim($AjaxData['_end_time']);
+  
+        var_dump($AjaxData,$Data);exit;
+        $Data['Content'] = addslashes(str_replace($Pattern, $Replacement, stripcslashes($Data['Content'])));
         }
     }
 
