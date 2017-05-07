@@ -743,8 +743,7 @@ a{
   width: 100%;
   line-height: 82px;
   height: 82px;
-  -moz-box-shadow: 0 0 2px #e6e6e6;
-  box-shadow: 0 0 2px #e6e6e6;
+  border:solid 1px #e6e6e6;
   background-color: #fff;
 }
 .header .wrap {
@@ -1732,7 +1731,7 @@ a{
 .placeholder {color: #999;}
 /*面包屑样式*/
 .current-loc {
-  /*padding-top: 26px;*/
+  padding-top: 26px;
   padding-bottom: 17px;
   line-height: 20px;
   font-size:16px;

@@ -1,0 +1,96 @@
+.order-pay .wrap .tip{
+  line-height: 40px;
+  color: #fff;
+  background-color: #35bdfc;
+  padding-left: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size:16px;
+}
+.flow-wrap{
+  margin-top:60px;
+  overflow: hidden;
+}
+.flow-box{
+  padding-left:30px;
+  padding-bottom:30px;
+}
+.flow-box .flow{
+  position: relative;
+  width:50px;
+  float: left;
+  margin-right:190px;
+}
+
+.flow-box .flow::after{
+  content: '';
+  position: absolute;
+  left: 53px;
+  top: 25px;
+  width: 184px;
+  height:0;
+  border-bottom:solid 2px #e6e6e6;
+}
+.flow-box .flow:last-child::after,
+.flow-box .flow.last::after{
+  display: none;
+}
+.flow-box .triangle{
+  position: absolute;
+  left: 50%;
+  bottom: -45px;
+  width: 0;
+  height: 0;
+  margin-left: -6px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 9px solid #35bdfc;
+}
+.flow-box .flow span{
+  display: block;
+  width: 50px;
+  height:50px;
+  font-size:24px;
+  color: #999;
+  background: #e6e6e6;
+  text-align: center;
+  line-height:50px;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  border-radius:50%;
+}
+.flow-box .flow p{
+  position: absolute;
+  left:-70px;
+  top:60px;
+  width:190px;
+  text-align: center;
+}
+.flow-box .flow.over span{
+  background: #35bdfc;
+  color: #fff;
+}
+.flow-box .flow.over p{
+  color: #666;
+}
+.flow-wrap .flow-tips{
+  margin-top:15px;
+  padding:20px 30px;
+  border:solid 1px #35bdfc;
+  background: #c2ebfe;
+}
+.flow-wrap .flow-tips .h3{
+  padding:6px 0;
+  font-weight:bold;
+  color: #333;
+}
+.flow-wrap .flow-tips .h4{
+  padding:6px 0;
+  color: #333;
+}
+.flow-wrap .flow-tips a{
+  color: #35bdfc;
+}
+.flow-wrap .flow-tips a:hover{
+  text-decoration: underline;
+}

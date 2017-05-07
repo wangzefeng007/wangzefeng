@@ -1,0 +1,35 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/order.css">
+<div class="order-pay">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      <span>当前位置 : <a>债权管理</a> > <a>订单管理</a> > <span class="cur">订单详情</span></span>
+    </div>
+    <div class="tip">
+      订单编号：201702280001
+    </div>
+    <div class="flow-wrap">
+      <div class="flow-box clearfix">
+        <div class="flow over">
+          <span>1</span>
+          <p>未付款</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow">
+          <span>2</span>
+          <p>已付款，转让手续办理中...</p>
+        </div>
+        <div class="flow last">
+          <span>3</span>
+          <p>订单完成</p>
+        </div>
+      </div>
+      <div class="flow-tips">
+        <p class="h3">当前订单状态：资产已拍下，请在3天内付款；若未及时付款，系统将自动取消订单</p>
+        <p class="h4">如果您不想购买，可以 <a href="#">取消订单</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
