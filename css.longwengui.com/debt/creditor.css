@@ -206,3 +206,6 @@ i{
 .result-list li .link-detail a:hover{
     text-decoration: underline;
 }
+.pagination-wrap{
+    margin-bottom:90px;
+}
