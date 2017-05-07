@@ -455,6 +455,17 @@ function validate(type, text){
       return false;
   }
 }
+function validateNumber(tar){
+    var _text = $(tar).val();
+    if(_text == ''){
+        showTip(tar, '请输入');
+        return;
+    }
+    if(!validate('+number', _text)){
+        showTip(tar, '请输入正确的正整数');
+        return;
+    }
+}
 
 //验证时间
 function validateDay(tar, isNeed){

@@ -183,6 +183,8 @@ editor.create();
 
 function validateForm(){
     var _trans_money = $("input[name='trans_money']").val();
+    _public_money : $("input[name='public_money']").val();
+    _trans_count : $("input[name='trans_count']").val();
     var _sell_phone = $("input[name='sell_phone']").val();
     var _trans_type = $("input[name='trans_type']").val();
     var _end_time = $("input[name='end_time']").val();
@@ -195,7 +197,7 @@ function validateForm(){
         return false;
     }
 
-    else if(_trans_money == '' || _trans_type=='' || _end_time=='' || _sell_phone == ''||_transTitle==''){
+    else if(_trans_money == ''|| _public_money=='' || _trans_count=='' || _trans_type=='' || _end_time=='' || _sell_phone == ''||_transTitle==''){
         showMsg('请完善发布信息');
         return false;
     }
@@ -213,6 +215,8 @@ $(function(){
 	$("#publish").on("click",function(){
         var paramObj={
             _trans_money : $("input[name='trans_money']").val(),
+            _public_money : $("input[name='public_money']").val(),
+            _trans_count : $("input[name='trans_count']").val(),
             _sell_phone : $("input[name='sell_phone']").val(),
             _trans_type : $("input[name='trans_type']").val(),
             _end_time : $("input[name='end_time']").val(),
@@ -220,7 +224,14 @@ $(function(){
             _emsMoney : $("input[name='emsMoney']").val(),
             _transTitle : $("input[name='transTitle']").val(),
             transDetail:$("[name='transDetail']").val(),
-            agreement : $("input[name='agreement']")[0].checked
+            agreement : $("input[name='agreement']")[0].checked,
+            imageList:function(){
+                var imgArr=[];
+                $(".uploaded-box .img-preview").each(function(){
+                    imgArr.push(this.children("img").attr("src"));
+                });
+                return imgArr;
+            }
         };
          console.log(JSON.stringify(paramObj));
         var formData = validateForm();
@@ -250,27 +261,27 @@ $(function(){
 		})
 	})
 })
-//个人证件照片上传裁剪方法
+//发布资产转让图片上传
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/loginajax.html",
+        url: "/AjaxImage",
         data: {
-            "Intention":"AddCardImage",
-            "ImgBaseData": ImgBaseData,
+            "ImgBaseData": ImgBaseData
         },
         beforeSend: function () {
             showLoading();
         },
         success: function(data) {
             if(data.ResultCode=='200'){
+                var imgLen=$(tar).parents(".img-upload-wrap").find(".uploaded-box").find("img-preview").length;
+                if(imgLen==8){
+                    $(tar).parents(".img-upload-wrap").find(".add-img").hide();
+                }
                 $(tar).parents(".img-upload-wrap").find(".uploaded-box").append('<div class="img-preview">\
                     <img src="' + data.url + '" alt="">\
                     </div>')
-                /*$(tar).parent().siblings('.i-wrap').html(
-                    "<img src='" + data.url + "' alt=''>"
-                );*/
                 setTimeout(function(){
                     layer.close(index);
                 }, 200);

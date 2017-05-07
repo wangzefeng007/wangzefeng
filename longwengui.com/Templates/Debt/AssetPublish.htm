@@ -25,7 +25,23 @@
                                     转让金额 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="trans_money" class="has-unit" onblur="validateMoney(this)" placeholder="转让金额(*必填)"><span class="unit">元</span>
+                                    <input type="text" name="trans_money" class="has-unit" onblur="validateMoney(this)" placeholder="请输入您的转让金额"><span class="unit">元</span>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    份额数量 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" name="trans_count" class="has-unit" onblur="validateNumber(this)" placeholder="请输入您的份额数量"><span class="unit">份</span>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="info">
+                                    市场价格 :
+                                </div>
+                                <div class="details">
+                                    <input type="text" name="public_money" class="has-unit" onblur="validateMoney(this)" placeholder="请输入您的市场价格"><span class="unit">元</span>
                                 </div>
                             </div>
                             <div class="line">
@@ -97,7 +113,7 @@
                                     资产标题 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" class="inp-lg" name="transTitle" placeholder="填写文章标题（20个汉字以内）">
+                                    <input type="text" class="inp-lg" name="transTitle" maxlength="20" placeholder="填写文章标题（20个汉字以内）">
                                 </div>
                             </div>
                         </div>
@@ -121,11 +137,11 @@
                         <label>
                             <img src="/Uploads/Debt/imgs/add_file.png" alt="">
                             <input type="file" onchange="imageUpload(this)" name="transImg" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                            <br>
+                            <span>上传图片</span>
+                            <br>
+                            <span>(最多8张)</span>
                         </label>
-                        <br>
-                        <span>上传图片</span>
-                        <br>
-                        <span>(最多8张)</span>
                     </div>
                 </div>
 
@@ -140,7 +156,7 @@
                 </div>
 
                 <div class="sub-btn">
-                    <input type="button" id="publish" class="btn-pub" value="发布资产转让" name="button" />
+                    <input type="submit" id="publish" class="btn-pub" value="发布资产转让" name="button" />
                 </div>
 
                 <div class="arounce">
