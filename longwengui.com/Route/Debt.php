@@ -10,6 +10,10 @@ $RouteArr=array(
     //线索悬赏
     'reword@index'=>'Reword@Index',
     'reword@publish'=>'Reword@RewordPublish',
+    //资产转让
+    'asset@publish'=>'Asset@Publish',
+    'asset@lists'=>'Asset@Lists',
+    'asset@details'=>'Asset@Details',
     //寻找处置方
     'find@choicefind'=>'Find@ChoiceFind',
     'find@team'=>'Find@Team',

@@ -16,8 +16,16 @@ class Asset
         $MemberUserInfoModule = new MemberUserInfoModule();
         $Title ='隆文贵债务处置-资产转让';
         $Nav='index';
+        $S = intval($_GET['S']);
+        if ($S ==1){
+            $MysqlWhere = ' and `Status` = 2 and `S1` =1 ';
+        }elseif($S ==2){
+            $MysqlWhere = ' and `Status` = 2 and `S1` =2 ';
+        }else{
+            $MysqlWhere = ' and `Status` = 2 ';
+        }
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and `Status` = 2 order by AddTime desc';
+        $MysqlWhere .= ' order by AddTime desc';
         //关键字
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
@@ -25,7 +33,7 @@ class Asset
             $Page = 1;
         }
         if ($Rscount['Num']) {
-            $PageSize=1;
+            $PageSize=9;
             $Data = array();
             $Data['RecordCount'] = $Rscount['Num'];
             $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
@@ -53,5 +61,11 @@ class Asset
      */
     public function Publish(){
         include template('AssetPublish');
+    }
+    /**
+     * @desc  资产转让详情页
+     */
+    public function Details(){
+        include template('AssetDetails');
     }
 }
