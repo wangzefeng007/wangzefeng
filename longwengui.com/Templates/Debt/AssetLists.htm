@@ -37,37 +37,39 @@
     </div>
     <div class="result-list">
         <ul class="clearfix">
+            {loop $Data['Data'] $lists}
             <li>
                 <span class="btn-favo">
                     收藏
                 </span>
                 <a href="#" title="">
                     <div class="pic">
-                        <img src="{echo CssURL}/debt/temp/pic-1.jpg" alt="">
+                        <img src="{$lists['ImageUrl']}" alt="">
                     </div>
                     <div class="des">
                         <div class="item-public">
                             <p class="public-user">
-                                <img src="{echo CssURL}/debt/temp/photo-1.png" alt="">
+                                <img src="{$lists['Avatar']}" alt="">
                             </p>
-                            发布人：王泽峰 <i class="icon-publicer"></i>
+                            发布人：{$lists['RealName']} <i class="icon-publicer"></i>
                             <span class="public-date">7月24日</span>
                         </div>
                         <div class="item-msg clearfix">
-                            <p class="item-name ellipsis">上品武夷山大红袍</p>
-                            <p class="fr ellipsis">共 <span class="c-red">3646</span>份</p>
+                            <p class="item-name ellipsis">{$lists['Title']}</p>
+                            <p class="fr ellipsis">共 <span class="c-red">{$lists['Inventory']}</span>份</p>
                         </div>
                         <div class="item-detail">
                             <p class="title">商品详情</p>
-                            <div class="con">武夷山大红袍是武夷山最负盛名的茶，被誉为“茶中之王”，生长在九龙窠内的一座陡峭的岩壁上。</div>
+                            <div class="con">{$lists['Content']}</div>
                         </div>
                         <p class="item-money clearfix">
-                            <del class="fl">市价￥1200</del>
-                            <label class="fr"><span class="bold c-red">￥10011</span>/份</label>
+                            <del class="fl">市价￥{$lists['MarketPrice']}</del>
+                            <label class="fr"><span class="bold c-red">￥{$lists['Price']}</span>/份</label>
                         </p>
                     </div>
                 </a>
             </li>
+            {/loop}
         </ul>
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="collection_page_pagination">

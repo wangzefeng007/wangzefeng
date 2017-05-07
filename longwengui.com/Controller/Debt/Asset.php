@@ -40,6 +40,8 @@ class Asset
                 $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
                 $Data['Data'][$key]['RealName'] = $UserInfo['RealName'];
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
+                $Data['Data'][$key]['AddTime'] = date('m'.'月'.'d'.'日',$value['AddTime']);
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
