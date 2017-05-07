@@ -17,16 +17,14 @@
     </div>
     <div class="query-box">
         <ul id="selectTab" class="clearfix fl">
-            <li class="active" onclick="go('/asset/lists/')" data-sort="">
-               全部
-            </li>
-            <li data-sort="" onclick="go('/asset/lists/?S=1')">
+
+            <li {if $S ==''}class="active"{/if} data-sort="" onclick="go('/asset/lists/')">
                 最新
             </li>
-            <li data-sort="" onclick="go('/asset/lists/?S=2')">
+            <li {if $S ==1}class="active"{/if} data-sort="" onclick="go('/asset/lists/?S=1')">
                 热卖
             </li>
-            <li data-sort="" onclick="go('/asset/lists/?S=3')">
+            <li {if $S ==2}class="active"{/if} data-sort="" onclick="go('/asset/lists/?S=2')">
                 最后促销
             </li>
         </ul>
@@ -42,17 +40,17 @@
                 <span class="btn-favo">
                     收藏
                 </span>
-                <a href="#" title="">
+                <a href="/assetdetails/{$lists['AssetID']}.html" title="{$lists['Title']}" target="_blank">
                     <div class="pic">
-                        <img src="{$lists['ImageUrl']}" alt="">
+                        <img src="{$lists['ImageUrl']}" alt="{$lists['Title']}">
                     </div>
                     <div class="des">
                         <div class="item-public">
                             <p class="public-user">
-                                <img src="{$lists['Avatar']}" alt="">
+                                <img src="{$lists['Avatar']}">
                             </p>
                             发布人：{$lists['RealName']} <i class="icon-publicer"></i>
-                            <span class="public-date">7月24日</span>
+                            <span class="public-date">{$lists['AddTime']}</span>
                         </div>
                         <div class="item-msg clearfix">
                             <p class="item-name ellipsis">{$lists['Title']}</p>
@@ -71,12 +69,14 @@
             </li>
             {/loop}
         </ul>
+        {if $ShowPage}
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="collection_page_pagination">
-                <a href="/debtlists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                <a href="/asset/lists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
                 {$ShowPage}
             </div>
         </div>
+        {/if}
     </div>
 </div>
 {template Footer}
