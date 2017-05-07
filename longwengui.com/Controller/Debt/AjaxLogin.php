@@ -327,7 +327,7 @@ class AjaxLogin
     }
 
     /**
-     * @desc 添加证件图片
+     * @desc 添加图片
      */
     public function AddCardImage(){
         //上传图片
