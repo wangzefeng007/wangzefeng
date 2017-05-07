@@ -66,6 +66,13 @@ class Asset
      * @desc  资产转让详情页
      */
     public function Details(){
+        $ID = $_GET['ID'];
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         include template('AssetDetails');
     }
 }
