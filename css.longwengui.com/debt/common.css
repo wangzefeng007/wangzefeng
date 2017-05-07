@@ -7,6 +7,16 @@
  */
 /* Document
    ========================================================================== */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header,  menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+body {
+  color: #666;
+  font-size: 14px;
+  font-family: "\5FAE\8F6F\96C5\9ED1","Helvetica Neue", Helvetica, STHeiTi,Arial,sans-serif;
+}
 html {
   font-family: sans-serif;
   /* 1 */
@@ -751,6 +761,7 @@ a{
   cursor: pointer;
   list-style: none;
   float: left;
+  font-size:16px;
   margin-right: 40px;
   color: #666666;
 }
@@ -791,6 +802,7 @@ a{
 }
 .footer .wrap .content h2{
   font-weight: 400;
+  font-size:18px;
 }
 .footer .wrap .content .c img {
   float: left;
@@ -1723,6 +1735,7 @@ a{
   /*padding-top: 26px;*/
   padding-bottom: 17px;
   line-height: 20px;
+  font-size:16px;
 }
 .current-loc img {
   vertical-align: middle;
