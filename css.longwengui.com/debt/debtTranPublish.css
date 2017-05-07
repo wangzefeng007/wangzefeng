@@ -1,8 +1,3 @@
-*{
-  padding:0;
-  margin:0;
-}
-
 .icon-tri_arrow_down_b {
   background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
   background-position: -141px -107px;
@@ -104,6 +99,7 @@
   background-color: #eaf8ff;
   line-height: 50px;
   padding: 0 18px;
+  font-size:16px;
 }
 .debt-tran-publish .wrap .form-wrap .box .t img {
   vertical-align: middle;
@@ -142,6 +138,7 @@
   height: 30px;
   line-height: 30px;
   float: left;
+  font-size:16px;
 }
 .debt-tran-publish .wrap .form-wrap .box .c .blo .line .m-dropdown {
   display: inline-block;
@@ -192,7 +189,6 @@
 .line .details .form-txt{
   line-height: 30px;
   color: #b2b2b2;
-  font-size:14px;
 }
 .debt-tran-publish .wrap .form-wrap .box .c .blo .line .details textarea {
   width: 848px;
@@ -336,6 +332,7 @@
   color: #fff;
   cursor: pointer;
   margin-right: 12px;
+  font-size:16px;
 }
 .debt-tran-publish .wrap .form-wrap .sub-btn .btn-reset {
   min-width: 126px;
