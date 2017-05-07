@@ -8,20 +8,19 @@ class AjaxImage
     public function __construct()
     {
     }
-
+    //上传图片
     public function Index()
     {
-        $Intention = trim($_POST ['Intention']);
-        if ($Intention == '') {
-            $json_result = array(
-                'ResultCode' => 500,
-                'Message' => '系統錯誤',
-                'Url' => ''
-            );
-            EchoResult($json_result);
-            exit;
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $ImageUrl = SendToImgServ($ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        if ($Data['ImageUrl'] !==''){
+            $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
         }
-        $this->$Intention ();
+        EchoResult($result_json);
+        exit;
     }
 
 }
