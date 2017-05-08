@@ -86,9 +86,14 @@ class AjaxAsset
      * @desc 订单确认
      */
     public function ConfirmOrder(){
+        $this->IsLogin();
+        if ($_POST) {
+            $MemberAssetInfoModule = new MemberAssetInfoModule();
+            $MemberProductOrderModule = new MemberProductOrderModule();
 
 
-        EchoResult($result_json);
-        exit;
+            EchoResult($result_json);
+            exit;
+        }
     }
 }
