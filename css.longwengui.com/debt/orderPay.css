@@ -21,10 +21,10 @@
   font-size:16px;
 }
 .order-pay .wrap .left-box{
+  float: left;
   width: 730px;
-  padding: 0 20px;
-  height: 800px;
-  display: inline-block;
+  padding: 0 20px 20px;
+/*  height: 800px;*/
   border: 1px solid #e6e6e6;
 }
 .order-pay .left-box .con{

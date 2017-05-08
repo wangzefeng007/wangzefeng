@@ -1,7 +1,7 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/orderPay.css">
 <div class="order-pay">
-    <div class="wrap">
+    <div class="wrap clearfix">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
             <span>当前位置 : <a>债权转让</a> > <a href="/asset/lists/">资产转让</a> > <span class="cur">查看详情</span></span>
@@ -46,7 +46,7 @@
                             份数：
                         </label>
                         <div class="input-number fr">
-                            <div class="ra disabled">-</div><input type="text" name="num" value="1"><div class="ra">+</div>
+                            <div class="ra disabled" onclick="pageObj.numberInp(this,'-')">-</div><input type="text" name="num" value="1"><div onclick="pageObj.numberInp(this,'+')" class="ra">+</div>
                         </div>
                     </div>
                     <div class="form-li clearfix">
@@ -54,7 +54,7 @@
                             合计金额：<b class="c-red">￥1010 元</b>
                         </label>
                         <div class="fr submit-btn">
-                            <button type="button" name="button" >立即购买</button>
+                            <button id="Js_buy" type="button" name="button" data-id="{$AssetInfo[AssetID]}">立即购买</button>
                         </div>
                     </div>
                 </div>
@@ -96,3 +96,8 @@
     </div>
 </div>
 {template Footer}
+<script>
+
+
+</script>
+<script src='{echo JsURL}/debt/order.js'></script>
