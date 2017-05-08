@@ -125,8 +125,6 @@ var pageObj=$.extend({},pageObj,{
             return false;
         }
         var paramObj=this.addressInputs();
-        console.log(JSON.stringify(paramObj));
-        return false;
         $.ajax({
             type:"post",
             url:"/ajaxasset/",
@@ -163,31 +161,4 @@ var pageObj=$.extend({},pageObj,{
 });
 pageObj.init();
 
-$("#Js_order").on('click',function () {
-    var Num = GetQueryString("num");
-    var ID = GetQueryString("id");
-    var ajaxData = {
-        'ProductID':ID, //产品ID
-        'Number':Num, //购买数量
-        'Money':$("#Js_order").attr("data-money") //订单总金额
-    }
-    $.ajax({
-        type:"post",
-        url:"/ajaxasset/",
-        dataType: "json",
-        data: {
-            "Intention":"ConfirmOrder",
-            "AjaxData":ajaxData
-        },
-        success: function (data) {	//函数回调
-            if(data.ResultCode == '200'){
-                var Url = data.Url;
-                window.location.href = Url;
-            }else if(data.ResultCode == '100'){
-                $.toast(data.Message);
-            }else{
-                $.toast(data.Message);
-            }
-        }
-    })
-})
+
