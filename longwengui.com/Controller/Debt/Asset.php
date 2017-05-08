@@ -17,12 +17,16 @@ class Asset
         $Title ='隆文贵债务处置-资产转让';
         $Nav='transfer';
         $S = intval($_GET['S']);
+        $Keywords = trim($_GET['K']);
         if ($S ==1){
             $MysqlWhere = ' and `Status` = 2 and `S1` =1 ';
         }elseif($S ==2){
             $MysqlWhere = ' and `Status` = 2 and `S1` =2 ';
         }else{
             $MysqlWhere = ' and `Status` = 2 ';
+        }
+        if ($Keywords!=''){
+            $MysqlWhere .= ' and Title like \'%' . $Keywords . '%\'';
         }
         //分页查询开始-------------------------------------------------
         $MysqlWhere .= ' order by AddTime desc';

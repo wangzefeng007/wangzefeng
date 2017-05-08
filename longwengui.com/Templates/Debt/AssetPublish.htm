@@ -49,7 +49,7 @@
                                     资产种类 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="trans_type" placeholder="茶叶/汽车/房产...">
+                                    <input type="text" name="trans_type" onblur="validateNeed(this)" placeholder="茶叶/汽车/房产...">
                                 </div>
                             </div>
                             <div class="line">
@@ -57,7 +57,7 @@
                                     有效日期 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" id='end_time' name="end_time" onchange="endTimeChange(this)" value="{echo date('Y-m-d',$EndTime)}" placeholder="2016-06-06"><span id="left_time" class="ml-10"></span>
+                                    <input type="text" id='end_time' name="end_time" onchange="endTimeChange(this)" value="{echo date('Y-m-d',$EndTime)}" placeholder="2016-06-06"><span id="left_time" class="ml-10">还有<span class="c-b">30</span>天</span>
                                 </div>
                             </div>
                             <div class="line">
@@ -65,7 +65,7 @@
                                     售后电话 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" onblur="validateNeed(this)" class="inp-lg" name="sell_phone" placeholder="*请输入电话号码 1598***1598 / 0592-***0592">
+                                    <input type="text" onblur="validatePhone(this,true)" class="inp-lg" name="sell_phone" placeholder="*请输入电话号码 1598***1598 / 0592-***0592">
                                 </div>
                             </div>
                             <!--<div class="line mt-30">
@@ -105,7 +105,7 @@
                                     资产标题 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" class="inp-lg" name="transTitle" maxlength="20" placeholder="填写文章标题（20个汉字以内）">
+                                    <input type="text" class="inp-lg" name="transTitle" onblur="validateNeed(this)" maxlength="20"  placeholder="填写文章标题（20个汉字以内）">
                                 </div>
                             </div>
                         </div>

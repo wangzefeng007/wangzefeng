@@ -181,7 +181,7 @@ editor.create();
 /**表单验证
  */
 
-function validateForm(){
+function validatePublishForm(){
     var _trans_money = $("input[name='trans_money']").val();
     var _public_money= $("input[name='public_money']").val();
     var _trans_count= $("input[name='trans_count']").val();
@@ -228,13 +228,13 @@ $(function(){
             imageList:function(){
                 var imgArr=[];
                 $(".uploaded-box .img-preview").each(function(){
-                    imgArr.push(this.children("img").attr("src"));
+                    imgArr.push($(this).children("img").attr("src"));
                 });
                 return imgArr;
-            }
+            }()
         };
-         console.log(JSON.stringify(paramObj));
-        var formData = validateForm();
+         //console.log(JSON.stringify(paramObj));
+        var formData = validatePublishForm();
         if(!formData){
             return false;
         }
@@ -250,8 +250,12 @@ $(function(){
                 showLoading();
             },success: function(data){
                 if(data.ResultCode == 200){
-                    showMsg('操作成功');
-                    window.location.reload();
+                    showMsg(data.Message);
+                    //路由跳转
+                    setTimeout(function() {
+                        window.location = data.Url;
+                    }, 10);
+
                 }else{
                     showMsg(data.Message);
                 }
@@ -276,8 +280,8 @@ function imagesInput(tar, ImgBaseData, index) {
         },
         success: function(data) {
             if(data.ResultCode=='200'){
-                var imgLen=$(tar).parents(".img-upload-wrap").find(".uploaded-box").find("img-preview").length;
-                if(imgLen==8){
+                var imgLen=$(tar).parents(".img-upload-wrap").find(".uploaded-box").find(".img-preview").length;
+                if(imgLen==7){
                     $(tar).parents(".img-upload-wrap").find(".add-img").hide();
                 }
                 $(tar).parents(".img-upload-wrap").find(".uploaded-box").append('<div class="img-preview">\

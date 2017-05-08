@@ -60,11 +60,23 @@ class AjaxAsset
         $Data['UserID'] =  $_SESSION['UserID'];
         $Data['AddTime'] = time();
         $Data['Status'] =1;
-        $InsertInfo = $MemberAssetInfoModule->InsertInfo($Data);
-            if ($InsertInfo){
-                $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','url'=>'');
+        $AssetID = $MemberAssetInfoModule->InsertInfo($Data);
+            if ($AssetID){
+                foreach ($AjaxData['imageList'] as $key =>$value){
+                    if ($key==0){
+                        $IsDefault =1;
+                    }else{
+                        $IsDefault =0;
+                    }
+                  $InsertImage = $MemberAssetImageModule->InsertInfo(array('AssetID'=>$AssetID,'ImageUrl'=>$value,'IsDefault'=>$IsDefault));
+                }
+                if (!$InsertImage){
+                    $result_json = array('ResultCode'=>102,'Message'=>'图片上传失败！');
+                }else{
+                    $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','url'=>'');
+                }
             }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'发布失败！');
+                $result_json = array('ResultCode'=>103,'Message'=>'发布失败！');
             }
             EchoResult($result_json);
             exit;

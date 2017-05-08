@@ -29,8 +29,10 @@
             </li>
         </ul>
         <div class="search-box fr">
-            <input class="inp" type="search" placeholder="请输入关键字搜索"/>
-            <i class="icon-search"></i>
+            <form href="/asset/lists/" method="get">
+            <input class="inp" type="search" name="K" placeholder="请输入关键字搜索" value="{$Keywords}"/>
+                <button class="btn btn-info"><i class="icon-search"></i></button>
+            </form>
         </div>
     </div>
     <div class="result-list">
