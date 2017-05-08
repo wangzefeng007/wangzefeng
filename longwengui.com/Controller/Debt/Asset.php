@@ -82,4 +82,14 @@ class Asset
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         include template('AssetDetails');
     }
+    /**
+     * @desc  资产转让订单填写提交页
+     */
+    public function Order(){
+        $Nav='transfer';
+        $ID = $_GET['ID'];
+        $Num = $_GET['Num'];
+        include template('AssetOrder');
+    }
+
 }
