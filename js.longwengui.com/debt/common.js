@@ -1587,3 +1587,4 @@ function openProtocalWindow(){
         layer.close(index);
     });
 }
+
