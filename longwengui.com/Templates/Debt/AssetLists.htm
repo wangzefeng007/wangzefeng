@@ -49,7 +49,7 @@
                             <p class="public-user">
                                 <img src="{$lists['Avatar']}">
                             </p>
-                            发布人：{$lists['RealName']} <i class="icon-publicer"></i>
+                            发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if} <i class="icon-publicer"></i>
                             <span class="public-date">{$lists['AddTime']}</span>
                         </div>
                         <div class="item-msg clearfix">

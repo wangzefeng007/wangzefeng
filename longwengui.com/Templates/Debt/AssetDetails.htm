@@ -11,7 +11,7 @@
         </div>
         <div class="left-box">
             <div class="address-tip">
-                <span class="c1">产品介绍：</span>
+                <span class="c1">资产介绍：</span>
             </div>
             <div class="con">
                 {$AssetInfo['Content']}
@@ -20,7 +20,7 @@
         <div class="right-box">
             <div class="publish-msg">
                 <p class="publish-er">
-                    发布人：{$UserInfo['RealName']}
+                    发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if}
                 </p>
                 <p class="publish-date">
                     发布日期：{echo date("Y-m-d",$AssetInfo['AddTime'])}
