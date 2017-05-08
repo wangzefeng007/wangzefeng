@@ -13,8 +13,14 @@ var pageObj=$.extend({},pageObj,{
     },
     numberInp:function(tar,type){
         var $inp=$(tar).parent(".input-number").find("input[name='num']"),
-            inpVal=$inp.val();
+            inpVal=$inp.val(),
+            totalCount=$("#totalCount").text();
         if(type=="+"){
+            /*if(inpVal>totalCount){
+                showMsg("库存不足");
+                $inp.val(totalCount);
+                return;
+            }*/
             inpVal++;
         }else if(type=="-"){
             if(inpVal==1){
@@ -24,11 +30,30 @@ var pageObj=$.extend({},pageObj,{
             }
         }
         $inp.val(inpVal);
+        this.calcMoney($inp);
     },
     buyFun:function(obj){
         var goodsId=$(obj).attr("data-id");
         var buy_count=$("input[name='num']").val();
-        go("/asset/order?id="+goodsId+"&num="+buy_count);
+        if(buy_count==''){
+            showMsg("请输入份数");
+            return;
+        }else{
+            go("/asset/order?id="+goodsId+"&num="+buy_count);
+        }
     },
+    calcMoney:function(tar){
+        var totalCount=$("#totalCount").text();
+        validateNumber(tar);
+        var price=$("#price").text();
+        var num=$(tar).val();
+        if(parseInt(num)>parseInt(totalCount)){
+            showMsg("库存不足");
+            $(tar).val(totalCount);
+            num=totalCount;
+        }
+        var totalMoney=(price*num).toFixed(2);
+        $("#totalMoney").text("￥ "+totalMoney+" 元");
+    }
 });
 pageObj.init();

@@ -68,10 +68,14 @@
   color: #35bdfc;
   cursor: pointer;
 }
-.order-pay .wrap .left-box .address-box img{
+.order-pay .wrap .left-box .address-box .using-img{
   position: absolute;
   top: 0;
   right: 0;
+  display: none;
+}
+.order-pay .wrap .left-box .address-box.active .using-img{
+  display: block;
 }
 .order-pay .wrap .left-box .add-adress{
   font-size: 14px;

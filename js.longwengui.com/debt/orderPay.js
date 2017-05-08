@@ -1,98 +1,155 @@
-$(function(){
-  $('#add_address').click(function(){
-    var index = layer.open({
-      type: 1,
-      title: 0,
-      area: '700px',
-      closeBtn: 0,
-      shadeClose: true,
-      content:  '<div class="order-pay-address">'
-                + '<div class="line">'
-                +    '<div class="left">'
-                +      '<span class="a-t">新增收货地址</span>'
-                +    '</div>'
-                +    '<div class="right lh-30">'
-                +      '<span class="form-need">*</span>均为必须项'
-                +    '</div>'
-                +  '</div>'
-                +  '<div class="line">'
-                +    '<div class="left">'
-                +      '所在区域<span class="form-need">*</span>'
-                +    '</div>'
-                +    '<div class="right">'
-                +      '<div class="p-dropdown mr-10">'
-                +          '<label type="checkbox">'
-                +              '<span>*省</span>'
-                +              '<i></i>'
-                +              '<input type="checkbox" name="dd_province" value="">'
-                +              '<ul></ul>'
-                +          '</label>'
-                +      '</div>'
-                +      '<div class="c-dropdown mr-10">'
-                +          '<label type="checkbox">'
-                +              '<span>*市</span>'
-                +              '<i></i>'
-                +              '<input type="checkbox" name="dd_city" value="">'
-                +              '<ul></ul>'
-                +          '</label>'
-                +      '</div>'
-                +      '<div class="a-dropdown mr-10">'
-                +          '<label type="checkbox">'
-                +              '<span>*县</span>'
-                +              '<i></i>'
-                +              '<input type="checkbox" name="dd_area" value="">'
-                +              '<ul></ul>'
-                +          '</label>'
-                +      '</div>'
-                +    '</div>'
-                +  '</div>'
-                +  '<div class="line">'
-                +    '<div class="left">'
-                +      '详细地址<span class="form-need">*</span>'
-                +    '</div>'
-                +    '<div class="right">'
-                +      '<textarea name="name" placeholder="建议您如实填写详细收货地址, 例如街道名称、门牌号码、楼层和房间号等信息" rows="5" cols="66"></textarea>'
-                +    '</div>'
-                +  '</div>'
-                +  '<div class="line">'
-                +    '<div class="left">'
-                +      '收货人姓名<span class="form-need">*</span>'
-                +    '</div>'
-                +    '<div class="right">'
-                +      '<input type="text" name="name" maxlength="12"  placeholder="不超过12个字" value="">'
-                +    '</div>'
-                +  '</div>'
-                +  '<div class="line">'
-                +    '<div class="left">'
-                +      '手机号码 <span class="form-need">*</span>'
-                +    '</div>'
-                +    '<div class="right">'
-                +      '<input type="text" name="phone" placeholder="电话号码、手机号码必须填一项" value="">'
-                +    '</div>'
-                +  '</div>'
-                +  '<div class="line">'
-                +    '<div class="left">&nbsp;</div>'
-                +    '<div class="right">'
-                +      '<div class="m-checkbox">'
-                +          '<label type="checkbox">'
-                +              '<input type="checkbox" name="agreement"  checked>'
-                +              '<i></i>'
-                +              '设置为默认地址'
-                +          '</label>'
-                +      '</div>'
-                +    '</div>'
-                +  '</div>'
-                +  '<div class="line">'
-                +    '<div class="left">&nbsp;</div>'
-                +    '<div class="right">'
-                +      '<button type="button" id="save" name="button">保存</button>'
-                +    '</div>'
-                +  '</div>'
-                + '</div>'
-      });
-      //保存新增地址
-      $('#save').click(function(){
+var pageObj=$.extend({},pageObj,{
 
-      });
-  });
+    addressInputs:{
+        dd_province:$("input[name='dd_province']"),
+        dd_city:$("input[name='dd_city']"),
+        dd_area:$("input[name='dd_area']"),
+        detail_area:$("input[name='detail_area']"),
+        to_name:$("input[name='to_name']"),
+        to_phone:$("input[name='to_phone']"),
+        is_default:$("input[name='is_default']")
+    },
+    /**
+     * 新增地址
+     */
+    addAddress:function(){
+        var index = layer.open({
+            type: 1,
+            title: 0,
+            area: '700px',
+            closeBtn: 0,
+            shadeClose: true,
+            content:  '<div class="order-pay-address">'
+            + '<div class="line">'
+            +    '<div class="left">'
+            +      '<span class="a-t">新增收货地址</span>'
+            +    '</div>'
+            +    '<div class="right lh-30">'
+            +      '<span class="form-need">*</span>均为必须项'
+            +    '</div>'
+            +  '</div>'
+            +  '<div class="line">'
+            +    '<div class="left">'
+            +      '所在区域<span class="form-need">*</span>'
+            +    '</div>'
+            +    '<div class="right">'
+            +      '<div class="p-dropdown mr-10">'
+            +          '<label type="checkbox">'
+            +              '<span>*省</span>'
+            +              '<i></i>'
+            +              '<input type="checkbox" name="dd_province" value="">'
+            +              '<ul></ul>'
+            +          '</label>'
+            +      '</div>'
+            +      '<div class="c-dropdown mr-10">'
+            +          '<label type="checkbox">'
+            +              '<span>*市</span>'
+            +              '<i></i>'
+            +              '<input type="checkbox" name="dd_city" value="">'
+            +              '<ul></ul>'
+            +          '</label>'
+            +      '</div>'
+            +      '<div class="a-dropdown mr-10">'
+            +          '<label type="checkbox">'
+            +              '<span>*县</span>'
+            +              '<i></i>'
+            +              '<input type="checkbox" name="dd_area" value="">'
+            +              '<ul></ul>'
+            +          '</label>'
+            +      '</div>'
+            +    '</div>'
+            +  '</div>'
+            +  '<div class="line">'
+            +    '<div class="left">'
+            +      '详细地址<span class="form-need">*</span>'
+            +    '</div>'
+            +    '<div class="right">'
+            +      '<textarea name="detail_area" placeholder="建议您如实填写详细收货地址, 例如街道名称、门牌号码、楼层和房间号等信息" rows="5" cols="66"></textarea>'
+            +    '</div>'
+            +  '</div>'
+            +  '<div class="line">'
+            +    '<div class="left">'
+            +      '收货人姓名<span class="form-need">*</span>'
+            +    '</div>'
+            +    '<div class="right">'
+            +      '<input type="text" name="to_name" maxlength="12"  placeholder="不超过12个字" value="">'
+            +    '</div>'
+            +  '</div>'
+            +  '<div class="line">'
+            +    '<div class="left">'
+            +      '手机号码 <span class="form-need">*</span>'
+            +    '</div>'
+            +    '<div class="right">'
+            +      '<input type="text" name="to_phone" onblur="validateNumber(this)" placeholder="电话号码、手机号码必须填一项" value="">'
+            +    '</div>'
+            +  '</div>'
+            +  '<div class="line">'
+            +    '<div class="left">&nbsp;</div>'
+            +    '<div class="right">'
+            +      '<div class="m-checkbox">'
+            +          '<label type="checkbox">'
+            +              '<input type="checkbox" name="is_default"  checked>'
+            +              '<i></i>'
+            +              '设置为默认地址'
+            +          '</label>'
+            +      '</div>'
+            +    '</div>'
+            +  '</div>'
+            +  '<div class="line">'
+            +    '<div class="left">&nbsp;</div>'
+            +    '<div class="right">'
+            +      '<button type="button" id="saveAddress" onclick="pageObj.saveAddress()" name="button">保存</button>'
+            +    '</div>'
+            +  '</div>'
+            + '</div>'
+        });
+        getProvinceData();
+    },
+    validateForm:function(){
+
+    },
+    saveAddress:function(){
+        var paramObj={
+            dd_province:$("input[name='dd_province']"),
+            dd_city:$("input[name='dd_city']"),
+            dd_area:$("input[name='dd_area']"),
+            detail_area:$("input[name='detail_area']"),
+            to_name:$("input[name='to_name']"),
+            to_phone:$("input[name='to_phone']"),
+            is_default:$("input[name='is_default']")
+        };
+        $.ajax({
+            type:"post",
+            url:"/ajaxasset/",
+            dataType: "json",
+            data:{
+                "Intention":"",
+                "AjaxJSON":JSON.stringify(paramObj)
+            },
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    showMsg(data.Message);
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        })
+    },
+    init:function(){
+        var _this=this;
+        $("#add_address").on("click",function(){
+            _this.addAddress();
+        });
+        /**
+         * 默认地址切换
+         */
+        $(".address-box").on("click",function(){
+            $(this).addClass("active").siblings(".address-box").removeClass("active");
+        });
+    }
 });
+pageObj.init();

@@ -14,8 +14,6 @@ var pageObj=$.extend({},pageObj,{
      * 进入页面初始化方法*/
     init:function(){
         var _this=this;
-        _this.getList();  //执行查询列表
-
         /*
          排序方式切换
          * */
@@ -23,24 +21,23 @@ var pageObj=$.extend({},pageObj,{
             var sort=$(this).attr("data-sort");
             $(this).addClass("active").siblings().removeClass("active");
             _this.queryParam.Sort=sort;
-            _this.getList();
         });
 
         /*
          * 搜索按钮
          * */
-        $("#searchBtn").on("click",function(){
+        /*$("#searchBtn").on("click",function(){
             var $inp=$("#keyword");
             _this.queryParam.Keyword=$inp.val();
             _this.getList();
-        });
+        });*/
         /*按下enter键搜索*/
-        $("#searchBtn").on("keyup",function(e){
+        /*$("#searchBtn").on("keyup",function(e){
             if(e.keyCode==13){
                 _this.queryParam.Keyword=$inp.val();
                 _this.getList();
             }
-        });
+        });*/
     },
     /*
      * 查询列表*/
@@ -84,14 +81,39 @@ var pageObj=$.extend({},pageObj,{
             }
         })
     },
+    favoFun:function(tar){
+        var paramObj={
+            assetId:$(tar).attr("data-id")
+        };
+        $.ajax({
+            type:"post",
+            url:"/ajaxasset/",
+            dataType: "json",
+            data:{
+                "Intention":"",
+                "AjaxJSON":JSON.stringify(paramObj)
+            },
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    showMsg(data.Message);
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        })
+    }
     /*
      模板渲染数据并插入页面
      * */
-    dataSuccess:function(data){
+    /*dataSuccess:function(data){
         $('#result_info').empty();
         var _arr = [];
         _arr.push(data);
         $('#resultListTemp').tmpl(_arr).appendTo('#result_info ul');
-    }
+    }*/
 });
 pageObj.init();

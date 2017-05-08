@@ -31,7 +31,7 @@
         <div class="search-box fr">
             <form href="/asset/lists/" method="get">
             <input class="inp" type="search" name="K" placeholder="请输入关键字搜索" value="{$Keywords}"/>
-                <button class="btn btn-info"><i class="icon-search"></i></button>
+                <button class="btn"><i class="icon-search"></i></button>
             </form>
         </div>
     </div>
@@ -39,7 +39,7 @@
         <ul class="clearfix">
             {loop $Data['Data'] $lists}
             <li>
-                <span class="btn-favo">
+                <span class="btn-favo" onclick="pageObj.favoFun(this)" data-id="{$lists['AssetID']}">
                     收藏
                 </span>
                 <a href="/assetdetails/{$lists['AssetID']}.html" title="{$lists['Title']}" target="_blank">

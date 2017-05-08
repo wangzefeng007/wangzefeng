@@ -20,7 +20,7 @@
         <div class="right-box">
             <div class="publish-msg">
                 <p class="publish-er">
-                    发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if}
+                    发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if} <span class="fr">剩余 <b id="totalCount" class="c-red">10</b> 份 </span>
                 </p>
                 <p class="publish-date">
                     发布日期：{echo date("Y-m-d",$AssetInfo['AddTime'])}
@@ -28,7 +28,7 @@
                 <div class="publish-money clearfix">
                     <div class="fl">
                         <span>资产转让单价</span>
-                        <p><b class="c-red">{$AssetInfo['Price']}</b>元/份</p>
+                        <p><b class="c-red" id="price" >{$AssetInfo['Price']}</b>元/份</p>
                     </div>
                     <div class="fl ml-25">
                         <span>市场参考单价</span>
@@ -46,12 +46,12 @@
                             份数：
                         </label>
                         <div class="input-number fr">
-                            <div class="ra disabled" onclick="pageObj.numberInp(this,'-')">-</div><input type="text" name="num" value="1"><div onclick="pageObj.numberInp(this,'+')" class="ra">+</div>
+                            <div class="ra disabled" onclick="pageObj.numberInp(this,'-')">-</div><input type="text" onchange="pageObj.calcMoney(this)" name="num" value="1"><div onclick="pageObj.numberInp(this,'+')" class="ra">+</div>
                         </div>
                     </div>
                     <div class="form-li clearfix">
                         <label for="">
-                            合计金额：<b class="c-red">￥1010 元</b>
+                            合计金额：<b id="totalMoney" class="c-red">￥{$AssetInfo['Price']} 元</b>
                         </label>
                         <div class="fr submit-btn">
                             <button id="Js_buy" type="button" name="button" data-id="{$AssetInfo[AssetID]}">立即购买</button>
