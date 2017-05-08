@@ -86,9 +86,14 @@ class Asset
      * @desc  资产转让订单填写提交页
      */
     public function Order(){
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
         $Nav='transfer';
         $ID = $_GET['ID'];
         $Num = $_GET['Num'];
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         include template('AssetOrder');
     }
 
