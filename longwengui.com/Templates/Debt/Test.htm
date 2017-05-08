@@ -1,33 +1,196 @@
 {template Header}
-<link rel="stylesheet" href="{echo CssURL}/debt/order.css">
-<div class="order-pay">
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>债权管理</a> > <a>订单管理</a> > <span class="cur">订单详情</span></span>
+            当前位置 > 个人中心 > <span>我的债权</span>
         </div>
-        <div class="tip">
-            订单编号：201702280001
-        </div>
-        <div class="flow-wrap">
-            <div class="flow-box clearfix">
-                <div class="flow over">
-                    <span>1</span>
-                    <p>未付款</p>
-                    <i class="triangle"></i>
+        <div class="menu-cont-wrap">
+            <div class="menu-bar">
+                <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+                <div class="nick-name">
+                    昵称
                 </div>
-                <div class="flow">
-                    <span>2</span>
-                    <p>已付款，转让手续办理中...</p>
+                <button type="button" name="button">已认证</button>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+                    个人信息
                 </div>
-                <div class="flow last">
-                    <span>3</span>
-                    <p>订单完成</p>
+                <div class="menu-level-1  menu-level-1-act" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    债权管理
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">我的债权</div>
+                        <div class="menu-level-2">我的负债</div>
+                        <div class="menu-level-2 menu-level-2-act">订单管理</div>
+                        <div class="menu-level-2">浏览过的债务</div>
+                    </div>
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    关注
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">我关注的债务</div>
+                        <div class="menu-level-2">提前关注</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    范本下载
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    代理
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">申请代理</div>
+                        <div class="menu-level-2">已代理区域</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    推荐人/我的推荐人
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    催客权益
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">申请的债权</div>
+                        <div class="menu-level-2">浏览过的债权</div>
+                        <div class="menu-level-2">寻找同城催客</div>
+                        <div class="menu-level-2">联盟催客</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    系统信息
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+                    投诉建议
                 </div>
             </div>
-            <div class="flow-tips">
-                <p class="h3">当前订单状态：资产已拍下，请在3天内付款；若未及时付款，系统将自动取消订单</p>
-                <p class="h4">如果您不想购买，可以 <a href="#">取消订单</a></p>
+            <div class="menu-cont">
+                <div class="tab-hd">
+                    <div class="tb">
+                        管理订单列表
+                    </div>
+                </div>
+
+                <div class="info-cont">
+                    <dl class="cont-select">
+                        <dt>订单状态:</dt>
+                        <dd class="cont-select-act">全部</dd>
+                        <dd>未付款</dd>
+                        <dd>已付款</dd>
+                        <dd>待收货</dd>
+                        <dd>待发货</dd>
+                        <dd>已退款</dd>
+                        <div class="order-rec">
+                            <img src="/Uploads/Debt/imgs/trash.png" alt="">订单回收站
+                        </div>
+                    </dl>
+                    <div class="order-manage">
+                        <div class="order-tl">
+                            <div class="t1">
+                                资产
+                            </div>
+                            <div class="t2">
+                                份额单价
+                            </div>
+                            <div class="t3">
+                                份数
+                            </div>
+                            <div class="t4">
+                                实付款
+                            </div>
+                            <div class="t5">
+                                交易状态
+                            </div>
+                            <div class="t6">
+                                操作
+                            </div>
+                        </div>
+                        <div class="order-bd">
+                            <div class="order-num">
+                                2017-04-20 订单号: 1203454153213
+                            </div>
+                            <div class="order-info">
+                                <div class="t1 info">
+                                    <div class="img-wrap">
+                                        <img src="/Uploads/Debt/imgs/img1.png" alt="">
+                                    </div>
+                                    <div class="item-info">
+                                        <h3 class="text-elipse">上品武夷山大红袍</h3>
+                                        <p class="text-elipse">大红袍，产于福建武夷山，属乌龙茶，品质优异。中国特种名茶</p>
+                                    </div>
+                                </div>
+                                <div class="t2 mt-40 lh-24">
+                                    <span class="text-del"><span class="c-r">市场</span> ￥1200</span>
+                                    <br>
+                                    <span><span class="c-r">成交</span> ￥1200</span>
+                                </div>
+                                <div class="t3 mt-54 lh-24">
+                                    2
+                                </div>
+                                <div class="t4 mt-40 lh-24">
+                                    <span class="c-666">￥2010</span>
+                                    <br>
+                                    <span>( 含EMS运费 )</span>
+                                </div>
+                                <div class="t5 mt-54 lh-24">
+                                    等待买家付款
+                                </div>
+                                <div class="t6 mt-38 lh-30">
+                                    <button type="button" name="pay">立即付款</button>
+                                    <br>
+                                    <span class="cancel-order">取消订单</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-bd">
+                            <div class="order-num over-time">
+                                2017-04-20 订单号: 1203454153213
+                            </div>
+                            <div class="order-info">
+                                <div class="t1 info">
+                                    <div class="img-wrap">
+                                        <img src="/Uploads/Debt/imgs/img1.png" alt="">
+                                    </div>
+                                    <div class="item-info">
+                                        <h3 class="text-elipse">上品武夷山大红袍</h3>
+                                        <p class="text-elipse">大红袍，产于福建武夷山，属乌龙茶，品质优异。中国特种名茶</p>
+                                    </div>
+                                </div>
+                                <div class="t2 mt-40 lh-24">
+                                    <span class="text-del"><span class="c-r">市场</span> ￥12002222222</span>
+                                    <br>
+                                    <span><span class="c-r">成交</span> ￥1200</span>
+                                </div>
+                                <div class="t3 mt-54 lh-24">
+                                    2
+                                </div>
+                                <div class="t4 mt-40 lh-24">
+                                    <span class="c-666">￥2010</span>
+                                    <br>
+                                    <span>( 含EMS运费 )</span>
+                                </div>
+                                <div class="t5 mt-54 lh-24">
+                                    交易关闭
+                                </div>
+                                <div class="t6 mt-45 lh-24">
+                                    <img src="/Uploads/Debt/imgs/trash_big.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
