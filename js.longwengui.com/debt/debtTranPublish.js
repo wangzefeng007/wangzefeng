@@ -228,12 +228,12 @@ $(function(){
             imageList:function(){
                 var imgArr=[];
                 $(".uploaded-box .img-preview").each(function(){
-                    imgArr.push(this.children("img").attr("src"));
+                    imgArr.push($(this).children("img").attr("src"));
                 });
                 return imgArr;
-            }
+            }()
         };
-         console.log(JSON.stringify(paramObj));
+         //console.log(JSON.stringify(paramObj));
         var formData = validateForm();
         if(!formData){
             return false;
@@ -276,8 +276,8 @@ function imagesInput(tar, ImgBaseData, index) {
         },
         success: function(data) {
             if(data.ResultCode=='200'){
-                var imgLen=$(tar).parents(".img-upload-wrap").find(".uploaded-box").find("img-preview").length;
-                if(imgLen==8){
+                var imgLen=$(tar).parents(".img-upload-wrap").find(".uploaded-box").find(".img-preview").length;
+                if(imgLen==7){
                     $(tar).parents(".img-upload-wrap").find(".add-img").hide();
                 }
                 $(tar).parents(".img-upload-wrap").find(".uploaded-box").append('<div class="img-preview">\

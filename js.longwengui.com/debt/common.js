@@ -455,6 +455,10 @@ function validate(type, text){
       return false;
   }
 }
+/**
+ * 验证正整数
+ * @param tar
+ */
 function validateNumber(tar){
     var _text = $(tar).val();
     if(_text == ''){
@@ -463,6 +467,7 @@ function validateNumber(tar){
     }
     if(!validate('+number', _text)){
         showTip(tar, '请输入正确的正整数');
+        $(tar).val('');
         return;
     }
 }
@@ -556,6 +561,7 @@ function validatePhone(tar, isNeed){
   }
   if(!validate('phone', _text)){
     showTip(tar, '请输入有效号码');
+    $(tar).val("");
     return;
   }
 }
