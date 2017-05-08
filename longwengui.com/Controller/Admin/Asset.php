@@ -2,7 +2,7 @@
 /**
  *@desc  资产转让管理
  */
-class AssetTransfer
+class Asset
 {
 
     public function __construct()
@@ -16,16 +16,16 @@ class AssetTransfer
     public function Add()
     {
         alertandback('待开发');exit;
-        include template('AssetTransferAdd');
+        include template('AssetAdd');
     }
 
     /**
      * @desc  资产转让列表
      */
-    public function AssetTransferLists()
+    public function Lists()
     {
         alertandback('待开发');exit;
-        include template('AssetTransferLists');
+        include template('AssetLists');
     }
 
     /**

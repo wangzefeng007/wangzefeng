@@ -15,7 +15,7 @@ class Asset
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $Title ='隆文贵债务处置-资产转让';
-        $Nav='index';
+        $Nav='transfer';
         $S = intval($_GET['S']);
         if ($S ==1){
             $MysqlWhere = ' and `Status` = 2 and `S1` =1 ';
@@ -60,12 +60,15 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
+        $Nav='transfer';
+        $EndTime = time()+ 2592000;
         include template('AssetPublish');
     }
     /**
      * @desc  资产转让详情页
      */
     public function Details(){
+        $Nav='transfer';
         $ID = $_GET['ID'];
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();

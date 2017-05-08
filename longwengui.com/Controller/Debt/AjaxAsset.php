@@ -48,16 +48,26 @@ class AjaxAsset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        $Data['Content'] = addslashes($AjaxData['transDetail']);
-        $Data['Title'] = addslashes($AjaxData['_transTitle']);
-        $Data['Title'] = trim($AjaxData['_trans_money']);
-        $Data['AssetsAmount'] = trim($AjaxData['_trans_money']);
-        $Data['AfterPhone'] = trim($AjaxData['_sell_phone']);
-        $Data['Category'] = trim($AjaxData['_trans_type']);
-        $Data['Title'] = trim($AjaxData['_end_time']);
-  
-        var_dump($AjaxData,$Data);exit;
-        $Data['Content'] = addslashes(str_replace($Pattern, $Replacement, stripcslashes($Data['Content'])));
+        $Data['Content'] = addslashes($AjaxData['transDetail']);//内容
+        $Data['Title'] = addslashes($AjaxData['_transTitle']);//标题
+        $Data['Price'] = trim($AjaxData['_trans_money']);//单价
+        $Data['MarketPrice'] = trim($AjaxData['_public_money']);//市场单价
+        $Data['Freight'] = trim($AjaxData['_emsMoney']);//运费
+        $Data['Inventory'] = trim($AjaxData['_trans_count']);//库存量
+        $Data['AfterPhone'] = trim($AjaxData['_sell_phone']);//售后电话
+        $Data['Category'] = trim($AjaxData['_trans_type']);//产品类型
+        $Data['ExpirationDate'] = strtotime($AjaxData['_end_time']);//截止时间
+        $Data['UserID'] =  $_SESSION['UserID'];
+        $Data['AddTime'] = time();
+        $Data['Status'] =1;
+        $InsertInfo = $MemberAssetInfoModule->InsertInfo($Data);
+            if ($InsertInfo){
+                $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','url'=>'');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'发布失败！');
+            }
+            EchoResult($result_json);
+            exit;
         }
     }
 
