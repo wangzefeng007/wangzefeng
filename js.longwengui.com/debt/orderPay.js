@@ -174,7 +174,6 @@ console.log(ajaxData);return
         type:"post",
         url:"/ajaxasset/",
         dataType: "json",
-
         data: {
             "Intention":"ConfirmOrder",
             "AjaxData":ajaxData

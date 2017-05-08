@@ -82,5 +82,13 @@ class AjaxAsset
             exit;
         }
     }
+    /**
+     * @desc 订单确认
+     */
+    public function ConfirmOrder(){
 
+
+        EchoResult($result_json);
+        exit;
+    }
 }
