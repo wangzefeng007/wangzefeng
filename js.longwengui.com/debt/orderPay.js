@@ -171,12 +171,6 @@ $("#Js_order").on('click',function () {
         'Number':Num, //购买数量
         'Money':$("#Js_order").attr("data-money") //订单总金额
     }
-console.log(ajaxData);return
-    if($(".last").val() == ''){
-        $.toast('请填写完整的旅客信息');
-        return
-    }
-
     $.ajax({
         type:"post",
         url:"/ajaxasset/",
@@ -184,11 +178,6 @@ console.log(ajaxData);return
         data: {
             "Intention":"ConfirmOrder",
             "AjaxData":ajaxData
-        },
-        beforeSend: function () { //加载过程效果
-            // $("#paybtn").text('提交中...');
-            // $("#paybtn").addClass('course');
-            // $("#paybtn").attr('id','');
         },
         success: function (data) {	//函数回调
             if(data.ResultCode == '200'){
