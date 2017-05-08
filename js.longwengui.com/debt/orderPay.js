@@ -109,6 +109,26 @@ var pageObj=$.extend({},pageObj,{
         });
         getProvinceData();
     },
+    /**
+     * 修改地址
+     */
+    editAddress:function(){
+        var addressObj={
+            to_name:"fanfan",
+            to_phone:"1245646789"
+        };
+        $.tmpl("")
+        var index = layer.open({
+            type: 1,
+            title: 0,
+            area: '700px',
+            closeBtn: 0,
+            shadeClose: true,
+            content: '<div id="editAddressWrap"></div>'
+        });
+        //$('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressWrap");
+        //getProvinceData();
+    },
     validateForm:function(){
         var addressInputs=this.addressInputs();
         if(addressInputs.dd_province == ''|| addressInputs.dd_city=='' || addressInputs.dd_area=='' ||

@@ -52,6 +52,7 @@ i{
     height: 33px;
     vertical-align: top;
     background: transparent;
+    outline:none;
 }
 .query-box .search-box .icon-search{
     width:20px;

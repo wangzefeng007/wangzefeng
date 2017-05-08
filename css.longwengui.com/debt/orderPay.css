@@ -64,9 +64,16 @@
 .order-pay .wrap .left-box .address-box p{
   margin: 8px 0;
 }
+.address-box .address-detail{
+  height:26px;
+  overflow: hidden;
+}
 .order-pay .wrap .left-box .address-box span{
   color: #35bdfc;
   cursor: pointer;
+}
+.order-pay .wrap .left-box .address-box span:hover{
+  text-decoration: underline;
 }
 .order-pay .wrap .left-box .address-box .using-img{
   position: absolute;

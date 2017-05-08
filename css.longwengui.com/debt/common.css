@@ -1526,6 +1526,7 @@ a{
   display: block;
 }
 .sel-debt-way-pop .btn{
+  display: block;
   text-align: center;
   margin-top: 40px;
   margin-bottom: 26px;
@@ -1580,6 +1581,7 @@ a{
   margin-top: -4px;
 }
 .warn-hint .btn{
+  display: block;
   text-align: center;
 }
 .warn-hint .btn button{
@@ -1871,13 +1873,13 @@ button.btn {
   color: #333;
   text-decoration: none;
 }
-.btn:active,
+/*.btn:active,
 .btn.active {
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-}
+}*/
 .btn.disabled,
 .btn[disabled]{
   pointer-events: none;
@@ -1998,4 +2000,7 @@ button.btn {
   color: #fff;
   background-color: #ac2925;
   border-color: #761c19;
+}
+i{
+
 }
