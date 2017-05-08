@@ -54,7 +54,7 @@
                             合计金额：<b id="totalMoney" class="c-red">￥{$AssetInfo['Price']} 元</b>
                         </label>
                         <div class="fr submit-btn">
-                            <button id="Js_buy" type="button" name="button" data-id="{$AssetInfo[AssetID]}">立即购买</button>
+                            <button id="Js_buy" type="button" name="button" data-userid="{$_SESSION[UserID]}" data-id="{$AssetInfo[AssetID]}">立即购买</button>
                         </div>
                     </div>
                 </div>

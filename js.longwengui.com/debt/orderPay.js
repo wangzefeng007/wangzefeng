@@ -1,3 +1,5 @@
+
+
 var pageObj=$.extend({},pageObj,{
 
     addressInputs:function(){
@@ -160,3 +162,44 @@ var pageObj=$.extend({},pageObj,{
     }
 });
 pageObj.init();
+
+$("#Js_order").on('click',function () {
+    var Num = GetQueryString("num");
+    var ID = GetQueryString("id");
+    var ajaxData = {
+        'ProductID':ID, //产品ID
+        'Number':Num, //购买数量
+        'Money':$("#Js_order").attr("data-money") //订单总金额
+    }
+console.log(ajaxData);return
+    if($(".last").val() == ''){
+        $.toast('请填写完整的旅客信息');
+        return
+    }
+
+    $.ajax({
+        type:"post",
+        url:"/ajaxasset/",
+        dataType: "json",
+
+        data: {
+            "Intention":"ConfirmOrder",
+            "AjaxData":ajaxData
+        },
+        beforeSend: function () { //加载过程效果
+            // $("#paybtn").text('提交中...');
+            // $("#paybtn").addClass('course');
+            // $("#paybtn").attr('id','');
+        },
+        success: function (data) {	//函数回调
+            if(data.ResultCode == '200'){
+                var Url = data.Url;
+                window.location.href = Url;
+            }else if(data.ResultCode == '100'){
+                $.toast(data.Message);
+            }else{
+                $.toast(data.Message);
+            }
+        }
+    })
+})

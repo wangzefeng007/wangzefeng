@@ -33,14 +33,20 @@ var pageObj=$.extend({},pageObj,{
         this.calcMoney($inp);
     },
     buyFun:function(obj){
-        var goodsId=$(obj).attr("data-id");
-        var buy_count=$("input[name='num']").val();
-        if(buy_count==''){
-            showMsg("请输入份数");
-            return;
-        }else{
-            go("/asset/order?id="+goodsId+"&num="+buy_count);
+        var goodsId = $(obj).attr("data-id");
+        var userid = $(obj).attr("data-userid");
+        if(userid !==''){
+            var buy_count=$("input[name='num']").val();
+            if(buy_count==''){
+                showMsg("请输入份数");
+                return;
+            }else{
+                go("/asset/order?id="+goodsId+"&num="+buy_count);
+            }
+        }else {
+            toLogin();
         }
+
     },
     calcMoney:function(tar){
         var totalCount=$("#totalCount").text();

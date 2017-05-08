@@ -1206,12 +1206,11 @@ function selDebtWayPop(){
 }
 
 //获取url参数
-function getQueryString(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
-  var r = window.location.search.substr(1).match(reg);
-  if (r!=null) return (r[2]); return null;
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var result = window.location.search.substr(1).match(reg);
+    return result ? decodeURIComponent(result[2]) : null;
 }
-
 //个人中心弹窗，提示是否删除
 function toDelete(text, id, intention){
   var index = layer.open({
