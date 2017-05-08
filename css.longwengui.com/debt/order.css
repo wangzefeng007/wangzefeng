@@ -1,3 +1,6 @@
+i{
+  display: inline-block;
+}
 .order-pay .wrap .tip{
   line-height: 40px;
   color: #fff;
@@ -25,15 +28,18 @@
 .flow-box .flow::after{
   content: '';
   position: absolute;
-  left: 53px;
+  left: -187px;
   top: 25px;
   width: 184px;
   height:0;
   border-bottom:solid 2px #e6e6e6;
 }
-.flow-box .flow:last-child::after,
-.flow-box .flow.last::after{
+.flow-box .flow:first-child::after,
+.flow-box .flow.first::after{
   display: none;
+}
+.flow-box .flow.over::after{
+  border-bottom:solid 2px #35bdfc;
 }
 .flow-box .triangle{
   position: absolute;
@@ -45,6 +51,10 @@
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-bottom: 9px solid #35bdfc;
+  display: none;
+}
+.flow-box .curr .triangle{
+  display: block;
 }
 .flow-box .flow span{
   display: block;
@@ -93,4 +103,225 @@
 }
 .flow-wrap .flow-tips a:hover{
   text-decoration: underline;
+}
+.flow-wrap .flow-tips a.btn-link{
+  padding:3px 5px;
+  background: #35bdfc;
+  color: #fff;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  cursor: pointer;
+}
+.flow-wrap .flow-tips a.btn-link:hover{
+  text-decoration: none;
+}
+.tab-wrap{
+  position: relative;
+  margin-top:70px;
+}
+.tab-wrap .tab-title{
+  position: absolute;
+  left:30px;
+  top:-30px;
+  height: 30px;
+  line-height: 30px;
+  padding:0 30px;
+  border:solid 1px #35bdfc;
+  border-bottom:0;
+  background: #fff;
+  color: #353535;
+  font-weight: bold;
+}
+.tab-wrap .tab-con{
+  margin-bottom:150px;
+  padding:15px 30px 80px;
+  border:solid 1px #35bdfc;
+}
+.tab-wrap .hr{
+  height: 0;
+  border-bottom:dashed 1px #ccc;
+  margin:20px 0;
+}
+.tab-wrap .section-wrap .section-title{
+  width:90px;
+  float: left;
+  font-weight:bold;
+  color: #353535;
+}
+.tab-wrap .section-wrap .section-con{
+  width:1000px;
+  float: left;
+  color: #353535;
+}
+.tab-wrap .section-wrap a{
+  color: #35bdfc;
+}
+.tab-wrap .section-wrap a:hover{
+  text-decoration: underline;
+}
+
+.tab-wrap .section-con p{
+  margin-top:15px;
+}
+
+.order-table{
+  width:100%;
+  display: table;
+  border:solid 1px #c2ebfe;
+}
+.order-table .table-th{
+  height: 36px;
+  line-height:36px;
+  color: #9a9a9a;
+}
+.order-table .table-tr{
+  display: table-row;
+}
+.order-table .table-tr .td{
+  display: table-cell;
+  padding:15px;
+  vertical-align: middle;
+  text-align: center;
+}
+.order-table .table-th .td{
+  text-align: center;
+  border-bottom:solid 1px #c2ebfe;
+  padding: 0 ;
+}
+.goods-td{
+  text-align: left;
+}
+.goods-td .img{
+  float: left;
+  width:80px;
+  height:80px;
+  overflow: hidden;
+}
+.goods-td .img img{
+  width:100%;
+  height:100%;
+}
+.goods-td .con{
+  width:200px;
+  margin-left:10px;
+  float: left;
+  text-align: left;
+}
+.goods-td .con .title{
+  font-size:16px;
+  color: #646464;
+}
+.goods-td .con .des{
+  height: 54px;
+  overflow: hidden;
+  margin-top:10px;
+  color: #999;
+  line-height:18px;
+}
+.money-td {
+  color: #999;
+}
+.ems{
+  margin-top:10px;
+  font-size:12px;
+  color: #999;
+}
+.tab-wrap .total{
+  height: 40px;
+  line-height:40px;
+  margin-top:40px;
+  text-align: right;
+}
+.tab-wrap .total span{
+  font-size:18px;
+  color: #9a9a9a;
+}
+.tab-wrap .total b{
+  font-size:30px;
+  font-weight: normal;
+}
+.tab-wrap .total .btn{
+  margin-left:80px;
+  margin-top:-10px;
+}
+.pay-wrap{
+  padding:20px 0 40px 20px;
+}
+.pay-con .pay-list{
+  width:240px;
+  float: left;
+}
+.pay-con .pay-list li{
+  margin-bottom:20px;
+  border:solid 1px #e6e6e6;
+}
+.pay-con .pay-list li.selected{
+  border:solid 1px #35bdfc;
+  background: url("images/selected.png") no-repeat right bottom;
+}
+.pay-con .pay-list li p{
+  height:30px;
+  line-height: 30px;
+  font-size:18px;
+  margin:20px;
+}
+.pay-con .pay-list li .icon{
+  height:30px;
+  width: 30px;
+  margin-right:10px;
+  vertical-align: top;
+}
+.icon-zfb{
+  background: url("images/icon-zfb.png") no-repeat center;
+}
+.icon-wx{
+  background: url("images/icon-wx.png") no-repeat center;
+}
+.pay-con .pay-des{
+  width:600px;
+  float: left;
+  margin-left:40px;
+  font-size:16px;
+}
+.pay-con .pay-des .publish-person{
+  margin-top:12px;
+  color: #9a9a9a;
+}
+.pay-con .pay-des label{
+  float: left;
+  display: inline-block;
+  width:120px;
+}
+.pay-con .pay-des .title{
+  width:470px;
+}
+.pay-con .pay-total{
+  float: right;
+  font-size:26px;
+  color: #fc3535;
+}
+.pay-button{
+  margin-top:20px;
+}
+.pay-button a{
+  width:288px;
+  height:48px;
+  padding:0;
+  background: #35bdfc;
+  font-size:18px;
+  color: #fff;
+  line-height:50px;
+}
+.pay-tips{
+  margin-top:10px;
+  color: #999;
+}
+
+.ems-box{
+  border-top:dashed 1px #ccc;
+
+}
+.ems-box p{
+  margin-top:15px;
 }
