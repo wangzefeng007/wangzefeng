@@ -1,13 +1,15 @@
 var pageObj=$.extend({},pageObj,{
 
-    addressInputs:{
-        dd_province:$("input[name='dd_province']"),
-        dd_city:$("input[name='dd_city']"),
-        dd_area:$("input[name='dd_area']"),
-        detail_area:$("input[name='detail_area']"),
-        to_name:$("input[name='to_name']"),
-        to_phone:$("input[name='to_phone']"),
-        is_default:$("input[name='is_default']")
+    addressInputs:function(){
+        return {
+            dd_province:$("input[name='dd_province']").siblings("span").attr("data-id"),
+            dd_city:$("input[name='dd_city']").siblings("span").attr("data-id"),
+            dd_area:$("input[name='dd_area']").siblings("span").attr("data-id"),
+            detail_area:$("textarea[name='detail_area']").val(),
+            to_name:$("input[name='to_name']").val(),
+            to_phone:$("input[name='to_phone']").val(),
+            is_default:$("input[name='is_default']").val()
+        }
     },
     /**
      * 新增地址
@@ -80,7 +82,7 @@ var pageObj=$.extend({},pageObj,{
             +      '手机号码 <span class="form-need">*</span>'
             +    '</div>'
             +    '<div class="right">'
-            +      '<input type="text" name="to_phone" onblur="validateNumber(this)" placeholder="电话号码、手机号码必须填一项" value="">'
+            +      '<input type="text" name="to_phone" onblur="validateMobilePhone(this)" placeholder="电话号码、手机号码必须填一项" value="">'
             +    '</div>'
             +  '</div>'
             +  '<div class="line">'
@@ -106,18 +108,23 @@ var pageObj=$.extend({},pageObj,{
         getProvinceData();
     },
     validateForm:function(){
-
+        var addressInputs=this.addressInputs();
+        if(addressInputs.dd_province == ''|| addressInputs.dd_city=='' || addressInputs.dd_area=='' ||
+            addressInputs.detail_area=='' || addressInputs.to_name=='' || addressInputs.to_phone == ''|| addressInputs.is_default==''){
+            showMsg('请完善发布信息');
+            return false;
+        }else{
+            return true;
+        }
     },
     saveAddress:function(){
-        var paramObj={
-            dd_province:$("input[name='dd_province']"),
-            dd_city:$("input[name='dd_city']"),
-            dd_area:$("input[name='dd_area']"),
-            detail_area:$("input[name='detail_area']"),
-            to_name:$("input[name='to_name']"),
-            to_phone:$("input[name='to_phone']"),
-            is_default:$("input[name='is_default']")
-        };
+        var validate=this.validateForm();
+        if(!validate){
+            return false;
+        }
+        var paramObj=this.addressInputs();
+        console.log(JSON.stringify(paramObj));
+        return false;
         $.ajax({
             type:"post",
             url:"/ajaxasset/",

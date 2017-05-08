@@ -484,6 +484,19 @@ function validateDay(tar, isNeed){
     return;
   }
 }
+//验证手机号码
+function validateMobilePhone(tar){
+    var _text = $(tar).val();
+    if(_text == ''){
+        showTip(tar, '请输入');
+        return;
+    }
+    if(!validate('mobilePhone', _text)){
+        showTip(tar, '请输入正确的手机号码');
+        $(tar).val("");
+        return;
+    }
+}
 
 //验证固定电话
 function validateFixedPhone(tar){
