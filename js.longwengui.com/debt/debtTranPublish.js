@@ -181,7 +181,7 @@ editor.create();
 /**表单验证
  */
 
-function validateForm(){
+function validatePublishForm(){
     var _trans_money = $("input[name='trans_money']").val();
     var _public_money= $("input[name='public_money']").val();
     var _trans_count= $("input[name='trans_count']").val();
@@ -234,7 +234,7 @@ $(function(){
             }()
         };
          //console.log(JSON.stringify(paramObj));
-        var formData = validateForm();
+        var formData = validatePublishForm();
         if(!formData){
             return false;
         }
