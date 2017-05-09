@@ -195,7 +195,7 @@ var pageObj=$.extend({},pageObj,{
     subOrder:function () {
         var Num = GetQueryString("num");
         var ID = GetQueryString("id");
-        var ajaxData = {
+        var formData = {
             'ProductID':ID, //产品ID
             'Number':Num, //购买数量
             'Money':$("#Js_order").attr("data-money") //订单总金额
@@ -206,7 +206,7 @@ var pageObj=$.extend({},pageObj,{
             dataType: "json",
             data: {
                 "Intention":"ConfirmOrder",
-                "AjaxData":ajaxData
+                "AjaxJSON":JSON.stringify(formData)
             },
             beforeSend: function () { //加载过程效果
                 // $("#paybtn").text('提交中...');

@@ -88,8 +88,6 @@ class Asset
      */
     public function Order(){
         $MemberAssetInfoModule = new MemberAssetInfoModule();
-        $MemberAssetImageModule = new MemberAssetImageModule();
-        $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $Nav='transfer';
         $ID = $_GET['id'];
@@ -107,8 +105,78 @@ class Asset
                 $AddressList[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
         }
         }
-
         include template('AssetOrder');
     }
+    /**
+     * 选择支付页
+     */
+    public function ChoicePay()
+    {
+        $Title = '订单支付';
+        $OrderNumber = $_GET['OrderNumber'];
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $Order = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        $GoToUrl = WEB_MAIN_URL . '/assetdetails/' . $Order['ProductID'] . '.html';
+        if ($Order && $Order['Status'] == 1) {
+            if ($Order['ExpirationTime'] > time()) {
+                include template('AssetOrderPay');
+            } else {
+                $UpData['Status'] = 10;
+                $UpData['Remarks'] = '订单超时未支付';
+                $Result = $MemberProductOrderModule->UpdateInfoByKeyID($UpData, $Order['OrderID']);
+                if ($Result) {
+                    $LogMessage = '操作失败(超时状态更新失败)';
+                } else {
+                    $LogMessage = '超时未支付,订单取消';
+                }
+                // 添加订单状态更改日志
+                $OrderLogModule = new MemberOrderLogModule();
+                if ($_SESSION['UserID'] && ! empty($_SESSION['UserID'])) {
+                    $UserID = $_SESSION['UserID'];
+                } else {
+                    $MemberUserModule = new MemberUserModule();
+                    $UserInfo = $MemberUserModule->GetUserIDbyMobile($Order['Tel']);
+                    $UserID = $UserInfo['UserID'];
+                }
+                $LogData = array(
+                    'OrderNumber' => $OrderNumber,
+                    'UserID' => $UserID,
+                    'OldStatus' => 1,
+                    'NewStatus' => 10,
+                    'OperateTime' => date("Y-m-d H:i:s", time()),
+                    'IP' => GetIP(),
+                    'Remarks' => $LogMessage,
+                    'Type' => 1
+                );
+                $LogResult = $OrderLogModule->InsertInfo($LogData);
+                alertandgotopage('订单超时未支付', $GoToUrl);
+            }
+        } else {
+            alertandgotopage('不能操作的订单', $GoToUrl);
+        }
+    }
+    /**
+     * 准备支付
+     */
+    public function Pay()
+    {
+        $Type = trim($_GET['Type']);
+        $OrderID = trim($_GET['ID']);
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $Order = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
+        $Data = array();
+        if ($Order && $Order['Status'] == 1) {
+            if ($Type == 'alipay') {
 
+                $Data['Sign'] = ToolService::VerifyData($Data);
+                echo ToolService::PostForm(WEB_MAIN_URL . '/pay/alipay/', $Data);
+            } elseif ($Type == 'wxpay') {
+
+                $Data['Sign'] = ToolService::VerifyData($Data);
+                echo ToolService::PostForm(WEB_MAIN_URL . '/pay/wxpay/', $Data);
+            }
+        } else {
+            alertandback('不能操作的订单');
+        }
+    }
 }

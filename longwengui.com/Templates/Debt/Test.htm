@@ -1,1 +1,105 @@
-aa
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/order.css">
+<div class="order-pay">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a>债权管理</a> > <a>订单管理</a> > <span class="cur">订单详情</span></span>
+        </div>
+        <div class="tip">
+            订单编号：201702280001
+        </div>
+        <div class="flow-wrap">
+            <div class="flow-box clearfix">
+                <div class="flow over curr first">
+                    <span>1</span>
+                    <p>未付款</p>
+                    <i class="triangle"></i>
+                </div>
+                <div class="flow">
+                    <span>2</span>
+                    <p>已付款，转让手续办理中...</p>
+                    <i class="triangle"></i>
+                </div>
+                <div class="flow">
+                    <span>3</span>
+                    <p>订单完成</p>
+                    <i class="triangle"></i>
+                </div>
+            </div>
+            <div class="flow-tips">
+                <p class="h3">当前订单状态：资产已拍下，请在3天内付款；若未及时付款，系统将自动取消订单</p>
+                <p class="h4">如果您不想购买，可以 <a href="#">取消订单</a></p>
+            </div>
+        </div>
+
+        <div class="tab-wrap">
+            <p class="tab-title">订单详情</p>
+            <div class="tab-con">
+                <div class="section-wrap clearfix">
+                    <p class="section-title">
+                        收货人信息
+                    </p>
+                    <div class="section-con">
+                        <p>周润发 &nbsp;&nbsp;&nbsp;159987185687</p>
+                        <p class="ellipsis">福建省 厦门市 湖里区 湖里街道 福建省厦门市思明区明发园万物社a102 </p>
+                    </div>
+                </div>
+                <p class="hr"></p>
+                <div class="section-wrap clearfix">
+                    <p class="section-title">
+                        发布人信息
+                    </p>
+                    <div class="section-con">
+                        <p class="ellipsis">昵称：大头债主 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联系电话：182687185663 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 真实姓名：王泽锋&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 城市：福建莆田城厢区</p>
+                        <p>收款账号：支付宝    wangz*******</p>
+                        <p>他发布的其他债权 <a href="#">查看</a></p>
+                    </div>
+                </div>
+                <p class="hr"></p>
+                <div class="order-table">
+                    <div class="table-th table-tr">
+                        <div class="td" style="width:330px">资产简介</div>
+                        <div class="td" style="width:150px">份额单价</div>
+                        <div class="td" style="width:90px">份数</div>
+                        <div class="td" style="width:130px">实付款</div>
+                        <div class="td" style="width:150px">交易状态</div>
+                        <div class="td">创建时间:2017-04-21 14:15:24</div>
+                    </div>
+                    <div class="table-tr">
+                        <div class="td goods-td clearfix">
+                            <p class="img">
+                                <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
+                            </p>
+                            <div class="con">
+                                <p class="title">上品武夷山大红袍</p>
+                                <div class="des">
+                                    大红袍，产于福建武夷山，属乌
+                                    龙茶，品质优异。中国特种名茶
+                                </div>
+                            </div>
+                        </div>
+                        <div class="money-td td">
+                            <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
+                            <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+                        </div>
+                        <div class="td">2</div>
+                        <div class="td">
+                            <p>¥2010</p>
+                            <p class="ems">（含EMS运费）</p>
+                        </div>
+                        <div class="td">
+                            等待买家付款
+                        </div>
+                        <div class="td"></div>
+                    </div>
+                </div>
+                <div class="total">
+                    <span>订单总共金额： <b class="c-red">2010.00</b> 元</span>
+                    <a class="btn btn-primary" href="#">立即付款</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
