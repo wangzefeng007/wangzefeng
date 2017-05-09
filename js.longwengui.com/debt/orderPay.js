@@ -207,11 +207,14 @@ var pageObj=$.extend({},pageObj,{
     subOrder:function () {
         var Num = GetQueryString("num");
         var ID = GetQueryString("id");
+        var AddressId=$(".address-box.active").find(".edit").attr("data-id");
         var formData = {
+            'AddressId':AddressId, //收货地址ID
             'ProductID':ID, //产品ID
             'Number':Num, //购买数量
             'Money':$("#Js_order").attr("data-money") //订单总金额
-        }
+
+        };
         $.ajax({
             type:"post",
             url:"/ajaxasset/",
