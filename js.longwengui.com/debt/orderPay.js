@@ -2,8 +2,10 @@
 
 var pageObj=$.extend({},pageObj,{
 
-    addressInputs:function(){
+    addressInputs:function(addressId){
+        var addressId=addressId||"";
         return {
+            addressId:addressId,
             dd_province:$("input[name='dd_province']").siblings("span").attr("data-id"),
             dd_city:$("input[name='dd_city']").siblings("span").attr("data-id"),
             dd_area:$("input[name='dd_area']").siblings("span").attr("data-id"),
@@ -112,22 +114,23 @@ var pageObj=$.extend({},pageObj,{
     /**
      * 修改地址
      */
-    editAddress:function(){
+    editAddress:function(tar){
+        var addressId=$(tar).attr("data-id");
+        this.addressInputs(addressId);
         var addressObj={
             to_name:"fanfan",
             to_phone:"1245646789"
         };
-        $.tmpl("")
+        $('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressHtml");
         var index = layer.open({
             type: 1,
             title: 0,
             area: '700px',
             closeBtn: 0,
             shadeClose: true,
-            content: '<div id="editAddressWrap"></div>'
+            content: $("#editAddressHtml").html()
         });
-        //$('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressWrap");
-        //getProvinceData();
+        getProvinceData();
     },
     validateForm:function(){
         var addressInputs=this.addressInputs();
@@ -147,10 +150,10 @@ var pageObj=$.extend({},pageObj,{
         var paramObj=this.addressInputs();
         $.ajax({
             type:"post",
-            url:"/ajaxasset/",
+            url:"/loginajax.html",
             dataType: "json",
             data:{
-                "Intention":"",
+                "Intention":"AddAddress",
                 "AjaxJSON":JSON.stringify(paramObj)
             },
             beforeSend:　function(){
