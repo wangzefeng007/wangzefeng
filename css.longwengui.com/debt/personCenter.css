@@ -872,6 +872,7 @@
   margin-top: -4px;
 }
 .upgrad-person-role .pop .btn{
+  display: block;
   text-align: center;
 }
 .upgrad-person-role .pop .btn button{
