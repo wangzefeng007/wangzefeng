@@ -118,6 +118,7 @@ var pageObj=$.extend({},pageObj,{
             type:"post",
             url:"/loginajax.html",
             dataType: "json",
+            async:false,
             data:{
                 "Intention":"GetAddress",
                 "id":addressId
@@ -126,24 +127,24 @@ var pageObj=$.extend({},pageObj,{
                 showLoading();
             },success: function(data){
                 if(data.ResultCode == 200){
-
-                    addressObj=data;
+                    addressObj=data.Data;
+                    $("#editAddressHtml").empty();
+                    $('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressHtml");
                 }else{
                     showMsg(data.Message);
                 }
             },complete: function(){
                 closeLoading();
+                var index = layer.open({
+                    type: 1,
+                    title: 0,
+                    area: '700px',
+                    closeBtn: 0,
+                    shadeClose: true,
+                    content: $("#editAddressHtml").html()
+                });
             }
         })
-        $('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressHtml");
-        var index = layer.open({
-            type: 1,
-            title: 0,
-            area: '700px',
-            closeBtn: 0,
-            shadeClose: true,
-            content: $("#editAddressHtml").html()
-        });
         getProvinceData();
     },
     validateForm:function(){
@@ -188,10 +189,49 @@ var pageObj=$.extend({},pageObj,{
             }
         })
     },
+    /**
+     * 提交订单
+     */
+    subOrder:function () {
+        var Num = GetQueryString("num");
+        var ID = GetQueryString("id");
+        var ajaxData = {
+            'ProductID':ID, //产品ID
+            'Number':Num, //购买数量
+            'Money':$("#Js_order").attr("data-money") //订单总金额
+        }
+        $.ajax({
+            type:"post",
+            url:"/ajaxasset/",
+            dataType: "json",
+            data: {
+                "Intention":"ConfirmOrder",
+                "AjaxData":ajaxData
+            },
+            beforeSend: function () { //加载过程效果
+                // $("#paybtn").text('提交中...');
+                // $("#paybtn").addClass('course');
+                // $("#paybtn").attr('id','');
+            },
+            success: function (data) { //函数回调
+                if(data.ResultCode == '200'){
+                    var Url = data.Url;
+                    window.location.href = Url;
+                }else if(data.ResultCode == '100'){
+                    $.toast(data.Message);
+                }else{
+                    $.toast(data.Message);
+                }
+            }
+        })
+    },
     init:function(){
         var _this=this;
         $("#add_address").on("click",function(){
             _this.addAddress();
+        });
+        $("#Js_order").on("click",function(){
+            _this.subOrder();
         });
     }
 });

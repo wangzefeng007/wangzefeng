@@ -133,7 +133,7 @@
                 详细地址<span class="form-need">*</span>
                </div>
             <div class="right">
-              <textarea name="detail_area" placeholder="建议您如实填写详细收货地址, 例如街道名称、门牌号码、楼层和房间号等信息" rows="5" cols="66"></textarea>
+              <textarea name="detail_area" placeholder="建议您如实填写详细收货地址, 例如街道名称、门牌号码、楼层和房间号等信息" rows="5" cols="66">${Address}</textarea>
                 </div>
             </div>
         <div class="line">
@@ -141,7 +141,7 @@
                收货人姓名<span class="form-need">*</span>
                 </div>
             <div class="right">
-                <input type="text" name="to_name" maxlength="12"  placeholder="不超过12个字" value="${to_name}">
+                <input type="text" name="to_name" maxlength="12"  placeholder="不超过12个字" value="${Name}">
                </div>
           </div>
         <div class="line">
@@ -149,7 +149,7 @@
                手机号码 <span class="form-need">*</span>
               </div>
             <div class="right">
-                <input type="text" name="to_phone" onblur="validateMobilePhone(this)" value="">
+                <input type="text" name="to_phone" onblur="validateMobilePhone(this)" value="${Mobile}">
                </div>
             </div>
         <div class="line">
