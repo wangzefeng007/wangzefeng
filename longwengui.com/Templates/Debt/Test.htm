@@ -1,103 +1,221 @@
 {template Header}
-<link rel="stylesheet" href="{echo CssURL}/debt/order.css">
-<div class="order-pay">
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>债权管理</a> > <a>订单管理</a> > <span class="cur">订单详情</span></span>
+            当前位置 > 个人中心 > <span>我的债权</span>
         </div>
-        <div class="tip">
-            订单编号：201702280001
-        </div>
-        <div class="flow-wrap">
-            <div class="flow-box clearfix">
-                <div class="flow over curr first">
-                    <span>1</span>
-                    <p>未付款</p>
-                    <i class="triangle"></i>
+        <div class="menu-cont-wrap">
+            <div class="menu-bar">
+                <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+                <div class="nick-name">
+                    昵称
                 </div>
-                <div class="flow">
-                    <span>2</span>
-                    <p>已付款，转让手续办理中...</p>
-                    <i class="triangle"></i>
+                <button type="button" name="button">已认证</button>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+                    个人信息
                 </div>
-                <div class="flow">
-                    <span>3</span>
-                    <p>订单完成</p>
-                    <i class="triangle"></i>
+                <div class="menu-level-1  menu-level-1-act" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    债权管理
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">我的债权</div>
+                        <div class="menu-level-2">我的负债</div>
+                        <div class="menu-level-2 menu-level-2-act">订单管理</div>
+                        <div class="menu-level-2">浏览过的债务</div>
+                    </div>
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    关注
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">我关注的债务</div>
+                        <div class="menu-level-2">提前关注</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    范本下载
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    代理
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">申请代理</div>
+                        <div class="menu-level-2">已代理区域</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    推荐人/我的推荐人
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    催客权益
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">申请的债权</div>
+                        <div class="menu-level-2">浏览过的债权</div>
+                        <div class="menu-level-2">寻找同城催客</div>
+                        <div class="menu-level-2">联盟催客</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    系统信息
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+                    投诉建议
                 </div>
             </div>
-            <div class="flow-tips">
-                <p class="h3">当前订单状态：资产已拍下，请在3天内付款；若未及时付款，系统将自动取消订单</p>
-                <p class="h4">如果您不想购买，可以 <a href="#">取消订单</a></p>
-            </div>
-        </div>
+            <div class="menu-cont">
+                <div class="tab-hd">
+                    <div class="tb act">
+                        管理收货地址
+                    </div>
+                </div>
 
-        <div class="tab-wrap">
-            <p class="tab-title">订单详情</p>
-            <div class="tab-con">
-                <div class="section-wrap clearfix">
-                    <p class="section-title">
-                        收货人信息
-                    </p>
-                    <div class="section-con">
-                        <p>周润发 &nbsp;&nbsp;&nbsp;159987185687</p>
-                        <p class="ellipsis">福建省 厦门市 湖里区 湖里街道 福建省厦门市思明区明发园万物社a102 </p>
-                    </div>
-                </div>
-                <p class="hr"></p>
-                <div class="section-wrap clearfix">
-                    <p class="section-title">
-                        发布人信息
-                    </p>
-                    <div class="section-con">
-                        <p class="ellipsis">昵称：大头债主 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联系电话：182687185663 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 真实姓名：王泽锋&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 城市：福建莆田城厢区</p>
-                        <p>收款账号：支付宝    wangz*******</p>
-                        <p>他发布的其他债权 <a href="#">查看</a></p>
-                    </div>
-                </div>
-                <p class="hr"></p>
-                <div class="order-table">
-                    <div class="table-th table-tr">
-                        <div class="td" style="width:330px">资产简介</div>
-                        <div class="td" style="width:150px">份额单价</div>
-                        <div class="td" style="width:90px">份数</div>
-                        <div class="td" style="width:130px">实付款</div>
-                        <div class="td" style="width:150px">交易状态</div>
-                        <div class="td">创建时间:2017-04-21 14:15:24</div>
-                    </div>
-                    <div class="table-tr">
-                        <div class="td goods-td clearfix">
-                            <p class="img">
-                                <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
-                            </p>
-                            <div class="con">
-                                <p class="title">上品武夷山大红袍</p>
-                                <div class="des">
-                                    大红袍，产于福建武夷山，属乌
-                                    龙茶，品质优异。中国特种名茶
+                <div class="info-cont">
+                    <div class="address-manage">
+                        <div class="line">
+                            <div class="left">
+                                <span class="a-t">新增收货地址</span>
+                            </div>
+                            <div class="right lh-30">
+                                <span class="form-need">*</span>均为必须项
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                所在区域<span class="form-need">*</span>
+                            </div>
+                            <div class="right">
+                                <div class="p-dropdown">
+                                    <label type="checkbox">
+                                        <span>*省</span>
+                                        <i></i>
+                                        <input type="checkbox" name="dd_province" value="">
+                                        <ul></ul>
+                                    </label>
+                                </div>
+                                <div class="c-dropdown">
+                                    <label type="checkbox">
+                                        <span>*市</span>
+                                        <i></i>
+                                        <input type="checkbox" name="dd_city" value="">
+                                        <ul></ul>
+                                    </label>
+                                </div>
+                                <div class="a-dropdown">
+                                    <label type="checkbox">
+                                        <span>*县</span>
+                                        <i></i>
+                                        <input type="checkbox" name="dd_area" value="">
+                                        <ul></ul>
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="money-td td">
-                            <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
-                            <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+                        <div class="line">
+                            <div class="left">
+                                详细地址<span class="form-need">*</span>
+                            </div>
+                            <div class="right">
+                                <textarea name="name" placeholder="建议您如实填写详细收货地址, 例如街道名称、门牌号码、楼层和房间号等信息" rows="5" cols="66"></textarea>
+                            </div>
                         </div>
-                        <div class="td">2</div>
-                        <div class="td">
-                            <p>¥2010</p>
-                            <p class="ems">（含EMS运费）</p>
+                        <div class="line">
+                            <div class="left">
+                                收货人姓名<span class="form-need">*</span>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="name" maxlength="12"  placeholder="不超过12个字" value="">
+                            </div>
                         </div>
-                        <div class="td">
-                            等待买家付款
+                        <div class="line">
+                            <div class="left">
+                                手机号码 <span class="form-need">*</span>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="phone" placeholder="电话号码、手机号码必须填一项" value="">
+                            </div>
                         </div>
-                        <div class="td"></div>
+                        <div class="line">
+                            <div class="left">&nbsp;</div>
+                            <div class="right">
+                                <div class="m-checkbox">
+                                    <label type="checkbox">
+                                        <input type="checkbox" name="agreement"  checked>
+                                        <i></i>
+                                        设置为默认地址
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">&nbsp;</div>
+                            <div class="right">
+                                <button type="button" name="button">保存</button>
+                            </div>
+                        </div>
+
+                        <div class="address-list">
+                            <div class="tip">
+                                已保存2条收货地址, 还能保存8条
+                            </div>
+                            <div class="table">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <td>收货人</td>
+                                        <td>所在地区</td>
+                                        <td>详细地址</td>
+                                        <td>电话/手机</td>
+                                        <td>操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>王泽锋</td>
+                                        <td>福建省-厦门市-湖里区</td>
+                                        <td>发生了打开房间啊上述利空打击</td>
+                                        <td class="color-red">1718*****28</td>
+                                        <td>
+                                            <div class="opt">
+                                                <span>修改</span> | <span>删除</span>
+                                            </div>
+                                            <div class="default">
+                                                默认地址
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>王泽锋</td>
+                                        <td>福建省-厦门市-湖里区</td>
+                                        <td>发生了打开房间啊上述利空打击</td>
+                                        <td class="color-red">1718*****28</td>
+                                        <td>
+                                            <div class="opt">
+                                                <span>修改</span> | <span>删除</span>
+                                            </div>
+                                            <div class="set-default">
+                                                设为默认
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="total">
-                    <span>订单总共金额： <b class="c-red">2010.00</b> 元</span>
-                    <a class="btn btn-primary" href="#">立即付款</a>
-                </div>
+
             </div>
         </div>
     </div>

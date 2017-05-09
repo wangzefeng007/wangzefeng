@@ -7,6 +7,12 @@ class Asset
     public function __construct() {
 
     }
+    public function IsLogin()
+    {
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }
+    }
     /**
      * @desc  资产转让列表
      */
@@ -64,7 +70,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
-        MemberService::IsLogin();
+        $this->IsLogin();
         $Nav='transfer';
         $EndTime = time()+ 2592000;
         include template('AssetPublish');

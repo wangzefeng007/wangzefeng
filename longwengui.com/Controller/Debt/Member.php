@@ -131,6 +131,18 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberEditPassWord');
     }
+
+    /**
+     * @desc 收货地址
+     */
+    public function Address(){
+        $Title = '会员-收货地址';
+        $this->IsLogin();
+        $Nav = 'systemmessage';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberAddress');
+    }
     /**
      * @desc 系统消息
      */
