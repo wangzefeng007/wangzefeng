@@ -16,8 +16,8 @@
             </div>
             {loop $AddressList $lists}
             <div class="address-box {if $lists[IsDefault]==1}active{/if}">
-                <p>{$lists['Name']} ( 收 ) {$lists['Mobile']}</p>
-                <p class="address-detail">{$lists['Province']}{$lists['City']}{$lists['Area']}{$lists['Address']}</p>
+                <p><span class="address_name">{$lists['Name']}</span> ( 收 ) <span class="address_phone">{$lists['Mobile']}</span></p>
+                <p class="address-detail"><span class="address_province">{$lists['Province']}</span><span class="address_city">{$lists['City']}</span><span class="address_area">{$lists['Area']}</span><span class="address_detail">{$lists['Address']}</span></p>
                 <span onclick="pageObj.editAddress(this)" data-id="{$lists['ShippingAddressID']}" class="edit">修改</span>
                 <img class="using-img" src="/Uploads/Debt/imgs/using.png" alt="">
             </div>
@@ -61,8 +61,9 @@
             <div class="submit-wrap">
                 <div class="actual-money">
                     <p><span class="t">实付款:</span><span class="m">￥<b class="c-red">{$TotalAmount}</b></span></p>
-                    <p><span class="t">寄送至:</span>福建省 厦门市 思明区 软件园二期玩物社a102</p>
-                    <p><span class="t">收货人:</span>习大大 15763948807</p>
+                    <div id="finalAddressBox">
+
+                    </div>
                 </div>
                 <div class="submit-btn">
                     <button type="button" name="button"  id="Js_order"  data-money="1010">提交订单</button>
@@ -77,10 +78,7 @@
                 <div class="info">
                     <span class="day">剩余<i>10</i>天</span>
                 </div>
-                <p class="publish-msg mt-30">
-                    武夷山 ▪ 7月 ▪ long文贵
-                </p>
-                <p class="publish-public">
+                <p class="publish-public mt-15">
                     发布人：王泽峰
                 </p>
             </div>
@@ -98,13 +96,14 @@
                 </div>
             </div>
         <div class="line">
+            <input type="hidden" name="addressId" value="${addressId}">
            <div class="left">
                 所在区域<span class="form-need">*</span>
                 </div>
            <div class="right">
                 <div class="p-dropdown mr-10">
                     <label type="checkbox">
-                        <span>*省</span>
+                        <span data-id="${Province}">${provinceText}</span>
                         <i></i>
                         <input type="checkbox" name="dd_province" value="">
                         <ul></ul>
@@ -112,7 +111,7 @@
                     </div>'
                 <div class="c-dropdown mr-10">
                     <label type="checkbox">
-                        <span>*市</span>
+                        <span data-id="${City}">${cityText}</span>
                         <i></i>
                        <input type="checkbox" name="dd_city" value="">
                         <ul></ul>
@@ -120,7 +119,7 @@
                    </div>
                 <div class="a-dropdown mr-10">
                     <label type="checkbox">
-                        <span>*县</span>
+                        <span data-id="${Area}">${areaText}</span>
                        <i></i>
                         <input type="checkbox" name="dd_area" value="">
                         <ul></ul>
@@ -167,12 +166,15 @@
        <div class="line">
             <div class="left">&nbsp;</div>
             <div class="right">
-               <button type="button" id="saveAddress" onclick="pageObj.saveAddress()" name="button">保存</button>
+               <button type="button" id="saveAddress" onclick="pageObj.saveAddress(this)" name="button">保存</button>
                </div>
             </div></div>;
 </script>
-<script type="text/html" id="editAddressHtml">
-
+<script type="text/x-jquery-tmpl" id="editAddressHtml">
+</script>
+<script type="text/x-jquery-tmpl" id="addressTemp">
+    <p><span class="t">寄送至:</span>${provinceText}${cityText}${areaText}${detailArea}</p>
+    <p><span class="t">收货人:</span>${to_name} ${to_phone}</p>
 </script>
 {template Footer}
 <script src='{echo JsURL}/debt/orderPay.js'></script>

@@ -1,16 +1,18 @@
 var pageObj=$.extend({},pageObj,{
-    addressInputs:function(addressId){
-        var addressId=addressId||"";
+    addressInputs:function($wrap){
         return {
-            addressId:addressId,
-            dd_province:$("input[name='dd_province']").siblings("span").attr("data-id"),
-            dd_city:$("input[name='dd_city']").siblings("span").attr("data-id"),
-            dd_area:$("input[name='dd_area']").siblings("span").attr("data-id"),
-            detail_area:$("textarea[name='detail_area']").val(),
-            to_name:$("input[name='to_name']").val(),
-            to_phone:$("input[name='to_phone']").val(),
-            is_default:$("input[name='is_default']")[0].checked==true?1:0
+            addressId:$wrap.find("input[name='addressId']").val(),
+            dd_province:$wrap.find("input[name='dd_province']").siblings("span").attr("data-id"),
+            dd_city:$wrap.find("input[name='dd_city']").siblings("span").attr("data-id"),
+            dd_area:$wrap.find("input[name='dd_area']").siblings("span").attr("data-id"),
+            detail_area:$wrap.find("textarea[name='detail_area']").val(),
+            to_name:$wrap.find("input[name='to_name']").val(),
+            to_phone:$wrap.find("input[name='to_phone']").val(),
+            is_default:$wrap.find("input[name='is_default']")[0].checked==true?1:0
         }
+    },
+    selectedAddress:{
+
     },
     /**
      * 新增地址
@@ -32,6 +34,7 @@ var pageObj=$.extend({},pageObj,{
             +    '</div>'
             +  '</div>'
             +  '<div class="line">'
+            +  '<input type="hidden" name="addressId" value="">'
             +    '<div class="left">'
             +      '所在区域<span class="form-need">*</span>'
             +    '</div>'
@@ -101,7 +104,7 @@ var pageObj=$.extend({},pageObj,{
             +  '<div class="line">'
             +    '<div class="left">&nbsp;</div>'
             +    '<div class="right">'
-            +      '<button type="button" id="saveAddress" onclick="pageObj.saveAddress()" name="button">保存</button>'
+            +      '<button type="button" id="saveAddress" onclick="pageObj.saveAddress(this)" name="button">保存</button>'
             +    '</div>'
             +  '</div>'
             + '</div>'
@@ -113,7 +116,10 @@ var pageObj=$.extend({},pageObj,{
      */
     editAddress:function(tar){
         var addressId=$(tar).attr("data-id");
-        var addressObj={};
+        var addressObj={
+            addressId:addressId
+        };
+        var address="";
         $.ajax({
             type:"post",
             url:"/loginajax.html",
@@ -127,28 +133,33 @@ var pageObj=$.extend({},pageObj,{
                 showLoading();
             },success: function(data){
                 if(data.ResultCode == 200){
-                    addressObj=data.Data;
+                    addressObj=$.extend({},addressObj,data.Data);
+                    address=getAddress(addressObj.Province,addressObj.City,addressObj.Area);
+                    addressObj=$.extend({},addressObj,address);
                     $("#editAddressHtml").empty();
                     $('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressHtml");
+                    if(addressObj.IsDefault==0){
+                        $(tar).parents(".order-pay-address").find("input[name='is_default']").removeAttr("checked");
+                    }
                 }else{
                     showMsg(data.Message);
                 }
             },complete: function(){
                 closeLoading();
-                var index = layer.open({
-                    type: 1,
-                    title: 0,
-                    area: '700px',
-                    closeBtn: 0,
-                    shadeClose: true,
-                    content: $("#editAddressHtml").html()
-                });
             }
-        })
+        });
+        var index = layer.open({
+            type: 1,
+            title: 0,
+            area: '700px',
+            closeBtn: 0,
+            shadeClose: true,
+            content: $("#editAddressHtml").html()
+        });
         getProvinceData();
     },
-    validateForm:function(){
-        var addressInputs=this.addressInputs();
+    validateForm:function($wrap){
+        var addressInputs=this.addressInputs($wrap);
         if(addressInputs.dd_province == ''|| addressInputs.dd_city=='' || addressInputs.dd_area=='' ||
             addressInputs.detail_area=='' || addressInputs.to_name=='' || addressInputs.to_phone == ''){
             showMsg('请完善地址信息');
@@ -161,12 +172,13 @@ var pageObj=$.extend({},pageObj,{
      * 新增收货地址
      * @returns {boolean}
      */
-    saveAddress:function(){
-        var validate=this.validateForm();
+    saveAddress:function(tar){
+        var $wrap=$(tar).parents(".order-pay-address");
+        var validate=this.validateForm($wrap);
         if(!validate){
             return false;
         }
-        var paramObj=this.addressInputs();
+        var paramObj=this.addressInputs($wrap);
         $.ajax({
             type:"post",
             url:"/loginajax.html",
@@ -225,6 +237,47 @@ var pageObj=$.extend({},pageObj,{
             }
         })
     },
+    finalAddress:function(finalObj){
+        return {
+            to_name:finalObj.to_name,
+            to_phone:finalObj.to_phone,
+            provinceText:finalObj.provinceText,
+            cityText:finalObj.cityText,
+            areaText:finalObj.areaText,
+            detailArea:finalObj.detailArea
+        };
+    },
+    /**
+    * 收货地址渲染
+    */
+    addressRender:function($addressBox){
+        var to_name = $addressBox.find(".address_name").text();
+        var to_phone = $addressBox.find(".address_phone").text();
+        var provinceText = $addressBox.find(".address_province").text();
+        var cityText = $addressBox.find(".address_city").text();
+        var areaText = $addressBox.find(".address_area").text();
+        var detailArea = $addressBox.find(".address_detail").text();
+        var finalObj={
+            to_name:to_name,
+            to_phone:to_phone,
+            provinceText:provinceText,
+            cityText:cityText,
+            areaText:areaText,
+            detailArea:detailArea
+        };
+        $("#finalAddressBox").empty();
+        $("#addressTemp").tmpl(pageObj.finalAddress(finalObj)).appendTo("#finalAddressBox");
+    },
+    /**
+     * 默认地址设置
+     */
+    defaultAddress:function() {
+        $(".address-box").each(function () {
+            if($(this).hasClass("active")){
+                pageObj.addressRender($(this));
+            }
+        });
+    } ,
     init:function(){
         var _this=this;
         $("#add_address").on("click",function(){
@@ -232,6 +285,13 @@ var pageObj=$.extend({},pageObj,{
         });
         $("#Js_order").on("click",function(){
             _this.subOrder();
+        });
+        /*默认地址添加*/
+        _this.defaultAddress();
+        /*收货地址选择*/
+        $(".address-box").on("click",function(){
+            $(this).addClass("active").siblings(".address-box").removeClass("active");
+            _this.addressRender($(this));
         });
     }
 });

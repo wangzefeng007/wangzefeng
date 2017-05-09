@@ -280,6 +280,72 @@ function removeParentDom(self, className){
   }
 }
 
+/**
+ * 根据省code获取name
+ * @param code
+ * @returns {string}
+ */
+function getProvinceById(code){
+  var provinceText="省";
+  $.ajax({
+      type: 'get',
+      dataType: 'json',
+      async:false,
+      url: '/Templates/Debt/data/Province.json',
+      success:function(data){
+        for(var i=0;i<data.length;i++){
+          if(data[i].AreaID==code){
+              provinceText=data[i].CnName;
+              return;
+          }
+        }
+      }
+  });
+  return provinceText;
+}
+
+function getCityById(code){
+    var cityText="市";
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        async:false,
+        url: '/Templates/Debt/data/City.json',
+        success:function(data){
+            for(var i=0;i<data.length;i++){
+                if(data[i].AreaID==code){
+                    cityText=data[i].CnName;
+                }
+            }
+        }
+    });
+    return cityText;
+}
+
+function getAreaById(code){
+    var areaText="县";
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        async:false,
+        url: '/Templates/Debt/data/Area.json',
+        success:function(data){
+            for(var i=0;i<data.length;i++){
+                if(data[i].AreaID==code){
+                    areaText=data[i].CnName;
+                }
+            }
+        }
+    });
+    return areaText;
+}
+function getAddress(p_code,c_code,a_code){
+  return {
+      provinceText:getProvinceById(p_code),
+      cityText:getCityById(c_code),
+      areaText:getAreaById(a_code)
+  }
+};
 //获得省级元素
 function getProvinceData(){
   fixIE8Label();

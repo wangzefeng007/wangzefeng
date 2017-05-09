@@ -1,7 +1,7 @@
 /**
  * Created by irene on 2017/5/5.
  */
-var pageObj=$.extend({},pageObj,{
+var pageObj=$.extend({},pagesObj,{
     /**
      * 进入页面初始化方法
      */

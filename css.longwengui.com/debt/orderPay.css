@@ -68,11 +68,11 @@
   height:26px;
   overflow: hidden;
 }
-.order-pay .wrap .left-box .address-box span{
+.order-pay .wrap .left-box .address-box .edit{
   color: #35bdfc;
   cursor: pointer;
 }
-.order-pay .wrap .left-box .address-box span:hover{
+.order-pay .wrap .left-box .address-box .edit:hover{
   text-decoration: underline;
 }
 .order-pay .wrap .left-box .address-box .using-img{
