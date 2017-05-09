@@ -1,7 +1,4 @@
-
-
 var pageObj=$.extend({},pageObj,{
-
     addressInputs:function(addressId){
         var addressId=addressId||"";
         return {
@@ -12,7 +9,7 @@ var pageObj=$.extend({},pageObj,{
             detail_area:$("textarea[name='detail_area']").val(),
             to_name:$("input[name='to_name']").val(),
             to_phone:$("input[name='to_phone']").val(),
-            is_default:$("input[name='is_default']").val()
+            is_default:$("input[name='is_default']")[0].checked==true?1:0
         }
     },
     /**
@@ -116,11 +113,28 @@ var pageObj=$.extend({},pageObj,{
      */
     editAddress:function(tar){
         var addressId=$(tar).attr("data-id");
-        this.addressInputs(addressId);
-        var addressObj={
-            to_name:"fanfan",
-            to_phone:"1245646789"
-        };
+        var addressObj={};
+        $.ajax({
+            type:"post",
+            url:"/loginajax.html",
+            dataType: "json",
+            data:{
+                "Intention":"GetAddress",
+                "id":addressId
+            },
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+
+                    addressObj=data;
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        })
         $('#editAddressTemp').tmpl(addressObj).appendTo("#editAddressHtml");
         var index = layer.open({
             type: 1,
@@ -135,13 +149,17 @@ var pageObj=$.extend({},pageObj,{
     validateForm:function(){
         var addressInputs=this.addressInputs();
         if(addressInputs.dd_province == ''|| addressInputs.dd_city=='' || addressInputs.dd_area=='' ||
-            addressInputs.detail_area=='' || addressInputs.to_name=='' || addressInputs.to_phone == ''|| addressInputs.is_default==''){
-            showMsg('请完善发布信息');
+            addressInputs.detail_area=='' || addressInputs.to_name=='' || addressInputs.to_phone == ''){
+            showMsg('请完善地址信息');
             return false;
         }else{
             return true;
         }
     },
+    /**
+     * 新增收货地址
+     * @returns {boolean}
+     */
     saveAddress:function(){
         var validate=this.validateForm();
         if(!validate){
@@ -174,12 +192,6 @@ var pageObj=$.extend({},pageObj,{
         var _this=this;
         $("#add_address").on("click",function(){
             _this.addAddress();
-        });
-        /**
-         * 默认地址切换
-         */
-        $(".address-box").on("click",function(){
-            $(this).addClass("active").siblings(".address-box").removeClass("active");
         });
     }
 });
