@@ -91,8 +91,26 @@ class AjaxAsset
         if ($_POST) {
             $MemberAssetInfoModule = new MemberAssetInfoModule();
             $MemberProductOrderModule = new MemberProductOrderModule();
-
-
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+            $AssetInfo =$MemberAssetInfoModule->GetInfoByKeyID($AjaxData['ProductID']);
+            if (!$AssetInfo){
+                $result_json = array('ResultCode'=>102,'Message'=>'不存在该产品！');
+            }else{
+                $Data['OrderNumber'] = 'D'.date("Ymd").rand(1000, 9999);;//订单编号
+                $Data['Num'] = intval($AjaxData['Number']);//数量
+                $Data['ProductID'] = intval($AjaxData['ProductID']);//产品ID
+                $Data['TotalAmount'] = trim($AjaxData['Money']);//订单总金额
+                $Data['UserID'] = $_SESSION['UserID'];
+                $Data['AddTime'] = time();
+                $Data['ExpirationTime'] = $Data['AddTime']+3600;
+                $Data['Status'] = 1;
+               $InsertInfo = $MemberProductOrderModule->InsertInfo($Data);
+               if ($InsertInfo){
+                   $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！',      'Url' => WEB_MAIN_URL . '/assetorder/' . $Data['OrderNumber'] . '.html');
+               }else{
+                   $result_json = array('ResultCode'=>103,'Message'=>'订单提交失败！');
+               }
+            }
             EchoResult($result_json);
             exit;
         }

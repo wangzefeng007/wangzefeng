@@ -20,7 +20,7 @@
         <div class="right-box">
             <div class="publish-msg">
                 <p class="publish-er">
-                    发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if} <span class="fr">剩余 <b id="totalCount" class="c-red">10</b> 份 </span>
+                    发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if} <span class="fr">剩余 <b id="totalCount" class="c-red">{$AssetInfo['Inventory']}</b> 份 </span>
                 </p>
                 <p class="publish-date">
                     发布日期：{echo date("Y-m-d",$AssetInfo['AddTime'])}
