@@ -35,13 +35,14 @@ var pageObj=$.extend({},pageObj,{
     buyFun:function(obj){
         var goodsId = $(obj).attr("data-id");
         var userid = $(obj).attr("data-userid");
+        var money = $(obj).attr("data-money");
         if(userid !==''){
             var buy_count=$("input[name='num']").val();
             if(buy_count==''){
                 showMsg("请输入份数");
                 return;
             }else{
-                go("/asset/order?id="+goodsId+"&num="+buy_count);
+                go("/asset/order?id="+goodsId+"&num="+buy_count+'&money='+pageObj.totalMoney);
             }
         }else {
             toLogin();
@@ -60,6 +61,7 @@ var pageObj=$.extend({},pageObj,{
         }
         var totalMoney=(price*num).toFixed(2);
         $("#totalMoney").text("￥ "+totalMoney+" 元");
+        pageObj.totalMoney=totalMoney;
     }
 });
 pageObj.init();

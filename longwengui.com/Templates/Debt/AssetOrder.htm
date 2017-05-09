@@ -41,25 +41,18 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>上品武夷山大红袍</td>
-                        <td>100.00</td>
-                        <td>10000.00</td>
-                        <td>1</td>
-                        <td><span class="money">100.00</span></td>
-                    </tr>
-                    <tr>
-                        <td>上品武夷山大红袍</td>
-                        <td>100.00</td>
-                        <td>10000.00</td>
-                        <td>1</td>
-                        <td><span class="money">100.00</span></td>
+                        <td>{$AssetInfo[Title]}</td>
+                        <td>{$AssetInfo[Price]}</td>
+                        <td>{$AmountMoney}</td>
+                        <td>{$Num}</td>
+                        <td><span class="money">{$Money}</span></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="send-way">
-                <span>配送方式 :&nbsp;&nbsp;快递&nbsp;&nbsp;EMS</span>
-                <span class="m">10.00</span>
+                <span>配送方式 :&nbsp;&nbsp;快递&nbsp;</span>
+                <span class="m">{$AssetInfo[Freight]}</span>
             </div>
             <div class="total-money">
                 <span>合计金额(含邮费) :</span>

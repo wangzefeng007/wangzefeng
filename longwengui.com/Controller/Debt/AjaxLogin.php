@@ -1040,4 +1040,21 @@ class AjaxLogin
         }
         EchoResult($result_json);
     }
+    /**
+     * @desc 获取收货地址
+     */
+    public function GetAddress(){
+        $this->IsLogin();
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $ID = $_POST['id'];
+        $Data['Data'] = $MemberShippingAddressModule->GetInfoByWhere(' and ShippingAddressID= '.$ID.' and UserID = '.$_SESSION['UserID']);
+        if ( $Data['Data']){
+            $Data['ResultCode'] = 200;
+            $Data['Message'] = '返回成功';
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '返回失败';
+        }
+        EchoResult($Data);exit;
+    }
 }
