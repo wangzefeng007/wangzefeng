@@ -1,16 +1,7 @@
 /**
  * Created by irene on 2017/5/5.
  */
-var pageObj=$.extend({},pagesObj,{
-    /**
-     * 进入页面初始化方法
-     */
-    init:function() {
-        var _this = this;
-        $("#Js_buy").on("click",function(){
-        _this.buyFun(this);
-        });
-    },
+var pageObj=$.extend({},pageObj,{
     numberInp:function(tar,type){
         var $inp=$(tar).parent(".input-number").find("input[name='num']"),
             inpVal=$inp.val(),
@@ -62,6 +53,19 @@ var pageObj=$.extend({},pagesObj,{
         var totalMoney=(price*num).toFixed(2);
         $("#totalMoney").text("￥ "+totalMoney+" 元");
         pageObj.totalMoney=totalMoney;
+    },
+    /**
+     * 进入页面初始化方法
+     */
+    init:function() {
+        var _this = this;
+        $("#Js_buy").on("click",function(){
+            _this.buyFun(this);
+        });
+        //选择支付方式
+        $(".pay-list li").on("click",function(){
+            $(this).addClass("selected").siblings().removeClass("selected")
+        })
     }
 });
 pageObj.init();

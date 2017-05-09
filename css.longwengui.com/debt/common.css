@@ -1873,7 +1873,6 @@ button.btn {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333;
   text-decoration: none;
 }
 /*.btn:active,
