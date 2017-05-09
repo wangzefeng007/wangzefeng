@@ -96,8 +96,8 @@ class Asset
         $Num = $_GET['num'];
         $Money = $_GET['money'];
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
-        $AmountMoney =number_format($AssetInfo['AssetsAmount'] - $Money, 2);//剩余资产金额
-        var_dump($AmountMoney);
+        $AmountMoney =number_format($AssetInfo['AssetsAmount']-$Money, 2);//剩余资产金额
+        $TotalAmount =number_format($Money+$AssetInfo['Freight'], 2);//合计金额
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);
         if (!empty($AddressList)){
             $MemberAreaModule = new MemberAreaModule();
