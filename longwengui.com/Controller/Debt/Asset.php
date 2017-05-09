@@ -92,9 +92,12 @@ class Asset
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $Nav='transfer';
-        $ID = $_GET['ID'];
-        $Num = $_GET['Num'];
+        $ID = $_GET['id'];
+        $Num = $_GET['num'];
+        $Money = $_GET['money'];
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        $AmountMoney =number_format($AssetInfo['AssetsAmount'] - $Money, 2);//剩余资产金额
+        var_dump($AmountMoney);
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);
         if (!empty($AddressList)){
             $MemberAreaModule = new MemberAreaModule();
