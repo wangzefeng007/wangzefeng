@@ -138,9 +138,22 @@ class Member
     public function Address(){
         $Title = '会员-收货地址';
         $this->IsLogin();
-        $Nav = 'systemmessage';
+        $Nav = 'address';
+        $ID = intval($_GET['ID']);
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $MemberAreaModule = new MemberAreaModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+
+        $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
+        foreach ($AddressList as $key=>$value){
+            $AddressList[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $AddressList[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $AddressList[$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
+        if (!empty($ID)){
+            $AddressInfo = $MemberShippingAddressModule->GetInfoByKeyID($ID);
+        }
         include template('MemberAddress');
     }
     /**
