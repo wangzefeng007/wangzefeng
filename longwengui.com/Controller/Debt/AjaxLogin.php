@@ -517,7 +517,6 @@ class AjaxLogin
     public function SetLawyerDemand(){
         $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['CaseName']= $AjaxData['caseName'];
         $Data['FromMoney'] =($AjaxData['feeRate'][0]['from']);
@@ -997,5 +996,48 @@ class AjaxLogin
             $Picture = $Image ? $Image : '';
             $Image['Image'] = $Picture;
         }
+    }
+    /**
+     * @desc 添加收货地址
+     */
+    public function AddAddress(){
+        $this->IsLogin();
+        if ($_POST){
+            $MemberShippingAddressModule = new MemberShippingAddressModule();
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+            $ShippingAddressID = $AjaxData['addressId'];
+            $Data['IsDefault'] = $AjaxData['is_default'];
+            $Data['Province'] = $AjaxData['dd_province'];
+            $Data['City'] = $AjaxData['dd_city'];
+            $Data['Area'] = $AjaxData['dd_area'];
+            $Data['Address'] = $AjaxData['detail_area'];
+            $Data['Name'] = $AjaxData['to_name'];
+            $Data['Mobile'] = $AjaxData['to_phone'];
+            $Data['UserID'] = $_SESSION['UserID'];
+            if ( $Data['IsDefault']==1){
+                $MemberShippingAddressModule->UpdateInfoByWhere(array('IsDefault'=>0),' UserID = '.$_SESSION['UserID']);
+            }
+            if (!empty($ShippingAddressID)){
+                $ShippingAddress = $MemberShippingAddressModule->GetInfoByWhere(' and ShippingAddressID= '.$ShippingAddressID.' and UserID = '.$_SESSION['UserID']);
+                if ($ShippingAddress){
+                    $UpdateInfo = $MemberShippingAddressModule->UpdateInfoByKeyID($Data,$ShippingAddressID);
+                    if ($UpdateInfo){
+                        $result_json = array('ResultCode'=>200,'Message'=>'更新成功！');
+                    }else{
+                        $result_json = array('ResultCode'=>102,'Message'=>'更新失败！');
+                    }
+                }else{
+                    $result_json = array('ResultCode'=>103,'Message'=>'不存在该地址！');
+                }
+            }else{
+                $InsertInfo =  $MemberShippingAddressModule->InsertInfo($Data);
+                if ($InsertInfo){
+                    $result_json = array('ResultCode'=>200,'Message'=>'添加成功！');
+                }else{
+                    $result_json = array('ResultCode'=>104,'Message'=>'添加失败！');
+                }
+            }
+        }
+        EchoResult($result_json);
     }
 }

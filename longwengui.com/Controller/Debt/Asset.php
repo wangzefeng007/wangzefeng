@@ -64,6 +64,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
+        MemberService::IsLogin();
         $Nav='transfer';
         $EndTime = time()+ 2592000;
         include template('AssetPublish');
@@ -94,6 +95,16 @@ class Asset
         $ID = $_GET['ID'];
         $Num = $_GET['Num'];
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);
+        if (!empty($AddressList)){
+            $MemberAreaModule = new MemberAreaModule();
+            foreach ($AddressList as $key=>$value){
+                $AddressList[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+                $AddressList[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+                $AddressList[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
+        }
+
         include template('AssetOrder');
     }
 

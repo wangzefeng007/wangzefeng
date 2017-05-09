@@ -14,24 +14,14 @@
                 <span class="c1">选择收货地址</span>
                 <span class="c2">管理收货地址</span>
             </div>
-            <div class="address-box active">
-                <p>刘长勤 ( 收 ) 15763948807</p>
-                <p class="address-detail">福建省厦门市思明区软件园二期万物社</p>
-                <span onclick="pageObj.editAddress(this)" data-id="" class="edit">修改</span>
+            {loop $AddressList $lists}
+            <div class="address-box {if $lists[IsDefault]==1}active{/if}">
+                <p>{$lists['Name']} ( 收 ) {$lists['Mobile']}</p>
+                <p class="address-detail">{$lists['Province']}{$lists['City']}{$lists['Area']}{$lists['Address']}</p>
+                <span onclick="pageObj.editAddress(this)" data-id="{$lists['ShippingAddressID']}" class="edit">修改</span>
                 <img class="using-img" src="/Uploads/Debt/imgs/using.png" alt="">
             </div>
-            <div class="address-box">
-                <p>刘长勤 ( 收 ) 15763948807</p>
-                <p class="address-detail">福建省厦门市思明区软件园二期万物社</p>
-                <span onclick="pageObj.editAddress(this)" data-id="" class="edit">修改</span>
-                <img class="using-img" src="/Uploads/Debt/imgs/using.png" alt="">
-            </div>
-            <div class="address-box">
-                <p>刘长勤 ( 收 ) 15763948807</p>
-                <p class="address-detail">福建省厦门市思明区软件园二期万物社</p>
-                <span onclick="pageObj.editAddress(this)" data-id="" class="edit">修改</span>
-                <img class="using-img" src="/Uploads/Debt/imgs/using.png" alt="">
-            </div>
+            {/loop}
             <div class="add-adress" id="add_address">
                 +新增地址
             </div>
@@ -166,7 +156,7 @@
                手机号码 <span class="form-need">*</span>
               </div>
             <div class="right">
-                <input type="text" name="to_phone" onblur="validateMobilePhone(this)" placeholder="电话号码、手机号码必须填一项" value="">
+                <input type="text" name="to_phone" onblur="validateMobilePhone(this)" value="">
                </div>
             </div>
         <div class="line">

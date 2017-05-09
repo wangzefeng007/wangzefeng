@@ -86,7 +86,7 @@ var pageObj=$.extend({},pageObj,{
             +      '手机号码 <span class="form-need">*</span>'
             +    '</div>'
             +    '<div class="right">'
-            +      '<input type="text" name="to_phone" onblur="validateMobilePhone(this)" placeholder="电话号码、手机号码必须填一项" value="">'
+            +      '<input type="text" name="to_phone" onblur="validateMobilePhone(this)"  value="">'
             +    '</div>'
             +  '</div>'
             +  '<div class="line">'
@@ -161,6 +161,7 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     showMsg(data.Message);
+                    location.reload();
                 }else{
                     showMsg(data.Message);
                 }
