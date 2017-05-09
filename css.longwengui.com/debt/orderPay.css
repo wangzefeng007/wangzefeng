@@ -60,6 +60,7 @@
   position: relative;
   margin-bottom: 10px;
   display: inline-block;
+  cursor: default;
 }
 .order-pay .wrap .left-box .address-box p{
   margin: 8px 0;
