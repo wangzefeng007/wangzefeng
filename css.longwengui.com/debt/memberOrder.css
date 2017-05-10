@@ -1,0 +1,93 @@
+.order-list{
+  margin:20px 15px ;
+}
+.order-table{
+  width:100%;
+  display: table;
+  border-collapse: collapse;
+}
+.order-table .table-tr.table-th{
+  height: 40px;
+  line-height:40px;
+  color: #666;
+  background: #f2f1f1;
+  border:none;
+}
+.order-table .table-tr{
+  display: table-row;
+}
+.order-table .table-tr .td{
+  display: table-cell;
+  padding:15px 5px;
+  vertical-align: middle;
+  text-align: center;
+}
+.order-table .table-th .td{
+  border-bottom:solid 1px #c2ebfe;
+  padding: 0 ;
+}
+.order-table .table-tr .td.goods-td{
+  text-align: left;
+  padding-left:15px;
+}
+.order-table .table-tr.order-hr{
+  height: 20px;
+  border:none;
+}
+.goods-td .img{
+  float: left;
+  width:80px;
+  height:80px;
+  overflow: hidden;
+}
+.goods-td .img img{
+  width:100%;
+  height:100%;
+}
+.goods-td .con{
+  width:200px;
+  margin-left:10px;
+  float: left;
+  text-align: left;
+}
+.goods-td .con .title{
+  font-size:16px;
+  color: #646464;
+}
+.goods-td .con .des{
+  height: 54px;
+  overflow: hidden;
+  margin-top:10px;
+  color: #999;
+  line-height:18px;
+}
+.money-td {
+  color: #999;
+}
+.ems{
+  margin-top:10px;
+  font-size:12px;
+  color: #999;
+}
+
+.order-hd{
+  height:40px;
+  line-height:40px;
+  background: #c2ebfe;
+}
+.order-table .order-hd .td{
+  padding:0;
+}
+.order-table .table-tr .order-no{
+  text-align: left;
+  padding-left:15px;
+}
+.order-table .table-tr{
+  border:solid 1px #c2ebfe;
+}
+.order-table a{
+  color: #35bdfc;
+}
+.order-table a:hover{
+  text-decoration: underline;
+}

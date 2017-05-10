@@ -1,0 +1,273 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo CssURL}/debt/memberOrder.css">
+<div class="person-center">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      当前位置 > 我的资产 > <span>我发布的</span>
+    </div>
+    <div class="menu-cont-wrap">
+      {if $_SESSION[Identity]==0 || $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
+      {template MemberPersonLeft}
+      {elseif $_SESSION[Identity]==3}
+      {template MemberFirmLeft}
+      {elseif $_SESSION[Identity]==4}
+      {template MemberLawyerLeft}
+      {elseif $_SESSION[Identity]==5}
+      {template MemberCompanyLeft}
+      {/if}
+      <div class="tab-hd">
+        <div class="tb">
+          管理订单列表
+        </div>
+      </div>
+
+      <div class="info-cont">
+        <dl class="cont-select">
+          <dt>订单状态：</dt>
+          <dd onclick="" class="cont-select-act">全部</dd>
+          <dd onclick="">未付款</dd>
+          <dd onclick="">已付款</dd>
+          <dd onclick="">待收货</dd>
+          <dd onclick="">待发货</dd>
+          <dd onclick="">已退款</dd>
+        </dl>
+        <div class="order-list">
+          <div class="order-table">
+            <!--表格头部start-->
+            <div class="table-tr table-th">
+              <div class="td" style="width:330px">资产</div>
+              <div class="td" style="width:150px">份额单价</div>
+              <div class="td" style="width:90px">份数</div>
+              <div class="td" style="width:130px">实付款</div>
+              <div class="td" style="width:120px">当前状态</div>
+              <div class="td">操作</div>
+            </div>
+            <div class="table-tr order-hr"></div>
+            <!--表格头部end-->
+
+            <!--表格循环体 start-->
+            <div class="table-tr order-hd">
+              <div class="td" style="width:330px">
+                <div class="order-no">
+                  2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
+                </div>
+              </div>
+              <div class="td" style="width:150px"></div>
+              <div class="td" style="width:90px"></div>
+              <div class="td" style="width:130px"></div>
+              <div class="td" style="width:120px"></div>
+              <div></div>
+            </div>
+            <div class="table-tr">
+              <div class="td goods-td clearfix">
+                <p class="img">
+                  <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
+                </p>
+                <div class="con">
+                  <p class="title">上品武夷山大红袍</p>
+                  <div class="des">
+                    大红袍，产于福建武夷山，属乌
+                    龙茶，品质优异。中国特种名茶
+                  </div>
+                </div>
+              </div>
+              <div class="money-td td">
+                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
+                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+              </div>
+              <div class="td">2</div>
+              <div class="td">
+                <p>¥2010</p>
+                <p class="ems">（含EMS运费）</p>
+              </div>
+              <div class="td">
+                待审核
+              </div>
+              <div class="td">
+                <a href="#">查看详情&gt;&gt;</a>
+              </div>
+            </div>
+            <div class="table-tr order-hr"></div>
+            <!--表格循环体 end-->
+
+            <div class="table-tr order-hd">
+              <div class="td" style="width:330px">
+                <div class="order-no">
+                  2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
+                </div>
+              </div>
+              <div class="td" style="width:150px"></div>
+              <div class="td" style="width:90px"></div>
+              <div class="td" style="width:130px"></div>
+              <div class="td" style="width:120px"></div>
+              <div></div>
+            </div>
+            <div class="table-tr">
+              <div class="td goods-td clearfix">
+                <p class="img">
+                  <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
+                </p>
+                <div class="con">
+                  <p class="title">上品武夷山大红袍</p>
+                  <div class="des">
+                    大红袍，产于福建武夷山，属乌
+                    龙茶，品质优异。中国特种名茶
+                  </div>
+                </div>
+              </div>
+              <div class="money-td td">
+                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
+                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+              </div>
+              <div class="td">2</div>
+              <div class="td">
+                <p>¥2010</p>
+                <p class="ems">（含EMS运费）</p>
+              </div>
+              <div class="td">
+                待审核
+              </div>
+              <div class="td">
+                <a href="#">查看详情&gt;&gt;</a>
+              </div>
+            </div>
+            <div class="table-tr order-hr"></div>
+
+
+            <div class="table-tr order-hd">
+              <div class="td" style="width:330px">
+                <div class="order-no">
+                  2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
+                </div>
+              </div>
+              <div class="td" style="width:150px"></div>
+              <div class="td" style="width:90px"></div>
+              <div class="td" style="width:130px"></div>
+              <div class="td" style="width:120px"></div>
+              <div></div>
+            </div>
+            <div class="table-tr">
+              <div class="td goods-td clearfix">
+                <p class="img">
+                  <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
+                </p>
+                <div class="con">
+                  <p class="title">上品武夷山大红袍</p>
+                  <div class="des">
+                    大红袍，产于福建武夷山，属乌
+                    龙茶，品质优异。中国特种名茶
+                  </div>
+                </div>
+              </div>
+              <div class="money-td td">
+                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
+                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+              </div>
+              <div class="td">2</div>
+              <div class="td">
+                <p>¥2010</p>
+                <p class="ems">（含EMS运费）</p>
+              </div>
+              <div class="td">
+                待审核
+              </div>
+              <div class="td">
+                <a href="#">查看详情&gt;&gt;</a>
+              </div>
+            </div>
+            <div class="table-tr order-hr"></div>
+
+
+            <div class="table-tr order-hd">
+              <div class="td" style="width:330px" colspan="4">
+                <div class="order-no">
+                  2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
+                </div>
+              </div>
+              <div class="td" style="width:150px"></div>
+              <div class="td" style="width:90px"></div>
+              <div class="td" style="width:130px"></div>
+              <div class="td" style="width:120px"></div>
+              <div></div>
+            </div>
+            <div class="table-tr">
+              <div class="td goods-td clearfix">
+                <p class="img">
+                  <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
+                </p>
+                <div class="con">
+                  <p class="title">上品武夷山大红袍</p>
+                  <div class="des">
+                    大红袍，产于福建武夷山，属乌
+                    龙茶，品质优异。中国特种名茶
+                  </div>
+                </div>
+              </div>
+              <div class="money-td td">
+                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
+                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+              </div>
+              <div class="td">2</div>
+              <div class="td">
+                <p>¥2010</p>
+                <p class="ems">（含EMS运费）</p>
+              </div>
+              <div class="td">
+                审核通过
+              </div>
+              <div class="td">
+                <a href="#">查看详情&gt;&gt;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!--发布菜单-->
+        <div class="fr-win">
+          <div class="pub-btn">
+            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+            <br>
+            发布
+          </div>
+          <div class="pub-btn-list">
+            <div class="lin" onclick="selDebtWayPop()">
+              发布债务
+            </div>
+            <div class="lin" onclick="go('/choicefind/')">
+              寻找处置方
+            </div>
+            <div class="lin" onclick="go('/debt/transfer/')">
+              资产转让
+            </div>
+            <div class="lin" onclick="go('/reword/publish/')">
+              发布悬赏
+            </div>
+          </div>
+        </div>
+        <div class="pagination-wrap">
+          <div class="pagination fl-r" id="collection_page_pagination">
+            <a href="/asset/lists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+            {$ShowPage}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+{template Footer}
+<script>
+    var pageObj={
+        addressObj:{
+            Province:"{$AddressInfo[Province]}",
+            City:"{$AddressInfo[City]}",
+            Area:"{$AddressInfo[Area]}"
+        },
+        addressTotal:parseInt("{$Rscount['Num']}")+parseInt("{$Number}")
+    }
+</script>
+<script src='{echo JsURL}/debt/memberAddress.js'></script>
