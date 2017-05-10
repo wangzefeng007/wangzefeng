@@ -224,6 +224,10 @@ class Member
             if ($Page > $Data['PageCount'])
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberAssetInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
+                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+            }
             $ClassPage = new Page($Rscount['Num'], $pageSize,2);
             $ShowPage = $ClassPage->showpage();
         }
@@ -258,6 +262,12 @@ class Member
             if ($Page > $Data['PageCount'])
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['AssetID']);
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
+                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+                $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+            }
             $ClassPage = new Page($Rscount['Num'], $pageSize,2);
             $ShowPage = $ClassPage->showpage();
         }
@@ -291,6 +301,12 @@ class Member
             if ($Page > $Data['PageCount'])
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['AssetID']);
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
+                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+                $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+            }
             $ClassPage = new Page($Rscount['Num'], $pageSize,2);
             $ShowPage = $ClassPage->showpage();
         }
