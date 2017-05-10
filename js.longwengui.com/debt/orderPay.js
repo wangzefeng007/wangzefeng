@@ -156,11 +156,13 @@ var pageObj=$.extend({},pageObj,{
             shadeClose: true,
             content: $("#editAddressHtml").html()
         });
+        getCityData(addressObj.Province, $("input[name='dd_province']").siblings("span"));
+        getAreaData(addressObj.City, $("input[name='dd_city']").siblings("span"));
         getProvinceData();
     },
     validateForm:function($wrap){
         var addressInputs=this.addressInputs($wrap);
-        if(addressInputs.dd_province == ''|| addressInputs.dd_city=='' || addressInputs.dd_area=='' ||
+        if(!(addressInputs.dd_province*1) || !(addressInputs.dd_city*1) || !(addressInputs.dd_area*1) ||
             addressInputs.detail_area=='' || addressInputs.to_name=='' || addressInputs.to_phone == ''){
             showMsg('请完善地址信息');
             return false;
