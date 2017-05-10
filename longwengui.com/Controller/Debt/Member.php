@@ -202,19 +202,65 @@ class Member
      */
     public function AssetList(){
         $Nav = 'assetlist';
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $Status=  intval($_GET['S']);
+        if ($Status){
+            $MysqlWhere .= ' and Status = '.$Status;
+        }
+        $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
+        $pageSize = 4;
+        $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
+        if ($Rscount['Num']) {
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            if ($Page > $Data['PageCount'])
+                $page = $Data['PageCount'];
+            $Data['Data'] = $MemberAssetInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $pageSize,2);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberAssetList');
     }
     /**
      * @desc 已卖出资产
      */
     public function SellOrderList(){
+
         $Nav = 'sellorderlist';
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $MemberProductOrderModule = new MemberProductOrderModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $Status=  intval($_GET['S']);
+        if ($Status){
+            $MysqlWhere .= ' and Status = '.$Status;
+        }
+        $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
+        $pageSize = 4;
+        $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
+        if ($Rscount['Num']) {
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            if ($Page > $Data['PageCount'])
+                $page = $Data['PageCount'];
+            $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $pageSize,2);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberSellOrderList');
     }
     /**
@@ -222,9 +268,32 @@ class Member
      */
     public function BuyOrderList(){
         $Nav = 'buyorderlist';
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $MemberProductOrderModule = new MemberProductOrderModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $Status=  intval($_GET['S']);
+        if ($Status){
+            $MysqlWhere .= ' and Status = '.$Status;
+        }
+        $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
+        $pageSize = 4;
+        $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
+        if ($Rscount['Num']) {
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            if ($Page > $Data['PageCount'])
+                $page = $Data['PageCount'];
+            $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $pageSize,2);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberBuyOrderList');
     }
 }
