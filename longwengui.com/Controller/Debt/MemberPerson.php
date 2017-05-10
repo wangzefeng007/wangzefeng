@@ -413,7 +413,7 @@ class MemberPerson
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $NStatus = $MemberDebtInfoModule->NStatus;
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and UserID='.$_SESSION ['UserID'];
+        $MysqlWhere = ' and Type = 1 and UserID='.$_SESSION ['UserID'];
         //关键字
         $Rscount = $MemberFocusDebtModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;

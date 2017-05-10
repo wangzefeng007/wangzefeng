@@ -17,6 +17,15 @@
         <div class="menu-level-2 {if $Nav=='bondlist' || $Nav=='rewordlist' || $Nav=='findteam'}menu-level-2-act{/if}" onclick="go('/membercompany/bondlist/')">我的债权</div>
         <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
     </div>
+    <div class="menu-level-1" id="menu_2" data-open="0" can-down='1'>
+        <img src="/Uploads/Debt/imgs/care.png" class="i-left" alt="">
+        关注
+        <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
+    </div>
+    <div class="menu-level-2-wrap" data-for="menu_2">
+        <div class="menu-level-2 {if $Nav=='focusdebtlist'}menu-level-2-act{/if}" onclick="go('/membercompany/focusdebtlist/')" >我关注的债务</div>
+        <div class="menu-level-2" hidden>提前关注</div>
+    </div>
     <div class="menu-level-1 {if $Nav=='systemmessage'}menu-level-1-act{/if}"  onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息

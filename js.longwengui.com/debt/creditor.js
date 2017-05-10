@@ -82,24 +82,22 @@ var pageObj=$.extend({},pageObj,{
         })
     },
     favoFun:function(tar){
-        var paramObj={
-            assetId:$(tar).attr("data-id")
-        };
         $.ajax({
             type:"post",
-            url:"/ajaxasset/",
+            url: "/loginajax.html",
             dataType: "json",
             data:{
-                "Intention":"",
-                "AjaxJSON":JSON.stringify(paramObj)
+                "Intention":"ConcernInfo",
+                "Id":$(tar).attr("data-id"),
+                "Type":2
             },
             beforeSend:　function(){
                 showLoading();
             },success: function(data){
                 if(data.ResultCode == 200){
-                    showMsg(data.Message);
+                    showMsg("收藏成功！");
                 }else{
-                    showMsg(data.Message);
+                    showMsg("您已收藏！");
                 }
             },complete: function(){
                 closeLoading();
