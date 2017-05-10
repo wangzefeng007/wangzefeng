@@ -1057,4 +1057,42 @@ class AjaxLogin
         }
         EchoResult($Data);exit;
     }
+    /**
+     * @desc 删除收货地址
+     */
+    public function DeleteAddress(){
+        $this->IsLogin();
+        if ($_POST['id']){
+            $MemberShippingAddressModule = new MemberShippingAddressModule();
+            $ID = $_POST['id'];
+            $DeleteInfo = $MemberShippingAddressModule->DeleteByWhere(' and ShippingAddressID= '.$ID.' and UserID = '.$_SESSION['UserID']);
+            if ($DeleteInfo){
+                $Data['ResultCode'] = 200;
+                $Data['Message'] = '删除成功';
+            }else{
+                $Data['ResultCode'] = 101;
+                $Data['Message'] = '删除失败';
+            }
+            EchoResult($Data);exit;
+        }
+    }
+    /**
+     * @desc 设置默认收货地址
+     */
+    private function DefaultAddress(){
+        $this->IsLogin();
+        if ($_POST['id']){
+            $ID = intval($_POST['id']);
+            $ShippingAddressModule = new MemberShippingAddressModule();
+            $ShippingAddressModule->UpdateInfoByWhere(array('IsDefault'=>0),' UserID ='.$_SESSION['UserID']);
+            $UpdateInfo = $ShippingAddressModule->UpdateInfoByKeyID(array('IsDefault'=>1),$ID);
+            if ($UpdateInfo){
+                $Result = array('ResultCode' => '200', 'Message' => '设置成功');
+            }else{
+                $Result = array('ResultCode' => '100', 'Message' => '设置失败');
+            }
+            echo json_encode($Result);
+            exit;
+        }
+    }
 }
