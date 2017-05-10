@@ -144,7 +144,8 @@ class Member
         $MemberAreaModule = new MemberAreaModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-
+        $Rscount = $MemberShippingAddressModule->GetListsNum(' and UserID = '.$_SESSION['UserID']);
+        $Number = 10-$Rscount['Num'];//剩余保存条数
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
         foreach ($AddressList as $key=>$value){
             $AddressList[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
