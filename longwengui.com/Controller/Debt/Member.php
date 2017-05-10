@@ -263,8 +263,8 @@ class Member
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['AssetID']);
-                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ProductID']);//通过产品ID获取
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
                 $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
             }
@@ -302,8 +302,8 @@ class Member
                 $page = $Data['PageCount'];
             $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['AssetID']);
-                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ProductID']);//通过产品ID获取
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
                 $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
             }
