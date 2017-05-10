@@ -1022,7 +1022,7 @@ class AjaxLogin
                 if ($ShippingAddress){
                     $UpdateInfo = $MemberShippingAddressModule->UpdateInfoByKeyID($Data,$ShippingAddressID);
                     if ($UpdateInfo){
-                        $result_json = array('ResultCode'=>200,'Message'=>'更新成功！');
+                        $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/member/address/');
                     }else{
                         $result_json = array('ResultCode'=>102,'Message'=>'更新失败！');
                     }
@@ -1030,12 +1030,18 @@ class AjaxLogin
                     $result_json = array('ResultCode'=>103,'Message'=>'不存在该地址！');
                 }
             }else{
-                $InsertInfo =  $MemberShippingAddressModule->InsertInfo($Data);
-                if ($InsertInfo){
-                    $result_json = array('ResultCode'=>200,'Message'=>'添加成功！');
+                $Rscount = $MemberShippingAddressModule->GetListsNum(' and UserID = '.$_SESSION['UserID']);
+                if ($Rscount['Num']>=10){
+                    $result_json = array('ResultCode'=>105,'Message'=>'您保存的数量已满！');
                 }else{
-                    $result_json = array('ResultCode'=>104,'Message'=>'添加失败！');
+                    $InsertInfo =  $MemberShippingAddressModule->InsertInfo($Data);
+                    if ($InsertInfo){
+                        $result_json = array('ResultCode'=>200,'Message'=>'添加成功！');
+                    }else{
+                        $result_json = array('ResultCode'=>104,'Message'=>'添加失败！');
+                    }
                 }
+
             }
         }
         EchoResult($result_json);
