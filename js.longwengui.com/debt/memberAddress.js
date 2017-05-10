@@ -19,7 +19,7 @@ var pageObj=$.extend({},pageObj,{
     //保存验证
     validateForm:function($wrap){
         var addressInputs=this.addressInputs($wrap);
-        if(addressInputs.dd_province == ''|| addressInputs.dd_city=='' || addressInputs.dd_area=='' ||
+        if(!(addressInputs.dd_province*1) || !(addressInputs.dd_city*1) || !(addressInputs.dd_area*1) ||
             addressInputs.detail_area=='' || addressInputs.to_name=='' || addressInputs.to_phone == ''){
             showMsg('请完善地址信息');
             return false;
@@ -28,7 +28,7 @@ var pageObj=$.extend({},pageObj,{
         }
     },
     /**
-     * 新增收货地址
+     * 保存收货地址
      * @returns {boolean}
      */
     saveAddress:function(tar){
@@ -51,7 +51,10 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     showMsg(data.Message);
-                    location.reload();
+                    //路由跳转
+                    setTimeout(function() {
+                        window.location = data.Url;
+                    }, 10);
                 }else{
                     showMsg(data.Message);
                 }
@@ -69,13 +72,18 @@ var pageObj=$.extend({},pageObj,{
         $("input[name='dd_province']").siblings("span").text(getAddressObj.provinceText);
         $("input[name='dd_city']").siblings("span").text(getAddressObj.cityText);
         $("input[name='dd_area']").siblings("span").text(getAddressObj.areaText);
+
+        getCityData(_this.addressObj.Province, $("input[name='dd_province']").siblings("span"));
+        getAreaData(_this.addressObj.City, $("input[name='dd_city']").siblings("span"));
     },
     /**
      * 删除地址
      * @param addressId
      */
-    delAddress:function(addressId){
+    delAddress:function(tar,addressId){
         //var addressId=$(tar).attr("data-id");
+        var hasNum=parseInt($(".hasNum").text());
+        var hasNumber=parseInt($(".hasNumber").text());
         $.ajax({
             type:"post",
             url:"/loginajax.html",
@@ -89,7 +97,11 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     showMsg(data.Message);
-                    location.reload();
+                    $(tar).parents("tr").remove();
+                    hasNum--;
+                    hasNumber++;
+                    $(".hasNum").text(hasNum);
+                    $(".hasNumber").text(hasNumber);
                 }else{
                     showMsg(data.Message);
                 }
@@ -102,7 +114,7 @@ var pageObj=$.extend({},pageObj,{
      * 设为默认地址
      * @param addressId
      */
-    setDefaultAddress:function(addressId){
+    setDefaultAddress:function(tar,addressId){
         //var addressId=$(tar).attr("data-id");
         $.ajax({
             type:"post",
@@ -117,7 +129,10 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     showMsg(data.Message);
-                    location.reload();
+                    $(tar).parent().addClass("default").removeClass("set-default");
+                    $(tar).text("默认地址");
+                    $(tar).parents("tr").siblings("tr").find(".default").addClass("set-default").removeClass("default").text("设为默认");
+                    //location.reload();
                 }else{
                     showMsg(data.Message);
                 }
@@ -137,6 +152,11 @@ var pageObj=$.extend({},pageObj,{
         //设置地址Id
         var addressId = GetQueryString("ID");
         $("input[name='addressId']").val(addressId);
+        if(!(addressId*1)){
+            $(".addOrEdit").text("新增");
+        }else{
+            $(".addOrEdit").text("修改");
+        }
     }
 });
 pageObj.init();
