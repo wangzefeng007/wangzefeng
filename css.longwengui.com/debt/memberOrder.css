@@ -23,7 +23,6 @@
   text-align: center;
 }
 .order-table .table-th .td{
-  border-bottom:solid 1px #c2ebfe;
   padding: 0 ;
 }
 .order-table .table-tr .td.goods-td{
@@ -85,9 +84,24 @@
 .order-table .table-tr{
   border:solid 1px #c2ebfe;
 }
-.order-table a{
+.order-table .link{
   color: #35bdfc;
 }
-.order-table a:hover{
+.order-table .link:hover{
   text-decoration: underline;
+}
+.icon-del{
+  display: inline-block;
+  width:26px;
+  height:26px;
+  background: url("images/icon-del.png") no-repeat center;
+}
+.order-table .operate-txt{
+  color: #9a9a9a;
+}
+.order-table .link:hover{
+  text-decoration: underline;
+}
+.operate-td p{
+  margin-top:10px;
 }
