@@ -924,15 +924,16 @@ class AjaxLogin
         exit;
     }
     /**
-     * @desc 关注债务
+     * @desc 关注债务/资产
      */
-    public function ConcernDebt(){
+    public function ConcernInfo(){
         $this->IsLogin();
         $MemberFocusDebtModule = new MemberFocusDebtModule();
-        $Data['DebtID'] = $_POST['debtId'];
+        $Data['DebtID'] = intval($_POST['Id']);
         $Data['UserID'] = $_SESSION['UserID'];
+        $Data['Type'] = intval($_POST['Type']);
         $Data['AddTime'] = time();
-        $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and UserID = '.$_SESSION['UserID']);
+        $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and Type = '.$Data['Type'].' and UserID = '.$_SESSION['UserID']);
         if ($FocusDebt){
             $result_json = array('ResultCode'=>102,'Message'=>'您已关注！');
         }else{

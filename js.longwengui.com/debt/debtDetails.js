@@ -58,8 +58,9 @@ function concernDebt(debtId){
     dataType: 'json',
     url: '/loginajax.html',
     data: {
-      "Intention": 'ConcernDebt',
-      "debtId": debtId
+      "Intention": 'ConcernInfo',
+      "Id": debtId,
+      "Type":1
     },
     beforeSend: function(){
       showLoading();
