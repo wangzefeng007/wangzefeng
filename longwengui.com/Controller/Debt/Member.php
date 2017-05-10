@@ -131,7 +131,23 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberEditPassWord');
     }
-
+    /**
+     * @desc 注册会员用户中心选择
+     */
+    public function Center(){
+        $Title = '会员-用户中心';
+        $this->IsLogin();
+        $Nav = 'center';
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }else{
+            if ($_SESSION['Identity']!=0)
+                alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberCenter');
+    }
     /**
      * @desc 收货地址
      */
@@ -180,22 +196,35 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberAdvice');
     }
-    /**
-     * @desc 注册会员用户中心选择
-     */
-    public function Center(){
-        $Title = '会员-用户中心';
-        $this->IsLogin();
-        $Nav = 'center';
-        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
-            header('Location:' . WEB_MAIN_URL . '/member/login/');
-        }else{
-            if ($_SESSION['Identity']!=0)
-                alertandgotopage("访问被拒绝", WEB_MAIN_URL);
-        }
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        include template('MemberCenter');
-    }
 
+    /**
+     * @desc 发布的资产
+     */
+    public function AssetList(){
+        $Nav = 'assetlist';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberAssetList');
+    }
+    /**
+     * @desc 已卖出资产
+     */
+    public function SellOrderList(){
+        $Nav = 'sellorderlist';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberSellOrderList');
+    }
+    /**
+     * @desc 已买到资产
+     */
+    public function BuyOrderList(){
+        $Nav = 'buyorderlist';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberBuyOrderList');
+    }
 }
