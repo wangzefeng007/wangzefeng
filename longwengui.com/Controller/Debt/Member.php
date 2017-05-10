@@ -201,6 +201,7 @@ class Member
      * @desc 发布的资产
      */
     public function AssetList(){
+        $this->IsLogin();
         $Nav = 'assetlist';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
@@ -237,7 +238,7 @@ class Member
      * @desc 已卖出资产
      */
     public function SellOrderList(){
-
+        $this->IsLogin();
         $Nav = 'sellorderlist';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
@@ -277,6 +278,7 @@ class Member
      * @desc 已买到资产
      */
     public function BuyOrderList(){
+        $this->IsLogin();
         $Nav = 'buyorderlist';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();

@@ -1326,6 +1326,17 @@ function toDelete(text, id, intention){
       });
     });
 }
+//退出登录
+window.onbeforeunload = function() {
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/loginajax.html',
+        data: {
+            "Intention": "SignOut",
+        }
+    });
+}
 
 //悬赏完成确认弹窗
 function confirmReword(id){

@@ -109,6 +109,18 @@ class AjaxLogin
         exit;
     }
     /**
+     * @desc  退出登录
+     */
+    private function SignOut()
+    {
+        unset($_SESSION);
+        setcookie("UserID", '', time() - 1, "/", WEB_HOST_URL);
+        setcookie("Account", '', time() - 1, "/", WEB_HOST_URL);
+        setcookie("session_id", session_id(), time() - 1, "/", WEB_HOST_URL);
+        session_destroy();
+        header("location:" . WEB_MAIN_URL);
+    }
+    /**
      * @desc  发送注册验证码
      */
     private function RegisterSendCode(){

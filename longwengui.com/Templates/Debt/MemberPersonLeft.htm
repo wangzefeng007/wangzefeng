@@ -13,13 +13,13 @@
         <div class="menu-level-2 {if $Nav=='memberperson' || $Nav=='changemobile' || $Nav=='editpassword'}menu-level-2-act{/if}" onclick="go('/memberperson/')">个人信息</div>
         <div class="menu-level-2 {if $Nav=='address'}menu-level-2-act{/if}" onclick="go('/member/address/')">收货地址</div>
     </div>
-    {if $_SESSION[Identity]==0}
+    {if $UserInfo[Identity]==0}
     <div class="menu-level-1 {if $Nav=='center'}menu-level-1-act{/if}" onclick="go('/member/center/')">
         <img src="/Uploads/Debt/imgs/user_center.png" class="i-left" alt="">
         用户中心
     </div>
     {/if}
-    {if $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
+    {if $UserInfo[Identity]==1 || $UserInfo[Identity]==2}
     <div class="menu-level-1" id="menu_1" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
         债权管理
@@ -37,9 +37,9 @@
         <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
     </div>
     <div class="menu-level-2-wrap" data-for="menu_11">
-        <div class="menu-level-2" onclick="go('/memberperson/bondlist/')">我发布的</div>
-        <div class="menu-level-2" onclick="go('/memberperson/debtlist/')">已买到的</div>
-        <div class="menu-level-2">已卖出的</div>
+        <div class="menu-level-2 {if $Nav=='assetlist'}menu-level-2-act{/if}" onclick="go('/member/assetlist/')">我发布的</div>
+        <div class="menu-level-2 {if $Nav=='buyorderlist'}menu-level-2-act{/if}" onclick="go('/member/buyorderlist/')">已买到的</div>
+        <div class="menu-level-2 {if $Nav=='sellorderlist'}menu-level-2-act{/if}" onclick="go('/member/sellorderlist/')">已卖出的</div>
     </div>
     <div class="menu-level-1" id="menu_2" data-open="0" can-down='1'>
         <img src="/Uploads/Debt/imgs/care.png" class="i-left" alt="">
@@ -55,13 +55,13 @@
         范本下载
     </div>
     {/if}
-    {if $_SESSION[Identity]==1}
+    {if $UserInfo[Identity]==1}
     <div class="menu-level-1" onclick="upgradPersonRole()">
         <img src="/Uploads/Debt/imgs/cuikequanyi.png" class="i-left" alt="">
         催客权益
     </div>
     {/if}
-    {if $_SESSION[Identity]==2}
+    {if $UserInfo[Identity]==2}
     <div class="menu-level-1" id="menu_3" data-open="0" can-down='1' hidden>
         <img src="/Uploads/Debt/imgs/daili.png" class="i-left" alt="">
         代理
