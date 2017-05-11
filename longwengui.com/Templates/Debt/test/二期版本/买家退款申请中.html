@@ -1,0 +1,163 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/returnGoods.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="order-pay">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      <span>当前位置 : <a>我的资产 </a> > <a>已买到的</a> > <span class="cur">退款申请</span></span>
+    </div>
+    <div class="tip">
+      退款订单号：201702280001
+    </div>
+    <div class="flow-wrap">
+      <div class="flow-box clearfix">
+        <div class="flow over first">
+          <span>1</span>
+          <p>买家申请退货退款</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow over">
+          <span>2</span>
+          <p>卖家处理退款申请</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow">
+          <span>3</span>
+          <p>买家退货给卖家</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow">
+          <span>4</span>
+          <p>卖家确认收货，退款完成</p>
+          <i class="triangle"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-wrap">
+      <div class="tab-con clearfix">
+        <div class="tab-con-l">
+          <div class="return-waiting">
+            <p class="title">请等待卖家处理...</p>
+            <div class="con">
+              <p>*如果卖家同意，请按照给出的退货地址进行退货。</p>
+              <p>*如果卖家拒绝，您可以修改退货申请后再次发起，卖家会重新处理。</p>
+              <p>*如果卖家在4天23时59分59秒内未处理，退货申请将自动达成，请安系统给出的退货地址退货。</p>
+              <p>*如有人以“卡单、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱款被骗。</p>
+            </div>
+            <div class="other">
+              您还可以： <a href="#">修改退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+            </div>
+          </div>
+          <div class="return-logistics">
+            <div class="panel">进度详情</div>
+            <div class="message-list">
+              <ul>
+                <li>
+                  <p class="img"></p>
+                  <div class="con">
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-con-r">
+          <div class="hd">退货退款申请</div>
+          <div class="order-goods clearfix">
+            <p class="img">
+              <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
+            </p>
+            <div class="con">
+              <div class="clearfix">
+                <p class="title fl ellipsis">
+                  上品武夷山大红袍
+                </p>
+                <p class="type fr ellipsis">
+                  资产种类：茶叶
+                </p>
+              </div>
+
+              <div class="des">
+                大红袍，产于福建武夷山，属乌龙茶，品质
+                优异。中国特种名茶中国特种名茶中国特种
+                名茶中国特种名茶中国特种名茶
+              </div>
+            </div>
+          </div>
+          <div class="order-msg">
+            <div class="line">
+              <label for="">卖&emsp;&emsp;家:</label>
+              <p>我很爱稀饭 &emsp;<i class="icon-contact"></i><span class="btn-contact">和我联系</span></p>
+            </div>
+            <div class="line">
+              <label for="">联系电话:</label>
+              <p>13960326366</p>
+            </div>
+            <div class="line">
+              <label for="">订单编号:</label>
+              <p><span class="c-primary">L201702270001</span></p>
+            </div>
+            <div class="line">
+              <label for="">单&emsp;&emsp;价:</label>
+              <p><span class="c-red">1010.00</span>元*2 （数量）</p>
+            </div>
+            <div class="line">
+              <label for="">邮&emsp;&emsp;费:</label>
+              <p><span class="c-red">0.00</span></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-box">
+      <p class="hd">服务介绍</p>
+      <div class="con">
+        <p class="section-title">1.仅退款</p>
+        <div class="section-con">
+          <p>
+            申请条件：若您未到货，或已收到货且与卖家达成一致不退货仅退款时，请选择“仅退款”选项。
+          </p>
+          <p>退款流程：1.申请退款 > 2.卖家同意退款申请 > 3.退款成功</p>
+        </div>
+
+        <p class="section-title">2.退货退款</p>
+        <div class="section-con">
+          <p>
+            申请条件：若为商品问题，或者不想要了且与卖家达成一致退货，请选择“退货退款”选项，退货后请保留物流底单（闲置商品和未加入消保商品仅支持未收到货的退款）。
+          </p>
+          <p>
+            退款流程：1.申请退货 > 2.卖家发送退货地址给买家 > 3.买家退货并填写退货物流信息 > 4.卖家确认收货，退款成功
+          </p>
+        </div>
+
+        <p class="section-title">3.换货</p>
+        <div class="section-con">
+          <p>
+            申请条件：若您与卖家协商一致换货，请选择“换货”选项，退货后请保留物流底单。
+          </p>
+          <p>
+            退款流程：1.申请换货 > 2.卖家发送退货地址给买家 > 3.买卖家线下完成换货 > 4.买家线上确认完成
+          </p>
+        </div>
+
+        <p class="section-title">4.维修</p>
+        <div class="section-con">
+          <p>
+            申请条件：若您与卖家协商一致换货，请选择“换货”选项，退货后请保留物流底单。
+          </p>
+          <p>
+            退款流程：1.申请换货 > 2.卖家发送退货地址给买家 > 3.买卖家线下完成换货 > 4.买家线上确认完成
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/returnGoods.js'></script>
