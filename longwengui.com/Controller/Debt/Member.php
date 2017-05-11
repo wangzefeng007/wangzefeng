@@ -314,4 +314,10 @@ class Member
         }
         include template('MemberBuyOrderList');
     }
+    /**
+     * @desc 资产已买到订单详情页
+     */
+    public function BuyOrderDetail(){
+        include template('MemberBuyOrderDetail');
+    }
 }

@@ -14,6 +14,10 @@ $RouteArr=array(
     'asset@publish'=>'Asset@Publish',
     'asset@lists'=>'Asset@Lists',
     'asset@details'=>'Asset@Details',
+    'asset@order'=>'Asset@Order',
+    'asset@choicepay'=>'Asset@ChoicePay',
+    'asset@pay'=>'Asset@Pay',
+
     //寻找处置方
     'find@choicefind'=>'Find@ChoiceFind',
     'find@team'=>'Find@Team',
@@ -31,6 +35,10 @@ $RouteArr=array(
     'member@systemmessage'=>'Member@SystemMessage',
     'member@advice'=>'Member@Advice',
     'member@center'=>'Member@Center',
+    'member@assetlist'=>'Member@AssetList',
+    'member@sellorderlist'=>'Member@SellOrderList',
+    'member@buyorderlist'=>'Member@BuyOrderList',
+    'member@buyorderdetail'=>'Member@BuyOrderDetail',
     //普通会员中心
     'memberperson@index'=>'MemberPerson@Index',
     'memberperson@editinfo'=>'MemberPerson@EditInfo',
@@ -56,4 +64,9 @@ $RouteArr=array(
     'memberfirm@demandlist'=>'MemberFirm@DemandList',
     'memberfirm@demanddetails'=>'MemberFirm@DemandDetails',
     'memberfirm@setdemand'=>'MemberFirm@SetDemand',
+    //订单支付
+    'pay@alipay'=>'Pay@AliPay',
+    'pay@alipaynotify'=>'Pay@AliPayNotify',
+    'pay@result'=>'Pay@Result',
+
 );
