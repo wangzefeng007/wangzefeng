@@ -206,6 +206,33 @@
         </div>
         <div class="c"></div>
 
+
+        <div class="t">
+          <img src="/Uploads/Debt/imgs/gou_b_off.png" id="debt_family_info_btn" style="cursor: pointer;" data-checked="0" alt="">
+          <span>债务人亲友</span>
+          <div class="opt" onclick="addDebtFamily()" style="display: none;">
+            <img src="/Uploads/Debt/imgs/add_b.png" alt="">
+            添加
+          </div>
+        </div>
+        <div class="c" id="debt_family_info">
+          <div class="blo"  style="display: none;">
+            <div class="to-del" onclick="removeParentDom(this, 'blo')">
+              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+            </div>
+            <div class="line">
+              <div class="info">
+                债务人亲友信息 :
+              </div>
+              <div class="details">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                <input type="text" name="relationship" placeholder="关系">
+                <input type="text" name="phoneNumber" onblur="validatePhone(this, true)" placeholder="联系方式">
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="t">
           <img src="/Uploads/Debt/imgs/gou_b_off.png" id="bonds_man_info_btn" style="cursor: pointer;" data-checked="0" alt="">
           <span>有保证人</span>
@@ -499,6 +526,23 @@
       </div>
       <div class="details">
         <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债务金额">元
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-jquery-tmpl" id="debt_family_tmpl">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        债务人亲友信息 :
+      </div>
+      <div class="details">
+        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+        <input type="text" name="relationship" placeholder="关系">
+        <input type="text" name="phoneNumber" onblur="validatePhone(this, true)" placeholder="联系方式">
       </div>
     </div>
   </div>

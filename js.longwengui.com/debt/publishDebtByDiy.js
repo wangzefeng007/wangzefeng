@@ -1,8 +1,27 @@
 //自助催收发布债务
 $(function(){
+  var haveDebtFamily = 0; //是否债权人亲友
   var haveBondsMan = 0; //是否有保证人
   var haveBondsGood = 0; //是否有保证物
   getProvinceData();
+
+    //切换是否有债务人亲友
+    $('#debt_family_info_btn').click(function(){
+        if($(this).attr('data-checked') == 1){
+            $(this).attr('data-checked', 0);
+            $(this).attr('src', 'http://www.longwengui.net/Uploads/Debt/imgs/gou_b_off.png');
+            $(this).siblings('.opt').hide();
+            $('#debt_family_info').children().hide();
+            haveDebtFamily = 0;
+        }else{
+            $(this).attr('data-checked', 1);
+            $(this).attr('src', 'http://www.longwengui.net/Uploads/Debt/imgs/gou_b.png');
+            $(this).siblings('.opt').show();
+            $('#debt_family_info').children().show();
+            haveDebtFamily = 1;
+        }
+    });
+
   //切换是否有保证人
   $('#bonds_man_info_btn').click(function(){
     if($(this).attr('data-checked') == 1){
@@ -46,6 +65,7 @@ $(function(){
     var _debtOwnerInfos = [];
     var _preFee, _searchedAnytime, _abilityDebt;
     var _debtorInfos = [];
+    var _debtfamilyInfos = [];
     var _bondsmanInfos = [];
     var _bondsgoodInfos = [];
     var _debtor_owner_money = 0, _debtor_money = 0;
@@ -231,6 +251,45 @@ $(function(){
     //是否有还款能力
     _abilityDebt = $('input[name="abilityDebt"]:checked').val();
 
+    if(haveDebtFamily == 1){
+        //有债务人亲友
+        $('#debt_family_info').find('.blo').each(function(){
+            if(flag){
+                //债务人亲友信息
+                var _name = $(this).find('input[name="name"]').val();
+                var _relationship = $(this).find('input[name="relationship"]').val();
+                var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
+
+                if(_name == ""){
+                    showMsg('请完善债务人亲友信息');
+                    $(this).find('input[name="name"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(!validate('chinese', _name)){
+                    showMsg('请输入正确的债务人亲友姓名');
+                    $(this).find('input[name="name"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+                    showMsg('请输入正确的债务人亲友手机号');
+                    $(this).find('input[name="phoneNumber"]').focus();
+                    flag = false;
+                    return;
+                }
+                _debtfamilyInfos.push({
+                    "name": _name, //债务人亲友姓名
+                    "idNum": _relationship, //债务人亲友关系
+                    "phoneNumber": _phoneNumber //债务人亲友联系方式
+                });
+            }
+        });
+        if(!flag){
+            return;
+        }
+    }
+
     if(haveBondsMan == 1){
       //有保证人时注入
       $('#bonds_man_info').find('.blo').each(function(){
@@ -318,6 +377,8 @@ $(function(){
       "debtorInfos": _debtorInfos, //债务人信息数组 {name: 姓名; idNum: 身份证号; phoneNumber: 联系方式; province: 省; city: 市; area: 县; debt_money 债务金额 areaDetail 详细地址}
       "searchedAnytime": _searchedAnytime, //是否随时能找到 0 不能 1能
       "abilityDebt": _abilityDebt, //是否有能力还债 0 不能 1 能
+      "haveDebtFamily": haveDebtFamily, //是否有债务人亲友 0 无 1 有
+      "debtfamilyInfos": _debtfamilyInfos, //债权人亲友信息数组； haveDebtFamily为0: 数组为空;为1: {name: 名称; relationship: 与债权人关系; phoneNumber: 联系方式;}
       "haveBondsMan": haveBondsMan, //是否有保证人 0 无 1 有
       "bondsmanInfos": _bondsmanInfos, //保证人信息数组； haveBondsMan为0: 数组为空;为1: {name: 名称; idNum: 身份证号; phoneNumber: 联系方式; bonds_man_role: 保证人角色}
       "haveBondsGood": haveBondsGood,  //是否有抵押物 0 无 1 有
@@ -386,6 +447,12 @@ function addBondsManDpEvent(){
     var _role = $(tar).attr("data-name");
     $(tar).parent().siblings("span").text(_role);
   });
+}
+//添加债权人亲友
+function addDebtFamily(){
+    if($('#debt_family_info').children('.blo').length < 3){
+        addDom('debt_family_info', 'debt_family_tmpl');
+    }
 }
 //添加新的保证人
 function addBondsMan(){

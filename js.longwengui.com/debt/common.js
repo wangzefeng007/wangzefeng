@@ -1326,7 +1326,6 @@ function toDelete(text, id, intention){
       });
     });
 }
-
 //悬赏完成确认弹窗
 function confirmReword(id){
   var index = layer.open({

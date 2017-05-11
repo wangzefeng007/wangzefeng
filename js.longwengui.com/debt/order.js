@@ -55,6 +55,12 @@ var pageObj=$.extend({},pageObj,{
         pageObj.totalMoney=totalMoney;
     },
     /**
+     * 立即支付跳转
+     */
+    goPay:function(url){
+        go(url);
+    },
+    /**
      * 进入页面初始化方法
      */
     init:function() {
@@ -65,6 +71,15 @@ var pageObj=$.extend({},pageObj,{
         //选择支付方式
         $(".pay-list li").on("click",function(){
             $(this).addClass("selected").siblings().removeClass("selected")
+        });
+        $("#goPay").on("click",function(){
+            var pay_url="";
+            $(".pay-list li").each(function(){
+                if($(this).hasClass("selected")){
+                    pay_url=$(this).attr("data-url");
+                }
+            })
+            _this.goPay(pay_url);
         })
     }
 });
