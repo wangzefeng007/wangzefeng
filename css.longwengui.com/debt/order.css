@@ -242,8 +242,11 @@ i{
   font-weight: normal;
 }
 .tab-wrap .total .btn{
-  margin-left:80px;
+  margin-left:50px;
   margin-top:-10px;
+}
+.tab-wrap .total .btn-link{
+  margin-left:30px;
 }
 .pay-wrap{
   padding:20px 0 40px 20px;
@@ -324,4 +327,11 @@ i{
 }
 .ems-box p{
   margin-top:15px;
+}
+
+.btn-link{
+  color: #35bdfc;
+}
+.btn-link:hover{
+  text-decoration: underline;
 }

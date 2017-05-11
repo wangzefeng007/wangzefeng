@@ -449,3 +449,32 @@ i{
   font-size: 18px;
   font-weight: bold;
 }
+.table{
+  color: #666;
+  border:solid 1px #e6e6e6;
+}
+.table .td{
+  float: left;
+  text-align: center;
+}
+.table  .th{
+  height:40px;
+  line-height:40px;
+  background: #f2f1f1;
+}
+.table  .tr{
+  padding:20px 0;
+}
+.table  .tr td{
+  line-height:26px;
+  height:52px;
+}
+.col-1{
+  width:240px;
+}
+.col-2{
+  width:200px;
+}
+.col-3{
+  width:265px;
+}
