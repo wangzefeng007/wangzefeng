@@ -7,16 +7,16 @@
             <span>当前位置 : <a>债权管理</a> > <a>订单管理</a> > <a>订单详情</a> > <span class="cur">付款</span></span>
         </div>
         <div class="tip">
-            订单编号：201702280001
+            订单编号：{$OrderInfo['OrderNumber']}
         </div>
         <div class="pay-wrap">
             <div class="pay-con clearfix">
                 <div class="pay-list">
                     <ul>
-                        <li class="selected" data-url="http://www.longwengui.net/asset/publish">
+                        <li class="selected" data-url="/asset/pay/?id={$OrderInfo[OrderID]}&type=alipay">
                             <p><i class="icon icon-zfb"></i>支付宝</p>
                         </li>
-                        <li data-url="https://www.baidu.com/">
+                        <li data-url="/asset/pay/?id={$OrderInfo[OrderID]}&type=wxpay">
                             <p><i class="icon icon-wx"></i>微信支付</p>
                         </li>
                     </ul>
@@ -24,11 +24,11 @@
                 <div class="pay-des">
                     <div class="clearfix">
                         <label for="">资产转让名称：</label>
-                        <p class="title fl">上品武夷山大红袍，送礼好选择</p>
+                        <p class="title fl">{$OrderInfo['Title']}</p>
                     </div>
-                    <p class="publish-person">发布人：海克斯</p>
+                    <p class="publish-person">发布人：{$OrderInfo['RealName']}</p>
                 </div>
-                <p class="pay-total">2010.00元</p>
+                <p class="pay-total">{$OrderInfo['TotalAmount']}元</p>
             </div>
             <div class="pay-button">
                 <a class="btn" id="goPay" href="javascript:void(0);">立即支付</a>

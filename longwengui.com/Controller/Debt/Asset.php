@@ -120,16 +120,22 @@ class Asset
     {
         $Title = '订单支付';
         $OrderNumber = $_GET['OrderNumber'];
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
-        $Order = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
-        $GoToUrl = WEB_MAIN_URL . '/assetdetails/' . $Order['ProductID'] . '.html';
-        if ($Order && $Order['Status'] == 1) {
-            if ($Order['ExpirationTime'] > time()) {
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $OrderInfo['Title'] = $AssetInfo['Title'];
+        $OrderInfo['RealName'] = $UserInfo['RealName'];
+        $GoToUrl = WEB_MAIN_URL . '/assetdetails/' . $OrderInfo['ProductID'] . '.html';
+        if ($OrderInfo && $OrderInfo['Status'] == 1) {
+            if ($OrderInfo['ExpirationTime'] > time()) {
                 include template('AssetOrderPay');
             } else {
                 $UpData['Status'] = 10;
                 $UpData['Remarks'] = '订单超时未支付';
-                $Result = $MemberProductOrderModule->UpdateInfoByKeyID($UpData, $Order['OrderID']);
+                $Result = $MemberProductOrderModule->UpdateInfoByKeyID($UpData, $OrderInfo['OrderID']);
                 if ($Result) {
                     $LogMessage = '操作失败(超时状态更新失败)';
                 } else {
@@ -141,7 +147,7 @@ class Asset
                     $UserID = $_SESSION['UserID'];
                 } else {
                     $MemberUserModule = new MemberUserModule();
-                    $UserInfo = $MemberUserModule->GetUserIDbyMobile($Order['Tel']);
+                    $UserInfo = $MemberUserModule->GetUserIDbyMobile($OrderInfo['Tel']);
                     $UserID = $UserInfo['UserID'];
                 }
                 $LogData = array(
@@ -166,18 +172,32 @@ class Asset
      */
     public function Pay()
     {
-        $Type = trim($_GET['Type']);
-        $OrderID = trim($_GET['ID']);
+        $Type = trim($_GET['type']);
+        $OrderID = trim($_GET['id']);
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
         $Order = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($Order['ProductID']);
         $Data = array();
         if ($Order && $Order['Status'] == 1) {
             if ($Type == 'alipay') {
-
+                $Data['OrderNo'] = $Order['OrderNumber'];
+                $Data['Subject'] = html_entity_decode($AssetInfo['Title'], ENT_QUOTES);
+                $Data['Money'] = $Order['TotalAmount'];
+                $Data['Body'] = html_entity_decode($AssetInfo['Title'], ENT_QUOTES);
+                $Data['ReturnUrl'] = WEB_MAIN_URL . '/pay/result/';
+                $Data['NotifyUrl'] = WEB_MAIN_URL . '/pay/result/';
+                $Data['ProductUrl'] = WEB_MAIN_URL . "/assetdetails/{$Order['ProductID']}.html";
+                $Data['RunTime'] = time();
                 $Data['Sign'] = ToolService::VerifyData($Data);
                 echo ToolService::PostForm(WEB_MAIN_URL . '/pay/alipay/', $Data);
             } elseif ($Type == 'wxpay') {
-
+                $Data['OrderNo'] = $Order['OrderNumber'];
+                $Data['Subject'] = html_entity_decode($AssetInfo['Title'], ENT_QUOTES);
+                $Data['Money'] = $Order['TotalAmount'];
+                $Data['Body'] = html_entity_decode($AssetInfo['Title'], ENT_QUOTES);
+                $Data['ReturnUrl'] = WEB_MAIN_URL . '/pay/result/';
+                $Data['RunTime'] = time();
                 $Data['Sign'] = ToolService::VerifyData($Data);
                 echo ToolService::PostForm(WEB_MAIN_URL . '/pay/wxpay/', $Data);
             }
