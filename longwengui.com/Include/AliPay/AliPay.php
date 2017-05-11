@@ -3,7 +3,7 @@ class AliPay {
     private $alipay_config=array();
     public function __construct() {
             //合作身份者ID，签约账号，以2088开头由16位纯数字组成的字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm  2088912584072026
-            $this->alipay_config['partner'] = '2088121216639966';
+            $this->alipay_config['partner'] = '2088912584072026';
             
             //收款支付宝账号，一般情况下收款账号就是签约账号
             //$this->alipay_config['seller_email'] = 'info@57us.com';
@@ -12,7 +12,7 @@ class AliPay {
             $this->alipay_config['seller_id']= $this->alipay_config['partner'];
 
             // MD5密钥，安全检验码，由数字和字母组成的32位字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm  c2dstn2mjso8u78te87ofdnca6zlg2wp
-            $this->alipay_config['key'] = 'zjce0doeelmdkssnej6jfvld4p5ewb1e';
+            $this->alipay_config['key'] = 'c2dstn2mjso8u78te87ofdnca6zlg2wp';
 
             //签名方式
             $this->alipay_config['sign_type'] = strtoupper('MD5');

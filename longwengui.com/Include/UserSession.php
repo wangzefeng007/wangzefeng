@@ -1,7 +1,7 @@
 <?php
-if($_COOKIE['session_id']!=''){
-    session_id($_COOKIE['session_id']);
-}
+//if($_COOKIE['session_id']!=''){
+//    session_id($_COOKIE['session_id']);
+//}
 session_start();
 //post函数
 function curl_postsend_usersession($url, $data = array()) {

@@ -1326,19 +1326,7 @@ function toDelete(text, id, intention){
       });
     });
 }
-//退出登录
-window.onunload= function() {
-    clearCookie('session_id');
-}
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-function clearCookie(name) {
-    setCookie(name, "", -1);
-}
+
 //悬赏完成确认弹窗
 function confirmReword(id){
   var index = layer.open({
