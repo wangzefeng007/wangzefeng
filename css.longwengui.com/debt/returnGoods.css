@@ -312,7 +312,7 @@ i{
 }
 .order-msg{
   border-top:dashed 1px #ccc;
-  padding:30px 0;
+  padding-top:30px;
   color: #353535;
 }
 .order-msg .line{
@@ -375,7 +375,7 @@ i{
   padding:10px 0;
 }
 .return-waiting .other{
-  margin-top:10px;
+  margin:10px 0;
   padding:10px 0;
   border-top:dashed 1px #cbcbcb;
 }
@@ -387,4 +387,65 @@ i{
 }
 .return-waiting .other span{
   color: #cbcbcb;
+}
+
+
+.tab-con-l .panel{
+  height:50px;
+  width:100%;
+  line-height:50px;
+  padding-left:30px;
+  margin-left:-30px;
+  background: #e4e4e4;
+  font-size:16px;
+  font-weight:bold;
+  color: #353535;
+}
+
+.message-list{
+  min-height:400px;
+}
+
+.message-list li{
+  padding:18px 30px 18px 0;
+  border-bottom:solid 1px #cbcbcb;
+}
+.message-list li:last-child{
+  border-bottom:none;
+}
+.message-list .img{
+  width:46px;
+  height:46px;
+  float: left;
+  overflow: hidden;
+}
+.message-list .img img{
+  width:100%;
+  height:100%;
+}
+
+.message-list .con{
+  position: relative;
+  width:620px;
+  float: right;
+  color: #353535;
+}
+.message-list .con .msg{
+  margin-top:12px;
+}
+.message-list .con .time{
+  position: absolute;
+  right:0;
+  top:0;
+  color: #666;
+  font-size:12px;
+}
+
+.return-money-success{
+
+}
+.return-money-success .title{
+  padding: 20px 0 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
