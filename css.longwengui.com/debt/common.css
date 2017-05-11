@@ -451,6 +451,9 @@ a{
 .c-red{
   color: #fc3535;
 }
+.c-primary{
+  color: #35bdfc;
+}
 .tx-l {
   text-align: left!important;
 }

@@ -1,0 +1,227 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/returnGoods.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="order-pay">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      <span>当前位置 : <a>我的资产 </a> > <a>已买到的</a> > <span class="cur">退款申请</span></span>
+    </div>
+    <div class="tip">
+      退款订单号：201702280001
+    </div>
+    <div class="flow-wrap">
+      <div class="flow-box clearfix">
+        <div class="flow over first">
+          <span>1</span>
+          <p>买家申请退货退款</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow">
+          <span>2</span>
+          <p>卖家处理退款申请</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow">
+          <span>3</span>
+          <p>买家退货给卖家</p>
+          <i class="triangle"></i>
+        </div>
+        <div class="flow">
+          <span>4</span>
+          <p>卖家确认收货，退款完成</p>
+          <i class="triangle"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-wrap">
+      <p class="tab-title">退款申请</p>
+      <div class="tab-con clearfix">
+        <div class="tab-con-l">
+          <div class="hd">
+            申请服务： 退货退款
+            <span class="tips">*为必填项</span>
+          </div>
+          <p class="tips">隆文贵温馨提示 : 您只有一次售后维权的机会哦</p>
+          <div class="form-box">
+            <form action="">
+              <div class="form-line">
+                <label class="form-lab" for="">*退款原因</label>
+                <div class="form-control return-reason">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span data-id="">请选择退货退款原因</span>
+                      <i></i>
+                      <input type="checkbox" name="" value="">
+                      <ul>
+                        <li data-id="" data-name="">不喜欢用</li>
+                        <li data-id="" data-name="">坏掉了</li>
+                      </ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-line">
+                <label class="form-lab" for="">退款金额</label>
+                <div class="form-control">
+                  <div class="form-txt">
+                    <span class="c-red">2010.00</span>元
+                  </div>
+                </div>
+              </div>
+              <div class="form-line">
+                <label class="form-lab" for="">*退款说明 <small>（0~200）</small></label>
+                <div class="form-control">
+                  <textarea class="textarea" name="" id="" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+              <div class="form-line">
+                <label class="form-lab" for="">上传凭证</label>
+                <div class="form-control clearfix">
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <div class="img">
+
+                      </div>
+                      <label title="点击上传">
+                        <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <div class="img">
+
+                      </div>
+                      <label title="点击上传">
+                        <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <div class="img">
+
+                      </div>
+                      <label title="点击上传">
+                        <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                      </label>
+                    </div>
+                  </div>
+                  <p class="clearfix"></p>
+                  <p class="upload-tips">
+                    <i class="icon-warning2"></i>
+                    请提供有效凭证的清晰截图，最多上传3张
+                  </p>
+                </div>
+              </div>
+              <div class="form-line">
+                <label for="" class="form-lab"></label>
+                <div class="form-control">
+                  <button class="btn btn-primary">提交申请</button>
+                  <a class="btn-text text-red ml-20" href="#">取消并返回</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="tab-con-r">
+          <div class="hd">订单信息</div>
+          <div class="order-goods clearfix">
+            <p class="img">
+              <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
+            </p>
+            <div class="con">
+              <div class="clearfix">
+                <p class="title fl ellipsis">
+                  上品武夷山大红袍
+                </p>
+                <p class="type fr ellipsis">
+                  资产种类：茶叶
+                </p>
+              </div>
+
+              <div class="des">
+                大红袍，产于福建武夷山，属乌龙茶，品质
+                优异。中国特种名茶中国特种名茶中国特种
+                名茶中国特种名茶中国特种名茶
+              </div>
+            </div>
+          </div>
+          <div class="order-msg">
+            <div class="line">
+              <label for="">卖&emsp;&emsp;家:</label>
+              <p>我很爱稀饭 &emsp;<i class="icon-contact"></i><span class="btn-contact">和我联系</span></p>
+            </div>
+            <div class="line">
+              <label for="">联系电话:</label>
+              <p>13960326366</p>
+            </div>
+            <div class="line">
+              <label for="">订单编号:</label>
+              <p><span class="c-primary">L201702270001</span></p>
+            </div>
+            <div class="line">
+              <label for="">单&emsp;&emsp;价:</label>
+              <p><span class="c-red">1010.00</span>元*2 （数量）</p>
+            </div>
+            <div class="line">
+              <label for="">邮&emsp;&emsp;费:</label>
+              <p><span class="c-red">0.00</span></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-box">
+      <p class="hd">服务介绍</p>
+      <div class="con">
+        <p class="section-title">1.仅退款</p>
+        <div class="section-con">
+          <p>
+            申请条件：若您未到货，或已收到货且与卖家达成一致不退货仅退款时，请选择“仅退款”选项。
+          </p>
+          <p>退款流程：1.申请退款 > 2.卖家同意退款申请 > 3.退款成功</p>
+        </div>
+
+        <p class="section-title">2.退货退款</p>
+        <div class="section-con">
+          <p>
+            申请条件：若为商品问题，或者不想要了且与卖家达成一致退货，请选择“退货退款”选项，退货后请保留物流底单（闲置商品和未加入消保商品仅支持未收到货的退款）。
+          </p>
+          <p>
+            退款流程：1.申请退货 > 2.卖家发送退货地址给买家 > 3.买家退货并填写退货物流信息 > 4.卖家确认收货，退款成功
+          </p>
+        </div>
+
+        <p class="section-title">3.换货</p>
+        <div class="section-con">
+          <p>
+            申请条件：若您与卖家协商一致换货，请选择“换货”选项，退货后请保留物流底单。
+          </p>
+          <p>
+            退款流程：1.申请换货 > 2.卖家发送退货地址给买家 > 3.买卖家线下完成换货 > 4.买家线上确认完成
+          </p>
+        </div>
+
+        <p class="section-title">4.维修</p>
+        <div class="section-con">
+          <p>
+            申请条件：若您与卖家协商一致换货，请选择“换货”选项，退货后请保留物流底单。
+          </p>
+          <p>
+            退款流程：1.申请换货 > 2.卖家发送退货地址给买家 > 3.买卖家线下完成换货 > 4.买家线上确认完成
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/returnGoods.js'></script>
