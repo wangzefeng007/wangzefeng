@@ -60,7 +60,7 @@ class AjaxLogin
             $UserID = $User->CheckUser($Account, $PassWord);
             //发送系统消息
             if ($UserID) {
-                $XpirationDate = time() + 60;
+                $XpirationDate = time() + 3600;
                 if ($_POST['AutoLogin'] == 1) {
                     setcookie("UserID", $UserID, $XpirationDate, "/", WEB_HOST_URL);
                     setcookie("Account", $Account, $XpirationDate, "/", WEB_HOST_URL);
