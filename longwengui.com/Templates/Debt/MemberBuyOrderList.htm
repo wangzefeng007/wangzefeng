@@ -85,8 +85,28 @@
                                 {$NStatus[$lists[Status]]}
                             </div>
                             <div class="operate-td td">
-                                <p><a class="operate-txt" href="#" title="取消订单"> {$NStatus[$lists[Status]]}</a></p>
+                                <!--待付款-->
+                                {if $lists[Status]==1}
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--待签收-->
+                                {elseif $lists[Status]==2 ||$lists[Status]==2}
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--已签收-->
+                                {elseif $lists[Status]==4}
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--申请退款-->
+                                {elseif $lists[Status]==5 || $lists[Status]== 6}
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--申请失败-->
+                                {elseif $lists[Status]==7}
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--退款成功-->
+                                {elseif $lists[Status]==8}.
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--交易关闭-->
+                                {elseif $lists[Status]==9 ||$lists[Status]==10}
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                {/if}
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>

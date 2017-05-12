@@ -213,7 +213,7 @@ class Member
         if ($Status){
             $MysqlWhere .= ' and Status = '.$Status;
         }
-        $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
+        $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
         $pageSize = 5;
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
@@ -252,7 +252,7 @@ class Member
         if ($Status){
             $MysqlWhere .= ' and Status = '.$Status;
         }
-        $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
+        $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
         $pageSize = 4;
         $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
@@ -304,7 +304,7 @@ class Member
         }elseif ($Status=='5'){
             $MysqlWhere .= ' and `Status` in (10,11)';
         }
-        $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
+        $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
         $pageSize = 4;
         $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
