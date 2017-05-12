@@ -1835,6 +1835,38 @@ a{
   color: #fff;
   cursor: pointer;
 }
+/*input样式*/
+.inp {
+  width: 100%;
+  height: 30px;
+  line-height:30px;
+  padding: 0 12px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.textarea:focus,
+.inp:focus {
+  border-color: #4fc2b9;
+}
+.inp.disabled,
+.inp[disabled]{
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+.inp-sm {
+  width: 100px;
+}
+.inp-big {
+  width: 150px;
+}
+.inp-lg {
+  width: 200px;
+}
+.inp-royal {
+  width: 264px;
+}
 /* btn */
 .btn {
   display: inline-block;
@@ -2005,6 +2037,9 @@ button.btn {
   color: #fff;
   background-color: #ac2925;
   border-color: #761c19;
+}
+.btn-lg{
+  padding:5px 21px;
 }
 i{
 

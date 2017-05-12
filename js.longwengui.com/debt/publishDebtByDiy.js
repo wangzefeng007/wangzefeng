@@ -5,6 +5,10 @@ $(function(){
   var haveBondsGood = 0; //是否有保证物
   getProvinceData();
 
+
+  $('#end_time').dcalendarpicker({format: 'yyyy-mm-dd', width: '226px'}); //初始化日期选择器
+
+
     //切换是否有债务人亲友
     $('#debt_family_info_btn').click(function(){
         if($(this).attr('data-checked') == 1){

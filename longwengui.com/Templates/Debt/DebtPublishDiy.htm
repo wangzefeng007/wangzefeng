@@ -1,6 +1,7 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/publishDebtByDiy.css">
 <link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
 <div class="public-debt-diy">
   <div class="wrap">
     <div class="current-loc">
@@ -161,8 +162,8 @@
 
         <div class="t">
           <img src="/Uploads/Debt/imgs/time.png" alt="">
-          <span>逾期时间 : </span>
-          <input type="text" name="overDay" onblur="validateDay(this, true)" placeholder="(*必填)" value="0">天
+          <span class="mr-10">逾期时间 : </span>
+          <input type="text" id="end_time" name="overDay" placeholder="(*必填)" value="">
         </div>
         <div class="c"></div>
 
@@ -623,6 +624,7 @@
   </table>
 </script>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
 <script src='{echo JsURL}/debt/publishDebtByDiy.js'></script>
 </body>
