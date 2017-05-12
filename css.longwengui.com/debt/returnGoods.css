@@ -379,13 +379,13 @@ i{
   padding:10px 0;
   border-top:dashed 1px #cbcbcb;
 }
-.return-waiting .other a{
+.other a{
   color: #35bdfc;
 }
-.return-waiting .other a:hover{
+.other a:hover{
   text-decoration: underline;
 }
-.return-waiting .other span{
+.other span{
   color: #cbcbcb;
 }
 
@@ -442,14 +442,24 @@ i{
 }
 
 .return-money-success{
-
+  color: #353535;
 }
 .return-money-success .title{
   padding: 20px 0 10px;
   font-size: 18px;
   font-weight: bold;
 }
+.return-money-success .con .detail{
+  padding: 10px 0 20px;
+}
+.return-money-success .con a{
+  color: #35bdfc;
+}
+.return-money-success .con a:hover{
+  text-decoration: underline;
+}
 .table{
+  margin:0 30px 40px 0;
   color: #666;
   border:solid 1px #e6e6e6;
 }
@@ -476,5 +486,53 @@ i{
   width:200px;
 }
 .col-3{
-  width:265px;
+  width:235px;
+}
+
+.return-goods-box{
+  color: #353535;
+}
+.return-goods-box .form-line{
+  margin-bottom:10px;
+}
+.return-goods-box .title{
+  padding: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+.return-goods-box .form-line .form-lab{
+  width:80px;
+}
+.return-goods-box .title .has-time{
+  margin-left:40px;
+  color: #35bdfc;
+  font-size:16px;
+  font-weight:normal;
+}
+.icon-clack{
+  width:20px;
+  height:20px;
+  background: url("images/icon-clack.png") no-repeat center;
+}
+.return-goods-box .title .has-time i{
+  vertical-align: top;
+  margin-right:2px;
+}
+.return-goods-box .title .tips{
+  padding:0;
+  margin-right:30px;
+  color: #999;
+  float: right;
+  font-size:14px;
+  line-height: 20px;
+  font-weight: normal;
+}
+
+.return-goods-box .other{
+  margin:30px 0 10px;
+  padding:10px 0;
+  border-top:dashed 1px #cbcbcb;
+}
+.return-goods-box .con p{
+  padding:10px 0;
 }
