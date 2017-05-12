@@ -21,7 +21,7 @@ class Asset
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $Title ='隆文贵债务处置-资产转让';
-        $Nav='transfer';
+        $Nav='asset';
         $S = intval($_GET['S']);
         $Keywords = trim($_GET['K']);
         if ($S ==1){
@@ -79,7 +79,7 @@ class Asset
      * @desc  资产转让详情页
      */
     public function Details(){
-        $Nav='transfer';
+        $Nav='asset';
         $ID = $_GET['ID'];
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
@@ -95,7 +95,7 @@ class Asset
     public function Order(){
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
-        $Nav='transfer';
+        $Nav='asset';
         $ID = $_GET['id'];
         $Num = $_GET['num'];
         $Money = $_GET['money'];
