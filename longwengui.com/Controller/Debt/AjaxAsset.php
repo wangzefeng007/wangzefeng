@@ -110,6 +110,7 @@ class AjaxAsset
                 $Data['TotalAmount'] = trim($AjaxData['Money']);//订单总金额
                 $Data['UserID'] = $_SESSION['UserID'];
                 $Data['AddTime'] = time();//订单创建时间
+                $Data['UpdateTime'] = $Data['AddTime'];//订单修改时间
                 $Data['ExpirationTime'] = $Data['AddTime']+3600;//超时时间
                 $Data['Status'] = 1;
                 $Data['FromIP'] = GetIP();
@@ -119,7 +120,7 @@ class AjaxAsset
                 $Data['UnitPrice'] = $AssetInfo['Price'];//单价
                $InsertInfo = $MemberProductOrderModule->InsertInfo($Data);
                if ($InsertInfo){
-                   $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！',      'Url' => WEB_MAIN_URL . '/assetorder/' . $Data['OrderNumber'] . '.html');
+                   $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！', 'Url' => WEB_MAIN_URL . '/assetorder/' . $Data['OrderNumber'] . '.html');
                }else{
                    $result_json = array('ResultCode'=>103,'Message'=>'订单提交失败！');
                }

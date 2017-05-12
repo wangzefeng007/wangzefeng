@@ -25,7 +25,7 @@ class User
         $PageUrl = '';
         $Title = $_GET['Title'];
         if ($Title) {
-            $MysqlWhere .= " and UserID like '%$Title%'";
+            $MysqlWhere .= " and UserID = $Title ";
             $PageUrl .= "&Title=$Title";
         }
         // 跳转到该页面

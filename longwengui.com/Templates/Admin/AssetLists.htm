@@ -1,0 +1,99 @@
+{template Head}
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/Plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">资产转让管理</a>
+                </li>
+                <li class="active position">资产信息列表</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel breadcrumb">
+                <div class="panel-body">
+                    <span style="float: left;line-height: 36px;margin-left: -10px;padding-right: 10px">搜索：</span>
+                    <form class="form-inline" role="form" action="/index.php?Module=Asset&Action=Lists" method="GET">
+                        <input type="text" class="form-control" name="Title" placeholder="标题/资产ID/资产单号" value="{$Title}" style="width:300px;">
+                        <input type="hidden" name="Module" value="Asset">
+                        <input type="hidden" name="Action" value="Lists">
+                        审核状态：
+                        <select name="Status" id="Status"  class="form-control">
+                            <option style="width:100px;"  value="{$Status}">{if !$NStatus[$Status]}请选择状态{else}{$NStatus[$Status]}{/if}</option>
+                            <option  value="">全部</option>
+                            {loop $NStatus $key $value}
+                            <option  value="{$key}">{$value}</option>
+                            {/loop}
+                        </select>
+                        <button class="btn btn-info">搜索</button>
+                    </form>
+                </div>
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr  align="center">
+                            <th>资产ID</th>
+                            <th>资产单号</th>
+                            <th>资产标题</th>
+                            <th>用户ID</th>
+                            <th>发布人</th>
+                            <th>发布时间</th>
+                            <th>库存量</th>
+                            <th>资产金额</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $Data[Data] $lists}
+                        <tr height="35" align="center">
+                            <td>{$lists[AssetID]}</td>
+                            <td>{$lists[AssetMember]}</td>
+                            <td>{$lists[Title]}</td>
+                            <td>{$lists[UserID]}</td>
+                            <td>{$lists[RealName]}</td>
+                            <td>{$lists[AddTime]}</td>
+                            <td>{$lists[Inventory]}</td>
+                            <td>{$lists[AssetsAmount]}</td>
+                            <td>{$NStatus[$lists[Status]]}</td>
+                            <td><a href="/index.php?Module=Asset&Action=Detail&AssetID={$lists[AssetID]}">详情</a>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                    <form action="/index.php?Module=Asset&Action=Lists{$PageUrl}" method="POST">
+                        <div class="text-center">
+                            <ul class="pagination" data-id="{$Page}">
+                                <li><a href="/index.php?Module=Asset&Action=Lists&Page=1{$PageUrl}">首页</a></li>
+                                {if $Previous}
+                                <li><a href="/index.php?Module=Asset&Action=Lists&Page={$Previous}{$PageUrl}">上一页</a></li>
+                                {/if}
+                                {loop $Data[PageNums] $page}
+                                <li><a href="/index.php?Module=Asset&Action=Lists&Page={$page}{$PageUrl}" {if $Page==$page}class="on"{/if}>{$page}</a></li>
+                                {/loop}
+                                {if $Next}
+                                <li><a href="/index.php?Module=Asset&Action=Lists&Page={$Next}{$PageUrl}">下一页</a></li>
+                                {/if}
+                                <li><a href="/index.php?Module=Asset&Action=Lists&Page={$Data[PageCount]}{$PageUrl}">尾页</a></li>
+                                <span style="line-height: 27px;margin-right: 10px">第{$Page}页&nbsp;&nbsp;共{$Data[PageCount]}页&nbsp;&nbsp;到<input type="text" name ='Page' value ='' style="width:30px;height: 27px;line-height: 27px;margin: 0px 8px 0px 8px">页</span>
+                                <button class="btn btn-info" style="background-color: #bd8739;border-color: #bd8739;color: #fff;">确定</button>
+                            </ul>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{template Foot}-->
+<script type="text/javascript" src="/Plugins/rili/calendar.js"></script>

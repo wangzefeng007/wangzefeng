@@ -1,0 +1,79 @@
+{template Head}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">资产转让管理</a>
+                </li>
+                <li>
+                    <a href="/index.php?Module=Asset&Action=Lists">资产信息列表</a>
+                </li>
+                <li class="active" id="modify">资产详情</li>
+            </ul>
+            <span class="position hidden">资产信息列表</span>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <td colspan="3" class="t-h">资产详情：</td>
+                        </tr>
+                        <tr>
+                            <td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>
+                            <td>身份：{$Identity[$UserInfo[Identity]]}</td>
+                            <td>QQ：{$UserInfo[QQ]}</td>
+                        </tr>
+                        <tr>
+                            <td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>
+                            <td>身份：{$Identity[$UserInfo[Identity]]}</td>
+                            <td>QQ：{$UserInfo[QQ]}</td>
+                        </tr>
+                        <tr>
+                            <td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>
+                            <td>身份：{$Identity[$UserInfo[Identity]]}</td>
+                            <td>QQ：{$UserInfo[QQ]}</td>
+                        </tr>
+                        <tr>
+                            <td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>
+                            <td>身份：{$Identity[$UserInfo[Identity]]}</td>
+                            <td>QQ：{$UserInfo[QQ]}</td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-striped table-hover">
+                        <form action='/index.php?Module=Asset&Action=Detail'  method='post'  enctype="multipart/form-data">
+                            <tbody>
+                            <tr>
+                                <td class="t-r" width="150">审核状态：</td>
+                                <td>
+                                    <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
+                                        <option value="1" {if $UserInfo[IdentityState] == 1}selected="selected"{/if}>未提交审核</option>
+                                        <option value="2" {if $UserInfo[IdentityState] == 2}selected="selected"{/if}>审核中</option>
+                                        <option value="3" {if $UserInfo[IdentityState] == 3}selected="selected"{/if}>审核通过</option>
+                                        <option value="4" {if $UserInfo[IdentityState] == 4}selected="selected"{/if}>审核不通过</option>
+                                    </select>
+                                    <input type="hidden" name="UserID" value="{$UserID}" />
+                                    <input class="btn btn-danger" type="submit" name="submit" value="修改">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                    <tr>
+                        <td><a class="right" href="/index.php?Module=Asset&Action=Lists">返回列表</a></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+{template Foot}
