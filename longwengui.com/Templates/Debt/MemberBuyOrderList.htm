@@ -87,24 +87,48 @@
                             <div class="operate-td td">
                                 <!--待付款-->
                                 {if $lists[Status]==1}
+                                <p><a class="btn btn-primary" href="#" title="立即付款">立即付款</a></p>
+                                <p><a class="operate-txt" onclick="pageObj.cancelOrder(this)" href="javascript:void(0);" title="取消订单">取消订单</a></p>
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--已付款-->
+                                {elseif $lists[Status]==2}
+                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remind" href="javascript:void(0);" title="提醒卖家发货">提醒卖家发货</a></p>
+                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--待签收-->
-                                {elseif $lists[Status]==2 ||$lists[Status]==3}
+                                {elseif $lists[Status]==3}
+                                <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt(this)" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
+                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--已签收-->
                                 {elseif $lists[Status]==4}
+
+                                <!--已签收15天之后申请退款去掉 改为 删除-->
+                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
+                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--申请退款-->
-                                {elseif $lists[Status]==5 || $lists[Status]== 6}
+                                {elseif $lists[Status]==5}
+                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply" href="javascript:void(0);" title="取消申请">取消申请</a></p>
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                {elseif $lists[Status]== 6}
+                                <!--退款中-->
+                                <p><a class="btn btn-primary" onclick="pageObj.indeedReturn(this)" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn2" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--申请失败-->
                                 {elseif $lists[Status]==7}
+                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply2" href="javascript:void(0);" title="取消申请">取消申请</a></p>
+                                <p><a class="operate-txt" href="#" title="修改申请">修改申请</a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--退款成功-->
-                                {elseif $lists[Status]==8}.
+                                {elseif $lists[Status]==8}
+                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--交易关闭-->
                                 {elseif $lists[Status]==9 ||$lists[Status]==10}
+                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 {/if}
                             </div>
@@ -161,4 +185,4 @@
         addressTotal:parseInt("{$Rscount['Num']}")+parseInt("{$Number}")
     }
 </script>
-<script src='{echo JsURL}/debt/memberAddress.js'></script>
+<script src='{echo JsURL}/debt/memberOrder.js'></script>
