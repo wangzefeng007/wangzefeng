@@ -151,7 +151,7 @@ i{
 }
 .tab-wrap .tab-con .tab-con-r{
   width:406px;
-  float: left;
+  float: right;
   padding:15px 0 15px 30px;
 }
 .tab-wrap .tab-con .hd{
@@ -535,4 +535,17 @@ i{
 }
 .return-goods-box .con p{
   padding:10px 0;
+}
+
+/*卖家页面重写样式*/
+.seller-page .tab-wrap .tab-con .tab-con-l{
+  float: right;
+  border-left: solid 1px #cbcbcb;
+  border-right: 0;
+}
+.seller-page .tab-wrap .tab-con .tab-con-r{
+  float: left;
+}
+.btn-superbig{
+  padding: 9px 37px;
 }
