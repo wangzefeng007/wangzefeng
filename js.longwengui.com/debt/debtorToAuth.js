@@ -4,7 +4,7 @@ $(function(){
     $('#mycalendar').dcalendar(); //初始化日历
 
     //根据url参数初始化选项卡
-    var tab_cur = getQueryString('T');
+    var tab_cur = GetQueryString('T');
     if(tab_cur == 1){
       $('.bx-wraper .tl .act').removeClass('act');
       $('.bx-wraper .tl .tb').eq(1).addClass('act');
