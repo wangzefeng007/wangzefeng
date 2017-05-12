@@ -208,12 +208,13 @@ class Member
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $NStatus =$MemberAssetInfoModule->NStatus;
         $Status=  intval($_GET['S']);
         if ($Status){
             $MysqlWhere .= ' and Status = '.$Status;
         }
         $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
-        $pageSize = 4;
+        $pageSize = 5;
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
             $Data = array();
@@ -229,7 +230,7 @@ class Member
                 $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
             }
-            $ClassPage = new Page($Rscount['Num'], $pageSize,2);
+            $ClassPage = new Page($Rscount['Num'], $pageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
         include template('MemberAssetList');
@@ -246,6 +247,7 @@ class Member
         $MemberProductOrderModule = new MemberProductOrderModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $NStatus = $MemberProductOrderModule->NStatus;
         $Status=  intval($_GET['S']);
         if ($Status){
             $MysqlWhere .= ' and Status = '.$Status;
@@ -268,8 +270,11 @@ class Member
                 $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
                 $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+                $Data['Data'][$key]['Content'] = $AssetInfo['Content'];
+                $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
+                $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
             }
-            $ClassPage = new Page($Rscount['Num'], $pageSize,2);
+            $ClassPage = new Page($Rscount['Num'], $pageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
         include template('MemberSellOrderList');
@@ -286,9 +291,18 @@ class Member
         $MemberProductOrderModule = new MemberProductOrderModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $NStatus = $MemberProductOrderModule->NStatus;
         $Status=  intval($_GET['S']);
-        if ($Status){
-            $MysqlWhere .= ' and Status = '.$Status;
+        if ($Status=='1'){
+            $MysqlWhere .= ' and `Status` = 1';
+        }elseif ($Status=='2'){
+            $MysqlWhere .= ' and `Status` in (2,3)';
+        }elseif ($Status=='3'){
+            $MysqlWhere .= ' and `Status` =4';
+        }elseif ($Status=='4'){
+            $MysqlWhere .= ' and `Status` in (5,6,7,8,9)';
+        }elseif ($Status=='5'){
+            $MysqlWhere .= ' and `Status` in (10,11)';
         }
         $Page = intval($_GET['page'])<1?1:intval($_GET['page']);
         $pageSize = 4;
@@ -308,8 +322,11 @@ class Member
                 $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
                 $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+                $Data['Data'][$key]['Content'] = $AssetInfo['Content'];
+                $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
+                $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
             }
-            $ClassPage = new Page($Rscount['Num'], $pageSize,2);
+            $ClassPage = new Page($Rscount['Num'], $pageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
         include template('MemberBuyOrderList');

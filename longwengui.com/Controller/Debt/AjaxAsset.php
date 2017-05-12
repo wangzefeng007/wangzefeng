@@ -48,6 +48,7 @@ class AjaxAsset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+        $Data['AssetMember'] = 'L'.date("Ymd").rand(100, 999);//资产单号
         $Data['Content'] = addslashes($AjaxData['transDetail']);//内容
         $Data['Title'] = addslashes($AjaxData['_transTitle']);//标题
         $Data['Price'] = trim($AjaxData['_trans_money']);//单价
