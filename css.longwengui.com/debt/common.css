@@ -1367,6 +1367,7 @@ a{
 .btn-disabled {
   background-color: #bebebe!important;
   color: #fff!important;
+  cursor: no-drop!important;
 }
 .waiting-for {
   width: 1180px;
