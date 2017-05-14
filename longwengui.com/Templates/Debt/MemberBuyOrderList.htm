@@ -84,10 +84,10 @@
                             <div class="td">
                                 {$NStatus[$lists[Status]]}
                             </div>
-                            <div class="operate-td td">
+                            <div class="operate-td td" data-id="1">
                                 <!--待付款-->
                                 {if $lists[Status]==1}
-                                <p><a class="btn btn-primary" href="#" title="立即付款">立即付款</a></p>
+                                <p><a class="btn btn-primary" href="/assetorder/{$lists[OrderNumber]}.html" title="立即付款">立即付款</a></p>
                                 <p><a class="operate-txt" onclick="pageObj.cancelOrder(this)" href="javascript:void(0);" title="取消订单">取消订单</a></p>
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--已付款-->

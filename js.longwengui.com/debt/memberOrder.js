@@ -8,11 +8,11 @@ var pageObj=$.extend({},pageObj,{
      */
     cancelOrder:function(tar){
         var _this=this;
-        var param={};
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否取消订单？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            _this.commonAjax("cancelOrder",param,function(){
+            _this.commonAjax("CancelOrder",orderId,function(){
                 layer.msg('订单取消成功！', {icon: 1});
             })
         });
@@ -23,8 +23,8 @@ var pageObj=$.extend({},pageObj,{
      */
     remind:function(tar){
         var _this=this;
-        var param={};
-        _this.commonAjax("cancelOrder",param,function(){
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
+        _this.commonAjax("RemindSell",orderId,function(){
             $(tar).addClass("btn-disabled").removeClass("btn-primary");
             layer.msg('操作成功！');
         })
@@ -36,14 +36,13 @@ var pageObj=$.extend({},pageObj,{
      */
     indeedReceipt:function(tar){
         var _this=this;
-        var param={};
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否确认签收？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            _this.commonAjax("indeedReceipt",param,function(){
+            _this.commonAjax("ConfirmReceipt",orderId,function(){
                 layer.msg('签收成功！', {icon: 1});
             })
-
         });
     },
     /**
@@ -52,11 +51,11 @@ var pageObj=$.extend({},pageObj,{
      */
     delOrder:function(tar){
         var _this=this;
-        var param={};
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否删除订单？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            _this.commonAjax("delOrder",param,function(){
+            _this.commonAjax("DelOrder",orderId,function(){
                 layer.msg('删除成功！', {icon: 1});
             })
         });
@@ -67,11 +66,11 @@ var pageObj=$.extend({},pageObj,{
      */
     cancelApply:function(tar){
         var _this=this;
-        var param={};
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否取消申请？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            _this.commonAjax("cancelApply",param,function(){
+            _this.commonAjax("CancelApply",orderId,function(){
                 layer.msg('取消成功！', {icon: 1});
             })
         });
@@ -82,11 +81,11 @@ var pageObj=$.extend({},pageObj,{
      */
     indeedReturn:function(tar){
         var _this=this;
-        var param={};
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否确认退款？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            _this.commonAjax("indeedReturn",param,function(){
+            _this.commonAjax("ConfirmRefund",orderId,function(){
                 layer.msg('操作成功！', {icon: 1});
             })
         });
@@ -112,21 +111,21 @@ var pageObj=$.extend({},pageObj,{
         });
     },*/
 
-    commonAjax:function(Intention,param,successFn){
+    commonAjax:function(Intention,orderId,successFn){
         $.ajax({
             type:"post",
-            url:"/loginajax.html",
+            url:"/ajaxorder",
             dataType: "json",
             data:{
                 "Intention":Intention,
-                "AjaxJSON":param
+                "orderId":orderId
             },
             beforeSend:　function(){
                 showLoading();
             },success: function(data){
                 if(data.ResultCode == 200){
-                    //成功之后调用回调函数
-                    successFn.call(this);
+                    showMsg(data.Message);
+                    window.location.reload();
                 }else{
                     showMsg(data.Message);
                 }
