@@ -49,6 +49,19 @@ class AjaxOrder
                 if ($OrderInfo['Status']==1){
                     $Result = $MemberProductOrderModule->UpdateInfoByKeyID(array("Status"=>10,"UpdateTime"=>time()),$OrderID);
                     if ($Result){
+                        $OrderLogModule = new MemberOrderLogModule();
+                        $LogMessage ='买家取消订单';
+                        $LogData = array(
+                            'OrderNumber' =>$OrderInfo['OrderNumber'],
+                            'UserID' => $_SESSION['UserID'],
+                            'OldStatus' => 1,
+                            'NewStatus' => 10,
+                            'OperateTime' => date("Y-m-d H:i:s", time()),
+                            'IP' => GetIP(),
+                            'Remarks' => $LogMessage,
+                            'Type' => 1
+                        );
+                        $LogResult = $OrderLogModule->InsertInfo($LogData);
                         $result_json = array('ResultCode' => 200, 'Message' => '取消订单成功',);
                     }else{
                         $result_json = array('ResultCode' => 102, 'Message' => '取消订单失败',);
