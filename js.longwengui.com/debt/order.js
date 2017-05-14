@@ -7,11 +7,6 @@ var pageObj=$.extend({},pageObj,{
             inpVal=$inp.val(),
             totalCount=$("#totalCount").text();
         if(type=="+"){
-            /*if(inpVal>totalCount){
-                showMsg("库存不足");
-                $inp.val(totalCount);
-                return;
-            }*/
             inpVal++;
         }else if(type=="-"){
             if(inpVal==1){
@@ -82,6 +77,8 @@ var pageObj=$.extend({},pageObj,{
             })
             _this.goPay(pay_url);
         });
+        //合计金额计算
+        _this.calcMoney($(".input-number").find("input[name='num']"));
     }
 });
 pageObj.init();

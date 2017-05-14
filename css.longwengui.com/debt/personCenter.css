@@ -1584,10 +1584,11 @@
   margin-bottom: 15px;
 }
 .address-manage .address-list .table tr{
-  line-height: 40px;
+  line-height: 23px;
   text-align: center;
 }
 .address-manage .address-list .table table{
+  border-top: 1px solid #e6e6e6;
   border-left: 1px solid #e6e6e6;
   border-right: 1px solid #e6e6e6;
   color: #666;
@@ -1595,7 +1596,12 @@
 .address-manage .address-list .table thead tr{
   background-color: #e6e6e6;
 }
+.address-manage .address-list .table thead tr td{
+  padding:8px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
 .address-manage .address-list .table tbody td{
+  padding:8px 0;
   border-bottom: 1px solid #e6e6e6;
 }
 .address-manage .address-list .table .opt{
@@ -1624,4 +1630,28 @@
   padding: 0 10px;
   font-size: 12px;
   border-radius: 3px;
+}
+
+
+.wallet-page.person-center .wrap .menu-cont-wrap .cont-select{
+  margin: 10px 15px;
+}
+.wallet-page .wallet-box{
+  height:32px;
+  padding:20px 0 20px 80px;
+  line-height:32px;
+  border-bottom:solid 1px #ccc;
+}
+.wallet-page .wallet-box .col{
+  width:210px;
+  float: left;
+}
+.wallet-page .wallet-box .col.col4{
+  width:150px;
+}
+.wallet-page .address-manage{
+  margin:20px 15px;
+}
+.wallet-page .address-manage .address-list{
+  margin-top:0;
 }
