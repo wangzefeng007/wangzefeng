@@ -1,6 +1,6 @@
 //自助催收发布债务
 $(function(){
-  var haveDebtFamily = 0; //是否债权人亲友
+  var haveDebtFamily = 0; //是否有债物人亲友
   var haveBondsMan = 0; //是否有保证人
   var haveBondsGood = 0; //是否有保证物
   getProvinceData();
@@ -243,11 +243,11 @@ $(function(){
       $('input[name="overDay"]').focus();
       return;
     }
-    if(!validate('day', overDay)){
+    /*if(!validate('day', overDay)){
       showMsg('请输入正确的逾期时间');
       $('input[name="overDay"]').focus();
       return;
-    }
+    }*/
 
     //是否能随时找到
     _searchedAnytime = $('input[name="searchedAnytime"]:checked').val();

@@ -587,7 +587,7 @@ class Ajax
             //借款近况
             $Data['DebtRecent'] = trim($AjaxData['loan_recent']);
             //逾期时间
-            $Data['Overduetime'] = trim($AjaxData['overDay']);
+            $Data['Overduetime'] = strtotime($AjaxData['overDay']);
             $debtOwnerInfos = $AjaxData['debtOwnerInfos'];
             $debtorInfos = $AjaxData['debtorInfos'];
             $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
