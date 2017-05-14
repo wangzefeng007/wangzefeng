@@ -200,6 +200,35 @@ class Asset
                 $Data['RunTime'] = time();
                 $Data['Sign'] = ToolService::VerifyData($Data);
                 echo ToolService::PostForm(WEB_MAIN_URL . '/pay/wxpay/', $Data);
+                $Sign = $Data['Sign'];
+                unset($Data['Sign']);
+                if ($Sign == ToolService::VerifyData($Data)) {
+                    include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.NativePay.php';
+                    $notify = new NativePay();
+                    $input = new WxPayUnifiedOrder();
+                    $input->SetBody(stripslashes($Data['Subject'])); //必填
+                    $input->SetDetail(stripslashes($Data['Body']));
+                    $input->SetOut_trade_no($Data['OrderNo']); //必填
+                    $input->SetTotal_fee($Data['Money']*100); //必填
+                    $input->SetNotify_url(WEB_MAIN_URL . '/pay/wxpaynotify/'); //必填
+                    $input->SetTrade_type("NATIVE");
+                    $input->SetSpbill_create_ip(GetIP());
+                    $input->SetProduct_id($Data['OrderNo']);
+                    $result = $notify->GetPayUrl($input);
+                    if ($result['code_img_url']) {
+//                    $WXPayUrl= $result['code_url'];
+//                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
+                        $ImageUrl = $result["code_img_url"];
+                        $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
+                        echo json_encode($result_json,JSON_UNESCAPED_UNICODE);exit;
+                    } else {
+                        $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_MAIN_URL);
+                        alertandgotopage('订单异常', WEB_MAIN_URL);
+                    }
+                } else {
+                    $result_json = array('ResultCode'=>103,'Message'=>'异常的请求','Url'=>WEB_MAIN_URL);
+                }
+                EchoResult($result_json);exit;
             }
         } else {
             alertandback('不能操作的订单');
