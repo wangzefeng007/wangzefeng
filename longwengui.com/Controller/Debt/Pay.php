@@ -119,16 +119,19 @@ class Pay
                 $input->SetSpbill_create_ip(GetIP());
                 $input->SetProduct_id($_POST['OrderNo']);
                 $result = $notify->GetPayUrl($input);
-                if ($result['code_url']) {
-                    $WXPayUrl = $result["code_url"];
-                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
-                    include template("PayWXPay");
+                if ($result['code_img_url']) {
+//                    $WXPayUrl= $result['code_url'];
+//                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
+                    $ImageUrl = $result["code_img_url"];
+                    $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
                 } else {
+                    $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_MAIN_URL);
                     alertandgotopage('订单异常', WEB_MAIN_URL);
                 }
         } else {
-            alertandgotopage('异常的请求', WEB_MAIN_URL);
+            $result_json = array('ResultCode'=>103,'Message'=>'异常的请求','Url'=>WEB_MAIN_URL);
         }
+        EchoResult($result_json);exit;
     }
     //支付成功提示
     public function Result()
