@@ -17,75 +17,84 @@
             {elseif $_SESSION[Identity]==5}
             {template MemberCompanyLeft}
             {/if}
-            <div class="tab-hd">
-                <div class="tb">
-                    资产管理列表
+                <div class="tab-hd">
+                    <div class="tb">
+                        资产管理列表
+                    </div>
                 </div>
-            </div>
 
-            <div class="info-cont">
-                <dl class="cont-select">
-                    <dt>资产状态：</dt>
-                    <dd onclick="go('/member/assetlist/')" {if $Status==''}class="cont-select-act"{/if}>全部</dd>
-                    <dd onclick="go('/member/assetlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>待审核</dd>
-                    <dd onclick="go('/member/assetlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>审核通过</dd>
-                    <dd onclick="go('/member/assetlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>审核未通过</dd>
-                </dl>
-                <div class="order-list">
-                    <div class="order-table">
-                        <!--表格头部start-->
-                        <div class="table-tr table-th">
-                            <div class="td" style="width:330px">资产</div>
-                            <div class="td" style="width:150px">份额单价</div>
-                            <div class="td" style="width:90px">剩余份数</div>
-                            <div class="td" style="width:130px">资产金额</div>
-                            <div class="td" style="width:120px">当前状态</div>
-                            <div class="td">操作</div>
-                        </div>
-                        <div class="table-tr order-hr"></div>
-                        <!--表格头部end-->
-                        <!--表格循环体 start-->
-                        {loop $Data['Data'] $lists}
-                        <div class="table-tr order-hd">
-                            <div class="td" style="width:330px">
-                                <div class="order-no">
-                                   {echo date("Y-m-d",$lists[AddTime])}&nbsp;&nbsp;资产单号：{$lists[AssetMember]}
+                <div class="info-cont">
+                    <dl class="cont-select">
+                        <dt>资产状态：</dt>
+                        <dd onclick="go('/member/assetlist/')" {if $Status==''}class="cont-select-act"{/if}>全部</dd>
+                        <dd onclick="go('/member/assetlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>待审核</dd>
+                        <dd onclick="go('/member/assetlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>审核通过</dd>
+                        <dd onclick="go('/member/assetlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>审核未通过</dd>
+                    </dl>
+                    <div class="order-list">
+                        <div class="order-table">
+                            <!--表格头部start-->
+                            <div class="table-tr table-th">
+                                <div class="td" style="width:330px">资产</div>
+                                <div class="td" style="width:150px">份额单价</div>
+                                <div class="td" style="width:90px">剩余份数</div>
+                                <div class="td" style="width:130px">资产金额</div>
+                                <div class="td" style="width:120px">当前状态</div>
+                                <div class="td">操作</div>
+                            </div>
+                            <div class="table-tr order-hr"></div>
+                            <!--表格头部end-->
+                            <!--表格循环体 start-->
+                            {loop $Data['Data'] $lists}
+                            <div class="table-tr order-hd">
+                                <div class="td" style="width:330px">
+                                    <div class="order-no">
+                                       {echo date("Y-m-d",$lists[AddTime])}&nbsp;&nbsp;资产单号：{$lists[AssetMember]}
+                                    </div>
+                                </div>
+                                <div class="td" style="width:150px"></div>
+                                <div class="td" style="width:90px"></div>
+                                <div class="td" style="width:130px"></div>
+                                <div class="td" style="width:120px"></div>
+                                <div></div>
+                            </div>
+                            <div class="table-tr">
+                                <div class="td goods-td clearfix">
+                                    <p class="img">
+                                        <img src="{$lists[ImageUrl]}" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="title">{$lists[Title]}</p>
+                                    </div>
+                                </div>
+                                <div class="money-td td">
+                                    <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$lists[MarketPrice]}</p>
+                                    <p class="mt-10"><span class="c-red">成交&nbsp;&nbsp;</span>¥{$lists[Price]}</p>
+                                </div>
+                                <div class="td">{$lists[Inventory]}</div>
+                                <div class="td">
+                                    <p>¥{$lists[AssetsAmount]}</p>
+                                </div>
+                                <div class="td">
+                                    {$NStatus[$lists[Status]]}
+                                </div>
+                                <div class="td">
+                                    <a class="link" href="/assetdetails/{$lists[AssetID]}.html" target="_blank">查看详情&gt;&gt;</a>
                                 </div>
                             </div>
-                            <div class="td" style="width:150px"></div>
-                            <div class="td" style="width:90px"></div>
-                            <div class="td" style="width:130px"></div>
-                            <div class="td" style="width:120px"></div>
-                            <div></div>
+                            <div class="table-tr order-hr"></div>
+                            {/loop}
+                            <!--表格循环体 end-->
                         </div>
-                        <div class="table-tr">
-                            <div class="td goods-td clearfix">
-                                <p class="img">
-                                    <img src="{$lists[ImageUrl]}" alt="">
-                                </p>
-                                <div class="con">
-                                    <p class="title">{$lists[Title]}</p>
-                                </div>
-                            </div>
-                            <div class="money-td td">
-                                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$lists[MarketPrice]}</p>
-                                <p class="mt-10"><span class="c-red">成交&nbsp;&nbsp;</span>¥{$lists[Price]}</p>
-                            </div>
-                            <div class="td">{$lists[Inventory]}</div>
-                            <div class="td">
-                                <p>¥{$lists[AssetsAmount]}</p>
-                            </div>
-                            <div class="td">
-                                {$NStatus[$lists[Status]]}
-                            </div>
-                            <div class="td">
-                                <a class="link" href="/assetdetails/{$lists[AssetID]}.html" target="_blank">查看详情&gt;&gt;</a>
-                            </div>
-                        </div>
-                        <div class="table-tr order-hr"></div>
-                        {/loop}
-                        <!--表格循环体 end-->
-                        </div>
+
+
+                        <!--当没有数据为空的时候-->
+                        <!--<div class="common-empty">
+                            <img  src="{echo CssURL}/debt/images/empty-img.jpg" alt="">
+                            <p>亲，您还没有发布信息哦~</p>
+                            <a class="btn btn-primary" href="#" title="立即发布">立即发布</a>
+                        </div>-->
+
                     </div>
                 </div>
                 <!--发布菜单-->

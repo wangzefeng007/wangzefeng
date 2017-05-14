@@ -56,6 +56,35 @@ var pageObj=$.extend({},pageObj,{
         go(url);
     },
     /**
+     * 微信二维码扫码结果
+     */
+    payResult:function(orderId){
+        var getResult=window.setInterval(function(){
+            $.ajax({
+                type:"get",
+                url:"/asset/pay/",
+                dataType: "json",
+                data:{
+                    "id":orderId,
+                    "type":"wxpay"
+                },
+                success: function(data){
+                    if(data.ResultCode == 200){
+                        if(typeof data.Data=="object"){
+                            $.ajax({
+                                type:"post",
+                                url:data.Url,
+                                dataType: "json",
+                                data:data.Data
+                            })
+                            clearInterval(getResult);
+                        }
+                    }
+                }
+            })
+        },2000);
+    },
+    /**
      * 进入页面初始化方法
      */
     init:function() {
@@ -89,16 +118,15 @@ var pageObj=$.extend({},pageObj,{
                     beforeSend:　function(){
                         showLoading();
                     },success: function(data){
-                        console.log(data);
                         if(data.ResultCode == 200){
                             layer.open({
                                 title:"微信支付",
                                 type: 1,
                                 //skin: 'layui-layer-rim', //加上边框
-                                area: ['700px', '350px'], //宽高
+                                area: ['700px', '300px'], //宽高
                                 content: $("#wxDialog").html().replace("${ImageUrl}",data.ImageUrl)
                             });
-
+                            _this.payResult(orderId);
                         }else{
                             showMsg(data.Message);
                         }

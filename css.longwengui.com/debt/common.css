@@ -2076,3 +2076,10 @@ i{
 .result-con .btn-box .btn+.btn{
   margin-left:40px;
 }
+
+/*layer 重写样式*/
+body .layui-layer-title{
+  background-color: #35bdfc;
+  color: #fff;
+  font-size: 16px;
+}

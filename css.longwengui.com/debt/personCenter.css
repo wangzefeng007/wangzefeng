@@ -1655,3 +1655,17 @@
 .wallet-page .address-manage .address-list{
   margin-top:0;
 }
+
+.common-empty{
+  width:100%;
+  padding:60px 0;
+  text-align: center;
+}
+.common-empty p{
+  margin:10px 0  20px;
+  font-size:18px;
+  color: #9a9a9a;
+}
+.common-empty .btn{
+  padding: 9px 48px;
+}
