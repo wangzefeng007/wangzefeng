@@ -94,7 +94,7 @@ class AjaxOrder
             $MemberProductOrderModule = new MemberProductOrderModule();
             $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'].' and OrderID='.$OrderID);
             if ($OrderInfo){
-                $MemberProductOrderModule->UpdateInfoByKeyID(array("Status"=>8),$OrderID);
+                $Result = $MemberProductOrderModule->UpdateInfoByKeyID(array("Status"=>8),$OrderID);
 
             }else{
                 $result_json = array('ResultCode' => 102, 'Message' => '不存在该订单',);
