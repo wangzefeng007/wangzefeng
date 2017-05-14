@@ -335,3 +335,24 @@ i{
 .btn-link:hover{
   text-decoration: underline;
 }
+
+.wxDialog .left{
+  width:50%;
+  float: left;
+}
+.wxDialog .wx-img{
+  width:130px;
+  margin:0 auto;
+}
+.wxDialog .wx-img img{
+  width:100%;
+}
+.wxDialog .wx-img p{
+  margin-top:6px;
+  padding:0 6px;
+  color: #000;
+}
+.wxDialog .right{
+  width:50%;
+  float: right;
+}

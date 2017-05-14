@@ -70,12 +70,45 @@ var pageObj=$.extend({},pageObj,{
         //付款方式跳转
         $("#goPay").on("click",function(){
             var pay_url="";
+            var orderId="";
             $(".pay-list li").each(function(){
                 if($(this).hasClass("selected")){
                     pay_url=$(this).attr("data-url");
+                    orderId=$(this).attr("data-id");
                 }
-            })
-            _this.goPay(pay_url);
+            });
+            if(!pay_url&&orderId.length>0){
+                $.ajax({
+                    type:"get",
+                    url:"/asset/pay/",
+                    dataType: "json",
+                    data:{
+                        "id":orderId,
+                        "type":"wxpay"
+                    },
+                    beforeSend:　function(){
+                        showLoading();
+                    },success: function(data){
+                        console.log(data);
+                        if(data.ResultCode == 200){
+                            layer.open({
+                                title:"微信支付",
+                                type: 1,
+                                //skin: 'layui-layer-rim', //加上边框
+                                area: ['700px', '250px'], //宽高
+                                content: $("#wxDialog").html()
+                            });
+
+                        }else{
+                            showMsg(data.Message);
+                        }
+                    },complete: function(){
+                        closeLoading();
+                    }
+                })
+            }else{
+                _this.goPay(pay_url);
+            }
         });
         //合计金额计算
         _this.calcMoney($(".input-number").find("input[name='num']"));

@@ -16,7 +16,7 @@
                         <li class="selected" data-url="/asset/pay/?id={$OrderInfo[OrderID]}&type=alipay">
                             <p><i class="icon icon-zfb"></i>支付宝</p>
                         </li>
-                        <li data-url="/asset/pay/?id={$OrderInfo[OrderID]}&type=wxpay">
+                        <li data-id="{$OrderInfo[OrderID]}">
                             <p><i class="icon icon-wx"></i>微信支付</p>
                         </li>
                     </ul>
@@ -34,6 +34,20 @@
                 <a class="btn" id="goPay" href="javascript:void(0);">立即支付</a>
             </div>
             <p class="pay-tips">温馨提示：请详细核对债务内容，如发布人、资产转让金融、还款额等重要信息。如有疑问请联系服务热线：0592-5253262。</p>
+        </div>
+    </div>
+</div>
+<div id="wxDialog" style="display: none;">
+    <div class="wxDialog clearfix">
+        <div class="left">
+            <div class="wx-img">
+                <img src="{echo CssURL}/debt/temp/wx-pay-pic.jpg" alt="">
+                <p>请使用微信扫一扫</p>
+                <p>扫描二维码支付</p>
+            </div>
+        </div>
+        <div class="right">
+            <img src="{echo CssURL}/debt/images/wx-example.png" alt="">
         </div>
     </div>
 </div>
