@@ -215,7 +215,7 @@ class Asset
                     $input->SetSpbill_create_ip(GetIP());
                     $input->SetProduct_id($Data['OrderNo']);
                     $result = $notify->GetPayUrl($input);
-                    if ($result['code_img_url']) {
+                    if ($result['code_img_url'] && $result['status']=='0') {
 //                    $WXPayUrl= $result['code_url'];
 //                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
                         $ImageUrl = $result["code_img_url"];
