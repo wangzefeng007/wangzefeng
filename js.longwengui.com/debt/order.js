@@ -71,12 +71,7 @@ var pageObj=$.extend({},pageObj,{
                 success: function(data){
                     if(data.ResultCode == 200){
                         if(typeof data.Data=="object"){
-                            $.ajax({
-                                type:"post",
-                                url:data.Url,
-                                dataType: "json",
-                                data:data.Data
-                            })
+                            go(data.Url);
                             clearInterval(getResult);
                         }
                     }

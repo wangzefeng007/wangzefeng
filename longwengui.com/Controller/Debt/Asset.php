@@ -249,7 +249,6 @@ class Asset
                         $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
                         $result_json = array('ResultCode'=>200,'Message'=>'支付成功','Url'=>WEB_MAIN_URL.'/pay/wxresult/?OrderNo='.$Data['OrderNo']);
                         EchoResult($result_json);
-//                        echo ToolService::PostForm(WEB_MAIN_URL . '/pay/result/', $VerifyData);
                     } else {
                         $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_MAIN_URL);
                         EchoResult($result_json);

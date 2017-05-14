@@ -157,9 +157,9 @@ class Pay
     public function WxResult()
     {
         $OrderNumber = $_GET['OrderNo'];
-        if ($OrderNumber) {
-            $MemberProductOrderModule = new MemberProductOrderModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if ($OrderInfo && $OrderInfo['Status']==2) {
             $Money = $OrderInfo['TotalAmount'];
             $RedirectUrl = WEB_MAIN_URL . '/orderdetail/'.$OrderNumber.'.html';
             include template('PayResultSUCCESS');
