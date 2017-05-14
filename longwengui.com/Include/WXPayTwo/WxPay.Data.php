@@ -540,13 +540,18 @@ class WxPayUnifiedOrder extends WxPayDataBase
 
 
 	/**
-	* 设置APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
+	* 设置订单生成的机器 IP
 	* @param string $value 
 	**/
 	public function SetSpbill_create_ip($value)
 	{
-		$this->values['spbill_create_ip'] = $value;
+		$this->values['mch_create_ip'] = $value;
 	}
+    public function Setservice($value)
+    {
+        $this->values['service'] = $value;
+    }
+
 	/**
 	* 获取APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。的值
 	* @return 值
@@ -2981,4 +2986,12 @@ class WxPayBizPayUrl extends WxPayDataBase
 	{
 		return array_key_exists('product_id', $this->values);
 	}
+    /**
+     * 接口类型：pay.weixin.native
+     * @return 值
+     **/
+    public function GetService($value)
+    {
+        $this->values['service'] = $value;
+    }
 }
