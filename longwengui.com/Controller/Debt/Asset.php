@@ -179,6 +179,9 @@ class Asset
         $Order = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($Order['ProductID']);
         $Data = array();
+        if ($_POST){
+            var_dump($_POST);exit;
+        }
         if ($Order && $Order['Status'] == 1) {
             if ($Type == 'alipay') {
                 $Data['OrderNo'] = $Order['OrderNumber'];
@@ -220,10 +223,39 @@ class Asset
                         $ImageUrl = $result["code_img_url"];
                         $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
                         echo json_encode($result_json,JSON_UNESCAPED_UNICODE);exit;
+                    }elseif ($result['err_msg']){
+                        $result_json = array('ResultCode'=>104,'Message'=>$result['err_msg']);
                     } else {
                         $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_MAIN_URL);
-                        alertandgotopage('订单异常', WEB_MAIN_URL);
                     }
+                    //判断支付成功返回支付成功结果页start
+                    if ($result['err_msg']=='订单已支付'&& $result['result_code']=='1'){
+                            $OrderLogModule = new MemberOrderLogModule();
+                            $LogMessage ='买家已付款，付款方式微信支付';
+                            $LogData = array(
+                                'OrderNumber' =>$Data['OrderNo'],
+                                'UserID' => $_SESSION['UserID'],
+                                'OldStatus' => 1,
+                                'NewStatus' => 2,
+                                'OperateTime' => date("Y-m-d H:i:s", time()),
+                                'IP' => GetIP(),
+                                'Remarks' => $LogMessage,
+                                'Type' => 1
+                            );
+                            $LogResult = $OrderLogModule->InsertInfo($LogData);
+                        $Data['PaymentMethod'] = '2';
+                        $Data['Status'] = '2';
+                        $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$Data['OrderNo'].'\'');//更新订单状态
+                        $VerifyData['OrderNo'] = $Data['OrderNo'];
+                        $VerifyData['Money'] = ($Data['Money'] / 100);
+                        $VerifyData['PayType'] = "微信支付";
+                        $VerifyData['ResultCode'] = 'SUCCESS';
+                        $VerifyData['RunTime'] = time();
+                        $VerifyData['RedirectUrl'] = WEB_MAIN_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
+                        $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                        echo ToolService::PostForm(WEB_MAIN_URL . '/pay/result/', $VerifyData);
+                    }
+                    //判断支付成功返回支付成功结果页end
                 } else {
                     $result_json = array('ResultCode'=>103,'Message'=>'异常的请求','Url'=>WEB_MAIN_URL);
                 }

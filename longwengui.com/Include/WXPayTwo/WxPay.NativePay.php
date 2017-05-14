@@ -53,4 +53,17 @@ class NativePay
 			return $result;
 		}
 	}
+    /**
+     *
+     * 生成直接支付url，支付url有效期为2小时,模式二
+     * @param UnifiedOrderInput $input
+     */
+    public function GetResultUrl($input)
+    {
+        if($input->GetTrade_type() == "NATIVE")
+        {
+            $result = WxPayApi::orderResult($input);
+            return $result;
+        }
+    }
 }

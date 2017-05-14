@@ -60,7 +60,6 @@ class WxPayApi
 		$response = self::postXmlCurl($xml, $url, false, $timeOut);
 		$result = WxPayResults::Init($response);
 		self::reportCostTime($url, $startTimeStamp, $result);//上报请求花费时间
-
 		return $result;
 	}
 	
@@ -397,8 +396,31 @@ class WxPayApi
 		
 		return $result;
 	}
-	
- 	/**
+
+    /**
+     *
+     * 支付通知API
+     * @param function $callback
+     * 直接回调函数使用方法: notify(you_function);
+     * 回调类成员函数方法:notify(array($this, you_function));
+     * $callback  原型为：function function_name($data){}
+     */
+    public static function notify($callback, &$msg)
+    {
+        //获取通知的数据
+        $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
+        //如果返回成功则验证签名
+        try {
+            $result = WxPayResults::Init($xml);
+        } catch (WxPayException $e){
+            $msg = $e->errorMessage();
+            return false;
+        }
+
+        return call_user_func($callback, $result);
+    }
+
+        /**
  	 * 
  	 * 支付结果通用通知
  	 * @param function $callback
@@ -406,7 +428,7 @@ class WxPayApi
  	 * 回调类成员函数方法:notify(array($this, you_function));
  	 * $callback  原型为：function function_name($data){}
  	 */
-	public static function notify($callback, &$msg)
+	public static function orderResult($callback, &$msg)
 	{
 		//获取通知的数据
 		$xml = $GLOBALS['HTTP_RAW_POST_DATA'];

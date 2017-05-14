@@ -133,50 +133,6 @@ class Pay
         }
         EchoResult($result_json);exit;
     }
-    /**
-     * @desc  微信支付回调
-     * @throws WxPayException
-     */
-    public function WXPayNotify()
-    {
-        $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
-        $ResultUrl = WEB_MAIN_URL . '/pay/result/';
-        $BackResult = json_decode(json_encode(@simplexml_load_string($xml, NULL, LIBXML_NOCDATA)), true);
-        if (!array_key_exists("transaction_id", $BackResult)) {
-            echo "<xml>
-                <return_code><![CDATA[FAIL]]></return_code>
-                <return_msg><![CDATA[输入参数不正确]]></return_msg>
-             </xml>";
-        } else {
-            $transaction_id = $BackResult['transaction_id'];
-            include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.Api.php';
-            include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.Notify.php';
-            $input = new WxPayOrderQuery();
-            $input->SetTransaction_id($transaction_id);
-            $result = WxPayApi::orderQuery($input);
-            if (array_key_exists("return_code", $result) && array_key_exists("result_code", $result) && $result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
-                $Data['ResultCode'] = 1;
-                $Data['Money'] = (trim($BackResult['total_fee']) / 100);
-                    $VerifyData['OrderNo'] = trim($BackResult['out_trade_no']);
-                    $VerifyData['Money'] = ($BackResult['total_fee'] / 100);
-                    $VerifyData['PayType'] = "微信支付";
-                    $VerifyData['ResultCode'] = 'SUCCESS';
-                    $VerifyData['RunTime'] = time();
-                    $VerifyData['RedirectUrl'] = WEB_MAIN_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
-                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    echo ToolService::PostForm($ResultUrl, $VerifyData);
-                echo "<xml>
-                        <return_code><![CDATA[SUCCESS]]></return_code>
-                        <return_msg><![CDATA[OK]]></return_msg>
-                    </xml>";
-            } else {
-                echo "<xml>
-                <return_code><![CDATA[FAIL]]></return_code>
-                <return_msg><![CDATA[交易未完成]]></return_msg>
-                </xml>";
-            }
-        }
-    }
     //支付成功提示
     public function Result()
     {
