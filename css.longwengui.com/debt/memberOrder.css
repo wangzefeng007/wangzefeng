@@ -44,12 +44,16 @@
   height:100%;
 }
 .goods-td .con{
-  width:200px;
-  margin-left:10px;
-  float: left;
+  display: table;
+  width:220px;
+  height:80px;
+  float: right;
   text-align: left;
+  overflow: hidden;
 }
 .goods-td .con .title{
+  display: table-cell;
+  vertical-align: middle;
   font-size:16px;
   color: #646464;
 }
@@ -104,4 +108,7 @@
 }
 .operate-td p{
   margin-top:10px;
+}
+.operate-td p:first-child{
+  margin-top:0;
 }
