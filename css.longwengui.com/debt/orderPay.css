@@ -483,3 +483,20 @@
   right:0;
   font-size:14px;
 }
+.left-box .hr{
+  height:0;
+  width:100%;
+  padding:0 20px;
+  border-bottom:solid 1px #e6e6e6;
+  margin-left:-20px;
+}
+.left-box .images-box{
+  margin-top: 20px;
+}
+.left-box .images-box li{
+  width:125px;
+  height:125px;
+  float: left;
+  margin:10px;
+  background: #ccc;
+}

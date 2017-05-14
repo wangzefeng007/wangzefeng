@@ -72,6 +72,7 @@ var pageObj=$.extend({},pageObj,{
         $(".pay-list li").on("click",function(){
             $(this).addClass("selected").siblings().removeClass("selected")
         });
+        //付款方式跳转
         $("#goPay").on("click",function(){
             var pay_url="";
             $(".pay-list li").each(function(){
@@ -80,7 +81,14 @@ var pageObj=$.extend({},pageObj,{
                 }
             })
             _this.goPay(pay_url);
-        })
+        });
+        /*
+         图片预览
+         * */
+        $(".grouped_elements").fancybox({
+            showCloseButton:true,
+            showNavArrows:true
+        });
     }
 });
 pageObj.init();

@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/orderPay.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css">
 <div class="order-pay">
     <div class="wrap clearfix">
         <div class="current-loc">
@@ -15,6 +16,15 @@
             </div>
             <div class="con">
                 {$AssetInfo['Content']}
+            </div>
+            <p class="hr"></p>
+            <div class="images-box">
+                <ul class="clearfix">
+                    <!--<a class="grouped_elements" href="{$lists[ImageUrl]}" rel="group1"><img src="{$lists[ImageUrl]}" alt=""></a>-->
+                    <li>
+                        <img src="" alt="">
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="right-box">
@@ -101,4 +111,6 @@
         totalMoney:"{$AssetInfo['Price']}"
     };
 </script>
+<script src="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/jquery-1.4.3.min.js"></script>
+<script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
 <script src='{echo JsURL}/debt/order.js'></script>

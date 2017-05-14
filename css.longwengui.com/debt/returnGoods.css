@@ -150,8 +150,11 @@ i{
   border-right:solid 1px #cbcbcb;
 }
 .tab-wrap .tab-con .tab-con-r{
+  position: relative;
+  right: 1px;
   width:406px;
-  float: left;
+  float: right;
+  border-left: solid 1px #dcdcdc;
   padding:15px 0 15px 30px;
 }
 .tab-wrap .tab-con .hd{
@@ -535,4 +538,37 @@ i{
 }
 .return-goods-box .con p{
   padding:10px 0;
+}
+
+/*卖家页面重写样式*/
+.seller-page .tab-wrap .tab-con .tab-con-l{
+  float: right;
+  border-left: solid 1px #cbcbcb;
+  border-right: 0;
+}
+.seller-page .tab-wrap .tab-con .tab-con-r{
+  position: relative;
+  left: 1px;
+  right: 0;
+  float: left;
+  border-right: solid 1px #cbcbcb;
+  border-left: 0;
+}
+.btn-superbig{
+  padding: 9px 37px;
+}
+.return-box .form-line .form-lab{
+  margin-right:40px;
+}
+.address-list{
+  padding-top:40px;
+}
+.address-list li{
+  padding:10px 0;
+}
+.address-list .link{
+  color: #35bdfc;
+}
+.address-list .link:hover{
+  text-decoration: underline;
 }
