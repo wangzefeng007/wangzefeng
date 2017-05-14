@@ -46,6 +46,19 @@ class Pay
                 $OrderNumber = trim($_POST['out_trade_no']);
                $OrderInfo = $MemberProductOrderModule ->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
                 if ($OrderInfo) {
+                    $OrderLogModule = new MemberOrderLogModule();
+                    $LogMessage ='买家已付款，付款方式支付宝';
+                    $LogData = array(
+                        'OrderNumber' =>$OrderInfo['OrderNumber'],
+                        'UserID' => $_SESSION['UserID'],
+                        'OldStatus' => 1,
+                        'NewStatus' => 2,
+                        'OperateTime' => date("Y-m-d H:i:s", time()),
+                        'IP' => GetIP(),
+                        'Remarks' => $LogMessage,
+                        'Type' => 1
+                    );
+                    $OrderLogModule->InsertInfo($LogData);
                     $Data['PaymentMethod'] = '1';
                     $Data['Status'] = '2';
                     $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');//更新订单状态
