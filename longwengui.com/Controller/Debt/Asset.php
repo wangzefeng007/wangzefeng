@@ -199,7 +199,6 @@ class Asset
                 $Data['ReturnUrl'] = WEB_MAIN_URL . '/pay/result/';
                 $Data['RunTime'] = time();
                 $Data['Sign'] = ToolService::VerifyData($Data);
-                echo ToolService::PostForm(WEB_MAIN_URL . '/pay/wxpay/', $Data);
                 $Sign = $Data['Sign'];
                 unset($Data['Sign']);
                 if ($Sign == ToolService::VerifyData($Data)) {
