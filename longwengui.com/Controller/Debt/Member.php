@@ -201,6 +201,7 @@ class Member
      * @desc 发布的资产
      */
     public function AssetList(){
+        $Title = '会员-发布的资产';
         $this->IsLogin();
         $Nav = 'assetlist';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
@@ -239,6 +240,7 @@ class Member
      * @desc 已卖出资产
      */
     public function SellOrderList(){
+        $Title = '会员-已卖订单列表';
         $this->IsLogin();
         $Nav = 'sellorderlist';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
@@ -283,6 +285,7 @@ class Member
      * @desc 已买到资产
      */
     public function BuyOrderList(){
+        $Title = '会员-已买订单列表';
         $this->IsLogin();
         $Nav = 'buyorderlist';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
@@ -293,6 +296,7 @@ class Member
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
         $NStatus = $MemberProductOrderModule->NStatus;
         $Status=  intval($_GET['S']);
+        $CurrentTime = time()+1296000;//当前时间后的15天
         if ($Status=='1'){
             $MysqlWhere .= ' and `Status` = 1';
         }elseif ($Status=='2'){

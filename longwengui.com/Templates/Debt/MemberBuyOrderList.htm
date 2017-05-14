@@ -84,7 +84,7 @@
                             <div class="td">
                                 {$NStatus[$lists[Status]]}
                             </div>
-                            <div class="operate-td td" data-id="1">
+                            <div class="operate-td td" data-id="{$lists[OrderID]}">
                                 <!--待付款-->
                                 {if $lists[Status]==1}
                                 <p><a class="btn btn-primary" href="/assetorder/{$lists[OrderNumber]}.html" title="立即付款">立即付款</a></p>
@@ -102,10 +102,12 @@
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--已签收-->
                                 {elseif $lists[Status]==4}
-
                                 <!--已签收15天之后申请退款去掉 改为 删除-->
-                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
+                                {if $lists[UpdateTime]>$CurrentTime}
                                 <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
+                                {else}
+                                <p><a class="operate-txt" href="javascript:void(0);" title="申请退款">申请退款</a></p>
+                                {/if}
                                 <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--申请退款-->
                                 {elseif $lists[Status]==5}
