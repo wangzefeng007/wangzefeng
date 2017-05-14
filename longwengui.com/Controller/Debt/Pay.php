@@ -58,7 +58,7 @@ class Pay
                         'Remarks' => $LogMessage,
                         'Type' => 1
                     );
-                    $OrderLogModule->InsertInfo($LogData);
+                    $LogResult = $OrderLogModule->InsertInfo($LogData);
                     $Data['PaymentMethod'] = '1';
                     $Data['Status'] = '2';
                     $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');//更新订单状态
@@ -97,6 +97,37 @@ class Pay
             } else {
                 header("Location:/pay/result/");
             }
+        }
+    }
+    /**
+     * @desc 微信支付
+     */
+    public function WXPay()
+    {
+        $Sign = $_POST['Sign'];
+        unset($_POST['Sign']);
+        if ($Sign == ToolService::VerifyData($_POST)) {
+                include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.NativePay.php';
+                $notify = new NativePay();
+                $input = new WxPayUnifiedOrder();
+                $input->SetBody(stripslashes($_POST['Subject'])); //必填
+                $input->SetDetail(stripslashes($_POST['Body']));
+                $input->SetOut_trade_no($_POST['OrderNo']); //必填
+                $input->SetTotal_fee($_POST['Money']*100); //必填
+                $input->SetNotify_url(WEB_MAIN_URL . '/pay/wxpaynotify/'); //必填
+                $input->SetTrade_type("NATIVE");
+                $input->SetSpbill_create_ip(GetIP());
+                $input->SetProduct_id($_POST['OrderNo']);
+                $result = $notify->GetPayUrl($input);
+                if ($result['code_url']) {
+                    $WXPayUrl = $result["code_url"];
+                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
+                    include template("PayWXPay");
+                } else {
+                    alertandgotopage('订单异常', WEB_MAIN_URL);
+                }
+        } else {
+            alertandgotopage('异常的请求', WEB_MAIN_URL);
         }
     }
     //支付成功提示
