@@ -95,8 +95,8 @@ var pageObj=$.extend({},pageObj,{
                                 title:"微信支付",
                                 type: 1,
                                 //skin: 'layui-layer-rim', //加上边框
-                                area: ['700px', '250px'], //宽高
-                                content: $("#wxDialog").html()
+                                area: ['700px', '350px'], //宽高
+                                content: $("#wxDialog").html().replace("${ImageUrl}",data.ImageUrl)
                             });
 
                         }else{
@@ -111,7 +111,7 @@ var pageObj=$.extend({},pageObj,{
             }
         });
         //合计金额计算
-        _this.calcMoney($(".input-number").find("input[name='num']"));
+        //_this.calcMoney($(".input-number").find("input[name='num']"));
     }
 });
 pageObj.init();

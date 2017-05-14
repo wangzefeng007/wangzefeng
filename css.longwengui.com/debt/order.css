@@ -336,6 +336,10 @@ i{
   text-decoration: underline;
 }
 
+
+.wxDialog{
+  padding:20px 20px 40px;
+}
 .wxDialog .left{
   width:50%;
   float: left;
