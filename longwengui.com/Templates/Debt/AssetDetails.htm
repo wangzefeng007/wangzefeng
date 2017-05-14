@@ -18,15 +18,12 @@
                 {$AssetInfo['Content']}
             </div>
             <p class="hr"></p>
-            <div class="images-box">
-                <ul class="clearfix">
-                    <!--<a class="grouped_elements" href="{$lists[ImageUrl]}" rel="group1"><img src="{$lists[ImageUrl]}" alt=""></a>-->
-                    {loop $AssetImage $lists}
-                    <li>
-                        <img src="{$lists[ImageUrl]}" alt="">
-                    </li>
-                    {/loop}
-                </ul>
+            <div class="images-box clearfix">
+                {loop $AssetImage $lists}
+                <a class="grouped_elements" href="{$lists[ImageUrl]}" rel="group1">
+                    <img src="{$lists[ImageUrl]}" alt="">
+                </a>
+                {/loop}
             </div>
         </div>
         <div class="right-box">
@@ -113,6 +110,6 @@
         totalMoney:"{$AssetInfo['Price']}"
     };
 </script>
+<script src='{echo JsURL}/debt/order.js'></script>
 <script src="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/jquery-1.4.3.min.js"></script>
 <script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
-<script src='{echo JsURL}/debt/order.js'></script>

@@ -82,13 +82,17 @@ var pageObj=$.extend({},pageObj,{
             })
             _this.goPay(pay_url);
         });
-        /*
-         图片预览
-         * */
-        $(".grouped_elements").fancybox({
-            showCloseButton:true,
-            showNavArrows:true
-        });
     }
 });
 pageObj.init();
+
+$(function(){
+    /*
+     图片预览
+     * */
+    $(".grouped_elements").fancybox({
+        showCloseButton:true,
+        showNavArrows:true
+    });
+
+});
