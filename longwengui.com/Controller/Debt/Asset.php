@@ -247,7 +247,7 @@ class Asset
                         $VerifyData['RunTime'] = time();
                         $VerifyData['RedirectUrl'] = WEB_MAIN_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
                         $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                        $result_json = array('ResultCode'=>200,'Message'=>'支付成功','Url'=>WEB_MAIN_URL.'/pay/result/','Data'=>$VerifyData);
+                        $result_json = array('ResultCode'=>200,'Message'=>'支付成功','Url'=>WEB_MAIN_URL.'/pay/wxresult/?OrderNo='.$Data['OrderNo']);
                         EchoResult($result_json);
 //                        echo ToolService::PostForm(WEB_MAIN_URL . '/pay/result/', $VerifyData);
                     } else {

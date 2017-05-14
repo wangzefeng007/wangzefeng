@@ -44,7 +44,7 @@ class Pay
         if (count($_POST)) {
             if ($AliPay->GetPayStatus($_POST) === 'true') {
                 $OrderNumber = trim($_POST['out_trade_no']);
-               $OrderInfo = $MemberProductOrderModule ->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+                $OrderInfo = $MemberProductOrderModule ->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
                 if ($OrderInfo) {
                     $OrderLogModule = new MemberOrderLogModule();
                     $LogMessage ='买家已付款，付款方式支付宝';
@@ -107,27 +107,27 @@ class Pay
         $Sign = $_POST['Sign'];
         unset($_POST['Sign']);
         if ($Sign == ToolService::VerifyData($_POST)) {
-                include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.NativePay.php';
-                $notify = new NativePay();
-                $input = new WxPayUnifiedOrder();
-                $input->SetBody(stripslashes($_POST['Subject'])); //必填
-                $input->SetDetail(stripslashes($_POST['Body']));
-                $input->SetOut_trade_no($_POST['OrderNo']); //必填
-                $input->SetTotal_fee($_POST['Money']*100); //必填
-                $input->SetNotify_url(WEB_MAIN_URL . '/pay/wxpaynotify/'); //必填
-                $input->SetTrade_type("NATIVE");
-                $input->SetSpbill_create_ip(GetIP());
-                $input->SetProduct_id($_POST['OrderNo']);
-                $result = $notify->GetPayUrl($input);
-                if ($result['code_img_url']) {
+            include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.NativePay.php';
+            $notify = new NativePay();
+            $input = new WxPayUnifiedOrder();
+            $input->SetBody(stripslashes($_POST['Subject'])); //必填
+            $input->SetDetail(stripslashes($_POST['Body']));
+            $input->SetOut_trade_no($_POST['OrderNo']); //必填
+            $input->SetTotal_fee($_POST['Money']*100); //必填
+            $input->SetNotify_url(WEB_MAIN_URL . '/pay/wxpaynotify/'); //必填
+            $input->SetTrade_type("NATIVE");
+            $input->SetSpbill_create_ip(GetIP());
+            $input->SetProduct_id($_POST['OrderNo']);
+            $result = $notify->GetPayUrl($input);
+            if ($result['code_img_url']) {
 //                    $WXPayUrl= $result['code_url'];
 //                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
-                    $ImageUrl = $result["code_img_url"];
-                    $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
-                } else {
-                    $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_MAIN_URL);
-                    alertandgotopage('订单异常', WEB_MAIN_URL);
-                }
+                $ImageUrl = $result["code_img_url"];
+                $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
+            } else {
+                $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_MAIN_URL);
+                alertandgotopage('订单异常', WEB_MAIN_URL);
+            }
         } else {
             $result_json = array('ResultCode'=>103,'Message'=>'异常的请求','Url'=>WEB_MAIN_URL);
         }
@@ -149,6 +149,20 @@ class Pay
             } else {
                 include template('PayResultFAIL');
             }
+        } else {
+            include template('PayResultFAIL');
+        }
+    }
+    //支付成功提示
+    public function WxResult()
+    {
+        $OrderNumber = $_GET['OrderNo'];
+        if ($OrderNumber) {
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+            $Money = $OrderInfo['TotalAmount'];
+            $RedirectUrl = WEB_MAIN_URL . '/orderdetail/'.$OrderNumber.'.html';
+            include template('PayResultSUCCESS');
         } else {
             include template('PayResultFAIL');
         }
