@@ -71,7 +71,12 @@ class Asset
      */
     public function Publish(){
         $this->IsLogin();
-        $Nav='transfer';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        if ($UserInfo['IdentityState']!=3){
+            alertandback("审核通过后的会员方可发布资产转让！");
+        }
+        $Nav='asset';
         $EndTime = time()+ 2592000;
         include template('AssetPublish');
     }
@@ -108,7 +113,7 @@ class Asset
         $Money = $_GET['money'];
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
-        $ExpirationDate = ceil(($AssetInfo['ExpirationDate'] -time())/(3600*24));var_dump($ExpirationDate);
+        $ExpirationDate = ceil(($AssetInfo['ExpirationDate'] -time())/(3600*24));
         $AmountMoney =number_format($AssetInfo['AssetsAmount']-$Money, 2);//剩余资产金额
         $TotalAmount =number_format($Money+$AssetInfo['Freight'], 2);//合计金额
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);

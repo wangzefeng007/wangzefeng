@@ -1,205 +1,127 @@
 {template Header}
-<link rel="stylesheet" href="{echo CssURL}/debt/returnGoods.css">
-<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<link rel="stylesheet" href="{echo CssURL}/debt/order.css">
 <div class="order-pay">
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>我的资产 </a> > <a>已买到的</a> > <span class="cur">退款申请</span></span>
+            <span>当前位置 : <a>我的资产</a> > <a href="/member/buyorderlist/">订单管理</a> > <span class="cur">订单详情</span></span>
         </div>
         <div class="tip">
-            退款订单号：201702280001
+            订单编号：201702280001
         </div>
         <div class="flow-wrap">
             <div class="flow-box clearfix">
-                <div class="flow over first">
+                <div class="flow {if $OrderInfo['Status']==1 || $OrderInfo['Status']==2 || $OrderInfo['Status']==3 || $OrderInfo['Status']==4}over{/if} {if $OrderInfo['Status']==1}curr{/if} first">
                     <span>1</span>
-                    <p>买家申请退货退款</p>
+                    <p>未付款</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow over">
+                <div class="flow {if $OrderInfo['Status']==2 || $OrderInfo['Status']==3}over curr{elseif $OrderInfo['Status']==4}over{/if}">
                     <span>2</span>
-                    <p>卖家处理退款申请</p>
+                    <p>{if $OrderInfo['Status']==2}已付款，待发货{elseif $OrderInfo['Status']==3 || $OrderInfo['Status']==4}已付款，已发货{/if}</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo['Status']==4}over curr{/if}">
                     <span>3</span>
-                    <p>买家退货给卖家</p>
+                    <p>订单完成</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
-                    <span>4</span>
-                    <p>卖家确认收货，退款完成</p>
-                    <i class="triangle"></i>
+            </div>
+            <div class="flow-tips">
+                {if $OrderInfo['Status']==1}
+                <p class="h3">当前订单状态：资产已拍下，请在3天内付款；若未及时付款，系统将自动取消订单</p>
+                <p class="h4">如果您不想购买，可以 <a href="#">取消订单</a></p>
+                {elseif $OrderInfo['Status']==2}
+                <p class="h3">当前订单状态：资产转让手续正在办理中，若在7个工作日内未完成转让，系统将自动取消订单，退回相应款项</p>
+                {elseif $OrderInfo['Status']==3}
+                <p class="h3">当前订单状态：订单已完成，买家已发货，请查看页面下方物流信息了解上品情况</p>
+                <p class="h4">
+                    1、如果您已经收到货，您可以点击 <a class="btn-link">确认收货</a> 打款给卖家
+                </p>
+                <p class="h3 mt-10">物流信息</p>
+                <div class="ems-box">
+                    <p>
+                        发货方式：快递
+                    </p>
+                    <p>
+                        物流公司：EMS
+                    </p>
+                    <p>
+                        快递单号：15945354799852525644858
+                    </p>
                 </div>
+                {elseif $OrderInfo['Status']==4}
+                <p class="h3">当前订单状态：订单已完成，买家已签收</p>
+                {/if}
             </div>
         </div>
 
         <div class="tab-wrap">
-            <div class="tab-con clearfix">
-                <div class="tab-con-l">
-                    <div class="return-waiting">
-                        <p class="title">请等待卖家处理...</p>
-                        <div class="con">
-                            <p>*如果卖家同意，请按照给出的退货地址进行退货。</p>
-                            <p>*如果卖家拒绝，您可以修改退货申请后再次发起，卖家会重新处理。</p>
-                            <p>*如果卖家在4天23时59分59秒内未处理，退货申请将自动达成，请安系统给出的退货地址退货。</p>
-                            <p>*如有人以“卡单、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱款被骗。</p>
-                        </div>
-                        <div class="other">
-                            您还可以： <a href="#">修改退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
-                        </div>
-                    </div>
-                    <div class="return-logistics">
-                        <div class="panel">进度详情</div>
-                        <div class="message-list">
-                            <ul>
-                                <li class="clearfix">
-                                    <p class="img">
-                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                    </p>
-                                    <div class="con">
-                                        <p class="user">fewfwf - 买家</p>
-                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
-                                        <p class="time">2017-4-30  16：50：22</p>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <p class="img">
-                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                    </p>
-                                    <div class="con">
-                                        <p class="user">fewfwf - 买家</p>
-                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
-                                        <p class="time">2017-4-30  16：50：22</p>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <p class="img">
-                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                    </p>
-                                    <div class="con">
-                                        <p class="user">fewfwf - 买家</p>
-                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
-                                        <p class="time">2017-4-30  16：50：22</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+            <p class="tab-title">订单详情</p>
+            <div class="tab-con">
+                <div class="section-wrap clearfix">
+                    <p class="section-title">
+                        收货人信息
+                    </p>
+                    <div class="section-con">
+                        <p>{$OrderInfo['Contacts']} &nbsp;&nbsp;&nbsp;{$OrderInfo['Tel']}</p>
+                        <p class="ellipsis">{$OrderInfo['Address']}</p>
                     </div>
                 </div>
-                <div class="tab-con-r">
-                    <div class="hd">退货退款申请</div>
-                    <div class="order-goods clearfix">
-                        <p class="img">
-                            <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
-                        </p>
-                        <div class="con">
-                            <div class="clearfix">
-                                <p class="title fl ellipsis">
-                                    上品武夷山大红袍
-                                </p>
-                                <p class="type fr ellipsis">
-                                    资产种类：茶叶
-                                </p>
-                            </div>
-
-                            <div class="des">
-                                大红袍，产于福建武夷山，属乌龙茶，品质
-                                优异。中国特种名茶中国特种名茶中国特种
-                                名茶中国特种名茶中国特种名茶
+                <p class="hr"></p>
+                <div class="section-wrap clearfix">
+                    <p class="section-title">
+                        发布人信息
+                    </p>
+                    <div class="section-con">
+                        <p class="ellipsis">昵称：{$UserInfo['NickName']} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联系电话：{$UserInfo['Mobile']} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 真实姓名：{$UserInfo['RealName']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 城市：{$UserInfo['Province']}{$UserInfo['City']}{$UserInfo['Area']}</p>
+                    </div>
+                </div>
+                <p class="hr"></p>
+                <div class="order-table">
+                    <div class="table-th table-tr">
+                        <div class="td" style="width:330px">资产简介</div>
+                        <div class="td" style="width:150px">份额单价</div>
+                        <div class="td" style="width:90px">份数</div>
+                        <div class="td" style="width:130px">实付款</div>
+                        <div class="td" style="width:150px">交易状态</div>
+                        <div class="td">创建时间</div>
+                    </div>
+                    <div class="table-tr">
+                        <div class="td goods-td clearfix">
+                            <p class="img">
+                                <img src="{$AssetImage[ImageUrl]}" alt="{$AssetInfo[Title]}">
+                            </p>
+                            <div class="con">
+                                <p class="title">{$AssetInfo[Title]}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="order-msg">
-                        <div class="line">
-                            <label for="">卖&emsp;&emsp;家:</label>
-                            <p>我很爱稀饭 &emsp;<i class="icon-contact"></i><span class="btn-contact">和我联系</span></p>
+                        <div class="money-td td">
+                            <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$AssetInfo[MarketPrice]}</p>
+                            <p class="mt-10"><span class="c-red">成交 &nbsp;</span>¥{$AssetInfo[Price]}</p>
                         </div>
-                        <div class="line">
-                            <label for="">联系电话:</label>
-                            <p>13960326366</p>
+                        <div class="td">{$OrderInfo['Num']}</div>
+                        <div class="td">
+                            <p>¥{$OrderInfo['TotalAmount']}</p>
+                            <p class="ems">{if $AssetInfo[Freight]>0}（含运费）{else}（不含运费）{/if}</p>
                         </div>
-                        <div class="line">
-                            <label for="">订单编号:</label>
-                            <p><span class="c-primary">L201702270001</span></p>
+                        <div class="td">
+                            {$NStatus[$OrderInfo['Status']]}
                         </div>
-                        <div class="line">
-                            <label for="">单&emsp;&emsp;价:</label>
-                            <p><span class="c-red">1010.00</span>元*2 （数量）</p>
-                        </div>
-                        <div class="line">
-                            <label for="">邮&emsp;&emsp;费:</label>
-                            <p><span class="c-red">0.00</span></p>
-                        </div>
-                    </div>
-
-                    <div class="order-msg">
-                        <div class="line">
-                            <label for="">退款编号:</label>
-                            <p>15516156156156156</p>
-                        </div>
-                        <div class="line">
-                            <label for="">退款金额:</label>
-                            <p><span class="c-red">2020.00</span>元</p>
-                        </div>
-                        <div class="line">
-                            <label for="">原&emsp;&emsp;因:</label>
-                            <p>其&emsp;&emsp;它</p>
-                        </div>
-                        <div class="line">
-                            <label for="">要&emsp;&emsp;求:</label>
-                            <p>退货退款</p>
-                        </div>
-                        <div class="line">
-                            <label for="">货物状态:</label>
-                            <p>已收到货</p>
-                        </div>
-                        <div class="line">
-                            <label for="">说&emsp;&emsp;明:</label>
-                            <p>接触到胡椒粉金才能看见谁能看懂...</p>
-                        </div>
+                        <div class="td">{echo date("Y-m-d H:i:s",$OrderInfo['AddTime'])}</div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="article-box">
-            <p class="hd">常见问题</p>
-            <div class="con">
-                <p class="section-title">我一直没收到货，怎么办？</p>
-                <div class="section-con">
-                    <p>
-                        您申请退款后，我们建议您先联系卖家了解情况，沟通解决问题，避免引起双方误会。
-                    </p>
-                </div>
-
-                <p class="section-title">和卖家意见有分歧怎么办/卖家不同意退款我怎么办？</p>
-                <div class="section-con">
-                    <p>
-                        如卖家没有做出处理将会在您申请的5天后由系统自动达成售后申请，如卖家拒绝您的售后申请，您可以根据卖家拒绝的原因“修改退货申请”或者点击“申请介入”。
-                    </p>
-                </div>
-
-                <p class="section-title">没收到货的退款一般会怎么处理？</p>
-                <div class="section-con">
-                    <p>
-                        如果申请介入后，会要求卖家提供发货凭证及买家签收凭证。发货凭证是指卖家发货时的快递单等物流公司出具的单据；买家签收凭证是指带有买家本人签名的快递单
-                        或买家授权第三方签收的授权签收凭证。如果卖家提供不了或者提供的凭证无效，本网站会把钱退给买家。
-                    </p>
-                </div>
-
-                <p class="section-title">联系不到卖家怎么办？</p>
-                <div class="section-con">
-                    <p>
-                        如果一直联系不到卖家，由于您已申请售后，本网站会要求卖家（实物商品在5天内，虚拟商品在3天内）来处理交易。规定时间内卖家未响应售后申请：系统会自动从
-                        卖家保证金扣取相应的钱款退款给买家，若卖家保证金不足或者卖家无保证金，本网站将对卖家账户执行相应处罚。
-                    </p>
+                <div class="total">
+                    <span>订单总共金额： <b class="c-red">{$OrderInfo['TotalAmount']}</b> 元</span>
+                    {if $OrderInfo['Status']==1}<a class="btn btn-primary" href="#">立即付款</a>
+                    {elseif $OrderInfo['Status']==2}
+                    <a class="btn btn-primary" href="javascript:void (0)">提醒发货</a>
+                    {elseif $OrderInfo['Status']==3}
+                    <a class="btn btn-primary" href="javascript:void (0)">确认收货</a>
+                    {/if}
                 </div>
             </div>
         </div>
     </div>
 </div>
 {template Footer}
-<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
-<script src='{echo JsURL}/debt/returnGoods.js'></script>
