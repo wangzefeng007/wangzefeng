@@ -84,9 +84,15 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberProductOrderModule = new MemberProductOrderModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and ProductID = '.$AssetInfo['AssetID'],true);
+        $TotalAmount =0;
+        foreach ($OrderInfo as $value){
+            $TotalAmount =$TotalAmount+ $value['TotalAmount'];
+        }
         include template('AssetDetails');
     }
     /**
