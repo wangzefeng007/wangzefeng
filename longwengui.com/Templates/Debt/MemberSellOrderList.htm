@@ -5,7 +5,7 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            当前位置 > 我的资产 > <span>已买到的</span>
+            当前位置 > 我的资产 > <span>已卖出的</span>
         </div>
         <div class="menu-cont-wrap">
             {if $_SESSION[Identity]==0 || $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
@@ -26,12 +26,12 @@
             <div class="info-cont">
                 <dl class="cont-select">
                     <dt>订单状态：</dt>
-                    <dd onclick="" class="cont-select-act">全部</dd>
-                    <dd onclick="">未付款</dd>
-                    <dd onclick="">已付款</dd>
-                    <dd onclick="">待收货</dd>
-                    <dd onclick="">待发货</dd>
-                    <dd onclick="">已退款</dd>
+                    <dd onclick="go('/member/sellorderlist/')" {if $Status==''}class="cont-select-act"{/if}>全部</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>未付款</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>已付款</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>交易完成</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=4')" {if $Status==4}class="cont-select-act"{/if}>申请售后</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=5')" {if $Status==5}class="cont-select-act"{/if}>交易关闭</dd>
                 </dl>
                 <div class="order-list">
                     <div class="order-table">
@@ -48,10 +48,11 @@
                         <!--表格头部end-->
 
                         <!--表格循环体 start-->
+                        {loop $Data['Data'] $lists}
                         <div class="table-tr order-hd">
                             <div class="td" style="width:330px">
                                 <div class="order-no">
-                                    2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
+                                    {echo date("Y-m-d",$lists[AddTime])}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：{$lists[OrderNumber]}
                                 </div>
                             </div>
                             <div class="td" style="width:150px"></div>
@@ -63,161 +64,71 @@
                         <div class="table-tr">
                             <div class="td goods-td clearfix">
                                 <p class="img">
-                                    <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
+                                    <img src="{$lists[ImageUrl]}" alt="">
                                 </p>
                                 <div class="con">
-                                    <p class="title">上品武夷山大红袍</p>
-                                    <div class="des">
-                                        大红袍，产于福建武夷山，属乌
-                                        龙茶，品质优异。中国特种名茶
-                                    </div>
+                                    <p class="title">{$lists[Title]}</p>
                                 </div>
                             </div>
                             <div class="money-td td">
-                                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
-                                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
+                                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$lists[MarketPrice]}</p>
+                                <p class="mt-10"><span class="c-red">成交&nbsp;&nbsp;</span>¥{$lists[Price]}</p>
                             </div>
                             <div class="td">2</div>
                             <div class="td">
-                                <p>¥2010</p>
-                                <p class="ems">（含EMS运费）</p>
+                                <p>¥{$lists[TotalAmount]}</p>
                             </div>
                             <div class="td">
-                                待审核
+                                {$NStatus[$lists[Status]]}
                             </div>
-                            <div class="td">
-                                <a href="#">查看详情&gt;&gt;</a>
+                            <div class="operate-td td" data-id="{$lists[OrderID]}">
+                                <!--待付款-->
+                                {if $lists[Status]==1}
+                                <p><a class="btn btn-primary" href="/assetorder/{$lists[OrderNumber]}.html" title="立即付款">立即付款</a></p>
+                                <p><a class="operate-txt" onclick="pageObj.cancelOrder(this)" href="javascript:void(0);" title="取消订单">取消订单</a></p>
+                                <!--已付款-->
+                                {elseif $lists[Status]==2}
+                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remind" href="javascript:void(0);" title="提醒卖家发货">提醒卖家发货</a></p>
+                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
+                                <!--待签收-->
+                                {elseif $lists[Status]==3}
+                                <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt(this)" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
+                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
+                                <!--已签收-->
+                                {elseif $lists[Status]==4}
+                                <!--已签收15天之后申请退款去掉 改为 删除-->
+                                {if $lists[UpdateTime]>$CurrentTime}
+                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
+                                {else}
+                                <p><a class="operate-txt" href="javascript:void(0);" title="申请退款">申请退款</a></p>
+                                {/if}
+                                <!--申请退款-->
+                                {elseif $lists[Status]==5}
+                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply" href="javascript:void(0);" title="取消申请">取消申请</a></p>
+                                {elseif $lists[Status]== 6}
+                                <!--退款中-->
+                                <p><a class="btn btn-primary" onclick="pageObj.indeedReturn(this)" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn2" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
+                                <!--申请失败-->
+                                {elseif $lists[Status]==7}
+                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply2" href="javascript:void(0);" title="取消申请">取消申请</a></p>
+                                <p><a class="operate-txt" href="#" title="修改申请">修改申请</a></p>
+                                <!--退款成功-->
+                                {elseif $lists[Status]==8}
+                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
+                                <!--交易关闭-->
+                                {elseif $lists[Status]==9 ||$lists[Status]==10}
+                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
+                                {/if}
+                                <p><a class="link" href="/orderdetail/{$lists[OrderNumber]}.html" title="查看订单">查看订单>></a></p>
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>
+                        {/loop}
+                        {if empty($Data['Data'])}
+                        {/if}
                         <!--表格循环体 end-->
-
-                        <div class="table-tr order-hd">
-                            <div class="td" style="width:330px">
-                                <div class="order-no">
-                                    2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
-                                </div>
-                            </div>
-                            <div class="td" style="width:150px"></div>
-                            <div class="td" style="width:90px"></div>
-                            <div class="td" style="width:130px"></div>
-                            <div class="td" style="width:120px"></div>
-                            <div></div>
-                        </div>
-                        <div class="table-tr">
-                            <div class="td goods-td clearfix">
-                                <p class="img">
-                                    <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
-                                </p>
-                                <div class="con">
-                                    <p class="title">上品武夷山大红袍</p>
-                                    <div class="des">
-                                        大红袍，产于福建武夷山，属乌
-                                        龙茶，品质优异。中国特种名茶
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="money-td td">
-                                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
-                                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
-                            </div>
-                            <div class="td">2</div>
-                            <div class="td">
-                                <p>¥2010</p>
-                                <p class="ems">（含EMS运费）</p>
-                            </div>
-                            <div class="td">
-                                待审核
-                            </div>
-                            <div class="td">
-                                <a href="#">查看详情&gt;&gt;</a>
-                            </div>
-                        </div>
-                        <div class="table-tr order-hr"></div>
-
-
-                        <div class="table-tr order-hd">
-                            <div class="td" style="width:330px">
-                                <div class="order-no">
-                                    2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
-                                </div>
-                            </div>
-                            <div class="td" style="width:150px"></div>
-                            <div class="td" style="width:90px"></div>
-                            <div class="td" style="width:130px"></div>
-                            <div class="td" style="width:120px"></div>
-                            <div></div>
-                        </div>
-                        <div class="table-tr">
-                            <div class="td goods-td clearfix">
-                                <p class="img">
-                                    <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
-                                </p>
-                                <div class="con">
-                                    <p class="title">上品武夷山大红袍</p>
-                                    <div class="des">
-                                        大红袍，产于福建武夷山，属乌
-                                        龙茶，品质优异。中国特种名茶
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="money-td td">
-                                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
-                                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
-                            </div>
-                            <div class="td">2</div>
-                            <div class="td">
-                                <p>¥2010</p>
-                                <p class="ems">（含EMS运费）</p>
-                            </div>
-                            <div class="td">
-                                待审核
-                            </div>
-                            <div class="td">
-                                <a href="#">查看详情&gt;&gt;</a>
-                            </div>
-                        </div>
-                        <div class="table-tr order-hr"></div>
-
-
-                        <div class="table-tr order-hd">
-                            <div class="td" style="width:330px" colspan="4">
-                                <div class="order-no">
-                                    2017-04-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：L201702270000
-                                </div>
-                            </div>
-                            <div class="td" style="width:150px"></div>
-                            <div class="td" style="width:90px"></div>
-                            <div class="td" style="width:130px"></div>
-                            <div class="td" style="width:120px"></div>
-                            <div></div>
-                        </div>
-                        <div class="table-tr">
-                            <div class="td goods-td clearfix">
-                                <p class="img">
-                                    <img src="http://css.longwengui.net/debt/temp/pic-5.jpg" alt="">
-                                </p>
-                                <div class="con">
-                                    <p class="title">上品武夷山大红袍</p>
-                                </div>
-                            </div>
-                            <div class="money-td td">
-                                <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥1200</p>
-                                <p class="mt-10"><span class="c-red">市场&nbsp;&nbsp;</span>¥1000</p>
-                            </div>
-                            <div class="td">2</div>
-                            <div class="td">
-                                <p>¥2010</p>
-                                <p class="ems">（含EMS运费）</p>
-                            </div>
-                            <div class="td">
-                                审核通过
-                            </div>
-                            <div class="td">
-                                <a href="#"><i class="icon-del" title="删除"></i></a>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
@@ -243,14 +154,15 @@
                         </div>
                     </div>
                 </div>
+                {if $ShowPage}
                 <div class="pagination-wrap">
                     <div class="pagination fl-r" id="collection_page_pagination">
-                        <a href="/asset/lists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                        <a href="/member/sellorderlist/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
                         {$ShowPage}
                     </div>
                 </div>
+                {/if}
             </div>
-
         </div>
     </div>
 </div>
@@ -266,4 +178,4 @@
         addressTotal:parseInt("{$Rscount['Num']}")+parseInt("{$Number}")
     }
 </script>
-<script src='{echo JsURL}/debt/memberAddress.js'></script>
+<script src='{echo JsURL}/debt/memberOrder.js'></script>

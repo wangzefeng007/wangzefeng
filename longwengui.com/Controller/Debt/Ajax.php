@@ -708,7 +708,6 @@ class Ajax
                 $DB->query("ROLLBACK");//判断当执行失败时回滚
                 $result_json = array('ResultCode'=>106,'Message'=>'录入债务基本信息失败');
             }
-
         }else {
             $result_json = array('ResultCode'=>107,'Message'=>'录入债务基本信息失败');
         }

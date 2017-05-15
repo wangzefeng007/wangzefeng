@@ -248,36 +248,53 @@ class Member
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
         $NStatus = $MemberProductOrderModule->NStatus;
-        $Status=  intval($_GET['S']);
-        if ($Status){
-            $MysqlWhere .= ' and Status = '.$Status;
+        $arr = '';
+        $MysqlWhere = '';
+        foreach ($AssetInfo  as $key=>$value){
+            $arr[] .=$value['AssetID'];
         }
-        $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
-        $pageSize = 4;
-        $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
-        if ($Rscount['Num']) {
-            $Data = array();
-            $Data['RecordCount'] = $Rscount['Num'];
-            $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
-            $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
-            $Data['Page'] = min($Page, $Data['PageCount']);
-            $Offset = ($Page - 1) * $Data['PageSize'];
-            if ($Page > $Data['PageCount'])
-                $page = $Data['PageCount'];
-            $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
-            foreach ($Data['Data'] as $key=>$value){
-                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ProductID']);//通过产品ID获取
-                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
-                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
-                $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
-                $Data['Data'][$key]['Content'] = $AssetInfo['Content'];
-                $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
-                $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
+        $arr=implode(',',array_unique($arr));
+        if ($arr !==''){
+            $MysqlWhere .= " and ProductID IN ($arr)";
+            $Status=  intval($_GET['S']);
+            if ($Status=='1'){
+                $MysqlWhere .= ' and `Status` = 1';
+            }elseif ($Status=='2'){
+                $MysqlWhere .= ' and `Status` in (2,3)';
+            }elseif ($Status=='3'){
+                $MysqlWhere .= ' and `Status` =4';
+            }elseif ($Status=='4'){
+                $MysqlWhere .= ' and `Status` in (5,6,7,8,9)';
+            }elseif ($Status=='5'){
+                $MysqlWhere .= ' and `Status` in (10,11)';
             }
-            $ClassPage = new Page($Rscount['Num'], $pageSize,3);
-            $ShowPage = $ClassPage->showpage();
+            $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
+            $pageSize = 4;
+            $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
+            if ($Rscount['Num']) {
+                $Data = array();
+                $Data['RecordCount'] = $Rscount['Num'];
+                $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+                $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+                $Data['Page'] = min($Page, $Data['PageCount']);
+                $Offset = ($Page - 1) * $Data['PageSize'];
+                if ($Page > $Data['PageCount'])
+                    $page = $Data['PageCount'];
+                $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+                foreach ($Data['Data'] as $key=>$value){
+                    $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ProductID']);//通过产品ID获取
+                    $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
+                    $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+                    $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+                    $Data['Data'][$key]['Content'] = $AssetInfo['Content'];
+                    $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
+                    $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
+                }
+                $ClassPage = new Page($Rscount['Num'], $pageSize,3);
+                $ShowPage = $ClassPage->showpage();
+            }
         }
         include template('MemberSellOrderList');
     }
