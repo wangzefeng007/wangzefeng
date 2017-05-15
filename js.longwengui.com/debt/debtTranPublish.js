@@ -221,7 +221,7 @@ $(function(){
             _trans_type : $("input[name='trans_type']").val(),
             _end_time : $("input[name='end_time']").val(),
             _sell_phone : $("input[name='sell_phone']").val(),
-            _emsMoney : $("input[name='emsMoney']").val(),
+            _emsMoney : $("input[name='emsMoney']").val()||0,
             _transTitle : $("input[name='transTitle']").val(),
             transDetail:$("[name='transDetail']").val(),
             agreement : $("input[name='agreement']")[0].checked,

@@ -214,7 +214,11 @@ $(function(){
         var area_detail = $('.tab-person textarea[name="areaDetail"]').val();
         var qq = $('.tab-person input[name="qq"]').val();
         var email = $('.tab-person input[name="email"]').val();
-
+        if(qq==''){
+            showMsg('请输入QQ号');
+            $('.tab-person input[name="qq"]').focus();
+            return;
+        }
         if(qq != '' && !validate('qq', qq)){
             showMsg('请输入正确的qq号');
             $('.tab-person input[name="qq"]').focus();
