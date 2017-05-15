@@ -382,7 +382,36 @@ class Member
         if ($UserInfo['Area'])
         $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         if ($OrderInfo['Status']<5){
-            include template('MemberBuyOrderDetail');
+            include template('MemberBuyOrderDetail1');
+        }elseif ($OrderInfo['Status']>4 && $OrderInfo['Status']<9){
+            include template('MemberBuyOrderDetail2');
         }
+    }
+    /**
+     * @desc 资产已买到订单详情页
+     */
+    public function BuyOrderRefund(){
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $OrderNumber = trim($_GET['No']);
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
+        //发布人信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $User = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        $UserInfo['Mobile'] = $User['Mobile'];
+        if ($UserInfo['Province'])
+            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+            include template('MemberBuyOrderDetail2');
     }
 }

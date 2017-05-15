@@ -142,7 +142,7 @@ class Asset
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         $OrderInfo['Title'] = $AssetInfo['Title'];
         $OrderInfo['RealName'] = $UserInfo['RealName'];
-        $GoToUrl = WEB_MAIN_URL . '/assetdetails/' . $OrderInfo['ProductID'] . '.html';
+        $GoToUrl = WEB_MAIN_URL . '/member/buyorderlist/';
         $Time = time();
         if ($OrderInfo && $OrderInfo['Status'] == 1) {
             if ($OrderInfo['ExpirationTime'] > $Time) {

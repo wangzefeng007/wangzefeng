@@ -15,7 +15,7 @@ class AjaxImage
         if ($Intention == '') {
             $targetDir = 'upload_tmp';
             $uploadDir = 'upload';
-            $cleanupTargetDir = true;var_dump($_REQUEST,$_POST,$_GET);exit;
+            $cleanupTargetDir = true;
             if (!file_exists($targetDir)) {
                 @mkdir($targetDir);
             }
@@ -35,7 +35,7 @@ class AjaxImage
             $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
             $uploadPath = $uploadDir . DIRECTORY_SEPARATOR . $fileName;
             $imgUrl="http://www.longwengui.com/".$uploadDir."/".$fileName;
-            echo $imgUrl;
+            echo $imgUrl;exit;
 
             $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
             $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 1;

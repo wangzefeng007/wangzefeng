@@ -63,12 +63,14 @@
                         </div>
                         <div class="table-tr">
                             <div class="td goods-td clearfix">
+                                <a href="/assetdetails/{$AssetInfo[AssetID]}.html" target="_blank">
                                 <p class="img">
-                                    <img src="{$lists[ImageUrl]}" alt="">
+                                    <img src="{$lists[ImageUrl]}" alt="{$lists[Title]}">
                                 </p>
                                 <div class="con">
                                     <p class="title">{$lists[Title]}</p>
                                 </div>
+                                </a>
                             </div>
                             <div class="money-td td">
                                 <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$lists[MarketPrice]}</p>
@@ -89,18 +91,16 @@
                                 <!--已付款-->
                                 {elseif $lists[Status]==2}
                                 <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remind" href="javascript:void(0);" title="提醒卖家发货">提醒卖家发货</a></p>
-                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
                                 <!--待签收-->
                                 {elseif $lists[Status]==3}
                                 <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt(this)" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
-                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
                                 <!--已签收-->
                                 {elseif $lists[Status]==4}
                                 <!--已签收15天之后申请退款去掉 改为 删除-->
                                 {if $lists[UpdateTime]>$CurrentTime}
                                 <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
                                 {else}
-                                <p><a class="operate-txt" href="javascript:void(0);" title="申请退款">申请退款</a></p>
+                                <p><a class="operate-txt" href="/member/buyorderrefund/?No={$lists[OrderNumber]}" title="申请退款">申请退款</a></p>
                                 {/if}
                                 <!--申请退款-->
                                 {elseif $lists[Status]==5}
@@ -109,11 +109,9 @@
                                 {elseif $lists[Status]== 6}
                                 <!--退款中-->
                                 <p><a class="btn btn-primary" onclick="pageObj.indeedReturn(this)" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
-                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn2" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
                                 <!--申请失败-->
                                 {elseif $lists[Status]==7}
                                 <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply2" href="javascript:void(0);" title="取消申请">取消申请</a></p>
-                                <p><a class="operate-txt" href="#" title="修改申请">修改申请</a></p>
                                 <!--退款成功-->
                                 {elseif $lists[Status]==8}
                                 <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
@@ -121,7 +119,9 @@
                                 {elseif $lists[Status]==9 ||$lists[Status]==10}
                                 <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
                                 {/if}
+                                {if $lists[Status]!=9  && $lists[Status]!=10}
                                 <p><a class="link" href="/orderdetail/{$lists[OrderNumber]}.html" title="查看订单" target="_blank">查看订单>></a></p>
+                                {/if}
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>
