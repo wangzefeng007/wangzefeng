@@ -17,4 +17,12 @@ class MemberAssetInfoModule extends CommonModule
         '3' => '审核未通过	',
         '4' => '过期自动关闭',
     ];
+    //库存减少
+    public function SetInventory($AssetID,$Num){
+        if($AssetID=='' || !is_numeric($AssetID)){
+            return false;
+        }
+        global $DB;
+        return $DB->Update("update ".$this->TableName." set Inventory=Inventory-$Num where AssetID=$AssetID");
+    }
 }
