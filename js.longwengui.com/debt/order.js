@@ -133,6 +133,9 @@ var pageObj=$.extend({},pageObj,{
         });
         //合计金额计算
         //_this.calcMoney($(".input-number").find("input[name='num']"));
+
+        //订单下单后倒计时
+        timer(parseInt(_this.endDate)-parseInt(_this.nowDate));
     }
 });
 pageObj.init();
@@ -145,5 +148,4 @@ $(function(){
         showCloseButton:true,
         showNavArrows:true
     });
-
 });

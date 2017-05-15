@@ -249,27 +249,37 @@ i{
   margin-left:30px;
 }
 .pay-wrap{
-  padding:20px 0 40px 20px;
+  padding:0 10px 100px;
 }
-.pay-con .pay-list{
+.pay-list{
+  margin-top:40px;
+}
+.pay-list .lab{
+  float: left;
+  font-size:18px;
+  line-height:72px;
+
+}
+.pay-list>ul{
+  display: inline-block;
+}
+.pay-list li{
   width:240px;
   float: left;
-}
-.pay-con .pay-list li{
-  margin-bottom:20px;
+  margin-right:50px;
   border:solid 1px #e6e6e6;
 }
-.pay-con .pay-list li.selected{
+.pay-list li.selected{
   border:solid 1px #35bdfc;
   background: url("images/selected.png") no-repeat right bottom;
 }
-.pay-con .pay-list li p{
+.pay-list li p{
   height:30px;
   line-height: 30px;
   font-size:18px;
   margin:20px;
 }
-.pay-con .pay-list li .icon{
+.pay-list li .icon{
   height:30px;
   width: 30px;
   margin-right:10px;
@@ -284,7 +294,6 @@ i{
 .pay-con .pay-des{
   width:600px;
   float: left;
-  margin-left:40px;
   font-size:16px;
 }
 .pay-con .pay-des .publish-person{
@@ -305,7 +314,7 @@ i{
   color: #fc3535;
 }
 .pay-button{
-  margin-top:20px;
+  margin-top:80px;
 }
 .pay-button a{
   width:288px;
@@ -359,4 +368,17 @@ i{
 .wxDialog .right{
   width:50%;
   float: right;
+}
+.wrap .tip .has-time{
+  height:20px;
+  margin:10px 15px;
+  line-height:20px;
+  font-size:16px;
+  font-weight:normal;
+}
+.icon-clack{
+  width:20px;
+  height:20px;
+  background: url("images/icon-clackfff.png") no-repeat center;
+  vertical-align: top;
 }

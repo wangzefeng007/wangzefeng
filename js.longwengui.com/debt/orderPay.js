@@ -210,6 +210,10 @@ var pageObj=$.extend({},pageObj,{
         var Num = GetQueryString("num");
         var ID = GetQueryString("id");
         var AddressId=$(".address-box.active").find(".edit").attr("data-id");
+        if(!AddressId){
+            showMsg("收货地址不能为空");
+            return ;
+        }
         var formData = {
             'AddressId':AddressId, //收货地址ID
             'ProductID':ID, //产品ID
