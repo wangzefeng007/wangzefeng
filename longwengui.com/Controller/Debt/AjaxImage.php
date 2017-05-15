@@ -12,7 +12,7 @@ class AjaxImage
     public function Index()
     {
         $Intention = trim($_POST ['Intention']);
-        if ($Intention == '') {
+        if ($Intention == '') {var_dump($_POST);exit;
             $targetDir = 'upload_tmp';
             $uploadDir = 'upload';
             $cleanupTargetDir = true;
