@@ -45,7 +45,7 @@ editor.config.uploadParams = {
     // token2: '12345'
 };
 editor.config.uploadHeaders = {
-    'Content-Type':'application/x-www-form-urlencoded ;charset=utf-8'
+    'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
     // 'Accept' : 'text/x-json'
 }
  editor.config.uploadImgFileName = 'myFileName';
