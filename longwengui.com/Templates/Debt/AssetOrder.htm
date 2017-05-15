@@ -76,10 +76,10 @@
             </div>
             <div class="publish-info">
                 <div class="info">
-                    <span class="day">剩余<i>10</i>天</span>
+                    <span class="day">剩余<i>{$ExpirationDate}</i>天</span>
                 </div>
                 <p class="publish-public mt-15">
-                    发布人：王泽峰
+                    发布人：{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if}
                 </p>
             </div>
         </div>

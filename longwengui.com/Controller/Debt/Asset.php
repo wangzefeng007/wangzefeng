@@ -84,9 +84,15 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberProductOrderModule = new MemberProductOrderModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and ProductID = '.$AssetInfo['AssetID'],true);
+        $TotalAmount =0;
+        foreach ($OrderInfo as $value){
+            $TotalAmount =$TotalAmount+ $value['TotalAmount'];
+        }
         include template('AssetDetails');
     }
     /**
@@ -94,12 +100,15 @@ class Asset
      */
     public function Order(){
         $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $Nav='asset';
         $ID = $_GET['id'];
         $Num = $_GET['num'];
         $Money = $_GET['money'];
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $ExpirationDate = ceil(($AssetInfo['ExpirationDate'] -time())/(3600*24));var_dump($ExpirationDate);
         $AmountMoney =number_format($AssetInfo['AssetsAmount']-$Money, 2);//剩余资产金额
         $TotalAmount =number_format($Money+$AssetInfo['Freight'], 2);//合计金额
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);
@@ -218,12 +227,14 @@ class Asset
                     $input->SetProduct_id($Data['OrderNo']);
                     $result = $notify->GetPayUrl($input);
                     if ($result['code_img_url'] && $result['status']=='0') {
-//                    $WXPayUrl= $result['code_url'];
-//                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
                         $ImageUrl = $result["code_img_url"];
                         $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
                         echo json_encode($result_json,JSON_UNESCAPED_UNICODE);exit;
                     }elseif ($result['err_msg']=='订单已支付'&& $result['result_code']=='1'){
+                        //更新库存量
+                        $MemberAssetInfoModule = new MemberAssetInfoModule();
+                        $MemberAssetInfoModule->SetInventory($Order['AssetID'],$Order['Num']);
+                        //添加订单日志
                         $OrderLogModule = new MemberOrderLogModule();
                         $LogMessage ='买家已付款，付款方式微信支付';
                         $LogData = array(
@@ -237,6 +248,7 @@ class Asset
                             'Type' => 1
                         );
                         $LogResult = $OrderLogModule->InsertInfo($LogData);
+                        //添加订单状态
                         $Date['PaymentMethod'] = '2';
                         $Date['Status'] = '2';
                         $MemberProductOrderModule->UpdateInfoByWhere($Date,' OrderNumber = \''.$Data['OrderNo'].'\'');//更新订单状态

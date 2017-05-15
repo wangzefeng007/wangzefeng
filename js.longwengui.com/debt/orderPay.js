@@ -235,9 +235,9 @@ var pageObj=$.extend({},pageObj,{
                     var Url = data.Url;
                     window.location.href = Url;
                 }else if(data.ResultCode == '100'){
-                    $.toast(data.Message);
+                    showMsg(data.Message);
                 }else{
-                    $.toast(data.Message);
+                    showMsg(data.Message);
                 }
             }
         })

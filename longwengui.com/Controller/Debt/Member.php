@@ -256,7 +256,7 @@ class Member
             $arr[] .=$value['AssetID'];
         }
         $arr=implode(',',array_unique($arr));
-        if ($arr !==''){
+        if (!empty($arr)){
             $MysqlWhere .= " and ProductID IN ($arr)";
             $Status=  intval($_GET['S']);
             if ($Status=='1'){

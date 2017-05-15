@@ -47,7 +47,7 @@
             </div>
             <div class="publish-msg mt-20">
                 <p class="publish-ems">
-                    配送方式：<i>EMS {$AssetInfo['Freight']}元</i>
+                    运费：<i> {$AssetInfo['Freight']}元</i>
                 </p>
                 <div class="publish-form">
                     <div class="form-li clearfix">
@@ -70,34 +70,24 @@
             </div>
             <div class="publish-msg mt-20">
                 <div class="publish-sale clearfix">
-                    <p class="fl">被购<span class="c-red">3213</span>元</p>
-                    <p class="fr">剩余<span class="c-rdd">67</span>份</p>
+                    <p class="fl">被购<span class="c-red">{$TotalAmount}</span>元</p>
+                    <p class="fr">剩余<span class="c-rdd">{$AssetInfo['Inventory']}</span>份</p>
                 </div>
                 <div class="sale-list">
                     <ul>
+                        {loop $OrderInfo $lists}
                         <li class="clearfix">
                             <p class="img">
-                                <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                <img src="{$AssetImage[0]['ImageUrl']}" alt="">
                             </p>
                             <div class="con">
-                                上品武夷山大红袍，送礼好选择
+                                {$AssetInfo['Title']}
                             </div>
                             <p class="sale-totle">
-                                购买 <b class="c-red">3</b> 份总共 <b class="c-red">3000</b> 元
+                                购买 <b class="c-red">{$lists[Num]}</b> 份总共 <b class="c-red">{$lists[TotalAmount]}</b> 元
                             </p>
                         </li>
-                        <li class="clearfix">
-                            <p class="img">
-                                <img src="{echo CssURL}/debt/temp/pic-3.jpg" alt="">
-                            </p>
-                            <div class="con">
-                                海南、青海、宁夏、甘肃、补邮费差价发
-                                货，每10斤补邮费10元
-                            </div>
-                            <p class="sale-totle">
-                                购买 <b class="c-red">3</b> 份总共 <b class="c-red">3000</b> 元
-                            </p>
-                        </li>
+                        {/loop}
                     </ul>
                 </div>
             </div>

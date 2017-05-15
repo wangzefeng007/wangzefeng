@@ -99,31 +99,41 @@ class AjaxAsset
             if (!$AssetInfo){
                 $result_json = array('ResultCode'=>102,'Message'=>'不存在该产品！');
             }else{
-                $ShippingAddressID = intval($AjaxData['AddressId']);
-                $AddressInfo = $MemberShippingAddressModule->GetInfoByKeyID($ShippingAddressID);
-                $AddressInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Province']);
-                $AddressInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['City']);
-                $AddressInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Area']);
-                $Data['OrderNumber'] = 'D'.date("Ymd").rand(1000, 9999);;//订单编号
-                $Data['Num'] = intval($AjaxData['Number']);//数量
-                $Data['ProductID'] = intval($AjaxData['ProductID']);//产品ID
-                $Data['TotalAmount'] = trim($AjaxData['Money']);//订单总金额
-                $Data['UserID'] = $_SESSION['UserID'];
-                $Data['AddTime'] = time();//订单创建时间
-                $Data['UpdateTime'] = $Data['AddTime'];//订单修改时间
-                $Data['ExpirationTime'] = $Data['AddTime']+3600;//超时时间
-                $Data['Status'] = 1;
-                $Data['FromIP'] = GetIP();
-                $Data['Address'] = $AddressInfo['Province'].$AddressInfo['City'].$AddressInfo['Area'].$AddressInfo['Address'];//收货地址
-                $Data['Tel'] = $AddressInfo['Mobile'];//手机号码
-                $Data['Contacts'] = $AddressInfo['Name'];//联系人姓名
-                $Data['UnitPrice'] = $AssetInfo['Price'];//单价
-               $InsertInfo = $MemberProductOrderModule->InsertInfo($Data);
-               if ($InsertInfo){
-                   $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！', 'Url' => WEB_MAIN_URL . '/assetorder/' . $Data['OrderNumber'] . '.html');
-               }else{
-                   $result_json = array('ResultCode'=>103,'Message'=>'订单提交失败！');
-               }
+                if ($AjaxData['AddressId']){
+                    $Data['TotalAmount'] = trim($AjaxData['Money']);//订单总金额
+                    $Money = $AssetInfo['Price'] * intval($AjaxData['Number']) +$AssetInfo['Freight'];
+                    if ($Money!=$Data['TotalAmount']){
+                        $result_json = array('ResultCode'=>105,'Message'=>'订单金额出错！');
+                        EchoResult($result_json);
+                    }
+                    $ShippingAddressID = intval($AjaxData['AddressId']);
+                    $AddressInfo = $MemberShippingAddressModule->GetInfoByKeyID($ShippingAddressID);
+                    $AddressInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Province']);
+                    $AddressInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['City']);
+                    $AddressInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Area']);
+                    $Data['OrderNumber'] = 'D'.date("Ymd").rand(1000, 9999);;//订单编号
+                    $Data['Num'] = intval($AjaxData['Number']);//数量
+                    $Data['ProductID'] = intval($AjaxData['ProductID']);//产品ID
+                    $Data['UserID'] = $_SESSION['UserID'];
+                    $Data['AddTime'] = time();//订单创建时间
+                    $Data['UpdateTime'] = $Data['AddTime'];//订单修改时间
+                    $Data['ExpirationTime'] = $Data['AddTime']+3600;//超时时间
+                    $Data['Status'] = 1;
+                    $Data['FromIP'] = GetIP();
+                    $Data['Address'] = $AddressInfo['Province'].$AddressInfo['City'].$AddressInfo['Area'].$AddressInfo['Address'];//收货地址
+                    $Data['Tel'] = $AddressInfo['Mobile'];//手机号码
+                    $Data['Contacts'] = $AddressInfo['Name'];//联系人姓名
+                    $Data['UnitPrice'] = $AssetInfo['Price'];//单价
+                    $InsertInfo = $MemberProductOrderModule->InsertInfo($Data);
+                    if ($InsertInfo){
+                        $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！', 'Url' => WEB_MAIN_URL . '/assetorder/' . $Data['OrderNumber'] . '.html');
+                    }else{
+                        $result_json = array('ResultCode'=>103,'Message'=>'订单提交失败！');
+                    }
+                }else{
+                    $result_json = array('ResultCode'=>104,'Message'=>'收货地址不能为空！');
+                }
+
             }
             EchoResult($result_json);
             exit;
