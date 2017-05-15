@@ -87,13 +87,14 @@
                             <!--表格循环体 end-->
                         </div>
 
-
                         <!--当没有数据为空的时候-->
-                        <!--<div class="common-empty">
+                        {if empty($Data['Data'])}
+                        <div class="common-empty">
                             <img  src="{echo CssURL}/debt/images/empty-img.jpg" alt="">
                             <p>亲，您还没有发布信息哦~</p>
-                            <a class="btn btn-primary" href="#" title="立即发布">立即发布</a>
-                        </div>-->
+                            <a class="btn btn-primary" href="/asset/publish" title="立即发布">立即发布</a>
+                        </div>
+                        {/if}
 
                     </div>
                 </div>

@@ -8,19 +8,15 @@
         </div>
         <div class="tip">
             订单编号：{$OrderInfo['OrderNumber']}
+            <p class="has-time fr">
+                <i class="icon-clack"></i>
+                <span id="hour_show"></span>
+                <span id="minute_show"></span>
+                <span id="second_show"></span>
+            </p>
         </div>
         <div class="pay-wrap">
             <div class="pay-con clearfix">
-                <div class="pay-list">
-                    <ul>
-                        <li class="selected" data-url="/asset/pay/?id={$OrderInfo[OrderID]}&type=alipay">
-                            <p><i class="icon icon-zfb"></i>支付宝</p>
-                        </li>
-                        <li data-id="{$OrderInfo[OrderID]}">
-                            <p><i class="icon icon-wx"></i>微信支付</p>
-                        </li>
-                    </ul>
-                </div>
                 <div class="pay-des">
                     <div class="clearfix">
                         <label for="">资产转让名称：</label>
@@ -29,6 +25,17 @@
                     <p class="publish-person">发布人：{$OrderInfo['RealName']}</p>
                 </div>
                 <p class="pay-total">{$OrderInfo['TotalAmount']}元</p>
+            </div>
+            <div class="pay-list">
+                <label class="lab" for="">支付方式：</label>
+                <ul class="clearfix">
+                    <li class="selected" data-url="/asset/pay/?id={$OrderInfo[OrderID]}&type=alipay">
+                        <p><i class="icon icon-zfb"></i>支付宝</p>
+                    </li>
+                    <li data-id="{$OrderInfo[OrderID]}">
+                        <p><i class="icon icon-wx"></i>微信支付</p>
+                    </li>
+                </ul>
             </div>
             <div class="pay-button">
                 <a class="btn" id="goPay" href="javascript:void(0);">立即支付</a>
@@ -52,4 +59,10 @@
     </div>
 </div>
 {template Footer}
+<script>
+    var pageObj={
+        endDate:"{$OrderInfo['ExpirationTime']}",
+        nowDate:"{$Time}"
+    }
+</script>
 <script src='{echo JsURL}/debt/order.js'></script>
