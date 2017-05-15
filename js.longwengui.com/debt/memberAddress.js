@@ -116,6 +116,9 @@ var pageObj=$.extend({},pageObj,{
      */
     setDefaultAddress:function(tar,addressId){
         //var addressId=$(tar).attr("data-id");
+        if($(tar).parent().hasClass("default")){
+            return;
+        }
         $.ajax({
             type:"post",
             url:"/loginajax.html",
@@ -131,7 +134,8 @@ var pageObj=$.extend({},pageObj,{
                     showMsg(data.Message);
                     $(tar).parent().addClass("default").removeClass("set-default");
                     $(tar).text("默认地址");
-                    $(tar).parents("tr").siblings("tr").find(".default").addClass("set-default").removeClass("default").text("设为默认");
+                    $(tar).parents("tr").siblings("tr").find(".default").addClass("set-default").removeClass("default");
+                    $(tar).parents("tr").siblings("tr").find(".set-default").find("span").text("设为默认")
                     //location.reload();
                 }else{
                     showMsg(data.Message);

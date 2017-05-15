@@ -69,11 +69,9 @@ var pageObj=$.extend({},pageObj,{
                     "type":"wxpay"
                 },
                 success: function(data){
-                    if(data.ResultCode == 200){
-                        if(typeof data.Data=="object"){
-                            go(data.Url);
-                            clearInterval(getResult);
-                        }
+                    if(data.ResultCode == 200&& typeof data.Url=="string"){
+                        go(data.Url);
+                        clearInterval(getResult);
                     }
                 }
             })

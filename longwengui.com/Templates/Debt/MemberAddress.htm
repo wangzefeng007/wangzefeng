@@ -134,7 +134,7 @@
                                             <span onclick="go('/member/address?ID={$lists[ShippingAddressID]}')">修改</span> | <span onclick="pageObj.delAddress(this,'{$lists[ShippingAddressID]}')">删除</span>
                                         </div>
                                         <div class="{if $lists[IsDefault]==1}default{else}set-default{/if}">
-                                            {if $lists[IsDefault]==1}默认地址{else}<span onclick="pageObj.setDefaultAddress(this,'{$lists[ShippingAddressID]}')">设为默认</span>{/if}
+                                            {if $lists[IsDefault]==1}<span onclick="pageObj.setDefaultAddress(this,'{$lists[ShippingAddressID]}')">默认地址</span>{else}<span onclick="pageObj.setDefaultAddress(this,'{$lists[ShippingAddressID]}')">设为默认</span>{/if}
                                         </div>
                                     </td>
                                 </tr>
