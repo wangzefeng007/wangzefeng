@@ -35,7 +35,7 @@ class AjaxImage
             $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
             $uploadPath = $uploadDir . DIRECTORY_SEPARATOR . $fileName;
             $imgUrl="http://www.longwengui.com/".$uploadDir."/".$fileName;
-            echo $imgUrl;exit;
+
 
             $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
             $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 1;
@@ -52,7 +52,6 @@ class AjaxImage
                     if ($tmpfilePath == "{$filePath}_{$chunk}.part" || $tmpfilePath == "{$filePath}_{$chunk}.parttmp") {
                         continue;
                     }
-
                     if (preg_match('/\.(part|parttmp)$/', $file) && (@filemtime($tmpfilePath) < time() - $maxFileAge)) {
                         @unlink($tmpfilePath);
                     }
