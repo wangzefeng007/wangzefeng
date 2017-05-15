@@ -138,8 +138,9 @@ class Asset
         $OrderInfo['Title'] = $AssetInfo['Title'];
         $OrderInfo['RealName'] = $UserInfo['RealName'];
         $GoToUrl = WEB_MAIN_URL . '/assetdetails/' . $OrderInfo['ProductID'] . '.html';
+        $Time = time();
         if ($OrderInfo && $OrderInfo['Status'] == 1) {
-            if ($OrderInfo['ExpirationTime'] > time()) {
+            if ($OrderInfo['ExpirationTime'] > $Time) {
                 include template('AssetOrderPay');
             } else {
                 $UpData['Status'] = 10;
