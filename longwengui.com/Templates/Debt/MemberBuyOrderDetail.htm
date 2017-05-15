@@ -18,7 +18,7 @@
                 </div>
                 <div class="flow {if $OrderInfo['Status']==2 || $OrderInfo['Status']==3}over curr{elseif $OrderInfo['Status']==4}over{/if}">
                     <span>2</span>
-                    <p>{if $OrderInfo['Status']==2}已付款，待发货{elseif $OrderInfo['Status']==3 || $OrderInfo['Status']==4}已付款，已发货{/if}</p>
+                    <p>{if $OrderInfo['Status']==1 || $OrderInfo['Status']==2}已付款，待发货{elseif $OrderInfo['Status']==3 || $OrderInfo['Status']==4}已付款，已发货{/if}</p>
                     <i class="triangle"></i>
                 </div>
                 <div class="flow {if $OrderInfo['Status']==4}over curr{/if}">
@@ -113,7 +113,7 @@
                 </div>
                 <div class="total">
                     <span>订单总共金额： <b class="c-red">{$OrderInfo['TotalAmount']}</b> 元</span>
-                    {if $OrderInfo['Status']==1}<a class="btn btn-primary" href="#">立即付款</a>
+                    {if $OrderInfo['Status']==1}<a class="btn btn-primary" href="/assetorder/{$OrderInfo['OrderNumber']}.html">立即付款</a>
                     {elseif $OrderInfo['Status']==2}
                     <a class="btn btn-primary" href="javascript:void (0)">提醒发货</a>
                     {elseif $OrderInfo['Status']==3}

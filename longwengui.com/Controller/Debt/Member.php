@@ -274,6 +274,7 @@ class Member
             $MysqlWhere .= " and ProductID IN ($arr)";
             $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
             $pageSize = 4;
+            $MysqlWhere .= ' order by AddTime desc';
             $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
             if ($Rscount['Num']) {
                 $Data = array();
@@ -329,6 +330,7 @@ class Member
         }
         $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
         $pageSize = 4;
+        $MysqlWhere .= ' order by AddTime desc';
         $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
             $Data = array();
