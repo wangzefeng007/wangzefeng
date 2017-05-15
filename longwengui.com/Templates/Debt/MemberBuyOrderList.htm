@@ -130,6 +130,15 @@
                         {/if}
                         <!--表格循环体 end-->
                     </div>
+
+                    <!--当没有数据为空的时候-->
+                    {if empty($Data['Data'])}
+                    <div class="common-empty">
+                        <img  src="{echo CssURL}/debt/images/empty-img.jpg" alt="">
+                        <p>亲，您还没有购买的订单哦~</p>
+                        <a class="btn btn-primary" href="/asset/lists" title="立即购买">立即购买</a>
+                    </div>
+                    {/if}
                 </div>
 
                 <!--发布菜单-->

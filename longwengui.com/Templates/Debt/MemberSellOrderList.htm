@@ -27,11 +27,11 @@
                 <dl class="cont-select">
                     <dt>订单状态：</dt>
                     <dd onclick="go('/member/sellorderlist/')" {if $Status==''}class="cont-select-act"{/if}>全部</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>未付款</dd>
                     <dd onclick="go('/member/sellorderlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>已付款</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>交易完成</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=4')" {if $Status==4}class="cont-select-act"{/if}>申请售后</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=5')" {if $Status==5}class="cont-select-act"{/if}>交易关闭</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>已发货</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=4')" {if $Status==4}class="cont-select-act"{/if}>交易完成</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=5')" {if $Status==5}class="cont-select-act"{/if}>售后中</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=6')" {if $Status==6}class="cont-select-act"{/if}>售后完成</dd>
                 </dl>
                 <div class="order-list">
                     <div class="order-table">
@@ -82,46 +82,22 @@
                                 {$NStatus[$lists[Status]]}
                             </div>
                             <div class="operate-td td" data-id="{$lists[OrderID]}">
-                                <!--待付款-->
-                                {if $lists[Status]==1}
-                                <p><a class="btn btn-primary" href="/assetorder/{$lists[OrderNumber]}.html" title="立即付款">立即付款</a></p>
-                                <p><a class="operate-txt" onclick="pageObj.cancelOrder(this)" href="javascript:void(0);" title="取消订单">取消订单</a></p>
                                 <!--已付款-->
-                                {elseif $lists[Status]==2}
-                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remind" href="javascript:void(0);" title="提醒卖家发货">提醒卖家发货</a></p>
-                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
-                                <!--待签收-->
+                                {if $lists[Status]==2}
+                                <p><a class="btn btn-primary" href="#" title="立即发货">立即发货</a></p>
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--已发货-->
                                 {elseif $lists[Status]==3}
-                                <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt(this)" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
-                                <p><a class="operate-txt" href="#" title="申请退款">申请退款</a></p>
-                                <!--已签收-->
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--交易完成-->
                                 {elseif $lists[Status]==4}
-                                <!--已签收15天之后申请退款去掉 改为 删除-->
-                                {if $lists[UpdateTime]>$CurrentTime}
-                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
-                                {else}
-                                <p><a class="operate-txt" href="javascript:void(0);" title="申请退款">申请退款</a></p>
-                                {/if}
-                                <!--申请退款-->
+                                <p><a class="btn btn-primary" href="javascript:void(0);" title="处理售后">处理售后</a></p>
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <!--售后中-->
                                 {elseif $lists[Status]==5}
-                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
-                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply" href="javascript:void(0);" title="取消申请">取消申请</a></p>
-                                {elseif $lists[Status]== 6}
-                                <!--退款中-->
-                                <p><a class="btn btn-primary" onclick="pageObj.indeedReturn(this)" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
-                                <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remindReturn2" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
-                                <!--申请失败-->
-                                {elseif $lists[Status]==7}
-                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply2" href="javascript:void(0);" title="取消申请">取消申请</a></p>
-                                <p><a class="operate-txt" href="#" title="修改申请">修改申请</a></p>
-                                <!--退款成功-->
-                                {elseif $lists[Status]==8}
-                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
-                                <!--交易关闭-->
-                                {elseif $lists[Status]==9 ||$lists[Status]==10}
-                                <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
+                                <p><a class="btn btn-primary" href="javascript:void(0);" title="确认收货">确认收货</a></p>
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 {/if}
-                                <p><a class="link" href="/orderdetail/{$lists[OrderNumber]}.html" title="查看订单">查看订单>></a></p>
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>
