@@ -74,7 +74,7 @@
                                 <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$lists[MarketPrice]}</p>
                                 <p class="mt-10"><span class="c-red">成交&nbsp;&nbsp;</span>¥{$lists[Price]}</p>
                             </div>
-                            <div class="td">2</div>
+                            <div class="td">{$lists[Num]}</div>
                             <div class="td">
                                 <p>¥{$lists[TotalAmount]}</p>
                             </div>
@@ -84,7 +84,7 @@
                             <div class="operate-td td" data-id="{$lists[OrderID]}">
                                 <!--待付款-->
                                 {if $lists[Status]==1}
-                                <p><a class="btn btn-primary" href="/assetorder/{$lists[OrderNumber]}.html" title="立即付款">立即付款</a></p>
+                                <p><a class="btn btn-primary" href="/assetorder/{$lists[OrderNumber]}.html" title="立即付款" target="_blank">立即付款</a></p>
                                 <p><a class="operate-txt" onclick="pageObj.cancelOrder(this)" href="javascript:void(0);" title="取消订单">取消订单</a></p>
                                 <!--已付款-->
                                 {elseif $lists[Status]==2}
@@ -121,7 +121,7 @@
                                 {elseif $lists[Status]==9 ||$lists[Status]==10}
                                 <p><a onclick="pageObj.delOrder(this)" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
                                 {/if}
-                                <p><a class="link" href="/orderdetail/{$lists[OrderNumber]}.html" title="查看订单">查看订单>></a></p>
+                                <p><a class="link" href="/orderdetail/{$lists[OrderNumber]}.html" title="查看订单" target="_blank">查看订单>></a></p>
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>

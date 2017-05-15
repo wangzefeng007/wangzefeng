@@ -252,26 +252,29 @@ class Member
         $NStatus = $MemberProductOrderModule->NStatus;
         $arr = '';
         $MysqlWhere = '';
+        $Status=  intval($_GET['S']);
+        if ($Status=='1'){
+            $MysqlWhere .= ' and `Status` = 2 ';
+        }elseif ($Status=='2'){
+            $MysqlWhere .= ' and `Status` = 3 ';
+        }elseif ($Status=='3'){
+            $MysqlWhere .= ' and `Status` in (4,5) ';
+        }elseif ($Status=='4'){
+            $MysqlWhere .= ' and `Status` in (6,7) ';
+        }elseif ($Status=='5'){
+            $MysqlWhere .= ' and `Status` = 8 ';
+        }else{
+            $MysqlWhere .= ' and `Status` > 1 and `Status` <9 ';
+        }
         foreach ($AssetInfo  as $key=>$value){
             $arr[] .=$value['AssetID'];
         }
         $arr=implode(',',array_unique($arr));
         if (!empty($arr)){
             $MysqlWhere .= " and ProductID IN ($arr)";
-            $Status=  intval($_GET['S']);
-            if ($Status=='1'){
-                $MysqlWhere .= ' and `Status` = 1';
-            }elseif ($Status=='2'){
-                $MysqlWhere .= ' and `Status` in (2,3)';
-            }elseif ($Status=='3'){
-                $MysqlWhere .= ' and `Status` =4';
-            }elseif ($Status=='4'){
-                $MysqlWhere .= ' and `Status` in (5,6,7,8,9)';
-            }elseif ($Status=='5'){
-                $MysqlWhere .= ' and `Status` in (10,11)';
-            }
             $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
             $pageSize = 4;
+            $MysqlWhere .= ' order by AddTime desc';
             $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
             if ($Rscount['Num']) {
                 $Data = array();
@@ -321,12 +324,13 @@ class Member
         }elseif ($Status=='3'){
             $MysqlWhere .= ' and `Status` =4';
         }elseif ($Status=='4'){
-            $MysqlWhere .= ' and `Status` in (5,6,7,8,9)';
+            $MysqlWhere .= ' and `Status` in (5,6,7,8)';
         }elseif ($Status=='5'){
-            $MysqlWhere .= ' and `Status` in (10,11)';
+            $MysqlWhere .= ' and `Status` in (9,10)';
         }
         $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
         $pageSize = 4;
+        $MysqlWhere .= ' order by AddTime desc';
         $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
             $Data = array();
@@ -356,6 +360,29 @@ class Member
      * @desc 资产已买到订单详情页
      */
     public function BuyOrderDetail(){
-        include template('MemberBuyOrderDetail');
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $OrderNumber = trim($_GET['OrderNumber']);
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
+        //发布人信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $User = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        $UserInfo['Mobile'] = $User['Mobile'];
+        if ($UserInfo['Province'])
+        $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+        $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+        $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        if ($OrderInfo['Status']<5){
+            include template('MemberBuyOrderDetail');
+        }
     }
 }

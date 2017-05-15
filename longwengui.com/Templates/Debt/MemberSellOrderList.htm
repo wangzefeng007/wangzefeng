@@ -27,11 +27,11 @@
                 <dl class="cont-select">
                     <dt>订单状态：</dt>
                     <dd onclick="go('/member/sellorderlist/')" {if $Status==''}class="cont-select-act"{/if}>全部</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>已付款</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>已发货</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=4')" {if $Status==4}class="cont-select-act"{/if}>交易完成</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=5')" {if $Status==5}class="cont-select-act"{/if}>售后中</dd>
-                    <dd onclick="go('/member/sellorderlist/?S=6')" {if $Status==6}class="cont-select-act"{/if}>售后完成</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=1')" {if $Status==1}class="cont-select-act"{/if}>已付款</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=2')" {if $Status==2}class="cont-select-act"{/if}>已发货</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=3')" {if $Status==3}class="cont-select-act"{/if}>交易完成</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=4')" {if $Status==4}class="cont-select-act"{/if}>售后中</dd>
+                    <dd onclick="go('/member/sellorderlist/?S=5')" {if $Status==5}class="cont-select-act"{/if}>售后完成</dd>
                 </dl>
                 <div class="order-list">
                     <div class="order-table">
@@ -74,7 +74,7 @@
                                 <p class="del"><span class="c-red">市场&nbsp;&nbsp;</span>¥{$lists[MarketPrice]}</p>
                                 <p class="mt-10"><span class="c-red">成交&nbsp;&nbsp;</span>¥{$lists[Price]}</p>
                             </div>
-                            <div class="td">2</div>
+                            <div class="td">{$lists[Num]}</div>
                             <div class="td">
                                 <p>¥{$lists[TotalAmount]}</p>
                             </div>
@@ -85,19 +85,16 @@
                                 <!--已付款-->
                                 {if $lists[Status]==2}
                                 <p><a class="btn btn-primary" href="#" title="立即发货">立即发货</a></p>
-                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--已发货-->
                                 {elseif $lists[Status]==3}
-                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                                 <!--交易完成-->
-                                {elseif $lists[Status]==4}
-                                <p><a class="btn btn-primary" href="javascript:void(0);" title="处理售后">处理售后</a></p>
-                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
-                                <!--售后中-->
                                 {elseif $lists[Status]==5}
-                                <p><a class="btn btn-primary" href="javascript:void(0);" title="确认收货">确认收货</a></p>
-                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <p><a class="btn btn-primary" href="javascript:void(0);" title="处理售后">处理售后</a></p>
+                                <!--售后中-->
+                                {elseif $lists[Status]==6}
+                                <p><a class="btn btn-primary" href="javascript:void(0);" title="确认收货">确认退货</a></p>
                                 {/if}
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>
