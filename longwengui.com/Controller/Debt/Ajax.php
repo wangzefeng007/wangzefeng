@@ -572,6 +572,17 @@ class Ajax
                 }
                 $Data['WarrantorInfo'] = json_encode($WarrantorInfo,JSON_UNESCAPED_UNICODE);
             }
+            //是否有亲友联系方式
+            $Data['DebtFamily'] = trim($AjaxData['haveDebtFamily']);
+            if ($Data['DebtFamily']=='1'){
+                //亲友联系方式信息
+                foreach ($AjaxData['debtfamilyInfos'] as $key=>$value){
+                    $DebtFamilyInfo[$key]['name'] = trim($value['name']);
+                    $DebtFamilyInfo[$key]['relationship'] = trim($value['relationship']);
+                    $DebtFamilyInfo[$key]['phoneNumber'] = trim($value['phoneNumber']);
+                }
+                $Data['DebtFamilyInfo'] = json_encode($DebtFamilyInfo,JSON_UNESCAPED_UNICODE);
+            }
             //是否有抵押物
             $Data['Guarantee'] = trim($AjaxData['haveBondsGood']);
             if ($Data['Guarantee']=='1'){
