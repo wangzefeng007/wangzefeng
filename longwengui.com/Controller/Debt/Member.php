@@ -414,4 +414,10 @@ class Member
             $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
             include template('MemberBuyOrderDetail2');
     }
+    /**
+     * @desc 资产已卖出订单详情页(退款)
+     */
+    public function SellOrderDetail(){
+        include template('MemberSellOrderDetail1');
+    }
 }

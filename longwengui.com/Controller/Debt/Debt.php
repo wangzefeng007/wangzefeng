@@ -126,7 +126,10 @@ class Debt
         if (!empty ($_SESSION ['UserID'])){
             $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
         }
-
+        //亲友信息
+        if ($DebtInfo['DebtFamily']){
+            $DebtFamilyInfo = json_decode($DebtInfo['DebtFamilyInfo'],true);
+        }
         //保证人信息
         if ($DebtInfo['Warrantor']){
             $WarrantorInfo = json_decode($DebtInfo['WarrantorInfo'],true);

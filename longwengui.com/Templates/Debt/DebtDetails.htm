@@ -81,6 +81,17 @@
                     </div>
                     <div class="line">
                         <div class="l">
+                            <label>是否有亲友:</label>
+                            {if $DebtInfo[DebtFamily]==1}有{else}无{/if}
+                            {if $DebtInfo[DebtFamily]==1}
+                            {loop $DebtFamilyInfo $lists}
+                            <span>{$lists[name]}</span><span>{$lists[relationship]}</span><span>{$lists[phoneNumber]}</span>
+                            {/loop}
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="l">
                             <label>是否有保证人:</label>
                             {if $DebtInfo[Warrantor]==1}有{else}无{/if}
                             {if $DebtInfo[Warrantor]==1}
