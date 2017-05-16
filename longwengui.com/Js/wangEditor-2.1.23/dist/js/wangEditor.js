@@ -87,7 +87,7 @@
     E.w3cRange = typeof document.createRange === 'function';
     E.hostname = location.hostname.toLowerCase();
     E.websiteHost = 'wangeditor.github.io|www.wangeditor.com|wangeditor.coding.me';
-    E.isOnWebsite = E.websiteHost.indexOf(E.hostname) >= 0;
+    E.isOnWebsite = true;
     E.docsite = 'http://www.kancloud.cn/wangfupeng/wangeditor2/113961';
 
     // 暴露给全局对象
