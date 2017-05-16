@@ -1049,7 +1049,7 @@ class AjaxLogin
                 }else{
                     $InsertInfo =  $MemberShippingAddressModule->InsertInfo($Data);
                     if ($InsertInfo){
-                        $result_json = array('ResultCode'=>200,'Message'=>'添加成功！');
+                        $result_json = array('ResultCode'=>200,'Message'=>'添加成功！','Url'=>'/member/address/');
                     }else{
                         $result_json = array('ResultCode'=>104,'Message'=>'添加失败！');
                     }

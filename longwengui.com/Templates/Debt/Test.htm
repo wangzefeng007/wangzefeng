@@ -22,7 +22,7 @@
                     <p>卖家处理退款申请</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow over">
                     <span>3</span>
                     <p>买家退货给卖家</p>
                     <i class="triangle"></i>
@@ -38,16 +38,71 @@
         <div class="tab-wrap">
             <div class="tab-con clearfix">
                 <div class="tab-con-l">
-                    <div class="return-waiting">
-                        <p class="title">请等待卖家处理...</p>
-                        <div class="con">
-                            <p>*如果卖家同意，请按照给出的退货地址进行退货。</p>
-                            <p>*如果卖家拒绝，您可以修改退货申请后再次发起，卖家会重新处理。</p>
-                            <p>*如果卖家在4天23时59分59秒内未处理，退货申请将自动达成，请安系统给出的退货地址退货。</p>
-                            <p>*如有人以“卡单、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱款被骗。</p>
+                    <div class="return-goods-box">
+                        <div class="title">
+                            申请退货并填写物流信息
+                            <span class="has-time">
+                                <i class="icon-clack"></i>
+                                06天23时58分47秒
+                            </span>
+                            <span class="tips">*为必填项</span>
                         </div>
-                        <div class="other">
-                            您还可以： <a href="#">修改退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                        <div class="con">
+                            <form action="">
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*退货地址：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            福建省  泉州市  成周工业区B栋七楼  0595-86082333
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*退货说明：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            请在退货包裹内留下纸条，写上退款编号、平台昵称以及联系方式，以便及时确认完成退款。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab" style="width: 120px;">*隆文贵温馨提示：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            未经卖家同意，请不要使用到付或者平邮。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*物流名称：</label>
+                                    <div class="form-control return-reason">
+                                        <div class="p-dropdown">
+                                            <label type="checkbox">
+                                                <span data-id="">请选择物流公司</span>
+                                                <i></i>
+                                                <input type="checkbox" name="" value="">
+                                                <ul>
+                                                    <li data-id="" data-name="">顺丰</li>
+                                                    <li data-id="" data-name="">ems</li>
+                                                    <li data-id="" data-name="">中通</li>
+                                                </ul>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*物流单号：</label>
+                                    <div class="form-control">
+                                        <input class="inp" type="text">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-lg btn-primary">提交信息</button>
+                                </div>
+                            </form>
+                            <div class="other">
+                                您还可以：<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                            </div>
                         </div>
                     </div>
                     <div class="return-logistics">

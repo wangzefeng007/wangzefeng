@@ -388,7 +388,7 @@ class Member
         }
     }
     /**
-     * @desc 资产已买到订单详情页
+     * @desc 资产已买到订单详情页(退款)
      */
     public function BuyOrderRefund(){
         $MemberProductOrderModule = new MemberProductOrderModule();

@@ -5,29 +5,29 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>我的资产 </a> > <a>已买到的</a> > <span class="cur">退款申请</span></span>
+            <span>当前位置 : <a>我的资产 </a> > <a href="/member/buyorderlist/">已买到的</a> > <span class="cur">退款申请</span></span>
         </div>
         <div class="tip">
             退款订单号：201702280001
         </div>
         <div class="flow-wrap">
             <div class="flow-box clearfix">
-                <div class="flow over first">
+                <div class="flow {if $OrderInfo['Status']==4 || $OrderInfo['Status']==5 || $OrderInfo['Status']==6 || $OrderInfo['Status']==8}over{/if} first">
                     <span>1</span>
                     <p>买家申请退货退款</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo['Status']==5 || $OrderInfo['Status']==6 || $OrderInfo['Status']==8}over{/if}">
                     <span>2</span>
                     <p>卖家处理退款申请</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo['Status']==6 || $OrderInfo['Status']==8}over{/if}">
                     <span>3</span>
                     <p>买家退货给卖家</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo['Status']==8}over{/if}">
                     <span>4</span>
                     <p>卖家确认收货，退款完成</p>
                     <i class="triangle"></i>
@@ -36,8 +36,8 @@
         </div>
 
         <div class="tab-wrap">
-            <p class="tab-title">退款申请</p>
             <div class="tab-con clearfix">
+                {if $OrderInfo['Status']==4}
                 <div class="tab-con-l">
                     <div class="hd">
                         申请服务： 退货退款
@@ -69,7 +69,7 @@
                                 <label class="form-lab" for="">退款金额</label>
                                 <div class="form-control">
                                     <div class="form-txt">
-                                        <span class="c-red">2010.00</span>元
+                                        <span class="c-red">{$OrderInfo['TotalAmount']}</span>元
                                     </div>
                                 </div>
                             </div>
@@ -131,94 +131,298 @@
                         </form>
                     </div>
                 </div>
+                {elseif $OrderInfo['Status']==5}
+                <div class="tab-con-l">
+                    <div class="return-waiting">
+                        <p class="title">请等待卖家处理...</p>
+                        <div class="con">
+                            <p>*如果卖家同意，请按照给出的退货地址进行退货。</p>
+                            <p>*如果卖家拒绝，您可以修改退货申请后再次发起，卖家会重新处理。</p>
+                            <p>*如果卖家在4天23时59分59秒内未处理，退货申请将自动达成，请安系统给出的退货地址退货。</p>
+                            <p>*如有人以“卡单、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱款被骗。</p>
+                        </div>
+                        <div class="other">
+                            您还可以：<a href="JavaScript:void (0)" onclick="pageObj.cancelApply(this)">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                        </div>
+                    </div>
+                    <div class="return-logistics">
+                        <div class="panel">进度详情</div>
+                        <div class="message-list">
+                            <ul>
+                                <li class="clearfix">
+                                    <p class="img">
+                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="user">fewfwf - 买家</p>
+                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
+                                        <p class="time">2017-4-30  16：50：22</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <p class="img">
+                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="user">fewfwf - 买家</p>
+                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
+                                        <p class="time">2017-4-30  16：50：22</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <p class="img">
+                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="user">fewfwf - 买家</p>
+                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
+                                        <p class="time">2017-4-30  16：50：22</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {elseif $OrderInfo['Status']==6}
+                <div class="tab-con-l">
+                    <div class="return-goods-box">
+                        <div class="title">
+                            申请退货并填写物流信息
+                            <span class="has-time">
+                                <i class="icon-clack"></i>
+                                06天23时58分47秒
+                            </span>
+                            <span class="tips">*为必填项</span>
+                        </div>
+                        <div class="con">
+                            <form action="">
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*退货地址：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            福建省  泉州市  成周工业区B栋七楼  0595-86082333
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*退货说明：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            请在退货包裹内留下纸条，写上退款编号、平台昵称以及联系方式，以便及时确认完成退款。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab" style="width: 120px;">*隆文贵温馨提示：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            未经卖家同意，请不要使用到付或者平邮。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*物流名称：</label>
+                                    <div class="form-control return-reason">
+                                        <div class="p-dropdown">
+                                            <label type="checkbox">
+                                                <span data-id="">请选择物流公司</span>
+                                                <i></i>
+                                                <input type="checkbox" name="" value="">
+                                                <ul>
+                                                    <li data-id="" data-name="">顺丰</li>
+                                                    <li data-id="" data-name="">ems</li>
+                                                    <li data-id="" data-name="">中通</li>
+                                                </ul>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab">*物流单号：</label>
+                                    <div class="form-control">
+                                        <input class="inp" type="text">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-lg btn-primary">提交信息</button>
+                                </div>
+                            </form>
+                            <div class="other">
+                                您还可以：<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="return-logistics">
+                        <div class="panel">进度详情</div>
+                        <div class="message-list">
+                            <ul>
+                                <!--<li class="clearfix">-->
+                                    <!--<p class="img">-->
+                                        <!--<img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">-->
+                                    <!--</p>-->
+                                    <!--<div class="con">-->
+                                        <!--<p class="user">fewfwf - 买家</p>-->
+                                        <!--<p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>-->
+                                        <!--<p class="time">2017-4-30  16：50：22</p>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {elseif $OrderInfo['Status']==8}
+                <div class="tab-con-l">
+                    <div class="return-goods-box">
+                        <div class="title">
+                            等待卖家收货并退款
+                        </div>
+                        <div class="con">
+                            <p>
+                                *如果卖家收到货，并验货无误，将操作退款给您。
+                            </p>
+                            <p>
+                                *如果卖家在09天23时59分59秒内未处理，将自动退款给您。（所有退款都返还到个人钱包）
+                            </p>
+                            <div class="other">
+                                您还可以：<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="return-logistics">
+                        <div class="panel">进度详情</div>
+                        <div class="message-list">
+                            <ul>
+                                <li class="clearfix">
+                                    <p class="img">
+                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="user">fewfwf - 买家</p>
+                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
+                                        <p class="time">2017-4-30  16：50：22</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <p class="img">
+                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="user">fewfwf - 买家</p>
+                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
+                                        <p class="time">2017-4-30  16：50：22</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <p class="img">
+                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                    </p>
+                                    <div class="con">
+                                        <p class="user">fewfwf - 买家</p>
+                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
+                                        <p class="time">2017-4-30  16：50：22</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {/if}
                 <div class="tab-con-r">
-                    <div class="hd">订单信息</div>
+                    <div class="hd">退货退款申请</div>
                     <div class="order-goods clearfix">
                         <p class="img">
-                            <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
+                            <img src="{$AssetImage[ImageUrl]}" alt="">
                         </p>
                         <div class="con">
                             <div class="clearfix">
                                 <p class="title fl ellipsis">
-                                    上品武夷山大红袍
+                                    {$AssetInfo[Title]}
                                 </p>
                                 <p class="type fr ellipsis">
-                                    资产种类：茶叶
+                                    资产种类：{$AssetInfo[Category]}
                                 </p>
-                            </div>
-
-                            <div class="des">
-                                大红袍，产于福建武夷山，属乌龙茶，品质
-                                优异。中国特种名茶中国特种名茶中国特种
-                                名茶中国特种名茶中国特种名茶
                             </div>
                         </div>
                     </div>
                     <div class="order-msg">
                         <div class="line">
                             <label for="">卖&emsp;&emsp;家:</label>
-                            <p>我很爱稀饭 &emsp;<i class="icon-contact"></i><span class="btn-contact">和我联系</span></p>
+                            <p>{if $UserInfo['RealName']!=''}{$UserInfo['RealName']}{else}{$UserInfo['NickName']}{/if}<i class="icon-contact"></i><span class="btn-contact " hidden>和我联系</span></p>
                         </div>
                         <div class="line">
                             <label for="">联系电话:</label>
-                            <p>13960326366</p>
+                            <p>{$UserInfo['Mobile']}</p>
                         </div>
                         <div class="line">
                             <label for="">订单编号:</label>
-                            <p><span class="c-primary">L201702270001</span></p>
+                            <p><span class="c-primary">{$OrderInfo['OrderNumber']}</span></p>
                         </div>
                         <div class="line">
                             <label for="">单&emsp;&emsp;价:</label>
-                            <p><span class="c-red">1010.00</span>元*2 （数量）</p>
+                            <p><span class="c-red">{$OrderInfo['UnitPrice']}</span>元*{$OrderInfo['Num']}（数量）</p>
                         </div>
                         <div class="line">
                             <label for="">邮&emsp;&emsp;费:</label>
-                            <p><span class="c-red">0.00</span></p>
+                            <p><span class="c-red">{$AssetInfo['Freight']}</span></p>
                         </div>
+                    </div>
 
+                    <div class="order-msg">
+                        <div class="line">
+                            <label for="">退款金额:</label>
+                            <p><span class="c-red">{$AssetInfo['TotalAmount']}</span>元</p>
+                        </div>
+                        <div class="line">
+                            <label for="">原&emsp;&emsp;因:</label>
+                            <p>其&emsp;&emsp;它</p>
+                        </div>
+                        <div class="line">
+                            <label for="">要&emsp;&emsp;求:</label>
+                            <p>退货退款</p>
+                        </div>
+                        <div class="line">
+                            <label for="">货物状态:</label>
+                            <p>已收到货</p>
+                        </div>
+                        <div class="line">
+                            <label for="">说&emsp;&emsp;明:</label>
+                            <p>{$AssetInfo['Message']}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="article-box">
-            <p class="hd">服务介绍</p>
+            <p class="hd">常见问题</p>
             <div class="con">
-                <p class="section-title">1.仅退款</p>
+                <p class="section-title">我一直没收到货，怎么办？</p>
                 <div class="section-con">
                     <p>
-                        申请条件：若您未到货，或已收到货且与卖家达成一致不退货仅退款时，请选择“仅退款”选项。
-                    </p>
-                    <p>退款流程：1.申请退款 > 2.卖家同意退款申请 > 3.退款成功</p>
-                </div>
-
-                <p class="section-title">2.退货退款</p>
-                <div class="section-con">
-                    <p>
-                        申请条件：若为商品问题，或者不想要了且与卖家达成一致退货，请选择“退货退款”选项，退货后请保留物流底单（闲置商品和未加入消保商品仅支持未收到货的退款）。
-                    </p>
-                    <p>
-                        退款流程：1.申请退货 > 2.卖家发送退货地址给买家 > 3.买家退货并填写退货物流信息 > 4.卖家确认收货，退款成功
+                        您申请退款后，我们建议您先联系卖家了解情况，沟通解决问题，避免引起双方误会。
                     </p>
                 </div>
 
-                <p class="section-title">3.换货</p>
+                <p class="section-title">和卖家意见有分歧怎么办/卖家不同意退款我怎么办？</p>
                 <div class="section-con">
                     <p>
-                        申请条件：若您与卖家协商一致换货，请选择“换货”选项，退货后请保留物流底单。
-                    </p>
-                    <p>
-                        退款流程：1.申请换货 > 2.卖家发送退货地址给买家 > 3.买卖家线下完成换货 > 4.买家线上确认完成
+                        如卖家没有做出处理将会在您申请的5天后由系统自动达成售后申请，如卖家拒绝您的售后申请，您可以根据卖家拒绝的原因“修改退货申请”或者点击“申请介入”。
                     </p>
                 </div>
 
-                <p class="section-title">4.维修</p>
+                <p class="section-title">没收到货的退款一般会怎么处理？</p>
                 <div class="section-con">
                     <p>
-                        申请条件：若您与卖家协商一致换货，请选择“换货”选项，退货后请保留物流底单。
+                        如果申请介入后，会要求卖家提供发货凭证及买家签收凭证。发货凭证是指卖家发货时的快递单等物流公司出具的单据；买家签收凭证是指带有买家本人签名的快递单
+                        或买家授权第三方签收的授权签收凭证。如果卖家提供不了或者提供的凭证无效，本网站会把钱退给买家。
                     </p>
+                </div>
+
+                <p class="section-title">联系不到卖家怎么办？</p>
+                <div class="section-con">
                     <p>
-                        退款流程：1.申请换货 > 2.卖家发送退货地址给买家 > 3.买卖家线下完成换货 > 4.买家线上确认完成
+                        如果一直联系不到卖家，由于您已申请售后，本网站会要求卖家（实物商品在5天内，虚拟商品在3天内）来处理交易。规定时间内卖家未响应售后申请：系统会自动从
+                        卖家保证金扣取相应的钱款退款给买家，若卖家保证金不足或者卖家无保证金，本网站将对卖家账户执行相应处罚。
                     </p>
                 </div>
             </div>
