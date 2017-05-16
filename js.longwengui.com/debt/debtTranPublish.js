@@ -48,8 +48,7 @@ editor.config.uploadHeaders = {
     'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
     // 'Accept' : 'text/x-json'
 }
- editor.config.uploadImgFileName = 'myFileName';
-
+editor.config.uploadImgFileName = 'myFileName';
 // 隐藏网络图片
 // editor.config.hideLinkImg = true;
 
