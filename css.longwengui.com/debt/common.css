@@ -235,6 +235,7 @@ textarea {
   /* 1 */
   margin: 0;
   /* 2 */
+  outline:none;
 }
 /**
  * Show the overflow in IE.
@@ -1937,6 +1938,11 @@ a{
 }
 .inp.disabled,
 .inp[disabled]{
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+textarea.disabled,
+input.disabled{
   background-color: #f0f0f0;
   cursor: not-allowed;
 }

@@ -84,17 +84,17 @@
                             <div class="operate-td td" data-id="{$lists[OrderID]}">
                                 <!--已付款-->
                                 {if $lists[Status]==2}
-                                <p><a class="btn btn-primary" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="立即发货">立即发货</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.immediateDelivery(this)" href="javascript:void(0);" title="立即发货">立即发货</a></p>
                                 <!--已发货-->
                                 {elseif $lists[Status]==3}
                                 <!--交易完成-->
                                 {elseif $lists[Status]==5}
-                                <p><a class="btn btn-primary" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="处理售后">处理售后</a></p>
+                                <p><a class="btn btn-primary" href="javascript:void(0);" title="处理售后">处理售后</a></p>
                                 <!--售后中-->
                                 {elseif $lists[Status]==6}
                                 <p><a class="btn btn-primary" href="javascript:void(0);" title="确认收货">确认退货</a></p>
                                 {/if}
-                                <p><a class="link" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="查看订单">查看订单>></a></p>
+                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>
@@ -140,15 +140,65 @@
     </div>
 </div>
 </div>
-{template Footer}
-<script>
-    var pageObj={
-        addressObj:{
-            Province:"{$AddressInfo[Province]}",
-            City:"{$AddressInfo[City]}",
-            Area:"{$AddressInfo[Area]}"
-        },
-        addressTotal:parseInt("{$Rscount['Num']}")+parseInt("{$Number}")
-    }
+<script type="text/html" id="confirmAddressTemp">
+    <div class="order-pay-address">
+        <div class="line">
+            <div class="left">
+                <span class="a-t">核实物流信息</span>
+            </div>
+            <div class="right lh-30">
+                <span class="form-need">*</span>均为必须项
+                <input type="hidden" name="orderId" value="${orderId}" />
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                收货地址<span class="form-need">*</span>
+            </div>
+            <div class="right">
+                <textarea class="disabled" readonly name="detail_area" placeholder="" rows="5" cols="66">${Address}</textarea>
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                收货人姓名<span class="form-need">*</span>
+            </div>
+            <div class="right">
+                <input class="disabled" readonly type="text" name="to_name" maxlength="12"  placeholder="" value="${Contacts}">
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                手机号码 <span class="form-need">*</span>
+            </div>
+            <div class="right">
+                <input class="disabled" readonly type="text" name="to_phone" onblur="validateMobilePhone(this)" placeholder=""  value="${Tel}">
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                物流名称 <span class="form-need">*</span>
+            </div>
+            <div class="right">
+                <input type="text" name="logisticsName" onblur="validateNeed(this)" placeholder="请输入物流名称"  value="${logisticsName}">
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                物流单号 <span class="form-need">*</span>
+            </div>
+            <div class="right">
+                <input class="w-300" type="text" name="logisticsNo" onblur="validateNeed(this)" placeholder="请输入入流单号"  value="${logisticsNo}">
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">&nbsp;</div>
+            <div class="right">
+                <button type="button" id="saveAddress" onclick="pageObj.confirmDelivery(this)" name="button">确认发货</button>
+            </div>
+        </div></div>;
 </script>
-<script src='{echo JsURL}/debt/memberOrder.js'></script>
+<script type="text/x-jquery-tmpl" id="confirmAddressHtml">
+</script>
+{template Footer}
+<script src='{echo JsURL}/debt/memberSellOrder.js'></script>
