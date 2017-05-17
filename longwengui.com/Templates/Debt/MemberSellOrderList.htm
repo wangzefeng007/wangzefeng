@@ -89,7 +89,7 @@
                                 {elseif $lists[Status]==3}
                                 <!--交易完成-->
                                 {elseif $lists[Status]==5}
-                                <p><a class="btn btn-primary" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="处理售后">处理售后</a></p>
+                                <p><a class="btn btn-primary" href="/member/sellorderrefund/?No={$lists[OrderNumber]}" title="处理售后">处理售后</a></p>
                                 <!--售后中-->
                                 {elseif $lists[Status]==6}
                                 <p><a class="btn btn-primary" href="javascript:void(0);" title="确认收货">确认退货</a></p>

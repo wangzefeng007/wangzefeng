@@ -235,7 +235,7 @@ class AjaxOrder
         if ($_POST['orderId']){
             $OrderID = intval($_POST['orderId']);
             $MemberProductOrderModule = new MemberProductOrderModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
+            $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
             if ($OrderInfo){
                 $Data['Address']= $OrderInfo['Address'];
                 $Data['Contacts']= $OrderInfo['Contacts'];
@@ -255,7 +255,7 @@ class AjaxOrder
         if ($_POST['orderId']){
             $OrderID = intval($_POST['orderId']);
             $MemberProductOrderModule = new MemberProductOrderModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
+            $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
             if ($OrderInfo){
                 $Data['Status']= 3;
                 $Data['LogisticsCompany']= trim($_POST['logisticsName']);
@@ -281,7 +281,7 @@ class AjaxOrder
             $OrderID = intval($_POST['orderId']);
             $MemberProductOrderModule = new MemberProductOrderModule();
             $MemberOrderRefundModule = new MemberOrderRefundModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
+            $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
             if ($OrderInfo){
                 $Data['OrderID'] = $OrderInfo['OrderID'];
                 $Data['ProductID'] = $OrderInfo['ProductID'];
@@ -293,13 +293,29 @@ class AjaxOrder
                 $Data['Reason']= trim($_POST['Reason']);//原因
                 $Data['TotalAmount']= trim($_POST['TotalAmount']);//退款金额
                 $Data['Message']= trim($_POST['Message']);//说明
-                $Data['ImageJson']= trim($_POST['ImageJson']);//凭证
-                $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5),$OrderID);
-                $Result = $MemberProductOrderModule->InsertInfo($Data);
-                if ($Result){
-                    $result_json = array('ResultCode' => 200, 'Message' => '发货成功');
+                $Data['ImageJson']= json_encode($_POST['ImageJson'],JSON_UNESCAPED_UNICODE);//凭证
+                global $DB;
+                $DB->query("BEGIN");//开始事务定义
+                $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5),$OrderID);
+                if ($UpdateStatus){
+                    $DB->query("COMMIT");//执行事务
+                    $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
+                    if (empty($OrderRefund)){
+                        $Result = $MemberOrderRefundModule->InsertInfo($Data);
+                        if ($Result){
+                            $DB->query("COMMIT");//执行事务
+                            $result_json = array('ResultCode' => 200, 'Message' => '申请成功');
+                        }else{
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
+                            $result_json = array('ResultCode' => 102, 'Message' => '申请失败');
+                        }
+                    }else{
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $result_json = array('ResultCode' => 102, 'Message' => '您只有一次申请机会哦！');
+                    }
                 }else{
-                    $result_json = array('ResultCode' => 200, 'Message' => '发货失败');
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode' => 103, 'Message' => '订单状态更新失败');
                 }
             }else{
                 $result_json = array('ResultCode' => 103, 'Message' => '不存在该订单',);
