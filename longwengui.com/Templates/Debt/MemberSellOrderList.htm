@@ -84,7 +84,7 @@
                             <div class="operate-td td" data-id="{$lists[OrderID]}">
                                 <!--已付款-->
                                 {if $lists[Status]==2}
-                                <p><a class="btn btn-primary" onclick="pageObj.immediateDelivery(this)" href="javascript:void(0);" title="立即发货">立即发货</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.immediateDelivery('{$lists[OrderID]}')" href="javascript:void(0);" title="立即发货">立即发货</a></p>
                                 <!--已发货-->
                                 {elseif $lists[Status]==3}
                                 <!--交易完成-->

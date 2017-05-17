@@ -5,9 +5,9 @@ var pageObj=$.extend({},pageObj,{
     /**
      * 立即发货
      */
-    immediateDelivery:function(tar){
+    immediateDelivery:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
+        //var orderId=$(tar).parents(".operate-td").attr("data-id");
         var orderObj={
             orderId:orderId
         };
@@ -47,10 +47,12 @@ var pageObj=$.extend({},pageObj,{
         var logisticsNo= $wrap.find("input[name='logisticsNo']").val();
         if(!logisticsName){
             showMsg('请输入物流名称');
+            $wrap.find("input[name='logisticsName']").focus();
             return false;
         }
         if(!logisticsNo){
             showMsg('请输入物流单号');
+            $wrap.find("input[name='logisticsNo']").focus();
             return false;
         }
         else{
