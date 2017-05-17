@@ -247,4 +247,7 @@ class AjaxOrder
             EchoResult($result_json);
         }
     }
+    /**
+     * 卖家提交发货物流单号
+     */
 }
