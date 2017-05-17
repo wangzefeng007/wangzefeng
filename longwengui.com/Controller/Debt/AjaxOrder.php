@@ -248,6 +248,28 @@ class AjaxOrder
         }
     }
     /**
-     * 卖家提交发货物流单号
+     * 卖家提交发货物流单号确认发货
      */
+    public function ConfirmDelivery(){
+        $this->IsLogin();
+        if ($_POST['orderId']){
+            $OrderID = intval($_POST['orderId']);
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
+            if ($OrderInfo){
+                $Data['Status']= 3;
+                $Data['LogisticsCompany']= trim($_POST['logisticsName']);
+                $Data['WaybillNumber']= trim($_POST['logisticsNo']);
+                $Result = $MemberProductOrderModule->UpdateInfoByKeyID($Data,$OrderID);
+                if ($Result){
+                    $result_json = array('ResultCode' => 200, 'Message' => '发货成功');
+                }else{
+                    $result_json = array('ResultCode' => 200, 'Message' => '发货失败');
+                }
+            }else{
+                $result_json = array('ResultCode' => 103, 'Message' => '不存在该订单',);
+            }
+            EchoResult($result_json);
+        }
+    }
 }
