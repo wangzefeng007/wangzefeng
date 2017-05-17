@@ -361,14 +361,17 @@ class Member
      */
     public function BuyOrderDetail(){
         $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderNumber = trim($_GET['OrderNumber']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
-        $OrderNumber = trim($_GET['OrderNumber']);
-        $NStatus = $MemberProductOrderModule->NStatus;
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
         //发布人信息
@@ -392,14 +395,18 @@ class Member
      */
     public function BuyOrderRefund(){
         $MemberProductOrderModule = new MemberProductOrderModule();
+
+        $OrderNumber = trim($_GET['No']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
-        $OrderNumber = trim($_GET['No']);
-        $NStatus = $MemberProductOrderModule->NStatus;
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
         //发布人信息
@@ -419,14 +426,17 @@ class Member
      */
     public function SellOrderDetail(){
         $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderNumber = trim($_GET['OrderNumber']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
-        $OrderNumber = trim($_GET['OrderNumber']);
-        $NStatus = $MemberProductOrderModule->NStatus;
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
         //发布人信息
@@ -448,14 +458,17 @@ class Member
      */
     public function SellOrderRefund(){
         $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderNumber = trim($_GET['No']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
-        $OrderNumber = trim($_GET['No']);
-        $NStatus = $MemberProductOrderModule->NStatus;
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
         //发布人信息
