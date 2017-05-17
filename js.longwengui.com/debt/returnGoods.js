@@ -111,6 +111,50 @@ var pageObj=$.extend({},pageObj,{
             //btn:['确认发送','取消'],
             content: $("#agree-section").html()
         });
+        /*$(".agree-return").on("click","#agree_confirm",function(){
+            layer.close(index);
+        });*/
+        $(".agree-return").on("click","#agree_cancel",function(){
+            layer.close(index);
+        });
+    },
+    /**
+     * 确认同意退货申请
+     */
+    agreeConfirm:function(tar){
+        var returnReason=$(tar).parents(".return-box").find("[name='agreeReason']").val();
+        var toAddress=$(tar).parents(".return-box").find(".to_address").text();
+        var toName=$(tar).parents(".return-box").find(".to_name").text();
+        var toPhone=$(tar).parents(".return-box").find(".to_phone").text();
+        if(returnReason==''){
+            showMsg("请输入退款说明");
+            return false;
+        }else{
+            $.ajax({
+                type:"post",
+                url:"",
+                dataType: "json",
+                data:{
+                    "Intention":"AddAddress",
+                    "returnReason":returnReason,
+                    "toAddress":toAddress,
+                    "toName":toName,
+                    "toPhone":toPhone
+                },
+                beforeSend:　function(){
+                    showLoading();
+                },success: function(data){
+                    if(data.ResultCode == 200){
+                        showMsg(data.Message);
+                        location.reload();
+                    }else{
+                        showMsg(data.Message);
+                    }
+                },complete: function(){
+                    closeLoading();
+                }
+            })
+        }
     },
     /**
      * 拒绝退货申请
@@ -123,6 +167,9 @@ var pageObj=$.extend({},pageObj,{
             shadeClose: true,
             //btn:['确认拒绝','取消'],
             content: $("#refuse-section").html()
+        });
+        $(".refuse-return").on("click","#refuse_cancel",function(){
+            layer.close(index);
         });
     },
     /**
