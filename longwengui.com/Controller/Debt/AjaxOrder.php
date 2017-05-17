@@ -283,11 +283,19 @@ class AjaxOrder
             $MemberOrderRefundModule = new MemberOrderRefundModule();
             $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
             if ($OrderInfo){
+                $Data['OrderID'] = $OrderInfo['OrderID'];
+                $Data['ProductID'] = $OrderInfo['ProductID'];
+                $Data['UserID'] = $OrderInfo['UserID'];
+                $Data['AddTime'] = time();
+                $Data['UpdateTime'] = $Data['AddTime'];
+                $Data['FromIP'] =GetIP();
+                $Data['Status'] ='买家发起申请退款';
                 $Data['Reason']= trim($_POST['Reason']);//原因
                 $Data['TotalAmount']= trim($_POST['TotalAmount']);//退款金额
                 $Data['Message']= trim($_POST['Message']);//说明
                 $Data['ImageJson']= trim($_POST['ImageJson']);//凭证
-                $Result = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5),$OrderID);
+                $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5),$OrderID);
+                $Result = $MemberProductOrderModule->InsertInfo($Data);
                 if ($Result){
                     $result_json = array('ResultCode' => 200, 'Message' => '发货成功');
                 }else{
