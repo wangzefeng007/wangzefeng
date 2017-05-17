@@ -19,10 +19,11 @@ var pageObj=$.extend({},pageObj,{
      */
     addAddress:function(){
         var index = layer.open({
+            title:'新增收货地址',
             type: 1,
-            title: 0,
-            area: '700px',
-            closeBtn: 0,
+            //title: 0,
+            area: ['700px','510px'],
+            //closeBtn: 0,
             shadeClose: true,
             content:  '<div class="order-pay-address">'
             + '<div class="line">'
@@ -149,10 +150,11 @@ var pageObj=$.extend({},pageObj,{
             }
         });
         var index = layer.open({
+            title:'修改收货地址',
             type: 1,
-            title: 0,
-            area: '700px',
-            closeBtn: 0,
+            //title: 0,
+            area: ['700px','510px'],
+            //closeBtn: 0,
             shadeClose: true,
             content: $("#editAddressHtml").html()
         });
