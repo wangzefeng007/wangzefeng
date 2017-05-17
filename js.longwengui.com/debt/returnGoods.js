@@ -100,6 +100,32 @@ var pageObj=$.extend({},pageObj,{
         }
     },
     /**
+     * 同意退货申请
+     */
+    agreeReturn:function(){
+        var index = layer.open({
+            title:'发送退货地址',
+            type: 1,
+            area: ['700px','550px'],
+            shadeClose: true,
+            //btn:['确认发送','取消'],
+            content: $("#agree-section").html()
+        });
+    },
+    /**
+     * 拒绝退货申请
+     */
+    refuseReturn:function(){
+        var index = layer.open({
+            title:'拒绝退货申请',
+            type: 1,
+            area: ['600px','360px'],
+            shadeClose: true,
+            //btn:['确认拒绝','取消'],
+            content: $("#refuse-section").html()
+        });
+    },
+    /**
      * 页面初始化方法
      */
     init:function(){
@@ -110,6 +136,13 @@ var pageObj=$.extend({},pageObj,{
         addEventToDropdown("returnReason",function(tar){
             $(tar).parent().siblings("span").text($(tar).text());
             $(tar).parent().siblings("input").val($(tar).text());
+        });
+        /*
+         图片预览
+         * */
+        $(".vouchImage").fancybox({
+            showCloseButton:true,
+            showNavArrows:true
         });
     }
 });

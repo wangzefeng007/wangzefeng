@@ -572,3 +572,43 @@ i{
 .address-list .link:hover{
   text-decoration: underline;
 }
+
+.vouchImageBox{
+  margin-top:20px;
+}
+.vouchImageBox a{
+  margin:0 5px;
+}
+.vouchImageBox a img{
+  width:120px;
+  height:120px;
+}
+
+
+.refuse-return{
+  padding:30px 40px;
+}
+.refuse-return .tips{
+  padding:5px 0;
+  color: #353535;
+}
+.refuse-return  li{
+  padding:10px 0;
+  color: #353535;
+}
+.refuse-return  li .textarea{
+  width:400px;
+  height:60px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.agree-return{
+  padding:20px;
+}
+.agree-return .tips{
+  padding: 15px 0;
+  line-height:26px;
+  color: #ff4c4c;
+}

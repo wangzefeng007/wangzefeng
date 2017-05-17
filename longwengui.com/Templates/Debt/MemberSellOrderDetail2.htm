@@ -1,6 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/returnGoods.css">
-<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css">
 <div class="order-pay seller-page">
     <div class="wrap">
         <div class="current-loc">
@@ -51,10 +51,10 @@
                             <p>*如果拒绝申请，买家有权要求隆文贵介入。</p>
                             <p>*如果您逾期未响应处理，视作同意买家申请，系统自动将您的默认地址发给买家。</p>
                             <p>
-                                <button class="btn btn-primary btn-superbig">同意退货，发送退货地址</button>
+                                <button onclick="pageObj.agreeReturn()" class="btn btn-primary btn-superbig">同意退货，发送退货地址</button>
                             </p>
                             <div class="other">
-                                您还可以：<a href="#">拒绝退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                                您还可以：<a href="javascript:void(0);" onclick="pageObj.refuseReturn()">拒绝退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
                             </div>
                         </div>
                     </div>
@@ -167,6 +167,20 @@
                             <label for="">说&emsp;&emsp;明:</label>
                             <p>接触到胡椒粉金才能看见谁能看懂...</p>
                         </div>
+                        <div class="line">
+                            <label for="">上传凭证:</label>
+                            <div class="vouchImageBox">
+                                <a class="vouchImage" href="{echo CssURL}/debt/temp/pic-4.jpg" rel="vouch">
+                                    <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                </a>
+                                <a class="vouchImage" href="{echo CssURL}/debt/temp/pic-4.jpg" rel="vouch">
+                                    <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                </a>
+                                <a class="vouchImage" href="{echo CssURL}/debt/temp/pic-4.jpg" rel="vouch">
+                                    <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -208,6 +222,91 @@
         </div>
     </div>
 </div>
+<div id="agree-section" style="display: none;">
+    <div class="agree-return">
+        <p class="tips">
+            隆文贵温馨提示 : 如您提供的退货地址错误，导致买家无法退货或退回商品无法送达，由您承担因此产生的费用。
+        </p>
+        <div class="form-box return-box">
+            <form action="">
+                <div class="form-line">
+                    <label for="" class="form-lab">退货地址：</label>
+                    <div class="form-control address-list">
+                        <ul>
+                            <li>
+                                <div class="m-radio">
+                                    <label type="radio">
+                                        <input type="radio" name="address" value="b">
+                                        <i></i>福建省&nbsp;泉州市&nbsp;丰泽区&nbsp;成周工业区B栋5楼（电仓部收）&nbsp;0595-86082666
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="m-radio">
+                                    <label type="radio">
+                                        <input type="radio" name="address" value="b">
+                                        <i></i>福建省&nbsp;泉州市&nbsp;丰泽区&nbsp;成周工业区B栋5楼（电仓部收）&nbsp;0595-86082666
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-line">
+                    <label class="form-lab" for="">*退款说明 <small>（0~200）</small></label>
+                    <div class="form-control">
+                        <textarea class="textarea" name="" id="" cols="30" rows="10" placeholder="您可以告知买家选用那种物流，是否支持运费到付或平邮。"></textarea>
+                    </div>
+                </div>
+                <div class="form-line">
+                    <label class="form-lab" for=""></label>
+                    <div class="form-control">
+                        <a href="javascript:void(0)" class="btn btn-primary btn-superbig">
+                            发送退货地址
+                        </a>
+                        <a class="btn btn-superbig ml-20 btn-default" href="javascript:void(0)">取消</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="refuse-section" style="display: none;">
+    <div class="refuse-return">
+        <p class="tips">为确保服务质量，请告知拒绝申请是由于：</p>
+        <ul>
+            <li>
+                <div class="m-radio">
+                    <label type="radio">
+                        <input type="radio" name="refuseReason" checked value="和买家协商一致，已解决售后问题。">
+                        <i></i>和买家协商一致，已解决售后问题。
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="m-radio fl">
+                    <label type="radio">
+                        <input type="radio" name="refuseReason" value="">
+                        <i></i>其它：
+                    </label>
+                </div>
+                <textarea class="textarea" name="refuseReasonText" id="" cols="30" rows="10"></textarea>
+            </li>
+            <li>
+                <div class="form-line">
+                    <label class="form-lab" for=""></label>
+                    <div class="form-control">
+                        <button  class="btn btn-primary btn-superbig">
+                            确认拒绝
+                        </button>
+                        <a class="btn btn-superbig ml-20 btn-default" href="javascript:void(0)">取消</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 {template Footer}
-<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/jquery-1.4.3.min.js"></script>
+<script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
 <script src='{echo JsURL}/debt/returnGoods.js'></script>

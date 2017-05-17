@@ -2023,15 +2023,15 @@ button.btn {
   border-color: #adadad;
 }
 .btn-default:focus {
-  color: #647190;
-  background-color: #e3e6ec;
-  border-color: #e3e6ec;
+  color: #fff;
+  background-color: #adadad;
+  border-color: #adadad;
 }
 .btn-default:hover,
 .btn-default:active{
   color: #fff;
-  background-color: #a09f9f;
-  border-color: #a09f9f;
+  background-color: #adadad;
+  border-color: #adadad;
 }
 .btn-default:active:hover,
 .btn-default:active:focus {
