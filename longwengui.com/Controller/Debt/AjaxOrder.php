@@ -323,26 +323,5 @@ class AjaxOrder
             EchoResult($result_json);
         }
     }
-    /**
-     * @desc 卖家同意退货退款（获取退货地址）
-     */
-    public function GetAddress(){
-        $this->IsLogin();
-        $MemberShippingAddressModule = new MemberShippingAddressModule();
-        $MemberAreaModule = new MemberAreaModule();
-        $Data['Data'] = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
-        foreach ($Data['Data'] as $key=>$value){
-            $Data['Data'][$key]['Province'] = $MemberAreaModule->GetInfoByKeyID($value['Province']);
-            $Data['Data'][$key]['City'] = $MemberAreaModule->GetInfoByKeyID($value['City']);
-            $Data['Data'][$key]['Area'] = $MemberAreaModule->GetInfoByKeyID($value['Area']);
-        }
-        if ( $Data['Data']){
-            $Data['ResultCode'] = 200;
-            $Data['Message'] = '返回成功';
-        }else{
-            $Data['ResultCode'] = 101;
-            $Data['Message'] = '返回失败';
-        }
-        EchoResult($Data);exit;
-    }
+
 }

@@ -233,22 +233,16 @@
                     <label for="" class="form-lab">退货地址：</label>
                     <div class="form-control address-list">
                         <ul>
+                            {loop  $Data['Data'] $lists}
                             <li>
                                 <div class="m-radio">
                                     <label type="radio">
                                         <input type="radio" name="address" value="b">
-                                        <i></i>福建省&nbsp;泉州市&nbsp;丰泽区&nbsp;成周工业区B栋5楼（电仓部收）&nbsp;0595-86082666
+                                        <i></i>{$lists[Province]}{$lists[City]}{$lists[Area]}{$lists[Address]}({$lists[Name]}) &nbsp;{$lists[Mobile]}
                                     </label>
                                 </div>
                             </li>
-                            <li>
-                                <div class="m-radio">
-                                    <label type="radio">
-                                        <input type="radio" name="address" value="b">
-                                        <i></i>福建省&nbsp;泉州市&nbsp;丰泽区&nbsp;成周工业区B栋5楼（电仓部收）&nbsp;0595-86082666
-                                    </label>
-                                </div>
-                            </li>
+                            {/loop}
                         </ul>
                     </div>
                 </div>

@@ -395,7 +395,6 @@ class Member
      */
     public function BuyOrderRefund(){
         $MemberProductOrderModule = new MemberProductOrderModule();
-
         $OrderNumber = trim($_GET['No']);
         $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
         if (!$OrderInfo){
@@ -481,6 +480,17 @@ class Member
             $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
         if ($UserInfo['Area'])
             $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        //退货地址
+        /**
+         * @desc 卖家同意退货退款（获取退货地址）
+         */
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $Data['Data'] = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
+        foreach ($Data['Data'] as $key=>$value){
+            $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
         include template('MemberSellOrderDetail2');
     }
 }
