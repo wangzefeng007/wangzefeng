@@ -235,7 +235,7 @@ class AjaxOrder
         if ($_POST['orderId']){
             $OrderID = intval($_POST['orderId']);
             $MemberProductOrderModule = new MemberProductOrderModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'].' and OrderID='.$OrderID);
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
             if ($OrderInfo){
                 $Data['Address']= $OrderInfo['Address'];
                 $Data['Contacts']= $OrderInfo['Contacts'];
