@@ -1060,7 +1060,7 @@ class AjaxLogin
         EchoResult($result_json);
     }
     /**
-     * @desc 获取收货地址
+     * @desc 会员中心修改获取收货地址
      */
     public function GetAddress(){
         $this->IsLogin();
