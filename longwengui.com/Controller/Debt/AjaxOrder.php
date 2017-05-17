@@ -272,4 +272,32 @@ class AjaxOrder
             EchoResult($result_json);
         }
     }
+    /**
+     * 买家发起申请退款
+     */
+    public function RequestRefund(){
+        $this->IsLogin();
+        if ($_POST['orderId']){
+            $OrderID = intval($_POST['orderId']);
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $MemberOrderRefundModule = new MemberOrderRefundModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderID='.$OrderID);
+            if ($OrderInfo){
+                $Data['Reason']= trim($_POST['Reason']);//原因
+                $Data['TotalAmount']= trim($_POST['TotalAmount']);//退款金额
+                $Data['Message']= trim($_POST['Message']);//说明
+                $Data['ImageJson']= trim($_POST['ImageJson']);//凭证
+                $Result = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5),$OrderID);
+                if ($Result){
+                    $result_json = array('ResultCode' => 200, 'Message' => '发货成功');
+                }else{
+                    $result_json = array('ResultCode' => 200, 'Message' => '发货失败');
+                }
+            }else{
+                $result_json = array('ResultCode' => 103, 'Message' => '不存在该订单',);
+            }
+            EchoResult($result_json);
+        }
+    }
+
 }
