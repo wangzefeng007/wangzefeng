@@ -207,13 +207,13 @@ i{
   min-height:32px;
   line-height:32px;
 }
-.return-reason .p-dropdown{
+.return-reason .m-dropdown{
   width:360px;
 }
-.return-reason .p-dropdown [type='checkbox'] span{
+.return-reason .m-dropdown [type='checkbox'] span{
   color: #35bdfc;
 }
-.return-reason .p-dropdown label ul{
+.return-reason .m-dropdown label ul{
   width:100%;
 }
 

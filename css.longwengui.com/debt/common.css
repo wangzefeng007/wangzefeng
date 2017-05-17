@@ -1559,7 +1559,7 @@ a{
   margin-top: 50px;
   margin: 50px 100px 0;
 }
-.sel-debt-way-pop .m-dropdown{
+.m-dropdown{
   display: inline-block;
   width: 110px;
   margin-left: 10px;
@@ -1571,12 +1571,12 @@ a{
   padding: 0 10px;
   position: relative;
 }
-.sel-debt-way-pop .m-dropdown label{
+.m-dropdown label{
   color: #666;
   width: 100%;
   display: inline-block;
 }
-.sel-debt-way-pop .m-dropdown label i{
+.m-dropdown label i{
   display: inline-block;
   vertical-align: middle;
   float: right;
@@ -1586,10 +1586,10 @@ a{
   width: 10px;
   height: 6px;
 }
-.sel-debt-way-pop .m-dropdown label input[type="checkbox"]{
+.m-dropdown label input[type="checkbox"]{
   display: none;
 }
-.sel-debt-way-pop .m-dropdown label ul{
+.m-dropdown label ul{
   display: none;
   width: 128px;
   position: absolute;
@@ -1605,16 +1605,16 @@ a{
   z-index: 100;
   border: 1px solid #e6e6e6;
 }
-.sel-debt-way-pop .m-dropdown label ul li{
+.m-dropdown label ul li{
   padding-left: 10px;
   line-height: 30px;
   cursor: pointer;
 }
-.sel-debt-way-pop .m-dropdown label ul li:hover{
+.m-dropdown label ul li:hover{
   background-color: #35bdfc;
   color: #fff;
 }
-.sel-debt-way-pop .m-dropdown label input[type="checkbox"]:checked + ul{
+.m-dropdown label input[type="checkbox"]:checked + ul{
   display: block;
 }
 .sel-debt-way-pop .btn{
