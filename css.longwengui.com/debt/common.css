@@ -2170,6 +2170,9 @@ body .layui-layer-title{
   color: #fff;
   font-size: 16px;
 }
+body .layui-layer-btn{
+  text-align: center;
+}
 @keyframes myfirst
 {
   from {transform: rotate(0);}
