@@ -227,4 +227,24 @@ class AjaxOrder
             EchoResult($result_json);
         }
     }
+    /**
+     * 获取订单地址信息
+     */
+    public function GetOrderAddress(){
+        $this->IsLogin();
+        if ($_POST['orderId']){
+            $OrderID = intval($_POST['orderId']);
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'].' and OrderID='.$OrderID);
+            if ($OrderInfo){
+                $Data['Address']= $OrderInfo['Address'];
+                $Data['Contacts']= $OrderInfo['Contacts'];
+                $Data['Tel']= $OrderInfo['Tel'];
+                $result_json = array('ResultCode' => 200, 'Message' => '返回成功','Data'=>$Data);
+            }else{
+                $result_json = array('ResultCode' => 103, 'Message' => '不存在该订单',);
+            }
+            EchoResult($result_json);
+        }
+    }
 }

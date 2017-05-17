@@ -84,17 +84,17 @@
                             <div class="operate-td td" data-id="{$lists[OrderID]}">
                                 <!--已付款-->
                                 {if $lists[Status]==2}
-                                <p><a class="btn btn-primary" href="#" title="立即发货">立即发货</a></p>
+                                <p><a class="btn btn-primary" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="立即发货">立即发货</a></p>
                                 <!--已发货-->
                                 {elseif $lists[Status]==3}
                                 <!--交易完成-->
                                 {elseif $lists[Status]==5}
-                                <p><a class="btn btn-primary" href="javascript:void(0);" title="处理售后">处理售后</a></p>
+                                <p><a class="btn btn-primary" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="处理售后">处理售后</a></p>
                                 <!--售后中-->
                                 {elseif $lists[Status]==6}
                                 <p><a class="btn btn-primary" href="javascript:void(0);" title="确认收货">确认退货</a></p>
                                 {/if}
-                                <p><a class="link" href="#" title="查看订单">查看订单>></a></p>
+                                <p><a class="link" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="查看订单">查看订单>></a></p>
                             </div>
                         </div>
                         <div class="table-tr order-hr"></div>

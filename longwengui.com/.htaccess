@@ -15,7 +15,7 @@ RewriteRule ^debt/publish/([0-9]+)(|\/)$ /index.php?Module=Debt&Action=DebtPubli
 RewriteRule ^assetdetails/([0-9]+).html$ /index.php?Module=Asset&Action=Details&ID=$1 [QSA]
 RewriteRule ^assetorder/([A-Z0-9_]+).html$ /index.php?Module=Asset&Action=ChoicePay&OrderNumber=$1 [QSA]
 RewriteRule ^orderdetail/([A-Z0-9_]+).html$ /index.php?Module=Member&Action=BuyOrderDetail&OrderNumber=$1 [QSA]
-
+RewriteRule ^sellorderdetail/([A-Z0-9_]+).html$ /index.php?Module=Member&Action=SellOrderDetail&OrderNumber=$1 [QSA]
 #线索悬赏
 RewriteRule ^reword(|\/)$ /index.php?Module=Reword&Action=Index [QSA]
 RewriteRule ^reword/publish(|\/)$ /index.php?Module=Reword&Action=RewordPublish [QSA]

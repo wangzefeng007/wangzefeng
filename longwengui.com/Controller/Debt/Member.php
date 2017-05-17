@@ -415,7 +415,7 @@ class Member
             include template('MemberBuyOrderDetail2');
     }
     /**
-     * @desc 资产已卖出订单详情页(退款)
+     * @desc 资产已卖出订单详情页
      */
     public function SellOrderDetail(){
         include template('MemberSellOrderDetail1');
