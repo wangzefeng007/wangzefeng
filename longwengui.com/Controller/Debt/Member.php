@@ -432,6 +432,8 @@ class Member
         //发布人信息
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         $User = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        //买家信息
+        $BuyUserInfo = $MemberUserInfoModule->GetInfoByUserID($OrderInfo['UserID']);
         $UserInfo['Mobile'] = $User['Mobile'];
         if ($UserInfo['Province'])
             $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);

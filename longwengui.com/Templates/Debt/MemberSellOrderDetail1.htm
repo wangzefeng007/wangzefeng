@@ -1,5 +1,6 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/order.css">
+<link rel="stylesheet" href="{echo CssURL}/debt/memberOrder.css">
 <div class="order-pay">
     <div class="wrap">
         <div class="current-loc">
@@ -7,32 +8,71 @@
             <span>当前位置 : <a>我的资产</a> > <a href="/member/sellorderlist/">已卖出的</a> > <span class="cur">订单详情</span></span>
         </div>
         <div class="tip">
-            订单编号：201702280001
+            订单编号：{$OrderInfo['OrderNumber']}
         </div>
         <div class="flow-wrap">
             <div class="flow-box clearfix">
-                <div class="flow over first">
+                <div class="flow {if $OrderInfo[Status]>0 && $OrderInfo[Status]<5}over{/if} first">
                     <span>1</span>
                     <p>未付款</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow over curr">
+                <div class="flow {if $OrderInfo[Status]==2 || $OrderInfo[Status]==3 || $OrderInfo[Status]==4}over{/if} {if $OrderInfo[Status]==2}curr{/if}">
                     <span>2</span>
                     <p>已付款，转让手续办理中...</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo[Status]==3 || $OrderInfo[Status]==4}over curr{/if}">
                     <span>3</span>
                     <p>订单完成</p>
                     <i class="triangle"></i>
                 </div>
             </div>
+            {if $OrderInfo[Status]==2}
             <div class="flow-tips">
-                <p class="h3">当前订单状态：资产转让手续正在办理中，若在7个工作日内未完成转让，系统将自动取消订单，退回相应款项</p>
-                <p class="h4">如果信息有误或不全，可以 <a href="#">联系买家</a></p>
+                <p class="h3">当前订单状态：等待卖家发货</p>
+                <p class="h4">如果信息有误或不全，可以 <a href="http://wpa.qq.com/msgrd?v=3&uin={$BuyUserInfo[QQ]}&site=qq&menu=yes" target="_blank">联系买家</a></p>
             </div>
+            {elseif $OrderInfo[Status]==3}
+            <div class="flow-tips">
+                <p class="h3">当前订单状态：卖家已发货，请查看页面下方物流信息了解上品情况</p>
+                <p class="h4">
+                    1、如果买家已经收到货，您可以等到对方确认收货
+                </p>
+                <p class="h4">
+                    2、如果买家还未收到货，请注意发货时间，或者 <a href="http://wpa.qq.com/msgrd?v=3&uin={$BuyUserInfo[QQ]}&site=qq&menu=yes" target="_blank">联系买家 </a>
+                </p>
+                <p class="h3 mt-10">物流信息</p>
+                <div class="ems-box">
+                    <p>
+                        发货方式：快递
+                    </p>
+                    <p>
+                        物流公司： {$OrderInfo[LogisticsCompany]}
+                    </p>
+                    <p>
+                        快递单号： {$OrderInfo[WaybillNumber]}
+                    </p>
+                </div>
+            </div>
+            {elseif $OrderInfo[Status]==4}
+            <div class="flow-tips">
+                <p class="h3">订单已完成，买家已签收</p>
+                <p class="h3 mt-10">物流信息</p>
+                <div class="ems-box">
+                    <p>
+                        发货方式：快递
+                    </p>
+                    <p>
+                        物流公司： {$OrderInfo[LogisticsCompany]}
+                    </p>
+                    <p>
+                        快递单号： {$OrderInfo[WaybillNumber]}
+                    </p>
+                </div>
+            </div>
+            {/if}
         </div>
-
         <div class="tab-wrap">
             <p class="tab-title">订单详情</p>
             <div class="tab-con">
@@ -90,7 +130,7 @@
                 </div>
                 <div class="total">
                     {if $OrderInfo[Status]==2}
-                    <a class="btn btn-primary btn-lg" href="JavaScript:void (0)" onclick="pageObj.immediateDelivery(this)">立即发货</a>{/if}
+                    <a class="btn btn-primary btn-lg" href="JavaScript:void (0)" onclick="pageObj.immediateDelivery('{$OrderInfo[OrderID]}')">立即发货</a>{/if}
                 </div>
             </div>
         </div>
@@ -150,7 +190,7 @@
         <div class="line">
             <div class="left">&nbsp;</div>
             <div class="right">
-                <button type="button" id="saveAddress" onclick="pageObj.confirmDelivery('$OrderInfo[OrderID]')" name="button">确认发货</button>
+                <button type="button" id="saveAddress" onclick="pageObj.confirmDelivery(this)" name="button">确认发货</button>
             </div>
         </div></div>;
 </script>
