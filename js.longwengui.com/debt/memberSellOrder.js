@@ -7,7 +7,6 @@ var pageObj=$.extend({},pageObj,{
      */
     immediateDelivery:function(orderId){
         var _this=this;
-        //var orderId=$(tar).parents(".operate-td").attr("data-id");
         var orderObj={
             orderId:orderId
         };

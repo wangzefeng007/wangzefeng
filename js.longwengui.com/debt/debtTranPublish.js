@@ -259,6 +259,8 @@ $(function(){
                 }else{
                     showMsg(data.Message);
                 }
+            },error:function(data){
+                console.log(data);
             },complete: function(){
                 closeLoading();
             }

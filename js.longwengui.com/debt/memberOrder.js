@@ -6,9 +6,8 @@ var pageObj=$.extend({},pageObj,{
      * 取消订单
      * @param tar
      */
-    cancelOrder:function(tar){
+    cancelOrder:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否取消订单？', {
             btn: ['确定','取消'] //按钮
         }, function(){
@@ -21,9 +20,8 @@ var pageObj=$.extend({},pageObj,{
      * 提醒卖家
      * @param tar
      */
-    remind:function(tar){
+    remind:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         _this.commonAjax("RemindSell",orderId,function(){
             $(tar).addClass("btn-disabled").removeClass("btn-primary");
             layer.msg('操作成功！');
@@ -48,9 +46,8 @@ var pageObj=$.extend({},pageObj,{
      * 删除订单
      * @param tar
      */
-    delOrder:function(tar){
+    delOrder:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否删除订单？', {
             btn: ['确定','取消'] //按钮
         }, function(){
@@ -63,9 +60,8 @@ var pageObj=$.extend({},pageObj,{
      * 取消申请
      * @param tar
      */
-    cancelApply:function(tar){
+    cancelApply:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否取消申请？', {
             btn: ['确定','取消'] //按钮
         }, function(){
@@ -78,9 +74,8 @@ var pageObj=$.extend({},pageObj,{
      * 立即退货
      * @param tar
      */
-    immediatelyReturnGoods:function(tar){
+    immediatelyReturnGoods:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         var orderObj={
             orderId:orderId
         };
@@ -124,9 +119,8 @@ var pageObj=$.extend({},pageObj,{
      * 确认退款
      * @param tar
      */
-    indeedReturn:function(tar){
+    indeedReturn:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('请确认您是否拿到退款？', {
             btn: ['确定','取消'] //按钮
         }, function(){
