@@ -43,7 +43,10 @@
                             请处理退货退款申请
                             <span class="has-time">
                                 <i class="icon-clack"></i>
-                                14天23时58分47秒
+                                <span id="day_show"></span>
+                                <span id="hour_show"></span>
+                                <span id="minute_show"></span>
+                                <span id="second_show"></span>
                             </span>
                         </div>
                         <div class="con">
@@ -302,5 +305,11 @@
     </div>
 </div>
 {template Footer}
+<script>
+    var pageObj={
+        endDate:"1494822778",
+        nowDate:"1494812778"
+    }
+</script>
 <script src='{echo JsURL}/debt/returnGoods.js'></script>
 <script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
