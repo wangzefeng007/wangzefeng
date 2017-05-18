@@ -232,8 +232,8 @@ var pageObj=$.extend({},pageObj,{
      * 买家退货提交物流信息
      */
     subLogistics:function(tar){
-        var logisticsName=$("inp[name='logisticsName']").val();
-        var logisticsNo=$("inp[name='logisticsNo']").val();
+        var logisticsName=$("input[name='logisticsName']").val();
+        var logisticsNo=$("input[name='logisticsNo']").val();
         if(!logisticsName){
             showMsg("请选择物流名称");
             return false;

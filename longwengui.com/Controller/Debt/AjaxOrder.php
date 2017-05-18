@@ -431,10 +431,10 @@ class AjaxOrder
                  $Data['UpdateTime'] = time();
                  global $DB;
                  $DB->query("BEGIN");//开始事务定义
-                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>7,'UpdateTime'=>$Data['UpdateTime'],'Message'=>'买家提交物流信息'),$OrderID);
+                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>6,'UpdateTime'=>$Data['UpdateTime'],'Message'=>'买家提交物流信息'),$OrderID);
                  if ($UpdateStatus){
                      $DB->query("COMMIT");//执行事务
-                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
+                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID.' and LogisticsCompany !=null');
                      if ($OrderRefund){
                          $Result = $MemberOrderRefundModule->UpdateInfoByWhere($Data,' OrderID= '.$OrderID);
                          if ($Result){
@@ -442,7 +442,7 @@ class AjaxOrder
                              $result_json = array('ResultCode' => 200, 'Message' => '提交物流信息成功');
                          }else{
                              $DB->query("ROLLBACK");//判断当执行失败时回滚
-                             $result_json = array('ResultCode' => 102, 'Message' => '提交物流信息失败');
+                             $result_json = array('ResultCode' => 102, 'Message' => '不可重复提交');
                          }
                      }else{
                          $DB->query("ROLLBACK");//判断当执行失败时回滚
