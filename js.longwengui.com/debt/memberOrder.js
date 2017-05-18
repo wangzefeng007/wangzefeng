@@ -105,7 +105,7 @@ var pageObj=$.extend({},pageObj,{
         var index = layer.open({
             title:'退货并填写物流信息',
             type: 1,
-            area: ['700px','520px'],
+            area: ['700px','450px'],
             shadeClose: true,
             content: $("#confirmReturnGoodsHtml").html()
         });
@@ -128,6 +128,46 @@ var pageObj=$.extend({},pageObj,{
                 layer.msg('操作成功！', {icon: 1});
             })
         });
+    },
+    /**
+     * 买家退货提交物流信息
+     */
+    subLogistics:function(tar){
+        var $wrap=$(tar).parents(".return-goods-box");
+        var logisticsName=$wrap.find("input[name='logisticsName']").val();
+        var logisticsNo=$wrap.find("input[name='logisticsNo']").val();
+        var orderId=$wrap.find("input[name='orderId']").val();
+        if(!logisticsName){
+            showMsg("请选择物流名称");
+            return false;
+        }else if(!logisticsNo){
+            showMsg("请输入物流单号");
+            return false;
+        }else{
+            $.ajax({
+                type:"post",
+                url:"/ajaxorder",
+                dataType: "json",
+                data:{
+                    "Intention":"SubmitLogistics",
+                    "logisticsName":logisticsName,
+                    "logisticsNo":logisticsNo,
+                    "orderId":orderId
+                },
+                beforeSend:　function(){
+                    showLoading();
+                },success: function(data){
+                    if(data.ResultCode == 200){
+                        showMsg(data.Message);
+                        location.reload();
+                    }else{
+                        showMsg(data.Message);
+                    }
+                },complete: function(){
+                    closeLoading();
+                }
+            })
+        }
     },
     /**
      * 共同询问框

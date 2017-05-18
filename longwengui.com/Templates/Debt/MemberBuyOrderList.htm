@@ -182,10 +182,6 @@
     <div class="return-goods-box">
         <div class="title">
             退货并填写物流信息
-            <span class="has-time">
-                                <i class="icon-clack"></i>
-                                06天23时58分47秒
-                            </span>
             <span class="tips">*为必填项</span>
         </div>
         <div class="con">
@@ -217,6 +213,7 @@
                 <div class="form-line">
                     <label for="" class="form-lab">*物流名称：</label>
                     <div class="form-control return-reason">
+                        <input type="hidden" name="orderId" value="{$lists[OrderID]}" />
                         <div class="m-dropdown" style="width: 156px; margin-left: 0;">
                             <label type="checkbox">
                                 <span data-id="">请选择物流公司</span>
@@ -237,8 +234,11 @@
                         <input class="inp" name="logisticsNo" type="text">
                     </div>
                 </div>
-                <div>
-                    <a href="javascript:void(0)" onclick="pageObj.subLogistics(this)" class="btn btn-lg btn-primary">提交信息</a>
+                <div class="form-line mt-40">
+                    <label for="" class="form-lab"></label>
+                    <div class="form-control">
+                        <a href="javascript:void(0)" onclick="pageObj.subLogistics(this)" class="btn btn-lg btn-primary">提交信息</a>
+                    </div>
                 </div>
             </form>
         </div>

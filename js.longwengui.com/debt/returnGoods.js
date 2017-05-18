@@ -127,9 +127,9 @@ var pageObj=$.extend({},pageObj,{
         var toPhone="";
         $address.each(function(){
             if($address.is(":checked")){
-                toAddress=$(this).sibling(".to_address").text();
-                toName=$(this).sibling(".to_name").text();
-                toPhone=$(this).sibling(".to_phone").text();
+                toAddress=$(this).siblings(".to_address").text();
+                toName=$(this).siblings(".to_name").text();
+                toPhone=$(this).siblings(".to_phone").text();
             }
         });
         var returnReason=$(tar).parents(".return-box").find("[name='agreeReason']").val();
