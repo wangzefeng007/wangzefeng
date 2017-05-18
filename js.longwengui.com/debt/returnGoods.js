@@ -229,6 +229,43 @@ var pageObj=$.extend({},pageObj,{
         }
     },
     /**
+     * 买家退货提交物流信息
+     */
+    subLogistics:function(){
+        var logisticsName=$("inp[name='logisticsName']").val();
+        var logisticsNo=$("inp[name='logisticsNo']").val();
+        if(logisticsName==''){
+            showMsg("请选择物流名称");
+            return ;
+        }else if(logisticsNo==''){
+            showMsg("请输入物流单号");
+            return ;
+        }else{
+            $.ajax({
+                type:"post",
+                url:"",
+                dataType: "json",
+                data:{
+                    "Intention":"",
+                    "logisticsName":logisticsName,
+                    "logisticsNo":logisticsNo
+                },
+                beforeSend:　function(){
+                    showLoading();
+                },success: function(data){
+                    if(data.ResultCode == 200){
+                        showMsg(data.Message);
+                        location.reload();
+                    }else{
+                        showMsg(data.Message);
+                    }
+                },complete: function(){
+                    closeLoading();
+                }
+            })
+        }
+    },
+    /**
      * 页面初始化方法
      */
     init:function(){
@@ -240,6 +277,13 @@ var pageObj=$.extend({},pageObj,{
             $(tar).parent().siblings("span").text($(tar).text());
             $(tar).parent().siblings("input").val($(tar).text());
         });
+        //物流名称赋值
+        addEventToDropdown("logisticsName",function(tar){
+            $(tar).parent().siblings("span").text($(tar).text());
+            $(tar).parent().siblings("input").val($(tar).text());
+        });
+        //处理退货退款申请倒计时
+        timer(parseInt(_this.endDate)-parseInt(_this.nowDate));
         /*
          图片预览
          * */
@@ -247,9 +291,6 @@ var pageObj=$.extend({},pageObj,{
             showCloseButton:true,
             showNavArrows:true
         });
-
-        //处理退货退款申请倒计时
-        timer(parseInt(_this.endDate)-parseInt(_this.nowDate));
     }
 });
 window.onload=function(){

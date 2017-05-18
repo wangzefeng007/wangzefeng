@@ -169,7 +169,7 @@
                 <div class="tab-con-l">
                     <div class="return-goods-box">
                         <div class="title">
-                            申请退货并填写物流信息
+                            退货并填写物流信息
                             <span class="has-time">
                                 <i class="icon-clack"></i>
                                 06天23时58分47秒
@@ -205,11 +205,11 @@
                                 <div class="form-line">
                                     <label for="" class="form-lab">*物流名称：</label>
                                     <div class="form-control return-reason">
-                                        <div class="p-dropdown">
+                                        <div class="m-dropdown" style="width: 156px; margin-left: 0;">
                                             <label type="checkbox">
                                                 <span data-id="">请选择物流公司</span>
                                                 <i></i>
-                                                <input type="checkbox" name="" value="">
+                                                <input type="checkbox" name="logisticsName" value="">
                                                 <ul>
                                                     <li data-id="" data-name="">顺丰</li>
                                                     <li data-id="" data-name="">ems</li>
@@ -222,11 +222,11 @@
                                 <div class="form-line">
                                     <label for="" class="form-lab">*物流单号：</label>
                                     <div class="form-control">
-                                        <input class="inp" type="text">
+                                        <input class="inp" name="logisticsNo" type="text">
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-lg btn-primary">提交信息</button>
+                                    <a href="javascript:void(0)" onclick="pageObj.subLogistics(this)" class="btn btn-lg btn-primary">提交信息</a>
                                 </div>
                             </form>
                             <div class="other">

@@ -82,7 +82,7 @@ var pageObj=$.extend({},pageObj,{
     indeedReturn:function(tar){
         var _this=this;
         var orderId=$(tar).parents(".operate-td").attr("data-id");
-        layer.confirm('是否确认退款？', {
+        layer.confirm('请确认您是否拿到退款？', {
             btn: ['确定','取消'] //按钮
         }, function(){
             _this.commonAjax("ConfirmRefund",orderId,function(){

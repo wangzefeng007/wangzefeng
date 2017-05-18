@@ -108,6 +108,7 @@
                                 <p><a class="btn btn-primary" onclick="pageObj.cancelApply(this)" id="cancelApply" href="javascript:void(0);" title="取消申请">取消申请</a></p>
                                 {elseif $lists[Status]== 6}
                                 <!--退款中-->
+                                <p><a class="btn btn-primary" onclick="pageObj.immediatelyReturn(this)" id="immediatelyReturn" href="javascript:void(0);" title="立即退货">立即退货</a></p>
                                 <p><a class="btn btn-primary" onclick="pageObj.indeedReturn(this)" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
                                 <!--申请失败-->
                                 {elseif $lists[Status]==7}
