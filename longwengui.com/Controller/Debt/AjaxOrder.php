@@ -434,7 +434,7 @@ class AjaxOrder
                  $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>6,'UpdateTime'=>$Data['UpdateTime'],'Message'=>'买家提交物流信息'),$OrderID);
                  if ($UpdateStatus){
                      $DB->query("COMMIT");//执行事务
-                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID.' and LogisticsCompany !=null');
+                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID.' and LogisticsCompany is Null and WaybillNumber is Null');
                      if ($OrderRefund){
                          $Result = $MemberOrderRefundModule->UpdateInfoByWhere($Data,' OrderID= '.$OrderID);
                          if ($Result){
@@ -453,10 +453,10 @@ class AjaxOrder
                      $result_json = array('ResultCode' => 104, 'Message' => '订单状态更新失败');
                  }
              }else{
-                 $result_json = array('ResultCode' => 103, 'Message' => '找不到该订单');
+                 $result_json = array('ResultCode' => 105, 'Message' => '找不到该订单');
              }
          }else{
-             $result_json = array('ResultCode' => 105, 'Message' => '返回失败');
+             $result_json = array('ResultCode' => 106, 'Message' => '返回失败');
          }
          EchoResult($result_json);
 

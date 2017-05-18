@@ -234,6 +234,7 @@ var pageObj=$.extend({},pageObj,{
     subLogistics:function(tar){
         var logisticsName=$("input[name='logisticsName']").val();
         var logisticsNo=$("input[name='logisticsNo']").val();
+        var orderId=$("#SubmitLogistics").attr("data-id");
         if(!logisticsName){
             showMsg("请选择物流名称");
             return false;
@@ -248,7 +249,8 @@ var pageObj=$.extend({},pageObj,{
                 data:{
                     "Intention":"SubmitLogistics",
                     "logisticsName":logisticsName,
-                    "logisticsNo":logisticsNo
+                    "logisticsNo":logisticsNo,
+                    "orderId":orderId
                 },
                 beforeSend:　function(){
                     showLoading();

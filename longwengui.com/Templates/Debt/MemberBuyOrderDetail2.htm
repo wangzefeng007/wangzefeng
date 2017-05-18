@@ -226,11 +226,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="javascript:void(0)" onclick="pageObj.subLogistics(this)" class="btn btn-lg btn-primary">提交信息</a>
+                                    <a id="SubmitLogistics" href="javascript:void(0)" data-id="{$OrderInfo[OrderID]}" onclick="pageObj.subLogistics(this)" class="btn btn-lg btn-primary">提交信息</a>
                                 </div>
                             </form>
                             <div class="other">
-                                您还可以：<a href="JavaScript:void (0)">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="javascript:void (0)">申请介入</a>
+                                您还可以：<a href="JavaScript:void (0)" data-id="{$OrderInfo[OrderID]}">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="javascript:void (0)">申请介入</a>
                             </div>
                         </div>
                     </div>
