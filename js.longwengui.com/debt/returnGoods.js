@@ -243,10 +243,10 @@ var pageObj=$.extend({},pageObj,{
         }else{
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/ajaxorder",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"SubmitLogistics",
                     "logisticsName":logisticsName,
                     "logisticsNo":logisticsNo
                 },

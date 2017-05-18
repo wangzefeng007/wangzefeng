@@ -414,4 +414,52 @@ class AjaxOrder
          }
          EchoResult($result_json);
      }
+    /**
+     * 买家退货提交物流信息
+     */
+     public function SubmitLogistics(){
+         $this->IsLogin();
+         if ($_POST['orderId']) {
+             $OrderID = intval($_POST['orderId']);
+             $MemberProductOrderModule = new MemberProductOrderModule();
+             $MemberOrderRefundModule = new MemberOrderRefundModule();
+             $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
+             if ($OrderInfo) {
+                 $Data['Status'] ='买家提交物流信息';
+                 $Data['LogisticsCompany'] =trim($_POST['logisticsName']);
+                 $Data['WaybillNumber'] =trim($_POST['logisticsNo']);
+                 $Data['UpdateTime'] = time();
+                 global $DB;
+                 $DB->query("BEGIN");//开始事务定义
+                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>7,'UpdateTime'=>$Data['UpdateTime'],'Message'=>'买家提交物流信息'),$OrderID);
+                 if ($UpdateStatus){
+                     $DB->query("COMMIT");//执行事务
+                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
+                     if ($OrderRefund){
+                         $Result = $MemberOrderRefundModule->UpdateInfoByWhere($Data,' OrderID= '.$OrderID);
+                         if ($Result){
+                             $DB->query("COMMIT");//执行事务
+                             $result_json = array('ResultCode' => 200, 'Message' => '提交物流信息成功');
+                         }else{
+                             $DB->query("ROLLBACK");//判断当执行失败时回滚
+                             $result_json = array('ResultCode' => 102, 'Message' => '提交物流信息失败');
+                         }
+                     }else{
+                         $DB->query("ROLLBACK");//判断当执行失败时回滚
+                         $result_json = array('ResultCode' => 103, 'Message' => '找不到该订单');
+                     }
+                 }else{
+                     $DB->query("ROLLBACK");//判断当执行失败时回滚
+                     $result_json = array('ResultCode' => 104, 'Message' => '订单状态更新失败');
+                 }
+             }else{
+                 $result_json = array('ResultCode' => 103, 'Message' => '找不到该订单');
+             }
+         }else{
+             $result_json = array('ResultCode' => 105, 'Message' => '返回失败');
+         }
+         EchoResult($result_json);
+
+     }
+
 }
