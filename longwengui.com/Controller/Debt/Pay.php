@@ -48,7 +48,7 @@ class Pay
                 if ($OrderInfo) {
                     //更新库存
                     $MemberAssetInfoModule = new MemberAssetInfoModule();
-                    $MemberAssetInfoModule->SetInventory($OrderInfo['AssetID'],$OrderInfo['Num']);
+                    $MemberAssetInfoModule->SetInventory($OrderInfo['ProductID'],$OrderInfo['Num']);
                     //添加订单日志
                     $OrderLogModule = new MemberOrderLogModule();
                     $LogMessage ='买家已付款，付款方式支付宝';
