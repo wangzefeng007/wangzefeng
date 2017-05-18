@@ -25,6 +25,7 @@
   display: inline-block;
   width: 120px;
   height: 40px;
+  margin-left:0;
   line-height: 40px;
   border: 1px solid #94dafb;
   border-radius: 5px;
