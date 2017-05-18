@@ -231,15 +231,15 @@ var pageObj=$.extend({},pageObj,{
     /**
      * 买家退货提交物流信息
      */
-    subLogistics:function(){
+    subLogistics:function(tar){
         var logisticsName=$("inp[name='logisticsName']").val();
         var logisticsNo=$("inp[name='logisticsNo']").val();
-        if(logisticsName==''){
+        if(!logisticsName){
             showMsg("请选择物流名称");
-            return ;
-        }else if(logisticsNo==''){
+            return false;
+        }else if(!logisticsNo){
             showMsg("请输入物流单号");
-            return ;
+            return false;
         }else{
             $.ajax({
                 type:"post",
