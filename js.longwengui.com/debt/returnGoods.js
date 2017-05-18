@@ -126,16 +126,18 @@ var pageObj=$.extend({},pageObj,{
         var toAddress=$(tar).parents(".return-box").find(".to_address").text();
         var toName=$(tar).parents(".return-box").find(".to_name").text();
         var toPhone=$(tar).parents(".return-box").find(".to_phone").text();
+        var orderId=$("#agree_confirm").attr("data-id");
         if(returnReason==''){
             showMsg("请输入退款说明");
             return false;
         }else{
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/ajaxorder",
                 dataType: "json",
                 data:{
-                    "Intention":"AddAddress",
+                    "Intention":"AgreeRefund",
+                    "orderId":orderId,
                     "returnReason":returnReason,
                     "toAddress":toAddress,
                     "toName":toName,
