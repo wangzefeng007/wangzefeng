@@ -169,11 +169,11 @@
                 <div class="tab-con-l">
                     <div class="return-goods-box">
                         <div class="title">
-                            退货并填写物流信息
-                            <span class="has-time">
-                                <i class="icon-clack"></i>
-                                06天23时58分47秒
-                            </span>
+                            物流信息
+                            <!--<span class="has-time">-->
+                                <!--<i class="icon-clack"></i>-->
+                                <!--06天23时58分47秒-->
+                            <!--</span>-->
                             <span class="tips">*为必填项</span>
                         </div>
                         <div class="con">
@@ -202,6 +202,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                {if $OrderRefund[LogisticsCompany]!='' && $OrderRefund[WaybillNumber]!=''}
+                                {$OrderRefund[LogisticsCompany]}
+                                {$OrderRefund[WaybillNumber]}
+                                {else}
                                 <div class="form-line">
                                     <label for="" class="form-lab">*物流名称：</label>
                                     <div class="form-control return-reason">
@@ -225,32 +229,32 @@
                                         <input class="inp" name="logisticsNo" type="text">
                                     </div>
                                 </div>
+                                {/if}
+                                {if empty($OrderRefund[LogisticsCompany]) && empty($OrderRefund[WaybillNumber])}
                                 <div>
                                     <a id="SubmitLogistics" href="javascript:void(0)" data-id="{$OrderInfo[OrderID]}" onclick="pageObj.subLogistics(this)" class="btn btn-lg btn-primary">提交信息</a>
                                 </div>
+                                {/if}
                             </form>
-                            <div class="other">
-                                您还可以：<a href="JavaScript:void (0)" data-id="{$OrderInfo[OrderID]}">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="javascript:void (0)">申请介入</a>
-                            </div>
                         </div>
                     </div>
-                    <div class="return-logistics">
-                        <div class="panel">进度详情</div>
-                        <div class="message-list">
-                            <ul>
-                                <!--<li class="clearfix">-->
-                                    <!--<p class="img">-->
-                                        <!--<img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">-->
-                                    <!--</p>-->
-                                    <!--<div class="con">-->
-                                        <!--<p class="user">fewfwf - 买家</p>-->
-                                        <!--<p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>-->
-                                        <!--<p class="time">2017-4-30  16：50：22</p>-->
-                                    <!--</div>-->
-                                <!--</li>-->
-                            </ul>
-                        </div>
-                    </div>
+                    <!--<div class="return-logistics">-->
+                        <!--<div class="panel">进度详情</div>-->
+                        <!--<div class="message-list">-->
+                            <!--<ul>-->
+                                <!--&lt;!&ndash;<li class="clearfix">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<p class="img">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="con">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="user">fewfwf - 买家</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="time">2017-4-30  16：50：22</p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
                 {elseif $OrderInfo['Status']==8}
                 <div class="tab-con-l">

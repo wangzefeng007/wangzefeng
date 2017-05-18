@@ -387,6 +387,8 @@ class Member
         if ($OrderInfo['Status']<5){
             include template('MemberBuyOrderDetail1');
         }elseif ($OrderInfo['Status']>4 && $OrderInfo['Status']<9){
+            $MemberOrderRefundModule = new MemberOrderRefundModule();
+            $OrderRefund =$MemberOrderRefundModule->GetInfoByWhere( 'and OrderID = '.$OrderInfo['OrderID']);//退货信息
             include template('MemberBuyOrderDetail2');
         }
     }
@@ -418,6 +420,7 @@ class Member
             $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
         if ($UserInfo['Area'])
             $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+
             include template('MemberBuyOrderDetail2');
     }
     /**
@@ -482,10 +485,7 @@ class Member
             $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
         if ($UserInfo['Area'])
             $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
-        //退货地址
-        /**
-         * @desc 卖家同意退货退款（获取退货地址）
-         */
+        //卖家同意退货退款（获取退货地址）
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $Data['Data'] = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
         foreach ($Data['Data'] as $key=>$value){
