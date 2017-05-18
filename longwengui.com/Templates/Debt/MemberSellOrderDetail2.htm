@@ -8,7 +8,7 @@
             <span>当前位置 : <a>我的资产 </a> > <a>已买到的</a> > <span class="cur">退款申请</span></span>
         </div>
         <div class="tip">
-            退款订单号：201702280001
+            退款订单号：{$OrderInfo[OrderNumber]}
         </div>
         <div class="flow-wrap">
             <div class="flow-box clearfix">
@@ -256,7 +256,7 @@
                 <div class="form-line">
                     <label class="form-lab" for=""></label>
                     <div class="form-control">
-                        <a id="agree_confirm" onclick="pageObj.agreeConfirm(this)" href="javascript:void(0)" class="btn btn-primary btn-superbig">
+                        <a id="agree_confirm" data-id="{$OrderInfo[OrderID]}" onclick="pageObj.agreeConfirm(this)" href="javascript:void(0)" class="btn btn-primary btn-superbig">
                             确认退货
                         </a>
                         <a id="agree_cancel" class="btn btn-superbig ml-20 btn-default" href="javascript:void(0)">取消</a>

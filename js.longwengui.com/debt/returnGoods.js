@@ -121,28 +121,22 @@ var pageObj=$.extend({},pageObj,{
      * 确认同意退货申请
      */
     agreeConfirm:function(tar){
-        var $address=$(tar).parents(".return-box").find("input[name='address']");
-        var toAddress="";
-        var toName="";
-        var toPhone="";
-        $address.each(function(){
-           if($address.is(":checked")){
-               toAddress=$(this).sibling(".to_address").text();
-               toName=$(this).sibling(".to_name").text();
-               toPhone=$(this).sibling(".to_phone").text();
-           }
-        });
         var returnReason=$(tar).parents(".return-box").find("[name='agreeReason']").val();
+        var toAddress=$(tar).parents(".return-box").find(".to_address").text();
+        var toName=$(tar).parents(".return-box").find(".to_name").text();
+        var toPhone=$(tar).parents(".return-box").find(".to_phone").text();
+        var orderId=$("#agree_confirm").attr("data-id");
         if(returnReason==''){
             showMsg("请输入退款说明");
             return false;
         }else{
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/ajaxorder",
                 dataType: "json",
                 data:{
-                    "Intention":"AddAddress",
+                    "Intention":"AgreeRefund",
+                    "orderId":orderId,
                     "returnReason":returnReason,
                     "toAddress":toAddress,
                     "toName":toName,
