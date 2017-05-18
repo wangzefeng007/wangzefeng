@@ -291,7 +291,7 @@
                 <div class="form-line">
                     <label class="form-lab" for=""></label>
                     <div class="form-control">
-                        <button id="refuse_confirm" onclick="pageObj.refuseConfirm(this)" class="btn btn-primary btn-superbig">
+                        <button id="refuse_confirm" data-id="{$OrderInfo[OrderID]}" onclick="pageObj.refuseConfirm(this)" class="btn btn-primary btn-superbig">
                             确认拒绝
                         </button>
                         <a id="refuse_cancel" class="btn btn-superbig ml-20 btn-default" href="javascript:void(0)">取消</a>

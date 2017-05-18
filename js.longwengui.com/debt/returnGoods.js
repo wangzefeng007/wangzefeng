@@ -179,18 +179,21 @@ var pageObj=$.extend({},pageObj,{
     refuseConfirm:function(tar){
         var $refuseReason=$(tar).parents(".refuse-return").find("input[name='refuseReason']");
         var refuseReason="";
+        var orderId ="";
         $refuseReason.each(function(){
             if($(this).is(':checked')){
                 refuseReason=$(this).val();
+                orderId=$("#refuse_confirm").attr("data-id");
             }
         })
         $.ajax({
             type:"post",
-            url:"",
+            url:"/ajaxorder",
             dataType: "json",
             data:{
-                "Intention":"",
+                "Intention":"RefuseRefund",
                 "refuseReason":refuseReason,
+                "orderId":orderId,
             },
             beforeSend:　function(){
                 showLoading();
