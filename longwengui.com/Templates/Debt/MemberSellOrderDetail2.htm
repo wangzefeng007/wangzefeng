@@ -281,17 +281,17 @@
             <li>
                 <div class="m-radio fl">
                     <label type="radio">
-                        <input type="radio" name="refuseReason" value="">
+                        <input type="radio" class="otherReason" name="refuseReason" value="其它">
                         <i></i>其它：
                     </label>
                 </div>
-                <textarea class="textarea" name="refuseReasonText" id="" cols="30" rows="10"></textarea>
+                <textarea class="textarea" name="refuseReasonText" onchange="pageObj.writeReason(this)" id="" cols="30" rows="10"></textarea>
             </li>
             <li>
                 <div class="form-line">
                     <label class="form-lab" for=""></label>
                     <div class="form-control">
-                        <button id="refuse_confirm" class="btn btn-primary btn-superbig">
+                        <button id="refuse_confirm" onclick="pageObj.refuseConfirm(this)" class="btn btn-primary btn-superbig">
                             确认拒绝
                         </button>
                         <a id="refuse_cancel" class="btn btn-superbig ml-20 btn-default" href="javascript:void(0)">取消</a>

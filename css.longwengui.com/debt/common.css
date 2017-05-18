@@ -2173,6 +2173,11 @@ body .layui-layer-title{
 body .layui-layer-btn{
   text-align: center;
 }
+body .layui-layer-btn .layui-layer-btn0 {
+  border-color: #35bdfc;
+  background-color: #35bdfc;
+  color: #fff;
+}
 @keyframes myfirst
 {
   from {transform: rotate(0);}
