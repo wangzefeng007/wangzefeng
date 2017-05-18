@@ -258,6 +258,7 @@ class AjaxOrder
             $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
             if ($OrderInfo){
                 $Data['Status']= 3;
+                $Data['UpdateTime'] = time();
                 $Data['LogisticsCompany']= trim($_POST['logisticsName']);
                 $Data['WaybillNumber']= trim($_POST['logisticsNo']);
                 $Result = $MemberProductOrderModule->UpdateInfoByKeyID($Data,$OrderID);
@@ -296,7 +297,7 @@ class AjaxOrder
                 $Data['ImageJson']= json_encode($_POST['ImageJson'],JSON_UNESCAPED_UNICODE);//凭证
                 global $DB;
                 $DB->query("BEGIN");//开始事务定义
-                $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5),$OrderID);
+                $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>5,'UpdateTime'=>$Data['AddTime']),$OrderID);
                 if ($UpdateStatus){
                     $DB->query("COMMIT");//执行事务
                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
@@ -342,7 +343,7 @@ class AjaxOrder
                 $Data['Tel'] =trim($_POST['toPhone']);
                 global $DB;
                 $DB->query("BEGIN");//开始事务定义
-                $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>6),$OrderID);
+                $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>6,'UpdateTime'=>$Data['AddTime']),$OrderID);
                 if ($UpdateStatus){
                     $DB->query("COMMIT");//执行事务
                     $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
@@ -384,7 +385,7 @@ class AjaxOrder
                  $Data['Remarks'] =trim($_POST['returnReason']);
                  global $DB;
                  $DB->query("BEGIN");//开始事务定义
-                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>7),$OrderID);
+                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>7,'UpdateTime'=>$Data['AddTime']),$OrderID);
                  if ($UpdateStatus){
                      $DB->query("COMMIT");//执行事务
                      $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);

@@ -459,6 +459,8 @@ class Member
         $MemberProductOrderModule = new MemberProductOrderModule();
         $OrderNumber = trim($_GET['No']);
         $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        $OrderInfo['EndTime'] = $OrderInfo['UpdateTime']+1296000;//倒计时
+        $NowTime = time();
         if (!$OrderInfo){
             alertandback("不存在该订单！");
         }

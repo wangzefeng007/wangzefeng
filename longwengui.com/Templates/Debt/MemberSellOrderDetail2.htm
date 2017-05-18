@@ -236,11 +236,11 @@
                     <label for="" class="form-lab">退货地址：</label>
                     <div class="form-control address-list">
                         <ul>
-                            {loop  $Data['Data'] $lists}
+                            {loop  $Data['Data'] $key $lists}
                             <li>
                                 <div class="m-radio">
                                     <label type="radio">
-                                        <input type="radio" name="address" value="">
+                                        <input type="radio" name="address" value="" {if $lists[IsDefault]==1 ||$key==0}checked{/if}>
                                         <i></i><span class="to_address">{$lists[Province]}{$lists[City]}{$lists[Area]}{$lists[Address]}</span>
                                         (<span class="to_name">{$lists[Name]}</span>) &nbsp;<span class="to_phone">{$lists[Mobile]}</span>
                                     </label>
@@ -307,8 +307,8 @@
 {template Footer}
 <script>
     var pageObj={
-        endDate:"1494822778",
-        nowDate:"1494812778"
+        endDate:"{$OrderInfo[EndTime]}",
+        nowDate:"{$NowTime}"
     }
 </script>
 <script src='{echo JsURL}/debt/returnGoods.js'></script>
