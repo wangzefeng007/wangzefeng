@@ -27,7 +27,7 @@ class Asset
         if ($S ==1){
             $MysqlWhere = ' and `Status` = 2 and `S1` =1 ';
         }elseif($S ==2){
-            $MysqlWhere = ' and `Status` = 2 and `S1` =2 ';
+            $MysqlWhere = ' and `Status` = 2 and `S2` =1 ';
         }else{
             $MysqlWhere = ' and `Status` = 2 ';
         }
@@ -247,7 +247,7 @@ class Asset
                     }elseif ($result['err_msg']=='订单已支付'&& $result['result_code']=='1'){
                         //更新库存量
                         $MemberAssetInfoModule = new MemberAssetInfoModule();
-                        $MemberAssetInfoModule->SetInventory($Order['AssetID'],$Order['Num']);
+                        $MemberAssetInfoModule->SetInventory($Order['ProductID'],$Order['Num']);
                         //添加订单日志
                         $OrderLogModule = new MemberOrderLogModule();
                         $LogMessage ='买家已付款，付款方式微信支付';
