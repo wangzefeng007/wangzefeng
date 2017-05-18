@@ -1,6 +1,6 @@
 <?php
 class MultiUpload{
-    public $maxSize = 2097152;//Byte 2M
+    public $maxSize = 10485760;//Byte 2M
     public $allowExts=array('.jpg','.jpeg','.gif','.png','.bmp','.rar','.zip','.pdf','.swf');
     public  $error= array();
     private $count =0;
@@ -9,7 +9,7 @@ class MultiUpload{
     public  $uploadReplace=0;
     public $thumbFile =	'';
     public $thumbMaxWidth=100;
-    public $thumbMaxHeight=100;
+    public $thumbMaxHeight=100000;
     public $thumbPrefix = 's_';
     public $thumbSuffix  =  '';
     public $imageClassPath = '@.ORG.Image';

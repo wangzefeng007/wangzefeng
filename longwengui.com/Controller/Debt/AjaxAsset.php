@@ -64,7 +64,7 @@ class AjaxAsset
         $Data['Status'] =1;
             $ImageArr=array();
             $savePath = '/Uploads/Debt/'.date('Ymd').'/';
-            preg_match_all('/<img.*src="(.*)".*>/isU',$AjaxData['transDetail'],$ImageArr);
+            preg_match_all('/<img.*src="(.*)".*>/is',$AjaxData['transDetail'],$ImageArr);
             if(count($ImageArr[1])){
                 $NewImgArr=array();
                 foreach($ImageArr[1] as $key=>$ImgUrl){
