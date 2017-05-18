@@ -96,11 +96,12 @@
                                 <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt('{$lists[OrderID]}')" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
                                 <!--已签收-->
                                 {elseif $lists[Status]==4}
+                                <p><a class="operate-txt" href="/member/buyorderrefund/?No={$lists[OrderNumber]}" title="申请退款">申请退款</a></p>
+
                                 <!--已签收15天之后申请退款去掉 改为 删除-->
                                 <!--{if $lists[UpdateTime]>$CurrentTime}-->
-                                <p><a onclick="pageObj.delOrder('{$lists[OrderID]}')" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>
+                                <!--<p><a onclick="pageObj.delOrder('{$lists[OrderID]}')" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>-->
 
-                                <!--<p><a class="operate-txt" href="/member/buyorderrefund/?No={$lists[OrderNumber]}" title="申请退款">申请退款</a></p>-->
                                 <!--{/if}-->
                                 <!--申请退款-->
                                 {elseif $lists[Status]==5}
