@@ -442,11 +442,11 @@ class AjaxOrder
                              $result_json = array('ResultCode' => 200, 'Message' => '提交物流信息成功');
                          }else{
                              $DB->query("ROLLBACK");//判断当执行失败时回滚
-                             $result_json = array('ResultCode' => 102, 'Message' => '不可重复提交');
+                             $result_json = array('ResultCode' => 102, 'Message' => '请勿重复提交');
                          }
                      }else{
                          $DB->query("ROLLBACK");//判断当执行失败时回滚
-                         $result_json = array('ResultCode' => 103, 'Message' => '找不到该订单');
+                         $result_json = array('ResultCode' => 103, 'Message' => '已提交物流信息，请勿重复提交');
                      }
                  }else{
                      $DB->query("ROLLBACK");//判断当执行失败时回滚
