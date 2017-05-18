@@ -108,7 +108,6 @@ var pageObj=$.extend({},pageObj,{
             type: 1,
             area: ['700px','550px'],
             shadeClose: true,
-            //btn:['确认发送','取消'],
             content: $("#agree-section").html()
         });
         /*$(".agree-return").on("click","#agree_confirm",function(){
@@ -171,6 +170,50 @@ var pageObj=$.extend({},pageObj,{
         $(".refuse-return").on("click","#refuse_cancel",function(){
             layer.close(index);
         });
+    },
+    /**
+     * 确认拒绝退货申请
+     */
+    refuseConfirm:function(tar){
+        var $refuseReason=$(tar).parents(".refuse-return").find("input[name='refuseReason']");
+        var refuseReason="";
+        $refuseReason.each(function(){
+            if($(this).is(':checked')){
+                refuseReason=$(this).val();
+            }
+        })
+        $.ajax({
+            type:"post",
+            url:"",
+            dataType: "json",
+            data:{
+                "Intention":"",
+                "refuseReason":refuseReason,
+            },
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    showMsg(data.Message);
+                    location.reload();
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        })
+    },
+    /**
+     * 填写原因
+     */
+    writeReason:function(tar){
+        var thisVal=$(tar).val();
+        if(thisVal.length==0){
+            $(tar).parents(".refuse-return").find(".otherReason").val("其它");
+        }else{
+            $(tar).parents(".refuse-return").find(".otherReason").val(thisVal);
+        }
     },
     /**
      * 页面初始化方法
