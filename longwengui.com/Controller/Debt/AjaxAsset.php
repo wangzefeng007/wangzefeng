@@ -9,7 +9,7 @@ class AjaxAsset
     {
     }
     public function Index()
-    {var_dump($_POST);exit;
+    {
         $Intention = trim($_POST ['Intention']);
         if ($Intention == '') {
             $json_result = array(
@@ -73,6 +73,7 @@ class AjaxAsset
                 }
             }
             $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
+            $Data['Content']= addslashes($Data['Content']);
         $AssetID = $MemberAssetInfoModule->InsertInfo($Data);
             if ($AssetID){
                 foreach ($AjaxData['imageList'] as $key =>$value){
@@ -86,7 +87,7 @@ class AjaxAsset
                 if (!$InsertImage){
                     $result_json = array('ResultCode'=>102,'Message'=>'图片上传失败！');
                 }else{
-                    $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','url'=>'/asset/audit');
+                    $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','Url'=>'/asset/audit');
                 }
             }else{
                 $result_json = array('ResultCode'=>103,'Message'=>'发布失败！');
