@@ -238,39 +238,26 @@
                             </form>
                         </div>
                     </div>
-                    <!--<div class="return-logistics">-->
-                        <!--<div class="panel">进度详情</div>-->
-                        <!--<div class="message-list">-->
-                            <!--<ul>-->
-                                <!--&lt;!&ndash;<li class="clearfix">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<p class="img">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<div class="con">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<p class="user">fewfwf - 买家</p>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<p class="time">2017-4-30  16：50：22</p>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
                 </div>
                 {elseif $OrderInfo['Status']==8}
                 <div class="tab-con-l">
-                    <div class="return-goods-box">
-                        <div class="title">
-                            等待卖家收货并退款
-                        </div>
+                    <div class="return-money-success">
+                        <p class="title">退款成功</p>
                         <div class="con">
-                            <p>
-                                *如果卖家收到货，并验货无误，将操作退款给您。
-                            </p>
-                            <p>
-                                *如果卖家在09天23时59分59秒内未处理，将自动退款给您。（所有退款都返还到个人钱包）
-                            </p>
-                            <div class="other">
-                                您还可以：<a href="#">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                            <div class="detail">
+                                退款金额：{$OrderInfo[TotalAmount]}元，<a href="#">查看我的钱包</a>
+                            </div>
+                            <div class="table">
+                                <div class="th clearfix">
+                                    <div class="td col-1">退款明细</div>
+                                    <div class="td col-2">金额（元）</div>
+                                    <div class="td col-3">状态</div>
+                                </div>
+                                <div class="tr clearfix">
+                                    <div class="td col-1">返回我的钱包</div>
+                                    <div class="td col-2">{$OrderInfo[TotalAmount]}</div>
+                                    <div class="td col-3">已退回我的钱包余额</div>
+                                </div>
                             </div>
                         </div>
                     </div>

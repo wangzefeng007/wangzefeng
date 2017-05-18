@@ -74,8 +74,17 @@
                         </div>
                     </div>
                     {elseif $OrderInfo[Status]==6}
+
                     {elseif $OrderInfo[Status]==7}
                     {elseif $OrderInfo[Status]==8}
+                    <div class="return-goods-box">
+                        <div class="title">
+                            退款成功
+                        </div>
+                        <div class="con">
+                            <p>*退款金额：{$OrderInfo[TotalAmount]}元</p>
+                        </div>
+                    </div>
                     {/if}
                     <!--<div class="return-logistics">-->
                         <!--<div class="panel">进度详情</div>-->
