@@ -113,6 +113,7 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
         $Nav='asset';
         $ID = $_GET['id'];
         $Num = $_GET['num'];
@@ -123,6 +124,7 @@ class Asset
         $AmountMoney =number_format($AssetInfo['AssetsAmount']-$Money, 2);//剩余资产金额
         $TotalAmount =number_format($Money+$AssetInfo['Freight'], 2);//合计金额
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$AssetInfo['AssetID'].' and IsDefault = 1');
         if (!empty($AddressList)){
             $MemberAreaModule = new MemberAreaModule();
             foreach ($AddressList as $key=>$value){
