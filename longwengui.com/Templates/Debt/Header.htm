@@ -40,25 +40,40 @@
         <div class="nav-wrap">
             <ul class="clearfix">
                 <li {if $Nav=='index'}class="nav-active"{/if}>
-                    <a href="{echo WEB_MAIN_URL}">首页</a>
+                    <a href="{echo WEB_MAIN_URL}">
+                        首页
+                        <p class="hover hover-index"></p>
+                    </a>
                 </li>
-                <li {if $Nav==''}class="nav-active"{/if}>
-                    <a href="{echo WEB_MAIN_URL}">律师咨询</a>
+                <li {if $Nav=='lawyer'}class="nav-active"{/if}>
+                    <a href="{echo WEB_MAIN_URL}">律师咨询
+                        <p class="hover hover-lawyer"></p>
+                    </a>
                 </li>
                 <li {if $Nav=='asset'}class="nav-active"{/if}>
-                    <a href="/asset/lists/">资产商城</a>
+                    <a href="/asset/lists/">资产商城
+                        <p class="hover hover-asset"></p>
+                    </a>
                 </li>
                 <li {if $Nav=='debt'}class="nav-active"{/if}>
-                    <a href="/debtlists/">债务催收</a>
+                    <a href="/debtlists/">债务催收
+                        <p class="hover hover-debt"></p>
+                    </a>
                 </li>
                 <li {if $Nav=='rewordlists'}class="nav-active"{/if}>
-                    <a href="/reword/">线索悬赏</a>
+                    <a href="/reword/">线索悬赏
+                        <p class="hover hover-reword"></p>
+                    </a>
                 </li>
                 <li {if $Nav=='find'}class="nav-active"{/if}>
-                    <a href="/choicefind/">寻找处置方</a>
+                    <a href="/choicefind/">寻找处置方
+                        <p class="hover hover-find"></p>
+                    </a>
                 </li>
                 <li {if $Nav=='deadbeat'}class="nav-active"{/if}>
-                    <a href="/deadbeat/">查询老赖</a>
+                    <a href="/deadbeat/">查询老赖
+                        <p class="hover hover-deadbeat"></p>
+                    </a>
                 </li>
             </ul>
         </div>

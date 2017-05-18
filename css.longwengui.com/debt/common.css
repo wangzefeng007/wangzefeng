@@ -810,13 +810,63 @@ a{
   float: right;
 }
 .header .nav-wrap li{
+  position: relative;
   float: left;
   height:30px;
+  width:100px;
   line-height:30px;
-  padding:38px 22px;
+  padding:38px 0;
+  text-align: center;
 }
 .header .nav-wrap li a{
+  display: block;
   color: #fff;
+}
+.header .nav-wrap li .hover{
+  position: absolute;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+ /* -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;*/
+
+}
+.header .nav-wrap li:hover .hover{
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.hover-index{
+   background: #d5d1d0 url(images/home-hover.png) no-repeat center;
+ }
+.hover-lawyer{
+  background: #d5d1d0 url(images/lawyer-hover.png) no-repeat center;
+}
+.hover-asset{
+  background: #d5d1d0 url(images/asset-hover.png) no-repeat center;
+}
+.hover-debt{
+  background: #d5d1d0 url(images/debt-hover.png) no-repeat center;
+}
+.hover-reword{
+  background: #d5d1d0 url(images/reword-hover.png) no-repeat center;
+}
+.hover-find{
+  background: #d5d1d0 url(images/find-hover.png) no-repeat center;
+}
+.hover-deadbeat{
+  background: #d5d1d0 url(images/deadbeat-hover.png) no-repeat center;
 }
 .header .nav-wrap li.nav-active a{
   color: #35bdfc;
