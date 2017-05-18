@@ -211,6 +211,7 @@ var pageObj=$.extend({},pageObj,{
     subOrder:function () {
         var Num = GetQueryString("num");
         var ID = GetQueryString("id");
+        var Money = GetQueryString("money");
         var AddressId=$(".address-box.active").find(".edit").attr("data-id");
         if(!AddressId){
             showMsg("收货地址不能为空");
@@ -220,7 +221,7 @@ var pageObj=$.extend({},pageObj,{
             'AddressId':AddressId, //收货地址ID
             'ProductID':ID, //产品ID
             'Number':Num, //购买数量
-            'Money':$("#Js_order").attr("data-money") //订单总金额
+            'Money':Money //订单总金额
 
         };
         $.ajax({

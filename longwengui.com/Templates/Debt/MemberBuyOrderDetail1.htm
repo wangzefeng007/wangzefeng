@@ -36,7 +36,7 @@
                 {elseif $OrderInfo['Status']==3}
                 <p class="h3">当前订单状态：订单已完成，买家已发货，请查看页面下方物流信息了解上品情况</p>
                 <p class="h4">
-                    1、如果您已经收到货，您可以点击 <a class="btn-link" onclick="pageObj.indeedReceipt(this)" href="javascript:void (0)">确认收货</a> 打款给卖家
+                    1、如果您已经收到货，您可以点击 <a class="btn-link" onclick="pageObj.indeedReceipt('{$OrderInfo[OrderID]}')" href="javascript:void (0)">确认收货</a> 打款给卖家
                 </p>
                 <p class="h3 mt-10">物流信息</p>
                 <div class="ems-box">
@@ -44,10 +44,10 @@
                         发货方式：快递
                     </p>
                     <p>
-                        物流公司：EMS
+                        物流公司：{$OrderInfo['LogisticsCompany']}
                     </p>
                     <p>
-                        快递单号：15945354799852525644858
+                        快递单号：{$OrderInfo['WaybillNumber']}
                     </p>
                 </div>
                 {elseif $OrderInfo['Status']==4}
@@ -119,7 +119,7 @@
                     {elseif $OrderInfo['Status']==2}
                     <a class="btn btn-primary" onclick="pageObj.remind(this)" href="javascript:void (0)">提醒发货</a>
                     {elseif $OrderInfo['Status']==3}
-                    <a class="btn btn-primary" onclick="pageObj.indeedReceipt(this)" href="javascript:void (0)">确认收货</a>
+                    <a class="btn btn-primary" onclick="pageObj.indeedReceipt('{$OrderInfo[OrderID]}')" href="javascript:void (0)">确认收货</a>
                     {/if}
                 </div>
             </div>

@@ -34,9 +34,8 @@ var pageObj=$.extend({},pageObj,{
      * 确认签收
      * @param tar
      */
-    indeedReceipt:function(tar){
+    indeedReceipt:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('是否确认签收？', {
             btn: ['确定','取消'] //按钮
         }, function(){

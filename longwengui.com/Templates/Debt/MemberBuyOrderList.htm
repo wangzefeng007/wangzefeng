@@ -93,7 +93,7 @@
                                 <p><a class="btn btn-primary" onclick="pageObj.remind(this)" id="remind" href="javascript:void(0);" title="提醒卖家发货">提醒卖家发货</a></p>
                                 <!--待签收-->
                                 {elseif $lists[Status]==3}
-                                <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt(this)" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.indeedReceipt('{$OrderInfo[OrderID]}')" id="receipt" href="javascript:void(0);" title="确认签收">确认签收</a></p>
                                 <!--已签收-->
                                 {elseif $lists[Status]==4}
                                 <!--已签收15天之后申请退款去掉 改为 删除-->
@@ -157,7 +157,7 @@
                             寻找处置方
                         </div>
                         <div class="lin" onclick="go('/debt/transfer/')">
-                            资产转让
+                            发布资产
                         </div>
                         <div class="lin" onclick="go('/reword/publish/')">
                             发布悬赏
