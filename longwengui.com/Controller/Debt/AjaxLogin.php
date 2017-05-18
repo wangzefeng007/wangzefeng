@@ -344,7 +344,8 @@ class AjaxLogin
     public function AddCardImage(){
         //上传图片
         $ImgBaseData = $_POST['ImgBaseData'];
-        $ImageUrl = SendToImgServ($ImgBaseData);
+        $savePath = '/Uploads/Debt/'.date('Ymd').'/';
+        $ImageUrl = SendToImgServ($savePath,$ImgBaseData);
         $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
         if ($Data['ImageUrl'] !==''){
             $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
@@ -362,7 +363,8 @@ class AjaxLogin
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID']);
         $ImgBaseData = $_POST['ImgBaseData'];
-        $ImageUrl = SendToImgServ($ImgBaseData);
+        $savePath = '/Uploads/Debt/'.date('Ymd').'/';
+        $ImageUrl = SendToImgServ($savePath,$ImgBaseData);
         $Data['Avatar'] = $ImageUrl ? $ImageUrl : '';
         if ($Data['Avatar'] !==''){
             $UpdateAvatar = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID =' .$_SESSION['UserID']);

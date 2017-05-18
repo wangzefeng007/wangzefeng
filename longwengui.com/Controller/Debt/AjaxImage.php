@@ -129,7 +129,8 @@ class AjaxImage
     }
     public function AddImage(){
         $ImgBaseData = $_POST['ImgBaseData'];
-        $ImageUrl = SendToImgServ($ImgBaseData);
+        $savePath = '/Uploads/Debt/'.date('Ymd').'/';
+        $ImageUrl = SendToImgServ($savePath,$ImgBaseData);
         $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
         if ($Data['ImageUrl'] !==''){
             $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);

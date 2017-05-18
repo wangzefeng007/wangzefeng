@@ -56,15 +56,15 @@ class MultiUpload{
         }
         return $this->savedName;
     }
-    public function ImageUpload($ImgText=''){
+    public function ImageUpload($savePath ='',$ImgText=''){
         $filename = 'jpg';
         $saveName = $this->getSaveName($filename);
-        $savedPath = $this->savePath.$saveName;
+        $savedPath = $savePath.$saveName;
         $Img = explode(',',$ImgText);
         $tmp_name = $Img[1];
-        if (!file_exists(SYSTEM_ROOTPATH.$this->savePath) && !mkdir(SYSTEM_ROOTPATH.$this->savePath, 0777, true)) {
+        if (!file_exists(SYSTEM_ROOTPATH.$savePath) && !mkdir(SYSTEM_ROOTPATH.$savePath, 0777, true)) {
             return false;
-        } else if (!is_writeable(SYSTEM_ROOTPATH.$this->savePath)) {
+        } else if (!is_writeable(SYSTEM_ROOTPATH.$savePath)) {
             return false;
         }
         $PushImage = file_put_contents(SYSTEM_ROOTPATH.$savedPath, base64_decode($tmp_name));

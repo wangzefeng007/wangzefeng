@@ -733,7 +733,8 @@ class Ajax
         $MemberDebtImageModule = new MemberDebtImageModule();
         //上传图片
         $ImgBaseData = $_POST['ImgBaseData'];
-        $ImageUrl = SendToImgServ($ImgBaseData);
+        $savePath = '/Uploads/Debt/'.date('Ymd').'/';
+        $ImageUrl = SendToImgServ($savePath,$ImgBaseData);
         $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
         $Data['IsDefault'] = 0;
         if ($Data['ImageUrl'] !==''){
@@ -821,7 +822,8 @@ class Ajax
         $MemberRewardImageModule = new MemberRewardImageModule();
         //上传图片
         $ImgBaseData = $_POST['ImgBaseData'];
-        $ImageUrl = SendToImgServ($ImgBaseData);
+        $savePath = '/Uploads/Debt/'.date('Ymd').'/';
+        $ImageUrl = SendToImgServ($savePath,$ImgBaseData);
         $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
         $Data['IsDefault'] = 0;
         if ($Data['ImageUrl'] !==''){

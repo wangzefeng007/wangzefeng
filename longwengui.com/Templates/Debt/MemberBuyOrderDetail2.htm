@@ -144,26 +144,26 @@
                             <p>*如有人以“卡单、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱款被骗。</p>
                         </div>
                         <div class="other">
-                            您还可以：<a href="JavaScript:void (0)" onclick="pageObj.cancelApply(this)">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
+                            您还可以：<a href="JavaScript:void (0)" onclick="pageObj.cancelApply({$OrderInfo['OrderID']})">撤销退货申请</a>&emsp;<span>|</span>&emsp;<a href="#">申请介入</a>
                         </div>
                     </div>
-                    <div class="return-logistics">
-                        <div class="panel">进度详情</div>
-                        <div class="message-list">
-                            <ul>
-                                <li class="clearfix">
-                                    <p class="img">
-                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                    </p>
-                                    <div class="con">
-                                        <p class="user">fewfwf - 买家</p>
-                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
-                                        <p class="time">2017-4-30  16：50：22</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!--<div class="return-logistics">-->
+                        <!--<div class="panel">进度详情</div>-->
+                        <!--<div class="message-list">-->
+                            <!--<ul>-->
+                                <!--<li class="clearfix">-->
+                                    <!--<p class="img">-->
+                                        <!--<img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">-->
+                                    <!--</p>-->
+                                    <!--<div class="con">-->
+                                        <!--<p class="user">fewfwf - 买家</p>-->
+                                        <!--<p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>-->
+                                        <!--<p class="time">2017-4-30  16：50：22</p>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
                 {elseif $OrderInfo['Status']==6}
                 <div class="tab-con-l">

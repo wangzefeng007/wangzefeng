@@ -9,7 +9,7 @@ class AjaxAsset
     {
     }
     public function Index()
-    {
+    {var_dump($_POST);exit;
         $Intention = trim($_POST ['Intention']);
         if ($Intention == '') {
             $json_result = array(
@@ -62,6 +62,17 @@ class AjaxAsset
         $Data['UserID'] =  $_SESSION['UserID'];
         $Data['AddTime'] = time();
         $Data['Status'] =1;
+            $ImageArr=array();
+            $savePath = '/Uploads/Debt/'.date('Ymd').'/';
+            preg_match_all('/<img.*src="(.*)".*>/isU',$AjaxData['transDetail'],$ImageArr);
+            if(count($ImageArr[1])){
+                $NewImgArr=array();
+                foreach($ImageArr[1] as $key=>$ImgUrl){
+                    $NewImgArr[$key] = SendToImgServ($savePath,$ImgUrl);
+                    $NewImgTagArr[$key]="<img src=\"{$NewImgArr[$key]}\">";
+                }
+            }
+            $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
         $AssetID = $MemberAssetInfoModule->InsertInfo($Data);
             if ($AssetID){
                 foreach ($AjaxData['imageList'] as $key =>$value){
@@ -75,7 +86,7 @@ class AjaxAsset
                 if (!$InsertImage){
                     $result_json = array('ResultCode'=>102,'Message'=>'图片上传失败！');
                 }else{
-                    $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','url'=>'');
+                    $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','url'=>'/asset/audit');
                 }
             }else{
                 $result_json = array('ResultCode'=>103,'Message'=>'发布失败！');

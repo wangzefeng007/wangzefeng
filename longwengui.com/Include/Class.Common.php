@@ -398,12 +398,11 @@ function WriteTopPicture($Picture = '')
 
 // ---------------------------图片服务器操作start--------------------------------
 // 上传到图片服务器
-function SendToImgServ($ImgText)
+function SendToImgServ($savePath,$ImgText)
 {
-
     include SYSTEM_ROOTPATH . '/Include/MultiUpload.class.php';
     $Upload = new MultiUpload('Image');
-    $ImageUrl = $Upload->ImageUpload($ImgText);
+    $ImageUrl = $Upload->ImageUpload($savePath,$ImgText);
     return $ImageUrl;
 }
 

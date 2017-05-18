@@ -81,6 +81,12 @@ class Asset
         include template('AssetPublish');
     }
     /**
+     * @desc  发布资产转让
+     */
+    public function Audit(){
+        include template('AssetAudit');
+    }
+    /**
      * @desc  资产转让详情页
      */
     public function Details(){
