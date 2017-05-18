@@ -203,8 +203,22 @@
                                     </div>
                                 </div>
                                 {if $OrderRefund[LogisticsCompany]!='' && $OrderRefund[WaybillNumber]!=''}
-                                {$OrderRefund[LogisticsCompany]}
-                                {$OrderRefund[WaybillNumber]}
+                                <div class="form-line">
+                                    <label for="" class="form-lab" style="width: 120px;">*退货物流名称：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            {$OrderRefund[LogisticsCompany]}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <label for="" class="form-lab" style="width: 120px;">*退货物流单号：</label>
+                                    <div class="form-control">
+                                        <div class="form-txt">
+                                            {$OrderRefund[WaybillNumber]}
+                                        </div>
+                                    </div>
+                                </div>
                                 {else}
                                 <div class="form-line">
                                     <label for="" class="form-lab">*物流名称：</label>
