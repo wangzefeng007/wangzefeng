@@ -156,3 +156,85 @@
   background-color: #35bdfc;
   border: 0;
 }
+
+
+.form-line{
+  min-height:32px;
+  margin-bottom:20px;
+}
+.form-line .form-lab{
+  display: inline-block;
+  float: left;
+  width:70px;
+  margin-right:8px;
+  color: #353535;
+  line-height:32px;
+  text-align: right;
+  min-height:32px;
+}
+.form-line .form-lab small{
+  font-size:12px;
+  color: #9a9a9a;
+}
+.form-line .form-control{
+  display: inline-block;
+}
+.form-line .form-control .textarea{
+  width: 460px;
+  height: 80px;
+  margin-top:10px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+.form-txt{
+  min-height:32px;
+  line-height:32px;
+}
+.return-goods-box{
+  color: #353535;
+}
+.return-goods-box .form-line{
+  margin-bottom:10px;
+}
+.return-goods-box .title{
+  padding: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+.return-goods-box .form-line .form-lab{
+  width:80px;
+}
+.return-goods-box .title .has-time{
+  margin-left:40px;
+  color: #35bdfc;
+  font-size:16px;
+  font-weight:normal;
+}
+.icon-clack{
+  width:20px;
+  height:20px;
+  background: url("images/icon-clack.png") no-repeat center;
+}
+.return-goods-box .title .has-time i{
+  vertical-align: top;
+  margin-right:2px;
+}
+.return-goods-box .title .tips{
+  padding:0;
+  margin-right:30px;
+  color: #999;
+  float: right;
+  font-size:14px;
+  line-height: 20px;
+  font-weight: normal;
+}
+
+.return-goods-box .other{
+  margin:30px 0 10px;
+  padding:10px 0;
+  border-top:dashed 1px #cbcbcb;
+}
+.return-goods-box .con p{
+  padding:10px 0;
+}

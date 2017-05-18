@@ -98,6 +98,39 @@ var pageObj=$.extend({},pageObj,{
         }
     },
     /**
+     * 确认收货并退款
+     * @param tar
+     */
+    confirmGoodsReceipt:function(tar){
+        var _this=this;
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
+        layer.confirm('请确认是否收到退货并同意退款？', {
+            btn: ['确定','取消'] //按钮
+        },function(){
+            $.ajax({
+                type:"post",
+                url:"/ajaxorder",
+                dataType: "json",
+                data:{
+                    "Intention":"",
+                    "orderId":orderId
+                },
+                beforeSend:　function(){
+                    showLoading();
+                },success: function(data){
+                    if(data.ResultCode == 200){
+                        showMsg(data.Message);
+                        location.reload();
+                    }else{
+                        showMsg(data.Message);
+                    }
+                },complete: function(){
+                    closeLoading();
+                }
+            })
+        });
+    },
+    /**
      * 进入页面初始化方法
      */
     init:function() {

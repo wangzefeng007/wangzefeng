@@ -76,6 +76,52 @@ var pageObj=$.extend({},pageObj,{
         });
     },
     /**
+     * 立即退货
+     * @param tar
+     */
+    immediatelyReturnGoods:function(tar){
+        var _this=this;
+        var orderId=$(tar).parents(".operate-td").attr("data-id");
+        var orderObj={
+            orderId:orderId
+        };
+        $.ajax({
+            type:"post",
+            url:"/ajaxorder",
+            dataType: "json",
+            async:false,
+            data:{
+                "Intention":"GetOrderAddress",
+                "orderId":orderId
+            },
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    orderObj=$.extend({},orderObj,data.Data);
+                    $("#confirmReturnGoodsHtml").empty();
+                    $('#confirmReturnGoodsTemp').tmpl(orderObj).appendTo("#confirmReturnGoodsHtml");
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        });
+        var index = layer.open({
+            title:'退货并填写物流信息',
+            type: 1,
+            area: ['700px','520px'],
+            shadeClose: true,
+            content: $("#confirmReturnGoodsHtml").html()
+        });
+        //物流名称赋值
+        addEventToDropdown("logisticsName",function(tar){
+            $(tar).parent().siblings("span").text($(tar).text());
+            $(tar).parent().siblings("input").val($(tar).text());
+        });
+    },
+    /**
      * 确认退款
      * @param tar
      */
