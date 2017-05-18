@@ -5,29 +5,29 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>我的资产 </a> > <a>已买到的</a> > <span class="cur">退款申请</span></span>
+            <span>当前位置 : <a>我的资产 </a> > <a href="/member/sellorderlist/">已卖出的</a> > <span class="cur">退款申请</span></span>
         </div>
         <div class="tip">
             退款订单号：{$OrderInfo[OrderNumber]}
         </div>
         <div class="flow-wrap">
             <div class="flow-box clearfix">
-                <div class="flow over first">
+                <div class="flow {if $OrderInfo[Status]>4 && $OrderInfo[Status]<9}over{/if} first">
                     <span>1</span>
                     <p>买家申请退货退款</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow over">
+                <div class="flow {if $OrderInfo[Status]>4 && $OrderInfo[Status]<9}over{/if}">
                     <span>2</span>
                     <p>卖家处理退款申请</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo[Status]>5 && $OrderInfo[Status]<9}over{/if}">
                     <span>3</span>
                     <p>买家退货给卖家</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow">
+                <div class="flow {if $OrderInfo[Status]>7 && $OrderInfo[Status]<9}over{/if}">
                     <span>4</span>
                     <p>卖家确认收货，退款完成</p>
                     <i class="triangle"></i>
@@ -38,6 +38,7 @@
         <div class="tab-wrap">
             <div class="tab-con clearfix">
                 <div class="tab-con-l">
+                    {if $OrderInfo[Status]==5}
                     <div class="return-goods-box">
                         <div class="title">
                             请处理退货退款申请
@@ -61,30 +62,25 @@
                             </div>
                         </div>
                     </div>
+                    {elseif $OrderInfo[Status]==6}
+                    <div class="return-goods-box">
+                        <div class="title">
+                            请等待买家退货...
+                        </div>
+                        <div class="con">
+                            <p>*收到买家退货时，请及时验货。</p>
+                            <p>*如果买家在7天内未退货，退款退货申请将自动取消。</p>
+                            <p>*请核实您的钱包余额，确认额度满足退款金额（{$OrderInfo[TotalAmount]}）。</p>
+                        </div>
+                    </div>
+                    {elseif $OrderInfo[Status]==6}
+                    {elseif $OrderInfo[Status]==7}
+                    {elseif $OrderInfo[Status]==8}
+                    {/if}
                     <div class="return-logistics">
                         <div class="panel">进度详情</div>
                         <div class="message-list">
                             <ul>
-                                <li class="clearfix">
-                                    <p class="img">
-                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                    </p>
-                                    <div class="con">
-                                        <p class="user">fewfwf - 买家</p>
-                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
-                                        <p class="time">2017-4-30  16：50：22</p>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <p class="img">
-                                        <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                    </p>
-                                    <div class="con">
-                                        <p class="user">fewfwf - 买家</p>
-                                        <p class="msg">买家退货，物流公司顺丰，单号为115151615616</p>
-                                        <p class="time">2017-4-30  16：50：22</p>
-                                    </div>
-                                </li>
                                 <li class="clearfix">
                                     <p class="img">
                                         <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
