@@ -209,3 +209,11 @@ i{
 .pagination-wrap{
     margin-bottom:90px;
 }
+
+.wrap .result-list .no-data {
+    text-align: center;
+    display: block;
+    line-height: 428px;
+    height: 428px;
+    padding-top: 50px;
+}
