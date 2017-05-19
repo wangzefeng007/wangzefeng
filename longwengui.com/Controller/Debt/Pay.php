@@ -82,16 +82,33 @@ class Pay
             }
         } else {
             if ($AliPay->GetPayStatus($_GET) === 'true') {
-
                 $OrderNumber = trim($_GET['out_trade_no']);
                 $OrderInfo = $MemberProductOrderModule ->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
                 if ($OrderInfo) {
+                    //更新库存
+                    $MemberAssetInfoModule = new MemberAssetInfoModule();
+                    $MemberAssetInfoModule->SetInventory($OrderInfo['ProductID'],$OrderInfo['Num']);
+                    //添加订单日志
+                    $OrderLogModule = new MemberOrderLogModule();
+                    $LogMessage ='买家已付款，付款方式支付宝';
+                    $LogData = array(
+                        'OrderNumber' =>$OrderInfo['OrderNumber'],
+                        'UserID' => $_SESSION['UserID'],
+                        'OldStatus' => 1,
+                        'NewStatus' => 2,
+                        'OperateTime' => date("Y-m-d H:i:s", time()),
+                        'IP' => GetIP(),
+                        'Remarks' => $LogMessage,
+                        'Type' => 1
+                    );
+                    $LogResult = $OrderLogModule->InsertInfo($LogData);
+                    //更新订单状态
                     $Data['PaymentMethod'] = '1';
                     $Data['Status'] = '2';
-                    $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');//更新订单状态
-                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                    $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');
+                    $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
                     $VerifyData['Money'] = $OrderInfo['Money'];
-                    $VerifyData['PayResult'] = 'SUCCESS';
+                    $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
                     $VerifyData['RedirectUrl'] = WEB_MAIN_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
                     $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
