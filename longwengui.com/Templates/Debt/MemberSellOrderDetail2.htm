@@ -82,7 +82,7 @@
                             退款成功
                         </div>
                         <div class="con">
-                            <p>*退款金额：{$OrderInfo[TotalAmount]}元</p>
+                            <p>*退款金额：{$OrderInfo['TotalAmount']}元</p>
                         </div>
                     </div>
                     {/if}
@@ -108,85 +108,71 @@
                     <div class="hd">退货退款申请</div>
                     <div class="order-goods clearfix">
                         <p class="img">
-                            <img src="{echo CssURL}/debt/temp/pic-5.jpg" alt="">
+                            <img src="{$AssetImage[ImageUrl]}" alt="">
                         </p>
                         <div class="con">
                             <div class="clearfix">
                                 <p class="title fl ellipsis">
-                                    上品武夷山大红袍
+                                    {$AssetInfo[Title]}
                                 </p>
                                 <p class="type fr ellipsis">
-                                    资产种类：茶叶
+                                    资产种类：{$AssetInfo[Category]}
                                 </p>
-                            </div>
-
-                            <div class="des">
-                                大红袍，产于福建武夷山，属乌龙茶，品质
-                                优异。中国特种名茶中国特种名茶中国特种
-                                名茶中国特种名茶中国特种名茶
                             </div>
                         </div>
                     </div>
                     <div class="order-msg">
                         <div class="line">
-                            <label for="">卖&emsp;&emsp;家:</label>
-                            <p>我很爱稀饭 &emsp;<i class="icon-contact"></i><span class="btn-contact">和我联系</span></p>
+                            <label for="">买&emsp;&emsp;家:</label>
+                            <p>{$BuyUserInfo['RealName']} &emsp;<i class="icon-contact"></i><span class="btn-contact">和我联系</span></p>
                         </div>
                         <div class="line">
                             <label for="">联系电话:</label>
-                            <p>13960326366</p>
+                            <p>{$BuyUser['Mobile']}</p>
                         </div>
                         <div class="line">
                             <label for="">订单编号:</label>
-                            <p><span class="c-primary">L201702270001</span></p>
+                            <p><span class="c-primary">{$OrderInfo['OrderNumber']}</span></p>
                         </div>
                         <div class="line">
                             <label for="">单&emsp;&emsp;价:</label>
-                            <p><span class="c-red">1010.00</span>元*2 （数量）</p>
+                            <p><span class="c-red">{$AssetInfo['Price']}</span>元*{$OrderInfo['Num']} （数量）</p>
                         </div>
                         <div class="line">
                             <label for="">邮&emsp;&emsp;费:</label>
-                            <p><span class="c-red">0.00</span></p>
+                            <p><span class="c-red">{$AssetInfo['Freight']}</span></p>
                         </div>
                     </div>
 
                     <div class="order-msg">
                         <div class="line">
-                            <label for="">退款编号:</label>
-                            <p>15516156156156156</p>
-                        </div>
-                        <div class="line">
                             <label for="">退款金额:</label>
-                            <p><span class="c-red">2020.00</span>元</p>
+                            <p><span class="c-red">{$OrderRefund['TotalAmount']}</span>元</p>
                         </div>
                         <div class="line">
                             <label for="">原&emsp;&emsp;因:</label>
-                            <p>其&emsp;&emsp;它</p>
+                            <p>{$OrderRefund['Reason']}</p>
                         </div>
                         <div class="line">
                             <label for="">要&emsp;&emsp;求:</label>
-                            <p>退货退款</p>
+                            <p>{$OrderRefund['Require']}</p>
                         </div>
                         <div class="line">
                             <label for="">货物状态:</label>
-                            <p>已收到货</p>
+                            <p>{$OrderRefund['Status']}</p>
                         </div>
                         <div class="line">
                             <label for="">说&emsp;&emsp;明:</label>
-                            <p>接触到胡椒粉金才能看见谁能看懂...</p>
+                            <p>{$OrderRefund['Message']}</p>
                         </div>
                         <div class="line">
                             <label for="">上传凭证:</label>
                             <div class="vouchImageBox">
-                                <a class="vouchImage" href="{echo CssURL}/debt/temp/pic-4.jpg" rel="vouch">
-                                    <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
+                                {loop $OrderRefund['ImageJson'] $value}
+                                <a class="vouchImage" href="{$value}" rel="vouch">
+                                    <img src="{$value}" alt="">
                                 </a>
-                                <a class="vouchImage" href="{echo CssURL}/debt/temp/pic-4.jpg" rel="vouch">
-                                    <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                </a>
-                                <a class="vouchImage" href="{echo CssURL}/debt/temp/pic-4.jpg" rel="vouch">
-                                    <img src="{echo CssURL}/debt/temp/pic-4.jpg" alt="">
-                                </a>
+                                {/loop}
                             </div>
                         </div>
                     </div>

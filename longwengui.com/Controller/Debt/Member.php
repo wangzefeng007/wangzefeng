@@ -483,6 +483,7 @@ class Member
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
+        $MemberOrderRefundModule = new MemberOrderRefundModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
         //发布人信息
@@ -495,6 +496,9 @@ class Member
             $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
         if ($UserInfo['Area'])
             $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        //买家信息
+        $BuyUserInfo = $MemberUserInfoModule->GetInfoByUserID($OrderInfo['UserID']);
+        $BuyUser = $MemberUserModule->GetInfoByKeyID($OrderInfo['UserID']);
         //卖家同意退货退款（获取退货地址）
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $Data['Data'] = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
@@ -502,6 +506,11 @@ class Member
             $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
             $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
             $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
+        //退款详情
+        $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID = '.$OrderInfo['OrderID']);
+        if ($OrderRefund['ImageJson']!=''){
+            $OrderRefund['ImageJson'] =json_decode($OrderRefund['ImageJson'],true);
         }
         include template('MemberSellOrderDetail2');
     }
