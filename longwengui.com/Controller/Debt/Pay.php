@@ -41,6 +41,7 @@ class Pay
         include SYSTEM_ROOTPATH.'/Include/Alipay/AliPay.php';
         $AliPay = new AliPay();
         $ResultUrl = WEB_MAIN_URL . '/pay/result/';
+
         if (count($_POST)) {
             if ($AliPay->GetPayStatus($_POST) === 'true') {
                 $OrderNumber = trim($_POST['out_trade_no']);
@@ -68,7 +69,7 @@ class Pay
                     $Data['Status'] = '2';
                     $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');
                     $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
-                    $VerifyData['Money'] = $OrderInfo['Money'];
+                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
                     $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
                     $VerifyData['RedirectUrl'] = WEB_MAIN_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
@@ -106,8 +107,8 @@ class Pay
                     $Data['PaymentMethod'] = '1';
                     $Data['Status'] = '2';
                     $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');
-                    $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
-                    $VerifyData['Money'] = $OrderInfo['Money'];
+                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
                     $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
                     $VerifyData['RedirectUrl'] = WEB_MAIN_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
@@ -162,7 +163,7 @@ class Pay
         unset($_POST['Sign']);
         $VerifySign = ToolService::VerifyData($_POST);
         if ($VerifySign == $sign) {
-            $PayResult = $_POST['PayResult'];
+            $PayResult = $_POST['ResultCode'];
             if ($PayResult == 'SUCCESS') {
                 $OrderNumber = $_POST['OrderNo'];
                 $Money = $_POST['Money'];

@@ -121,7 +121,7 @@ class Asset
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         $ExpirationDate = ceil(($AssetInfo['ExpirationDate'] -time())/(3600*24));
-        $AmountMoney =number_format($AssetInfo['AssetsAmount']-$Money, 2);//剩余资产金额
+        $AmountMoney =number_format($AssetInfo['Price']*$AssetInfo['Inventory'], 2);//剩余资产金额
         $TotalAmount =number_format($Money+$AssetInfo['Freight'], 2);//合计金额
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'],true);
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$AssetInfo['AssetID'].' and IsDefault = 1');
