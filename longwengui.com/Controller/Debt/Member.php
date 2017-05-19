@@ -196,7 +196,17 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberAdvice');
     }
-
+    /**
+     * @desc 我的钱包
+     */
+    public function Wallet(){
+        $Title = '会员-我的钱包';
+        $this->IsLogin();
+        $Nav = 'wallet';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberWallet');
+    }
     /**
      * @desc 发布的资产
      */

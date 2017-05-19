@@ -167,7 +167,7 @@ class AjaxOrder
             $MemberProductOrderModule = new MemberProductOrderModule();
             $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'].' and OrderID='.$OrderID);
             if ($OrderInfo){
-                $Result = $MemberProductOrderModule->UpdateInfoByKeyID(array("Status"=>3,"UpdateTime"=>time()),$OrderID);
+                $Result = $MemberProductOrderModule->UpdateInfoByKeyID(array("Status"=>4,"UpdateTime"=>time()),$OrderID);
                 if ($Result){
                     $OrderLogModule = new MemberOrderLogModule();
                     $LogMessage ='买家取消申请退款';
@@ -459,7 +459,6 @@ class AjaxOrder
              $result_json = array('ResultCode' => 106, 'Message' => '返回失败');
          }
          EchoResult($result_json);
-
      }
 
 }

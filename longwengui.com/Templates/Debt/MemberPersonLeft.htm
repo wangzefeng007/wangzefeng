@@ -11,6 +11,7 @@
     </div>
     <div class="menu-level-2-wrap" data-for="menu_0">
         <div class="menu-level-2 {if $Nav=='memberperson' || $Nav=='changemobile' || $Nav=='editpassword'}menu-level-2-act{/if}" onclick="go('/memberperson/')">个人信息</div>
+        <div class="menu-level-2 {if $Nav=='wallet'}menu-level-2-act{/if}" onclick="go('/member/wallet/')">我的钱包</div>
         <div class="menu-level-2 {if $Nav=='address'}menu-level-2-act{/if}" onclick="go('/member/address/')">收货地址</div>
     </div>
     {if $UserInfo[Identity]==0}

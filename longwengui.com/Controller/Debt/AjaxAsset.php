@@ -145,7 +145,6 @@ class AjaxAsset
                 }else{
                     $result_json = array('ResultCode'=>104,'Message'=>'收货地址不能为空！');
                 }
-
             }
             EchoResult($result_json);
             exit;
