@@ -199,6 +199,7 @@ class AjaxLogin
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID']);
             if($UserInfo['Identity']==3){
                 $Url =WEB_MAIN_URL.'/memberfirm/';
+
             }elseif($UserInfo['Identity']==4){
                 $Url =WEB_MAIN_URL.'/memberlawyer/';
             }elseif($UserInfo['Identity']==5){
