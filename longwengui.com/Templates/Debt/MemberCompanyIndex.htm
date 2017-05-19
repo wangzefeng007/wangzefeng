@@ -1,6 +1,7 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
 <link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css">
 <div class="person-center">
     <div class="wrap">
         <div class="current-loc">
@@ -79,7 +80,7 @@
                                 <div class="bx">
                                     <div class="img-wrap">
                                         {if !empty($UserInfo[BusinessImage])}
-                                        <img src="{$UserInfo[BusinessImage]}" height="100" width="150" alt="">
+                                        <a class="grouped_elements" href="{$UserInfo[BusinessImage]}" rel="gorup1"><img src="{$UserInfo[BusinessImage]}" height="100" width="150" alt=""></a>
                                         {/if}
                                     </div>
                                     营业执照副本
@@ -134,7 +135,7 @@
                                 <div class="bx">
                                     <div class="img-wrap">
                                         {if !empty($UserInfo[PublicAgent][registrantImages][0])}
-                                        <img src="{$UserInfo[PublicAgent][registrantImages][0]}" height="100" width="150" alt="">
+                                        <a class="idCard_elements" href="{$UserInfo[PublicAgent][registrantImages][0]}" rel="idCard"><img src="{$UserInfo[PublicAgent][registrantImages][0]}" height="100" width="150" alt=""></a>
                                         {/if}
                                     </div>
                                     身份证正面照
@@ -142,7 +143,7 @@
                                 <div class="bx">
                                     <div class="img-wrap">
                                         {if !empty($UserInfo[PublicAgent][registrantImages][1])}
-                                        <img src="{$UserInfo[PublicAgent][registrantImages][1]}" height="100" width="150" alt="">
+                                        <a class="idCard_elements" href="{$UserInfo[PublicAgent][registrantImages][1]}" rel="idCard"><img src="{$UserInfo[PublicAgent][registrantImages][1]}" height="100" width="150" alt=""></a>
                                         {/if}
                                     </div>
                                     身份证反面照
@@ -164,5 +165,21 @@
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
 <script src='{echo JsURL}/debt/personalCenterInfo.js'></script>
+<script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
+<script>
+    $(function(){
+        /*
+         图片预览
+         * */
+        $(".grouped_elements").fancybox({
+            showCloseButton:true,
+            showNavArrows:true
+        });
+        $(".idCard_elements").fancybox({
+            showCloseButton:true,
+            showNavArrows:true
+        });
+    });
+</script>
 </body>
 </html>

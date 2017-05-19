@@ -68,6 +68,11 @@
             </li>
             {/loop}
         </ul>
+        {if empty($Data['Data'])}
+        <div class="no-data">
+            <img src="/Uploads/Debt/imgs/no_data.png" alt="">
+        </div>
+        {/if}
         {if $ShowPage}
         <div class="pagination-wrap">
             <div class="pagination fl-r" id="collection_page_pagination">
