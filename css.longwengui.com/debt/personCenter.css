@@ -1669,3 +1669,18 @@
 .common-empty .btn{
   padding: 9px 48px;
 }
+.link{
+  color: #35bdfc;
+}
+.link:hover{
+  text-decoration: underline;
+}
+.underline{
+  text-decoration: underline;
+}
+.model-con{
+  min-height:500px;
+  padding:20px;
+  border: solid 1px #d9d9d9;
+  margin-bottom:60px;
+}
