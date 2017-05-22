@@ -198,10 +198,7 @@ $(
         success: function(data){
           if(data.ResultCode == 200){
             showMsg('保存成功');
-            //路由跳转
-            setTimeout(function() {
-                window.location = data.Url;
-            }, 10);
+              window.location.reload();
           }else{
             showMsg(data.Message);
           }

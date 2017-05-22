@@ -630,9 +630,9 @@ class Ajax
                 $Result = $MemberOrderDemandModule->UpdateInfoByKeyID($Data,$ID);
             }
             if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberperson/demandlist/');
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberperson/demandlist/');
             }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'更新失败！');
+                $result_json = array('ResultCode'=>102,'Message'=>'保存失败！');
 
             }
             EchoResult($result_json);
