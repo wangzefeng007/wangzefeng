@@ -3,8 +3,31 @@ initIE8Label();
 fixIE8Label();
 
 //获得省级地区信息
-getProvinceData();
+//getProvinceData();
+$(function(){
+    //进入页面默认选中悬赏类型
+    $("input[name='rewordType']").each(function(){
+        if($(this).is(":checked")){
+            typeChange(this);
+        }
+    });
+    //修改悬赏类型
+    $("input[name='rewordType']").on("change",function(){
+        typeChange(this);
+    });
+});
 
+/**
+ * 悬赏类型变换
+ * @param target
+ */
+function typeChange(tar){
+    var target=$(tar).attr("target");
+    $("#tab-con").empty();
+    $("#"+target).tmpl().appendTo("#tab-con");
+    $('#end_time').dcalendarpicker({format: 'yyyy-mm-dd', width: '206px'}); //初始化日期选择器
+    getProvinceData();
+}
 //打开协议窗口
 function openProtocalWindow(){
   var index = layer.open({
@@ -60,76 +83,89 @@ function publish(){
   ajax();
 }
 
-function ajax(){
-  var debt_owner, debtor;
+function ajax() {
+    var debt_owner, debtor;
 
-  if(!$('input[name="agreement"]')[0].checked){
-    showMsg('请先同意线索悬赏协议');
-    return;
-  }
+    if (!$('input[name="agreement"]')[0].checked) {
+        showMsg('请先同意线索悬赏协议');
+        return;
+    }
+    var reword_type = $('input[name="rewordType"]:checked').val(); //悬赏类型
+    var findMsg={};
 
-  //验证债权人信息
-  var debt_owner_phoneNumber = $('#debt_owner input[name="phoneNumber"]').val();
-  if(debt_owner_phoneNumber == ''){
-    $('#debt_owner input[name="phoneNumber"]').focus();
-    showMsg('请完善债权人信息');
-    return;
-  }
-  if(!validate('mobilePhone', debt_owner_phoneNumber)){
-    $('#debt_owner input[name="phoneNumber"]').focus();
-    showMsg('手机号格式有误');
-    return;
-  }
+    //找人
+    if (reword_type == 1) {
+        var find_name = $('#tab-con input[name="name"]').val();
+        var find_sex = $('#tab-con input[name="sex"]').val();
+        var find_age = $('#tab-con input[name="age"]').val();
+        var find_height = $('#tab-con input[name="height"]').val();
+        var find_idCard = $('#tab-con input[name="idNum"]').val();
+        var last_time = $('#tab-con input[name="lastTime"]').val();
+        var find_detail = $('#tab-con textarea[name="areaDetail"]').val();
+        if (!find_name || !find_sex || !find_age || !find_height || !last_time || !find_detail) {
+            showMsg('请完善寻人信息');
+            return;
+        }
+        findMsg={
+            find_name:find_name,  //姓名
+            find_sex:find_sex,    //性别
+            find_age:find_age,     //年龄
+            find_height:find_height,    //身高
+            find_idCard:find_idCard,    //身份证号
+            last_time:last_time,        //失联时间
+            find_detail:find_detail     //详细内容
+        }
+    }
+    //找财产
+    if (reword_type == 2) {
+        var dd_province = $('#tab-con input[name="dd_province"]').siblings("span").attr("data-id");
+        var dd_city = $('#tab-con input[name="dd_city"]').siblings("span").attr("data-id");
+        var dd_area = $('#tab-con input[name="dd_area"]').siblings("span").attr("data-id");
+        var name = $('#tab-con input[name="name"]').val();
+        var idNum = $('#tab-con input[name="idNum"]').val();
+        var detailAddress = $('#tab-con input[name="detailAddress"]').val();
+        var find_detail = $('#tab-con textarea[name="areaDetail"]').val();
+        var contact_phone = $('#tab-con input[name="contactPhone"]').val();
+        if (!dd_province || !dd_city || !dd_area || !name || !idNum || !detailAddress ||!find_detail||!contact_phone) {
+            showMsg('请完善财产信息');
+            return;
+        }
+        findMsg={
+            dd_province:dd_province,    //省份
+            dd_city:dd_city,            //城市
+            dd_area:dd_area,            //区县
+            name:name,                  //姓名
+            idNum:idNum,                // 身份证号
+            detail_address:detailAddress,   //地址
+            find_detail:find_detail,        //详细内容
+            contact_phone:contact_phone     //联系电话号码
+        }
+    }
+    if(reword_type==3){
+        var dd_province = $('#tab-con input[name="dd_province"]').siblings("span").attr("data-id");
+        var dd_city = $('#tab-con input[name="dd_city"]').siblings("span").attr("data-id");
+        var dd_area = $('#tab-con input[name="dd_area"]').siblings("span").attr("data-id");
+        var lost_name = $('#tab-con input[name="name"]').val();
+        var lost_time = $('#tab-con input[name="lastTime"]').val();
+        var detailAddress = $('#tab-con input[name="detailAddress"]').val();
+        var find_detail = $('#tab-con textarea[name="areaDetail"]').val();
+        var contact_phone = $('#tab-con input[name="contactPhone"]').val();
+        if (!dd_province || !dd_city || !dd_area || !lost_name || !lost_time || !detailAddress ||!find_detail||!contact_phone) {
+            showMsg('请完善物品信息');
+            return;
+        }
+        findMsg={
+            dd_province:dd_province,        //省份
+            dd_city:dd_city,                //城市
+            dd_area:dd_area,                //区县
+            lost_name:lost_name,            //丢失物品名称
+            lost_time:lost_time,            //丢失时间
+            detail_address:detailAddress,   //丢失地址
+            find_detail:find_detail,        //详细内容
+            contact_phone:contact_phone     //联系电话
+        }
+    }
 
-  debt_owner = {
-    "phoneNumber": debt_owner_phoneNumber //债权人手机号
-  };
-
-  //验证债务人信息
-  var debtor_name = $('#debtor input[name="name"]').val();
-  var debtor_idNum = $('#debtor input[name="idNum"]').val();
-  var debtor_phoneNumber = $('#debtor input[name="phoneNumber"]').val();
-  var debtor_pid = $('#debtor .p-dropdown span').attr('data-id');
-  var debtor_cid = $('#debtor .c-dropdown span').attr('data-id');
-  var debtor_aid = $('#debtor .a-dropdown span').attr('data-id');
-  var debtor_areaDetail = $('#debtor textarea[name="areaDetail"]').val();
-
-  if(debtor_name == ''){
-    $('#debtor input[name="name"]').focus();
-    showMsg('请填写债务人姓名');
-    return;
-  }
-  if(!validate('chinese', debtor_name)){
-    $('#debtor input[name="name"]').focus();
-    showMsg('请输入正确的债务人姓名');
-    return;
-  }
-  if(debtor_idNum != '' && !validate('idNum', debtor_idNum)){
-    $('#debtor input[name="idNum"]').focus();
-    showMsg('请输入正确的债务人身份证');
-    return;
-  }
-  if(debtor_phoneNumber != '' && !validate('phone', debtor_phoneNumber)){
-    $('#debtor input[name="phoneNumber"]').focus();
-    showMsg('请输入正确的债务人手机号');
-    return;
-  }
-  if(!debtor_pid || !debtor_cid || !debtor_aid){
-    showMsg('请完善债务人地址信息');
-    return;
-  }
-
-  debtor = {
-    "name": debtor_name, //债务人姓名
-    "idNum": debtor_idNum, //债务人身份证号
-    "phoneNumber": debtor_phoneNumber,  //债务人手机号
-    "province": debtor_pid,  //债务人省份
-    "city": debtor_cid, //债务人城市
-    "area": debtor_aid,  //债务人地区
-    "areaDetail": debtor_areaDetail  //债务人详细地址
-  }
-
-  var reword_type = $('input[name="rewordType"]:checked').val(); //悬赏类型
   var img_voucher = []; //债务凭证图片地址
 
   $('.img-wrap').each(function(){
@@ -150,8 +186,7 @@ function ajax(){
       data: {
           "Intention":"ReleaseReward",
           "AjaxJSON":JSON.stringify({
-              "debt_owner": debt_owner, //债权人信息
-              "debtor": debtor, //债务人信息
+              "findMsg":findMsg, //寻找信息
               "images": img_voucher, //债务凭证
               "reword_type": reword_type //悬赏类型
           }),

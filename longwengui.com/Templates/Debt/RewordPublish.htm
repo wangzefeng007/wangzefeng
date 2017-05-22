@@ -1,6 +1,7 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/publishReword.css">
 <link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
 <div class="public-reword">
   <div class="wrap">
     <div class="current-loc">
@@ -15,100 +16,33 @@
           <span>悬赏类型 : </span>
           <div class="m-radio ml-10">
             <label type="radio">
-              <input type="radio" name="rewordType" value="1" checked>
+              <input type="radio" name="rewordType" target="findPersonTemp" value="1" checked>
               <i></i>
               找人
             </label>
           </div>
           <div class="m-radio ml-10">
             <label type="radio">
-              <input type="radio" name="rewordType" value="2">
+              <input type="radio" name="rewordType" target="findPropertyTemp" value="2">
               <i></i>
               找财产
             </label>
           </div>
-        </div>
-        <div class="c"></div>
-
-
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/user.png" alt="">
-          <span>债权人信息</span>
-        </div>
-        <div class="c" id="debt_owner">
-          <div class="blo">
-            <div class="line">
-              <div class="info">
-                债权人电话:
-              </div>
-              <div class="details">
-                <input type="text" name="phoneNumber" onblur="validatePhone(this, true)" placeholder="*联系电话">
-              </div>
-            </div>
+          <div class="m-radio ml-10">
+            <label type="radio">
+              <input type="radio" name="rewordType" target="findOtherTemp" value="3">
+              <i></i>
+              其他
+            </label>
           </div>
         </div>
+        <div class="c"></div>
       </div>
 
       <div class="box">
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/user.png" alt="">
-          <span>债务人基本信息</span>
-        </div>
+        <div id="tab-con">
 
-        <div class="c" id="debtor">
-          <div class="blo">
-            <div class="line">
-              <div class="info">
-                债务人信息 :
-              </div>
-              <div class="details">
-                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
-                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
-                <input type="text" name="phoneNumber"  onblur="validatePhone(this, false)" placeholder="联系电话">
-              </div>
-            </div>
-            <div class="line">
-              <div class="info">
-                债务人地区 :
-              </div>
-              <div class="details">
-                <div class="p-dropdown">
-                  <label type="checkbox">
-                    <span>*省份</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_province" value="">
-                    <ul></ul>
-                  </label>
-                </div>
-                <div class="c-dropdown">
-                  <label type="checkbox">
-                    <span>*城市</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_city" value="">
-                    <ul></ul>
-                  </label>
-                </div>
-                <div class="a-dropdown">
-                  <label type="checkbox">
-                    <span>*区县/市</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_area" value="">
-                    <ul></ul>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="line">
-              <div class="info">
-                详细地址 :
-              </div>
-              <div class="details">
-                <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
-              </div>
-            </div>
-          </div>
         </div>
-
 
         <div class="t">
           <img src="/Uploads/Debt/imgs/loan_icon.png" alt="">
@@ -212,7 +146,215 @@
     </div>
   </div>
 </div>
+<script type="text/x-jquery-tmpl" id="findPersonTemp">
+    <div class="t">
+        <img src="/Uploads/Debt/imgs/user.png" alt="">
+        <span>寻人信息</span>
+        </div>
+
+        <div class="c">
+        <div class="blo">
+        <div class="line">
+        <div class="info">
+        姓名 :
+    </div>
+    <div class="details">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                <label for="" class="form-txt">性别:</label>
+                <input style="width: 80px;" type="text" name="sex" onblur="validateChinese(this)" placeholder="*性别">
+                <label for="" class="form-txt">年龄:</label>
+                <input style="width: 80px;" type="age" name="age" onblur="validateNumber(this)" placeholder="*年龄">
+                <label for="" class="form-txt">身高:</label>
+                <input style="width: 80px;" type="text" name="height" onblur="validateNumber(this)" placeholder="*身高">cm
+              </div>
+        </div>
+        <div class="line">
+        <div class="info">
+        身份证号 :
+    </div>
+    <div class="details">
+        <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+        </div>
+        </div>
+        <div class="line">
+        <div class="info">
+        失联时间 :
+    </div>
+    <div class="details">
+        <input type="text" readonly style="width:180px" id="end_time" name="lastTime" onchange="endTimeChange(this)" placeholder="*请输入详细日期">
+        </div>
+        </div>
+        <div class="line">
+        <div class="info">
+        详细内容 :
+    </div>
+    <div class="details">
+        <textarea name="areaDetail" maxlength="150" rows="2" cols="80" placeholder="*最多可输入(最多150个字)"></textarea>
+        </div>
+        </div>
+        </div>
+        </div>
+</script>
+<script type="text/x-jquery-tmpl" id="findPropertyTemp">
+<div class="t">
+          <img src="/Uploads/Debt/imgs/user.png" alt="">
+          <span>财产信息</span>
+        </div>
+
+        <div class="c">
+          <div class="blo">
+            <div class="line">
+              <div class="info">
+                所在地区 :
+              </div>
+              <div class="details">
+                <div class="p-dropdown">
+                  <label type="checkbox">
+                    <span data-id="">*省份</span>
+                    <i></i>
+                    <input type="checkbox" name="dd_province" value="">
+                    <ul></ul>
+                  </label>
+                </div>
+                <div class="c-dropdown">
+                  <label type="checkbox">
+                    <span data-id="">*城市</span>
+                    <i></i>
+                    <input type="checkbox" name="dd_city" value="">
+                    <ul></ul>
+                  </label>
+                </div>
+                <div class="a-dropdown">
+                  <label type="checkbox">
+                    <span data-id="">*区/县</span>
+                    <i></i>
+                    <input type="checkbox" name="dd_area" value="">
+                    <ul></ul>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                姓名 :
+              </div>
+              <div class="details">
+                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                <label class="form-txt" for="">身份证号 :</label>
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, true)" placeholder="*身份证号">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                地址 :
+              </div>
+              <div class="details">
+                <input type="text" style="width: 500px;" name="detailAddress" placeholder="*请输入详细地址">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                详细内容 :
+              </div>
+              <div class="details">
+                <textarea name="areaDetail" maxlength="150" rows="2" cols="80" placeholder="*最多可输入(最多150个字)"></textarea>
+              </div>
+            </div>
+            <div class="line">
+              <div class="info" style="width: 200px;">
+                如有知情者请拨打联系电话 :
+              </div>
+              <div class="details">
+              <input type="text" style="width: 300px;" name="contactPhone" onblur="validatePhone(this,true)" placeholder="*请输入电话号码">
+              </div>
+            </div>
+          </div>
+        </div>
+</script>
+<script type="text/x-jquery-tmpl" id="findOtherTemp">
+<div class="t">
+          <img src="/Uploads/Debt/imgs/user.png" alt="">
+          <span>物品信息</span>
+        </div>
+
+        <div class="c">
+          <div class="blo">
+            <div class="line">
+              <div class="info">
+                所在地区 :
+              </div>
+              <div class="details">
+                <div class="p-dropdown">
+                  <label type="checkbox">
+                    <span data-id="">*省份</span>
+                    <i></i>
+                    <input type="checkbox" name="dd_province" value="">
+                    <ul></ul>
+                  </label>
+                </div>
+                <div class="c-dropdown">
+                  <label type="checkbox">
+                    <span data-id="">*城市</span>
+                    <i></i>
+                    <input type="checkbox" name="dd_city" value="">
+                    <ul></ul>
+                  </label>
+                </div>
+                <div class="a-dropdown">
+                  <label type="checkbox">
+                    <span data-id="">*区/县</span>
+                    <i></i>
+                    <input type="checkbox" name="dd_area" value="">
+                    <ul></ul>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                丢失物品名称 :
+              </div>
+              <div class="details">
+                <input type="text" name="name" onblur="validateNeed(this)" placeholder="*丢失物品名称">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                丢失时间 :
+              </div>
+              <div class="details">
+                <input type="text" readonly style="width:180px" id="end_time" name="lastTime" onchange="endTimeChange(this)" placeholder="*请输入详细日期">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                丢失地址 :
+              </div>
+              <div class="details">
+                <input type="text" style="width: 500px;" onblur="validateNeed(this)" name="detailAddress" placeholder="*请输入详细地址">
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                详细内容 :
+              </div>
+              <div class="details">
+                <textarea name="areaDetail" onblur="validateNeed(this)" maxlength="150" rows="2" cols="80" placeholder="*最多可输入(最多150个字)"></textarea>
+              </div>
+            </div>
+            <div class="line">
+              <div class="info">
+                联系电话 :
+              </div>
+              <div class="details">
+                <input type="text" style="width: 300px;" name="contactPhone" onblur="validatePhone(this,true)" placeholder="*请输入电话号码">
+              </div>
+            </div>
+          </div>
+        </div>
+</script>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
 <script src='{echo JsURL}/debt/publishReword.js'></script>
 </body>

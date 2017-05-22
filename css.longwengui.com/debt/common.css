@@ -889,6 +889,7 @@ a{
 }
 .header .login-box  .username{
   padding:5px 0;
+  text-align: center;
 }
 .header .login-box .loginout{
   text-align: center;
