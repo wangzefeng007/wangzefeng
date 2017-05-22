@@ -102,7 +102,8 @@ function ajax() {
         var find_idCard = $('#tab-con input[name="idNum"]').val();
         var last_time = $('#tab-con input[name="lastTime"]').val();
         var find_detail = $('#tab-con textarea[name="areaDetail"]').val();
-        if (!find_name || !find_sex || !find_age || !find_height || !last_time || !find_detail) {
+        var contact_phone = $('#tab-con input[name="contactPhone"]').val();
+        if (!find_name || !find_sex || !find_age || !find_height || !last_time || !find_detail||!contact_phone) {
             showMsg('请完善寻人信息');
             return;
         }
@@ -113,7 +114,8 @@ function ajax() {
             find_height:find_height,    //身高
             find_idCard:find_idCard,    //身份证号
             last_time:last_time,        //失联时间
-            find_detail:find_detail     //详细内容
+            find_detail:find_detail,     //详细内容
+            contact_phone:contact_phone     //联系电话号码
         }
     }
     //找财产
