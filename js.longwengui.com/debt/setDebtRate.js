@@ -178,7 +178,7 @@ $(
       $.ajax({
         type: "post",
         dataType: "json",
-        url: "/loginajax.html",
+        url: "/ajax.html",
         data: {
             "Intention":"SetFirmDemand",//催收公司设置佣金方案
             'ID': id,

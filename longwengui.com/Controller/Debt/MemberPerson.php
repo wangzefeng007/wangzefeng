@@ -251,83 +251,6 @@ class MemberPerson
 
     }
     /**
-     * @desc 个人会员主动申请的债权(向处置方申请的债务)
-     */
-    public function FindTeam()
-    {
-        $this->IsLogin();
-        if ($_SESSION['Identity']!=0 && $_SESSION['Identity']!=1 && $_SESSION['Identity']!=2){
-            alertandgotopage("访问被拒绝", WEB_MAIN_URL);
-        }
-        $Title = '会员中心-向处置方申请的债务';
-        $Nav='findteam';
-        $MemberUserModule = new MemberUserModule();
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
-        $MemberFindDebtModule = new MemberFindDebtModule();
-        $MemberFindDebtorsModule = new MemberFindDebtorsModule();
-        $MemberAreaModule = new MemberAreaModule();
-        $NStatus = $MemberFindDebtOrderModule->NStatus;
-        //会员基本信息
-        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        //分页Start
-        $MysqlWhere ='';
-        $Status = $_GET['S']? intval($_GET['S']) : 0;
-        if ($Status==1){
-            $MysqlWhere .=' and `Status` = 1';//正在申请的债务
-        }elseif($Status==2){
-            $MysqlWhere .=' and `Status` = 2';//催款中的债务
-        }elseif($Status==3){
-            $MysqlWhere .=' and `Status` = 3';//未完成的债务
-        }elseif($Status==4){
-            $MysqlWhere .=' and `Status` IN (4,5)';//完成的债务
-        }
-        $FindDebtInfo = $MemberFindDebtModule->GetFindDebtInfoByUserID($_SESSION['UserID'],$MysqlWhere);
-        $RscountNum = count($FindDebtInfo);
-        $Page=intval($_GET['p'])?intval($_GET['p']):0;
-        if ($Page < 1) {
-            $Page = 1;
-        }
-        if ($RscountNum) {
-            $PageSize=10;
-            $Data = array();
-            $Data['RecordCount'] = $RscountNum;
-            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
-            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
-            if ($Page > $Data['PageCount'])
-                $Page = $Data['PageCount'];
-            $Data['Page'] = min($Page, $Data['PageCount']);
-            $Offset = ($Page - 1) * $Data['PageSize'];
-            foreach ($FindDebtInfo as $value){
-                $DebtID[] = $value['DebtID'];
-            }
-            $DebtID=implode(',',array_unique($DebtID));
-            $sqlWhere = " and DebtID IN ($DebtID) order by AddTime desc";
-            $Data['Data'] = $MemberFindDebtModule->GetLists($sqlWhere, $Offset,$Data['PageSize']);
-            foreach ($Data['Data'] as $key=>$value){
-                $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($value['DebtID']);
-                $DebtorsInfo = $MemberFindDebtorsModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
-                $FindDebtOrder = $MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
-                $Data['Data'][$key]['OrderID']= $FindDebtOrder['OrderID'];
-                $Data['Data'][$key]['Money']= $FindDebtOrder['Money'];
-                $Data['Data'][$key]['DelegateTime']= $FindDebtOrder['DelegateTime'];
-                $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
-                $Data['Data'][$key]['DebtNum']= $FindDebt['DebtNum'];
-                $Data['Data'][$key]['DebtAmount']= $FindDebt['DebtAmount'];
-                if ($DebtorsInfo['Province'])
-                    $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
-                if ($DebtorsInfo['City'])
-                    $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
-                if ($DebtorsInfo['Area'])
-                    $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-            }
-            $ClassPage = new Page($RscountNum, $PageSize,3);
-            $ShowPage = $ClassPage->showpage();
-        }
-        include template('MemberPersonFindTeam');
-    }
-    /**
      * @desc 个人会员申请的债权(向发布者申请的债务)
      */
     public function ApplyDebtOrder(){
@@ -476,30 +399,9 @@ class MemberPerson
         $Title = '会员中心-接单要求';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberSetCompanyModule = new MemberSetCompanyModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
-        $Rscount = $MemberSetCompanyModule->GetListsNum($MysqlWhere);
-        $Page=intval($_GET['p'])?intval($_GET['p']):0;
-        if ($Page < 1) {
-            $Page = 1;
-        }
-        if ($Rscount['Num']) {
-            $PageSize=10;
-            $Data = array();
-            $Data['RecordCount'] = $Rscount['Num'];
-            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
-            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
-            if ($Page > $Data['PageCount'])
-                $Page = $Data['PageCount'];
-            $Data['Page'] = min($Page, $Data['PageCount']);
-            $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberSetCompanyModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
-            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
-            $ShowPage = $ClassPage->showpage();
-        }
         include template('MemberPersonDemandList');
     }
     /**
