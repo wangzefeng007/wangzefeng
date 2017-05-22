@@ -399,15 +399,72 @@ class MemberPerson
         $Title = '会员中心-接单要求';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
+        $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=10;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberOrderDemandModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberPersonDemandList');
+    }
+    /**
+     * @desc 催客要求(方案详情)
+     */
+    public function DemandDetails(){
+        $this->IsLogin();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
+        $ID = intval($_GET['ID']);
+        $CompanyDemand = $MemberOrderDemandModule->GetInfoByWhere(' and SetID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+        if (!$CompanyDemand){
+            alertandback("该方案不存在！");
+        }
+        if ($CompanyDemand['Province'])
+            $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
+        if ($CompanyDemand['City'])
+            $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
+        if ($CompanyDemand['Area'])
+            $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
+        include template('MemberPersonDemandDetails');
     }
     /**
      * @desc 催客设置接单要求
      */
     public function SetDemand(){
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
+        $ID = intval($_GET['ID']);
+        if ($ID) {
+            $DemandInfo = $MemberOrderDemandModule->GetInfoByKeyID($ID);
+            $DemandInfo['Area'] = json_decode($DemandInfo['Area'],true);
+            foreach ( $DemandInfo['Area'] as $key=>$value){
+            if ($value['province'])
+                $DemandInfo['Area'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
+            if ($value['city'])
+                $DemandInfo['Area'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
+            if ($value['area'])
+                $DemandInfo['Area'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+            }
+            $DemandInfo['FeeRate'] = json_decode($DemandInfo['FeeRate'],true);
+        }
         include template('MemberPersonSetDemand');
     }
 }

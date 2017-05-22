@@ -4,7 +4,7 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>债权管理</a> > <span class="cur">接单要求</span></span>
+            <span>当前位置 : <a>个人中心</a> > <a href="/memberperson/demandlist/">处置方要求</a> ><span class="cur">接单要求</span></span>
         </div>
         <div class="form-wrap">
             <div class="box">
@@ -21,7 +21,7 @@
                                     方案名称:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="{$CompanyDemand[CaseName]}" placeholder="*请输入方案名称">
+                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="{$DemandInfo[CaseName]}" placeholder="*请输入方案名称">
                                 </div>
                             </div>
                             <div class="right">
@@ -38,6 +38,7 @@
                     </div>
                 </div>
                 <div class="c" id="set_area">
+                    {loop $DemandInfo[Area] $lists}
                     <div class="blo">
                         <div class="to-del" onclick="removeParentDom(this, 'blo')">
                             <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
@@ -47,13 +48,13 @@
                                 负责人姓名:
                             </div>
                             <div class="form-control">
-                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="" placeholder="*请输入姓名">
+                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$lists[chargeName]}" placeholder="*请输入姓名">
                             </div>
                             <div class="form-lab ml-20">
                                 负责人电话:
                             </div>
                             <div class="form-control">
-                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="" placeholder="*请输入电话号码">
+                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$lists[chargeMobile]}" placeholder="*请输入电话号码">
                             </div>
                         </div>
                         <div class="line">
@@ -64,7 +65,7 @@
                                 <div class="det">
                                     <div class="p-dropdown">
                                         <label type="checkbox">
-                                            {if $CompanyDemand[Province]}<span data-id="{$CompanyDemand[Province]}">{$CompanyDemand[province]}</span>{else}<span>*省份</span>{/if}
+                                            {if $lists[Province]}<span data-id="{$lists[province]}">{$lists[Province]}</span>{else}<span>*省份</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_province" value="">
                                             <ul></ul>
@@ -72,7 +73,7 @@
                                     </div>
                                     <div class="c-dropdown">
                                         <label type="checkbox">
-                                            {if $CompanyDemand[City]}<span data-id="{$CompanyDemand[City]}">{$CompanyDemand[city]}</span>{else}<span>城市</span>{/if}
+                                            {if $lists[City]}<span data-id="{$lists[city]}">{$lists[City]}</span>{else}<span>城市</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_city" value="">
                                             <ul></ul>
@@ -80,7 +81,7 @@
                                     </div>
                                     <div class="a-dropdown">
                                         <label type="checkbox">
-                                            {if $CompanyDemand[Area]}<span data-id="{$CompanyDemand[Area]}">{$CompanyDemand[area]}</span>{else}<span>区县/市</span>{/if}
+                                            {if $lists[Area]}<span data-id="{$lists[area]}">{$lists[Area]}</span>{else}<span>区县/市</span>{/if}
                                             <i></i>
                                             <input type="checkbox" name="dd_area" value="">
                                             <ul></ul>
@@ -92,6 +93,7 @@
                             </div>
                         </div>
                     </div>
+                    {/loop}
                 </div>
 
                 <div class="t">
@@ -103,6 +105,7 @@
                     </div>
                 </div>
                 <div class="c" id="set_fee_rate">
+                    {loop $DemandInfo[FeeRate] $lists}
                     <div class="blo">
                         <div class="to-del" onclick="removeParentDom(this, 'blo')">
                             <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
@@ -113,8 +116,8 @@
                                     债务金额:
                                 </div>
                                 <div class="det">
-                                    <input type="text" name="from" onblur="validateForm('money', this)" value="{$CompanyDemand[FromMoney]}" placeholder="*0.00">元 -
-                                    <input type="text" name="to" onblur="validateForm('money', this)" value="{$CompanyDemand[ToMoney]}" placeholder="*3000.00">元
+                                    <input type="text" name="from" onblur="validateForm('money', this)" value="{$lists[from]}" placeholder="*0.00">元 -
+                                    <input type="text" name="to" onblur="validateForm('money', this)" value="{$lists[to]}" placeholder="*3000.00">元
                                 </div>
                             </div>
                             <div class="right">
@@ -123,7 +126,7 @@
                                         佣金比例:
                                     </div>
                                     <div class="det">
-                                        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*百分比">%
+                                        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$lists[rate]}" placeholder="*百分比">%
                                     </div>
                                 </div>
                                 <div class="right">
@@ -131,65 +134,43 @@
                                         前期费用:
                                     </div>
                                     <div class="det">
-                                        <input type="text" name="cost" onblur="validateForm('money', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*请输入金额">元
+                                        <input type="text" name="cost" onblur="validateForm('money', this)" value="{$lists[cost]}" placeholder="*请输入金额">元
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="c"></div>
-
-
                         <div class="form-line line" style="margin-bottom: 0;">
                             <div class="form-lab">是否负责找人：</div>
                             <div class="form-control m-radio">
                                 <label type="radio">
-                                    <input type="radio" name="isLookForSb" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
+                                    <input type="radio" name="isLookForSb" value="1" {if $lists[isLookFor]==1 || empty($lists[isLookFor])}checked{/if}>
                                     <i></i>
                                     是
                                 </label>
                                 <label type="radio">
-                                    <input type="radio" name="isLookForSb" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
+                                    <input type="radio" name="isLookForSb" value="0" {if $lists[isLookFor]=='0'}checked{/if}>
                                     <i></i>
                                     否
                                 </label>
                             </div>
                         </div>
                     </div>
+                    {/loop}
                 </div>
-
-                <!--<div class="t">
-                    <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
-                    <span>债务人是否随时能寻找到 : </span>
-                    <div class="m-radio ml-10">
-                        <label type="radio">
-                            <input type="radio" name="searchedAnytime" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
-                            <i></i>
-                            是
-                        </label>
-                    </div>
-                    <div class="m-radio ml-10">
-                        <label type="radio">
-                            <input type="radio" name="searchedAnytime" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
-                            <i></i>
-                            否
-                        </label>
-                    </div>
-                </div>-->
-
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
                     <span>是否需要债务人有还款能力 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="abilityDebt" value="1" {if $CompanyDemand[RepaymentDebtor]==1 || empty($CompanyDemand[RepaymentDebtor])}checked{/if}>
+                            <input type="radio" name="abilityDebt" value="1" {if $DemandInfo[AbilityDebt]==1 || empty($DemandInfo[AbilityDebt])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="abilityDebt" value="0" {if $CompanyDemand[RepaymentDebtor]=='0'}checked{/if}>
+                            <input type="radio" name="abilityDebt" value="0" {if $DemandInfo[AbilityDebt]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>
@@ -202,14 +183,14 @@
                     <span>是否需要债权人到达现场 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="arrivalSite" value="1" {if $CompanyDemand[EarlyCost]==1 || empty($CompanyDemand[EarlyCost])}checked{/if}>
+                            <input type="radio" name="arrivalSite" value="1" {if $DemandInfo[ArrivalSite]==1 || empty($DemandInfo[ArrivalSite])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="arrivalSite" value="0" {if $CompanyDemand[EarlyCost]=='0'}checked{/if}>
+                            <input type="radio" name="arrivalSite" value="0" {if $DemandInfo[ArrivalSite]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>
@@ -219,7 +200,7 @@
                 <div class="form-line area-more">
                     <label for="" class="form-lab fl">更多介绍：</label>
                     <div class="form-control">
-                        <textarea class="textarea" name="more" maxlength="150" placeholder="最多可输入150字" id="" cols="30" rows="10"></textarea>
+                        <textarea class="textarea" name="more" maxlength="150" placeholder="最多可输入150字" id="" cols="30" rows="10">{$DemandInfo[Content]}</textarea>
                     </div>
                 </div>
 
@@ -259,7 +240,7 @@
                 <div class="det">
                     <div class="p-dropdown">
                         <label type="checkbox">
-                            {if $CompanyDemand[Province]}<span data-id="{$CompanyDemand[Province]}">{$CompanyDemand[province]}</span>{else}<span>*省份</span>{/if}
+                            {if $DemandInfo[Province]}<span data-id="{$DemandInfo[Province]}">{$DemandInfo[province]}</span>{else}<span>*省份</span>{/if}
                             <i></i>
                             <input type="checkbox" name="dd_province" value="">
                             <ul></ul>
@@ -267,7 +248,7 @@
                     </div>
                     <div class="c-dropdown">
                         <label type="checkbox">
-                            {if $CompanyDemand[City]}<span data-id="{$CompanyDemand[City]}">{$CompanyDemand[city]}</span>{else}<span>城市</span>{/if}
+                            {if $DemandInfo[City]}<span data-id="{$DemandInfo[City]}">{$DemandInfo[city]}</span>{else}<span>城市</span>{/if}
                             <i></i>
                             <input type="checkbox" name="dd_city" value="">
                             <ul></ul>
@@ -275,7 +256,7 @@
                     </div>
                     <div class="a-dropdown">
                         <label type="checkbox">
-                            {if $CompanyDemand[Area]}<span data-id="{$CompanyDemand[Area]}">{$CompanyDemand[area]}</span>{else}<span>区县/市</span>{/if}
+                            {if $DemandInfo[Area]}<span data-id="{$DemandInfo[Area]}">{$DemandInfo[area]}</span>{else}<span>区县/市</span>{/if}
                             <i></i>
                             <input type="checkbox" name="dd_area" value="">
                             <ul></ul>
@@ -299,8 +280,8 @@
         债务金额:
     </div>
     <div class="det">
-        <input type="text" name="from" onblur="validateForm('money', this)" value="{$CompanyDemand[FromMoney]}" placeholder="*0.00">元 -
-        <input type="text" name="to" onblur="validateForm('money', this)" value="{$CompanyDemand[ToMoney]}" placeholder="*3000.00">元
+        <input type="text" name="from" onblur="validateForm('money', this)" value="{$DemandInfo[FromMoney]}" placeholder="*0.00">元 -
+        <input type="text" name="to" onblur="validateForm('money', this)" value="{$DemandInfo[ToMoney]}" placeholder="*3000.00">元
         </div>
         </div>
         <div class="right">
@@ -309,7 +290,7 @@
         佣金比例:
     </div>
     <div class="det">
-        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*百分比">%
+        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$DemandInfo[MoneyScale]}" placeholder="*百分比">%
         </div>
         </div>
         <div class="right">
@@ -317,7 +298,7 @@
         前期费用:
     </div>
     <div class="det">
-        <input type="text" name="rate" onblur="validateForm('money', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*请输入金额">元
+        <input type="text" name="rate" onblur="validateForm('money', this)" value="{$DemandInfo[MoneyScale]}" placeholder="*请输入金额">元
         </div>
         </div>
         </div>
@@ -330,12 +311,12 @@
         <div class="form-lab">是否负责找人：</div>
     <div class="form-control m-radio">
         <label type="radio">
-        <input type="radio" name="isLookForSb${num}" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
+        <input type="radio" name="isLookForSb${num}" value="1" {if $DemandInfo[FindDebtor]==1 || empty($DemandInfo[FindDebtor])}checked{/if}>
     <i></i>
     是
     </label>
     <label type="radio">
-        <input type="radio" name="isLookForSb${num}" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
+        <input type="radio" name="isLookForSb${num}" value="0" {if $DemandInfo[FindDebtor]=='0'}checked{/if}>
     <i></i>
     否
     </label>
