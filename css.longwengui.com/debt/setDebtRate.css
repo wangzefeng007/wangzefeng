@@ -131,7 +131,7 @@
 .set-debt .wrap .form-wrap .box .c .blo .to-del {
   position: absolute;
   right: 0;
-  top: 30px;
+  top: 50px;
   display: none;
   cursor: pointer;
 }
@@ -271,12 +271,12 @@
   font-size: 14px;
 }
 .area-more.form-line .form-lab{
-  width:150px;
+  width:120px;
   text-align: right;
   float: left;
 }
 .area-more.form-line .form-control .textarea{
-  width:1100px;
+  width:1040px;
   height:100px;
 }
 .textarea{

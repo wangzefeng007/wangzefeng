@@ -34,7 +34,18 @@ $(
           var _pid = $(this).find('.p-dropdown span').attr('data-id');
           var _cid = $(this).find('.c-dropdown span').attr('data-id');
           var _aid = $(this).find('.a-dropdown span').attr('data-id');
-
+          var chargeName=$(this).find("input[name='chargeName']").val();
+          var chargeMobile=$(this).find("input[name='chargeMobile']").val();
+          if(!chargeName){
+              showMsg('请输入负责人姓名');
+              flag = false;
+              return;
+          }
+          if(!chargeMobile){
+              showMsg('请输入负责人电话');
+              flag = false;
+              return;
+          }
           if(!_pid){
             showMsg('请完善地区信息');
             flag = false;
@@ -42,6 +53,8 @@ $(
           }
 
           area_info.push({
+            "chargeName":chargeName,
+            "chargeMobile":chargeMobile,
             "province": _pid,
             "city": _cid,
             "area": _aid
@@ -70,6 +83,8 @@ $(
           var _from = $(this).find('input[name="from"]').val();
           var _to = $(this).find('input[name="to"]').val();
           var _rate = $(this).find('input[name="rate"]').val();
+          var _cost = $(this).find('input[name="cost"]').val();
+          var _isLookFor=$(this).find('input[name^="isLookForSb"]:checked').val();
 
           if(_from == ''){
             $(this).find('input[name="from"]').focus();
@@ -119,11 +134,25 @@ $(
             flag = false;
             return;
           }
+          if(_cost == ''){
+              $(this).find('input[name="cost"]').focus();
+              showMsg('请输入前期费用');
+              flag = false;
+              return;
+          }
+          if(!validate('+money', _to)){
+              $(this).find('input[name="cost"]').focus();
+              showMsg('请输入正确的前期费用');
+              flag = false;
+              return;
+          }
 
           fee_rate_info.push({
             "from": _from,
             "to": _to,
-            "rate": _rate
+            "rate": _rate,
+            "cost":_cost,
+            "isLookFor":_isLookFor
           });
 
         }
@@ -143,10 +172,9 @@ $(
         return;
       }
 
-      var searchedAnytime = $('input[name="searchedAnytime"]:checked').val();
-      var fee = $('input[name="fee"]:checked').val();
       var abilityDebt = $('input[name="abilityDebt"]:checked').val();
-
+      var arrivalSite = $('input[name="arrivalSite"]:checked').val();
+      var more = $('textarea[name="more"]').val();
       $.ajax({
         type: "post",
         dataType: "json",
@@ -156,11 +184,12 @@ $(
             'ID': id,
             "AjaxJSON": JSON.stringify({
                 "case_name": case_name,  //方案名称
-                "searchedAnytime": searchedAnytime, //是否随时找到 1 是 0 否
-                "fee": fee,  //是否有前期费用
-                "abilityDebt": abilityDebt, //是否有还款能力
+                "area": area_info, //地区数组
                 "fee_rate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; rate: 比例 }
-                "area": area_info //地区数组
+                "abilityDebt": abilityDebt, //是否有还款能力 1 是 0 否
+                "arrivalSite": arrivalSite, //是否需要债权人到达现场  1 是 0 否
+                "more": more  //更多介绍
+
             }),
         },
         beforeSend: function(){
@@ -224,20 +253,6 @@ function initArea(){
   getProvinceData();
   getCityData(p_id, p_tar);
   getAreaData(c_id, c_tar);
-}
-
-//添加设置区域
-function addAreaSet(){
-  if($('#set_area').children('.blo').length < 3){
-    addDom('set_area', 'set_area_tmpl', getProvinceData);
-  }
-}
-
-//添加佣金比例设置
-function addFeeRateSet(){
-  if($('#set_fee_rate').children('.blo').length < 3){
-    addDom('set_fee_rate', 'set_fee_rate_tmpl');
-  }
 }
 
 //覆盖重置省市县下拉框
@@ -330,4 +345,43 @@ function isAreaRepeated(a, b){
   }else{
     return false;
   }
+}
+
+//添加指定模板到指定dom中有data渲染
+function addDom2(targetID, tempID, data , callback){
+    $('#' + tempID).tmpl(data).appendTo('#' + targetID);
+    if(isIE8() || isIE9()){
+        $('#' + targetID).find('input').each(function(){
+            $(this).placeholder();
+        });
+        fixIE8Label();
+    }
+    if(typeof callback == "function"){
+        callback();
+    }
+}
+/**
+ * 添加设置地区
+ * @param targetID
+ * @param tempID
+ */
+function addSetAreaDom(targetID,tempID){
+    if($('#' + targetID).children('.blo').length < 3){
+        addDom(targetID, tempID, getProvinceData);
+    }
+}
+
+/**
+ * 添加佣金比例
+ * @param targetID
+ * @param tempID
+ */
+function addRateDom(targetID,tempID){
+    if($('#' + targetID).children('.blo').length < 3){
+      var len=$('#' + targetID).children('.blo').length;
+      var data={
+        num:len
+      }
+        addDom2(targetID, tempID,data);
+    }
 }

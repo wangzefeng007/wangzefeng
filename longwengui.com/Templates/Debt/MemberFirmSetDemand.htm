@@ -32,9 +32,16 @@
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/area_icon.png" alt="">
                     <span>设置地区</span>
+                    <div class="opt" onclick="addSetAreaDom('set_area', 'setArea_temp')">
+                        <img src="/Uploads/Debt/imgs/add_b.png" alt="">
+                        添加
+                    </div>
                 </div>
                 <div class="c" id="set_area">
                     <div class="blo">
+                        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                        </div>
                         <div class="form-line">
                             <div class="form-lab">
                                 负责人姓名:
@@ -90,9 +97,16 @@
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/rate_icon.png" alt="">
                     <span>设置佣金比例</span>
+                    <div class="opt" onclick="addRateDom('set_fee_rate', 'set_fee_rate_temp')">
+                        <img src="/Uploads/Debt/imgs/add_b.png" alt="">
+                        添加
+                    </div>
                 </div>
                 <div class="c" id="set_fee_rate">
                     <div class="blo">
+                        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                        </div>
                         <div class="line" style="border-bottom: 0;">
                             <div class="left">
                                 <div class="info">
@@ -117,7 +131,7 @@
                                         前期费用:
                                     </div>
                                     <div class="det">
-                                        <input type="text" name="rate" onblur="validateForm('money', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*请输入金额">元
+                                        <input type="text" name="cost" onblur="validateForm('money', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*请输入金额">元
                                     </div>
                                 </div>
                             </div>
@@ -130,12 +144,12 @@
                             <div class="form-lab">是否负责找人：</div>
                             <div class="form-control m-radio">
                                 <label type="radio">
-                                    <input type="radio" name="searchedAnytime" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
+                                    <input type="radio" name="isLookForSb" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
                                     <i></i>
                                     是
                                 </label>
                                 <label type="radio">
-                                    <input type="radio" name="searchedAnytime" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
+                                    <input type="radio" name="isLookForSb" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
                                     <i></i>
                                     否
                                 </label>
@@ -188,14 +202,14 @@
                     <span>是否需要债权人到达现场 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="" value="1" {if $CompanyDemand[EarlyCost]==1 || empty($CompanyDemand[EarlyCost])}checked{/if}>
+                            <input type="radio" name="arrivalSite" value="1" {if $CompanyDemand[EarlyCost]==1 || empty($CompanyDemand[EarlyCost])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="" value="0" {if $CompanyDemand[EarlyCost]=='0'}checked{/if}>
+                            <input type="radio" name="arrivalSite" value="0" {if $CompanyDemand[EarlyCost]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>
@@ -205,9 +219,7 @@
                 <div class="form-line area-more">
                     <label for="" class="form-lab fl">更多介绍：</label>
                     <div class="form-control">
-                        <textarea class="textarea" name="" placeholder="*最多可输入150字" id="" cols="30" rows="10">
-
-                        </textarea>
+                        <textarea class="textarea" name="more" maxlength="150" placeholder="最多可输入150字" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 
@@ -219,6 +231,118 @@
             </div>
         </div>
     </div>
+</div>
+<script type="text/x-jquery-tmpl" id="setArea_temp">
+    <div class="blo">
+        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+        </div>
+        <div class="form-line">
+            <div class="form-lab">
+                负责人姓名:
+            </div>
+            <div class="form-control">
+                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="" placeholder="*请输入姓名">
+            </div>
+            <div class="form-lab ml-20">
+                负责人电话:
+            </div>
+            <div class="form-control">
+                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="" placeholder="*请输入电话号码">
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                <div class="info">
+                    催收区域:
+                </div>
+                <div class="det">
+                    <div class="p-dropdown">
+                        <label type="checkbox">
+                            {if $CompanyDemand[Province]}<span data-id="{$CompanyDemand[Province]}">{$CompanyDemand[province]}</span>{else}<span>*省份</span>{/if}
+                            <i></i>
+                            <input type="checkbox" name="dd_province" value="">
+                            <ul></ul>
+                        </label>
+                    </div>
+                    <div class="c-dropdown">
+                        <label type="checkbox">
+                            {if $CompanyDemand[City]}<span data-id="{$CompanyDemand[City]}">{$CompanyDemand[city]}</span>{else}<span>城市</span>{/if}
+                            <i></i>
+                            <input type="checkbox" name="dd_city" value="">
+                            <ul></ul>
+                        </label>
+                    </div>
+                    <div class="a-dropdown">
+                        <label type="checkbox">
+                            {if $CompanyDemand[Area]}<span data-id="{$CompanyDemand[Area]}">{$CompanyDemand[area]}</span>{else}<span>区县/市</span>{/if}
+                            <i></i>
+                            <input type="checkbox" name="dd_area" value="">
+                            <ul></ul>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-jquery-tmpl" id="set_fee_rate_temp">
+    <div class="blo">
+        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+        </div>
+        <div class="line" style="border-bottom: 0;">
+        <div class="left">
+        <div class="info">
+        债务金额:
+    </div>
+    <div class="det">
+        <input type="text" name="from" onblur="validateForm('money', this)" value="{$CompanyDemand[FromMoney]}" placeholder="*0.00">元 -
+        <input type="text" name="to" onblur="validateForm('money', this)" value="{$CompanyDemand[ToMoney]}" placeholder="*3000.00">元
+        </div>
+        </div>
+        <div class="right">
+        <div class="left">
+        <div class="info">
+        佣金比例:
+    </div>
+    <div class="det">
+        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*百分比">%
+        </div>
+        </div>
+        <div class="right">
+        <div class="info ml-10">
+        前期费用:
+    </div>
+    <div class="det">
+        <input type="text" name="rate" onblur="validateForm('money', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*请输入金额">元
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="c"></div>
+
+
+        <div class="form-line line" style="margin-bottom: 0;">
+        <div class="form-lab">是否负责找人：</div>
+    <div class="form-control m-radio">
+        <label type="radio">
+        <input type="radio" name="isLookForSb${num}" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
+    <i></i>
+    是
+    </label>
+    <label type="radio">
+        <input type="radio" name="isLookForSb${num}" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
+    <i></i>
+    否
+    </label>
+    </div>
+    </div>
+    </div>
+</script>
 {template Footer}
 <script src='{echo JsURL}/debt/setDebtRate.js'></script>
 </body>
