@@ -178,7 +178,7 @@ $(
       $.ajax({
         type: "post",
         dataType: "json",
-        url: "/loginajax.html",
+        url: "/ajax.html",
         data: {
             "Intention":"SetFirmDemand",//催收公司设置佣金方案
             'ID': id,
@@ -198,10 +198,7 @@ $(
         success: function(data){
           if(data.ResultCode == 200){
             showMsg('保存成功');
-            //路由跳转
-            setTimeout(function() {
-                window.location = data.Url;
-            }, 10);
+              window.location.reload();
           }else{
             showMsg(data.Message);
           }

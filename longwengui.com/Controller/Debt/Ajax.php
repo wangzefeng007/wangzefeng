@@ -305,239 +305,6 @@ class Ajax
     }
 
     /**
-     * @desc 寻找处置方(找律师团队和催收公司)
-     */
-
-    public function FindTeam(){
-        $this->IsLogin();
-        $MemberFindDebtModule = new MemberFindDebtModule();
-        $MemberFindCreditorsModule = new MemberFindCreditorsModule();
-        $MemberFindDebtorsModule = new MemberFindDebtorsModule();
-        $Data['DebtNum'] ='MD'.date("YmdHis").rand(100, 999);
-        $Data['UserID'] = $_SESSION ['UserID'];
-        $Data['AddTime'] = time();
-        $Data['UpdateTime'] = $Data['AddTime'];
-        $Data['Status'] = 1;
-        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        //1律师团队，2催收公司
-        $Data['Type'] = trim($AjaxData['Type']);
-        //是否有前期费用
-        $Data['EarlyCost'] = $AjaxData['preFee'];
-        //是否随时能找到
-        $Data['FindDebtor'] = $AjaxData['searchedAnytime'];
-        //是否有能力还债
-        $Data['RepaymentDebtor'] = $AjaxData['abilityDebt'];
-        //是否有保证人
-        $Data['Warrantor'] = $AjaxData['haveBondsMan'];
-        if ($Data['Warrantor']=='1'){
-            //保证人信息
-            foreach ($AjaxData['bondsmanInfos'] as $key=>$value){
-                $WarrantorInfo[$key]['type'] = trim($value['bonds_man_role']);
-                $WarrantorInfo[$key]['name'] = trim($value['name']);
-                $WarrantorInfo[$key]['card'] = trim($value['idNum']);
-                $WarrantorInfo[$key]['phone'] = trim($value['phoneNumber']);
-            }
-            $Data['WarrantorInfo'] = json_encode($WarrantorInfo,JSON_UNESCAPED_UNICODE);
-        }
-        //是否有抵押物
-        $Data['Guarantee'] = trim($AjaxData['haveBondsGood']);
-        if ($Data['Guarantee']=='1'){
-            //抵押物信息
-            foreach ($AjaxData['bondsgoodInfos'] as $key=>$value){
-                $GuaranteeInfo[$key]['name'] = trim($value['name']);
-                $GuaranteeInfo[$key]['content'] = trim($value['details']);
-            }
-            $Data['GuaranteeInfo'] = json_encode($GuaranteeInfo,JSON_UNESCAPED_UNICODE);
-        }
-        $debtOwnerInfos = $AjaxData['debtOwnerInfos'];//债权人信息
-        $debtorInfos = $AjaxData['debtorInfos'];//债务人信息
-        $Data['BondsNum'] = count($debtOwnerInfos);//债权人数量
-        $Data['DebtorNum'] = count($debtorInfos);//债务人数量
-        //计算债务人和债权人金额start
-        $debtOwnermoney =0;
-        $debtormoney =0;
-        foreach ($debtOwnerInfos as  $value) {
-            $debtOwnermoney = $debtOwnermoney+trim($value['debt_money']);
-        }
-        foreach ($debtorInfos as  $value) {
-            $debtormoney = $debtormoney+trim($value['debt_money']);
-        }
-        if ($debtOwnermoney!==$debtormoney){
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '债务人和债权人金额总和不一致',
-            );
-            EchoResult($json_result);exit;
-        }else{
-            $Data['DebtAmount'] = $debtOwnermoney;
-        }
-        //计算债务人和债权人金额end
-        if (empty($debtOwnerInfos)) {
-            $json_result = array(
-                'ResultCode' => 103,
-                'Message' => '债权人信息未填写完整',
-            );
-            EchoResult($json_result);exit;
-        }
-        if (empty($debtorInfos)){
-            $json_result = array(
-                'ResultCode' => 102,
-                'Message' => '债务人信息未填写完整',
-            );
-            EchoResult($json_result);exit;
-        }
-        //开启事务
-        global $DB;
-        $DB->query("BEGIN");//开始事务定义
-        $DebtID = $MemberFindDebtModule->InsertInfo($Data);
-        if (!$DebtID){
-            $DB->query("ROLLBACK");//判断当执行失败时回滚
-            $result_json = array('ResultCode'=>102,'Message'=>'录入债务基本信息失败');
-        }else{
-            $DB->query("COMMIT");//执行事务
-            //债权人信息
-            $Datb['AddTime'] = $Data['AddTime'];
-            $Datb['DebtID'] = $DebtID;
-            foreach ($debtOwnerInfos as $key => $value) {
-                $Datb['Name'] = trim($value['name']);
-                $Datb['Card'] = trim($value['idNum']);
-                $Datb['Money'] = trim($value['debt_money']);
-                $Datb['Phone'] = trim($value['phoneNumber']);
-                $Datb['Province'] = trim($value['province']);
-                $Datb['City'] = trim($value['city']);
-                $Datb['Area'] = trim($value['area']);
-                $Datb['Address'] = trim($value['areaDetail']);
-                $InsertCreditorsInfo = $MemberFindCreditorsModule->InsertInfo($Datb);
-                if(!$InsertCreditorsInfo){
-                    $DB->query("ROLLBACK");//判断当执行失败时回滚
-                    $result_json = array('ResultCode'=>102,'Message'=>'录入债权人信息失败');
-                    EchoResult($result_json);exit;
-                }
-            }
-            if ($InsertCreditorsInfo){
-                $DB->query("COMMIT");//执行事务
-                //债务人信息
-                $Datc['AddTime'] = $Data['AddTime'];
-                $Datc['DebtID'] = $DebtID;
-                foreach ($debtorInfos as $key=>$value){
-                    $Datc['Name'] = trim($value['name']);
-                    $Datc['Card'] = trim($value['idNum']);
-                    $Datc['Money'] = trim($value['debt_money']);
-                    $Datc['Phone'] = trim($value['phoneNumber']);
-                    $Datc['Province'] = trim($value['province']);
-                    $Datc['City'] = trim($value['city']);
-                    $Datc['Area'] = trim($value['area']);
-                    $Datc['Address'] = trim($value['areaDetail']);
-                    $InsertDebtorsInfo = $MemberFindDebtorsModule->InsertInfo($Datc);
-                    if(!$InsertDebtorsInfo){
-                        $DB->query("ROLLBACK");//判断当执行失败时回滚
-                        $result_json = array('ResultCode'=>103,'Message'=>'录入债务人信息失败');
-                        EchoResult($result_json);exit;
-                    }
-                }
-                if ($InsertDebtorsInfo){
-                    $DB->query("COMMIT");//执行事务
-                    $MemberSetCompanyModule = new MemberSetCompanyModule();
-                    $MemberSetLawyerFeeModule = new MemberSetLawyerFeeModule();
-                    foreach ($debtorInfos  as $key=>$value){
-                        $Province[] = $value['province'];
-                    }
-                    $Result['Data'] = array();
-                    if ($Data['Type']==1){ //1匹配律师团队
-                        $MysqlWhere=implode(',',array_unique($Province));
-                        $CompanyInfo = $MemberSetLawyerFeeModule->GetTeamInfoByWhere($MysqlWhere,$Data['DebtAmount']);
-                        if ($CompanyInfo){
-                            $MemberAreaModule = new MemberAreaModule();
-                            foreach ($CompanyInfo  as $key=>$value){
-                                $Result['Data'][$key]['CompanyName'] = $value['CompanyName'];
-                                $Result['Data'][$key]['UserID'] = $value['UserID'];
-                                $Result['Data'][$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
-                                $Result['Data'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
-                                $Result['Data'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
-                                $Result['Data'][$key]['phoneNumber'] = $value['mobile'];
-                                $Result['Data'][$key]['fee'] = $value['Money'];
-                            }
-                            $Result['ResultCode'] = 200;
-                            $Result['Page'] = 1;
-                            $Result['PageCount'] = 1;
-                            $Result['DebtId'] = $DebtID;
-                            EchoResult($Result);exit;
-                        }else{
-                            $DB->query("ROLLBACK");//判断当执行失败时回滚
-                            $result_json = array('ResultCode'=>105,'Message'=>'无相应处置方，请通过普通债务发布债务！');
-                            EchoResult($result_json);exit;
-                        }
-                    }elseif($Data['Type']==2){ //匹配催收公司
-                        $MysqlWhere=implode(',',array_unique($Province));
-                        $CompanyInfo = $MemberSetCompanyModule->GetTeamInfoByWhere($MysqlWhere,$Data['DebtAmount']);
-                        if ($CompanyInfo){
-                            $MemberAreaModule = new MemberAreaModule();
-                            foreach ($CompanyInfo  as $key=>$value){
-                                $Result['Data'][$key]['CompanyName'] = $value['CompanyName'];
-                                $Result['Data'][$key]['UserID'] = $value['UserID'];
-                                $Result['Data'][$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
-                                $Result['Data'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
-                                $Result['Data'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
-                                $Result['Data'][$key]['phoneNumber'] = $value['mobile'];
-                                $Result['Data'][$key]['fee'] = $value['MoneyScale']/100*$Data['DebtAmount'];
-                            }
-                            $Result['ResultCode'] = 200;
-                            $Result['Page'] = 1;
-                            $Result['PageCount'] = 1;
-                            $Result['DebtId'] = $DebtID;
-                            EchoResult($Result);exit;
-                        }else{
-                            $DB->query("ROLLBACK");//判断当执行失败时回滚
-                            $result_json = array('ResultCode'=>106,'Message'=>'非常抱歉，暂无找到相应的处置方！');
-                            EchoResult($result_json);exit;
-                        }
-                    }
-                }else{
-                    $DB->query("ROLLBACK");//判断当执行失败时回滚
-                    $result_json = array('ResultCode'=>103,'Message'=>'录入债务人信息失败');
-                }
-            }else{
-                $DB->query("ROLLBACK");//判断当执行失败时回滚
-                $result_json = array('ResultCode'=>102,'Message'=>'录入债权人信息失败');
-            }
-        }
-        EchoResult($result_json);exit;
-    }
-    /**
-     * @desc 普通用户申请委托方受理（寻找处置方）
-     */
-    public function DisposeApply(){
-        $this->IsLogin();
-        $Data['UserID'] = $_POST['uid'];
-        $Data['DebtID'] = $_POST['debtId'];
-        $Data['Money'] = $_POST['money'];
-        $Data['DelegateTime'] = time();
-        $Data['Status'] =1;
-        $MemberFindDebtOrderModule = new MemberFindDebtOrderModule();
-        $MemberFindDebtModule = new MemberFindDebtModule();
-        $MemberUserModule = new MemberUserModule();
-        $FindDebt = $MemberFindDebtModule->GetInfoByKeyID($Data['DebtID']);
-        $Rscount = $MemberFindDebtOrderModule->GetListsNum(' and DebtID = '.$Data['DebtID']);
-        if ($Rscount ['Num']>='3'){
-            $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，您最多只可申请三个处置方');
-        }else{
-            if ($MemberFindDebtOrderModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and UserID = '.$Data['UserID'])){
-                $result_json = array('ResultCode'=>102,'Message'=>'非常抱歉，不能重复申请');
-            }else{
-                $InsertFindDebtOrder = $MemberFindDebtOrderModule->InsertInfo($Data);
-                if (!$InsertFindDebtOrder){
-                    $result_json = array('ResultCode'=>104,'Message'=>'申请失败');
-                }else{
-                    $MandatorUser = $MemberUserModule->GetInfoByKeyID($Data['UserID']);//处置方用户信息
-                    ToolService::SendSMSNotice($MandatorUser['Mobile'], '亲爱的隆文贵网用户，有债务申请委托您处理，请及时处理，登录http://www.longwengui.com/，及时查看您的受理债务信息。感谢您的配合！');//发送短信给委托方
-                    ToolService::SendSMSNotice(18039847468, '站内客服，有债务申请处置方受理，请及时跟进，债务编号：'.$FindDebt['DebtNum']);//发送短信给内部客服人员
-                    $result_json = array('ResultCode'=>200,'Message'=>'申请成功');
-                }
-            }
-        }
-        EchoResult($result_json);exit;
-    }
-    /**
      * @desc 发布债务
      */
     public function ReleaseDebt(){
@@ -839,7 +606,39 @@ class Ajax
         EchoResult($result_json);
         exit;
     }
+    /**
+     * @desc 寻找处置方（催收公司催客设置接单要求）
+     */
+    public function SetFirmDemand(){
+        $this->IsLogin();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
+        if ($_POST){
+            $ID = $_POST['ID'];
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+            $Data['CaseName'] = $AjaxData['case_name'];//方案名称
+            $Data['Area'] = json_encode($AjaxData['area'],JSON_UNESCAPED_UNICODE);//地区
+            $Data['FeeRate'] = json_encode($AjaxData['fee_rate'],JSON_UNESCAPED_UNICODE);//佣金比例
+            $Data['AbilityDebt'] = $AjaxData['abilityDebt'];//债务人有无还款能力
+            $Data['ArrivalSite'] = $AjaxData['arrivalSite'];//是否需要债权人到达现场
+            $Data['Content'] = $AjaxData['more'];//介绍
+            $Data['AddTime'] = time();
+            $Data['UpdateTime'] = $Data['AddTime'];
+            $Data['UserID'] = $_SESSION ['UserID'];
+            if (empty($ID)){
+                $Result = $MemberOrderDemandModule->InsertInfo($Data);
+            }else{
+                $Result = $MemberOrderDemandModule->UpdateInfoByKeyID($Data,$ID);
+            }
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberperson/demandlist/');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'保存失败！');
 
+            }
+            EchoResult($result_json);
+            exit;
+        }
+    }
     /**
      * @desc 获取客户SESSION信息
      */

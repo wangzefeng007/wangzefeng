@@ -139,12 +139,12 @@ class MemberFirm
         $Title = '会员中心-要求方案';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberSetCompanyModule = new MemberSetCompanyModule();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
-        $Rscount = $MemberSetCompanyModule->GetListsNum($MysqlWhere);
+        $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
             $Page = 1;
@@ -159,7 +159,7 @@ class MemberFirm
                 $Page = $Data['PageCount'];
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberSetCompanyModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $Data['Data'] = $MemberOrderDemandModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
@@ -172,9 +172,9 @@ class MemberFirm
     public function DemandDetails(){
         $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
-        $MemberSetCompanyModule = new MemberSetCompanyModule();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
         $ID = intval($_GET['ID']);
-        $CompanyDemand = $MemberSetCompanyModule->GetInfoByWhere(' and SetID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+        $CompanyDemand = $MemberOrderDemandModule->GetInfoByWhere(' and SetID ='.$ID.' and UserID = '.$_SESSION['UserID']);
         if (!$CompanyDemand){
             alertandback("该方案不存在！");
         }
@@ -192,16 +192,20 @@ class MemberFirm
     public function SetDemand(){
         $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
-        $MemberSetCompanyModule = new MemberSetCompanyModule();
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
         $ID = intval($_GET['ID']);
         if ($ID) {
-            $CompanyDemand = $MemberSetCompanyModule->GetInfoByKeyID($ID);
-            if ($CompanyDemand['Province'])
-            $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
-            if ($CompanyDemand['City'])
-            $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
-            if ($CompanyDemand['Area'])
-            $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
+            $DemandInfo = $MemberOrderDemandModule->GetInfoByKeyID($ID);
+            $DemandInfo['Area'] = json_decode($DemandInfo['Area'],true);
+            foreach ( $DemandInfo['Area'] as $key=>$value){
+                if ($value['province'])
+                    $DemandInfo['Area'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
+                if ($value['city'])
+                    $DemandInfo['Area'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
+                if ($value['area'])
+                    $DemandInfo['Area'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+            }
+            $DemandInfo['FeeRate'] = json_decode($DemandInfo['FeeRate'],true);
         }
         include template('MemberFirmSetDemand');
     }
