@@ -2034,6 +2034,9 @@ input.disabled{
 .inp-royal {
   width: 264px;
 }
+.text-primary{
+  color: #35bdfc; 
+}
 /* btn */
 .btn {
   display: inline-block;

@@ -274,10 +274,15 @@ function addDom(targetID, tempID, callback){
   }
 }
 //删除指定父级元素
-function removeParentDom(self, className){
+function removeParentDom(self, className,callback){
   if($(self).parents('.' + className).siblings('.' + className).length > 0){
     $(self).parents('.' + className).remove();
   }
+    if(typeof callback == 'function'){
+        callback(tar, ImgBaseData, index, _type);
+    }else if(typeof removeParentDomAfter=='function'){
+        removeParentDomAfter(self, className);
+    }
 }
 
 /**

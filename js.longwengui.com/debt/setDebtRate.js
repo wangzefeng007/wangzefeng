@@ -46,7 +46,7 @@ $(
               flag = false;
               return;
           }
-          if(!_pid){
+          if(!_pid||!_cid||!_aid){
             showMsg('请完善地区信息');
             flag = false;
             return;
@@ -375,10 +375,20 @@ function addSetAreaDom(targetID,tempID){
  */
 function addRateDom(targetID,tempID){
     if($('#' + targetID).children('.blo').length < 3){
-      var len=$('#' + targetID).children('.blo').length;
+      var len=$('#' + targetID).children('.blo').length+1;
       var data={
         num:len
       }
         addDom2(targetID, tempID,data);
     }
 }
+
+/**
+ *  删除dom之后回调
+ */
+ function removeParentDomAfter(self,className){
+   $("#set_fee_rate .blo").each(function(){
+     var index=$(this).index()+1;
+     $(this).find("input[type='radio']").attr("name","isLookForSb"+index);
+   })
+ }
