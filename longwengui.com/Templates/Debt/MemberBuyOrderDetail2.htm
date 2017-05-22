@@ -356,6 +356,41 @@
         </div>
     </div>
 </div>
+<div id="revoke-section" style="display: none;">
+    <div class="refuse-return">
+        <p class="tips">目前售后申请仅有一次机会，为确保您的利益，请告知撤销申请是由于：</p>
+        <ul>
+            <li>
+                <div class="m-radio">
+                    <label type="radio">
+                        <input type="radio" name="revokeReason" checked value="和买家协商一致，已解决售后问题。">
+                        <i></i>和卖家协商一致，已解决售后问题。
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="m-radio fl">
+                    <label type="radio">
+                        <input type="radio" class="otherReason" name="revokeReason" value="其它">
+                        <i></i>其它：
+                    </label>
+                </div>
+                <textarea class="textarea" name="revokeReasonText" onchange="pageObj.writeReason(this)" id="" cols="30" rows="10"></textarea>
+            </li>
+            <li>
+                <div class="form-line">
+                    <label class="form-lab" for=""></label>
+                    <div class="form-control">
+                        <button id="revoke_confirm" data-id="{$OrderInfo[OrderID]}" onclick="pageObj.revokeConfirm(this)" class="btn btn-primary btn-superbig">
+                            我已知道风险，确认撤销
+                        </button>
+                        <a id="revoke_cancel" class="btn btn-superbig ml-20 btn-default" href="javascript:void(0)">因为风险，放弃撤销</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
 <script src='{echo JsURL}/debt/returnGoods.js'></script>

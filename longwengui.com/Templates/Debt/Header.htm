@@ -17,24 +17,24 @@
 <div class="header">
     <div class="wrap clearfix">
         <h1 class="logo"><a href="{echo WEB_MAIN_URL}" title="隆文贵，让不良资产处置变得简单"><img src="{echo CssURL}/debt/images/logo-new.png" alt="隆文贵，让不良资产处置变得简单"></a></h1>
-        <div class="login-box">
+        <div class="login-box {if $_SESSION[UserID] && !empty($_SESSION[UserID])}logined {else} logining {/if}">
             <div class="login-bar">
                 <p class="icon"></p>
             </div>
             {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
             <p class="username"><a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{elseif $_SESSION[Identity]==5}membercompany{/if}/">{$_SESSION[NickName]}</a></p>
             {/if}
-            <div class="hover-con {if $_SESSION[UserID] && !empty($_SESSION[UserID])}logined {else} logining {/if}">
+            <div class="hover-con">
                 {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
                 <div class="yes-login">
                     <p class="loginout"><a href="/member/signout/">退出登录</a></p>
                 </div>
                 {else}
                 <div class="no-login">
-                    <div class="fast-login">
+                    <!--<div class="fast-login">
                         <a href="#"><img src="{echo CssURL}/debt/images/wxlogo.png" alt=""></a>
                         <a href="#"><img src="{echo CssURL}/debt/images/qqlogo.png" alt=""></a>
-                    </div>
+                    </div>-->
                     <p class="login-reg clearfix">
                         <span class="fl" onclick="toLogin()">登录</span>
                         <span class="fr" onclick="go('/member/register/')">注册</span>

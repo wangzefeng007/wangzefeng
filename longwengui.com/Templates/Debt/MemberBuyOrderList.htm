@@ -106,14 +106,14 @@
                                 <!--申请退款-->
                                 {elseif $lists[Status]==5}
                                 <p><a class="btn btn-primary" onclick="pageObj.remind('{$lists[OrderID]}')" id="remindReturn" href="javascript:void(0);" title="提醒卖家">提醒卖家</a></p>
-                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply('{$lists[OrderID]}')" id="cancelApply" href="javascript:void(0);" title="取消申请">取消申请</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply('{$lists[OrderID]}')" id="cancelApply" href="javascript:void(0);" title="撤销退货申请">撤销退货申请</a></p>
                                 {elseif $lists[Status]== 6}
                                 <!--退款中-->
                                 <p><a class="btn btn-primary" onclick="pageObj.immediatelyReturnGoods('{$lists[OrderID]}')" id="immediatelyReturnGoods" href="javascript:void(0);" title="立即退货">立即退货</a></p>
                                 <p><a class="btn btn-primary" onclick="pageObj.indeedReturn('{$lists[OrderID]}')" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
                                 <!--申请失败-->
                                 {elseif $lists[Status]==7}
-                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply('{$lists[OrderID]}')" id="cancelApply2" href="javascript:void(0);" title="取消申请">取消申请</a></p>
+                                <p><a class="btn btn-primary" onclick="pageObj.cancelApply('{$lists[OrderID]}')" id="cancelApply2" href="javascript:void(0);" title="撤销退货申请">撤销退货申请</a></p>
                                 <!--退款成功-->
                                 {elseif $lists[Status]==8}
                                 <p><a onclick="pageObj.delOrder('{$lists[OrderID]}')" href="javascript:void(0);"><i class="icon-del" title="删除"></i></a></p>

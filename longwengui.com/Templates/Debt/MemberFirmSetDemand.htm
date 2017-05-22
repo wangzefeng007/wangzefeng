@@ -4,7 +4,7 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>债权管理</a> > <span class="cur">债权接单</span></span>
+            <span>当前位置 : <a>债权管理</a> > <span class="cur">接单要求</span></span>
         </div>
         <div class="form-wrap">
             <div class="box">
@@ -35,10 +35,24 @@
                 </div>
                 <div class="c" id="set_area">
                     <div class="blo">
+                        <div class="form-line">
+                            <div class="form-lab">
+                                负责人姓名:
+                            </div>
+                            <div class="form-control">
+                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="" placeholder="*请输入姓名">
+                            </div>
+                            <div class="form-lab ml-20">
+                                负责人电话:
+                            </div>
+                            <div class="form-control">
+                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="" placeholder="*请输入电话号码">
+                            </div>
+                        </div>
                         <div class="line">
                             <div class="left">
                                 <div class="info">
-                                    匹配区域:
+                                    催收区域:
                                 </div>
                                 <div class="det">
                                     <div class="p-dropdown">
@@ -79,7 +93,7 @@
                 </div>
                 <div class="c" id="set_fee_rate">
                     <div class="blo">
-                        <div class="line">
+                        <div class="line" style="border-bottom: 0;">
                             <div class="left">
                                 <div class="info">
                                     债务金额:
@@ -90,18 +104,47 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <div class="info">
-                                    佣金比例:
+                                <div class="left">
+                                    <div class="info">
+                                        佣金比例:
+                                    </div>
+                                    <div class="det">
+                                        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*百分比">%
+                                    </div>
                                 </div>
-                                <div class="det">
-                                    <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*百分比">% 人民币
+                                <div class="right">
+                                    <div class="info ml-10">
+                                        前期费用:
+                                    </div>
+                                    <div class="det">
+                                        <input type="text" name="rate" onblur="validateForm('money', this)" value="{$CompanyDemand[MoneyScale]}" placeholder="*请输入金额">元
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="c"></div>
+
+
+                        <div class="form-line line" style="margin-bottom: 0;">
+                            <div class="form-lab">是否负责找人：</div>
+                            <div class="form-control m-radio">
+                                <label type="radio">
+                                    <input type="radio" name="searchedAnytime" value="1" {if $CompanyDemand[FindDebtor]==1 || empty($CompanyDemand[FindDebtor])}checked{/if}>
+                                    <i></i>
+                                    是
+                                </label>
+                                <label type="radio">
+                                    <input type="radio" name="searchedAnytime" value="0" {if $CompanyDemand[FindDebtor]=='0'}checked{/if}>
+                                    <i></i>
+                                    否
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="t">
+                <!--<div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
                     <span>债务人是否随时能寻找到 : </span>
                     <div class="m-radio ml-10">
@@ -118,12 +161,11 @@
                             否
                         </label>
                     </div>
-                </div>
-                <div class="c"></div>
+                </div>-->
 
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
-                    <span>债务人是否有还款能力 : </span>
+                    <span>是否需要债务人有还款能力 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
                             <input type="radio" name="abilityDebt" value="1" {if $CompanyDemand[RepaymentDebtor]==1 || empty($CompanyDemand[RepaymentDebtor])}checked{/if}>
@@ -143,23 +185,31 @@
 
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
-                    <span>是否有前期费用 : </span>
+                    <span>是否需要债权人到达现场 : </span>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="fee" value="1" {if $CompanyDemand[EarlyCost]==1 || empty($CompanyDemand[EarlyCost])}checked{/if}>
+                            <input type="radio" name="" value="1" {if $CompanyDemand[EarlyCost]==1 || empty($CompanyDemand[EarlyCost])}checked{/if}>
                             <i></i>
                             是
                         </label>
                     </div>
                     <div class="m-radio ml-10">
                         <label type="radio">
-                            <input type="radio" name="fee" value="0" {if $CompanyDemand[EarlyCost]=='0'}checked{/if}>
+                            <input type="radio" name="" value="0" {if $CompanyDemand[EarlyCost]=='0'}checked{/if}>
                             <i></i>
                             否
                         </label>
                     </div>
                 </div>
                 <div class="c"></div>
+                <div class="form-line area-more">
+                    <label for="" class="form-lab fl">更多介绍：</label>
+                    <div class="form-control">
+                        <textarea class="textarea" name="" placeholder="*最多可输入150字" id="" cols="30" rows="10">
+
+                        </textarea>
+                    </div>
+                </div>
 
                 <div class="comfirm-btns">
                     <button type="button" id="save" name="button">保存</button>

@@ -88,7 +88,7 @@
                                 <div class="bx">
                                     <div class="img-wrap">
                                         {if !empty($UserInfo[CardNegative])}
-                                        <a class="grouped_elements" href="{$UserInfo[CardPositive]}" rel="group1">
+                                        <a class="grouped_elements" href="{$UserInfo[CardNegative]}" rel="group1">
                                             <img src="{$UserInfo[CardNegative]}" height="100" width="150" alt=""></a>
                                         {/if}
                                     </div>
@@ -98,7 +98,7 @@
                                 <div class="bx">
                                     <div class="img-wrap">
                                         {if !empty($UserInfo[CardHold])}
-                                        <img src="{$UserInfo[CardHold]}" height="100" width="150" alt="">
+                                        <a class="grouped_elements" href="{$UserInfo[CardHold]}" rel="group1"><img src="{$UserInfo[CardHold]}" height="100" width="150" alt=""></a>
                                         {/if}
                                     </div>
                                     手持身份证照

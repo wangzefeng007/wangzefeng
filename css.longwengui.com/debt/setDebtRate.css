@@ -193,6 +193,7 @@
   padding: 0 12px;
   margin-right: 10px;
   font-size: 14px;
+  width:120px;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line:not(:last-child) {
   border-bottom: 1px dashed #e6e6e6;
@@ -249,4 +250,40 @@
   color: #35bdfc;
   text-decoration: underline;
   cursor: pointer;
+}
+.form-line{
+  margin-bottom:10px;
+}
+.form-line .form-lab{
+  display: inline-block;
+  line-height:30px;
+}
+.form-line .form-control{
+  display: inline-block;
+}
+.inp{
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 0 12px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.area-more.form-line .form-lab{
+  width:150px;
+  text-align: right;
+  float: left;
+}
+.area-more.form-line .form-control .textarea{
+  width:1100px;
+  height:100px;
+}
+.textarea{
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+}
+.form-line .textarea{
+  box-sizing:border-box;
 }

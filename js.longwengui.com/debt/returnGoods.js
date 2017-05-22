@@ -85,6 +85,68 @@ var pageObj=$.extend({},pageObj,{
         }
     },
     /**
+     * 撤销退货申请
+     * @param tar
+     */
+    cancelApply:function(orderId){
+        /*var _this=this;
+        layer.confirm('是否取消申请？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            _this.commonAjax("CancelApply",orderId,function(){
+                layer.msg('取消成功！', {icon: 1});
+            })
+        });*/
+
+        var index = layer.open({
+            title:'撤销退货申请',
+            type: 1,
+            area: ['600px','400px'],
+            shadeClose: true,
+            //btn:['确认拒绝','取消'],
+            content: $("#revoke-section").html()
+        });
+        $(".refuse-return").on("click","#revoke_cancel",function(){
+            layer.close(index);
+        });
+    },
+    /**
+     * 确认撤回退货申请
+     */
+    revokeConfirm:function(tar){
+        var $revokeReason=$(tar).parents(".refuse-return").find("input[name='revokeReason']");
+        var revokeReason="";
+        var orderId ="";
+        $revokeReason.each(function(){
+            if($(this).is(':checked')){
+                revokeReason=$(this).val();
+            }
+        });
+        orderId=$(tar).parents(".refuse-return").find("#revoke_confirm").attr("data-id");
+        $.ajax({
+            type:"post",
+            url:"/ajaxorder",
+            dataType: "json",
+            data:{
+                "Intention":"CancelApply",
+                "revokeReason":revokeReason,
+                "orderId":orderId,
+            },
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    showMsg(data.Message);
+                    location.reload();
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        })
+    },
+    /**
      * 表单验证
      */
     validateForm:function(){

@@ -57,7 +57,7 @@ var pageObj=$.extend({},pageObj,{
         });
     },
     /**
-     * 取消申请
+     * 撤销退货申请
      * @param tar
      */
     cancelApply:function(orderId){

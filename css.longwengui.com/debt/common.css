@@ -878,6 +878,9 @@ a{
   float: right;
   padding:33px 30px;
 }
+.header .login-box.logined{
+  padding:23px 30px 43px;
+}
 .header .login-box .login-bar .icon{
   width:40px;
   height: 40px;
@@ -897,12 +900,12 @@ a{
 .header .login-box  .username a{
   color: #35bdfc;
 }
-.header .login-box .hover-con.logining {
+/*.header .login-box.logining .hover-con {
   width:200px;
 }
-.header .login-box .hover-con.logining .no-login .login-reg .fl{
+.header .login-box.logining .hover-con .no-login .login-reg .fl{
   float: none;
-}
+}*/
 .header .login-box .hover-con{
   position: absolute;
   z-index: 100;
