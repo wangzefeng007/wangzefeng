@@ -185,15 +185,23 @@
         </div>
         </div>
         <div class="line">
-        <div class="info">
-        详细内容 :
+          <div class="info">
+              详细内容 :
+          </div>
+          <div class="details">
+              <textarea name="areaDetail" maxlength="150" rows="2" cols="80" placeholder="*最多可输入(最多150个字)"></textarea>
+          </div>
+        </div>
+        <div class="line">
+          <div class="info" style="width: 220px;">
+            如有目击或知情者请拨打联系电话 :
+          </div>
+          <div class="details">
+          <input type="text" style="width: 300px;" name="contactPhone" onblur="validatePhone(this,true)" placeholder="*请输入电话号码">
+          </div>
+        </div>
     </div>
-    <div class="details">
-        <textarea name="areaDetail" maxlength="150" rows="2" cols="80" placeholder="*最多可输入(最多150个字)"></textarea>
-        </div>
-        </div>
-        </div>
-        </div>
+</div>
 </script>
 <script type="text/x-jquery-tmpl" id="findPropertyTemp">
 <div class="t">
