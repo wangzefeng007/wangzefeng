@@ -117,7 +117,7 @@
                     <span>订单总共金额： <b class="c-red">{$OrderInfo['TotalAmount']}</b> 元</span>
                     {if $OrderInfo['Status']==1}<a class="btn btn-primary" href="/assetorder/{$OrderInfo['OrderNumber']}.html">立即付款</a>
                     {elseif $OrderInfo['Status']==2}
-                    <a class="btn btn-primary" onclick="pageObj.remind(this)" href="javascript:void (0)">提醒发货</a>
+                    <a class="btn btn-primary" onclick="pageObj.remind('{$OrderInfo[OrderID]}')" href="javascript:void (0)">提醒发货</a>
                     {elseif $OrderInfo['Status']==3}
                     <a class="btn btn-primary" onclick="pageObj.indeedReceipt('{$OrderInfo[OrderID]}')" href="javascript:void (0)">确认收货</a>
                     {/if}

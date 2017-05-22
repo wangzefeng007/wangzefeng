@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="c" id="set_fee_rate">
-                    {loop $DemandInfo[FeeRate] $lists}
+                    {loop $DemandInfo[FeeRate] $key $lists}
                     <div class="blo">
                         <div class="to-del" onclick="removeParentDom(this, 'blo')">
                             <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
@@ -144,12 +144,12 @@
                             <div class="form-lab">是否负责找人：</div>
                             <div class="form-control m-radio">
                                 <label type="radio">
-                                    <input type="radio" name="isLookForSb" value="1" {if $lists[isLookFor]==1 || empty($lists[isLookFor])}checked{/if}>
+                                    <input type="radio" name="isLookForSb{echo $key+1}" value="1" {if $lists[isLookFor]==1 || empty($lists[isLookFor])}checked{/if}>
                                     <i></i>
                                     是
                                 </label>
                                 <label type="radio">
-                                    <input type="radio" name="isLookForSb" value="0" {if $lists[isLookFor]=='0'}checked{/if}>
+                                    <input type="radio" name="isLookForSb{echo $key+1}" value="0" {if $lists[isLookFor]=='0'}checked{/if}>
                                     <i></i>
                                     否
                                 </label>
