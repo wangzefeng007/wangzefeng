@@ -6,7 +6,7 @@
  */
 class MemberRewardInfoModule extends CommonModule {
 
-    public $KeyID = 'ID';
+    public $KeyID = 'RewardID';
     public $TableName = 'member_reward_info';
 
     /**
