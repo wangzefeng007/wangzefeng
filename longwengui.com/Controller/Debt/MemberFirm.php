@@ -207,6 +207,6 @@ class MemberFirm
             }
             $DemandInfo['FeeRate'] = json_decode($DemandInfo['FeeRate'],true);
         }
-        include template('MemberFirmSetDemand');
+        include template('MemberSetDemand');
     }
 }
