@@ -38,6 +38,7 @@
                     </div>
                 </div>
                 <div class="c" id="set_area">
+                    {if !empty($DemandInfo[Area])}
                     {loop $DemandInfo[Area] $lists}
                     <div class="blo">
                         <div class="to-del" onclick="removeParentDom(this, 'blo')">
@@ -94,6 +95,62 @@
                         </div>
                     </div>
                     {/loop}
+                    {else}
+                    <div class="blo">
+                        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                        </div>
+                        <div class="form-line">
+                            <div class="form-lab">
+                                负责人姓名:
+                            </div>
+                            <div class="form-control">
+                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$lists[chargeName]}" placeholder="*请输入姓名">
+                            </div>
+                            <div class="form-lab ml-20">
+                                负责人电话:
+                            </div>
+                            <div class="form-control">
+                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$lists[chargeMobile]}" placeholder="*请输入电话号码">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <div class="info">
+                                    催收区域:
+                                </div>
+                                <div class="det">
+                                    <div class="p-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[Province]}<span data-id="{$lists[province]}">{$lists[Province]}</span>{else}<span>*省份</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_province" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="c-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[City]}<span data-id="{$lists[city]}">{$lists[City]}</span>{else}<span>城市</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_city" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="a-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[Area]}<span data-id="{$lists[area]}">{$lists[Area]}</span>{else}<span>区县/市</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_area" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
                 </div>
 
                 <div class="t">
@@ -105,6 +162,7 @@
                     </div>
                 </div>
                 <div class="c" id="set_fee_rate">
+                    {if !empty($DemandInfo[FeeRate])}
                     {loop $DemandInfo[FeeRate] $key $lists}
                     <div class="blo">
                         <div class="to-del" onclick="removeParentDom(this, 'blo')">
@@ -157,6 +215,58 @@
                         </div>
                     </div>
                     {/loop}
+                    {else}
+                    <div class="blo">
+                        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                        </div>
+                        <div class="line" style="border-bottom: 0;">
+                            <div class="left">
+                                <div class="info">
+                                    债务金额:
+                                </div>
+                                <div class="det">
+                                    <input type="text" name="from" onblur="validateForm('money', this)" value="{$lists[from]}" placeholder="*0.00">元 -
+                                    <input type="text" name="to" onblur="validateForm('money', this)" value="{$lists[to]}" placeholder="*3000.00">元
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="left">
+                                    <div class="info">
+                                        佣金比例:
+                                    </div>
+                                    <div class="det">
+                                        <input type="text" name="rate" onblur="validateForm('rate', this)" value="{$lists[rate]}" placeholder="*百分比">%
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="info ml-10">
+                                        前期费用:
+                                    </div>
+                                    <div class="det">
+                                        <input type="text" name="cost" onblur="validateForm('money', this)" value="{$lists[cost]}" placeholder="*请输入金额">元
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c"></div>
+                        <div class="form-line line" style="margin-bottom: 0;">
+                            <div class="form-lab">是否负责找人：</div>
+                            <div class="form-control m-radio">
+                                <label type="radio">
+                                    <input type="radio" name="isLookForSb{echo $key+1}" value="1" {if $lists[isLookFor]==1 || empty($lists[isLookFor])}checked{/if}>
+                                    <i></i>
+                                    是
+                                </label>
+                                <label type="radio">
+                                    <input type="radio" name="isLookForSb{echo $key+1}" value="0" {if $lists[isLookFor]=='0'}checked{/if}>
+                                    <i></i>
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
                 </div>
                 <div class="t">
                     <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
