@@ -193,6 +193,9 @@ class MemberFirm
         $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
         $MemberOrderDemandModule = new MemberOrderDemandModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $ID = intval($_GET['ID']);
         if ($ID) {
             $DemandInfo = $MemberOrderDemandModule->GetInfoByKeyID($ID);

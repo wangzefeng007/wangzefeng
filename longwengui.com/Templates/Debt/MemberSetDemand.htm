@@ -4,7 +4,7 @@
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            <span>当前位置 : <a>个人中心</a> > <a href="/memberperson/demandlist/">处置方要求</a> ><span class="cur">编辑要求</span></span>
+            <span>当前位置 : <a>个人中心</a> > <a href="/{if $UserInfo['Identity']==2}memberperson{elseif $UserInfo['Identity']==3}memberfirm{/if}/demandlist/">处置方要求</a> ><span class="cur">编辑要求</span></span>
         </div>
         <div class="form-wrap">
             <div class="box">
