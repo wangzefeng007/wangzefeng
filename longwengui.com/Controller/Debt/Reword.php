@@ -55,38 +55,6 @@ class Reword
         if ($Page < 1) {
             $Page = 1;
         }
-        if ($Rscount['Num']) {
-            $MysqlWhere .=' order by AddTime desc';
-            $PageSize=4;
-            $Data = array();
-            $Data['RecordCount'] = $Rscount['Num'];
-            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
-            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
-            if ($Page > $Data['PageCount'])
-                $Page = $Data['PageCount'];
-            $Data['Page'] = min($Page, $Data['PageCount']);
-            $Offset = ($Page - 1) * $Data['PageSize'];
-            $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
-            foreach ($Data['Data'] as $key=>$value){
-                if ($value['Province'])
-                $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
-                if ($value['City'])
-                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
-                if ($value['Area'])
-                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
-                $Data['Data'][$key]['DebtCard'] = strlen($value['DebtCard']) ? substr_replace($value['DebtCard'], '****', 10, 4) : '';
-               $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['ID'],true);
-               foreach ($RewardImage as $K=>$V){
-                if ($V['IsDefault']==1){
-                    $Data['Data'][$key]['DefaultImage'] = $V['ImageUrl'];
-                }else{
-                    $Data['Data'][$key]['Image'][] = $V['ImageUrl'];
-                }
-               }
-            }
-            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
-            $ShowPage = $ClassPage->showpage();
-        }
         include template('RewordLists');
     }
     /**

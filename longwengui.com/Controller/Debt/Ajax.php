@@ -522,32 +522,16 @@ class Ajax
      */
     public function ReleaseReward(){
         $this->IsLogin();
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
-        if ($UserInfo['IdentityState']!=3){
-            $json_result = array(
-                'ResultCode' => 101,
-                'Message' => '请等待审核通过，感谢您的配合！',
-            );
-            echo json_encode($json_result);
-            exit;
-        }
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+
         $Data['RewardNum'] ='XS'.date("YmdHis").rand(100, 999);
         $Data['UserID'] = $_SESSION ['UserID'];
         $Data['AddTime'] = time();
         $Data['Type'] = $AjaxData['reword_type'];
-        $Data['CreditorsPhone'] =$AjaxData['debt_owner']['phoneNumber'];//CreditorsPhone债权人电话
-        $Data['DebtName'] =$AjaxData['debtor']['name'];
-        $Data['DebtCard'] =$AjaxData['debtor']['idNum'];
-        $Data['DebtPhone'] =$AjaxData['debtor']['phoneNumber'];//DebtPhone债务人电话
-        $Data['Province'] =$AjaxData['debtor']['province'];
-        $Data['City'] =$AjaxData['debtor']['city'];
-        $Data['Area'] =$AjaxData['debtor']['area'];
-        $Data['Address'] =$AjaxData['debtor']['areaDetail'];
         $Data['Status'] =2;
+        $Data['Message'] =json_encode($AjaxData['findMsg'],JSON_UNESCAPED_UNICODE);
         //开启事务
         global $DB;
         $DB->query("BEGIN");//开始事务定义
