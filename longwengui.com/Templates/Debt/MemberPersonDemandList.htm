@@ -1,0 +1,53 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>处置方要求方案</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberPersonLeft}
+            <div class="tab-hd">
+                <div class="tb">处置方要求方案</div>
+            </div>
+            <div class="info-cont">
+                <div class="cont-hd">
+                    <span>已有处置方要求方案：</span>
+                    <button class="send" onclick="go('/memberperson/setdemand/')"><img src="/Uploads/Debt/imgs/add_w.png">新增方案</button>
+                </div>
+                <div class="debt">
+                    <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <td>处置方要求方案名称</td>
+                            <td>创建时间</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $Data['Data'] $lists}
+                        <tr>
+                            <td>{$lists['CaseName']}</td>
+                            <td>{echo date("Y-m-d",$lists['AddTime'])}</td>
+                            <td><a class="see" href="/persondemanddetails/{$lists['SetID']}.html">查看</a><a class="modify" href="/memberperson/setdemand/?ID={$lists['SetID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', '{$lists[SetID]}', 'DeletePersonDemand')" data-id="{$lists['SetID']}">删除</span></td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {if $ShowPage}
+            <div class="pagination-wrap">
+                <div class="pagination fl-r" id="page_pagination">
+                    {$ShowPage}
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+</div>
+{template Footer}
+</body>
+</html>

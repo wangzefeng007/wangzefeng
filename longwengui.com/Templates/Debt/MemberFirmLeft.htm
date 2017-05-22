@@ -23,10 +23,7 @@
         <div class="menu-level-2 {if $Nav=='applydebtorder'}menu-level-2-act{/if}" onclick="go('/memberfirm/applydebtorder/')">
             申请的债权
         </div>
-        <div class="menu-level-2 {if $Nav=='creditorder'}menu-level-2-act{/if}" onclick="go('/memberfirm/demandlist/')">接单要求</div>
-        <div class="menu-level-2">
-            浏览过的债权
-        </div>
+        <div class="menu-level-2 {if $Nav=='demandlist'}menu-level-2-act{/if}" onclick="go('/memberfirm/demandlist/')">接单要求</div>
     </div>
     <div class="menu-level-1 {if $Nav=='systemmessage'}menu-level-1-act{/if}" onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">

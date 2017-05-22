@@ -454,7 +454,7 @@ class MemberPerson
         include template('MemberPersonFocusDebtList');
     }
     /**
-     * @desc 关注的债务
+     * @desc 范本下载
      */
     public function Download(){
         $this->IsLogin();
@@ -466,5 +466,46 @@ class MemberPerson
         //会员基本信息
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberPersonDownload');
+    }
+    /**
+     * @desc 催客接单的要求方案列表
+     */
+    public function DemandList(){
+        $this->IsLogin();
+        $Nav='demandlist';
+        $Title = '会员中心-接单要求';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberSetCompanyModule = new MemberSetCompanyModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
+        $Rscount = $MemberSetCompanyModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=10;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberSetCompanyModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
+        include template('MemberPersonDemandList');
+    }
+    /**
+     * @desc 催客设置接单要求
+     */
+    public function SetDemand(){
+        include template('MemberPersonSetDemand');
     }
 }
