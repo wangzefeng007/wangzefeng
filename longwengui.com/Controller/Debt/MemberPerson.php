@@ -453,4 +453,18 @@ class MemberPerson
         }
         include template('MemberPersonFocusDebtList');
     }
+    /**
+     * @desc 关注的债务
+     */
+    public function Download(){
+        $this->IsLogin();
+        $Nav='download';
+        if ($_SESSION['Identity']!=1 && $_SESSION['Identity']!=2){
+            alertandback("访问被拒绝");
+        }
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberPersonDownload');
+    }
 }
