@@ -212,6 +212,8 @@ var pageObj=$.extend({},pageObj,{
         var Num = GetQueryString("num");
         var ID = GetQueryString("id");
         var Money = GetQueryString("money");
+        var Freight =$("#Js_order").attr("data-money");
+        Money = parseInt(Money) +  parseInt(Freight);
         var AddressId=$(".address-box.active").find(".edit").attr("data-id");
         if(!AddressId){
             showMsg("收货地址不能为空");
