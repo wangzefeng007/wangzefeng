@@ -41,5 +41,5 @@ RewriteRule ^([a-z]+)_([a-z]+)(|\/)$ /index.php?Module=$1&Action=$2 [QSA]
 
 #301重定向START
 RewriteCond %{http_host} ^longwengui.com [NC]
-RewriteRule ^(.*)$ http://www.longwengui.net/$1 [L,R=301]
+RewriteRule ^(.*)$ http://www.longwengui.com/$1 [L,R=301]
 </IfModule>
