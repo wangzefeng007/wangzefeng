@@ -17,10 +17,8 @@ $RouteArr=array(
     'asset@order'=>'Asset@Order',
     'asset@choicepay'=>'Asset@ChoicePay',
     'asset@pay'=>'Asset@Pay',
-
     //寻找处置方
     'find@choicefind'=>'Find@ChoiceFind',
-    'find@team'=>'Find@Team',
     //搜索老赖
     'deadbeat@index'=>'DeadBeat@Index',
     //会员中心
@@ -32,30 +30,28 @@ $RouteArr=array(
     'member@findpasswd'=>'Member@FindPasswd',
     'member@changemobile'=>'Member@ChangeMobile',
     'member@editpassword'=>'Member@EditPassWord',
+    'member@reword'=>'Member@Reword',
     'member@systemmessage'=>'Member@SystemMessage',
     'member@advice'=>'Member@Advice',
     'member@center'=>'Member@Center',
     'member@assetlist'=>'Member@AssetList',
     'member@sellorderlist'=>'Member@SellOrderList',
     'member@buyorderlist'=>'Member@BuyOrderList',
-    'member@buyorderdetail'=>'Member@BuyOrderDetail',
+    'member@buyorderdetail1'=>'Member@BuyOrderDetail1',
     //普通会员中心
     'memberperson@index'=>'MemberPerson@Index',
     'memberperson@editinfo'=>'MemberPerson@EditInfo',
     'memberperson@applydebtorder'=>'MemberPerson@ApplyDebtOrder',
     'memberperson@bondlist'=>'MemberPerson@BondList',
     'memberperson@debtlist'=>'MemberPerson@DebtList',
-    'memberperson@rewordlist'=>'MemberPerson@RewordList',
-    'memberperson@findteam'=>'MemberPerson@FindTeam',
+    'memberperson@demandlist'=>'MemberPerson@DemandList',
+    'memberperson@demanddetails'=>'MemberPerson@DemandDetails',
+    'memberperson@setdemand'=>'MemberPerson@SetDemand',
     'memberperson@focusdebtlist'=>'MemberPerson@FocusDebtList',
     //律师会员中心
     'memberlawyer@index'=>'MemberLawyer@Index',
     'memberlawyer@editinfo'=>'MemberLawyer@EditInfo',
     'memberlawyer@applydebtorder'=>'MemberLawyer@ApplyDebtOrder',
-    'memberlawyer@creditorder'=>'MemberLawyer@CreditOrder',
-    'MemberLawyer@demandlist'=>'MemberLawyer@DemandList',
-    'memberlawyer@demanddetails'=>'MemberLawyer@DemandDetails',
-    'memberlawyer@setdemand'=>'MemberLawyer@SetDemand',
     //催收公司会员中心
     'memberfirm@index'=>'MemberFirm@Index',
     'memberfirm@editinfo'=>'MemberFirm@EditInfo',
