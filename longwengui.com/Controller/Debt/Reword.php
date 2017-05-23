@@ -56,11 +56,21 @@ class Reword
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-                $Data['Data'][$key]['Message'] =json_decode($value['Message'],true);
+                $Message =json_decode($value['Message'],true);
+                if ($Message['dd_province'])
+                    $Message['province'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_province']);
+                if ($Message['dd_city'])
+                    $Message['city'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_city']);
+                if ($Message['dd_area'])
+                    $Message['area'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_area']);
+                if ($Message['idNum'])
+                    $Message['idNum'] = strlen($Message['idNum']) ? substr_replace($Message['idNum'], '****', 10, 4) : '';
+                if ($Message['find_idCard'])
+                    $Message['find_idCard'] = strlen($Message['find_idCard']) ? substr_replace($Message['find_idCard'], '****', 10, 4) : '';
+                $Data['Data'][$key]['Message'] = $Message;
                 $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['RewardID'],true);
                 $Data['Data'][$key]['Image'] = $RewardImage;
             }
-            var_dump($Data['Data']);
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }

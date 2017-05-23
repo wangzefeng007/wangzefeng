@@ -31,203 +31,141 @@
         </div>
         <div class="box-wrap reword-list" id="reword_info">
             <ul class="clearfix">
+                {loop $Data['Data'] $lists}
+                {if $lists[Type]==1}
                 <li class="clearfix">
                     <div class="image-box">
+                        {loop $lists[Image] $value}
+                        {if $value[IsDefault]==1}
                         <div class="image-first">
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x248" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x248" alt=""></a>
+                            <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
                         </div>
+                        {/if}
+                        {/loop}
                         <div class="image-list clearfix">
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
+                            {loop $lists[Image] $value}
+                            {if $value[IsDefault]==0}
+                            <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                            {/if}
+                            {/loop}
                         </div>
                     </div>
                     <div class="con-box">
                         <p>
-                            姓名:刘备 <span class="bold">（找人）</span>
+                            姓名:{$lists[Message][find_name]} <span class="bold">（找人）</span>
                         </p>
                         <p>
-                            性别：男&emsp;年龄：26&emsp;身高：174cm
+                            性别：{$lists[Message][find_sex]}  年龄：{$lists[Message][find_age]}&emsp;身高：{$lists[Message][find_height]}cm
                         </p>
                         <p>
-                            身份证号：3303501752****2541
+                            身份证号：{$lists[Message][find_idCard]}
                         </p>
                         <p>
-                            失联时间：2017-04-2
+                            失联时间：{$lists[Message][last_time]}
                         </p>
                         <div class="detail clearfix">
                             <label for="">详细内容：</label>
                             <div>
-                                软件园二期观日落30号5楼5205
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
+                                {$lists[Message][find_detail]}
                             </div>
                         </div>
                         <div class="contact-us">
                             <p class="tips">如有目击或知情者请拨打联系电话：</p>
-                            <p class="bold">13520465674 </p>
+                            <p class="bold">{$lists[Message][contact_phone]} </p>
                         </div>
                     </div>
                 </li>
-
+                {elseif $lists[Type]==2}
                 <li class="clearfix">
                     <div class="image-box">
+                        {loop $lists[Image] $value}
+                        {if $value[IsDefault]==1}
                         <div class="image-first">
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x248" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x248" alt=""></a>
+                            <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
                         </div>
+                        {/if}
+                        {/loop}
                         <div class="image-list clearfix">
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                        </div>
-                    </div>
-                    <div class="con-box">
-                        <div>
-                            <p class="address ellipsis">所在地区:福建省-厦门市-思明区</p> <span class="bold">（找财产）</span>
-                        </div>
-                        <p class="ellipsis">
-                            姓名：刘备
-                        </p>
-                        <p>
-                            身份证号：3303501752****2541
-                        </p>
-                        <p class="ellipsis">
-                            地址：软件园二期观日落30号5楼5205
-                        </p>
-                        <div class="detail clearfix">
-                            <label for="">详细内容：</label>
-                            <div>
-                                软件园二期观日落30号5楼5205
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                            </div>
-                        </div>
-                        <div class="contact-us">
-                            <p class="tips">如有目击或知情者请拨打联系电话：</p>
-                            <p class="bold">13520465674 </p>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="clearfix">
-                    <div class="image-box">
-                        <div class="image-first">
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x248" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x248" alt=""></a>
-                        </div>
-                        <div class="image-list clearfix">
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
-                            <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x74" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x74" alt="{$lists[DebtName]}"></a>
+                            {loop $lists[Image] $value}
+                            {if $value[IsDefault]==0}
+                            <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                            {/if}
+                            {/loop}
                         </div>
                     </div>
                     <div class="con-box">
                         <div>
-                            <p class="address ellipsis">所在地区:福建省-厦门市-思明区</p> <span class="bold">（找物品）</span>
+                            <p class="address ellipsis">所在地区:{$lists[Message][province]}-{$lists[Message][city]}-{$lists[Message][area]}</p> <span class="bold">（找财产）</span>
                         </div>
                         <p class="ellipsis">
-                            丢失物品名称：玩具熊
+                            姓名：{$lists[Message][name]}
                         </p>
                         <p>
-                            丢失时间：2017-05-06
+                            身份证号：{$lists[Message][idNum]}
                         </p>
                         <p class="ellipsis">
-                            丢失地址：软件园二期观日落30号5楼5205
+                            地址：{$lists[Message][detail_address]}
                         </p>
                         <div class="detail clearfix">
                             <label for="">详细内容：</label>
                             <div>
-                                软件园二期观日落30号5楼5205
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
-                                室一区室一区室一区室一区室一
+                                {$lists[Message][find_detail]}
                             </div>
                         </div>
                         <div class="contact-us">
                             <p class="tips">如有目击或知情者请拨打联系电话：</p>
-                            <p class="bold">13520465674 </p>
+                            <p class="bold">{$lists[Message][contact_phone]} </p>
                         </div>
                     </div>
                 </li>
+                {elseif $lists[Type]==3}
+                <li class="clearfix">
+                    <div class="image-box">
+                        {loop $lists[Image] $value}
+                        {if $value[IsDefault]==1}
+                        <div class="image-first">
+                            <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                        </div>
+                        {/if}
+                        {/loop}
+                        <div class="image-list clearfix">
+                            {loop $lists[Image] $value}
+                            {if $value[IsDefault]==0}
+                            <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                            {/if}
+                            {/loop}
+                        </div>
+                    </div>
+                    <div class="con-box">
+                        <div>
+                            <p class="address ellipsis">所在地区:{$lists[Message][province]}-{$lists[Message][city]}-{$lists[Message][area]}</p> <span class="bold">（找物品）</span>
+                        </div>
+                        <p class="ellipsis">
+                            丢失物品名称：{$lists[Message][lost_name]}
+                        </p>
+                        <p>
+                            丢失时间：{$lists[Message][lost_time]}
+                        </p>
+                        <p class="ellipsis">
+                            丢失地址：{$lists[Message][detail_address]}
+                        </p>
+                        <div class="detail clearfix">
+                            <label for="">详细内容：</label>
+                            <div>
+                                {$lists[Message][find_detail]}
+                            </div>
+                        </div>
+                        <div class="contact-us">
+                            <p class="tips">如有目击或知情者请拨打联系电话：</p>
+                            <p class="bold">{$lists[Message][contact_phone]} </p>
+                        </div>
+                    </div>
+                </li>
+                {/if}
+                {/loop}
             </ul>
 
-
-            {if $Data['Data']}
-            {loop $Data['Data'] $lists}
-            <div class="box">
-                <div class="content">
-                    <div class="left">
-                        <div class="main-i">
-                            <a class="grouped_elements" href="{$lists[DefaultImage]}" rel="{$lists[ID]}"><img src="{$lists[DefaultImage]}" alt=""></a>
-                        </div>
-                        {if !empty($lists[Image])}
-                        {loop $lists[Image] $value}
-                        <div class="det-i">
-                            <a class="grouped_elements" href="{$value}" rel="{$lists[ID]}"><img src="{$value}" alt="{$lists[DebtName]}"></a>
-                        </div>
-                        {/loop}
-                        {/if}
-                    </div>
-                    <div class="right">
-                        <div class="line">
-                            <div class="t">债务人姓名 : </div>
-                            <div class="c">{$lists[DebtName]}</div>
-                        </div>
-                        <div class="line">
-                            <div class="t">债务人电话 : </div>
-                            <div class="c">{if $lists[Status]=='4'}{echo strlen($lists[DebtPhone]) ? substr_replace($lists[DebtPhone], '****', 7, 4) : '';}{else}{$lists[DebtPhone]}{/if}</div>
-                        </div>
-                        <div class="line">
-                            <div class="t">债务人地区 : </div>
-                            <div class="c">{if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}</div>
-                        </div>
-                        <div class="line">
-                            <div class="t">债务人身份证 : </div>
-                            <div class="c">{if $lists[DebtCard]} {$lists[DebtCard]} {else} 无 {/if}</div>
-                        </div>
-                        <div class="line">
-                            <div class="t">详细地址 : </div>
-                            <div class="c">{if $lists[Address]} {$lists[Address]} {else} 无 {/if}</div>
-                        </div>
-                        <div class="ower-contact">
-                            <div class="t">债权人联系方式 :</div>
-                            <div class="c">{if $lists[Status]=='4'}{echo strlen($lists[CreditorsPhone]) ? substr_replace($lists[CreditorsPhone], '****', 7, 4) : '';}{else}{$lists[CreditorsPhone]}{/if}</div>
-                        </div>
-                    </div>
-                </div>
-                {if $lists[Status]=='4'}
-                <div class="done">
-                    <img src="/Uploads/Debt/imgs/over.png" alt="">
-                </div>
-                {/if}
-            </div>
-            {/loop}
-            {else}
+            {if empty($Data['Data'])}
             <div class="no-data" style="display: block;">
                 <img src="/Uploads/Debt/imgs/no_data.png" alt="">
             </div>
