@@ -487,7 +487,7 @@ class AjaxOrder
                         }
                 }else{
                     $DB->query("ROLLBACK");//判断当执行失败时回滚
-                    $result_json = array('ResultCode' => 104, 'Message' => '订单状态更新失败');
+                    $result_json = array('ResultCode' => 104, 'Message' => '已确认收货并退款！');
                 }
             }else{
                 $result_json = array('ResultCode' => 105, 'Message' => '不存在该订单',);
