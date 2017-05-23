@@ -433,17 +433,21 @@ class MemberPerson
         $MemberAreaModule = new MemberAreaModule();
         $MemberOrderDemandModule = new MemberOrderDemandModule();
         $ID = intval($_GET['ID']);
-        $CompanyDemand = $MemberOrderDemandModule->GetInfoByWhere(' and SetID ='.$ID.' and UserID = '.$_SESSION['UserID']);
-        if (!$CompanyDemand){
+        $DemandInfo = $MemberOrderDemandModule->GetInfoByWhere(' and DemandID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+        if (!$DemandInfo){
             alertandback("该方案不存在！");
         }
-        if ($CompanyDemand['Province'])
-            $CompanyDemand['province'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Province']);
-        if ($CompanyDemand['City'])
-            $CompanyDemand['city'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['City']);
-        if ($CompanyDemand['Area'])
-            $CompanyDemand['area'] = $MemberAreaModule->GetCnNameByKeyID($CompanyDemand['Area']);
-        include template('MemberPersonDemandDetails');
+        $DemandInfo['Area'] = json_decode($DemandInfo['Area'],true);
+        foreach ($DemandInfo['Area'] as $key =>$value){
+            if ($value['province'])
+                $DemandInfo['Area'][$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
+            if ($value['city'])
+                $DemandInfo['Area'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
+            if ($value['area'])
+                $DemandInfo['Area'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+        }
+        $DemandInfo['FeeRate'] = json_decode($DemandInfo['FeeRate'],true);
+        include template('MemberDemandDetails');
     }
     /**
      * @desc 催客设置接单要求

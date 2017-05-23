@@ -1,0 +1,141 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/setDebtRate.css">
+<div class="set-debt">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a>债权管理</a> > <span>债权接单</span> > <span class="cur">查看详情</span></span>
+        </div>
+        <div class="form-wrap">
+            <div class="box">
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/name_icon.png" alt="">
+                    <span>方案名称</span>
+                </div>
+                <div class="c">
+                    <div class="blo">
+                        <div class="line">
+                            <div class="g-info">
+                                方案名称:
+                            </div>
+                            <div class="g-det">
+                                {$DemandInfo[CaseName]}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/area_icon.png" alt="">
+                    <span>地区</span>
+                </div>
+                <div class="c">
+                    {loop $DemandInfo['Area'] $lists}
+                    <div class="blo">
+                        <div class="form-line">
+                            <div class="form-lab">
+                                负责人姓名:
+                            </div>
+                            <div class="form-control">
+                                <span class="text-primary">{$lists[chargeName]}</span>
+                            </div>
+                            <div class="form-lab ml-20">
+                                负责人电话:
+                            </div>
+                            <div class="form-control">
+                                <span class="text-primary">{$lists[chargeMobile]}</span>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="g-info">
+                                催收区域:
+                            </div>
+                            <div class="g-det">
+                                <span>{$lists[province]}-{$lists[city]}-{$lists[area]}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/loop}
+                </div>
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/rate_icon.png" alt="">
+                    <span>佣金比例</span>
+                </div>
+                <div class="c">
+                    {loop $DemandInfo['FeeRate'] $lists}
+                    <div class="blo">
+                        <div class="line" style="border-bottom:0;">
+                            <div class="left">
+                                <div class="g-info">
+                                    债务金额：
+                                </div>
+                                <div class="g-det">
+                                    <span>￥{$lists[from]}-{$lists[to]}元</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="left">
+                                    <div class="g-info">
+                                        佣金比例：
+                                    </div>
+                                    <div class="g-det">
+                                        <span>{$lists[rate]}%（元）</span>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="g-info">
+                                        前期费用：
+                                    </div>
+                                    <div class="g-det">
+                                        <span>{$lists[cost]}（元）</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c"></div>
+                        <div class="form-line line" style="margin-bottom: 0;">
+                            <div class="form-lab">是否负责找人：</div>
+                            <div class="form-control">
+                                <div class="form-txt text-primary">
+                                    {if $lists[isLookFor]==1}是{else}否{/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/loop}
+                </div>
+
+                <div class="c"></div>
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
+                    <span>是否需要债务人有还款能力 : </span>
+                    <span class="tx">
+             {if $DemandInfo[AbilityDebt]==1}是{else}否{/if}
+          </span>
+                </div>
+                <div class="c"></div>
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
+                    <span>是否需要债权人到达现场 : </span>
+                    <span class="tx">
+             {if $DemandInfo[ArrivalSite]==1}是{else}否{/if}
+          </span>
+                </div>
+                <div class="c"></div>
+                <div class="form-line area-more mb-100">
+                    <label for="" class="form-lab fl">更多介绍：</label>
+                    <div class="form-control">
+                        <div class="text-primary" style="width:1040px;line-height: 30px;">
+                            {$DemandInfo[Content]}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {template Footer}

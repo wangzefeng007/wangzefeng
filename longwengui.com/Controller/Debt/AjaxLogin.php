@@ -1117,4 +1117,23 @@ class AjaxLogin
             exit;
         }
     }
+    /**
+     * @desc 删除接单要求
+     */
+    private function DeleteDemand(){
+        $this->IsLogin();
+        if ($_POST['id']){
+            $MemberOrderDemandModule = new MemberOrderDemandModule();
+            $ID = $_POST['id'];
+            $DeleteInfo = $MemberOrderDemandModule->DeleteByWhere(' and DemandID= '.$ID.' and UserID = '.$_SESSION['UserID']);
+            if ($DeleteInfo){
+                $Data['ResultCode'] = 200;
+                $Data['Message'] = '删除成功';
+            }else{
+                $Data['ResultCode'] = 101;
+                $Data['Message'] = '删除失败';
+            }
+            EchoResult($Data);exit;
+        }
+    }
 }
