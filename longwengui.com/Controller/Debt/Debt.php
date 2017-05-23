@@ -213,12 +213,4 @@ class Debt
             include template('DebtPublishDiy');
         }
     }
-    /**
-     * @desc  债权转让/股权转让暂定
-     */
-    public function Transfer(){
-        $Title="债权转让-隆文贵债务处置";
-        $Nav ='transfer';
-        include template('DebtTransfer');
-    }
 }

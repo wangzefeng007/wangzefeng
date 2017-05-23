@@ -67,5 +67,5 @@ $RouteArr=array(
     //Ajax
     'ajaximage@index'=>'AjaxImage@Index',
     'ajaxasset@index'=>'AjaxAsset@Index',
-
+    'ajaxorder@index'=>'AjaxOrder@Index',
 );
