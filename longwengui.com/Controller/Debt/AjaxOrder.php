@@ -62,9 +62,9 @@ class AjaxOrder
                             'Type' => 1
                         );
                         $LogResult = $OrderLogModule->InsertInfo($LogData);
-                        $result_json = array('ResultCode' => 200, 'Message' => '取消订单成功',);
+                        $result_json = array('ResultCode' => 200, 'Message' => '取消订单成功','Url'=>WEB_MAIN_URL.'/member/buyorderlist/');
                     }else{
-                        $result_json = array('ResultCode' => 102, 'Message' => '取消订单失败',);
+                        $result_json = array('ResultCode' => 102, 'Message' => '取消订单失败','Url'=>WEB_MAIN_URL.'/member/buyorderlist/');
                     }
                 }else{
                     $result_json = array('ResultCode' => 104, 'Message' => '该订单无法取消',);
