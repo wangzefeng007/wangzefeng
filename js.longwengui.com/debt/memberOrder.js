@@ -204,7 +204,9 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     showMsg(data.Message);
-                    window.location.reload();
+                    if(data.Url){
+                        go(data.Url);
+                    }
                 }else{
                     showMsg(data.Message);
                 }
