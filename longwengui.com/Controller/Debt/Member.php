@@ -174,6 +174,64 @@ class Member
         include template('MemberAddress');
     }
     /**
+     * @desc 我的悬赏
+     */
+    public function Reword(){
+        $Title = '会员-我的悬赏';
+        $this->IsLogin();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $Nav = 'reword';
+        $MysqlWhere ='';
+        $Status = intval($_GET['S']);
+        if ($Status==1){
+            $MysqlWhere .= ' and Status =1 ';
+        }elseif ($Status==2){
+            $MysqlWhere .= ' and Status =1 ';
+        }
+        //分页查询开始-------------------------------------------------
+        $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $Message =json_decode($value['Message'],true);
+                if ($Message['dd_province'])
+                    $Message['province'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_province']);
+                if ($Message['dd_city'])
+                    $Message['city'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_city']);
+                if ($Message['dd_area'])
+                    $Message['area'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_area']);
+                if ($Message['idNum'])
+                    $Message['idNum'] = strlen($Message['idNum']) ? substr_replace($Message['idNum'], '****', 10, 4) : '';
+                if ($Message['find_idCard'])
+                    $Message['find_idCard'] = strlen($Message['find_idCard']) ? substr_replace($Message['find_idCard'], '****', 10, 4) : '';
+                $Data['Data'][$key]['Message'] = $Message;
+                $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['RewardID'],true);
+                $Data['Data'][$key]['Image'] = $RewardImage;
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
+
+        include template('MemberReword');
+    }
+    /**
      * @desc 系统消息
      */
     public function SystemMessage(){

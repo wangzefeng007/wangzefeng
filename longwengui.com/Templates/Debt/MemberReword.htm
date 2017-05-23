@@ -1,0 +1,229 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>我的债权</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {if $_SESSION[Identity]==0 || $_SESSION[Identity]==1 || $_SESSION[Identity]==2}
+            {template MemberPersonLeft}
+            {elseif $_SESSION[Identity]==3}
+            {template MemberFirmLeft}
+            {elseif $_SESSION[Identity]==4}
+            {template MemberLawyerLeft}
+            {elseif $_SESSION[Identity]==5}
+            {template MemberCompanyLeft}
+            {/if}
+            <div class="tab-hd">
+                <div class="tb">
+                    发布的悬赏
+                </div>
+            </div>
+            <div class="info-cont">
+                <div class="cont-hd">
+                    <span>已发布悬赏列表：</span>
+                </div>
+                <dl class="cont-select">
+                    <dt>债务状态：</dt>
+                    <dd class="cont-select-act">全部</dd>
+                    <dd>未完成</dd>
+                    <dd>已完成</dd>
+                </dl>
+                <div class="reword-list">
+                    <ul class="clearfix">
+                        {loop $Data['Data'] $lists}
+                        {if $lists[Type]==1}
+                        <li class="clearfix">
+                            <i class="mark"></i>
+                            <div class="image-box clearfix">
+                                {loop $lists[Image] $value}
+                                {if $value[IsDefault]==1}
+                                <div class="image-first">
+                                    <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                                </div>
+                                {/if}
+                                {/loop}
+                                <div class="image-list clearfix">
+                                    {loop $lists[Image] $value}
+                                    {if $value[IsDefault]==0}
+                                    <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                                    {/if}
+                                    {/loop}
+                                </div>
+                            </div>
+                            <div class="con-box">
+                                <p class="ellipsis">
+                                    姓名:{$lists[Message][find_name]} <span class="bold">（找人）</span>
+                                </p>
+                                <p>
+                                    性别：{$lists[Message][find_sex]}  年龄：{$lists[Message][find_age]}&emsp;身高：{$lists[Message][find_height]}cm
+                                </p>
+                                <p class="ellipsis">
+                                    身份证号：{$lists[Message][find_idCard]}
+                                </p>
+                                <p>
+                                    失联时间：{$lists[Message][last_time]}
+                                </p>
+                                <div class="detail clearfix">
+                                    <label for="">详细内容：</label>
+                                    <div>
+                                        {$lists[Message][find_detail]}
+                                    </div>
+                                </div>
+                                <div class="contact-us">
+                                    <p class="tips">如有目击或知情者请拨打联系电话：
+                                        <span class="bold">{$lists[Message][contact_phone]} </span>
+                                        <a class="btn btn-default fr" onclick="pageObj.delReword('{$lists[RewardID]}')" href="javascript:void(0);">删除</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </li>
+                        {elseif  $lists[Type]==2}
+                        <li class="clearfix">
+                            <div class="image-box clearfix">
+                                {loop $lists[Image] $value}
+                                {if $value[IsDefault]==1}
+                                <div class="image-first">
+                                    <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                                </div>
+                                {/if}
+                                {/loop}
+                                <div class="image-list clearfix">
+                                    {loop $lists[Image] $value}
+                                    {if $value[IsDefault]==0}
+                                    <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                                    {/if}
+                                    {/loop}
+                                </div>
+                            </div>
+                            <div class="con-box">
+                                <div>
+                                    <p class="address ellipsis">所在地区:{$lists[Message][province]}-{$lists[Message][city]}-{$lists[Message][area]}</p> <span class="bold">（找财产）</span>
+                                </div>
+                                <p class="ellipsis">
+                                    姓名：{$lists[Message][name]}
+                                </p>
+                                <p>
+                                    身份证号：{$lists[Message][idNum]}
+                                </p>
+                                <p class="ellipsis">
+                                    地址：{$lists[Message][detail_address]}
+                                </p>
+                                <div class="detail clearfix">
+                                    <label for="">详细内容：</label>
+                                    <div>
+                                        {$lists[Message][find_detail]}
+                                    </div>
+                                </div>
+                                <div class="contact-us">
+                                    <p class="tips">如有目击或知情者请拨打联系电话：
+                                        <span class="bold">{$lists[Message][contact_phone]} </span>
+                                        <a class="btn btn-primary fr" onclick="pageObj.completeReword('{$lists[RewardID]}')" href="javascript:void(0);">完成</a>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </li>
+                        {elseif  $lists[Type]==3}
+                        <li class="clearfix">
+                            <div class="image-box clearfix">
+                                {loop $lists[Image] $value}
+                                {if $value[IsDefault]==1}
+                                <div class="image-first">
+                                    <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                                </div>
+                                {/if}
+                                {/loop}
+                                <div class="image-list clearfix">
+                                    {loop $lists[Image] $value}
+                                    {if $value[IsDefault]==0}
+                                    <a class="grouped_elements" href="{$value[ImageUrl]}" rel="{$lists[RewardID]}"><img src="{$value[ImageUrl]}" alt=""></a>
+                                    {/if}
+                                    {/loop}
+                                </div>
+                            </div>
+                            <div class="con-box">
+                                <div>
+                                    <p class="address ellipsis">所在地区:{$lists[Message][province]}-{$lists[Message][city]}-{$lists[Message][area]}</p> <span class="bold">（找其他）</span>
+                                </div>
+                                <p class="ellipsis">
+                                    丢失物品名称：{$lists[Message][lost_name]}
+                                </p>
+                                <p>
+                                    丢失时间：{$lists[Message][lost_time]}
+                                </p>
+                                <p class="ellipsis">
+                                    丢失地址：{$lists[Message][detail_address]}
+                                </p>
+                                <div class="detail clearfix">
+                                    <label for="">详细内容：</label>
+                                    <div>
+                                        {$lists[Message][find_detail]}
+                                    </div>
+                                </div>
+                                <div class="contact-us">
+                                    <p class="tips">如有目击或知情者请拨打联系电话：
+                                        <span class="bold">{$lists[Message][contact_phone]} </span>
+                                        <a class="btn btn-primary fr" onclick="pageObj.completeReword('{$lists[RewardID]}')" href="javascript:void(0);">完成</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        {/if}
+                        {/loop}
+                    </ul>
+                </div>
+                {if $ShowPage}
+                <div class="pagination-wrap">
+                    <div class="pagination fl-r" id="collection_page_pagination">
+                        <a href="/member/sellorderlist/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                        {$ShowPage}
+                    </div>
+                </div>
+                {/if}
+            </div>
+
+        </div>
+    </div>
+    <div class="fr-win">
+        <div class="pub-btn">
+            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+            <br>
+            发布
+        </div>
+        <div class="pub-btn-list">
+            <div class="lin" onclick="selDebtWayPop()">
+                发布债务
+            </div>
+            <div class="lin">
+                寻找处置方
+            </div>
+            <div class="lin">
+                资产转让
+            </div>
+            <div class="lin">
+                发布悬赏
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
+<script>
+    $(function(){
+        /*
+         图片预览
+         * */
+        $(".grouped_elements").fancybox({
+            showCloseButton:true,
+            showNavArrows:true
+        });
+
+    });
+</script>
+<script src='{echo JsURL}/debt/memberReword.js'></script>

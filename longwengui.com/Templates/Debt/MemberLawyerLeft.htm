@@ -21,7 +21,6 @@
     </div>
     <div class="menu-level-2-wrap" data-for="menu_1">
       <div class="menu-level-2 {if $Nav=='applydebtorder'}menu-level-2-act{/if}" onclick="go('/memberlawyer/applydebtorder/')">申请的债权</div>
-        <div class="menu-level-2 {if $Nav=='rewordlist'}menu-level-2-act{/if}" onclick="go('/memberlawyer/rewordlist/')">我的悬赏</div>
         <div class="menu-level-2" onclick="go('/reword/publish/')">发布悬赏</div>
     </div>
     <div class="menu-level-1" id="menu_11" data-open="0" can-down='1'>
@@ -34,7 +33,7 @@
         <div class="menu-level-2 {if $Nav=='buyorderlist'}menu-level-2-act{/if}" onclick="go('/member/buyorderlist/')">已买到的</div>
         <div class="menu-level-2 {if $Nav=='sellorderlist'}menu-level-2-act{/if}" onclick="go('/member/sellorderlist/')">已卖出的</div>
     </div>
-    <div class="menu-level-1" onclick="go('/member/systemmessage/')">
+    <div class="menu-level-1 {if $Nav=='reword'}menu-level-1-act{/if}" onclick="go('/member/reword/')">
         <img src="{echo CssURL}/debt/images/icon-assets.png" class="i-left" alt="">
         我的悬赏
     </div>

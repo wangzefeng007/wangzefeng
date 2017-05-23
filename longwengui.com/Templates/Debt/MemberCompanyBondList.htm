@@ -10,17 +10,8 @@
         <div class="menu-cont-wrap">
             {template membercompanyLeft}
             <div class="tab-hd">
-                <div class="tb {if $Nav=='bondlist'}act{/if}" onclick="go('/membercompany/bondlist/')">
+                <div class="tb" onclick="go('/membercompany/bondlist/')">
                     发布的债务
-                </div>
-                <div class="tb" hidden>
-                    转让的债务
-                </div>
-                <div class="tb {if $Nav=='rewordlist'}act{/if}" onclick="go('/membercompany/rewordlist/')">
-                    悬赏的债务
-                </div>
-                <div class="tb {if $Nav=='findteam'}act{/if}" onclick="go('/membercompany/findteam/')">
-                    向处置方申请的债务
                 </div>
             </div>
             <div class="info-cont">
