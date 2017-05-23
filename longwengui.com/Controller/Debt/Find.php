@@ -68,7 +68,7 @@ class Find
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
-     echo "<pre>";print_r($Data['Data']);
+//     echo "<pre>";print_r($Data['Data']);
         include template('ChoiceFind');
     }
 
