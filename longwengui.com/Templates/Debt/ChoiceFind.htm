@@ -1,0 +1,153 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/seekDisposal.css">
+<div class="wrap seek-disposal-page">
+    <div class="seek-search-box">
+        <div class="search-box">
+            <form action="">
+                <span class="lab">债务人地区</span>
+                <div class="p-dropdown">
+                    <label type="checkbox">
+                        <span data-id="">省份</span>
+                        <i></i>
+                        <input type="checkbox" name="dd_province" value="">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="c-dropdown">
+                    <label type="checkbox">
+                        <span data-id="">城市</span>
+                        <i></i>
+                        <input type="checkbox" name="dd_city" value="">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="a-dropdown">
+                    <label type="checkbox">
+                        <span data-id="">区/县</span>
+                        <i></i>
+                        <input type="checkbox" name="dd_area" value="">
+                        <ul></ul>
+                    </label>
+                </div>
+                <input class="btn btn-primary" type="submit" value="搜索"/>
+            </form>
+        </div>
+    </div>
+    <div class="seek-disposal-list">
+        <ul>
+            {loop $Data['Data'] $lists}
+            <li class="">
+                <div class="seek-box">
+                    <div class="seek-header clearfix">
+                        <p class="seek-logo">
+                            <img src="{$lists['Avatar']}" alt="">
+                        </p>
+                        <div class="seek-main">
+                            <div class="seek-title">
+                                <span class="txt ellipsis">{$lists['Name']}</span>                                 <span class="seek-btn">{if $lists[Identity]==2}催客{elseif $lists[Identity]==3}企业{/if}</span>
+                                <a class="link fr" onclick="pageObj.seekShow(this);"  title="查看" href="javascript:void(0)">查看</a>
+                            </div>
+                            <p class="seek-phone">联系电话：{$lists['Mobile']}</p>
+                        </div>
+
+                    </div>
+                    <div class="seek-con">
+                        <p class="big">催收地区：福建省-厦门市-思明区、福建省-泉州市-丰泽区</p>
+                        <p class="big">催收要求</p>
+                        <div class="cols-list">
+                            <ul class="clearfix">
+                                <li>
+                                    <p>债务金额（元）：10000.00~50000.00</p>
+                                    <p>催收前期费用（元）：1000.00</p>
+                                    <p>是否负责找人：否</p>
+                                    <p>佣金比例：50%</p>
+                                </li>
+                                <li>
+                                    <p>债务金额（元）：1000.00~10000.00</p>
+                                    <p>催收前期费用（元）：500.00</p>
+                                    <p>是否负责找人：是</p>
+                                    <p>佣金比例：40%</p>
+                                </li>
+                                <li>
+                                    <p>债务金额（元）：110000.00~200000.00</p>
+                                    <p>催收前期费用（元）：0.00</p>
+                                    <p>是否负责找人：否</p>
+                                    <p>佣金比例：30%</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="h4 mt-10">是否需要债务人有还款能力：是</p>
+                        <p class="h4">是否需要债权人到达现场：否</p>
+                        <p class="big">更多介绍：</p>
+                        <div class="more-detail">
+                            眼看快到十月一日的履行届满日了，在不知如何处理之下，王女士想到了公证处，于是她于九月二十八日来到公证处咨询，公证人员向王女士说："我建议您进行提存，提存也是清偿债务的一种方式，不然，将来万一涉诉，你将为因债权人下落不明而导致自己无法履行债务的事实承担举证责任，债务迟延履行的违约责任。
+                        </div>
+                        <p onclick="pageObj.suggestion();" class="suggestion">投诉/建议</p>
+                    </div>
+                </div>
+            </li>
+            {/loop}
+            <li>
+                <div class="seek-box">
+                    <div class="seek-header clearfix">
+                        <p class="seek-logo">
+                            <img src="{echo CssURL}/debt/temp/seek-logo.jpg" alt="">
+                        </p>
+                        <div class="seek-main">
+                            <div class="seek-title">
+                                <span class="txt ellipsis">华容资产管理有限公司</span>                                 <span class="seek-btn">企业</span>
+                                <a class="link fr"  title="查看" href="#">查看</a>
+                            </div>
+                            <p class="seek-phone">联系电话：135****6789</p>
+                        </div>
+
+                    </div>
+                    <div class="seek-con">
+                        <p class="big">催收地区：福建省-厦门市-思明区、福建省-泉州市-丰泽区</p>
+                        <p class="big">催收要求</p>
+                        <div class="cols-list">
+                            <ul class="clearfix">
+                                <li>
+                                    <p>债务金额（元）：10000.00~50000.00</p>
+                                    <p>催收前期费用（元）：1000.00</p>
+                                    <p>是否负责找人：否</p>
+                                    <p>佣金比例：50%</p>
+                                </li>
+                                <li>
+                                    <p>债务金额（元）：1000.00~10000.00</p>
+                                    <p>催收前期费用（元）：500.00</p>
+                                    <p>是否负责找人：是</p>
+                                    <p>佣金比例：40%</p>
+                                </li>
+                                <li>
+                                    <p>债务金额（元）：110000.00~200000.00</p>
+                                    <p>催收前期费用（元）：0.00</p>
+                                    <p>是否负责找人：否</p>
+                                    <p>佣金比例：30%</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="h4 mt-10">是否需要债务人有还款能力：是</p>
+                        <p class="h4">是否需要债权人到达现场：否</p>
+                        <p class="big">更多介绍：</p>
+                        <div class="more-detail">
+                            眼看快到十月一日的履行届满日了，在不知如何处理之下，王女士想到了公证处，于是她于九月二十八日来到公证处咨询，公证人员向王女士说："我建议您进行提存，提存也是清偿债务的一种方式，不然，将来万一涉诉，你将为因债权人下落不明而导致自己无法履行债务的事实承担举证责任，债务迟延履行的违约责任。
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="pagination-wrap">
+        <div class="pagination fl-r" id="reword_page_pagination">
+            {if $ShowPage}
+            <a href="/reword/?p=1" class="b {if $Page==1}sel{/if}">首页</a>
+            {$ShowPage}
+            {/if}
+        </div>
+    </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/seekDisposal.js'></script>
+</body>
+</html>
