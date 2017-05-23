@@ -23,6 +23,7 @@ class MemberProductOrderModule extends CommonModule {
         '8' => '退款完成',
         '9' => '交易关闭',
         '10' => '交易关闭',
+        '11' => '退货中',
     );
     /**
      * @desc 后台订单状态
@@ -39,5 +40,6 @@ class MemberProductOrderModule extends CommonModule {
         '8' => '退款完成',
         '9' => '交易关闭(超时)',
         '10' => '交易关闭(用户关闭)',
+        '11' => '退款（退货中）',
     );
 }

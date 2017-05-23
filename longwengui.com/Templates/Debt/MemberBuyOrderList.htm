@@ -110,6 +110,8 @@
                                 {elseif $lists[Status]== 6}
                                 <!--退款中-->
                                 <p><a class="btn btn-primary" onclick="pageObj.immediatelyReturnGoods('{$lists[OrderID]}')" id="immediatelyReturnGoods" href="javascript:void(0);" title="立即退货">立即退货</a></p>
+                                <!--临时添加退货中-->
+                                {elseif $lists[Status]== 11}
                                 <p><a class="btn btn-primary" onclick="pageObj.indeedReturn('{$lists[OrderID]}')" id="indeedReturn" href="javascript:void(0);" title="确认退款">确认退款</a></p>
                                 <!--申请失败-->
                                 {elseif $lists[Status]==7}

@@ -328,7 +328,7 @@ class Member
         }elseif ($Status=='3'){
             $MysqlWhere .= ' and `Status` in (4,5) ';
         }elseif ($Status=='4'){
-            $MysqlWhere .= ' and `Status` in (6,7) ';
+            $MysqlWhere .= ' and `Status` in (6,7,11) ';
         }elseif ($Status=='5'){
             $MysqlWhere .= ' and `Status` = 8 ';
         }else{
@@ -392,7 +392,7 @@ class Member
         }elseif ($Status=='3'){
             $MysqlWhere .= ' and `Status` =4';
         }elseif ($Status=='4'){
-            $MysqlWhere .= ' and `Status` in (5,6,7,8)';
+            $MysqlWhere .= ' and `Status` in (5,6,7,8,11)';
         }elseif ($Status=='5'){
             $MysqlWhere .= ' and `Status` in (9,10)';
         }

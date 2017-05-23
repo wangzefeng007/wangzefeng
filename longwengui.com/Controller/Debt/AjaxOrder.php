@@ -415,7 +415,7 @@ class AjaxOrder
          EchoResult($result_json);
      }
     /**
-     * 买家退货提交物流信息
+     * 买家退货提交物流信息(订单状态改为退货中)
      */
      public function SubmitLogistics(){
          $this->IsLogin();
@@ -431,7 +431,7 @@ class AjaxOrder
                  $Data['UpdateTime'] = time();
                  global $DB;
                  $DB->query("BEGIN");//开始事务定义
-                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>6,'UpdateTime'=>$Data['UpdateTime'],'Message'=>'买家提交物流信息'),$OrderID);
+                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>11,'UpdateTime'=>$Data['UpdateTime'],'Message'=>'买家提交物流信息'),$OrderID);
                  if ($UpdateStatus){
                      $DB->query("COMMIT");//执行事务
                      $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID.' and LogisticsCompany is Null and WaybillNumber is Null');
