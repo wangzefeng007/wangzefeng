@@ -34,6 +34,10 @@
         <div class="menu-level-2 {if $Nav=='buyorderlist'}menu-level-2-act{/if}" onclick="go('/member/buyorderlist/')">已买到的</div>
         <div class="menu-level-2 {if $Nav=='sellorderlist'}menu-level-2-act{/if}" onclick="go('/member/sellorderlist/')">已卖出的</div>
     </div>
+    <div class="menu-level-1" onclick="go('/member/systemmessage/')">
+        <img src="{echo CssURL}/debt/images/icon-assets.png" class="i-left" alt="">
+        我的悬赏
+    </div>
     <div class="menu-level-1  {if $Nav=='systemmessage'}menu-level-1-act{/if}"  onclick="go('/member/systemmessage/')">
         <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
         系统信息

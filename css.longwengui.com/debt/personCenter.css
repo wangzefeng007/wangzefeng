@@ -1683,3 +1683,115 @@
   border: solid 1px #d9d9d9;
   margin-bottom:60px;
 }
+
+/*悬赏列表*/
+.reword-list{
+  margin:20px 15px 40px;
+}
+.reword-list>ul{
+  width:105%;
+}
+.reword-list li{
+  position: relative;
+  float: left;
+  padding:10px 15px;
+  margin-bottom:20px;
+  box-shadow: 0 0 3px #b2b2b2;
+  -webkit-box-shadow: 0 0 3px #b2b2b2;
+  -moz-box-shadow: 0 0 3px #b2b2b2;
+  -webkit-transition: box-shadow .2s;
+  -moz-transition: box-shadow .2s;
+  -ms-transition: box-shadow .2s;
+  -o-transition: box-shadow .2s;
+  transition: box-shadow .2s;
+}
+.reword-list li i.mark{
+  position: absolute;
+  right:30px;
+  top:20px;
+  width:96px;
+  height:96px;
+  background: url("images/complate-img.png") no-repeat center;
+  -webkit-background-size:100%;
+  background-size:100%;
+}
+.reword-list li:hover{
+  box-shadow: 0 0 10px #b2b2b2;
+  -webkit-box-shadow: 0 0 10px #b2b2b2;
+  -moz-box-shadow: 0 0 10px #b2b2b2;
+}
+.reword-list li.even,
+.reword-list li:nth-child(even){
+  margin-right:0;
+}
+.reword-list li .image-box{
+  width:340px;
+  float: left;
+  margin-right:15px;
+}
+.reword-list li .image-box img{
+  width:100%;
+  height:100%;
+}
+.reword-list li .image-box .image-first{
+  float: left;
+  width:200px;
+  height:268px;
+  margin-right: 10px;
+}
+.reword-list li .image-box .image-list{
+  width:130px;
+  float: left;
+}
+.reword-list li .image-box .image-list a{
+  float: left;
+  display: block;
+  width:60px;
+  height:80px;
+  margin: 0 10px 14px 0;
+}
+.reword-list li .image-box .image-list a:nth-child(2n){
+  margin-right:0;
+}
+.reword-list li .con-box{
+  width:555px;
+  float: right;
+  line-height:26px;
+}
+.bold{
+  color: #d81e06;
+  font-weight: bold;
+}
+.reword-list .con-box .detail label{
+  display: inline-block;
+  float: left;
+}
+.reword-list .con-box .detail>div{
+  float: left;
+  width:480px;
+  height:120px;
+  overflow: hidden;
+}
+.reword-list .con-box .contact-us{
+  padding:8px 0;
+  border-top:dashed 1px #e6e6e6;
+}
+.reword-list .con-box .contact-us .tips{
+  font-style: italic;
+}
+.reword-list .con-box .contact-us .bold{
+  font-size:16px;
+  font-style: italic;
+}
+.reword-list .con-box .contact-us .btn{
+  font-style:normal;
+  padding:2px 15px;
+}
+.reword-list .con-box .address{
+  display: inline-block;
+  max-width:400px;
+  vertical-align: top;
+}
+.reword-list .con-box .address+.bold{
+  vertical-align: top;
+}

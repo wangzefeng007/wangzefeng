@@ -275,7 +275,7 @@
 .reword-list .con-box .detail>div{
   float: left;
   width:260px;
-  max-height:210px;
+  height:210px;
   overflow: hidden;
 }
 .reword-list .con-box .contact-us{

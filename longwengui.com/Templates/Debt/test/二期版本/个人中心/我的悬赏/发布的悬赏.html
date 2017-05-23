@@ -1,0 +1,251 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>我的债权</span>
+        </div>
+        <div class="menu-cont-wrap">
+            <div class="menu-bar">
+                <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+                <div class="nick-name">
+                    昵称
+                </div>
+                <button type="button" name="button">已认证</button>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+                    个人信息
+                </div>
+                <div class="menu-level-1  menu-level-1-act" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    债权管理
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2 menu-level-2-act">我的债权</div>
+                        <div class="menu-level-2">我的负债</div>
+                        <div class="menu-level-2">订单管理</div>
+                        <div class="menu-level-2">浏览过的债务</div>
+                    </div>
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    关注
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">我关注的债务</div>
+                        <div class="menu-level-2">提前关注</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    范本下载
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    代理
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">申请代理</div>
+                        <div class="menu-level-2">已代理区域</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    推荐人/我的推荐人
+                </div>
+                <div class="menu-level-1" data-open="0" can-down='1'>
+                    <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+                    催客权益
+                    <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+                    <div class="menu-level-2-wrap">
+                        <div class="menu-level-2">申请的债权</div>
+                        <div class="menu-level-2">浏览过的债权</div>
+                        <div class="menu-level-2">寻找同城催客</div>
+                        <div class="menu-level-2">联盟催客</div>
+                    </div>
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+                    系统信息
+                </div>
+                <div class="menu-level-1">
+                    <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+                    投诉建议
+                </div>
+            </div>
+            <div class="menu-cont">
+                <div class="tab-hd">
+                    <div class="tb">
+                        发布的悬赏
+                    </div>
+                </div>
+
+                <div class="info-cont">
+                    <div class="cont-hd">
+                        <span>已发布悬赏列表：</span>
+                    </div>
+                    <dl class="cont-select">
+                        <dt>债务状态：</dt>
+                        <dd class="cont-select-act">全部</dd>
+                        <dd>未完成</dd>
+                        <dd>已完成</dd>
+                    </dl>
+                    <div class="reword-list">
+                        <ul class="clearfix">
+                            <li class="clearfix">
+                                <i class="mark"></i>
+                                <div class="image-box clearfix">
+                                    <div class="image-first">
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x268" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x268" alt=""></a>
+                                    </div>
+                                    <div class="image-list clearfix">
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                    </div>
+                                </div>
+                                <div class="con-box">
+                                    <p class="ellipsis">
+                                        名字：刘备<span class="bold">（找人）</span>
+                                    </p>
+                                    <p>
+                                        性别：男&emsp;年龄：26&emsp;身高：174cm
+                                    </p>
+                                    <p class="ellipsis">
+                                        身份证号：3303501752****2541
+                                    </p>
+                                    <p>
+                                        失联时间：2017-04-23
+                                    </p>
+                                    <div class="detail clearfix">
+                                        <label for="">详细内容：</label>
+                                        <div>
+                                            软件园二期观日落30号5楼5205
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                        </div>
+                                    </div>
+                                    <div class="contact-us">
+                                        <p class="tips">如有目击或知情者请拨打联系电话：
+                                            <span class="bold">13520465674 </span>
+                                            <a class="btn btn-default fr" onclick="pageObj.delReword(rewordId)" href="javascript:void(0);">删除</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="image-box clearfix">
+                                    <div class="image-first">
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x268" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x268" alt=""></a>
+                                    </div>
+                                    <div class="image-list clearfix">
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                        <a class="grouped_elements" href="http://placeholder.qiniudn.com/60x80" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/60x80" alt="{$lists[DebtName]}"></a>
+                                    </div>
+                                </div>
+                                <div class="con-box">
+                                    <div>
+                                        <p class="address ellipsis">所在地区:福建省-厦门市-思明区</p> <span class="bold">（找财产）</span>
+                                    </div>
+                                    <p class="ellipsis">
+                                        姓名：刘备
+                                    </p>
+                                    <p>
+                                        身份证号：3303501752****2541
+                                    </p>
+                                    <p class="ellipsis">
+                                        地址：软件园二期观日落30号5楼5205
+                                    </p>
+                                    <div class="detail clearfix">
+                                        <label for="">详细内容：</label>
+                                        <div>
+                                            软件园二期观日落30号5楼5205
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                            室一区室一区室一区室一区室一
+                                        </div>
+                                    </div>
+                                    <div class="contact-us">
+                                        <p class="tips">如有目击或知情者请拨打联系电话：
+                                            <span class="bold">13520465674 </span>
+                                            <a class="btn btn-primary fr" onclick="pageObj.completeReword(rewordId)" href="javascript:void(0);">完成</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {if $ShowPage}
+                    <div class="pagination-wrap">
+                        <div class="pagination fl-r" id="collection_page_pagination">
+                            <a href="/member/sellorderlist/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                            {$ShowPage}
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+
+            </div>
+        </div>
+        <div class="fr-win">
+            <div class="pub-btn">
+                <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+                <br>
+                发布
+            </div>
+            <div class="pub-btn-list">
+                <div class="lin" onclick="selDebtWayPop()">
+                    发布债务
+                </div>
+                <div class="lin">
+                    寻找处置方
+                </div>
+                <div class="lin">
+                    资产转让
+                </div>
+                <div class="lin">
+                    发布悬赏
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js'></script>
+<script>
+    $(function(){
+        /*
+         图片预览
+         * */
+        $(".grouped_elements").fancybox({
+            showCloseButton:true,
+            showNavArrows:true
+        });
+
+    });
+</script>
+<script src='{echo JsURL}/debt/memberReword.js'></script>
