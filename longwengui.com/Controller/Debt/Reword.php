@@ -36,7 +36,7 @@ class Reword
         }
         $Keyword = trim($_GET['K']);
         if ($Keyword !=''){
-            $MysqlWhere .= ' and (DebtName like \'%'.$Keyword.'%\' or DebtCard =\'' .$Keyword.'\')';
+            $MysqlWhere .= ' and  Message like \'%'.$Keyword.'%\'';
         }
         //分页查询开始-------------------------------------------------
         $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
@@ -45,7 +45,7 @@ class Reword
             $Page = 1;
         }
         if ($Rscount['Num']) {
-            $PageSize=7;
+            $PageSize=4;
             $Data = array();
             $Data['RecordCount'] = $Rscount['Num'];
             $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);

@@ -37,7 +37,9 @@
                         {loop $Data['Data'] $lists}
                         {if $lists[Type]==1}
                         <li class="clearfix">
+                            {if $lists[Status]==4}
                             <i class="mark"></i>
+                            {/if}
                             <div class="image-box clearfix">
                                 {loop $lists[Image] $value}
                                 {if $value[IsDefault]==1}
@@ -76,7 +78,11 @@
                                 <div class="contact-us">
                                     <p class="tips">如有目击或知情者请拨打联系电话：
                                         <span class="bold">{$lists[Message][contact_phone]} </span>
+                                        {if $lists[Status]==3}
+                                        <a class="btn btn-primary fr" onclick="pageObj.completeReword('{$lists[RewardID]}')" href="javascript:void(0);">完成</a>
+                                        {elseif $lists[Status]==2 || $lists[Status]==4}
                                         <a class="btn btn-default fr" onclick="pageObj.delReword('{$lists[RewardID]}')" href="javascript:void(0);">删除</a>
+                                        {/if}
                                     </p>
                                 </div>
 
@@ -122,9 +128,12 @@
                                 <div class="contact-us">
                                     <p class="tips">如有目击或知情者请拨打联系电话：
                                         <span class="bold">{$lists[Message][contact_phone]} </span>
+                                        {if $lists[Status]==3}
                                         <a class="btn btn-primary fr" onclick="pageObj.completeReword('{$lists[RewardID]}')" href="javascript:void(0);">完成</a>
+                                        {elseif $lists[Status]==2 || $lists[Status]==4}
+                                        <a class="btn btn-default fr" onclick="pageObj.delReword('{$lists[RewardID]}')" href="javascript:void(0);">删除</a>
+                                        {/if}
                                     </p>
-
                                 </div>
                             </div>
                         </li>
@@ -168,7 +177,11 @@
                                 <div class="contact-us">
                                     <p class="tips">如有目击或知情者请拨打联系电话：
                                         <span class="bold">{$lists[Message][contact_phone]} </span>
+                                        {if $lists[Status]==3}
                                         <a class="btn btn-primary fr" onclick="pageObj.completeReword('{$lists[RewardID]}')" href="javascript:void(0);">完成</a>
+                                        {elseif $lists[Status]==2 || $lists[Status]==4}
+                                        <a class="btn btn-default fr" onclick="pageObj.delReword('{$lists[RewardID]}')" href="javascript:void(0);">删除</a>
+                                        {/if}
                                     </p>
                                 </div>
                             </div>
