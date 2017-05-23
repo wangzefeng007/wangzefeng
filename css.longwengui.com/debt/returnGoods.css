@@ -26,7 +26,7 @@ i{
   margin-right:190px;
 }
 
-.flow-box .flow::after{
+.flow-box .flow:after{
   content: '';
   position: absolute;
   left: -187px;
@@ -35,11 +35,11 @@ i{
   height:0;
   border-bottom:solid 2px #e6e6e6;
 }
-.flow-box .flow:first-child::after,
-.flow-box .flow.first::after{
+.flow-box .flow:first-child:after,
+.flow-box .flow.first:after{
   display: none;
 }
-.flow-box .flow.over::after{
+.flow-box .flow.over:after{
   border-bottom:solid 2px #35bdfc;
 }
 .flow-box .triangle{
@@ -136,7 +136,16 @@ i{
   font-weight: bold;
 }
 .tab-wrap .tab-con{
+  position: relative;
   border:solid 1px #cbcbcb;
+}
+.tab-wrap .tab-con:before{
+  content: '';
+  position: absolute;
+  height:100%;
+  left:740px;
+  width:0;
+  border-right:solid 1px #cbcbcb;
 }
 .tab-wrap .hr{
   height: 0;
@@ -147,14 +156,14 @@ i{
   float: left;
   width:710px;
   padding:15px 0 15px 30px;
-  border-right:solid 1px #cbcbcb;
+  /*border-right:solid 1px #cbcbcb;*/
 }
 .tab-wrap .tab-con .tab-con-r{
-  position: relative;
-  right: 1px;
+  /*position: relative;
+  right: 1px;*/
   width:406px;
   float: right;
-  border-left: solid 1px #dcdcdc;
+  /*border-left: solid 1px #dcdcdc;*/
   padding:15px 0 15px 30px;
 }
 .tab-wrap .tab-con .hd{
@@ -541,18 +550,21 @@ i{
 }
 
 /*卖家页面重写样式*/
+.seller-page .tab-wrap .tab-con:before{
+  left:436px;
+}
 .seller-page .tab-wrap .tab-con .tab-con-l{
   float: right;
-  border-left: solid 1px #cbcbcb;
-  border-right: 0;
+  /*border-left: solid 1px #cbcbcb;
+  border-right: 0;*/
 }
 .seller-page .tab-wrap .tab-con .tab-con-r{
-  position: relative;
+  /*position: relative;
   left: 1px;
-  right: 0;
+  right: 0;*/
   float: left;
-  border-right: solid 1px #cbcbcb;
-  border-left: 0;
+  /*border-right: solid 1px #cbcbcb;
+  border-left: 0;*/
 }
 .btn-superbig{
   padding: 9px 37px;

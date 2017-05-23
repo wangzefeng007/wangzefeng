@@ -828,11 +828,12 @@ a{
   height:100%;
   left:0;
   top:0;
-  -webkit-transform: scale(0);
+  display: none;
+  /*-webkit-transform: scale(0);
   -moz-transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
-  transform: scale(0);
+  transform: scale(0);*/
  /* -webkit-transition: all .5s;
   -moz-transition: all .5s;
   -ms-transition: all .5s;
@@ -841,11 +842,12 @@ a{
 
 }
 .header .nav-wrap li:hover .hover{
-  -webkit-transform: scale(1);
+  /*-webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
-  transform: scale(1);
+  transform: scale(1);*/
+  display: block;
 }
 .hover-index{
    background: #d5d1d0 url(images/home-hover.png) no-repeat center;
