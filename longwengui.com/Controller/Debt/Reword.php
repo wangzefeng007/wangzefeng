@@ -20,7 +20,7 @@ class Reword
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
-        $MysqlWhere =' and `Status` >2';
+        $MysqlWhere ='';
         $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
         $MyUrl = WEB_MAIN_URL.'/reword/';
         $SoUrl = $_GET['SoUrl'];
@@ -30,30 +30,39 @@ class Reword
         }elseif (strstr ( $SoUrl, 'a2' )){
             $Type = 'a2';
             $MysqlWhere .= ' and Type =2 ';
+        }elseif (strstr ( $SoUrl, 'a3' )){
+            $Type = 'a3';
+            $MysqlWhere .= ' and Type =3 ';
         }
         $Keyword = trim($_GET['K']);
         if ($Keyword !=''){
             $MysqlWhere .= ' and (DebtName like \'%'.$Keyword.'%\' or DebtCard =\'' .$Keyword.'\')';
-        }
-        if (strstr ($SoUrl, 'a' )){
-            $Area = strstr($SoUrl,"a",true);
-        }else{
-            $Area = $SoUrl;
-        }
-        if ($Area){
-            if ($Area==1009 || $Area==1001){
-                $MysqlWhere .= ' and Province = '.$Area;
-            }elseif ($Area==1153 || $Area==1236){
-                $MysqlWhere .= ' and City = '.$Area;
-            }else{
-                $MysqlWhere .= ' and Area = '.$Area;
-            }
         }
         //分页查询开始-------------------------------------------------
         $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
             $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $Data['Data'][$key]['Message'] =json_decode($value['Message'],true);
+                $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['RewardID'],true);
+                $Data['Data'][$key]['Image'] = $RewardImage;
+            }
+            var_dump($Data['Data']);
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
         }
         include template('RewordLists');
     }

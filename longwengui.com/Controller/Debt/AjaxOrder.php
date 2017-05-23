@@ -182,9 +182,9 @@ class AjaxOrder
                         'Type' => 1
                     );
                     $LogResult = $OrderLogModule->InsertInfo($LogData);
-                    $result_json = array('ResultCode' => 200, 'Message' => '确认退款成功',);
+                    $result_json = array('ResultCode' => 200, 'Message' => '取消申请成功',);
                 }else{
-                    $result_json = array('ResultCode' => 102, 'Message' => '确认退款失败',);
+                    $result_json = array('ResultCode' => 102, 'Message' => '取消申请失败',);
                 }
             }else{
                 $result_json = array('ResultCode' => 103, 'Message' => '不存在该订单',);
@@ -460,5 +460,46 @@ class AjaxOrder
          }
          EchoResult($result_json);
      }
-
+    /**
+     * 卖家确认收货并退款
+     */
+    public function GoodsRefund(){
+        $this->IsLogin();
+        if ($_POST['orderId']){
+            $OrderID = intval($_POST['orderId']);
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $MemberOrderRefundModule = new MemberOrderRefundModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
+            if ($OrderInfo){
+                $Data['UpdateTime'] = time();
+                $Data['Status'] ='卖家确认收货并退款';
+                global $DB;
+                $DB->query("BEGIN");//开始事务定义
+                $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>8,'UpdateTime'=>$Data['UpdateTime']),$OrderID);
+                if ($UpdateStatus){
+                    $DB->query("COMMIT");//执行事务
+                    $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
+                    if (empty($OrderRefund)){
+                        $Result = $MemberOrderRefundModule->UpdateInfoByWhere($Data,' OrderID = '.$OrderID);
+                        if ($Result){
+                            $DB->query("COMMIT");//执行事务
+                            $result_json = array('ResultCode' => 200, 'Message' => '确认收货并退款成功！');
+                        }else{
+                            $DB->query("ROLLBACK");//判断当执行失败时回滚
+                            $result_json = array('ResultCode' => 102, 'Message' => '确认收货并退款失败！');
+                        }
+                    }else{
+                        $DB->query("ROLLBACK");//判断当执行失败时回滚
+                        $result_json = array('ResultCode' => 103, 'Message' => '您只有一次申请机会哦！');
+                    }
+                }else{
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $result_json = array('ResultCode' => 104, 'Message' => '订单状态更新失败');
+                }
+            }else{
+                $result_json = array('ResultCode' => 105, 'Message' => '不存在该订单',);
+            }
+            EchoResult($result_json);
+        }
+    }
 }

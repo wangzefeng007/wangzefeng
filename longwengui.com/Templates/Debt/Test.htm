@@ -6,9 +6,10 @@
         <div class="filt-parm">
             <div class="line" id="way">
                 <span >悬赏方式 :</span>
-                <span id="way_all" {if empty($Type)}class="sel span-1"{/if}><a href="{$MyUrl}{$Area}">全部</a></span>
-                <span {if $Type=='a1'}class="sel"{/if}><a href="{$MyUrl}{$Area}a1/">找人</a></span>
-                <span {if $Type=='a2'}class="sel"{/if}><a href="{$MyUrl}{$Area}a2/">找财产</a></span>
+                <span id="way_all" {if empty($Type)}class="sel span-1"{/if}><a href="{$MyUrl}">全部</a></span>
+                <span {if $Type=='a1'}class="sel"{/if}><a href="{$MyUrl}a1/">找人</a></span>
+                <span {if $Type=='a2'}class="sel"{/if}><a href="{$MyUrl}a2/">找财产</a></span>
+                <span {if $Type=='a3'}class="sel"{/if}><a href="{$MyUrl}a3/">找其他</a></span>
             </div>
             <div class="search">
                 <form action="/reword/" method="get">
@@ -32,8 +33,7 @@
         </div>
         <div class="box-wrap reword-list" id="reword_info">
             <ul class="clearfix">
-                <li class="clearfix complete">
-                    <i class="mark"></i>
+                <li class="clearfix">
                     <div class="image-box">
                         <div class="image-first">
                             <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x248" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x248" alt=""></a>
