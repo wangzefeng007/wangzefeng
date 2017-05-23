@@ -98,6 +98,18 @@
         </div>
     </div>
 </div>
+<script type="text/x-jquery-tmpl" id="suggestionTemp">
+    <div class="suggestion-box">
+        <p class="tips">感谢您对我们工作的支持，提出您的宝贵意见与建议：</p>
+        <p>
+            <textarea class="textarea" name="suggestion" id="" maxlength="150" cols="30" rows="10" placeholder="字数不超过150字"></textarea>
+        </p>
+        <p class="btn-box">
+            <button class="btn btn-big btn-primary mr-40" onclick="pageObj.suggestionSub(this)">确定</button>
+            <button class="btn btn-big btn-default">取消</button>
+        </p>
+    </div>
+</script>
 {template Footer}
 <script src='{echo JsURL}/debt/seekDisposal.js'></script>
 </body>
