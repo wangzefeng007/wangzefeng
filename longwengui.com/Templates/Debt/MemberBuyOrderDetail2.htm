@@ -12,17 +12,17 @@
         </div>
         <div class="flow-wrap">
             <div class="flow-box clearfix">
-                <div class="flow {if $OrderInfo['Status']==4 || $OrderInfo['Status']==5 || $OrderInfo['Status']==6 || $OrderInfo['Status']==8}over{/if} first">
+                <div class="flow {if $OrderInfo['Status']==4 || $OrderInfo['Status']==5 || $OrderInfo['Status']==6 || $OrderInfo['Status']==8 || $OrderInfo['Status']==11}over{/if} first">
                     <span>1</span>
                     <p>买家申请退货退款</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow {if $OrderInfo['Status']==5 || $OrderInfo['Status']==6 || $OrderInfo['Status']==8}over{/if}">
+                <div class="flow {if $OrderInfo['Status']==5 || $OrderInfo['Status']==6 || $OrderInfo['Status']==8 || $OrderInfo['Status']==11}over{/if}">
                     <span>2</span>
                     <p>卖家处理退款申请</p>
                     <i class="triangle"></i>
                 </div>
-                <div class="flow {if $OrderInfo['Status']==6 || $OrderInfo['Status']==8}over{/if}">
+                <div class="flow {if $OrderInfo['Status']==6 || $OrderInfo['Status']==8 || $OrderInfo['Status']==11}over{/if}">
                     <span>3</span>
                     <p>买家退货给卖家</p>
                     <i class="triangle"></i>
