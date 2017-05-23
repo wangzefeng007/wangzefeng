@@ -96,9 +96,9 @@
                                 <p><a class="btn btn-primary" href="/member/sellorderrefund/?No={$lists[OrderNumber]}" title="处理售后">处理售后</a></p>
                                 <p><a class="link" href="/member/sellorderrefund/?No={$lists[OrderNumber]}" title="查看订单">查看订单>></a></p>
                                 <!--售后中-->
-                                {elseif $lists[Status]==11}
+                                {elseif $lists[Status]==6}
                                 <p><a class="btn btn-primary" href="javascript:void(0);" onclick="pageObj.confirmGoodsReceipt('{$lists[OrderID]}')" title="确认收货并退款">确认收货并退款</a></p>
-                                <p><a class="link" href="/member/sellorderrefund/?No={$lists[OrderNumber]}" title="查看订单">查看订单>></a></p>
+                                <p><a class="link" href="/sellorderdetail/{$lists[OrderNumber]}.html" title="查看订单">查看订单>></a></p>
                                 {elseif $lists[Status]==7 || $lists[Status]==8}
                                 <p><a class="link" href="/member/sellorderrefund/?No={$lists[OrderNumber]}" title="查看订单">查看订单>></a></p>
                                 {/if}
