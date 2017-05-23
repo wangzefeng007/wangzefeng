@@ -10,17 +10,6 @@
                 <span {if $Type=='a1'}class="sel"{/if}><a href="{$MyUrl}{$Area}a1/">找人</a></span>
                 <span {if $Type=='a2'}class="sel"{/if}><a href="{$MyUrl}{$Area}a2/">找财产</a></span>
             </div>
-            <div class="line">
-                <span>悬赏地区 :</span>
-                <span {if empty($Area)}class="sel span-1"{/if} id="area_all"><a href="{$MyUrl}{$Type}">全部</a></span>
-                {loop $AreaList $lists}
-                <span {if $Area==$lists['AreaID']}class="sel"{/if}>
-                  <a href="{$MyUrl}{$lists[AreaID]}{$Type}/">{$lists[CnName]}</a>
-                </span>
-                {/loop}
-                <span onclick="openCitySelector(otherCitySel)"><span id="other_city">其他城市</span><img src="/Uploads/Debt/imgs/tri_arrow_down.png" alt=""></span>
-            </div>
-
             <div class="search">
                 <form action="/reword/" method="get">
                     <span>悬赏搜索 :</span>
@@ -43,7 +32,8 @@
         </div>
         <div class="box-wrap reword-list" id="reword_info">
             <ul class="clearfix">
-                <li class="clearfix">
+                <li class="clearfix complete">
+                    <i class="mark"></i>
                     <div class="image-box">
                         <div class="image-first">
                             <a class="grouped_elements" href="http://placeholder.qiniudn.com/200x248" rel="{$lists[ID]}"><img src="http://placeholder.qiniudn.com/200x248" alt=""></a>

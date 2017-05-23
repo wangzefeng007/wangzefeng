@@ -100,9 +100,8 @@ var pageObj=$.extend({},pageObj,{
      * 确认收货并退款
      * @param tar
      */
-    confirmGoodsReceipt:function(tar){
+    confirmGoodsReceipt:function(orderId){
         var _this=this;
-        var orderId=$(tar).parents(".operate-td").attr("data-id");
         layer.confirm('请确认是否收到退货并同意退款？', {
             btn: ['确定','取消'] //按钮
         },function(){
@@ -111,7 +110,7 @@ var pageObj=$.extend({},pageObj,{
                 url:"/ajaxorder",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"GoodsRefund",
                     "orderId":orderId
                 },
                 beforeSend:　function(){
