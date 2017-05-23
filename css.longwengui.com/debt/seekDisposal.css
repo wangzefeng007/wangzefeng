@@ -161,3 +161,27 @@
 .seek-disposal-list li.active  .seek-con .suggestion{
   display: block;
 }
+.suggestion-box{
+  padding:10px 30px;
+}
+.suggestion-box .tips{
+  color: #353535;
+  padding:5px 0;
+}
+.suggestion-box .textarea{
+  width: 600px;
+  height: 80px;
+  margin-top:10px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+.suggestion-box .btn-box{
+  text-align: center;
+  margin-top:20px;
+}
+.suggestion-box .btn-big{
+  width:200px;
+  height:38px;
+  text-align: center;
+}
