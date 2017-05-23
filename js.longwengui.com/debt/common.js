@@ -374,6 +374,10 @@ function getProvinceData(){
           var _id = $(this).attr("data-id");
           var _name = $(this).attr("data-name");
           var _sel = $(this).parent().siblings("span");
+            var $inp = $(this).parents("form").find("input[name='dd_province']").eq(0);
+            if($inp){
+                $inp.val(_id);
+            }
           _sel.text(_name);
           _sel.attr('data-id', _id);
           getCityData(_id, _sel);
@@ -410,6 +414,10 @@ function getCityData(_pid, _sel){
           var _id = $(this).attr("data-id");
           var _name = $(this).attr("data-name");
           var __sel = $(this).parent().siblings("span");
+            var $inp = $(this).parents("form").find("input[name='dd_city']").eq(0);
+            if($inp){
+                $inp.val(_id);
+            }
           __sel.text(_name);
           __sel.attr('data-id', _id);
           getAreaData(_id, __sel);
@@ -446,6 +454,10 @@ function getAreaData(_pid, _sel){
           var _id = $(this).attr("data-id");
           var _name = $(this).attr("data-name");
           var __sel = $(this).parent().siblings("span");
+            var $inp = $(this).parents("form").find("input[name='dd_area']").eq(0);
+            if($inp){
+                $inp.val(_id);
+            }
           __sel.text(_name);
           __sel.attr('data-id', _id);
         });
