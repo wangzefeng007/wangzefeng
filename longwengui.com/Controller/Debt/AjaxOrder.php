@@ -477,9 +477,6 @@ class AjaxOrder
                 $DB->query("BEGIN");//开始事务定义
                 $UpdateStatus = $MemberProductOrderModule->UpdateInfoByKeyID(array('Status'=>8,'UpdateTime'=>$Data['UpdateTime']),$OrderID);
                 if ($UpdateStatus){
-                    $DB->query("COMMIT");//执行事务
-                    $OrderRefund = $MemberOrderRefundModule->GetInfoByWhere(' and OrderID= '.$OrderID);
-                    if (empty($OrderRefund)){
                         $Result = $MemberOrderRefundModule->UpdateInfoByWhere($Data,' OrderID = '.$OrderID);
                         if ($Result){
                             $DB->query("COMMIT");//执行事务
@@ -488,10 +485,6 @@ class AjaxOrder
                             $DB->query("ROLLBACK");//判断当执行失败时回滚
                             $result_json = array('ResultCode' => 102, 'Message' => '确认收货并退款失败！');
                         }
-                    }else{
-                        $DB->query("ROLLBACK");//判断当执行失败时回滚
-                        $result_json = array('ResultCode' => 103, 'Message' => '您只有一次申请机会哦！');
-                    }
                 }else{
                     $DB->query("ROLLBACK");//判断当执行失败时回滚
                     $result_json = array('ResultCode' => 104, 'Message' => '订单状态更新失败');
