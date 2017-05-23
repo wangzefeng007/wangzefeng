@@ -23,16 +23,6 @@
         <div class="menu-level-2 {if $Nav=='bondlist' || $Nav=='rewordlist' || $Nav=='findteam'}menu-level-2-act{/if}" onclick="go('/membercompany/bondlist/')">我的债权</div>
         <div class="menu-level-2" onclick="javascript:window.location.href='/reword/publish/'">发布悬赏</div>
     </div>
-    <div class="menu-level-1" id="menu_11" data-open="0" can-down='1'>
-        <img src="{echo CssURL}/debt/images/icon-assets.png" class="i-left" alt="">
-        我的资产
-        <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
-    </div>
-    <div class="menu-level-2-wrap" data-for="menu_11">
-        <div class="menu-level-2 {if $Nav=='assetlist'}menu-level-2-act{/if}" onclick="go('/member/assetlist/')">我发布的</div>
-        <div class="menu-level-2 {if $Nav=='buyorderlist'}menu-level-2-act{/if}" onclick="go('/member/buyorderlist/')">已买到的</div>
-        <div class="menu-level-2 {if $Nav=='sellorderlist'}menu-level-2-act{/if}" onclick="go('/member/sellorderlist/')">已卖出的</div>
-    </div>
     <div class="menu-level-1 {if $Nav=='reword'}menu-level-1-act{/if}" onclick="go('/member/reword/')">
         <img src="{echo CssURL}/debt/images/icon-assets.png" class="i-left" alt="">
         我的悬赏

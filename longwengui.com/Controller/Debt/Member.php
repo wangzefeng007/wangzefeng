@@ -185,7 +185,7 @@ class Member
         $MemberRewardImageModule = new MemberRewardImageModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $Nav = 'reword';
-        $MysqlWhere ='';
+        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
         $Status = intval($_GET['S']);
         if ($Status==1){
             $MysqlWhere .= ' and Status =1 ';
