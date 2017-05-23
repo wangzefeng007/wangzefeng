@@ -28,6 +28,18 @@ class Find
         //分页查询开始-------------------------------------------------
         $MysqlWhere = ' ';
         //关键字
+        $Province = trim($_GET['dd_province']);
+        if ($Province!=''){
+            $MysqlWhere .= ' and  Area like \'%'.$Province.'%\'';
+        }
+        $City = trim($_GET['dd_city']);
+        if ($City!=''){
+            $MysqlWhere .= ' and  Area like \'%'.$City.'%\'';
+        }
+        $Area = trim($_GET['dd_area']);
+        if ($Area!=''){
+            $MysqlWhere .= ' and  Area like \'%'.$Area.'%\'';
+        }
         $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
