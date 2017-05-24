@@ -70,10 +70,10 @@ var pageObj=$.extend({},pageObj,{
         }else{
             $.ajax({
                 type:"post",
-                url:"/",
+                url:"/loginajax.html",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"AddAdvice",
                     "suggestion":suggestion
                 },
                 beforeSend:　function(){

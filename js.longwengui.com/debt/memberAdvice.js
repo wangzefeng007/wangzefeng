@@ -12,7 +12,7 @@ $(function(){
       url: "/loginajax.html",
       data: {
         "Intention":"AddAdvice",//投诉建议
-        "advice": adviceText
+        "suggestion": adviceText  //内容
       },
       beforeSend: function(){
         showLoading();

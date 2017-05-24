@@ -65,6 +65,8 @@ $RouteArr=array(
     'pay@alipay'=>'Pay@AliPay',
     'pay@alipaynotify'=>'Pay@AliPayNotify',
     'pay@result'=>'Pay@Result',
+    'pay@wxresult'=>'Pay@WxResult',
+
     //Ajax
     'ajaximage@index'=>'AjaxImage@Index',
     'ajaxasset@index'=>'AjaxAsset@Index',

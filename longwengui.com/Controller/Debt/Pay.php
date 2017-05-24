@@ -38,10 +38,9 @@ class Pay
     public function AliPayNotify()
     {
         $MemberProductOrderModule = new MemberProductOrderModule;
-        include SYSTEM_ROOTPATH.'/Include/Alipay/AliPay.php';
+        include SYSTEM_ROOTPATH.'/Include/AliPay/AliPay.php';
         $AliPay = new AliPay();
         $ResultUrl = WEB_MAIN_URL . '/pay/result/';
-
         if (count($_POST)) {
             if ($AliPay->GetPayStatus($_POST) === 'true') {
                 $OrderNumber = trim($_POST['out_trade_no']);

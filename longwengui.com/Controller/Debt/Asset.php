@@ -108,7 +108,7 @@ class Asset
      * @desc  资产转让订单填写提交页
      */
     public function Order(){
-        if ($_SESSION ['Identity']==1 || $_SESSION['Identity']==2){
+        if ($_SESSION ['Identity']!=1 && $_SESSION['Identity']!=2){
             alertandback("个人会员和催客方可购买商品！");
         }
         $MemberAssetInfoModule = new MemberAssetInfoModule();

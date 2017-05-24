@@ -986,7 +986,7 @@ class AjaxLogin
         $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['AddTime'] = time();
-        $Data['Content'] = trim($_POST['advice']);
+        $Data['Content'] = trim($_POST['suggestion']);
         $Data['Status'] = 0;
         if ($Data['Content']==''){
             $result_json = array('ResultCode'=>102,'Message'=>'不能为空！');
@@ -994,9 +994,9 @@ class AjaxLogin
         }
         $InsertAdvice = $MemberComplaintAdviceModule->InsertInfo($Data);
         if ($InsertAdvice){
-            $result_json = array('ResultCode'=>200,'Message'=>'返回成功！','Url'=>'/member/advice/');
+            $result_json = array('ResultCode'=>200,'Message'=>'投诉成功！','Url'=>'/member/advice/');
         }else{
-            $result_json = array('ResultCode'=>103,'Message'=>'返回失败！');
+            $result_json = array('ResultCode'=>103,'Message'=>'投诉失败！');
         }
         EchoResult($result_json);
     }

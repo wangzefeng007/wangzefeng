@@ -93,6 +93,20 @@ class Member
         $Title = '会员注册完善资料';
         include template('MemberRegisterThree');
     }
+    /**
+     * @desc  会员注册完善资料(加入发布债务)
+     */
+    public function RegisterFour()
+    {
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }else{
+            if ($_SESSION['Identity']!=0)
+                alertandgotopage("访问被拒绝", WEB_MAIN_URL);
+        }
+        $Title = '会员注册完善资料';
+        include template('MemberRegisterFour');
+    }
     public function IsLogin(){
         if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
             header('Location:' . WEB_MAIN_URL . '/member/login/');
