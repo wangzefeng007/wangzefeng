@@ -72,6 +72,7 @@
                                 {if !empty($UserInfo[CardNum])}{$UserInfo[CardNum]}{else}无{/if}
                             </div>
                         </div>
+                        {if !empty($UserInfo[CardPositive]) || !empty($UserInfo[CardNegative])}
                         <div class="line-img">
                             <div class="if">
                                 证件照:
@@ -79,18 +80,14 @@
                             <div class="cont">
                                 <div class="bx">
                                     <div class="img-wrap">
-                                        {if !empty($UserInfo[CardPositive])}
                                         <a class="grouped_elements" href="{$UserInfo[CardPositive]}" rel="group1"><img src="{$UserInfo[CardPositive]}" height="100" width="150" alt=""></a>
-                                        {/if}
                                     </div>
                                     身份证正面照
                                 </div>
                                 <div class="bx">
                                     <div class="img-wrap">
-                                        {if !empty($UserInfo[CardNegative])}
                                         <a class="grouped_elements" href="{$UserInfo[CardNegative]}" rel="group1">
                                             <img src="{$UserInfo[CardNegative]}" height="100" width="150" alt=""></a>
-                                        {/if}
                                     </div>
                                     身份证反面照
                                 </div>
@@ -106,6 +103,7 @@
                                 {/if}
                             </div>
                         </div>
+                        {/if}
                         <div class="line">
                             <div class="if">
                                 所在地区:

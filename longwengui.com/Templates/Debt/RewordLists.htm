@@ -34,6 +34,7 @@
                 {loop $Data['Data'] $lists}
                 {if $lists[Type]==1}
                 <li class="clearfix">
+                    {if $lists['Status']==4}<i class="mark"></i>{/if}
                     <div class="image-box">
                         {loop $lists[Image] $value}
                         {if $value[IsDefault]==1}
@@ -77,6 +78,7 @@
                 </li>
                 {elseif $lists[Type]==2}
                 <li class="clearfix">
+                    {if $lists['Status']==4}<i class="mark"></i>{/if}
                     <div class="image-box">
                         {loop $lists[Image] $value}
                         {if $value[IsDefault]==1}
@@ -120,6 +122,7 @@
                 </li>
                 {elseif $lists[Type]==3}
                 <li class="clearfix">
+                    {if $lists['Status']==4}<i class="mark"></i>{/if}
                     <div class="image-box">
                         {loop $lists[Image] $value}
                         {if $value[IsDefault]==1}

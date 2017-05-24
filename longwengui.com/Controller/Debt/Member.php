@@ -202,9 +202,9 @@ class Member
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
         $Status = intval($_GET['S']);
         if ($Status==1){
-            $MysqlWhere .= ' and Status =1 ';
+            $MysqlWhere .= ' and Status IN (2,3) ';
         }elseif ($Status==2){
-            $MysqlWhere .= ' and Status =1 ';
+            $MysqlWhere .= ' and Status =4 ';
         }
         //分页查询开始-------------------------------------------------
         $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);

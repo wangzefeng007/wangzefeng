@@ -28,18 +28,16 @@
                 </div>
                 <dl class="cont-select">
                     <dt>债务状态：</dt>
-                    <dd class="cont-select-act">全部</dd>
-                    <dd>未完成</dd>
-                    <dd>已完成</dd>
+                    <dd {if $Status==''}class="cont-select-act"{/if} onclick="go('/member/reword/')">全部</dd>
+                    <dd {if $Status==1}class="cont-select-act"{/if} onclick="go('/member/reword/?S=1')">未完成</dd>
+                    <dd {if $Status==2}class="cont-select-act"{/if} onclick="go('/member/reword/?S=2')">已完成</dd>
                 </dl>
                 <div class="reword-list">
                     <ul class="clearfix">
                         {loop $Data['Data'] $lists}
                         {if $lists[Type]==1}
                         <li class="clearfix">
-                            {if $lists[Status]==4}
-                            <i class="mark"></i>
-                            {/if}
+                            {if $lists['Status']==4}<i class="mark"></i>{/if}
                             <div class="image-box clearfix">
                                 {loop $lists[Image] $value}
                                 {if $value[IsDefault]==1}
@@ -90,6 +88,7 @@
                         </li>
                         {elseif  $lists[Type]==2}
                         <li class="clearfix">
+                            {if $lists['Status']==4}<i class="mark"></i>{/if}
                             <div class="image-box clearfix">
                                 {loop $lists[Image] $value}
                                 {if $value[IsDefault]==1}
@@ -139,6 +138,7 @@
                         </li>
                         {elseif  $lists[Type]==3}
                         <li class="clearfix">
+                            {if $lists['Status']==4}<i class="mark"></i>{/if}
                             <div class="image-box clearfix">
                                 {loop $lists[Image] $value}
                                 {if $value[IsDefault]==1}
