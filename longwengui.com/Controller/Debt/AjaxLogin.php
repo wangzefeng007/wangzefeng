@@ -473,7 +473,7 @@ class AjaxLogin
         }
         if ($AjaxData['headImg'])
             $Data['Avatar'] = $AjaxData['headImg']; //头像
-        $Data['IdentityState'] =2;
+        $Data['IdentityState'] =3;//直接审核通过
         $_SESSION['Identity'] = $AjaxData['type'];
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UpdateInfo = $MemberUserInfoModule->UpdateInfoByWhere($Data,' UserID='.$_SESSION['UserID']);
@@ -486,133 +486,17 @@ class AjaxLogin
         EchoResult($result_json);
         exit;
     }
-    /**
-     * @desc 催收公司设置佣金方案
-     */
-    public function SetFirmDemand(){
-        $this->IsLogin();
-        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        $Data['UserID'] = $_SESSION['UserID'];
-        $Data['CaseName']= $AjaxData['case_name'];
-        $Data['FindDebtor']= $AjaxData['searchedAnytime'];
-        $Data['EarlyCost']= $AjaxData['fee'];
-        $Data['RepaymentDebtor']= $AjaxData['abilityDebt'];
-        $Data['FromMoney'] =($AjaxData['fee_rate'][0]['from']);
-        $Data['ToMoney'] =($AjaxData['fee_rate'][0]['to']);
-        $Data['MoneyScale'] =($AjaxData['fee_rate'][0]['rate']);
-        $Data['Province'] = ($AjaxData['area'][0]['province']);
-        $Data['City'] = ($AjaxData['area'][0]['city']);
-        $Data['Area'] = ($AjaxData['area'][0]['area']);
-        $MemberSetCompanyModule = new MemberSetCompanyModule();
-        if (!empty($_POST['ID'])){
-            $ID = intval($_POST['ID']);
-            $Data['UpdateTime'] = time();
-            $Result = $MemberSetCompanyModule->UpdateInfoByKeyID($Data,$ID);
-            if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberfirm/demandlist/');
-            }else{
-                $result_json = array('ResultCode'=>103,'Message'=>'信息未修改！');
-            }
-        }else{
-            $Data['AddTime'] = time();
-            $Data['UpdateTime'] = $Data['AddTime'];
-            $Insert = $MemberSetCompanyModule->InsertInfo($Data);
-            if ($Insert){
-                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberfirm/demandlist/');
-            }else{
-                $result_json = array('ResultCode'=>104,'Message'=>'信息未修改！');
-            }
-        }
-        EchoResult($result_json);
-        exit;
-    }
-    /**
-     * @desc 律师团队设置佣金方案
-     */
-    public function SetLawyerDemand(){
-        $this->IsLogin();
-        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        $Data['UserID'] = $_SESSION['UserID'];
-        $Data['CaseName']= $AjaxData['caseName'];
-        $Data['FromMoney'] =($AjaxData['feeRate'][0]['from']);
-        $Data['ToMoney'] =($AjaxData['feeRate'][0]['to']);
-        $Data['Money'] =($AjaxData['feeRate'][0]['fee']);
-        $Data['Province'] = ($AjaxData['area'][0]['province']);
-        $Data['City'] = ($AjaxData['area'][0]['city']);
-        $Data['Area'] = ($AjaxData['area'][0]['area']);
-        $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
-        if (!empty($_POST['ID'])){
-            $ID = intval($_POST['ID']);
-            $Data['UpdateTime'] = time();
-            $Result = $MemberSetLawyerfeeModule->UpdateInfoByKeyID($Data,$ID);
-            if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'更新成功！','Url'=>'/memberlawyer/demandlist/');
-            }else{
-                $result_json = array('ResultCode'=>103,'Message'=>'信息未修改！');
-            }
-        }else{
-            $Data['AddTime'] = time();
-            $Data['UpdateTime'] = $Data['AddTime'];
-            $Insert = $MemberSetLawyerfeeModule->InsertInfo($Data);
-            if ($Insert){
-                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberlawyer/demandlist/');
-            }else{
-                $result_json = array('ResultCode'=>104,'Message'=>'信息未修改！');
-            }
-        }
-        EchoResult($result_json);
-        exit;
-    }
-    /**
-     * @desc 删除律师团队佣金方案
-     */
-    public function DeleteLawyerDemand(){
-        $this->IsLogin();
-        if ($_POST['id']){
-            $ID = intval($_POST['id']);
-            $MemberSetLawyerfeeModule = new MemberSetLawyerfeeModule();
-            $Result = $MemberSetLawyerfeeModule->DeleteByKeyID($ID);
-            if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'删除成功！');
-            }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'删除成功！');
-            }
-        }else{
-            $result_json = array('ResultCode'=>103,'Message'=>'删除成功！');
-        }
-        EchoResult($result_json);
-        exit;
-    }
-    /**
-     * @desc 删除催收公司佣金方案
-     */
-    public function DeleteFirmDemand(){
-        $this->IsLogin();
-        if ($_POST['id']){
-            $ID = intval($_POST['id']);
-            $MemberSetCompanyModule = new MemberSetCompanyModule();
-            $Result = $MemberSetCompanyModule->DeleteByKeyID($ID);
-            if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'删除成功！');
-            }else{
-                $result_json = array('ResultCode'=>102,'Message'=>'删除失败！');
-            }
-        }else{
-            $result_json = array('ResultCode'=>103,'Message'=>'删除失败！');
-        }
-        EchoResult($result_json);
-        exit;
-    }
+
     /**
      * @desc 用户确认完成发布悬赏
      */
     public function ConfirmReword(){
         $this->IsLogin();
-        if($_POST['id']){
-            $ID  = intval($_POST['id']);
+        if($_POST['rewordId']){
+            $ID  = intval($_POST['rewordId']);
             $MemberRewardInfoModule = new MemberRewardInfoModule();
             $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
-            if ($RewardInfo['Status']==3){
+            if ($RewardInfo['Status']==2 || $RewardInfo['Status']==3){
                 $Data['Status']=4;
                 $UpdateReward = $MemberRewardInfoModule->UpdateInfoByKeyID($Data,$ID);
                 if ($UpdateReward){
@@ -622,6 +506,31 @@ class AjaxLogin
                 }
             }else{
                 $result_json = array('ResultCode'=>102,'Message'=>'当前状态是待审核，待发布之后方可确认');
+            }
+        }else{
+            $result_json = array('ResultCode'=>103,'Message'=>'更新失败，未提交相应数据');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+    /**
+     * @desc 用户删除悬赏线索
+     */
+    public function DelReword(){
+        $this->IsLogin();
+        if($_POST['rewordId']){
+            $ID  = intval($_POST['rewordId']);
+            $MemberRewardInfoModule = new MemberRewardInfoModule();
+            $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+            if ($RewardInfo){
+                $Result = $MemberRewardInfoModule->DeleteByKeyID($ID);
+                if ($Result){
+                    $result_json = array('ResultCode'=>200,'Message'=>'删除成功！');
+                }else{
+                    $result_json = array('ResultCode'=>101,'Message'=>'删除失败！');
+                }
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'无删除权限！');
             }
         }else{
             $result_json = array('ResultCode'=>103,'Message'=>'更新失败，未提交相应数据');

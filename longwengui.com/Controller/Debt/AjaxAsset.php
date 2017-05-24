@@ -54,6 +54,7 @@ class AjaxAsset
         $Data['Price'] = trim($AjaxData['_trans_money']);//单价
         $Data['MarketPrice'] = trim($AjaxData['_public_money']);//市场单价
         $Data['Inventory'] = trim($AjaxData['_trans_count']);//库存量
+        $Data['Amount'] = $Data['Inventory'];//总数量
         $Data['AssetsAmount'] = $Data['Price']*$Data['Inventory'];//资产总金额
         $Data['Freight'] = trim($AjaxData['_emsMoney']);//运费
         $Data['AfterPhone'] = trim($AjaxData['_sell_phone']);//售后电话

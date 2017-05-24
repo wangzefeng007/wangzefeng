@@ -19,10 +19,10 @@ var pageObj=$.extend({},pageObj,{
         },function(){
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/loginajax.html",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"DelReword",
                     "rewordId":rewordId
                 },
                 beforeSend:　function(){
@@ -49,10 +49,10 @@ var pageObj=$.extend({},pageObj,{
         },function(){
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/loginajax.html",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"ConfirmReword",
                     "rewordId":rewordId
                 },
                 beforeSend:　function(){

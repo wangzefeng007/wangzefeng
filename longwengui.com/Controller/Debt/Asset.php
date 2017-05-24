@@ -20,7 +20,7 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $Title ='隆文贵债务处置-资产转让';
+        $Title ='隆文贵债务处置-资产商城';
         $Nav='asset';
         $S = intval($_GET['S']);
         $Keywords = trim($_GET['K']);
@@ -54,6 +54,7 @@ class Asset
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberAssetInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
+                $Data['Data'][$key]['Number'] = intval($value['Amount'])-intval($value['Inventory']);//已买量
                 $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$value['AssetID'].' and IsDefault = 1');
                 $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
@@ -71,6 +72,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
+        $Title ='隆文贵债务处置-发布资产';
         $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
@@ -82,6 +84,12 @@ class Asset
         include template('AssetPublish');
     }
     /**
+     * @desc  发布资产转让
+     */
+    public function Audit(){
+        include template('AssetAudit');
+    }
+    /**
      * @desc  资产转让详情页
      */
     public function Details(){
@@ -90,6 +98,7 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         if ($AssetInfo['Status']!=2){
@@ -97,11 +106,14 @@ class Asset
         }
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $MemberUser = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        $UserInfo['Mobile'] =$MemberUser['Mobile'];
         $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and ProductID = '.$AssetInfo['AssetID'],true);
         $TotalAmount =0;
         foreach ($OrderInfo as $value){
             $TotalAmount =$TotalAmount+ $value['TotalAmount'];
         }
+        $Title ='隆文贵债务处置-'.$AssetInfo[''];
         include template('AssetDetails');
     }
     /**

@@ -377,6 +377,11 @@
   font-size:14px;
   color: #9a9a9a;
 }
+.publish-msg .publish-mobile{
+  margin-top:10px;
+  font-size:14px;
+  color: #9a9a9a;
+}
 .publish-msg .publish-money{
   margin-top:25px;
   padding:16px 0;
