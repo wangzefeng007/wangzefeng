@@ -82,12 +82,6 @@ class Asset
         include template('AssetPublish');
     }
     /**
-     * @desc  发布资产转让
-     */
-    public function Audit(){
-        include template('AssetAudit');
-    }
-    /**
      * @desc  资产转让详情页
      */
     public function Details(){
@@ -98,6 +92,9 @@ class Asset
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        if ($AssetInfo['Status']!=2){
+            alertandback("该资产未审核通过！");
+        }
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and ProductID = '.$AssetInfo['AssetID'],true);
