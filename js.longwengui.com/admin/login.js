@@ -3,7 +3,7 @@
  */
 //根据域名后缀判断引用的通用的js
 var Js = {
-    com: 'http://js.longwengui.com',
+    com: 'http://js.longwengui.net',
     cn: 'http://js.longwengui.cn',
     net:'http://js.longwengui.net',
 };
