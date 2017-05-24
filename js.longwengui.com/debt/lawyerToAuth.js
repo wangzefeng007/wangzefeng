@@ -416,7 +416,7 @@ $(function(){
             "agentName":agentName,  //代理人姓名
             "agentIdNum":agentIdNum,  //代理人身份证号
             "agentPhone":agentPhone,  //代理人手机号
-            "type":5
+            "type":6
         });
 
     });
