@@ -1,5 +1,5 @@
 <?php
-http://www.longwengui.com/Uploads/Debt/imgs/
+http://www.longwengui.net/Uploads/Debt/imgs/
 /**
  * upload.php
  *

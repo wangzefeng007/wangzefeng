@@ -48,6 +48,7 @@ $RouteArr=array(
     'memberperson@demanddetails'=>'MemberPerson@DemandDetails',
     'memberperson@setdemand'=>'MemberPerson@SetDemand',
     'memberperson@focusdebtlist'=>'MemberPerson@FocusDebtList',
+    'memberperson@download'=>'MemberPerson@Download',
     //律师会员中心
     'memberlawyer@index'=>'MemberLawyer@Index',
     'memberlawyer@editinfo'=>'MemberLawyer@EditInfo',
