@@ -7,7 +7,11 @@ var pageObj=$.extend({},pageObj,{
      * @param tar
      */
     seekShow:function(tar){
-        $(tar).parents("li").toggleClass("active");
+        $(tar).parents("li").addClass("active");
+        var mobile=$(tar).parents("li").find(".mobile").attr("data-phone");
+        /*var hiddenMobile=mobile.substr(0,3)+"****"+mobile.substr(6);
+        $(this).text(hiddenMobile);*/
+        $(tar).parents("li.active").find(".mobile").text(mobile);
     },
     /**
      * 搜索
@@ -93,6 +97,12 @@ var pageObj=$.extend({},pageObj,{
     init:function(){
         //省市区初始化
         getProvinceData();
+        //mobile 隐藏
+        $(".seek-disposal-list .mobile").each(function(){
+            var mobile=$(this).text();
+            var hiddenMobile=mobile.substr(0,3)+"****"+mobile.substr(7);
+            $(this).text(hiddenMobile);
+        });
     }
 });
 window.onload=function(){
