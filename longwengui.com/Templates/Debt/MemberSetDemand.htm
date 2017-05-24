@@ -39,25 +39,28 @@
                 </div>
                 <div class="c" id="set_area">
                     {if !empty($DemandInfo[Area])}
-                    {loop $DemandInfo[Area] $lists}
+                    {loop $DemandInfo[Area] $key $lists}
+
                     <div class="blo">
                         <div class="to-del" onclick="removeParentDom(this, 'blo')">
                             <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
                         </div>
+                        {if $key==0}
                         <div class="form-line">
                             <div class="form-lab">
                                 负责人姓名:
                             </div>
                             <div class="form-control">
-                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$lists[chargeName]}" placeholder="*请输入姓名">
+                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$DemandInfo[ChargeName]}" placeholder="*请输入姓名">
                             </div>
                             <div class="form-lab ml-20">
                                 负责人电话:
                             </div>
                             <div class="form-control">
-                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$lists[chargeMobile]}" placeholder="*请输入电话号码">
+                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$DemandInfo[ChargeMobile]}" placeholder="*请输入电话号码">
                             </div>
                         </div>
+                        {/if}
                         <div class="line">
                             <div class="left">
                                 <div class="info">
@@ -105,13 +108,13 @@
                                 负责人姓名:
                             </div>
                             <div class="form-control">
-                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$lists[chargeName]}" placeholder="*请输入姓名">
+                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$DemandInfo[chargeName]}" placeholder="*请输入姓名">
                             </div>
                             <div class="form-lab ml-20">
                                 负责人电话:
                             </div>
                             <div class="form-control">
-                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$lists[chargeMobile]}" placeholder="*请输入电话号码">
+                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$DemandInfo[chargeMobile]}" placeholder="*请输入电话号码">
                             </div>
                         </div>
                         <div class="line">

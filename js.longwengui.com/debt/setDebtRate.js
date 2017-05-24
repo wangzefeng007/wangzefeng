@@ -185,6 +185,8 @@ $(
                 "fee_rate": fee_rate_info, //佣金比例数组{ from: 开始区间; to: 结束区间; rate: 比例 }
                 "abilityDebt": abilityDebt, //是否有还款能力 1 是 0 否
                 "arrivalSite": arrivalSite, //是否需要债权人到达现场  1 是 0 否
+                "chargeName": chargeName, //负责人姓名
+                "chargeMobile": chargeMobile, //负责人电话
                 "more": more  //更多介绍
 
             }),
@@ -195,7 +197,9 @@ $(
         success: function(data){
           if(data.ResultCode == 200){
             showMsg('保存成功');
-              window.location.reload();
+            setTimeout(function() {
+                window.location = data.Url;
+            }, 10);
           }else{
             showMsg(data.Message);
           }

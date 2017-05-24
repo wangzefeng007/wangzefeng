@@ -31,22 +31,23 @@
                     <span>地区</span>
                 </div>
                 <div class="c">
-                    {loop $DemandInfo['Area'] $lists}
+
                     <div class="blo">
                         <div class="form-line">
                             <div class="form-lab">
                                 负责人姓名:
                             </div>
                             <div class="form-control">
-                                <span class="text-primary">{$lists[chargeName]}</span>
+                                <span class="text-primary">{$DemandInfo[chargeName]}</span>
                             </div>
                             <div class="form-lab ml-20">
                                 负责人电话:
                             </div>
                             <div class="form-control">
-                                <span class="text-primary">{$lists[chargeMobile]}</span>
+                                <span class="text-primary">{$DemandInfo[chargeMobile]}</span>
                             </div>
                         </div>
+                        {loop $DemandInfo['Area'] $lists}
                         <div class="line">
                             <div class="g-info">
                                 催收区域:
@@ -55,8 +56,8 @@
                                 <span>{$lists[province]}-{$lists[city]}-{$lists[area]}</span>
                             </div>
                         </div>
+                        {/loop}
                     </div>
-                    {/loop}
                 </div>
 
                 <div class="t">

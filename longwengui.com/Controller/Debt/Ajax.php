@@ -604,6 +604,8 @@ class Ajax
             $Data['FeeRate'] = json_encode($AjaxData['fee_rate'],JSON_UNESCAPED_UNICODE);//佣金比例
             $Data['AbilityDebt'] = $AjaxData['abilityDebt'];//债务人有无还款能力
             $Data['ArrivalSite'] = $AjaxData['arrivalSite'];//是否需要债权人到达现场
+            $Data['ChargeName'] = $AjaxData['chargeName'];//负责人姓名
+            $Data['ChargeMobile'] = $AjaxData['chargeMobile'];//负责人电话
             $Data['Content'] = $AjaxData['more'];//介绍
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
