@@ -488,7 +488,7 @@
 }
 .no-auth-userinfo .sel-to-auth{
   border-bottom: 1px dashed #e5e5e5;
-  padding: 70px 130px;
+  padding: 70px;
   margin: 0 auto;
 }
 .no-auth-userinfo .sel-to-auth .img-sel{
