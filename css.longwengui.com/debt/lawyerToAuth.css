@@ -65,13 +65,13 @@
 }
 .debtor-auth .wrap .bx-wraper .cont .info-form .line .if,
 .debtor-auth .wrap .bx-wraper .cont .info-form .line-1 .if {
-  width: 90px;
+  width: 120px;
   height: 36px;
   float: left;
 }
 .debtor-auth .wrap .bx-wraper .cont .info-form .line .cont-in,
 .debtor-auth .wrap .bx-wraper .cont .info-form .line-1 .cont-in {
-  width: 530px;
+  width: 500px;
   min-height: 46px;
   float: left;
 }
@@ -160,10 +160,6 @@
   position: relative;
   margin-right: 10px;
 }
-.debtor-auth .wrap .bx-wraper .cont .info-form .line .m-dropdown span,
-.debtor-auth .wrap .bx-wraper .cont .info-form .line-1 .m-dropdown span {
-  color: #a9a9a9;
-}
 .debtor-auth .wrap .bx-wraper .cont .info-form .line .m-dropdown img,
 .debtor-auth .wrap .bx-wraper .cont .info-form .line-1 .m-dropdown img {
   float: right;
@@ -173,7 +169,7 @@
 .debtor-auth .wrap .bx-wraper .cont .info-form .line-1 {
   height: 120px;
 }
-.tab-company, .tab-lawer{
+.tab-company, .tab-lawers{
   display: none;
 }
 .tl-2{
@@ -182,4 +178,8 @@
   line-height: 64px;
   font-size: 20px;
   background-color: #f5f5f5;
+}
+
+.tab-lawers .m-dropdown ul{
+  width:100%;
 }

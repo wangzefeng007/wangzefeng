@@ -1,15 +1,20 @@
-//催客、催收公司会员注册完善资料
+//催客、催收公司、律师团队会员注册完善资料
 $(function(){
-    $('#mydatepicker').dcalendarpicker({format: 'yyyy-mm-dd', width: '340px'}); //初始化日期选择器
+    $('#mydatepicker').dcalendarpicker({format: 'yyyy-mm-dd', width: '340px'});
+    $('#mydatepicker2').dcalendarpicker({format: 'yyyy-mm-dd', width: '340px'}); //初始化日期选择器
     $('#mycalendar').dcalendar(); //初始化日历
-
+    //擅长赋值
+    addEventToDropdown("goodAt",function(tar){
+        $(tar).parent().siblings("span").text($(tar).text());
+        $(tar).parent().siblings("input").val($(tar).text());
+    });
     //根据url参数初始化选项卡
     var tab_cur = GetQueryString('T');
     if(tab_cur == 1){
       $('.bx-wraper .tl .act').removeClass('act');
       $('.bx-wraper .tl .tb').eq(1).addClass('act');
-      $('.tab-person').hide();
-      $('.tab-company').show();
+      $('.tab-lawer').hide();
+      $('.tab-lawers').show();
     }
 
 
@@ -157,202 +162,265 @@ $(function(){
             );
         }
     }
-    //个人资料保存
-    $('#person_save').click(function(){
-        var nick_name = $('.tab-person input[name="nickName"]').val();
-        var name = $('.tab-person input[name="name"]').val();
-        var idNum = $('.tab-person input[name="idNum"]').val();
-        var province = $('.tab-person input[name="dd_province"]').siblings('span').attr('data-id');
-        var city = $('.tab-person input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-person input[name="dd_area"]').siblings('span').attr('data-id');
-        var images = []; //证明图片
+    //律师（个人）资料保存
+    $('#lawer_save').click(function(){
+        var name = $('.tab-lawer input[name="name"]').val();
+        var idNum = $('.tab-lawer input[name="idNum"]').val();
+        var jobNo = $('.tab-lawer input[name="jobNo"]').val();
+        var office = $('.tab-lawer input[name="office"]').val();
+        var province = $('.tab-lawer input[name="dd_province"]').siblings('span').attr('data-id');
+        var city = $('.tab-lawer input[name="dd_city"]').siblings('span').attr('data-id');
+        var area = $('.tab-lawer input[name="dd_area"]').siblings('span').attr('data-id');
+        var lawer_images = []; //证明图片
+        var inspection_date = $('#mydatepicker').val();
+
 
         if(name == ''){
             showMsg('请输入您的姓名');
-            $('.tab-person input[name="name"]').focus();
+            $('.tab-lawer input[name="name"]').focus();
             return;
         }
         if(!validate('chinese', name)){
             showMsg('姓名只能为中文');
-            $('.tab-person input[name="name"]').focus();
+            $('.tab-lawer input[name="name"]').focus();
             return;
         }
 
         if(idNum == ''){
             showMsg('请输入身份证号');
-            $('.tab-person input[name="idNum"]').focus();
+            $('.tab-lawer input[name="idNum"]').focus();
             return;
         }
         if(!validate('idNum', idNum)){
             showMsg('请输入正确的身份证号');
-            $('.tab-person input[name="idNum"]').focus();
+            $('.tab-lawer input[name="idNum"]').focus();
             return;
         }
 
-        $('.tab-person .i-wrap').each(function(){
+        if(jobNo == ''){
+            showMsg('请输入执业证号');
+            $('.tab-lawer input[name="jobNo"]').focus();
+            return;
+        }
+        if(!validate('lawJobNo', jobNo)){
+            showMsg('请输入正确的执业证号');
+            $('.tab-lawer input[name="jobNo"]').focus();
+            return;
+        }
+
+        if(office == ''){
+            showMsg('请输入您的所属律师事务所');
+            $('.tab-lawer input[name="office"]').focus();
+            return;
+        }
+        if(!validate('chinese', office)){
+            showMsg('律师事务所名称为中文');
+            $('.tab-lawer input[name="office"]').focus();
+            return;
+        }
+
+        if(inspection_date == ''){
+            showMsg('请输入您的年检日期');
+            return;
+        }
+
+        $('.tab-lawer .i-wrap').each(function(){
             if($(this).children('img').attr('src')){
-                images.push($(this).children('img').attr('src'));
+                lawer_images.push($(this).children('img').attr('src'));
             }
         });
 
-        if(images.length != 3){
+        if(lawer_images.length != 2){
             showMsg('请上传所需的证件照片');
             return;
         }
 
+
         if(!province || !city || !area){
             showMsg('请输入您的地址信息');
             return;
         }
 
+        var area_detail = $('.tab-lawer textarea[name="areaDetail"]').val();
+        var qq = $('.tab-lawer input[name="qq"]').val();
+        var email = $('.tab-lawer input[name="email"]').val();
 
-        var area_detail = $('.tab-person textarea[name="areaDetail"]').val();
-        var qq = $('.tab-person input[name="qq"]').val();
-        var email = $('.tab-person input[name="email"]').val();
-        if(qq==''){
-            showMsg('请输入QQ号');
-            $('.tab-person input[name="qq"]').focus();
-            return;
-        }
         if(qq != '' && !validate('qq', qq)){
             showMsg('请输入正确的qq号');
-            $('.tab-person input[name="qq"]').focus();
+            $('.tab-lawer input[name="qq"]').focus();
             return;
         }
 
         if(email != '' && !validate('email', email)){
             showMsg('请输入正确的邮箱');
-            $('.tab-person input[name="email"]').focus();
+            $('.tab-lawer input[name="email"]').focus();
             return;
         }
 
-        ajax(2, {
-            "nickName": nick_name, //昵称
+        ajax(4, {
             "name": name, //姓名
             "idNum": idNum, //身份证号
+            "jobNo": jobNo, //执业证号
+            "office": office, //所属律师事务所
+            "inspectionDate": inspection_date, //年检时间
             "province": province, //省
             "city": city, //市
             "area": area, //县
-            "images": images, //身份证照
+            "images": lawer_images, //照片
             "areaDetail": area_detail, //详细地址
             "qq": qq, //qq
             "email": email, //邮箱
-            "type":2
+            "type":4
         });
 
     });
-    //催收公司个人资料保存
-    $('#company_save').click(function(){
-        var company_name = $('.tab-company input[name="companyName"]').val();
-        var registrant_name = $('.tab-company input[name="registrantName"]').val();
-        var idNum = $('.tab-company input[name="idNum"]').val();
-        var credit_num = $('.tab-company input[name="creditNum"]').val();
-        var province = $('.tab-company input[name="dd_province"]').siblings('span').attr('data-id');
-        var city = $('.tab-company input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-company input[name="dd_area"]').siblings('span').attr('data-id');
-        var registrant_images = []; //证明图片
-        var license;
 
-        if(company_name == ''){
-            showMsg('请输入您的公司名称');
-            $('.tab-company input[name="companyName"]').focus();
+
+    //律师事务所资料保存
+    $('#lawers_save').click(function(){
+        var name = $('.tab-lawers input[name="name"]').val();
+        var phone = $('.tab-lawers input[name="phone"]').val();
+        var lawPerson = $('.tab-lawers input[name="lawPerson"]').val();
+        var creditNum = $('.tab-lawers input[name="creditNum"]').val();
+        var province = $('.tab-lawers input[name="dd_province"]').siblings('span').attr('data-id');
+        var city = $('.tab-lawers input[name="dd_city"]').siblings('span').attr('data-id');
+        var area = $('.tab-lawers input[name="dd_area"]').siblings('span').attr('data-id');
+        var goodAt = $('.tab-lawers input[name="goodAt"]').siblings('span').text();
+        var agentName = $('.tab-lawers input[name="agentName"]').val();
+        var agentIdNum = $('.tab-lawers input[name="agentIdNum"]').val();
+        var agentPhone = $('.tab-lawers input[name="agentPhone"]').val();
+        var license_images = []; //营业执照图片
+        var agent_images = []; //代理人证件照
+        var inspection_date = $('#mydatepicker2').val();
+
+
+        if(name == ''){
+            showMsg('请输入事务所名称');
+            $('.tab-lawers input[name="name"]').focus();
             return;
         }
-        if(!validate('chinese', company_name)){
-            showMsg('公司名称只能为中文');
-            $('.tab-company input[name="companyName"]').focus();
+        if(!validate('chinese', name)){
+            showMsg('事务所名称只能为中文');
+            $('.tab-lawers input[name="name"]').focus();
+            return;
+        }
+        if(phone == ''){
+            showMsg('请输入手机电话');
+            $('.tab-lawers input[name="phone"]').focus();
+            return;
+        }
+        if(!validate('phone', phone)){
+            showMsg('请输入正确的手机或电话');
+            $('.tab-lawers input[name="phone"]').focus();
+            return;
+        }
+        if(lawPerson == ''){
+            showMsg('请输入法定代表人');
+            $('.tab-lawers input[name="lawPerson"]').focus();
+            return;
+        }
+        if(!validate('chinese', lawPerson)){
+            showMsg('法定代表人只能为中文');
+            $('.tab-lawers input[name="lawPerson"]').focus();
+            return;
+        }
+        if(creditNum == ''){
+            showMsg('请输入信用代码');
+            $('.tab-lawers input[name="creditNum"]').focus();
+            return;
+        }
+        if(!validate('creditNum', creditNum)){
+            showMsg('请输入正确的信用代码');
+            $('.tab-lawers input[name="creditNum"]').focus();
+            return;
+        }
+        if(inspection_date == ''){
+            showMsg('请输入年检到期日');
+            $('.tab-lawers #mydatepicker2').focus();
             return;
         }
 
-        if(registrant_name == ''){
-            showMsg('请输入公司注册人姓名');
-            $('.tab-company input[name="registrantName"]').focus();
-            return;
-        }
-        if(!validate('chinese', registrant_name)){
-            showMsg('姓名只能为中文');
-            $('.tab-company input[name="registrantName"]').focus();
-            return;
-        }
-
-        if(idNum == ''){
-            showMsg('请输入公司注册人身份证号');
-            $('.tab-company input[name="idNum"]').focus();
-            return;
-        }
-        if(!validate('idNum', idNum)){
-            showMsg('请输入正确的身份证号');
-            $('.tab-company input[name="idNum"]').focus();
-            return;
-        }
-
-        $('#i_registrant .i-wrap').each(function(){
+        $('.tab-lawers .license .i-wrap').each(function(){
             if($(this).children('img').attr('src')){
-                registrant_images.push($(this).children('img').attr('src'));
+                license_images.push($(this).children('img').attr('src'));
             }
         });
 
-        if(registrant_images.length != 2){
-            showMsg('请上传所需的身份证照片');
+        if(license_images.length != 1){
+            showMsg('请上传营业执照');
             return;
         }
-
-        if(credit_num == ''){
-            showMsg('请输入信用代码');
-            $('.tab-company input[name="creditNum"]').focus();
+        if(!goodAt){
+            showMsg('请选择擅长方向');
             return;
         }
-        if(!validate('creditNum', credit_num)){
-            showMsg('请输入正确的信用代码');
-            $('.tab-company input[name="creditNum"]').focus();
-            return;
-        }
-
-        if($('#i_license .i-wrap').children('img').attr('src')){
-            license = $('#i_license .i-wrap').children('img').attr('src');
-        }else{
-            showMsg('请上传所需的营业执照');
-            return;
-        }
-
         if(!province || !city || !area){
             showMsg('请输入您的地址信息');
             return;
         }
-
-        var area_detail = $('.tab-company textarea[name="areaDetail"]').val();
-        var qq = $('.tab-company input[name="qq"]').val();
-        var email = $('.tab-company input[name="email"]').val();
-
-        if(qq != '' && !validate('qq', qq)){
-            showMsg('请输入正确的qq号');
-            $('.tab-company input[name="qq"]').focus();
+        if(agentName == ''){
+            showMsg('请输入代理人姓名');
+            $('.tab-lawers input[name="agentName"]').focus();
+            return;
+        }
+        if(!validate('chinese', agentName)){
+            showMsg('代理人姓名只能为中文');
+            $('.tab-lawers input[name="agentName"]').focus();
+            return;
+        }
+        if(agentIdNum == ''){
+            showMsg('请输入代理人身份证号');
+            $('.tab-lawers input[name="agentIdNum"]').focus();
+            return;
+        }
+        if(!validate('idNum', agentIdNum)){
+            showMsg('请输入正确的身份证号');
+            $('.tab-lawers input[name="agentIdNum"]').focus();
+            return;
+        }
+        if(agentPhone == ''){
+            showMsg('请输入代理人手机号');
+            $('.tab-lawers input[name="agentPhone"]').focus();
+            return;
+        }
+        if(!validate('mobilePhone', agentPhone)){
+            showMsg('请输入正确的手机号');
+            $('.tab-lawers input[name="agentPhone"]').focus();
             return;
         }
 
-        if(email != '' && !validate('email', email)){
-            showMsg('请输入正确的邮箱');
-            $('.tab-company input[name="qq"]').focus();
+        $('.tab-lawers .agentPic .i-wrap').each(function(){
+            if($(this).children('img').attr('src')){
+                agent_images.push($(this).children('img').attr('src'));
+            }
+        });
+        if(agent_images.length != 2){
+            showMsg('请上传证件照');
             return;
         }
 
-        ajax(3, {
-            "companyName": company_name, //催收公司名称
-            "registrantName": registrant_name, //公司注册人姓名
-            "idNum": idNum, //注册人身份证号
-            "creditNum": credit_num, //信用代码
+        var area_detail = $('.tab-lawers textarea[name="areaDetail"]').val();
+        ajax(5, {
+            "name": name, //事务所名称
+            "phone": phone, //手机电话
+            "lawPerson": lawPerson, //法定代表人
+            "creditNum": creditNum, //信用代码
+            "inspectionDate": inspection_date, //年检时间
             "province": province, //省
             "city": city, //市
             "area": area, //县
+            "license_images": license_images, //营业执照照片
+            "agent_images": agent_images, //营业执照照片
             "areaDetail": area_detail, //详细地址
-            "registrantImages": registrant_images, //注册人身份证照
-            "license": license, //营业执照照片
-            "qq": qq, //qq
-            "email": email, //邮箱
-            "type":3
+            "goodAt": goodAt, //擅长方向
+            "agentName":agentName,  //代理人姓名
+            "agentIdNum":agentIdNum,  //代理人身份证号
+            "agentPhone":agentPhone,  //代理人手机号
+            "type":5
         });
+
     });
-    //type: 2 保存为催客 3 保存为催收公司
+    //type: 4 保存为律师（个人） 5为律师事务所
     function ajax(type, formData){
         $.ajax({
             type: "post",
