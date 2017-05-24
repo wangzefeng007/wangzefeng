@@ -188,7 +188,6 @@ function validatePublishForm(){
     var _sell_phone = $("input[name='sell_phone']").val();
     var _trans_type = $("input[name='trans_type']").val();
     var _end_time = $("input[name='end_time']").val();
-    var _sell_phone = $("input[name='sell_phone']").val();
     var _emsMoney = $("input[name='emsMoney']").val()||0;
     var _transTitle = $("input[name='transTitle']").val();
     var agreement = $("input[name='agreement']")[0].checked;
