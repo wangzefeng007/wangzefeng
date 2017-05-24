@@ -6,7 +6,7 @@ file: fileupload.class.php 文件上传类FileUpload
 class FileUpload {
     private $path = "/uploads/";          //上传文件保存的路径
     private $allowtype = array('jpg','jpeg','gif','png'); //设置限制上传文件的类型
-    private $maxsize = 1000000;           //限制文件上传大小（字节）
+    private $maxsize = 20971520;           //限制文件上传大小（字节）
     private $israndname = true;           //设置是否随机重命名文件， false不随机
 
     private $originName;              //源文件名
