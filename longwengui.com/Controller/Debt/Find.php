@@ -66,9 +66,7 @@ class Find
                 $Data['Data'][$key]['Area'] = $AreaInfo;
                 $FeeRateInfo = json_decode($value['FeeRate'],true);
                 $Data['Data'][$key]['FeeRate'] = $FeeRateInfo;
-                $User = $MemberUserModule->GetInfoByKeyID($value['UserID']);
                 $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
-                $Data['Data'][$key]['Mobile'] = $User['Mobile'];
                 $Data['Data'][$key]['Identity'] = $UserInfo['Identity'];
                 $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
                 if ($UserInfo['Identity']==2){
