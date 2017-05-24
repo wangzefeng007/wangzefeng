@@ -11,7 +11,14 @@ function endTimeChange(obj){
   var end_time = $('#end_time').val();
   var day = calcTime(obj,end_time);
   if(day){
-    $('#left_time').html('还有<span class="c-b">' + day + '</span>天')
+      if(day>50){
+          showTip(obj, '有效日期最多50天');
+          var maxTime=$(obj).attr("max-time");
+          $(obj).val(maxTime);
+          $('#left_time').html('还有<span class="c-b">' + 30 + '</span>天');
+      }else{
+          $('#left_time').html('还有<span class="c-b">' + day + '</span>天');
+      }
   }
 }
 
