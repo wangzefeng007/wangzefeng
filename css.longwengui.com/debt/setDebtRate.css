@@ -131,7 +131,8 @@
 .set-debt .wrap .form-wrap .box .c .blo .to-del {
   position: absolute;
   right: 0;
-  top: 50px;
+  top: 50%;
+  margin-top:-10px;
   display: none;
   cursor: pointer;
 }

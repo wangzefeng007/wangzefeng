@@ -26,7 +26,18 @@ $(
       if(!flag){
         return;
       }
-
+        var chargeName=$("input[name='chargeName']").val();
+        var chargeMobile=$("input[name='chargeMobile']").val();
+        if(!chargeName){
+            showMsg('请输入负责人姓名');
+            flag = false;
+            return;
+        }
+        if(!chargeMobile){
+            showMsg('请输入负责人电话');
+            flag = false;
+            return;
+        }
       //添加地区信息
       $('#set_area').find('.blo').each(function(){
         if(flag){
@@ -34,18 +45,6 @@ $(
           var _pid = $(this).find('.p-dropdown span').attr('data-id');
           var _cid = $(this).find('.c-dropdown span').attr('data-id');
           var _aid = $(this).find('.a-dropdown span').attr('data-id');
-          var chargeName=$(this).find("input[name='chargeName']").val();
-          var chargeMobile=$(this).find("input[name='chargeMobile']").val();
-          if(!chargeName){
-              showMsg('请输入负责人姓名');
-              flag = false;
-              return;
-          }
-          if(!chargeMobile){
-              showMsg('请输入负责人电话');
-              flag = false;
-              return;
-          }
           if(!_pid||!_cid||!_aid){
             showMsg('请完善地区信息');
             flag = false;
@@ -53,8 +52,6 @@ $(
           }
 
           area_info.push({
-            "chargeName":chargeName,
-            "chargeMobile":chargeMobile,
             "province": _pid,
             "city": _cid,
             "area": _aid
