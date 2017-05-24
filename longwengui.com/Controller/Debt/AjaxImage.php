@@ -34,7 +34,7 @@ class AjaxImage
             $fileName = iconv('UTF-8', 'GB2312', $fileName);
             $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
             $uploadPath = $uploadDir . DIRECTORY_SEPARATOR . $fileName;
-            $imgUrl="http://www.longwengui.com/".$uploadDir."/".$fileName;
+            $imgUrl="http://www.longwengui.net/".$uploadDir."/".$fileName;
 
 
             $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
