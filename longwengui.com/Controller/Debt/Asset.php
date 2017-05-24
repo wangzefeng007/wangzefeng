@@ -74,8 +74,8 @@ class Asset
         $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        if ($UserInfo['IdentityState']!=3){
-            alertandback("审核通过后的会员方可发布资产转让！");
+        if ($UserInfo['Identity']!=1 && $UserInfo['Identity']!=2){
+            alertandback("个人会员和催客方可发布资产！");
         }
         $Nav='asset';
         $EndTime = time()+ 2592000;
@@ -111,6 +111,9 @@ class Asset
      * @desc  资产转让订单填写提交页
      */
     public function Order(){
+        if ($_SESSION ['Identity']==1 || $_SESSION['Identity']==2){
+            alertandback("个人会员和催客方可购买商品！");
+        }
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
