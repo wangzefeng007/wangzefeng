@@ -420,7 +420,7 @@ $(function(){
         });
 
     });
-    //type: 4 保存为律师（个人） 5为律师事务所
+    //type: 4 保存为律师（个人） 6为律师事务所
     function ajax(type, formData){
         $.ajax({
             type: "post",

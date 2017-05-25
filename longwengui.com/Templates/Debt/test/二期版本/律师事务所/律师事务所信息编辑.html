@@ -1,0 +1,312 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
+<div class="person-center">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      当前位置 > 事务所资料  > <span>事务所信息</span>
+    </div>
+    <div class="menu-cont-wrap">
+      <div class="menu-bar">
+        <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+        <div class="nick-name">
+          13546588777
+        </div>
+        <button type="button" name="button">已认证</button>
+        <div class="menu-level-1 menu-level-1-act" id="menu_1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+          事务所资料
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+        </div>
+        <div class="menu-level-2-wrap" data-for="menu_1">
+          <div class="menu-level-2 menu-level-2-act">事务所信息</div>
+          <div class="menu-level-2">我的钱包</div>
+          <div class="menu-level-2">收货地址</div>
+        </div>
+        <div class="menu-level-1" data-open="0" id="menu_2" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          债权管理
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+        </div>
+        <div class="menu-level-2-wrap" data-for="menu_2">
+          <div class="menu-level-2">申请的债权</div>
+          <div class="menu-level-2">债权接单</div>
+          <div class="menu-level-2">浏览过的债权</div>
+          <div class="menu-level-2">发布悬赏</div>
+        </div>
+        <div class="menu-level-1">
+          <img src="{echo CssURL}/debt/images/icon-reward.png" class="i-left" alt="">
+          我的悬赏
+        </div>
+        <div class="menu-level-1" id="menu_3" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/care.png" class="i-left" alt="">
+          关注
+          <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
+        </div>
+        <div class="menu-level-2-wrap" data-for="menu_3">
+          <div class="menu-level-2 {if $Nav=='focusdebtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/focusdebtlist/')" >我关注的债务</div>
+          <div class="menu-level-2" hidden>提前关注</div>
+        </div>
+        <div class="menu-level-1">
+          <img src="{echo CssURL}/debt/images/icon-lawyerhelp.png" class="i-left" alt="">
+          法律援助
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          系统信息
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+          投诉建议
+        </div>
+      </div>
+      <div class="menu-cont">
+        <div class="tab-hd">
+          <div class="tb act">
+            事务所信息
+          </div>
+          <div class="tb">
+            修改密码
+          </div>
+          <div class="tb">
+            绑定手机
+          </div>
+        </div>
+
+        <div class="show-info">
+          <div class="info-cont tab-lawers ">
+            <div class="info-m">
+              <div class="head-portrait">
+                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                <br>
+                <label>
+                  <span>更改头像</span>
+                  <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                </label>
+              </div>
+              <div class="info-blk">
+                <div class="line">
+                  会员ID:&nbsp;&nbsp;LWG1588
+                </div>
+                <div class="line">
+                  注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                </div>
+                <div class="line">
+                  注册IP:&nbsp;&nbsp;110.84.32.35
+                </div>
+              </div>
+              <div class="info-blk">
+                <div class="line">
+                  账号等级:&nbsp;&nbsp;律师事务所
+                </div>
+                <div class="line">
+                  最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                </div>
+                <div class="line">
+                  上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                </div>
+              </div>
+            </div>
+            <div class="info-o">
+              <div class="line">
+                <div class="if">
+                  事务所名称:
+                </div>
+                <div class="cont">
+                  <input type="text" name="name" placeholder="请输入事务所名称" onblur="validateChinese(this)" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  手机电话:
+                </div>
+                <div class="cont">
+                  <input type="text" name="phone" placeholder="请输入电话号码" onblur="validatePhone(this,true)" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  法定代表人:
+                </div>
+                <div class="cont">
+                  <input type="text" placeholder="请输入代表人姓名" name="lawPerson" onblur="validateChinese(this)" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  社会信用代码:
+                </div>
+                <div class="cont">
+                  <input type="text" placeholder="请输入信用代码" name="creditNum" onblur="validateCreditNum(this)" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  年检到期日:
+                </div>
+                <div class="cont">
+                  <input type="text" id="mydatepicker2" placeholder="请输入年检到期日" value="">
+                </div>
+              </div>
+              <div class="line-img">
+                <div class="if">
+                  营业执照:
+                </div>
+                <div class="cont license">
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <img src="/Uploads/Debt/20170515/201705150943209163.jpg" alt="">
+                    </div>
+                    <label>
+                      <span>+ 营业执照副本</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  擅长方向:
+                </div>
+                <div class="cont">
+                  <div class="m-dropdown" style="width: 156px; margin-left: 0;">
+                    <label type="checkbox">
+                      <span data-id="">全部</span>
+                      <i></i>
+                      <input type="checkbox" name="goodAt" value="婚姻财产">
+                      <ul class="multi-select clearfix" style="width: 630px;">
+                        <li data-id="">全部</li>
+                        <li data-id="101">劳动纠纷</li>
+                        <li data-id="102">医疗纷争</li>
+                        <li data-id="103">公司解散</li>
+                        <li data-id="104">建设工程</li>
+                        <li data-id="105">金融证券</li>
+                        <li data-id="106">债务债权</li>
+                        <li data-id="107">房产纠纷</li>
+                        <li data-id="108">拆迁安置</li>
+                        <li data-id="109">法律顾问</li>
+                        <li data-id="110">知识产权</li>
+                        <li data-id="111">银行</li>
+                        <li data-id="112">婚姻家庭</li>
+                        <li data-id="113">刑事辩护</li>
+                        <li data-id="114">抵押担保</li>
+                        <li data-id="115">人身损害</li>
+                        <li data-id="116">消费权益</li>
+                        <li data-id="117">继承</li>
+                        <li data-id="118">工伤赔偿</li>
+                        <li data-id="119">土地纠纷</li>
+                        <li data-id="120">合同纠纷</li>
+                        <li data-id="121">保险理赔</li>
+                        <li data-id="122">取保候审</li>
+                      </ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  所在地区:
+                </div>
+                <div class="cont">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span>请选择</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span>请选择</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span>请选择</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  详细地址:
+                </div>
+                <div class="cont">
+                  <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80"></textarea>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  代理人姓名:
+                </div>
+                <div class="cont">
+                  <input type="text" placeholder="请输入代理人姓名" maxlength="12" onblur="validateChinese(this)" name="agentName" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  代理人身份证号:
+                </div>
+                <div class="cont">
+                  <input type="text" placeholder="请输入代理人身份证号" onblur="validateIDNumber(this, true)(this)" name="agentIdNum" value="">
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  代理人手机号:
+                </div>
+                <div class="cont">
+                  <input type="text" placeholder="请输入代理人手机号码" name="agentPhone" onblur="validateMobilePhone(this,true)" value="">
+                </div>
+              </div>
+              <div class="line-img">
+                <div class="if">
+                  证件照:
+                </div>
+                <div class="cont agentPic">
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <img src="/Uploads/Debt/20170515/201705150943209163.jpg" alt="">
+                    </div>
+                    <label>
+                      <span>+ 身份证正面照</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
+                  </div>
+                  <div class="bx">
+                    <div class="img-wrap">
+                      <img src="/Uploads/Debt/20170515/201705150943209163.jpg" alt="">
+                    </div>
+                    <label>
+                      <span>+ 身份证反面照</span>
+                      <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="to-opt">
+          <div class="cont">
+            <button id="lawers_save" type="button" name="edit">修改信息</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='{echo JsURL}/debt/lawersCenterInfo.js'></script>
