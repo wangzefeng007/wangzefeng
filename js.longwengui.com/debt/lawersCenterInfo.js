@@ -12,7 +12,6 @@ $(function(){
         var province = $('.tab-lawers input[name="dd_province"]').siblings('span').attr('data-id');
         var city = $('.tab-lawers input[name="dd_city"]').siblings('span').attr('data-id');
         var area = $('.tab-lawers input[name="dd_area"]').siblings('span').attr('data-id');
-        var goodAt = $('.tab-lawers input[name="goodAt"]').siblings('span').attr("data-id");
         var agentName = $('.tab-lawers input[name="agentName"]').val();
         var agentIdNum = $('.tab-lawers input[name="agentIdNum"]').val();
         var agentPhone = $('.tab-lawers input[name="agentPhone"]').val();
@@ -77,10 +76,6 @@ $(function(){
             showMsg('请上传营业执照');
             return;
         }
-        if(!goodAt){
-            showMsg('请选择擅长方向');
-            return;
-        }
         if(!province || !city || !area){
             showMsg('请输入您的地址信息');
             return;
@@ -139,7 +134,6 @@ $(function(){
             "license_images": license_images, //营业执照照片
             "agent_images": agent_images, //代理人证件照照片
             "areaDetail": area_detail, //详细地址
-            "goodAt": goodAt, //擅长方向
             "agentName":agentName,  //代理人姓名
             "agentIdNum":agentIdNum,  //代理人身份证号
             "agentPhone":agentPhone,  //代理人手机号
