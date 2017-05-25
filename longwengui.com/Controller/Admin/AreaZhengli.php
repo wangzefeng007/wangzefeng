@@ -79,7 +79,8 @@ class AreaZhengli
         $Direction = $MemberLawyerDirectionModule->GetInfoByWhere('',true);
         foreach ($Direction as $Key=>$Value)
         {
-            $DirectionJson[$Value['GoodID']] = $Value['GoodName'];
+            $DirectionJson[$Key]['GoodID'] = $Value['GoodID'];
+            $DirectionJson[$Key]['GoodName'] = $Value['GoodName'];
         }
         $DirectionJsonString = json_encode($DirectionJson,JSON_UNESCAPED_UNICODE);
         file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Direction.json',$DirectionJsonString);
