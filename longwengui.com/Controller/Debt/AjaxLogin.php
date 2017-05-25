@@ -478,7 +478,7 @@ class AjaxLogin
             $Data['Address'] = trim($AjaxData['areaDetail']); //详细地址
             $Data['GoodDirection'] = trim($AjaxData['goodAt']); //擅长方向
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $AjaxData['Agent']['Images'] = trim($AjaxData['agent_images']);
+            $AjaxData['Agent']['Images'] = $AjaxData['agent_images'];
             $AjaxData['Agent']['Name'] = trim($AjaxData['agentName']);
             $AjaxData['Agent']['IdNum'] = trim($AjaxData['agentIdNum']);
             $AjaxData['Agent']['Phone'] = trim($AjaxData['agentPhone']);
@@ -489,7 +489,6 @@ class AjaxLogin
             EchoResult($result_json);
             exit;
         }
-        var_dump($Data);exit;
         if ($AjaxData['headImg'])
             $Data['Avatar'] = $AjaxData['headImg']; //头像
         $Data['IdentityState'] =3;//直接审核通过
