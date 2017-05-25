@@ -15,7 +15,7 @@ $(function(){
         var agentName = $('.tab-lawers input[name="agentName"]').val();
         var agentIdNum = $('.tab-lawers input[name="agentIdNum"]').val();
         var agentPhone = $('.tab-lawers input[name="agentPhone"]').val();
-        var license_images = []; //营业执照图片
+        var license_images = ""; //营业执照图片
         var agent_images = []; //代理人证件照
         var inspection_date = $('#mydatepicker2').val();
 
@@ -72,7 +72,10 @@ $(function(){
             }
         });
 
-        if(license_images.length != 1){
+        //营业执照副本
+        if($('.tab-lawers .license .i-wrap').children('img').attr('src')){
+            license_images = $('.tab-lawers .license .i-wrap').children('img').attr('src');
+        }else{
             showMsg('请上传营业执照');
             return;
         }
