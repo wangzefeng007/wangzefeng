@@ -87,7 +87,7 @@
   color: #35bdfc;
   text-decoration: underline;
 }
-.seek-disposal-list li.active  .seek-header .seek-main .seek-title .link{
+.lawyer-help-list li.active  .seek-header .seek-main .seek-title .link{
   color: #d5d5d5;
 }
 .seek-box .seek-header .seek-main .seek-title .seek-btn{
@@ -140,17 +140,17 @@
   color: #999;
   line-height:20px;
 }
-.seek-disposal-list li  .seek-con .suggestion{
+.lawyer-help-list li  .seek-con .suggestion{
   padding:10px 0;
   font-size:16px;
   color: #ff4343;
   cursor: pointer;
   display: none;
 }
-.seek-disposal-list li  .seek-con .suggestion:hover{
+.lawyer-help-list li  .seek-con .suggestion:hover{
   text-decoration: underline;
 }
-.seek-disposal-list li.active  .seek-con .suggestion{
+.lawyer-help-list li.active  .seek-con .suggestion{
   display: block;
 }
 .suggestion-box{
