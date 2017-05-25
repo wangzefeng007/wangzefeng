@@ -1,0 +1,91 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>法律援助</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberLawFirmLeft}
+                <div class="tab-hd">
+                    <div class="tb act">援助方案</div>
+                </div>
+
+                <div class="info-cont">
+                    <div class="cont-hd">
+                        <span>已有的援助方案：</span>
+                        <button class="send" ><img src="/Uploads/Debt/imgs/add_w.png">新增方案</button>
+                    </div>
+                    <div class="debt">
+                        <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <td>事务所援助方案名称</td>
+                                <td>创建时间</td>
+                                <td>操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>厦门地区处置佣金比例</td>
+                                <td>2017-03-16</td>
+                                <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td>福州地区处置佣金比例</td>
+                                <td>2017-03-16</td>
+                                <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td>漳州地区处置佣金比例</td>
+                                <td>2017-03-16</td>
+                                <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td>宁德地区处置佣金比例</td>
+                                <td>2017-03-16</td>
+                                <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td>南平地区处置佣金比例</td>
+                                <td>2017-03-16</td>
+                                <td><a class="see" href="">查看</a><a class="modify" href="">修改</a><a class="del" href="">删除</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-wrap">
+                        <div class="pagination fl-r" id="collection_page_pagination">
+                            <a href="/asset/lists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
+                            {$ShowPage}
+                        </div>
+                    </div>
+                    <!--发布菜单-->
+                    <div class="fr-win">
+                        <div class="pub-btn">
+                            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+                            <br>
+                            发布
+                        </div>
+                        <div class="pub-btn-list">
+                            <div class="lin" onclick="selDebtWayPop()">
+                                发布债务
+                            </div>
+                            <div class="lin" onclick="go('/choicefind/')">
+                                寻找处置方
+                            </div>
+                            <div class="lin" onclick="go('/asset/publish')">
+                                资产转让
+                            </div>
+                            <div class="lin" onclick="go('/reword/publish/')">
+                                发布悬赏
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template Footer}
