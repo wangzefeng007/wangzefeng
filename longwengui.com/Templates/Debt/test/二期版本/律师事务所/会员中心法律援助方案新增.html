@@ -15,7 +15,7 @@
         </div>
         <div class="c">
           <div class="blo">
-            <div class="line">
+            <div class="line" style="border-bottom: none;">
               <div class="left">
                 <div class="info">
                   方案名称:
@@ -25,6 +25,20 @@
                 </div>
               </div>
               <div class="right">
+              </div>
+            </div>
+            <div class="form-line">
+              <div class="form-lab">
+                负责人姓名:
+              </div>
+              <div class="form-control">
+                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="" placeholder="*请输入姓名">
+              </div>
+              <div class="form-lab ml-20">
+                负责人电话:
+              </div>
+              <div class="form-control">
+                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="" placeholder="*请输入电话号码">
               </div>
             </div>
           </div>
@@ -41,20 +55,6 @@
           <div class="blo">
             <div class="to-del" onclick="removeParentDom(this, 'blo')">
               <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
-            <div class="form-line">
-              <div class="form-lab">
-                负责人姓名:
-              </div>
-              <div class="form-control">
-                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="{$DemandInfo[ChargeName]}" placeholder="*请输入姓名">
-              </div>
-              <div class="form-lab ml-20">
-                负责人电话:
-              </div>
-              <div class="form-control">
-                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="{$DemandInfo[ChargeMobile]}" placeholder="*请输入电话号码">
-              </div>
             </div>
             <div class="line">
               <div class="left">
