@@ -387,7 +387,7 @@ class AjaxLogin
     public function AddInformation(){
         $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-
+        var_dump($AjaxData);exit;
         if ($AjaxData['type']==1){
             if (count($AjaxData['images'])==3){//升级催客
                 $AjaxData['type'] =2;
@@ -405,7 +405,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']);//邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $Url =WEB_MAIN_URL.'/memberperson/';
+            $Url =WEB_MAIN_URL.'/memberperson/';//个人会员
         }elseif ($AjaxData['type']==2){
             $Data['NickName'] = trim($AjaxData['nickName']); //昵称
             $Data['RealName'] = trim($AjaxData['name']); //姓名
@@ -420,7 +420,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']); //类型
-            $Url =WEB_MAIN_URL.'/memberperson/';
+            $Url =WEB_MAIN_URL.'/memberperson/';//个人催收会员
         }elseif ($AjaxData['type']==3){
             $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
             $Data['RealName'] = trim($AjaxData['registrantName']);//公司注册人姓名
@@ -436,7 +436,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $Url =WEB_MAIN_URL.'/memberfirm/';
+            $Url =WEB_MAIN_URL.'/memberfirm/';//催收公司会员
         }elseif ($AjaxData['type']==4){
             $Data['RealName'] = trim($AjaxData['name']);//姓名
             $Data['CardNum'] = trim($AjaxData['idNum']);//身份证号
@@ -452,7 +452,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $Url =WEB_MAIN_URL.'/memberlawyer/';
+            $Url =WEB_MAIN_URL.'/memberlawyer/';//律师个人会员
         }elseif ($AjaxData['type']==5){
             $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
             $Data['RealName'] = trim($AjaxData['lawPerson']);//公司注册人姓名
@@ -465,7 +465,26 @@ class AjaxLogin
             $Data['BusinessImage'] = $AjaxData['license'];//营业执照照片
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Data['PublicAgent'] = json_encode($AjaxData['agentInfo'],JSON_UNESCAPED_UNICODE);//代理人信息
-            $Url =WEB_MAIN_URL.'/membercompany/';
+            $Url =WEB_MAIN_URL.'/membercompany/';//企业会员
+        }elseif ($AjaxData['type']==6){
+            $Data['CompanyName'] = trim($AjaxData['name']);//事务所名称
+            $Data['RealName'] = trim($AjaxData['lawPerson']);//法定代表人
+            $Data['FixedPhone'] = trim($AjaxData['fixedPhone']);//固定电话
+            $Data['CreditCode'] = trim($AjaxData['creditNum']);//信用代码
+            $Data['AnnualDueDate'] = $AjaxData['inspectionDate'];//年检时间
+            $Data['Province'] = trim($AjaxData['province']);//省
+            $Data['City'] = trim($AjaxData['city']);//市
+            $Data['Area'] = trim($AjaxData['area']);//县
+            $Data['BusinessImage'] = $AjaxData['license_images'];//营业执照照片
+            $Data['Address'] = trim($AjaxData['areaDetail']); //详细地址
+            $Data['GoodDirection'] = trim($AjaxData['goodAt']); //擅长方向
+            $Data['Identity'] = intval($AjaxData['type']);//类型
+            $AjaxData['Agent']['Images'] = trim($AjaxData['agent_images']);
+            $AjaxData['Agent']['Name'] = trim($AjaxData['agentName']);
+            $AjaxData['Agent']['IdNum'] = trim($AjaxData['agentIdNum']);
+            $AjaxData['Agent']['Phone'] = trim($AjaxData['agentPhone']);
+            $Data['Agent'] = json_encode($AjaxData['Agent'],JSON_UNESCAPED_UNICODE);//代理人
+            $Url =WEB_MAIN_URL.'/memberlawfirm/';//律师事务所
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'数据出错！');
             EchoResult($result_json);

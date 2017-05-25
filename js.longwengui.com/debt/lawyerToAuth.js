@@ -410,7 +410,7 @@ $(function(){
             "city": city, //市
             "area": area, //县
             "license_images": license_images, //营业执照照片
-            "agent_images": agent_images, //营业执照照片
+            "agent_images": agent_images, //代理人照片
             "areaDetail": area_detail, //详细地址
             "goodAt": goodAt, //擅长方向
             "agentName":agentName,  //代理人姓名

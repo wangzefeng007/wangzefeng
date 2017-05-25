@@ -74,4 +74,16 @@ class AreaZhengli
         $cityJsonString = json_encode($cityJson,JSON_UNESCAPED_UNICODE);
         file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/AreaPHP.json',$cityJsonString);
     }
+    public function Direction(){
+        $MemberLawyerDirectionModule = new MemberLawyerDirectionModule();
+        $Direction = $MemberLawyerDirectionModule->GetInfoByWhere('',true);
+        foreach ($Direction as $Key=>$Value)
+        {
+            $DirectionJson[$Value['GoodID']] = $Value['GoodName'];
+        }
+        $DirectionJsonString = json_encode($DirectionJson,JSON_UNESCAPED_UNICODE);
+        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Direction.json',$DirectionJsonString);
+    }
+
+
 }

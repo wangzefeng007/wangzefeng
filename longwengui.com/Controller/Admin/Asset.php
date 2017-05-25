@@ -72,6 +72,18 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        if ($_POST['AssetID']) {
+            $Data['Status'] = intval($_POST['Status']);
+            $AssetID = intval($_POST['AssetID']);
+            $result = $MemberAssetInfoModule->UpdateInfoByWhere($Data, ' AssetID= ' . $AssetID);
+            if ($result) {
+                alertandback('操作成功!', '/index.php?Module=Asset&Action=Detail&AssetID='.$AssetID);
+            } elseif ($result === 0) {
+                alertandback('状态未发生改变!');
+            } else {
+                alertandback('操作失败!');
+            }
+        }
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($AssetID);
         $AssetImage = $MemberAssetImageModule->UpdateInfoByWhere(' and AssetID = '.$AssetID,true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
