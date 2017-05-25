@@ -400,7 +400,7 @@ $(function(){
         }
 
         var area_detail = $('.tab-lawers textarea[name="areaDetail"]').val();
-        ajax(5, {
+        ajax(6, {
             "name": name, //事务所名称
             "phone": phone, //手机电话
             "lawPerson": lawPerson, //法定代表人
@@ -410,13 +410,13 @@ $(function(){
             "city": city, //市
             "area": area, //县
             "license_images": license_images, //营业执照照片
-            "agent_images": agent_images, //营业执照照片
+            "agent_images": agent_images, //代理人照片
             "areaDetail": area_detail, //详细地址
             "goodAt": goodAt, //擅长方向
             "agentName":agentName,  //代理人姓名
             "agentIdNum":agentIdNum,  //代理人身份证号
             "agentPhone":agentPhone,  //代理人手机号
-            "type":5
+            "type":6
         });
 
     });

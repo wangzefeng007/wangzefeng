@@ -14,7 +14,7 @@ class MemberAssetInfoModule extends CommonModule
     public $NStatus = [
         '1' => '待审核',
         '2' => '审核通过',
-        '3' => '审核未通过	',
+        '3' => '审核失败',
         '4' => '过期自动关闭',
     ];
     //库存减少
