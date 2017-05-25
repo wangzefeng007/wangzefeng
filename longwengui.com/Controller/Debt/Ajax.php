@@ -610,13 +610,18 @@ class Ajax
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
             $Data['UserID'] = $_SESSION ['UserID'];
+            if ($_SESSION['Identity']==2){
+                $Url = '/memberperson/demandlist/';
+            }elseif ($_SESSION['Identity']==3){
+                $Url = '/memberfirm/demandlist/';
+            }
             if (empty($ID)){
                 $Result = $MemberOrderDemandModule->InsertInfo($Data);
             }else{
                 $Result = $MemberOrderDemandModule->UpdateInfoByKeyID($Data,$ID);
             }
             if ($Result){
-                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberperson/demandlist/');
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>$Url);
             }else{
                 $result_json = array('ResultCode'=>102,'Message'=>'保存失败！');
 
