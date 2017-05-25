@@ -387,7 +387,6 @@ class AjaxLogin
     public function AddInformation(){
         $this->IsLogin();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        var_dump($AjaxData);exit;
         if ($AjaxData['type']==1){
             if (count($AjaxData['images'])==3){//升级催客
                 $AjaxData['type'] =2;
@@ -469,7 +468,7 @@ class AjaxLogin
         }elseif ($AjaxData['type']==6){
             $Data['CompanyName'] = trim($AjaxData['name']);//事务所名称
             $Data['RealName'] = trim($AjaxData['lawPerson']);//法定代表人
-            $Data['FixedPhone'] = trim($AjaxData['fixedPhone']);//固定电话
+            $Data['FixedPhone'] = trim($AjaxData['phone']);//固定电话
             $Data['CreditCode'] = trim($AjaxData['creditNum']);//信用代码
             $Data['AnnualDueDate'] = $AjaxData['inspectionDate'];//年检时间
             $Data['Province'] = trim($AjaxData['province']);//省
@@ -490,6 +489,7 @@ class AjaxLogin
             EchoResult($result_json);
             exit;
         }
+        var_dump($Data);exit;
         if ($AjaxData['headImg'])
             $Data['Avatar'] = $AjaxData['headImg']; //头像
         $Data['IdentityState'] =3;//直接审核通过

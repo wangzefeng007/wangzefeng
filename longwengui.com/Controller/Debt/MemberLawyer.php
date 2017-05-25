@@ -78,10 +78,8 @@ class MemberLawyer
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-
         //分页Start
         $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
-
         $Status = $_GET['S']? intval($_GET['S']) : 0;
         if ($Status==1){
             $MysqlWhere .=' and `Status` = 1';//正在接单的债务
