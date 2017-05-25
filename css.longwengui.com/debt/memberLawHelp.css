@@ -159,6 +159,7 @@
   padding: 0 12px;
   margin-right: 10px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 .set-debt .wrap .form-wrap .box .c .blo .line .g-info{
   width: 90px;
@@ -253,7 +254,7 @@
   cursor: pointer;
 }
 .form-line{
-  margin-bottom:10px;
+  margin-top:20px;
 }
 .form-line .form-lab{
   display: inline-block;
