@@ -351,6 +351,36 @@ function getAddress(p_code,c_code,a_code){
       areaText:getAreaById(a_code)
   }
 };
+//获得律师擅长方向元素
+function getGoodAtData(){
+    fixIE8Label();
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: '/Templates/Debt/data/Direction.json',
+        success: function(data){
+            $('input[name="goodAt"]').each(function(){
+                var _t = $(this).siblings('ul');
+                var _html = '';
+                for(var i=0; i<data.length; i++){
+                    _html +=   "<li data-id='"+ data[i].GoodID +"' data-name='" + data[i].GoodName + "'>"
+                        +     data[i].GoodName
+                        +  "</li>";
+                }
+                _t.html(_html);
+                fixIE8Label();
+                _t.children('li').click(function(){
+                    var _id = $(this).attr("data-id");
+                    var _name = $(this).attr("data-name");
+                    var _sel = $(this).parent().siblings("span");
+                    $(this).addClass("active").siblings().removeClass("active");
+                    _sel.text(_name);
+                    _sel.attr('data-id', _id);
+                });
+            });
+        }
+    });
+}
 //获得省级元素
 function getProvinceData(){
   fixIE8Label();

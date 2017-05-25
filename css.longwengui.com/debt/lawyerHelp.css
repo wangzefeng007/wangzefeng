@@ -1,0 +1,179 @@
+.filt-parm {
+  padding:10px 0;
+  margin-top:40px;
+  border: 1px solid #e6e6e6;
+  border-bottom:0;
+  background-color: #f9f9f9;
+}
+.filt-parm .line {
+  padding: 0 24px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #666666;
+}
+.filt-parm .line span {
+  cursor: pointer;
+}
+.filt-parm .line span img {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+.filt-parm .line .span-1 {
+  margin-right: 16px;
+}
+.filt-parm .line span {
+  padding: 4px 10px;
+  margin-right: 10px;
+}
+.filt-parm .line .sel {
+  background-color: #35bdfc;
+  color: #fff;
+  border-radius: 3px;
+}
+.filt-parm .line .param-title{
+  font-weight: bold;
+}
+.lawyer-help-list{
+  border:solid 1px #cfcfcf;
+  margin-bottom:20px;
+}
+.lawyer-help-list .no-data{
+  height:400px;
+  padding-top:200px;
+  text-align: center;
+}
+
+.lawyer-help-list>ul>li{
+  border-bottom:solid 1px #cfcfcf;
+  padding-bottom:80px;
+}
+.lawyer-help-list>ul>li:last-child{
+  border-bottom:0;
+}
+.lawyer-help-list .seek-box{
+  padding-left:120px;
+}
+.seek-box .seek-header{
+  padding:15px 0;
+  border-bottom:dashed 1px #ccc;
+}
+.seek-box .seek-header .seek-logo{
+  width:120px;
+  height:120px;
+  float: left;
+  margin-right:40px;
+  border-radius: 50%;
+  border:solid 1px #9d9d9d;
+  overflow: hidden;
+  box-sizing:border-box;
+}
+.seek-box .seek-header .seek-main{
+  width:800px;
+  padding:25px 0;
+  float: left;
+}
+.seek-box .seek-header .seek-main .seek-title{
+  font-size:28px;
+}
+.seek-box .seek-header .seek-main .seek-title .txt{
+  display: inline-block;
+  max-width: 500px;
+}
+.seek-box .seek-header .seek-main .seek-title>*{
+  vertical-align: middle;
+}
+.seek-box .seek-header .seek-main .seek-title .link{
+  font-size:24px;
+  color: #35bdfc;
+  text-decoration: underline;
+}
+.seek-disposal-list li.active  .seek-header .seek-main .seek-title .link{
+  color: #d5d5d5;
+}
+.seek-box .seek-header .seek-main .seek-title .seek-btn{
+  display: inline-block;
+  font-size:22px;
+  width:90px;
+  text-align: center;
+  height:32px;
+  line-height:32px;
+  color: #35bdfc;
+  border:solid 1px #35bdfc;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+}
+.seek-box .seek-header .seek-main .seek-phone{
+  margin-top:10px;
+  font-size:24px;
+}
+.seek-box .seek-con{
+  padding:10px 0;
+}
+.seek-box .seek-con .big{
+  padding:8px 0;
+  font-size:18px;
+}
+.seek-box .seek-con .cols-list{
+  padding-bottom:10px;
+  border-bottom:dashed 1px #ccc;
+}
+.seek-box .seek-con .cols-list ul li{
+  width:320px;
+  margin-right:10px;
+  float: left;
+}
+.seek-box .seek-con .cols-list ul li p{
+  padding:6px 0;
+  color: #999;
+  font-size:16px;
+}
+.seek-box .seek-con .h4{
+  padding:5px 0;
+  color: #999;
+  font-size:16px;
+}
+.seek-box .seek-con .more-detail{
+  width:890px;
+  padding:15px;
+  background: #f0f0f0;
+  color: #999;
+  line-height:20px;
+}
+.seek-disposal-list li  .seek-con .suggestion{
+  padding:10px 0;
+  font-size:16px;
+  color: #ff4343;
+  cursor: pointer;
+  display: none;
+}
+.seek-disposal-list li  .seek-con .suggestion:hover{
+  text-decoration: underline;
+}
+.seek-disposal-list li.active  .seek-con .suggestion{
+  display: block;
+}
+.suggestion-box{
+  padding:10px 30px;
+}
+.suggestion-box .tips{
+  color: #353535;
+  padding:5px 0;
+}
+.suggestion-box .textarea{
+  width: 600px;
+  height: 80px;
+  margin-top:10px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+.suggestion-box .btn-box{
+  text-align: center;
+  margin-top:20px;
+}
+.suggestion-box .btn-big{
+  width:200px;
+  height:38px;
+  text-align: center;
+}

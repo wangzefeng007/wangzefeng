@@ -3,13 +3,6 @@ $(function(){
   $('#mydatepicker2').dcalendarpicker({format: 'yyyy-mm-dd', width: '340px'});
   //地区
     initArea();
-    //擅长方向赋值
-    addEventToDropdown("goodAt",function(tar){
-        $(tar).addClass("active").siblings().removeClass("active");
-        $(tar).parent().siblings("span").text($(tar).text());
-        $(tar).parent().siblings("span").attr("data-id",$(tar).attr("data-id"));
-        $(tar).parent().siblings("input").val($(tar).text());
-    });
     //律师事务所资料保存
     $('#lawers_save').click(function(){
         var name = $('.tab-lawers input[name="name"]').val();
@@ -19,7 +12,7 @@ $(function(){
         var province = $('.tab-lawers input[name="dd_province"]').siblings('span').attr('data-id');
         var city = $('.tab-lawers input[name="dd_city"]').siblings('span').attr('data-id');
         var area = $('.tab-lawers input[name="dd_area"]').siblings('span').attr('data-id');
-        var goodAt = $('.tab-lawers input[name="goodAt"]').siblings('span').text();
+        var goodAt = $('.tab-lawers input[name="goodAt"]').siblings('span').attr("data-id");
         var agentName = $('.tab-lawers input[name="agentName"]').val();
         var agentIdNum = $('.tab-lawers input[name="agentIdNum"]').val();
         var agentPhone = $('.tab-lawers input[name="agentPhone"]').val();
