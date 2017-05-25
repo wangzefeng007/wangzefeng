@@ -1,0 +1,236 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+  <div class="wrap">
+    <div class="current-loc">
+      <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+      当前位置 > 事务所资料  > <span>事务所信息</span>
+    </div>
+    <div class="menu-cont-wrap">
+      <div class="menu-bar">
+        <img src="/Uploads/Debt/imgs/head_img.png" class="u-img" alt="">
+        <div class="nick-name">
+          13546588777
+        </div>
+        <button type="button" name="button">已认证</button>
+        <div class="menu-level-1 menu-level-1-act" id="menu_1" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/company_info.png" class="i-left" alt="">
+          事务所资料
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+        </div>
+        <div class="menu-level-2-wrap" data-for="menu_1">
+          <div class="menu-level-2 menu-level-2-act">事务所信息</div>
+          <div class="menu-level-2">我的钱包</div>
+          <div class="menu-level-2">收货地址</div>
+        </div>
+        <div class="menu-level-1" data-open="0" id="menu_2" can-down='1'>
+          <img src="/Uploads/Debt/imgs/debt_manage.png" class="i-left" alt="">
+          债权管理
+          <img src="/Uploads/Debt/imgs/tri_arrow_up.png" class="i-right" alt="">
+        </div>
+        <div class="menu-level-2-wrap" data-for="menu_2">
+          <div class="menu-level-2">申请的债权</div>
+          <div class="menu-level-2">债权接单</div>
+          <div class="menu-level-2">浏览过的债权</div>
+          <div class="menu-level-2">发布悬赏</div>
+        </div>
+        <div class="menu-level-1">
+          <img src="{echo CssURL}/debt/images/icon-reward.png" class="i-left" alt="">
+          我的悬赏
+        </div>
+        <div class="menu-level-1" id="menu_3" data-open="0" can-down='1'>
+          <img src="/Uploads/Debt/imgs/care.png" class="i-left" alt="">
+          关注
+          <img src="/Uploads/Debt/imgs/arrow_tri_down.png" class="i-right" alt="">
+        </div>
+        <div class="menu-level-2-wrap" data-for="menu_3">
+          <div class="menu-level-2 {if $Nav=='focusdebtlist'}menu-level-2-act{/if}" onclick="go('/memberperson/focusdebtlist/')" >我关注的债务</div>
+          <div class="menu-level-2" hidden>提前关注</div>
+        </div>
+        <div class="menu-level-1">
+          <img src="{echo CssURL}/debt/images/icon-lawyerhelp.png" class="i-left" alt="">
+          法律援助
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/system_info.png" class="i-left" alt="">
+          系统信息
+        </div>
+        <div class="menu-level-1">
+          <img src="/Uploads/Debt/imgs/suggest.png" class="i-left" alt="">
+          投诉建议
+        </div>
+      </div>
+      <div class="menu-cont">
+        <div class="tab-hd">
+          <div class="tb act">
+            事务所信息
+          </div>
+          <div class="tb">
+            修改密码
+          </div>
+          <div class="tb">
+            绑定手机
+          </div>
+        </div>
+
+        <div class="show-info">
+          <div class="info-cont">
+            <div class="info-m">
+              <div class="head-portrait">
+                <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+              </div>
+              <div class="info-blk">
+                <div class="line">
+                  会员ID:&nbsp;&nbsp;LWG1588
+                </div>
+                <div class="line">
+                  注册时间:&nbsp;&nbsp;2017-03-01 16：43：45
+                </div>
+                <div class="line">
+                  注册IP:&nbsp;&nbsp;110.84.32.35
+                </div>
+              </div>
+              <div class="info-blk">
+                <div class="line">
+                  账号等级:&nbsp;&nbsp;律师事务所
+                </div>
+                <div class="line">
+                  最后登录:&nbsp;&nbsp;2017-03-01 16：43：45
+                </div>
+                <div class="line">
+                  上次登陆IP:&nbsp;&nbsp;110.84.32.35
+                </div>
+              </div>
+            </div>
+            <div class="info-o">
+              <div class="line">
+                <div class="if">
+                  事务所名称:
+                </div>
+                <div class="cont">
+                  厦门市方圆律师事务所
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  手机电话:
+                </div>
+                <div class="cont">
+                  13544658877
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  法定代表人:
+                </div>
+                <div class="cont">
+                  钱学喜
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  社会信用代码:
+                </div>
+                <div class="cont">
+                  350526194564528014
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  年检到期日:
+                </div>
+                <div class="cont">
+                  2018-04-01
+                </div>
+              </div>
+              <div class="line-img">
+                <div class="if">
+                  营业执照:
+                </div>
+                <div class="cont">
+                  <div class="bx">
+                    <div class="img-wrap">
+                    </div>
+                    营业执照副本
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  擅长方向:
+                </div>
+                <div class="cont">
+                  全部
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  所在地区:
+                </div>
+                <div class="cont">
+                  福建省-厦门市-思明区
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  详细地址:
+                </div>
+                <div class="cont">
+                  莲前街道莲前东路56号华林公交站旁
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  代理人姓名:
+                </div>
+                <div class="cont">
+                  杨某某
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  代理人身份证号:
+                </div>
+                <div class="cont">
+                  462503198502064586
+                </div>
+              </div>
+              <div class="line">
+                <div class="if">
+                  代理人手机号:
+                </div>
+                <div class="cont">
+                  15276895632
+                </div>
+              </div>
+              <div class="line-img">
+                <div class="if">
+                  证件照:
+                </div>
+                <div class="cont">
+                  <div class="bx">
+                    <div class="img-wrap">
+                    </div>
+                    身份证正面照
+                  </div>
+                  <div class="bx">
+                    <div class="img-wrap">
+                    </div>
+                    身份证反面照
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="to-opt">
+          <div class="cont">
+            <button type="button" name="edit">修改信息</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{template Footer}

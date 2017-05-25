@@ -400,7 +400,7 @@ $(function(){
         }
 
         var area_detail = $('.tab-lawers textarea[name="areaDetail"]').val();
-        ajax(5, {
+        ajax(6, {
             "name": name, //事务所名称
             "phone": phone, //手机电话
             "lawPerson": lawPerson, //法定代表人
@@ -420,7 +420,7 @@ $(function(){
         });
 
     });
-    //type: 4 保存为律师（个人） 5为律师事务所
+    //type: 4 保存为律师（个人） 6为律师事务所
     function ajax(type, formData){
         $.ajax({
             type: "post",

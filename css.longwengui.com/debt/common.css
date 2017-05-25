@@ -1698,6 +1698,36 @@ a{
 .m-dropdown label input[type="checkbox"]:checked + ul{
   display: block;
 }
+.m-dropdown label ul.multi-select{
+  padding:10px;
+  background: #f9f9f9;
+  border:solid 1px #d5d5d5;
+}
+.m-dropdown label ul.multi-select li{
+  position: relative;
+  width:90px;
+  float: left;
+  padding-left:15px;
+}
+.m-dropdown label ul.multi-select li:hover{
+  background: none;
+  color: #35bdfc;
+}
+.m-dropdown label ul.multi-select li:before{
+  position: absolute;
+  left:0;
+  top:10px;
+  content: "";
+  display: block;
+  width:10px;
+  height:10px;
+  background: url("images/multi.png") no-repeat 0 0;
+}
+.m-dropdown label ul.multi-select li.active:before{
+  background-position: 0 -20px;
+}
+
+
 .sel-debt-way-pop .btn{
   display: block;
   text-align: center;
@@ -2261,6 +2291,9 @@ body .layui-layer-btn .layui-layer-btn0 {
   border-color: #35bdfc;
   background-color: #35bdfc;
   color: #fff;
+}
+.datepicker{
+  line-height: normal;
 }
 @keyframes myfirst
 {
