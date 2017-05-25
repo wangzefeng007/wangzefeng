@@ -31,7 +31,7 @@
                 <p class="icon"></p>
             </div>
             {if $_SESSION[UserID] && !empty($_SESSION[UserID])}
-            <p class="username"><a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{elseif $_SESSION[Identity]==5}membercompany{/if}/">{$_SESSION[NickName]}</a></p>
+            <p class="username"><a href="/{if $_SESSION[Identity]<=2}memberperson{elseif $_SESSION[Identity]==3}memberfirm{elseif $_SESSION[Identity]==4}memberlawyer{elseif $_SESSION[Identity]==5}membercompany{elseif $_SESSION[Identity]==6}memberlawfirm{/if}/">{$_SESSION[NickName]}</a></p>
             {/if}
             <div class="hover-con">
                 {if $_SESSION[UserID] && !empty($_SESSION[UserID])}

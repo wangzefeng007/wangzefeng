@@ -29,6 +29,7 @@ class MemberLawFirm
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $UserInfo['Agent'] = json_decode($UserInfo['Agent'],true);
         if ($UserInfo['Province'])
             $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
         if ($UserInfo['City'])
@@ -38,5 +39,127 @@ class MemberLawFirm
         $Title = '会员中心首页';
         include template('MemberLawFirmIndex');
     }
+    /**
+     * @desc 律师事务所申请的债权列表
+     */
+    public function  ApplyDebtOrder(){
+        $this->IsLogin();
+        $Nav ='applydebtorder';
+        $Title = '会员中心-申请的债权';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberClaimsDisposalModule->NStatus;
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
 
+        //分页Start
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
+        $Status = $_GET['S']? intval($_GET['S']) : 0;
+        if ($Status==1){
+            $MysqlWhere .=' and `Status` = 1';//正在接单的债务
+        }elseif($Status==2){
+            $MysqlWhere .=' and `Status` = 2';//催款中的债务
+        }elseif($Status==3){
+            $MysqlWhere .=' and `Status` IN (4,5)';//完成的债务
+        }elseif($Status==4){
+            $MysqlWhere .=' and `Status` = 3';//未完成的债务
+        }
+        $Rscount = $MemberClaimsDisposalModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=10;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberClaimsDisposalModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+                $Data['Data'][$key]['DebtNum']= $DebtInfo['DebtNum'];
+                $Data['Data'][$key]['DebtAmount']= $DebtInfo['DebtAmount'];
+                $Data['Data'][$key]['Overduetime']= $DebtInfo['Overduetime'];
+                $Data['Data'][$key]['AddTime']= $DebtInfo['AddTime'];
+                $Data['Data'][$key]['Name']= $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
+        include template('MemberLawFirmApplyDebtOrder');
+    }
+    /**
+     * @desc 关注的债务
+     */
+    public function FocusDebtList(){
+        $this->IsLogin();
+        $Nav='focusdebtlist';
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $NStatus = $MemberDebtInfoModule->NStatus;
+        //分页查询开始-------------------------------------------------
+        $MysqlWhere = ' and Type = 1 and UserID='.$_SESSION ['UserID'];
+        //关键字
+        $Rscount = $MemberFocusDebtModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberFocusDebtModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
+                $Data['Data'][$key]['DebtNum'] = $DebtInfo['DebtNum'];
+                $Data['Data'][$key]['DebtAmount'] = $DebtInfo['DebtAmount'];
+                $Data['Data'][$key]['Overduetime'] = $DebtInfo['Overduetime'];
+                $Data['Data'][$key]['Status'] = $DebtInfo['Status'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
+        include template('MemberLawFirmFocusDebtList');
+    }
 }
