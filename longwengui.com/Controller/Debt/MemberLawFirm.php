@@ -162,4 +162,18 @@ class MemberLawFirm
         }
         include template('MemberLawFirmFocusDebtList');
     }
+    /**
+     * @desc 关注的债务
+     */
+    public function AidList()
+    {
+        $Nav='aidlist';
+        $Title = '会员中心-要求方案';
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberLawFirmAidList');
+    }
 }
