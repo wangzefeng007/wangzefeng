@@ -1,0 +1,100 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<div class="person-center">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            当前位置 > 个人中心 > <span>关注的债务</span>
+        </div>
+        <div class="menu-cont-wrap">
+            {template MemberLawFirmLeft}
+            <div class="tab-hd">
+                <div class="tb act">
+                    我关注的债务
+                </div>
+            </div>
+            <div class="info-cont">
+                <div class="cont-hd">
+                    <span>已关注的债务列表：</span>
+                </div>
+                <!--<dl class="cont-select">-->
+                <!--<dt>债务状态：</dt>-->
+                <!--<dd class="cont-select-act">全部</dd>-->
+                <!--<dd>未接单</dd>-->
+                <!--<dd>催收中</dd>-->
+                <!--<dd>未付款</dd>-->
+                <!--<dd>未完成</dd>-->
+                <!--<dd>已完成</dd>-->
+                <!--<dd>退款中</dd>-->
+                <!--<dd>退款成功</dd>-->
+                <!--<dd>已曝光</dd>-->
+                <!--</dl>-->
+                <div class="debt">
+                    <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <td>债务编号</td>
+                            <td>债务人名称</td>
+                            <td>债务人地区</td>
+                            <td>债务金额（元）</td>
+                            <td>逾期时间</td>
+                            <td>发布时间</td>
+                            <td>当前状态</td>
+                            <td>查看</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $Data['Data'] $lists}
+                        <tr>
+                            <td>{$lists[DebtNum]}</td>
+                            <td>{$lists[Name]}</td>
+                            <td>{$lists[Province]}-{$lists[City]}-{$lists[Area]}</td>
+                            <td class="color-red">￥{$lists[DebtAmount]}</td>
+                            <td>{$lists[Overduetime]}天</td>
+                            <td>{$lists[AddTime]}</td>
+                            <td class="sta-{$lists[Status]}">{$NStatus[$lists[Status]]}</td>
+                            <td><a href="/debt/{$lists[DebtID]}.html" class="details-enter">详情</a></td>
+                            <td><button type="button" onclick="cancelConcern('{$lists[ID]}')">取消关注</button></td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {if $ShowPage}
+            <div class="pagination-wrap">
+                <div class="pagination fl-r" id="page_pagination">
+                    {$ShowPage}
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+    <div class="fr-win">
+        <div class="pub-btn">
+            <img src="/Uploads/Debt/imgs/pub_btn.png" alt="">
+            <br>
+            发布
+        </div>
+        <div class="pub-btn-list">
+            <div class="lin" onclick="selDebtWayPop()">
+                发布债务
+            </div>
+            <div class="lin" onclick="go('/choicefind/')">
+                寻找处置方
+            </div>
+            <div class="lin" onclick="go('/asset/publish')">
+                发布资产
+            </div>
+            <div class="lin" onclick="go('/reword/publish/')">
+                发布悬赏
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{template Footer}
+<script src='{echo JsURL}/debt/memberOptWindow.js'></script>
+</body>
+</html>
