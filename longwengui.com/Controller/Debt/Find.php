@@ -35,12 +35,6 @@ class Find
         if ($City!=''){
             $MysqlWhere .= ' and  Area like \'%'.$City.'%\'';
         }
-//        $Area = trim($_GET['dd_area']);
-//        if ($Area!=''){
-//            $CnName = $MemberAreaModule->GetCnNameByKeyID($Area);
-//            if ($CnName !='全区')
-//            $MysqlWhere .= ' and  Area like \'%'.$Area.'%\'';
-//        }
         $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;
         if ($Page < 1) {
