@@ -1,3 +1,24 @@
+//在线咨询方法
+function online_chat(url) {
+    layer.open({
+        type: 2,
+        skin: 'online_chat',
+        title: '&nbsp;',
+        shadeClose: true,
+        shade: 0,
+        area: ['600px', '600px'],
+        content: url //iframe的url
+    });
+}
+
+$(function(){
+    $("#baidu_qiao").on("click",function(){
+        //在线咨询弹窗地址
+        var url='http://p.qiao.baidu.com/cps/chat?siteId=10683944&userId=23798862';
+        online_chat(url);
+    });
+})
+
 //跳转事件
 function go(url){
   window.location.href = url;

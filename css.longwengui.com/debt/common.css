@@ -1925,6 +1925,9 @@ a{
   color: #666;
   position: relative;
 }
+.footer .wrap{
+  position: static;
+}
 .fl{
   float: left;
 }
@@ -2304,3 +2307,14 @@ body .layui-layer-btn .layui-layer-btn0 {
   animation: myfirst 2s linear infinite;
 }
 
+/*在线咨询弹窗样式*/
+.online_chat  .layui-layer-title{
+  border-bottom:0;
+}
+body .online_chat .layui-layer-title{
+  background: url("images/contact-bg.png") no-repeat top center;
+  -webkit-background-size:100%;
+  background-size:100%;
+  height:5px;
+
+}
