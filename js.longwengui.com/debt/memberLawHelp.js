@@ -6,8 +6,7 @@ function getGoodAtData($wrap){
         dataType: 'json',
         url: '/Templates/Debt/data/Direction.json',
         success: function(data){
-            $('#goodAt_temp').tmpl(data).appendTo('#goodAtBox');
-           /* fixIE8Label();
+            fixIE8Label();
             var _html='<div class="check-all m-checkbox" onclick="goodAtCheck(this)">\
                     <label type="checkbox">\
                     <input type="checkbox"  name="goodAtAll" value="all">\
@@ -21,9 +20,9 @@ function getGoodAtData($wrap){
                     <i></i>'+data[i].GoodName+'\
                     </label>\
                     </div>'
-            }*/
+            }
             $wrap.addClass("m-checkbox-group");
-            /*$wrap.html(_html);*/
+            $wrap.html(_html);
         }
     });
 }
