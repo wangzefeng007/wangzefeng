@@ -268,7 +268,6 @@ class MemberLawFirm
         foreach ($GoodAt as $key=>$value){
            $Direction[$key] = $MemberLawyerDirectionModule->GetInfoByKeyID($value);
         }
-        var_dump($Direction);
         $LawfirmAidInfo['Area'] = json_decode($LawfirmAidInfo['Area'],true);
         foreach ($LawfirmAidInfo['Area'] as $key =>$value){
             if ($value['province'])
