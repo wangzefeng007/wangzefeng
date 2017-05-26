@@ -27,7 +27,7 @@ function getGoodAtData($wrap){
     });
 }
 //擅长类型初始化
-getGoodAtData($("#goodAtBox"));
+getGoodAtData($("#goodAtBox2"));
 
 function goodAtCheck(tar){
     if($("input[name='goodAtAll']").is(":checked")){

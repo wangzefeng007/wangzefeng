@@ -100,18 +100,37 @@ var pageObj=$.extend({},pageObj,{
     search:function(param){
         //console.log(param);
         param.Intention="GetLegalAid";
+        var _this=this;
         $.ajax({
             type:"post",
-            url:"/ajax.html",
+            url:"/loginajax.html",
             dataType: "json",
             data:param,
             beforeSend:　function(){
                 showLoading();
             },success: function(data){
-                if(data.ResultCode == 200){
-                    showMsg(data.Message);
+                if(data.ResultCode == "200"){
+                    $('.no-data').hide();
+                    $('.lawyer-help-list').show();
+                    $('#collection_page_pagination').show();
+                    _this.dataSuccess(data.Data); //搜索结果数据注入
+                    //获得当前页
+                    _this.param.cur_page = data.Page;
+
+                    //注入分页
+                    injectPagination('#collection_page_pagination', _this.param.cur_page, data.PageCount, function(){
+                        $('#collection_page_pagination').find('.b').click(function(){
+                            var changeTo = pageChange($(this).attr('data-id'), _this.param.cur_page, data.PageCount);
+                            if(changeTo){
+                                ajax(changeTo);
+                            }
+                        });
+                    });
                 }else{
-                    showMsg(data.Message);
+                    layer.msg(data.Message);
+                    $('#collection_info').hide();
+                    $('#collection_page_pagination').hide();
+                    $('.no-data').show();
                 }
             },complete: function(){
                 closeLoading();
