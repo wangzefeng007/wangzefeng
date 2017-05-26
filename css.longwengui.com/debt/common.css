@@ -545,9 +545,6 @@ a{
 .mt-38{
   margin-top: 38px;
 }
-.fl {
-  float: left;
-}
 .fl-r {
   float: right;
 }
@@ -1206,6 +1203,7 @@ a{
 .m-checkbox-group .m-checkbox{
   width:90px;
   margin-right:10px;
+    float: left;
 }
 .pop-login {
   position: fixed;
