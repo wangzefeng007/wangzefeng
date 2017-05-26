@@ -40,6 +40,32 @@ class MemberLawFirm
         include template('MemberLawFirmIndex');
     }
     /**
+     * @desc 催收公司会员中心(完善个人资料)
+     */
+    public function EditInfo()
+    {
+        $this->IsLogin();
+        $Title = '会员中心-完善个人资料';
+        $Nav='memberlawfirm';
+        //会员基本信息
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
+        $Identity = $MemberUserInfoModule->Identity;
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $UserInfo['Agent'] = json_decode($UserInfo['Agent'],true);
+        if ($UserInfo['Province'])
+            $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        include template('MemberLawFirmEditInfo');
+    }
+    /**
      * @desc 律师事务所申请的债权列表
      */
     public function  ApplyDebtOrder(){

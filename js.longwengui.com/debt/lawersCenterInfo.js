@@ -66,15 +66,9 @@ $(function(){
             return;
         }
 
-        $('.tab-lawers .license .img-wrap').each(function(){
-            if($(this).children('img').attr('src')){
-                license_images.push($(this).children('img').attr('src'));
-            }
-        });
-
         //营业执照副本
-        if($('.tab-lawers .license .i-wrap').children('img').attr('src')){
-            license_images = $('.tab-lawers .license .i-wrap').children('img').attr('src');
+        if($('.tab-lawers .license .img-wrap').children('img').attr('src')){
+            license_images = $('.tab-lawers .license .img-wrap').children('img').attr('src');
         }else{
             showMsg('请上传营业执照');
             return;
@@ -114,7 +108,7 @@ $(function(){
             return;
         }
 
-        $('.tab-lawers .agentPic .img-wrap').each(function(){
+        $('.tab-lawers #agent_pic .img-wrap').each(function(){
             if($(this).children('img').attr('src')){
                 agent_images.push($(this).children('img').attr('src'));
             }
@@ -190,11 +184,11 @@ function initArea(){
 //修改头像
 function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
-      type: "get",
+      type: "post",
       dataType: "json",
-      url: "/Templates/Debt/data/imageUpload.json",
+      url: "/loginajax.html",
       data: {
-          "Intention":"AddRewardImage",
+          "Intention":"AddHeadImage",
           "ImgBaseData": ImgBaseData,
       },
       beforeSend: function () {
@@ -221,9 +215,9 @@ function changeHeadImg(tar, ImgBaseData, index){
 //上传证件照
 function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: "/Templates/Debt/data/imageUpload.json",
+        url: "/ajax.html",
         data: {
             "Intention":"AddRewardImage",
             "ImgBaseData": ImgBaseData,

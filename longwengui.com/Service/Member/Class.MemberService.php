@@ -18,6 +18,8 @@ class MemberService
                 header('Location:' . WEB_MAIN_URL.'/memberlawyer/');
             }elseif($_SESSION['Identity'] ==5){
                 header('Location:' . WEB_MAIN_URL.'/membercompany/');
+            }elseif($_SESSION['Identity'] ==6){
+                header('Location:' . WEB_MAIN_URL.'/memberlawfirm/');
             }
         }
     }

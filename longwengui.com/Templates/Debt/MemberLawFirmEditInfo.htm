@@ -1,18 +1,25 @@
 {template Header}
 <link rel="stylesheet" href="{echo CssURL}/debt/personCenter.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.css">
+<link rel="stylesheet" href="{echo JsURL}/debt/lib/cropper/dist/cropper.css">
 <div class="person-center">
     <div class="wrap">
         <div class="current-loc">
             <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
-            当前位置 > 个人中心 > <span>事务所信息</span>
+            当前位置 > 事务所资料  > <span>事务所信息</span>
         </div>
         <div class="menu-cont-wrap">
             {template MemberLawFirmLeft}
                 <div class="show-info">
-                    <div class="info-cont">
+                    <div class="info-cont tab-lawers ">
                         <div class="info-m">
                             <div class="head-portrait">
                                 <img src="/Uploads/Debt/imgs/head_img.png" alt="">
+                                <br>
+                                <label>
+                                    <span>更改头像</span>
+                                    <input type="file" onchange="imageUpload(this, changeHeadImg)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1" style="display:none;" value="">
+                                </label>
                             </div>
                             <div class="info-blk">
                                 <div class="line">
@@ -43,7 +50,7 @@
                                     事务所名称:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[CompanyName])}{$UserInfo[CompanyName]}{else}无{/if}
+                                    <input type="text" name="name" placeholder="请输入事务所名称" onblur="validateChinese(this)" value="{$UserInfo[CompanyName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -51,7 +58,7 @@
                                     手机电话:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($User[Mobile])}{$User[Mobile]}{else}无{/if}
+                                    <input type="text" name="phone" disabled placeholder="请输入电话号码" onblur="validatePhone(this,true)" value="{$User[Mobile]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -59,7 +66,7 @@
                                     法定代表人:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[RealName])}{$UserInfo[RealName]}{else}无{/if}
+                                    <input type="text" placeholder="请输入代表人姓名" name="lawPerson" onblur="validateChinese(this)" value="{$UserInfo[RealName]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -67,7 +74,7 @@
                                     社会信用代码:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[CreditCode])}{$UserInfo[CreditCode]}{else}无{/if}
+                                    <input type="text" placeholder="请输入信用代码" name="creditNum" onblur="validateCreditNum(this)" value="{$UserInfo[CreditCode]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -75,19 +82,22 @@
                                     年检到期日:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[AnnualDueDate])}{$UserInfo[AnnualDueDate]}{else}无{/if}
+                                    <input type="text" id="mydatepicker2" placeholder="请输入年检到期日" value="{$UserInfo[AnnualDueDate]}">
                                 </div>
                             </div>
-                            <div class="line-img">
+                            <div class="line-img license">
                                 <div class="if">
-                                    营业执照:
+                                    营业执照<span class="form-need">*</span>
                                 </div>
                                 <div class="cont">
                                     <div class="bx">
                                         <div class="img-wrap">
-                                            <a class="company_elements" href="{$UserInfo[BusinessImage]}" rel="company"><img src="{$UserInfo[BusinessImage]}" alt=""></a>
+                                            <img src="{$UserInfo[BusinessImage]}" alt="">
                                         </div>
-                                        营业执照副本
+                                        <label>
+                                            <span>+ 营业执照副本</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +106,30 @@
                                     所在地区:
                                 </div>
                                 <div class="cont">
-                                    {$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}
+                                    <div class="p-dropdown">
+                                        <label type="checkbox">
+                                            <span data-id="{$UserInfo[Province]}">{$UserInfo[province]}</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_province" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="c-dropdown">
+                                        <label type="checkbox">
+                                            <span data-id="{$UserInfo[City]}">{$UserInfo[city]}</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_city" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="a-dropdown">
+                                        <label type="checkbox">
+                                            <span data-id="{$UserInfo[Area]}">{$UserInfo[area]}</span>
+                                            <i></i>
+                                            <input type="checkbox" name="dd_area" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="line">
@@ -104,7 +137,7 @@
                                     详细地址:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[Address])}{$UserInfo[Address]}{else}无{/if}
+                                    <textarea name="areaDetail" placeholder="不超过50个字" maxlength="50" rows="2" cols="80">{$UserInfo[Address]}</textarea>
                                 </div>
                             </div>
                             <div class="line">
@@ -112,7 +145,7 @@
                                     代理人姓名:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[Agent][Name])}{$UserInfo[Agent][Name]}{else}无{/if}
+                                    <input type="text" placeholder="请输入代理人姓名" maxlength="12" onblur="validateChinese(this)" name="agentName" value="{$UserInfo[Agent][Name]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -120,7 +153,7 @@
                                     代理人身份证号:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[Agent][IdNum])}{$UserInfo[Agent][IdNum]}{else}无{/if}
+                                    <input type="text" placeholder="请输入代理人身份证号" onblur="validateIDNumber(this, true)(this)" name="agentIdNum" value="{$UserInfo[Agent][IdNum]}">
                                 </div>
                             </div>
                             <div class="line">
@@ -128,29 +161,35 @@
                                     代理人手机号:
                                 </div>
                                 <div class="cont">
-                                    {if !empty($UserInfo[Agent][Phone])}{$UserInfo[Agent][Phone]}{else}无{/if}
+                                    <input type="text" placeholder="请输入代理人手机号码" name="agentPhone" onblur="validateMobilePhone(this,true)" value="{$UserInfo[Agent][Phone]}">
                                 </div>
                             </div>
                             <div class="line-img">
                                 <div class="if">
-                                    证件照:
+                                    证件照
                                 </div>
-                                <div class="cont">
+                                <div class="cont" id="agent_pic">
                                     <div class="bx">
+                                        {if !empty($UserInfo[Agent][Images][0])}
                                         <div class="img-wrap">
-                                            {if !empty($UserInfo[Agent][Images][0])}
-                                            <a class="idCard_elements" href="{$UserInfo[Agent][Images][0]}" rel="idCard"><img src="{$UserInfo[Agent][Images][0]}" height="100" width="150" alt=""></a>
-                                            {/if}
+                                            <img src="{$UserInfo[Agent][Images][0]}" alt="">
                                         </div>
-                                        身份证正面照
+                                        {/if}
+                                        <label>
+                                            <span>+ 身份证正面照</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
                                     </div>
                                     <div class="bx">
+                                        {if !empty($UserInfo[Agent][Images][1])}
                                         <div class="img-wrap">
-                                            {if !empty($UserInfo[Agent][Images][1])}
-                                            <a class="idCard_elements" href="{$UserInfo[Agent][Images][1]}" rel="idCard"><img src="{$UserInfo[Agent][Images][1]}" height="100" width="150" alt=""></a>
-                                            {/if}
+                                            <img src="{$UserInfo[Agent][Images][1]}" alt="">
                                         </div>
-                                        身份证反面照
+                                        {/if}
+                                        <label>
+                                            <span>+ 身份证反面照</span>
+                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +199,8 @@
 
                 <div class="to-opt">
                     <div class="cont">
-                        <button type="button" name="edit" onclick="javascript:window.location.href='/memberlawfirm/editinfo/'">修改信息</button>
+                        <button type="button" id="lawers_save" name="edit" data-type="{$UserInfo[Identity]}">保存</button>
+                        <button type="button" name="cancel"  onclick="window.history.go(-1);">取消</button>
                     </div>
                 </div>
             </div>
@@ -168,3 +208,6 @@
     </div>
 </div>
 {template Footer}
+<script src='{echo JsURL}/debt/lib/cropper/dist/cropper.js'></script>
+<script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>
+<script src='{echo JsURL}/debt/lawersCenterInfo.js'></script>
