@@ -49,27 +49,20 @@
                                         <i></i>全部
                                     </label>
                                 </div>
-                                {loop $Direction $lists}
-                                <div class="m-checkbox">
-                                    <label type="checkbox">
-                                        <input type="checkbox" name="goodAt" value="{$lists[GoodID]}">
-                                        <i></i>{$lists[GoodName]}
-                                    </label>
-                                </div>
-                                {/loop}
+                                {$String}
                             </div>
                         </div>
                     </div>
-                    <script type="text/x-jquery-tmpl" id="goodAt_temp">
-                    {loop $Direction $lists}
-                        <div class="m-checkbox">
-                            <label type="checkbox">
-                                <input type="checkbox" name="goodAt" value="{$lists[GoodID]}">
-                                <i></i>{$lists[GoodName]}
-                            </label>
-                        </div>
-                        {/loop}
-                    </script>
+                    <!--<script type="text/x-jquery-tmpl" id="goodAt_temp">-->
+                    <!--{loop $Direction $lists}-->
+                        <!--<div class="m-checkbox">-->
+                            <!--<label type="checkbox">-->
+                                <!--<input type="checkbox" name="goodAt" value="{$lists[GoodID]}">-->
+                                <!--<i></i>{$lists[GoodName]}-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--{/loop}-->
+                    <!--</script>-->
                 </div>
 
                 <div class="t">

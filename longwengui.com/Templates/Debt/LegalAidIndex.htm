@@ -59,9 +59,11 @@
             </li>
             {/loop}
         </ul>
+        {if empty($Data['Data'])}
         <div class="no-data" style="display: block;">
             <img src="/Uploads/Debt/imgs/no_data.png" alt="">
         </div>
+        {/if}
     </div>
     <div class="pagination-wrap">
         <div class="pagination fl-r" id="reword_page_pagination">

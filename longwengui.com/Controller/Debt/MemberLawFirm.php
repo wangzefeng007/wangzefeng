@@ -247,6 +247,22 @@ class MemberLawFirm
                 if ($value['area'])
                     $LawfirmAidInfo['Area'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
             }
+            $String ='';
+            $DirectionList = $MemberLawyerDirectionModule->GetInfoByWhere('',true);
+            foreach ($DirectionList as $key=>$value){
+                foreach ($GoodAt as $Val){
+                    if ($value['GoodID']==$Val) {
+                        $DirectionList[$key]['S1']=1;
+                    }
+                }
+            }
+            foreach ($DirectionList as $value){
+                if ($value['S1']==1){
+                    $String .= "<div class='m-checkbox'><label type='checkbox'><input type='checkbox' checked name='goodAt' value='".$value['GoodID']."'><i></i>".$value['GoodName']."</label></div>";
+                }else{
+                    $String .= "<div class='m-checkbox'><label type='checkbox'><input type='checkbox' name='goodAt' value='".$value['GoodID']."'><i></i>".$value['GoodName']."</label></div>";
+                }
+            }
         }
         include template('MemberLawFirmSetAid');
     }
@@ -266,7 +282,7 @@ class MemberLawFirm
         }
         $GoodAt = explode(',',$LawfirmAidInfo['GoodAt']);
         foreach ($GoodAt as $key=>$value){
-           $Direction[$key] = $MemberLawyerDirectionModule->GetInfoByKeyID($value);
+            $Direction[$key] = $MemberLawyerDirectionModule->GetInfoByKeyID($value);
         }
         $LawfirmAidInfo['Area'] = json_decode($LawfirmAidInfo['Area'],true);
         foreach ($LawfirmAidInfo['Area'] as $key =>$value){
@@ -276,6 +292,22 @@ class MemberLawFirm
                 $LawfirmAidInfo['Area'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
             if ($value['area'])
                 $LawfirmAidInfo['Area'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+        }
+        $String ='';
+        $DirectionList = $MemberLawyerDirectionModule->GetInfoByWhere('',true);
+        foreach ($DirectionList as $key=>$value){
+            foreach ($GoodAt as $Val){
+                if ($value['GoodID']==$Val) {
+                    $DirectionList[$key]['S1']=1;
+                }
+            }
+        }
+        foreach ($DirectionList as $value){
+            if ($value['S1']==1){
+                $String .= "<div class='m-checkbox'><label type='checkbox'><input type='checkbox' checked name='goodAt' value='".$value['GoodID']."'><i></i>".$value['GoodName']."</label></div>";
+            }else{
+                $String .= "<div class='m-checkbox'><label type='checkbox'><input type='checkbox' name='goodAt' value='".$value['GoodID']."'><i></i>".$value['GoodName']."</label></div>";
+            }
         }
         include template('MemberLawFirmAidDetails');
     }

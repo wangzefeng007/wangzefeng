@@ -46,7 +46,7 @@ class LegalAid
                 $Data['Data'][$key]['Area'] = $AreaInfo;
                 $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
                 $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
-                $Data['Data'][$key]['Name'] = $UserInfo['CompanyName'];
+                $Data['Data'][$key]['CompanyName'] = $UserInfo['CompanyName'];
             }
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
