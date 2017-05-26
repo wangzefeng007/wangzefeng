@@ -293,3 +293,6 @@
 .form-line .textarea{
   box-sizing:border-box;
 }
+.form-txt{
+  line-height:30px;
+}
