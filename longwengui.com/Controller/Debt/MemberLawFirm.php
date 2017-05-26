@@ -189,7 +189,7 @@ class MemberLawFirm
         include template('MemberLawFirmFocusDebtList');
     }
     /**
-     * @desc 关注的债务
+     * @desc 援助方案
      */
     public function AidList()
     {
@@ -201,5 +201,19 @@ class MemberLawFirm
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberLawFirmAidList');
+    }
+    /**
+     * @desc 援助方案设置
+     */
+    public function SetAid(){
+        $this->IsLogin();
+        include template('MemberLawFirmSetAid');
+    }
+    /**
+     * @desc 援助方案详情
+     */
+    public function AidDetails(){
+        $this->IsLogin();
+        include template('MemberLawFirmAidDetails');
     }
 }

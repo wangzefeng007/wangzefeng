@@ -1,0 +1,159 @@
+{template Header}
+<link rel="stylesheet" href="{echo CssURL}/debt/memberLawHelp.css">
+<div class="set-debt" data-id="{$ID}">
+    <div class="wrap">
+        <div class="current-loc">
+            <img src="/Uploads/Debt/imgs/current_loc.png" alt="">
+            <span>当前位置 : <a>个人中心</a> > <span class="cur">法律援助</span></span>
+        </div>
+        <div class="form-wrap">
+            <div class="box">
+
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/name_icon.png" alt="">
+                    <span>设置方案名称</span>
+                </div>
+                <div class="c">
+                    <div class="blo">
+                        <div class="line" style="border-bottom: none;">
+                            <div class="left">
+                                <div class="info">
+                                    方 案 名 称:
+                                </div>
+                                <div class="det">
+                                    <input type="text" name="name" maxlenth="12" style="width: 420px;" onblur="validateNeed(this)" value="{$DemandInfo[CaseName]}" placeholder="*请输入方案名称">
+                                </div>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-lab">
+                                负责人姓名:
+                            </div>
+                            <div class="form-control">
+                                <input class="inp" type="text" name="chargeName" onblur="validateNeed(this)" value="" placeholder="*请输入姓名">
+                            </div>
+                            <div class="form-lab ml-20">
+                                负责人电话:
+                            </div>
+                            <div class="form-control">
+                                <input class="inp" type="text" name="chargeMobile" onblur="validateMobilePhone(this)" value="" placeholder="*请输入电话号码">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="t">
+                    <img src="/Uploads/Debt/imgs/area_icon.png" alt="">
+                    <span>设置地区</span>
+                    <div class="opt" onclick="addSetAreaDom('set_area', 'set_area_tmpl')">
+                        <img src="/Uploads/Debt/imgs/add_b.png" alt="">
+                        添加
+                    </div>
+                </div>
+                <div class="c" id="set_area">
+                    <div class="blo">
+                        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <div class="info">
+                                    业务区域:
+                                </div>
+                                <div class="det">
+                                    <div class="p-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[Province]}<span data-id="{$lists[province]}">{$lists[Province]}</span>{else}<span>*省份</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_province" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="c-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[City]}<span data-id="{$lists[city]}">{$lists[City]}</span>{else}<span>城市</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_city" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="a-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[Area]}<span data-id="{$lists[area]}">{$lists[Area]}</span>{else}<span>区县/市</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_area" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c"></div>
+
+                <div class="form-line area-more">
+                    <label for="" class="form-lab fl">更多介绍：</label>
+                    <div class="form-control">
+                        <textarea class="textarea" name="more" maxlength="150" placeholder="最多可输入150字" id="" cols="30" rows="10">{$DemandInfo[Content]}</textarea>
+                    </div>
+                </div>
+
+                <div class="comfirm-btns">
+                    <button type="button" id="save" name="button">保存</button>
+                    <button type="button" id="reset" onclick="javascript:window.location.reload();" name="button">重置</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/x-jquery-tmpl" id="set_area_tmpl">
+          <div class="blo">
+            <div class="to-del" onclick="removeParentDom(this, 'blo')">
+              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+            </div>
+            <div class="line">
+              <div class="left">
+                <div class="info">
+                  业务区域:
+                </div>
+                <div class="det">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span>*省份</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span>城市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span>区县/市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+              </div>
+            </div>
+          </div>
+    </script>
+    {template Footer}
+    <script src='{echo JsURL}/debt/memberLawHelp.js'></script>
+    </body>
+    </html>

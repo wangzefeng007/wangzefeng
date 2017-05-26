@@ -480,7 +480,6 @@ class AjaxLogin
             $Data['Area'] = trim($AjaxData['area']);//县
             $Data['BusinessImage'] = $AjaxData['license_images'];//营业执照照片
             $Data['Address'] = trim($AjaxData['areaDetail']); //详细地址
-            $Data['GoodDirection'] = trim($AjaxData['goodAt']); //擅长方向
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $AjaxData['Agent']['Images'] = $AjaxData['agent_images'];
             $AjaxData['Agent']['Name'] = trim($AjaxData['agentName']);

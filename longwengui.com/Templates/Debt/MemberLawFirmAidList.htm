@@ -15,7 +15,7 @@
                 <div class="info-cont">
                     <div class="cont-hd">
                         <span>已有的援助方案：</span>
-                        <button class="send" ><img src="/Uploads/Debt/imgs/add_w.png">新增方案</button>
+                        <button class="send"  onclick="go('/memberlawfirm/setaid/')"><img src="/Uploads/Debt/imgs/add_w.png">新增方案</button>
                     </div>
                     <div class="debt">
                         <table class="debt-table" width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -30,7 +30,7 @@
                             <tr>
                                 <td>厦门地区处置佣金比例</td>
                                 <td>2017-03-16</td>
-                                <td><a class="see" href="/memberperson/demanddetails/?ID={$lists['DemandID']}">查看</a><a class="modify" href="/memberperson/setdemand/?ID={$lists['DemandID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', '{$lists[DemandID]}', 'DeleteDemand')" data-id="{$lists['DemandID']}">删除</span></td>
+                                <td><a class="see" href="/memberlawfirm/aiddetails/?ID={$lists['ID']}">查看</a><a class="modify" href="/memberlawfirm/setaid/?ID={$lists['ID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', '{$lists[ID]}', 'DeleteAid')" data-id="{$lists['DemandID']}">删除</span></td>
                             </tr>
                             </tbody>
                         </table>
