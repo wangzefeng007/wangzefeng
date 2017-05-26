@@ -53,7 +53,7 @@ class Ajax
         }
         //关键字
         $Rscount = $MemberLawfirmAidModule->GetListsNum($MysqlWhere);
-        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         if ($Page < 1) {
             $Page = 1;
         }
