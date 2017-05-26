@@ -74,17 +74,25 @@ class AreaZhengli
         $cityJsonString = json_encode($cityJson,JSON_UNESCAPED_UNICODE);
         file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/AreaPHP.json',$cityJsonString);
     }
-    public function Direction(){
-        $MemberLawyerDirectionModule = new MemberLawyerDirectionModule();
-        $Direction = $MemberLawyerDirectionModule->GetInfoByWhere('',true);
-        foreach ($Direction as $Key=>$Value)
-        {
-            $DirectionJson[$Key]['GoodID'] = $Value['GoodID'];
-            $DirectionJson[$Key]['GoodName'] = $Value['GoodName'];
-        }
-        $DirectionJsonString = json_encode($DirectionJson,JSON_UNESCAPED_UNICODE);
-        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Direction.json',$DirectionJsonString);
-    }
-
-
+//    public function Direction(){
+//        $MemberLawyerDirectionModule = new MemberLawyerDirectionModule();
+//        $Direction = $MemberLawyerDirectionModule->GetInfoByWhere('',true);
+//        foreach ($Direction as $Key=>$Value)
+//        {
+//            $DirectionJson[$Key]['GoodID'] = $Value['GoodID'];
+//            $DirectionJson[$Key]['GoodName'] = $Value['GoodName'];
+//        }
+//        $DirectionJsonString = json_encode($DirectionJson,JSON_UNESCAPED_UNICODE);
+//        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Direction.json',$DirectionJsonString);
+//    }
+//    public function GetDirection(){
+//        $json_string = file_get_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/Direction.json');
+//        $data = json_decode($json_string, true);
+//        $MemberLawyerDirectionModule = new MemberLawyerDirectionModule();
+//        foreach ($data as $key =>$value){
+//          $Date['GoodID'] = $value['GoodID'];
+//          $Date['GoodName'] = $value['GoodName'];
+//          $MemberLawyerDirectionModule->InsertInfo($Date);
+//        }
+//    }
 }
