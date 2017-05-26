@@ -103,7 +103,7 @@ var pageObj=$.extend({},pageObj,{
         var _this=this;
         $.ajax({
             type:"post",
-            url:"/loginajax.html",
+            url:"/ajax.html",
             dataType: "json",
             data:param,
             beforeSend:　function(){
