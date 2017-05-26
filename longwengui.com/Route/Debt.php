@@ -63,6 +63,14 @@ $RouteArr=array(
     'memberfirm@demandlist'=>'MemberFirm@DemandList',
     'memberfirm@demanddetails'=>'MemberFirm@DemandDetails',
     'memberfirm@setdemand'=>'MemberFirm@SetDemand',
+    //律师事务所
+    'memberlawfirm@index'=>'MemberLawFirm@Index',
+    'memberlawfirm@editinfo'=>'MemberLawFirm@EditInfo',
+    'memberlawfirm@applydebtorder'=>'MemberLawFirm@ApplyDebtOrder',
+    'memberlawfirm@focusdebtlist'=>'MemberLawFirm@FocusDebtList',
+    'memberlawfirm@aidlist'=>'MemberLawFirm@AidList',
+    'memberlawfirm@setaid'=>'MemberLawFirm@SetAid',
+    'memberlawfirm@aiddetails'=>'MemberLawFirm@AidDetails',
     //订单支付
     'pay@alipay'=>'Pay@AliPay',
     'pay@alipaynotify'=>'Pay@AliPayNotify',
