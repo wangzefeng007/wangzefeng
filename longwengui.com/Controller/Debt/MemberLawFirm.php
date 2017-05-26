@@ -230,10 +230,15 @@ class MemberLawFirm
         $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
         $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+        $MemberLawyerDirectionModule = new MemberLawyerDirectionModule();
         $ID = intval($_GET['ID']);
         if ($ID) {
             $LawfirmAidInfo = $MemberLawfirmAidModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
             $LawfirmAidInfo['Area'] = json_decode($LawfirmAidInfo['Area'],true);
+            $GoodAt = explode(',',$LawfirmAidInfo['GoodAt']);
+            foreach ($GoodAt as $key=>$value){
+                $Direction[$key] = $MemberLawyerDirectionModule->GetInfoByKeyID($value);
+            }
             foreach ( $LawfirmAidInfo['Area'] as $key=>$value){
                 if ($value['province'])
                     $LawfirmAidInfo['Area'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
@@ -252,11 +257,18 @@ class MemberLawFirm
         $this->IsLogin();
         $MemberAreaModule = new MemberAreaModule();
         $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+        $MemberLawyerDirectionModule = new MemberLawyerDirectionModule();
+
         $ID = intval($_GET['ID']);
         $LawfirmAidInfo = $MemberLawfirmAidModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
         if (!$LawfirmAidInfo){
             alertandback("该方案不存在！");
         }
+        $GoodAt = explode(',',$LawfirmAidInfo['GoodAt']);
+        foreach ($GoodAt as $key=>$value){
+           $Direction[$key] = $MemberLawyerDirectionModule->GetInfoByKeyID($value);
+        }
+        var_dump($Direction);
         $LawfirmAidInfo['Area'] = json_decode($LawfirmAidInfo['Area'],true);
         foreach ($LawfirmAidInfo['Area'] as $key =>$value){
             if ($value['province'])

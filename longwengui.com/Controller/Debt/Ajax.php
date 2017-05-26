@@ -647,6 +647,7 @@ class Ajax
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
             $Data['UserID'] = $_SESSION ['UserID'];
+            $Data['GoodAt'] = implode(',',array_unique($AjaxData['goodAt']));
             if (empty($ID)){
                 $Result = $MemberLawfirmAidModule->InsertInfo($Data);
             }else{
