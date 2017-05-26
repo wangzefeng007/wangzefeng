@@ -4,10 +4,16 @@
 //其他城市选中刷新
 function otherCitySel(){
     $('#area .sel').removeClass('sel');
-    //ajax(1, true);
+    pageObj.param.help_area= $("#other_city").attr("data-id");
+    pageObj.search(pageObj.param);
 }
 
 var pageObj=$.extend({},pageObj,{
+
+    param:{
+        help_area:"",
+        case_type:""
+    },
     /**
      * 点击查看
      * @param tar
@@ -72,17 +78,13 @@ var pageObj=$.extend({},pageObj,{
         url: '/Templates/Debt/data/Direction.json',
         success: function(data){
             fixIE8Label();
-            var _html='<div class="check-all m-checkbox" onclick="goodAtCheck(this)">\
-                    <label type="checkbox">\
-                    <input type="checkbox"  name="goodAtAll" value="all">\
-                    <i></i>全部\
+            var _html='<div class="check-all m-checkbox sel">\
+                    <label type="checkbox" data-id="">全部\
                     </label>\
                     </div>';
             for(var i=0;i<data.length;i++){
                 _html+='<div class="m-checkbox">\
-                    <label type="checkbox">\
-                    <input type="checkbox" name="goodAt" value="'+data[i].GoodID+'">\
-                    <i></i>'+data[i].GoodName+'\
+                    <label type="checkbox" data-id="'+data[i].GoodID+'">'+data[i].GoodName+'\
                     </label>\
                     </div>'
             }
@@ -92,12 +94,49 @@ var pageObj=$.extend({},pageObj,{
         });
     },
     /**
+     * 搜索方法
+     * @param param
+     */
+    search:function(param){
+        //console.log(param);
+        $.ajax({
+            type:"post",
+            url:"/loginajax.html",
+            dataType: "json",
+            data:param,
+            beforeSend:　function(){
+                showLoading();
+            },success: function(data){
+                if(data.ResultCode == 200){
+                    showMsg(data.Message);
+                    location.reload();
+                }else{
+                    showMsg(data.Message);
+                }
+            },complete: function(){
+                closeLoading();
+            }
+        })
+    },
+    /**
      * 初始化方法
      */
     init:function(){
         var _this=this;
         //初始化案件类别
         _this.getGoodAtData($(".case-type"));
+        $("#direction").on("click",".m-checkbox",function(){
+            $(this).addClass("sel").siblings().removeClass("sel");
+           var case_type= $(this).find("label").attr("data-id");
+            _this.param.case_type=case_type;
+            _this.search(_this.param);
+        });
+        $("#area span.span-2").on("click",function(){
+            $(this).addClass("sel").siblings().removeClass("sel");
+            var help_area= $(this).attr("data-id");
+            _this.param.help_area=help_area;
+            _this.search(_this.param);
+        });
     },
 });
 

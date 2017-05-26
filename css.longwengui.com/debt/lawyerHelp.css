@@ -22,8 +22,12 @@
   margin-right: 16px;
 }
 .filt-parm .line span {
-  padding: 4px 10px;
+  display: inline-block;
+  padding: 0px 10px;
+  height:30px;
+  line-height:30px;
   margin-right: 10px;
+  float: left;
 }
 .filt-parm .line .sel {
   background-color: #35bdfc;
@@ -182,9 +186,13 @@
   width:980px;
 }
 .case-type .m-checkbox{
-  width:80px;
-  line-height:26px;
+  display: inline;
+  width:auto;
+  height:30px;
+  line-height:30px;
+  padding: 0px 10px;
   text-align: center;
+  margin-bottom:10px;
 }
 .case-type .m-checkbox label i{
   display: none;
