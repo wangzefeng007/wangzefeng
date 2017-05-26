@@ -42,8 +42,14 @@ class Ajax
         $MemberAreaModule = new MemberAreaModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MysqlWhere = '';
-        if ($_POST) {
-            $MysqlWhere .= '';
+
+       if (trim($_POST['help_area'])!=''){
+        $AreaID = intval($_POST['help_area']);
+           $MysqlWhere .= ' and  Area like \'%'.$AreaID.'%\'';
+        }
+        if (trim($_POST['case_type'])!=''){
+            $GoodAt = intval($_POST['case_type']);
+            $MysqlWhere .= ' and MATCH (`GoodAt`) AGAINST (\'' . $GoodAt . '\' IN BOOLEAN MODE)';
         }
         //关键字
         $Rscount = $MemberLawfirmAidModule->GetListsNum($MysqlWhere);
