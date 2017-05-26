@@ -95,6 +95,47 @@
                         </div>
                     </div>
                     {/loop}
+                    {else}
+                    <div class="blo">
+                        <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                            <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <div class="info">
+                                    业务区域:
+                                </div>
+                                <div class="det">
+                                    <div class="p-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[Province]}<span data-id="{$lists[province]}">{$lists[Province]}</span>{else}<span>*省份</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_province" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="c-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[City]}<span data-id="{$lists[city]}">{$lists[City]}</span>{else}<span>城市</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_city" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                    <div class="a-dropdown">
+                                        <label type="checkbox">
+                                            {if $lists[Area]}<span data-id="{$lists[area]}">{$lists[Area]}</span>{else}<span>区县/市</span>{/if}
+                                            <i></i>
+                                            <input type="checkbox" name="dd_area" value="">
+                                            <ul></ul>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
                     {/if}
                 </div>
                 <div class="c"></div>
