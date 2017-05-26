@@ -11,6 +11,7 @@ function otherCitySel(){
 var pageObj=$.extend({},pageObj,{
 
     param:{
+        Page:1,
         help_area:"",
         case_type:""
     },
@@ -93,6 +94,10 @@ var pageObj=$.extend({},pageObj,{
         }
         });
     },
+     dataSuccess:function(data){
+        $('.lawyer-help-list ul').empty();
+        $('#lawyer-help-temp').tmpl(data).appendTo('.lawyer-help-list ul');
+    },
     /**
      * 搜索方法
      * @param param
@@ -111,25 +116,26 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == "200"){
                     $('.no-data').hide();
-                    $('.lawyer-help-list').show();
-                    $('#collection_page_pagination').show();
+                    $('.lawyer-help-list ul').show();
+                    $('#legalAid_page_pagination').show();
                     _this.dataSuccess(data.Data); //搜索结果数据注入
                     //获得当前页
-                    _this.param.cur_page = data.Page;
+                    _this.param.Page = data.Page;
 
                     //注入分页
-                    injectPagination('#collection_page_pagination', _this.param.cur_page, data.PageCount, function(){
-                        $('#collection_page_pagination').find('.b').click(function(){
-                            var changeTo = pageChange($(this).attr('data-id'), _this.param.cur_page, data.PageCount);
+                    injectPagination('#legalAid_page_pagination', _this.param.Page, data.PageCount, function(){
+                        $('#legalAid_page_pagination').find('.b').click(function(){
+                            var changeTo = pageChange($(this).attr('data-id'), _this.param.Page, data.PageCount);
                             if(changeTo){
-                                ajax(changeTo);
+                                _this.param.Page = changeTo;
+                                _this.search(_this.param);
                             }
                         });
                     });
                 }else{
                     layer.msg(data.Message);
-                    $('#collection_info').hide();
-                    $('#collection_page_pagination').hide();
+                    $('.lawyer-help-list ul').hide();
+                    $('#legalAid_page_pagination').hide();
                     $('.no-data').show();
                 }
             },complete: function(){

@@ -71,6 +71,10 @@
   overflow: hidden;
   box-sizing:border-box;
 }
+.seek-box .seek-header .seek-logo img{
+  width:100%;
+  height:100%;
+}
 .seek-box .seek-header .seek-main{
   width:800px;
   padding:25px 0;
