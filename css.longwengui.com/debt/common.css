@@ -1200,6 +1200,10 @@ a{
   width: 16px;
   height: 16px;
 }
+.m-checkbox-group .m-checkbox{
+  width:90px;
+  margin-right:10px;
+}
 .pop-login {
   position: fixed;
   width: 100%;

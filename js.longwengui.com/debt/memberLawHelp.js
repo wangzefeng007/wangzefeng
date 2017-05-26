@@ -1,5 +1,59 @@
+//获得律师擅长方向元素
+function getGoodAtData($wrap){
+    //fixIE8Label();
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: '/Templates/Debt/data/Direction.json',
+        success: function(data){
+            fixIE8Label();
+            var _html='<div class="m-checkbox" onclick="goodAtCheck()">\
+                    <label type="checkbox">\
+                    <input type="checkbox" name="goodAtAll" value="all">\
+                    <i></i>全部\
+                    </label>\
+                    </div>';
+            for(var i=0;i<data.length;i++){
+                _html+='<div class="m-checkbox">\
+                    <label type="checkbox">\
+                    <input type="checkbox" name="goodAt" value="'+data[i].GoodID+'">\
+                    <i></i>'+data[i].GoodName+'\
+                    </label>\
+                    </div>'
+            }
+            $wrap.addClass("m-checkbox-group");
+            $wrap.html(_html);
+        }
+    });
+}
+//擅长类型初始化
+getGoodAtData($("#goodAtBox"));
+
+function goodAtCheck(){
+    if($("input[name='goodAtAll']").is(":checked")){
+        $("#goodAtBox :checkbox").prop("checked", true);
+    }else{
+        $("#goodAtBox :checkbox").prop("checked", false);
+    }
+}
 $(
   function(){
+      $("#goodAtBox").on("click","input[name='goodAt']",function(){
+          if(!$(this).is(":checked")){
+              $("input[name='goodAtAll']").prop("checked", false);
+          }
+          var checkAll=true;
+          $("input[name='goodAt']").each(function(){
+              if(!$(this).is(":checked")){
+                  checkAll=false;
+              }
+          });
+          if(checkAll){
+              $("input[name='goodAtAll']").prop("checked", true);
+          }
+      })
+
+
     //初始化地址信息
     initArea();
     $('#save').click(function(){
@@ -34,6 +88,19 @@ $(
           flag = false;
           return;
       }
+
+      var goodAt=[];//擅长案件类型
+        $("#goodAtBox input[name='goodAt']").each(function(){
+            if($(this).is(":checked")){
+                goodAt.push($(this).val());
+            }
+        });
+        if(goodAt.length==0){
+            showMsg('请选择案件擅长类型');
+            flag = false;
+            return;
+        }
+
       //添加地区信息
       $('#set_area').find('.blo').each(function(){
         if(flag){
@@ -81,6 +148,7 @@ $(
             'ID': id,
             "AjaxJSON": JSON.stringify({
                 "case_name": case_name,  //方案名称
+                "goodAt":goodAt,    //擅长案件类型
                 "area": area_info, //地区数组
                 "chargeName": chargeName, //负责人姓名
                 "chargeMobile": chargeMobile, //负责人电话
