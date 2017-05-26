@@ -7,9 +7,9 @@ function getGoodAtData($wrap){
         url: '/Templates/Debt/data/Direction.json',
         success: function(data){
             fixIE8Label();
-            var _html='<div class="m-checkbox" onclick="goodAtCheck()">\
+            var _html='<div class="check-all m-checkbox" onclick="goodAtCheck(this)">\
                     <label type="checkbox">\
-                    <input type="checkbox" name="goodAtAll" value="all">\
+                    <input type="checkbox"  name="goodAtAll" value="all">\
                     <i></i>全部\
                     </label>\
                     </div>';
@@ -29,7 +29,7 @@ function getGoodAtData($wrap){
 //擅长类型初始化
 getGoodAtData($("#goodAtBox"));
 
-function goodAtCheck(){
+function goodAtCheck(tar){
     if($("input[name='goodAtAll']").is(":checked")){
         $("#goodAtBox :checkbox").prop("checked", true);
     }else{
@@ -51,6 +51,10 @@ $(
           if(checkAll){
               $("input[name='goodAtAll']").prop("checked", true);
           }
+      });
+
+      $("#goodAtBox.disabled").on("click","input[type='checkbox']",function(){
+          return false;
       })
 
 

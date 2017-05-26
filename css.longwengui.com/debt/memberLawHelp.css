@@ -260,7 +260,6 @@
   display: inline-block;
   line-height:30px;
   margin-right:13px;
-  float: left;
 }
 .form-line .form-control{
   display: inline-block;
@@ -297,4 +296,7 @@
 }
 .form-txt{
   line-height:30px;
+}
+.disabled .check-all{
+  display: none;
 }
