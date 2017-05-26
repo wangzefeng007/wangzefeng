@@ -99,9 +99,10 @@ var pageObj=$.extend({},pageObj,{
      */
     search:function(param){
         //console.log(param);
+        param.Intention="GetLegalAid";
         $.ajax({
             type:"post",
-            url:"/loginajax.html",
+            url:"/ajax.html",
             dataType: "json",
             data:param,
             beforeSend:　function(){
@@ -109,7 +110,6 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     showMsg(data.Message);
-                    location.reload();
                 }else{
                     showMsg(data.Message);
                 }

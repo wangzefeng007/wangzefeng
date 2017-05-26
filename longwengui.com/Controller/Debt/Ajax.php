@@ -35,6 +35,58 @@ class Ajax
         }
     }
     /**
+     * @desc 律师援助信息
+     */
+    public function GetLegalAid(){
+        $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MysqlWhere = '';
+        if ($_POST) {
+            $MysqlWhere .= '';
+        }
+        //关键字
+        $Rscount = $MemberLawfirmAidModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=5;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $List= $MemberLawfirmAidModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($List as $key=>$value){
+                $AreaInfo = json_decode($value['Area'],true);
+                foreach($AreaInfo as $K=>$V){
+                    $AreaInfo[$K]['province'] = $MemberAreaModule->GetCnNameByKeyID($V['province']);
+                    $AreaInfo[$K]['city'] = $MemberAreaModule->GetCnNameByKeyID($V['city']);
+                    $AreaInfo[$K]['area'] = $MemberAreaModule->GetCnNameByKeyID($V['area']);
+                }
+                $Data['Data'][$key]['Area'] = $AreaInfo;
+                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
+                $Data['Data'][$key]['CompanyName'] = $UserInfo['CompanyName'];
+                $Data['Data'][$key]['ChargeMobile'] = $value['ChargeMobile'];
+                $Data['Data'][$key]['Content'] = $value['Content'];
+            }
+            MultiPage($Data, 5);
+            $Data['Message'] = '返回成功';
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
+            EchoResult($Data);exit;
+        }
+        EchoResult($Data);exit;
+    }
+    /**
      * @desc 债务催收信息
      */
     public function GetDebtList(){
