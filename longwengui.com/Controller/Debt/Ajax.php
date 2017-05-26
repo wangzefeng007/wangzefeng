@@ -631,6 +631,39 @@ class Ajax
         }
     }
     /**
+     * @desc 设置援助方案
+     */
+    public function SetLawFirmAid(){
+        $this->IsLogin();
+        $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+        if ($_POST){
+            $ID = $_POST['ID'];
+            $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
+            $Data['CaseName'] = $AjaxData['case_name'];//方案名称
+            $Data['Area'] = json_encode($AjaxData['area'],JSON_UNESCAPED_UNICODE);//地区
+            $Data['ChargeName'] = $AjaxData['chargeName'];//负责人姓名
+            $Data['ChargeMobile'] = $AjaxData['chargeMobile'];//负责人电话
+            $Data['Content'] = $AjaxData['more'];//介绍
+            $Data['AddTime'] = time();
+            $Data['UpdateTime'] = $Data['AddTime'];
+            $Data['UserID'] = $_SESSION ['UserID'];
+            if (empty($ID)){
+                $Result = $MemberLawfirmAidModule->InsertInfo($Data);
+            }else{
+                $Result = $MemberLawfirmAidModule->UpdateInfoByKeyID($Data,$ID);
+            }
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'保存成功！','Url'=>'/memberlawfirm/aidlist/');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'保存失败！');
+
+            }
+            EchoResult($result_json);
+            exit;
+        }
+    }
+
+    /**
      * @desc 获取客户SESSION信息
      */
     private function GetSession()

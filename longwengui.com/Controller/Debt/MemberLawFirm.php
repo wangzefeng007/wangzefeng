@@ -197,9 +197,30 @@ class MemberLawFirm
         $Title = '会员中心-要求方案';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberLawfirmAidModule = new MemberLawfirmAidModule();
         //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
+        $Rscount = $MemberLawfirmAidModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=10;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberLawfirmAidModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
         include template('MemberLawFirmAidList');
     }
     /**
@@ -207,6 +228,21 @@ class MemberLawFirm
      */
     public function SetAid(){
         $this->IsLogin();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+        $ID = intval($_GET['ID']);
+        if ($ID) {
+            $LawfirmAidInfo = $MemberLawfirmAidModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+            $LawfirmAidInfo['Area'] = json_decode($LawfirmAidInfo['Area'],true);
+            foreach ( $LawfirmAidInfo['Area'] as $key=>$value){
+                if ($value['province'])
+                    $LawfirmAidInfo['Area'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
+                if ($value['city'])
+                    $LawfirmAidInfo['Area'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
+                if ($value['area'])
+                    $LawfirmAidInfo['Area'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+            }
+        }
         include template('MemberLawFirmSetAid');
     }
     /**
@@ -214,6 +250,22 @@ class MemberLawFirm
      */
     public function AidDetails(){
         $this->IsLogin();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+        $ID = intval($_GET['ID']);
+        $LawfirmAidInfo = $MemberLawfirmAidModule->GetInfoByWhere(' and ID ='.$ID.' and UserID = '.$_SESSION['UserID']);
+        if (!$LawfirmAidInfo){
+            alertandback("该方案不存在！");
+        }
+        $LawfirmAidInfo['Area'] = json_decode($LawfirmAidInfo['Area'],true);
+        foreach ($LawfirmAidInfo['Area'] as $key =>$value){
+            if ($value['province'])
+                $LawfirmAidInfo['Area'][$key]['province'] = $MemberAreaModule->GetCnNameByKeyID($value['province']);
+            if ($value['city'])
+                $LawfirmAidInfo['Area'][$key]['city'] = $MemberAreaModule->GetCnNameByKeyID($value['city']);
+            if ($value['area'])
+                $LawfirmAidInfo['Area'][$key]['area'] = $MemberAreaModule->GetCnNameByKeyID($value['area']);
+        }
         include template('MemberLawFirmAidDetails');
     }
 }
