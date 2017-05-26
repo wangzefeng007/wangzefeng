@@ -463,7 +463,7 @@ function StrReplaceImages($String = '', $Title = '', $Type = 'l')
             $AltString = $Title . '_图' . ($Key + 1);
         }
         if (strpos($Matches[1][$Key], "http://") === false && strpos($Matches[1][$Key], "https://") === false) {
-            $NewImagesString = '<img src="http://images.longwengui.net/' . $Type . $Matches[1][$Key] . '" title="' . $AltString . '" alt="' . $AltString . '" />';
+            $NewImagesString = '<img src="http://images.longwengui.com/' . $Type . $Matches[1][$Key] . '" title="' . $AltString . '" alt="' . $AltString . '" />';
         } else {
             $NewImagesString = '<img src="' . $Matches[1][$Key] . '" title="' . $AltString . '" alt="' . $AltString . '" />';
         }

@@ -89,7 +89,7 @@ class AjaxOrder
                 $MemberUserModule = new MemberUserModule();
                 $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);
                 $UserInfo = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
-                ToolService::SendSMSNotice($UserInfo['Mobile'], '亲爱的隆文贵用户，您发布的资产转让已售出。请您及时发货！'.'订单号：'.$OrderInfo['OrderNumber'].'，您可登陆http://www.longwengui.net/，用户中心已卖出的资产，及时查看您资产售卖情况。');//发送短信给卖家
+                ToolService::SendSMSNotice($UserInfo['Mobile'], '亲爱的隆文贵用户，您发布的资产转让已售出。请您及时发货！'.'订单号：'.$OrderInfo['OrderNumber'].'，您可登陆http://www.longwengui.com/，用户中心已卖出的资产，及时查看您资产售卖情况。');//发送短信给卖家
                 $result_json = array('ResultCode' => 200, 'Message' => '提醒成功',);
                 EchoResult($result_json);
             }else{
