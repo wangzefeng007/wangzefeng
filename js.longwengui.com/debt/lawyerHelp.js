@@ -63,4 +63,44 @@ var pageObj=$.extend({},pageObj,{
             })
         }
     },
+    //获得律师擅长方向元素
+    getGoodAtData:function($wrap){
+    //fixIE8Label();
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: '/Templates/Debt/data/Direction.json',
+        success: function(data){
+            fixIE8Label();
+            var _html='<div class="check-all m-checkbox" onclick="goodAtCheck(this)">\
+                    <label type="checkbox">\
+                    <input type="checkbox"  name="goodAtAll" value="all">\
+                    <i></i>全部\
+                    </label>\
+                    </div>';
+            for(var i=0;i<data.length;i++){
+                _html+='<div class="m-checkbox">\
+                    <label type="checkbox">\
+                    <input type="checkbox" name="goodAt" value="'+data[i].GoodID+'">\
+                    <i></i>'+data[i].GoodName+'\
+                    </label>\
+                    </div>'
+            }
+            $wrap.addClass("m-checkbox-group");
+            $wrap.html(_html);
+        }
+        });
+    },
+    /**
+     * 初始化方法
+     */
+    init:function(){
+        var _this=this;
+        //初始化案件类别
+        _this.getGoodAtData($(".case-type"));
+    },
 });
+
+window.onload=function(){
+    pageObj.init();
+}

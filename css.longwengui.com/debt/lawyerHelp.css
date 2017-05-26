@@ -6,8 +6,8 @@
   background-color: #f9f9f9;
 }
 .filt-parm .line {
-  padding: 0 24px;
-  line-height: 40px;
+  padding: 7px 24px;
+  line-height: 26px;
   font-size: 14px;
   color: #666666;
 }
@@ -176,4 +176,16 @@
   width:200px;
   height:38px;
   text-align: center;
+}
+
+.case-type{
+  width:980px;
+}
+.case-type .m-checkbox{
+  width:80px;
+  line-height:26px;
+  text-align: center;
+}
+.case-type .m-checkbox label i{
+  display: none;
 }
