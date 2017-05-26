@@ -1,8 +1,10 @@
 <?php
 $RouteArr=array(
     //'控制器小写@方法小写'=>'真实控制器名@真实方法名'
-    'debt@test'=>'Debt@Test',
+    //法律援助
+    'legalaid@index'=>'LegalAid@Index',
     //债务催收
+    'debt@test'=>'Debt@Test',
     'debt@index'=>'Debt@Index',
     'debt@debtlists'=>'Debt@DebtLists',
     'debt@debtdetails'=>'Debt@DebtDetails',
