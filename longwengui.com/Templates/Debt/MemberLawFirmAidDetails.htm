@@ -20,7 +20,7 @@
                                 方案名称:
                             </div>
                             <div class="g-det">
-                                解决婚前婚后财产
+                                {$LawfirmAidInfo['CaseName']}
                             </div>
                         </div>
                         <div class="form-line">
@@ -28,13 +28,13 @@
                                 负责人姓名:
                             </div>
                             <div class="form-control">
-                                <span class="text-primary">老王</span>
+                                <span class="text-primary">{$LawfirmAidInfo[ChargeMobile]}</span>
                             </div>
                             <div class="form-lab ml-20">
                                 负责人电话:
                             </div>
                             <div class="form-control">
-                                <span class="text-primary">13548876543</span>
+                                <span class="text-primary">{$LawfirmAidInfo[ChargeMobile]}</span>
                             </div>
                         </div>
                     </div>
@@ -46,14 +46,16 @@
                 </div>
                 <div class="c">
                     <div class="blo">
+                        {loop $LawfirmAidInfo['Area'] $lists}
                         <div class="line">
                             <div class="g-info">
                                 业务区域:
                             </div>
                             <div class="g-det">
-                                <span>福建省-厦门市-思明区</span>
+                                <span>{$lists[province]}-{$lists[city]}-{$lists[area]}</span>
                             </div>
                         </div>
+                        {/loop}
                     </div>
                 </div>
 

@@ -27,20 +27,23 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {loop $Data['Data'] $lists}
                             <tr>
-                                <td>厦门地区处置佣金比例</td>
-                                <td>2017-03-16</td>
-                                <td><a class="see" href="/memberlawfirm/aiddetails/?ID={$lists['ID']}">查看</a><a class="modify" href="/memberlawfirm/setaid/?ID={$lists['ID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', '{$lists[ID]}', 'DeleteAid')" data-id="{$lists['DemandID']}">删除</span></td>
+                                <td>{$lists[CaseName]}</td>
+                                <td>{echo date("Y-m-d",$lists[AddTime])}</td>
+                                <td><a class="see" href="/memberlawfirm/aiddetails/?ID={$lists['ID']}">查看</a><a class="modify" href="/memberlawfirm/setaid/?ID={$lists['ID']}">修改</a><span class="del" onclick="toDelete('是否确定删除该处置方方案?', '{$lists[ID]}', 'DelLawFirmAid')" data-id="{$lists['ID']}">删除</span></td>
                             </tr>
+                            {/loop}
                             </tbody>
                         </table>
                     </div>
-                    <div class="pagination-wrap">
-                        <div class="pagination fl-r" id="collection_page_pagination">
-                            <a href="/asset/lists/"><div class="b {if $Page==1}sel{/if}">首页</div></a>
-                            {$ShowPage}
+                        {if $ShowPage}
+                        <div class="pagination-wrap">
+                            <div class="pagination fl-r" id="page_pagination">
+                                {$ShowPage}
+                            </div>
                         </div>
-                    </div>
+                        {/if}
                     <!--发布菜单-->
                     <div class="fr-win">
                         <div class="pub-btn">

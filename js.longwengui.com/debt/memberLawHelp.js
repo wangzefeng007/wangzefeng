@@ -77,7 +77,7 @@ $(
         dataType: "json",
         url: "/ajax.html",
         data: {
-            "Intention":"SetFirmDemand",//催收公司设置佣金方案
+            "Intention":"SetLawFirmAid",//援助方案
             'ID': id,
             "AjaxJSON": JSON.stringify({
                 "case_name": case_name,  //方案名称

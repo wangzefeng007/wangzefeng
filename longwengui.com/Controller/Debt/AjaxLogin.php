@@ -967,4 +967,23 @@ class AjaxLogin
             EchoResult($Data);exit;
         }
     }
+    /**
+     * @desc 删除援助方案
+     */
+    public function DelLawFirmAid(){
+        $this->IsLogin();
+        if ($_POST['id']){
+            $MemberLawfirmAidModule = new MemberLawfirmAidModule();
+            $ID = $_POST['id'];
+            $DeleteInfo = $MemberLawfirmAidModule->DeleteByWhere(' and ID= '.$ID.' and UserID = '.$_SESSION['UserID']);
+            if ($DeleteInfo){
+                $Data['ResultCode'] = 200;
+                $Data['Message'] = '删除成功';
+            }else{
+                $Data['ResultCode'] = 101;
+                $Data['Message'] = '删除失败';
+            }
+            EchoResult($Data);exit;
+        }
+    }
 }
