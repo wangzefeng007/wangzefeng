@@ -259,6 +259,7 @@
 .form-line .form-lab{
   display: inline-block;
   line-height:30px;
+  margin-right:13px;
 }
 .form-line .form-control{
   display: inline-block;
@@ -273,7 +274,7 @@
   font-size: 14px;
 }
 .area-more.form-line .form-lab{
-  width:120px;
+  width:111px;
   text-align: right;
   float: left;
 }
