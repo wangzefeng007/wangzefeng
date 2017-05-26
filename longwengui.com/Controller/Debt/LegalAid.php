@@ -26,7 +26,7 @@ class LegalAid
             $Page = 1;
         }
         if ($Rscount['Num']) {
-            $PageSize=7;
+            $PageSize=1;
             $Data = array();
             $Data['RecordCount'] = $Rscount['Num'];
             $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
