@@ -121,7 +121,8 @@ var pageObj=$.extend({},pageObj,{
                     _this.dataSuccess(data.Data); //搜索结果数据注入
                     //获得当前页
                     _this.param.Page = data.Page;
-
+                    //mobile 隐藏
+                    _this.mobileHide();
                     //注入分页
                     injectPagination('#legalAid_page_pagination', _this.param.Page, data.PageCount, function(){
                         $('#legalAid_page_pagination').find('.b').click(function(){
@@ -143,11 +144,21 @@ var pageObj=$.extend({},pageObj,{
             }
         })
     },
+    //mobile 隐藏
+    mobileHide:function(){
+        $(".lawyer-help-list .mobile").each(function(){
+            var mobile=$(this).text();
+            var hiddenMobile=mobile.substr(0,3)+"****"+mobile.substr(7);
+            $(this).text(hiddenMobile);
+        });
+    },
     /**
      * 初始化方法
      */
     init:function(){
         var _this=this;
+        //mobile 隐藏
+        _this.mobileHide();
         //初始化案件类别
         _this.getGoodAtData($(".case-type"));
         $("#direction").on("click",".m-checkbox",function(){
