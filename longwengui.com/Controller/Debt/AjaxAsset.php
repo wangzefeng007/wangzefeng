@@ -79,7 +79,20 @@ class AjaxAsset
             if (!empty($ID)){
                 $Result = $MemberAssetInfoModule->UpdateInfoByKeyID($Data,$ID);
                 if ($Result){
-                    $result_json = array('ResultCode'=>200,'Message'=>'修改成功！');
+                    $MemberAssetImageModule->DeleteByWhere(' and AssetID ='.$ID);
+                    foreach ($AjaxData['imageList'] as $key =>$value){
+                        if ($key==0){
+                            $IsDefault =1;
+                        }else{
+                            $IsDefault =0;
+                        }
+                        $InsertImage = $MemberAssetImageModule->InsertInfo(array('AssetID'=>$ID,'ImageUrl'=>$value,'IsDefault'=>$IsDefault));
+                    }
+                    if (!$InsertImage){
+                        $result_json = array('ResultCode'=>105,'Message'=>'修改失败！');
+                    }else{
+                        $result_json = array('ResultCode'=>200,'Message'=>'修改成功！');
+                    }
                 }else{
                     $result_json = array('ResultCode'=>104,'Message'=>'修改失败！');
                 }
