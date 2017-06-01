@@ -63,6 +63,7 @@ class AjaxAsset
         $Data['UserID'] =  $_SESSION['UserID'];
         $Data['AddTime'] = time();
         $Data['Status'] =1;
+        $ID = intval($_POST['ID']);
             $ImageArr=array();
             $savePath = '/Uploads/Debt/'.date('Ymd').'/';
             preg_match_all('/<img.*src="(.*)".*>/is',$AjaxData['transDetail'],$ImageArr);
@@ -75,23 +76,32 @@ class AjaxAsset
             }
             $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
             $Data['Content']= addslashes($Data['Content']);
-        $AssetID = $MemberAssetInfoModule->InsertInfo($Data);
-            if ($AssetID){
-                foreach ($AjaxData['imageList'] as $key =>$value){
-                    if ($key==0){
-                        $IsDefault =1;
-                    }else{
-                        $IsDefault =0;
-                    }
-                  $InsertImage = $MemberAssetImageModule->InsertInfo(array('AssetID'=>$AssetID,'ImageUrl'=>$value,'IsDefault'=>$IsDefault));
-                }
-                if (!$InsertImage){
-                    $result_json = array('ResultCode'=>102,'Message'=>'图片上传失败！');
+            if (!empty($ID)){
+                $Result = $MemberAssetInfoModule->UpdateInfoByKeyID($Data,$ID);
+                if ($Result){
+                    $result_json = array('ResultCode'=>200,'Message'=>'修改成功！');
                 }else{
-                    $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','Url'=>'/asset/audit');
+                    $result_json = array('ResultCode'=>104,'Message'=>'修改失败！');
                 }
             }else{
-                $result_json = array('ResultCode'=>103,'Message'=>'发布失败！');
+                $AssetID = $MemberAssetInfoModule->InsertInfo($Data);
+                if ($AssetID){
+                    foreach ($AjaxData['imageList'] as $key =>$value){
+                        if ($key==0){
+                            $IsDefault =1;
+                        }else{
+                            $IsDefault =0;
+                        }
+                        $InsertImage = $MemberAssetImageModule->InsertInfo(array('AssetID'=>$AssetID,'ImageUrl'=>$value,'IsDefault'=>$IsDefault));
+                    }
+                    if (!$InsertImage){
+                        $result_json = array('ResultCode'=>102,'Message'=>'图片上传失败！');
+                    }else{
+                        $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','Url'=>'/asset/audit');
+                    }
+                }else{
+                    $result_json = array('ResultCode'=>103,'Message'=>'发布失败！');
+                }
             }
             EchoResult($result_json);
             exit;
