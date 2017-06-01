@@ -393,10 +393,10 @@ class AjaxOrder
                          $Result = $MemberOrderRefundModule->UpdateInfoByWhere($Data,' OrderID= '.$OrderID);
                          if ($Result){
                              $DB->query("COMMIT");//执行事务
-                             $result_json = array('ResultCode' => 200, 'Message' => '同意退款退货成功');
+                             $result_json = array('ResultCode' => 200, 'Message' => '拒绝成功');
                          }else{
                              $DB->query("ROLLBACK");//判断当执行失败时回滚
-                             $result_json = array('ResultCode' => 102, 'Message' => '同意退款退货失败');
+                             $result_json = array('ResultCode' => 102, 'Message' => '拒绝失败');
                          }
                      }else{
                          $DB->query("ROLLBACK");//判断当执行失败时回滚

@@ -4,9 +4,11 @@
 $_config = array();
 
 // ----------------------------  CONFIG DB  ----------------------------- //
-$_config['db']['1']['dbhost'] = 'localhost';
+//$_config['db']['1']['dbhost'] = 'localhost';
+$_config['db']['1']['dbhost'] = '118.190.86.37';
 $_config['db']['1']['dbuser'] = 'root';
-$_config['db']['1']['dbpw'] = '';
+//$_config['db']['1']['dbpw'] = '';
+$_config['db']['1']['dbpw'] = 'ldfjg#&*dfg!*&dff';
 $_config['db']['1']['dbcharset'] = 'utf8';
 $_config['db']['1']['pconnect'] = '0';
 $_config['db']['1']['dbname'] = 'bbs_longwengui';
