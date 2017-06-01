@@ -25,7 +25,7 @@
                                     转让单价 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="trans_money" class="has-unit" onblur="validateMoney(this)" placeholder="请输入您的转让金额"><span class="unit">元</span>
+                                    <input type="text" name="trans_money" class="has-unit" value="{$AssetInfo[Price]}" onblur="validateMoney(this)" placeholder="请输入您的转让金额"><span class="unit">元</span>
                                 </div>
                             </div>
                             <div class="line">
@@ -33,7 +33,7 @@
                                     份额数量 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="trans_count" class="has-unit" onblur="validateNumber(this)" placeholder="请输入您的份额数量"><span class="unit">份</span>
+                                    <input type="text" name="trans_count" value="{$AssetInfo[Inventory]}" class="has-unit" onblur="validateNumber(this)" placeholder="请输入您的份额数量"><span class="unit">份</span>
                                 </div>
                             </div>
                             <div class="line">
@@ -41,7 +41,7 @@
                                     市场价格 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="public_money" class="has-unit" onblur="validateMoney(this)" placeholder="请输入您的市场价格"><span class="unit">元</span>
+                                    <input type="text" name="public_money" value="{$AssetInfo[MarketPrice]}" class="has-unit" onblur="validateMoney(this)" placeholder="请输入您的市场价格"><span class="unit">元</span>
                                 </div>
                             </div>
                             <div class="line">
@@ -49,7 +49,7 @@
                                     资产种类 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="trans_type" onblur="validateNeed(this)" placeholder="茶叶/汽车/房产...">
+                                    <input type="text" name="trans_type" value="{$AssetInfo[Category]}" onblur="validateNeed(this)" placeholder="茶叶/汽车/房产...">
                                 </div>
                             </div>
                             <div class="line">
@@ -57,7 +57,7 @@
                                     有效日期 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" id='end_time' name="end_time" max-time="{echo date('Y-m-d',$EndTime)}" onchange="endTimeChange(this)" value="{echo date('Y-m-d',$EndTime)}" placeholder="2016-06-06"><span id="left_time" class="ml-10">还有<span class="c-b">30</span>天</span>
+                                    <input type="text" id='end_time' name="end_time" max-time="{echo date('Y-m-d',$EndTime)}" onchange="endTimeChange(this)" value="{if $AssetInfo[ExpirationDate]}{echo date('Y-m-d',$AssetInfo[ExpirationDate])}{else}{echo date('Y-m-d',$EndTime)}{/if}" placeholder="2016-06-06"><span id="left_time" class="ml-10">还有<span class="c-b">30</span>天</span>
                                 </div>
                             </div>
                             <div class="line">
@@ -65,7 +65,7 @@
                                     售后电话 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" onblur="validatePhone(this,true)" class="inp-lg" name="sell_phone" placeholder="*请输入电话号码 1598***1598 / 0592-***0592">
+                                    <input type="text" value="{$AssetInfo[AfterPhone]}" onblur="validatePhone(this,true)" class="inp-lg" name="sell_phone" placeholder="*请输入电话号码 1598***1598 / 0592-***0592">
                                 </div>
                             </div>
                             <!--<div class="line mt-30">
@@ -86,7 +86,7 @@
                                     运费:
                                 </div>
                                 <div class="details">
-                                    <input type="text" name="emsMoney" class="has-unit" value="0" onblur="validateMoney(this)" placeholder="填写运费金额或包邮"><span class="unit">元</span>
+                                    <input type="text" name="emsMoney" class="has-unit" value="{if $AssetInfo[Freight]>0}{$AssetInfo[Freight]}{else}0{/if}" onblur="validateMoney(this)" placeholder="填写运费金额或包邮"><span class="unit">元</span>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                     资产标题 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" class="inp-lg" name="transTitle" onblur="validateNeed(this)" maxlength="20" value=" {$AssetInfo['Title']}"  placeholder="填写文章标题（20个汉字以内）">
+                                    <input type="text" class="inp-lg" name="transTitle" onblur="validateNeed(this)" maxlength="20" value='{$AssetInfo[Title]}'  placeholder="填写文章标题（20个汉字以内）">
                                 </div>
                             </div>
                         </div>
@@ -121,9 +121,11 @@
 
                 <div class="img-upload-wrap">
                     <div class="uploaded-box" style="display: inline">
-                        <!--<div class="img-preview">
-                            <img src="/Uploads/Debt/imgs/banner02.jpg" alt="">
-                        </div>-->
+                        {loop $AssetImage $lists}
+                        <div class="img-preview">
+                            <img src="{$lists['ImageUrl']}" alt="">
+                        </div>
+                        {/loop}
                     </div>
                     <div class="add-img">
                         <label>
@@ -147,7 +149,11 @@
                     </div>
                 </div>
                 <div class="sub-btn">
+                    {if $ID}
+                    <input type="button" id="publish" class="btn-pub" data-id="{$ID}" value="修改"/>
+                    {else}
                     <input type="button" id="publish" class="btn-pub" value="发布资产转让"  />
+                    {/if}
                 </div>
             </form>
         </div>
