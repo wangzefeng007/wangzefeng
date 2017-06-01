@@ -81,7 +81,9 @@
                                     {$NStatus[$lists[Status]]}
                                 </div>
                                 <div class="td">
-                                    <a class="link" href="/assetdetails/{$lists[AssetID]}.html" target="_blank">查看详情&gt;&gt;</a>
+                                    <p><a href="/asset/publish?id=$lists[AssetID]" class="btn btn-primary">编辑</a></p>
+                                    <p class="mt-10 mb-10"><a class="link" href="/assetdetails/{$lists[AssetID]}.html" target="_blank">查看详情&gt;&gt;</a></p>
+                                    <p><a href="javascript:void(0)" onclick="pageObj.GoodsShelf('$lists[AssetID]');" class="btn btn-primary">立即上架</a></p>
                                 </div>
                             </div>
                             <div class="table-tr order-hr"></div>
@@ -137,14 +139,4 @@
 </div>
 </div>
 {template Footer}
-<script>
-    var pageObj={
-        addressObj:{
-            Province:"{$AddressInfo[Province]}",
-            City:"{$AddressInfo[City]}",
-            Area:"{$AddressInfo[Area]}"
-        },
-        addressTotal:parseInt("{$Rscount['Num']}")+parseInt("{$Number}")
-    }
-</script>
-<script src='{echo JsURL}/debt/memberAddress.js'></script>
+<script src='{echo JsURL}/debt/memberAssetList.js'></script>
