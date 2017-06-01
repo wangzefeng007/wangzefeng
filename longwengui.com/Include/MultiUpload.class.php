@@ -1,6 +1,6 @@
 <?php
 class MultiUpload{
-    public $maxSize = 104857600;//Byte 2M
+    public $maxSize = 10485760000;//Byte 2M
     public $allowExts=array('.jpg','.jpeg','.gif','.png','.bmp','.rar','.zip','.pdf','.swf');
     public  $error= array();
     private $count =0;

@@ -87,11 +87,12 @@ class Asset
             $MemberAssetImageModule = new MemberAssetImageModule();
             $AssetInfo = $MemberAssetInfoModule->GetInfoByWhere(' and AssetID = '.$ID.' and UserID = '.$_SESSION ['UserID']);
             $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$ID,true);
+
         }
         include template('AssetPublish');
     }
     /**
-     * @desc  发布资产转让
+     * @desc  发布资产转让成功待审核页面
      */
     public function Audit(){
         include template('AssetAudit');

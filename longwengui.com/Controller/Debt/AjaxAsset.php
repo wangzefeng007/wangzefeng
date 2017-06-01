@@ -65,19 +65,18 @@ class AjaxAsset
         $Data['Status'] =1;
         $ID = intval($_POST['ID']);
             $ImageArr=array();
-            $savePath = '/Uploads/Debt/'.date('Ymd').'/';
             if (strstr($AjaxData['transDetail'], 'data:image')){
-                preg_match_all('/<img src="data:image(.*)".*>/is',$AjaxData['transDetail'],$ImageArr);
+                preg_match_all('/<img src="data:image(.*)"/isU',$AjaxData['transDetail'],$ImageArr);
                 if(count($ImageArr[1])){
                     $NewImgArr=array();
                     foreach($ImageArr[1] as $key=>$ImgUrl){
-                        $NewImgArr[$key] = SendToImgServ($savePath,$ImgUrl);
-                        $NewImgTagArr[$key]="<img src=\"{$NewImgArr[$key]}\">";
+                        $savePath = '/Uploads/Asset/'.date('Ymd').'/';
+                            $NewImgArr[$key] = SendToImgServ($savePath,$ImgUrl);
+                            $NewImgTagArr[$key]="<img src=\"{$NewImgArr[$key]}\">";
                     }
                 }
                 $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
             }
-            $Data['Content']= addslashes($Data['Content']);
             if (!empty($ID)){
                 $Result = $MemberAssetInfoModule->UpdateInfoByKeyID($Data,$ID);
                 if ($Result){
