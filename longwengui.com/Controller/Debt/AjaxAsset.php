@@ -121,6 +121,30 @@ class AjaxAsset
         }
     }
     /**
+     * @desc 商城产品上架下架
+     */
+    public function ProductShelves(){
+        $this->IsLogin();
+        if ($_POST['AssetID']) {
+            $AssetID = intval($_POST['AssetID']);
+            $MemberAssetInfoModule = new MemberAssetInfoModule();
+            $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($AssetID);
+            if ($AssetInfo['ProductStatus']==1){
+                $Data['ProductStatus']=0;
+            }else{
+                $Data['ProductStatus']=1;
+            }
+            $Result = $MemberAssetInfoModule->UpdateInfoByKeyID($Data,$AssetID);
+            if ($Result){
+                $result_json = array('ResultCode'=>200,'Message'=>'操作成功！');
+            }else{
+                $result_json = array('ResultCode'=>102,'Message'=>'操作失败！');
+            }
+            EchoResult($result_json);
+        }
+    }
+
+    /**
      * @desc 订单确认
      */
     public function ConfirmOrder(){

@@ -83,7 +83,11 @@
                                 <div class="td">
                                     <p><a href="/asset/publish/?id={$lists[AssetID]}" class="btn btn-primary">编辑</a></p>
                                     <p class="mt-10 mb-10"><a class="link" href="/assetdetails/{$lists[AssetID]}.html" target="_blank">查看详情&gt;&gt;</a></p>
-                                    <p><a href="javascript:void(0)" onclick="pageObj.GoodsShelf('$lists[AssetID]');" class="btn btn-primary">立即上架</a></p>
+                                    {if $lists[Status]==2}
+                                    {if $lists[ProductStatus]==0}
+                                    <p><a href="javascript:void(0)" onclick="pageObj.GoodsShelf('{$lists[AssetID]}');" class="btn btn-primary">立即上架</a></p>{elseif $lists[ProductStatus]==1}
+                                    <p><a href="javascript:void(0)" onclick="pageObj.GoodsShelf2('{$lists[AssetID]}');" class="btn btn-primary">立即下架</a></p>{/if}
+                                    {/if}
                                 </div>
                             </div>
                             <div class="table-tr order-hr"></div>
