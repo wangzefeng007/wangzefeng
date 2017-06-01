@@ -87,8 +87,6 @@ class Asset
             $MemberAssetImageModule = new MemberAssetImageModule();
             $AssetInfo = $MemberAssetInfoModule->GetInfoByWhere(' and AssetID = '.$ID.' and UserID = '.$_SESSION ['UserID']);
             $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$ID,true);
-            var_dump($AssetInfo,$AssetImage);
-
         }
         include template('AssetPublish');
     }
