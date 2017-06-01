@@ -105,7 +105,7 @@
                                     资产标题 :
                                 </div>
                                 <div class="details">
-                                    <input type="text" class="inp-lg" name="transTitle" onblur="validateNeed(this)" maxlength="20"  placeholder="填写文章标题（20个汉字以内）">
+                                    <input type="text" class="inp-lg" name="transTitle" onblur="validateNeed(this)" maxlength="20" value=" {$AssetInfo['Title']}"  placeholder="填写文章标题（20个汉字以内）">
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                 <div id="editor-container" class="container">
                     <div id="editor-trigger"></div>
                     <textarea id="editor-trigger-val" name="transDetail" style="display:none;">
-
+                    {$AssetInfo['Content']}
                     </textarea>
                 </div>
 

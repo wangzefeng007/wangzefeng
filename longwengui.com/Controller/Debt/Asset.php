@@ -85,7 +85,8 @@ class Asset
             $ID = intval($_GET['id']);
             $MemberAssetInfoModule = new MemberAssetInfoModule();
             $MemberAssetImageModule = new MemberAssetImageModule();
-            $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+            $AssetInfo = $MemberAssetInfoModule->GetInfoByWhere(' and AssetID = '.$ID.' and UserID = '.$_SESSION ['UserID']);
+            var_dump($AssetInfo);
             $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$ID);
         }
         include template('AssetPublish');
@@ -120,7 +121,7 @@ class Asset
         foreach ($OrderInfo as $value){
             $TotalAmount =$TotalAmount+ $value['TotalAmount'];
         }
-        $Title ='隆文贵债务处置-'.$AssetInfo[''];
+        $Title ='隆文贵债务处置-'.$AssetInfo['Title'];
         include template('AssetDetails');
     }
     /**
