@@ -81,6 +81,13 @@ class Asset
         }
         $Nav='asset';
         $EndTime = time()+ 2592000;
+        if ($_GET['id']){
+            $ID = intval($_GET['id']);
+            $MemberAssetInfoModule = new MemberAssetInfoModule();
+            $MemberAssetImageModule = new MemberAssetImageModule();
+            $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+            $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$ID);
+        }
         include template('AssetPublish');
     }
     /**
