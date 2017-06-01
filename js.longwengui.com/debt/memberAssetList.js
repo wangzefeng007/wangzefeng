@@ -11,10 +11,10 @@ var pageObj=$.extend({},pageObj,{
         },function(){
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/ajaxasset/",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"ProductShelves",
                     "AssetID":assetId
                 },
                 beforeSend:　function(){
@@ -41,10 +41,10 @@ var pageObj=$.extend({},pageObj,{
         },function(){
             $.ajax({
                 type:"post",
-                url:"",
+                url:"/ajaxasset/",
                 dataType: "json",
                 data:{
-                    "Intention":"",
+                    "Intention":"ProductShelves",
                     "AssetID":assetId
                 },
                 beforeSend:　function(){
