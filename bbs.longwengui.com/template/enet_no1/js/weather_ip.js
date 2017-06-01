@@ -1,0 +1,1 @@
+var jq = jQuery.noConflict();var weather_=new weather();var city = "";jq(document).ready(function(){jq.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){city=remote_ip_info.city;jintian();jq(".city").html(remote_ip_info.city); })});

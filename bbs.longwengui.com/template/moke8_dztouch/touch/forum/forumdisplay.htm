@@ -1,0 +1,85 @@
+<!--{template common/header}-->
+<!--{hook/forumdisplay_top_mobile}-->
+<!-- main threadlist start -->
+<!--{if !$subforumonly}-->
+
+<div class="s_load"><span><!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}--><i class="fff"></i></span>
+<span style="float: right; padding-right: 10px; padding-left: 10px;  display: block;"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]"><img src="./template/moke8_dztouch/touch/images/post.png" style="padding-top: 11px;"/></a></span>
+</div>
+<div class="s_union" id="adArticleFoot"></div>
+<section class="s_moreread">
+	<div class="list_box list">
+		<!--{if $_G['forum_threadcount']}-->
+		<!--{loop $_G['forum_threadlist'] $key $thread}-->
+		<!--{if !$_G['setting']['mobile']['mobiledisplayorder3'] && $thread['displayorder'] > 0}-->
+		{eval continue;}
+		<!--{/if}-->
+		<!--{if $thread['displayorder'] > 0 && !$displayorder_thread}-->
+		{eval $displayorder_thread = 1;}
+		<!--{/if}-->
+		<!--{if $thread['moved']}-->
+		<!--{eval $thread[tid]=$thread[closed];}-->
+		<!--{/if}-->
+
+		<dl>
+			<!--{hook/forumdisplay_thread_mobile $key}-->
+			<a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra">
+				<!--{if $thread['cover']}-->
+				<dt><img src="$thread[coverpath]" alt="{$thread[subject]}"></dt>
+				<!--{/if}-->
+				<dd><h3>{$thread[subject]}</h3></dd>
+				<dd><!--{$SC_LANG[release]}-->:{$thread[dateline]}</dd>
+			</a>
+		</dl>
+		<!--{/loop}-->
+		<!--{else}-->
+		<dl>{lang forum_nothreads}</dl>
+		<!--{/if}-->
+
+		$multipage
+	</div>
+
+	<div class="s_union" id="adRightPiao"></div>
+	<div id="adButtom"></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--{/if}-->
+<!-- main threadlist end -->
+<!--{hook/forumdisplay_bottom_mobile}-->
+<div class="pullrefresh" style="display:none;"></div>
+<!--{template common/footer}-->

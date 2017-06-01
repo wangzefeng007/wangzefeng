@@ -1,0 +1,18 @@
+/*
+[name]&#x5357;&#x4EAC;&#x9752;&#x5965;&#x4F1A;[/name]
+[iconbgcolor]#1477C3[/iconbgcolor]
+Powered by ENET
+*/
+.weather #T_weather_img .Horizontalscroll{background: url(bg.jpg) center 0 repeat-x;width:100%;height:115px;position:absolute;left:0;right:0;top:0;z-index:-2}
+.hearbg{background: url(hearbg.png)!important;_background: none;__filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="template/enet_no1/style/nanjingolympic/hearbg.png");width:260px;height:110px;position:absolute;left:50%;top:0;z-index:-1;margin-left:-8px}
+.absolute_body_bg{background: url(body_bg.jpg) repeat-x 0 0;position:absolute;width: 779px;height: 426px;top: 205px;right:0;z-index:-9}
+#T_weather_img{z-index:-2}
+.weather #T_weather_img .sky{height:150px;z-index:-2}
+.tbg_body{background-image:url(t_body_bg.jpg)}
+.weather-info{margin-left:-113px}
+.child-0{margin-left:-197px !Important}
+.weather-background{margin-left:-128px}
+#tct{margin-top: 205px}
+#flw_header{background:url(fow_hear.jpg) no-repeat}
+#tbg{background-color: #7bb7e9;background-repeat: repeat}
+#checklens,.fow_right{color:#fff !Important}

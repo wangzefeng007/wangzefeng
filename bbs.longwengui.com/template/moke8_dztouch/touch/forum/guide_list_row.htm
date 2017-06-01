@@ -1,0 +1,30 @@
+<!--{if $list['threadcount']}-->
+<div class="box_css">
+	<div class="s_shead">
+		<ul id="pagenavi1" class="page">
+			<li><a href="#" class="active"><!--{$SC_LANG[essence]}--></a></li>
+			<li><a href="#"><!--{$SC_LANG[hot]}--></a></li>
+			<li><a href="#"><!--{$SC_LANG[bbs]}--></a></li>
+		</ul>
+	</div>
+	<div id="slider1" class="swipe">
+		<ul class="box01_list">
+
+			<li class="li_list">
+				<!--{$_G['cache']['plugin']['superman_dz_manage']['essencepost']}-->
+			</li>
+
+			<li class="li_list">
+				<!--{$_G['cache']['plugin']['superman_dz_manage']['hotpost']}-->
+			</li>
+			<li class="li_list">
+				<div class="m1 img">
+					<!--{$_G['cache']['plugin']['superman_dz_manage']['bbsplate']}-->
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!--{else}-->
+<p>{lang guide_nothreads}</p>
+<!--{/if}-->

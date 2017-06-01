@@ -1,0 +1,17 @@
+/*
+[name]&#x602A;&#x517D;&#x5927;&#x5B66;[/name]
+[iconbgcolor]#2c56c6[/iconbgcolor]
+Powered by ENET
+*/
+.weather #T_weather_img .Horizontalscroll{background: url(bg.jpg) center 0 repeat-x;width:100%;height:115px;position:absolute;left:0;right:0;top:0;z-index:-2}
+.hearbg{background: url(hearbg.png)!important;_background: none;__filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="template/enet_no1/style/monstersuniversity/hearbg.png");width:110px;height:110px;position:absolute;left:50%;top:4px;z-index:-1;margin-left:35px}
+.absolute_body_bg{background: url(body_bg.jpg) repeat-x 0 0;position:absolute;width:997px;height:672px;top:145px;right:0;z-index:-9}
+#T_weather_img{z-index:-2}
+.weather #T_weather_img .sky{height:150px;z-index:-2}
+.tbg_body{background-image:url(t_body_bg.jpg)}
+.weather-info{margin-left:-70px}
+.child-0{margin-left:-154px !Important}
+.weather-background{margin-left:-85px}
+#tct{margin-top: 305px}
+#flw_header{background:url(fow_hear.png) no-repeat}
+#tbg{background-color: #D0E6EB;background-repeat: repeat;background-image:url(t_body_repeat.png)}

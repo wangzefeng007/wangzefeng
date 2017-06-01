@@ -1,0 +1,37 @@
+/*
+[name]&#x795E;&#x5077;&#x5976;&#x7238;[/name]
+[iconbgcolor]#EEAD35[/iconbgcolor]
+Powered by ENET
+*/
+#nvtext {background: transparent}
+.weather #T_weather_img .Horizontalscroll{background: url(bg.jpg) center 0 repeat-x;width:100%;height:115px;position:absolute;left:0;right:0;top:0;z-index:-2}
+.focus .bm_h,.flb,.tbmu .a {background: #EEAD35 !important;border-bottom-color: #F8DFB2}
+.apps a:hover,.ct7_a .apps .tbn li.a{border-bottom-color: #BE7E07;color:#BE7E07}
+.ct7_a .apps .tbn li.a a{color:#BE7E07}
+#threadlist th a:hover, #threadlist td.fn a:hover{color:#BE7E07 !Important}
+.mn .fl .list .bm_h{border-bottom-color: #EEAD35 !Important}
+.xi2, .xi2 a, .xi3 a, .xi2 em ,.xlda dd a,#bbda-bottom a span{color: #BE7E07}
+.list .bm_h a:hover{color: #BE7E07 !important}
+.nvbg {background: #EC7200 url(nvbg.png) repeat-x !important}
+#nv .nvtext li.a ,#nv .nvtext li a:hover{background: #EC7200}
+.nvbgl {background: transparent !important}
+.mn #shareform,#borderbox,#bbda-bottom ,#border-bottom{background: #fff;border-color:#F1CC57 !important}
+.tbmu a,.tb a,#mu ul li a{color:#BE7E07 !important}
+.tbmu .a{color:#fff}
+.hearbg{background: url(hearbg.png)!important;_background: none;__filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="template/enet_no1/style/despicablme/hearbg.png");width:147px;height:110px;position:absolute;left:50%;top:3px;z-index:-1;margin-left:20px}
+.absolute_body_bg{background: url(body_bg.jpg) repeat-x 0 0;position:absolute;width:712px;height:700px;top:118px;right:0;z-index:-9}
+#T_weather_img{z-index:-2}
+.weather #T_weather_img .sky{height:150px;z-index:-2}
+.tb .o a{color:#fff !Important}
+.child-0{margin-left:-174px !Important}
+.weather-background{margin-left:-105px}
+.weather-info{margin-left:-90px}
+#tct{margin-top: 275px}
+.tbg_body{background-image:url(t_body_bg.jpg)}
+#tbg{background-color: #fbfbfb;background-repeat: repeat;background-image:none}
+.pnc, a.pnc {background: #F8AB1C;border-bottom-color: #B88503}
+.pnc:hover {background: #FFB325}
+#mu ul{background:#FDF5E5}
+#mu a:hover{border-color:#F1CC57}
+#flw_header{background:url(fow_hear.jpg) no-repeat}
+#checklens,.fow_right{color:#fff !Important}

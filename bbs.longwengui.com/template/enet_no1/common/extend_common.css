@@ -1,0 +1,504 @@
+/* ----------------------------------
+Re-develop
+(C) ENET Inc.
+-------------------------------------------------------------------- */
+
+/*Name:mod_resetLevel:GlobalExplain:重定义浏览器默认样式Last Modify:Pony*/
+body{background:#fff url({IMGDIR}/sunshine.jpg) repeat-x 0 0}
+body,input,button,select,textarea{font:12px "\5FAE\8F6F\96C5\9ED1","\5E7C\5706","sans-serif" !important;color:{TABLETEXT}}
+select{font-size:12px}
+table{empty-cells:show;border-collapse:collapse;font-size:12px}
+/*Name:mod_hr_dashedLevel:GlobalDependent:mod_hrSample:<hr class="da" />Explain:定义 1px 高度虚线样式的 <hr /> 元素Last Modify:lushnis*/
+hr.da{height:0;border:none;border-top:1px dotted {COMMONBORDER};background:transparent;color:transparent;}
+/*Name:mod_text_gray_levelLevel:GlobalDependent:-Sample:class="xs[*]"Explain:文字字号，分为四个级别Last Modify:lushnis*/
+.xg1,.xg1 a{color:{LIGHTTEXT};}
+/*Name:mod_text_importance_levelLevel:GlobalSample:class="xs[*]"Explain:文字提亮级别，分为两级，默认模板中，1为橙色，2为蓝色Last Modify:lushnis*/
+.xi2,.xi2 a,.xi3 a,.xi2 em{color:{HIGHLIGHTLINK};}
+/*Name:mod_borderLevel:GlobalDependent:-Sample:class="bbda/bbs"Explain:边框样式，该模块仅作用于元素的下边框，分为虚线和实线两种，宽度均为 1pxLast Modify:lushnis*/
+.bbda{border-bottom:1px dotted {COMMONBORDER};}
+/*Name:mod_avatarLevel:GlobalSample:<div class="avt"><img src="avatar source" alt="username" /></div>Explain:标准尺寸头像样式，默认为 48px*48px，带边框Last Modify:lushnis*/
+.avt img{padding:0px;width:52px;height:52px;background:transparent;border:0;border-color:#F2F2F2 {COMMONBORDER} {COMMONBORDER} #F2F2F2;border-radius:5px}
+.avt a{display:block;padding:2px;background:white;width:52px;height:52px;border:1px solid;border-color:#F2F2F2;border-radius:5px}
+/* ------------------------------------------------------------------------ 表单及表单元素 */
+/*.pnbutton.pncbutton with light color.pnppost button.pxinput[text].pttextarea.pfinput[file].pcinput[checkbox].prinput[radio].psselect.oshrshare button.ofavfav button with oshr.oivtinvite button with oshr*/
+/* 必填项 */
+#layer_reg .rq{color:red;margin-right:10px}
+/*Name:mod_input[text]_textarea_selectLevel:GlobalSample:class="px/pt/ps"Explain:单行输入框（px）、多行文本框（pt）和选择框(ps/select)Last Modify:Pony*/
+.er{background:#FDF4F2 !important;border:1px dashed #D42!important}
+.rfm .p_chk{color:#D42 !important;font-size:12px;font-weight:100 !Important}
+.rfm .p_tip{font-size:12px;font-weight:100 !Important}
+.px{height:25px}
+.tfm th{font-size:13px;}
+.tfm td{font-size:13px !Important}
+.px,.pt,.ps,select,.rfm .txt{border:1px solid #CDD2D7;border-radius:5px;}
+.px,.pt,.rfm .txt{padding:2px 4px;line-height:18px;}
+.px{font-size:13px}
+.er{border-color:#F66 #FFBDB9 #FFBDB9 #F66;background-color:#FDF4F4;}
+div.pt{height:100px;line-height:80px;}
+/*Name:mod_buttonLevel:GlobalSample:<button class="pn">Submit</button>Explain:按钮样式Last Modify:Pony*/
+.pn{vertical-align:middle;overflow:hidden;margin-right:3px;font-size:13px;padding:3px 10px;height:35px;color:#777;cursor:pointer;border:none;_border:1px solid transparent;text-align:center;background:#f1f1f1;border-bottom:4px solid #DADADA;-moz-box-shadow: 0 0 0;-webkit-box-shadow: 0 0 0;box-shadow: 0 0 0}
+.pn:hover{background:#f4f4f4}
+.pn em,.pn strong{font-weight:100;font-size:13px}
+.pn p{color:#fff}
+.pnc,a.pnc{color:#ffffff !important;background: #2E98E9;border-bottom: 4px solid #0669B8}
+.pnc:hover{background:#48A2E9}
+.pn, .pnpost .pn {height: 35px !Important;}
+a.rig{height:35px;line-height:35px;color:#777 !Important}
+/*Name:mod_float_typeidLevel:GlobalSample:<div class="ftid"><select><option>Option</option></select></div>Explain:模拟下拉菜单样式Last Modify:Pony*/
+.ftid a{display:block;background:#fff;overflow:hidden;border-radius:5px;padding:0 10px 0 10px;height:29px;margin-top:0;text-decoration:none !important;font-weight:400;color:{TABLETEXT} !important;border: 1px solid #CCC;border-bottom: 1px solid #E2E2E2;border-right: 1px solid #E2E2E2;font-size:13px;line-height: 30px}
+/* 分享按钮 */
+.oshr{float:right;margin-left:5px;padding:0 5px 0 22px !important;border:1px solid;border-color:#CCC #A9A9A9 #A9A9A9 #CCC}
+/*Name:mod_formLevel:GlobalSample:<form><table cellspacing="0" cellpadding="0" class="tfm"><tr><th>Label</th><td><input type="text" name="" id="" class="" /></td></tr></table></form>Explain:表单样式Last Modify:Pony*/
+/*Name:mod_postboxtitleLevel:FunctionExplain:发帖页面、弹窗等的标题栏Last Modify:Pony*/
+/* 提示信息 alert_win － altw */
+.alert_right,.alert_error,.alert_info{padding:6px 0 6px 70px;min-height:50px;height:auto !important;height:50px;line-height:160%;font-size:14px;}
+.alert_error a{color:{HIGHLIGHTLINK};}
+.alert_btnleft{margin-top:11px;}
+/* ------------------------------------------------------------------------ 页面布局 */
+/*#hear-boxHeader#nvNavigation#muCustomer menu.wpWrap#ctContainer.mnMain area.sdSide area#ftFooter----------------.bmBlock in main area.bnBlock in nerrow area.bwBlock in full width#ppPersonal Panel.pmPersonal Message (Window).pmflPM friend list (Window)*/
+/* 通用容器，定义页面宽度 */
+ .wp{margin:0 auto;width:1000px;min-width:500px;}
+#wp .wp{width:auto;}
+/* 页头 */
+#toptb{min-width:1000px;height:28px;line-height:28px;background:transparent}
+.common_toptb{border-bottom:0 !important}
+#toptb .common_i a{color:#fff}
+#toptb .y li a{color:#198BCC}
+#toptb .z{z-index:35;position:relative}
+#toptb .y{z-index:35;position:relative}
+#hear-box{margin-bottom:10px;margin-top:10px}
+#hear-box h2{float:left;}
+.hdc{min-height:0}
+#space #hear-box h2{margin-top:0;}
+#hear-box .fastlg{padding-top:10px;}
+.scbar_btn_td{width:26px;background:url({IMGDIR}/search.png) no-repeat -2px -142px;}
+#scbar_hot{padding-left:8px;}
+/* 搜索窗口 */
+#scbar{overflow:visible;position:relative;}
+.sobg{background:url({IMGDIR}/sobg.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sobg.png");width:384px;height:104px;position:absolute;margin-top:-80px;margin-left:-20px}
+#panel{border:1px solid #0AD;border-radius:5px;height:200px;display:none;width:879px;margin:auto;margin-top:10px;margin-bottom:0}
+.slide{margin:0 auto}
+.btn-slide{background:url({IMGDIR}/sos.png) no-repeat;width:100px;height:30px;text-align:center;margin:0 auto;display:block;text-decoration:none;padding:0 !Important;border:0 !important}
+.active{background:url({IMGDIR}/sog.png) no-repeat;}
+#scbar_hot{height:auto !Important}
+#scbar_hot a{padding:3px 10px}
+#scbar_hot a{height:26px;line-height:26px;color:#fff;margin-bottom:8px}
+#scbar_hot .tags0{background:#5C76B9;font-size:19px}
+#scbar_hot .tags1{background:#01A5F3;font-size:24px;}
+#scbar_hot .tags2{background:#75BD00;font-size:16px;}
+#scbar_hot .tags3{background:#0071C1;font-size:14px}
+#scbar_hot .tags4{background:#00AAA9;font-size:13px;}
+#scbar_hot .tags5{background:#3A98E0;font-size:20px;}
+#scbar_hot .tags6{background:#F06;font-size:18px;}
+#scbar_hot .tags7{background:#328C05;font-weight:bold;font-size:18px;}
+#scbar_hot .tags8{background:#F93;font-weight:bold;font-size:15px}
+#scbar_hot .tags9{background:#888;font-weight:bold;font-size:16px;}
+#scbar_hot a:hover{text-decoration:none !important;}
+#scbar_txt{width:723px !Important;border:2px solid #0ad;padding:4px 5px 5px 5px;height:31px;margin-top:0px;background:#fff;border-radius:5px 0 0 5px;font-size:15px !Important}
+.scbar_btn_td{width:83px;background:url({IMGDIR}/search_pn.png) no-repeat;border-radius:0 5px 5px 0}
+.scbar_icon_td{width:20px;background:none}
+.scbar_txt_td,.scbar_type_td{background:none}
+.scbar_type_td a{height:31px;padding: 4px 5px 5px 5px;border-top:2px solid #0ad;border-bottom:2px solid #0ad;border-right:2px solid #0ad;margin-top:0;line-height: 32px;font-size: 14px;color: #999 !important;background: url({IMGDIR}/arrwd.gif) no-repeat 100% 50%;cursor: pointer;white-space: nowrap;}
+#so_close{width:15px;height:15px;background:url({IMGDIR}/so_close.png) no-repeat;z-index:99;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/so_close.png");text-indent: -9999px;position: absolute;top: 15px;right: -7px}
+#scbar_type_menu {margin-top:0px;right: 100px !Important;top: 61px !Important;left:auto !Important}
+#scbar_type_menu a{line-height:25px}
+.allnv{width:100% !important;z-index:1}
+#nv .nvtext li a{color:#FFF}
+.nvbg{background:#005AB4 url({IMGDIR}/nvbg.png) repeat-x}
+.nvbgl{background:url({IMGDIR}/nvbgl.png) repeat;width:50%;height:50px;position:absolute;left:0px}
+#nv{height:auto;}
+#nvtext{height:50px;background:url({IMGDIR}/nv.png) no-repeat;padding-top:5px;position:relative;z-index:30;min-width:1000px}
+#nv .nvtext li{float:left;padding-right:1px;margin-left:2px;margin-right:2px;height:40px;font-weight:700;border-radius:5px 5px 0 0;font-size:14px;padding:0px 0px 5px 0px;background:none}
+.ie_all #nv .nvtext li{line-height:36px;}
+#nv .nvtext li a{float:left;text-shadow:#555 1px 2px 2px;border-radius:5px 5px 0px 0px;text-decoration:none;padding:7px 13px 0px 13px;height:38px;font-size:17px;line-height:24px;font-weight:100;}
+#nv .nvtext li a{color: {MENUTEXT};}
+#nv .nvtext li span{display:none;}
+#nv .nvtext li.a a{color: {MENUHOVERTEXT};text-shadow:#555 2px 2px 2px;}
+#nv .nvtext li.a, #nv .nvtext li a:hover{background:#005AB4;text-decoration:none}
+#mu{position:relative;z-index:1;z-index:2;width:100%;box-shadow:0 3px 3px #e4e4e4;line-height:0}
+#mu ul{line-height:22px;z-index:2;font-size:12px;border-top:0;background:#F1F8FC;}
+#mu a:hover{background:none !important;border-color:#198BCC}
+#mu ul li{background:none !Important}
+#mu ul li a{float:left;display:inline;margin:5px 6px;padding:0 10px;white-space:nowrap;color:#198BCC;border-radius:5px;height:22px;font-size:12px;font-weight:100;line-height:22px}
+.floatmu{position:absolute;left:0;top:0;background:#F1F8FC;box-shadow:0 3px 3px #CFCFCF}
+#um,#um a{color:#fff;}
+#qmenu{float:right;display:inline;margin:7px 15px 0;padding-right:10px;width:103px;height:24px;background:url({IMGDIR}/qmenu.png) no-repeat 0 0;line-height:24px;text-align:center;color:{HIGHLIGHTLINK};font-weight:700;overflow:hidden;}
+#qmenu_menu .nav{margin-top:8px}
+/*Name:mn_userapp_menuLevel:GlobalExplain:用户应用导航Last Modify:alice 2013021313*/
+#mn_userapp .icon_down{background:url({IMGDIR}/arr_w.gif) no-repeat 50% 50%;display:inline-block;width:12px;height:12px;overflow:hidden;margin-left:7px !Important;margin-right:-5px}
+#mn_userapp_menu ul.adv{position:absolute;top:0;right:0;padding:10px;height:190px;width:140px;border-left:1px solid #EBEBEB;background:#F5F5F5;text-align:left;zoom:1;}
+#mn_userapp_menu .rfm a {display: inline;padding: 3px 10px;border-bottom:0 !Important;}
+#mn_userapp_menu .flbc {margin:0 !Important}
+#mn_userapp_menu .rfm .pn{border:1px solid #999 !Important}
+/* 页面主区域 */
+.ct1{border:1px solid {COMMONBORDER};border-top:none;}
+.appl{float:right;min-height:300px;margin-bottom:10px;padding:6px 10px;width:214px;border:#dfdfdf solid 1px;border-radius:5px;padding:15px;}
+/* 导航栏-顶端版 */
+.apps li,.ct2_a .appl li{border-bottom:0px;float:left !Important;line-height:33px;}
+.apps,.ct2_a .appl{border: 0;padding: 0;border-bottom: 2px solid #E7E7E7;width: 968px !Important;height: 74px !important;z-index: 9;position: absolute;font-size: 14px;left:15px;top: 10px;border-radius: 0;float: none;min-height: 0;margin-bottom: 0;overflow: visible;}
+.ct2_a .bbda{border:0}
+.apps a:hover,.ct2_a .appl a:hover{color:#0ad;text-decoration:none}
+.apps .bbda,ct2_a .appl .bbda{border:0px}
+.apps .tbn,.ct2_a .appl .tbn{margin:0}
+.ct2_a,.ct3_a{border:1px solid #CCC;width:1000px;padding-left:0}
+.ct2_a .mn{display:inline;margin-right:0;width:710px;margin-left:0 !important;padding:15px;border:#dfdfdf solid 1px;border-radius:5px;}
+.ct3_a .mn{float:left;margin-left:20px;width:628px;margin:0;width:60%;padding:20px !important;margin-top:10px;background:#f8f8f8;border:#dfdfdf solid 1px;border-radius:5px;}
+/* 第七套页面分配 by ENET */
+.ct7_a,.ct2_a{margin-top:10px;border-radius:5px;border:1px solid {COMMONBORDER} !important;background:#fff;width:968px !Important;padding:15px;padding-top:10px;padding-bottom:86px;margin-right:auto;position:relative}
+.ct7_a .mn,.ct2_a .mn{width: 938px;padding:15px;top:76px;position:relative}
+.ct7_a .apps .tbn li.a,.ct2_a .appl .tbn li.a{margin:0;padding:0 10px 0 9px;border-top:0px;border-bottom:2px solid #0ad;border-bottom-style:solid;}
+.ct7_a .apps .tbmu,.ct2_a .appl .tbmu{padding:15px 10px 8px 10px;border-bottom:0}
+.ct7_a .apps .tip_3,.ct7_a .apps .tip_4,.ct2_a .appl .tip_3,.ct2_a .appl .tip_4{margin-top:20px;margin-left:35px;}
+.ct7_a .apps .tbn ul a,.ct2_a .appl .tbn ul a{display:block;height:33px;float:left;line-height:33px;}
+.ct7_a .mn .mt,.ct2_a .mn .mt{display:none}
+.ct7_a .apps .tbn li em,.ct2_a .appl .tbn li em{display:none}
+.ct7_a .apps .tbn li.a a,.ct2_a .appl .tbn li.a a{color:#0ad}
+/* 第八套页面分配 by ENET */
+.ct8_a .mn{width:730px;float:right;padding-top:4px;margin-top:5px}
+.ct8_a .sd{margin-right:0;width:240px;float:left !important;overflow:hidden;_overflow-y:visible;}
+/* 页尾 */
+#footer{padding:10px 0 50px;margin-top:20px;border-top:2px solid #0ad;background:#333438;padding-top:15px;padding-bottom:30px;line-height:1.8 !important;color:#888886;width:100% !important;height:auto !important}
+#ft{border:0 !important;padding:0}
+.ltwmes{background:url({IMGDIR}/footbg.png) no-repeat 0 0;width:192px;height:55px;margin:auto;margin-bottom:5px}
+#footer #footertext{text-align:center;overflow:hidden;clear:both;margin:0 auto;}
+#footer #footertext a,.bbsname a,.discuzby a,#banquan a{color:#888886}
+#scrolltop{visibility:hidden;position:fixed;bottom:200px;display:block;margin:-30px 0 0 2px;width:40px;width:65px;height:66px;padding:0;background:url({IMGDIR}/fhtop.png) no-repeat 0 0;border:0;border-radius:7px;border-top:0;cursor:pointer;}
+#scrolltop a{display:block;width:65px;border:0;height:66px;border-radius:7px;padding:0;line-height:12px;text-align:center;color:#787878;text-decoration:none;background:url({IMGDIR}/fhtop.png) no-repeat 0 0;}
+a.scrolltopa:hover{background-position:-65px 0px !important;}
+a.replyfast{background-position:0 -66px !important;}
+a.replyfast:hover{background-position:-65px -66px !important;}
+a.returnlist{background-position:0 -132px !important;}
+a.returnlist:hover{background-position:-65px -132px !important;}
+a.returnboard{background-position:0 -198px !important;}
+a.returnboard:hover{background-position:-65px -198px !important;}
+#flk a{color:#888886}
+#flk span{color:#888886}
+#footertext img{vertical-align: middle;border-radius:5px}
+/* 通用的区域块 */
+/*.bm 是最常用的区块元素，默认带有 1px 的边框和 10px 的下边距。一般情况下，.bm 内应包括两个子容器：.bm_h 和 .bm_c，前者代表区块头部，带有灰色背景和下边框；后者是容器主体，默认带有 10px 的内边距。.bm 另有三种子样式.bmwWeight头部为彩色背景.bmlLite头部无背景填充.bmnNotice整体带有彩色背景，常用于提示信息*/
+.bm{border:1px solid {COMMONBORDER};background:{WRAPBG};border-radius:5px;}
+.bm_h .o{float:right;width:65px;}
+.bm_h .o img{float:right;margin-top:4px;cursor:pointer;}
+.bm_h .i{padding-left:10px;padding-top:0}
+.bm_h{padding:0 10px;height:31px;border-radius:5px 5px 0 0;background:#f8f8f8;border-bottom:1px solid ;border-bottom-color:{COMMONBORDER};line-height:31px;white-space:nowrap;}
+#main_message .bm_h{padding:0 10px;height:35px;border-radius:5px 5px 0 0;background:none;border-bottom:1px solid #dfdfdf;line-height:36px;white-space:nowrap;margin:3px 10px}
+.bm_h h2{float:left;font-size:13px;font-weight:400}
+.bmw .bm_h a{font-size:17px;font-family:"Lucida Grande","\5FAE\8F6F\96C5\9ED1" !important;color:#555;font-weight:normal;color:#555;}
+.bml .bm_h{border:none;background:transparent;margin-bottom:5px;}
+.bmn{padding:7px 10px;border:0;background:#E8F3FF;}
+.fl{background:{WRAPBG}}
+.fl .bm_h{border-width:1px 0;border:none;padding-top:7px;background:#F2F2F2 !important;border-color:#C2D5E3;background:none;}
+.fl .bm_c,#online .bm_c,.lk .bm_c{padding-top:0;padding-bottom:0;border-top:1px solid {COMMONBORDER};}
+/*Name:mod_userheaderLevel:GlobalSample:div id="uhd"Explain:论坛皮肤下用户页面头部Last Modify:lushnis*/
+#uhd{padding-top:10px;border:1px solid {COMMONBORDER};border-bottom:none;background:{SPECIALBG};margin-bottom:-5px}
+#uhd .mn{float:right;margin-right:15px;width:auto;margin-bottom:-30px;line-height:28px;}
+#uhd .flw_hd{float:right;margin-right:15px;margin-bottom:-30px;}
+/*Name:mod_tabLevel:GlobalDependent:mod_clearfixSample:<ul class="tb cl"><li class="a"><a href="#">Active Tab Item</a></li><li><a href="#">Tab Item</a></li></ul>Explain:标签样式Last Modify:lushnis*/
+.tb{margin-top:10px;padding-left:10px;line-height:30px;margin-bottom:5px;border-bottom:1px solid {COMMONBORDER};}
+.tb li{float:left;margin:0 3px -1px 0;}
+.tb a{display:block;float:left;background:#fff;padding:0 10px;font-size:12px;border-radius:5px;margin-bottom:7px;font-size:13px}
+.tb .a a,.tb .current a{font-weight:700;border-bottom:0px;border-radius:5px 5px 0 0;margin-bottom:0px;padding-bottom:8px;border-bottom:0px !important}
+.tb .y a{border:none;background:transparent;font-size:12px;padding-right:0px;}
+.tb .o{margin:4px 4px 0 2px;border:1px solid #235994;}
+.tb .o,.tb .o a{height:23px;line-height:23px;border:none;border-radius:3px;background:#0696DA}
+.tb .o a{padding:0 15px;border:none;font-weight:700;color:#FFF;font-size:12px;}
+.tb_h{margin:0;padding:0;background-color:{SPECIALBG};border-radius:5px 5px 0 0}
+.tb_h .o{margin-top:5px;}
+/* 类似menu的Tab */
+.tbmu{padding:8px 10px 8px 10px;border-bottom:0}
+/* ------------------------------------------------------------------------ 列表样式 */
+/*.xlText list.xl11 line list ( wrap text will be hidden );.xl22 col list.xldlist with description ( the HTML tag must be <dl> ).mlMedia/Image list.mlsMedia size:48*48px.flForum list.tlThread list.alApplication list*/
+/* text with thumbnail image ( must with the additional class .cl ) */
+.xld .m{float:left;margin:8px 10px 10px 0;}
+/* 图片列表 */
+.ml li{float:left;padding:0 10px 10px;text-align:left;overflow:hidden;}
+.ml p,.ml span{display:block;width:100%;height:20px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;text-align:center}
+.mla li{width:148px !Important;height:194px;box-shadow:0 1px 4px rgba(0,0,0,.15);margin-right:10px;border:1px solid #E5E5E5;background:#fff;margin-bottom:10px}
+.mla .c{margin:0 auto;width:145px;height:160px;text-align:left;position:relative}
+.mla .ptn a{font-size:14px}
+.mla .ptn{margin-bottom:3px;margin-top:6px;text-align:left}
+.mla .c a{display:block;padding:10px 0 0 0;width:145px;height:150px;overflow:hidden;}
+.mla .c div{float:left;display:inline-block;margin:25px 5px 0 5px;font-size:16px;line-height:1;color:white;}
+.mla img{width:150px;height:150px;max-width:145px;max-height:150px;_width:145px;_height:150px}
+.mlp li{width:145px;height:150px;}
+.mla .pic-num-wrap{position:absolute;left:0;bottom:0;width:100%;height:50px;text-align:right;background-image:-webkit-linear-gradient(top,transparent,rgba(26,26,26,.4));background-image:-moz-linear-gradient(top,transparent,rgba(26,26,26,.4));background-image:-o-linear-gradient(top,transparent,rgba(26,26,26,.4));background-image:linear-gradient(rgba(255,255,255,0),rgba(26,26,26,.4));-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='#00FFFFFF',endColorstr='#661A1A1A',gradientType=0)";filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00FFFFFF',endColorstr='#661A1A1A',gradientType=0);}
+.mla .pic-num-wrap .pic-num{display:inline-block;margin:17px 5px 0 0;font-size:26px;line-height:1;color:white;height:26px;float:right}
+/* ------------------------------------------------------------------------ 其他特定功能块 */
+/* 简易编辑器 Tiny Editor */
+.tedt{width:98%;border:1px solid;border-color:{COMMONBORDER} !important;border-radius:5px}
+.tedt .bar{padding:0 10px 0 0;height:25px;line-height:25px;border-bottom:1px solid {COMMONBORDER};background:#fff;border-radius:5px 5px 0 0}
+.tedt .area{padding:4px;background:{WRAPBG};zoom:1;border-radius:0 0 5px 5px}
+/*Name:mod_diy_buttonLevel:FuctionExplain:页面头部的 DIY 按钮Last Modify:Pony 1207021442*/
+#diy-tg{float:right;padding:0 !important;width:53px;background:url({IMGDIR}/panel-toggle.png) no-repeat;text-indent:-9999px;padding:0px !important;overflow:hidden;margin-top:3px;margin-right:-1px !important}
+#diy-tg_menu{position:absolute;margin:-8px 0 0 -20px !important;padding:6px 0;width:72px;height:48px;line-height:24px;background:url({IMGDIR}/panel-toggle-drop.png) no-repeat 0 0;text-align:center}
+/*Name:mod_switch_buttonLevel:FuctionDependent:sslct_menu 需要 class mod_popupmenuExplain:风格/宽窄切换菜单Last Modify:Pony 1207021458*/
+#sslct{margin-top:0px;padding:0 !important;cursor:pointer;width:46px;height:46px !important;background:url({IMGDIR}/theme.png) no-repeat 100% 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/theme.png",sizingMethod="crop");text-indent:-9999px;overflow:hidden;position:absolute;right:0px;top:0;z-index:7}
+#sslct:hover{background-position:0 -46px;height:46px;}
+.sslct_btn{float:left;margin:4px 4px 0 0;width:92px;height:62px;border:1px solid {COMMONBORDER};cursor:auto;}
+.sslct_btn i{float:left;display:inline;margin:1px;width:90px;height:60px;background:#999;overflow:hidden;font-style:normal;}
+#toptb a.switchblind{width:auto;background-image:none;}
+/* 弹出菜单、弹出层及弹出窗口 */
+.p_pop,.p_pof,.sllt{border:1px solid;min-width:60px;border-color:{DROPMENUBORDER};;box-shadow:1px 2px 2px rgba(0,0,0,0.3);}
+.p_pop a{display:block;padding:3px 10px;border-bottom:1px solid{SPECIALBG};white-space:nowrap;}
+.p_pop a:hover,.p_pop a.a,#sctype_menu .sca{color:{HIGHLIGHTLINK};background:transparent;;text-decoration:none;}
+.blk a:hover{background:none;text-shadow:none;text-decoration:underline;}
+.blk p{margin:5px 0}
+/* 弹出层 以下 class 都可以分开写，单独定义，以便个性化 */
+.t_l, .t_c, .t_r, .m_l, .m_r, .b_l, .b_c, .b_r{background:transparent;margin:0;width:0;height:0}
+/* 四条边、四个角的公用样式 */
+#scbar .t_l,#scbar .t_c,#scbar .t_r,#scbar .m_l,#scbar .m_r,#scbar .b_l,#scbar .b_c,#scbar .b_r{overflow:hidden;{FLOATMASKBGCODE};opacity:0.2;filter:alpha(opacity=20);}
+/* 四个角 */
+#scbar .t_l,#scbar .t_r,#scbar .b_l,#scbar .b_r{width:8px;height:8px;}
+/* 上下两条边 */
+#scbar .t_c,#scbar .b_c{height:8px;}
+/* 左右两条边 */
+#scbar .m_l,#scbar .m_r{width:8px;}
+.m_c{background:white;box-shadow:0 1px 10px #666;border:1px solid #E5E5E5}
+/* 弹出层内容区 by Pony */
+.m_c .o{padding:8px 10px;height:35px;text-align:right;border-top:1px solid #e4e4e4;background:#f9f9f9;}
+/* .flb 弹出层header */
+.flb{background:#3A98E0;margin-bottom:8px;padding-bottom:5px;height:30px;line-height:20px;border-bottom:5px solid #DBEFFA;padding:0}
+.nfl .f_c .flb{background:transparent;border:0;margin-bottom:0}
+.nfl .f_c .flb em{color:#333}
+.flb em{float:left;font-size:13px;font-weight:100;color:#fff;padding-top:5px;padding-left:10px}
+.m_c .flbc,#mn_userapp_menu .flbc{float:left;width:30px;height:30px;overflow:hidden;text-indent:-9999px;background:url({IMGDIR}/guanbi.png) no-repeat 0 0;cursor:pointer;padding: 0;}
+.m_c .flbc:hover,#mn_userapp_menu .flbc:hover{background-position:0 -30px;}
+#e_image_menu .m_c .flbc ,#e_attach_menu .m_c .flbc,#icoAttach_attach_menu .m_c .flbc,#icoImg_image_menu .m_c .flbc{float: left;width: 20px;height: 20px;overflow: hidden;text-indent: -9999px;background: url('{IMGDIR}/cls.gif') no-repeat 0 0;cursor: pointer;}
+#e_image_menu .m_c .flbc:hover,#e_attach_menu .m_c .flbc:hover,#icoAttach_attach_menu .m_c .flbc:hover,#icoImg_image_menu .m_c .flbc:hover{background-position: 0 -20px}
+#mn_userapp_menu .login_slct a{padding-right: 16px;}
+/* 弹窗未开启时 nofloat */
+.nfl .f_c{margin:60px auto;padding:20px;width:580px;border:3px solid {COMMONBG};border-radius:5px;background:{WRAPBG};}
+/* 短消息对话框 .pm -> personal_message (window) by Pony */
+.pm .flb { margin-bottom: 0; padding: 1px 5px 4px; background: #CCC url({IMGDIR}/pm.png) repeat-x 0 -101px; border-bottom:0 !Important;height: 20px;line-height: 20px}
+.pm .flb em {padding:0; padding-left: 15px; background: url({IMGDIR}/pm.png) no-repeat 0 -65px; text-shadow: 1px 1px 1px {WRAPBG}; color: {LINK}; font-size: 12px;}
+.pm .flbc { background-image: url({IMGDIR}/pm.png);width:20px;height:20px }
+.pm .flbc:hover {background-position: 0 -20px;}
+.rfm .px:focus{border-color:{HIGHLIGHTLINK};}
+.rfm .p_chk{position:absolute;z-index:1;padding-left:10px;width:390px;color:red;font-family:{FONT};}
+.fastlg_fm{margin-right:5px;padding-right:5px;border-right:1px dashed #0ad !important;margin-right:5px !Important;padding-right:13px !Important;}
+.pg a,.pg strong,.pgb a,.pg label{float:left;border-radius:6px;display:inline;margin-left:4px;padding:0 9px;height:26px;border:1px solid;border-color:{COMMONBORDER};background:url({IMGDIR}/forum_num.png);color:{LINK};overflow:hidden;text-decoration:none;}
+.pg a.nxt{padding-right:25px;background-image:url({IMGDIR}/arw_r.gif);background-position:90% 50%;background-repeat:no-repeat;background-color:white}
+.pg a.prev{background-image:url({IMGDIR}/arw_l.gif);background-position:50% 50%;background-repeat:no-repeat;background-color:white}
+.pg strong{background:#488FCF !important;border-color:#2470B5 #488FCF #488FCF #488FCF;color:#fff}
+.pgb a{padding-left:25px;background-image:url({IMGDIR}/arw_l.gif);background-position:10px 50%;background-repeat:no-repeat;background-color:white}
+.pg label .px{padding:0;width:25px;height:16px !important;border-radius:5px;line-height:16px;font-size:12px !important}
+/* 热点：站长推荐内容，在页面右下角弹出 */
+.focus{position:fixed;right:10px;bottom:0;z-index:300;overflow:hidden;width:270px;box-shadow:0 1px 10px #666;border-radius:5px;bottom:10px;background:transparent}
+.focus .bm{margin:3px;border:0 !important;}
+.focus .bm_c{border-radius:0 0 5px 5px;border:1px solid {COMMONBORDER};border-top:0}
+.focus .bm_h{border-radius:5px 5px 0 0;border:1px solid {COMMONBORDER};border-bottom:0}
+.focus h2{line-height:30px !important;height:30px !important;font-weight:normal !important;}
+.focus .bm_c{margin:0 !important}
+.focus dd{text-align:left !important;line-height:1.8}
+.focus .bm_h{height:30px !important;border-top:0px;border-bottom:0px;background:#3A98E0;padding:0px;font-size:13px;border-bottom:5px solid #DBEFFA}
+.focus .bm_h h2{border:0px !important;padding-left:10px;color:#fff}
+.focus .bm_h a{height:30px;line-height:31px}
+.focus .bm_h a{float:right;width:30px;height:30px;border-radius:0 4px 0 0;overflow:hidden;text-indent:-9999px;background:url({IMGDIR}/guanbi.png) no-repeat 0 0;cursor:pointer;}
+.focus .bm_h a:hover{background-position:0 -30px;}
+/* ------------------------------------------------------------------------ 拖拽及页面 DIY */
+.frame,.frame-tab{border:1px solid{WRAPBORDERCOLOR};background:{WRAPBG};border-radius:5px}
+/* End */
+.frame-tab .tb li{margin:0;margin-left:10px;font-weight:400;}
+.frame-tab .tb li,.frame-tab .tb li a{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;border-top:none;background:transparent url({IMGDIR}/bbs_tab1.png) no-repeat;color:#0060a6;height:40px;}
+.frame-tab .tb .a a{font-weight:700;}
+/* 名片 */
+.card a{padding:0;display:inline;white-space:normal;border-bottom:none;}
+.card a:hover{color:{TABLETEXT};text-shadow:none;}
+.card .avt a{background:none !important}
+/*Name:mod_BIUCLevel:GlobalExplain:模块中编辑单条数据BIU、颜色选择器其中 colorwd 要配合 pn 使用（不要合并 colorwd 的 background，因为其他配色会受影响）Last Modify:Pony*/
+.colorwd{margin-left:3px;width:23px !important;height:23px !important;background-color:{MIDTEXT};background-image:url({IMGDIR}/pn_color.png) !important;background-repeat:no-repeat;background-position:0 0;}
+/*DIY图片幻灯片未加载时隐藏,模块标识隐藏*/
+.patch .bm{border-color:#F26C4F;}
+.patch th,.patch td{padding:2px;border-bottom:1px dotted {COMMONBORDER};}
+/* 瀑布流布局 by Alice 1303191756 */
+.waterfall .c,.waterfall h3{padding:10px;border:solid #EAEAEA;border-width:0 1px;background-color:#fff;}
+/* 用户浮窗 by ENET */
+#myhome_menu .pipe{display:none}
+#myhome_menu{top:31px !important;}
+.um_hear a{border:0;color:white !important;display:inline-block;padding:0;margin-top:3px}
+.j_um{min-height:73px;height:expression( this.scrollHeight < 73 ? "73px":"auto" );padding-left:10px}
+.j_um .avt{float:left;padding-bottom:5px}
+.j_um em{color:#fff;float:left;line-height:23px}
+#myhome_menu .umrights a{float:left;border-radius:5px;background:#DBEFFA !Important;padding:7px 11px;margin:2px 0;display: inline-block;text-indent:0;margin-bottom:5px;margin-left:9px !Important}
+#usergroup{padding-bottom:3px}
+.um_hear #background_avt{background:none;margin-top:10px;border:none;padding:0px;margin-right:10px}
+.um_hear{border-radius:25px 0 0 0;background:url({IMGDIR}/user_hear.png) no-repeat}
+.um_hear #username{font-size:16px;margin-top:17px}
+.um_hear #myprompt{background:url({IMGDIR}/myprompt.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #notice_system{background:url({IMGDIR}/notice_system.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #notice_interactive{background:url({IMGDIR}/notice_interactive.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #notice_follow{background:url({IMGDIR}/notice_follow.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #notice_follower{background:url({IMGDIR}/notice_follower.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #pm_ntc{background:url({IMGDIR}/pm_ntc.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #notice_manage{background:url({IMGDIR}/notice_manage.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #notice_mypost{background:url({IMGDIR}/notice_mypost.png) no-repeat;width:20px;height:17px;text-indent:-9999px;margin-right:3px;margin-bottom:5px;display:block;float:left}
+.um_hear #plug_i a{margin-top:5px}
+.um_hear .j_um .um_pm em{line-height: 17px;height: 17px;margin-right: 3px;margin-bottom: 5px;margin-top: 3px}
+.membercard{width:236px;float:right;box-shadow:0 1px 10px #666;z-index:301;border-radius:25px 0 5px 5px;background:transparent}
+.umdivtb{border:1px solid {COMMONBORDER};border-bottom:2px solid {COMMONBORDER};border-top:0px;border-radius:0 0 5px 5px;background:white}
+#logout_a{background:url({IMGDIR}/tui.png) no-repeat;margin-top:10px;text-indent:-999999px;margin-right:10px;margin-left:10px;height:35px;margin-bottom:0px;border-bottom:0px !important;padding:0 !important}
+.user_hear_bottom{background:url({IMGDIR}/user_hear_bottom.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/user_hear_bottom.png");width:230px;height:25px;margin-top:-5px}
+.umrights .pipe{display:none}
+.umrights img{float:left}
+.diynav .pipe{display:none}
+/* 天气 by ENET */
+.weather{position:absolute;top:0;left:0;width:100%;z-index:-1}
+.weather .sky{top:0;left:0;position:absolute;cursor:pointer;width:100%}
+.weather .sky .child-0{width:68px;margin-top:10px;height:68px;position:absolute;left:50%;margin-left:-84px}
+.icobottom{width:68px;text-align:center;margin-top:60px}
+.weather-info{position:absolute;width:100%;z-index:-1}
+.weather-info span,.weather-info div{color:white;font-size:15px;float:left;text-shadow:1px 1px 5px #777;left:50%;position:absolute;margin-left:10px}
+#T_weather{top:58px}
+#T_weather_img{z-index:-4}
+#T_temperature{top:80px;margin-left:-75px}
+.weather-info #timeShow{font-size:30px;font-weight:700;top:18px}
+.city_all{top:80px;height:16px}
+.city_all span{left:auto;margin:0;position:relative}
+.city_all .city_ico{background:url({IMGDIR}/location.png) no-repeat;margin-left:5px;margin-top:4px;width:16px;height:16px;left:auto;position:relative;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/location.png")}
+.city{margin-right:5px}
+.weather-background{background:url({IMGDIR}/weather-background.png) no-repeat;position:absolute;left:50%;z-index:-2;width:20px;height:100px;margin-left:-16px;margin-top:8px;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/weather-background.png")}
+.weather #T_weather_img .sky{height:150px;z-index:-4}
+.weather #T_weather_img #sunshine .child-0{background:url({IMGDIR}/sunshine_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sunshine_0.png")}
+.weather .wtimg #sunshine{background:url({IMGDIR}/sunshine.jpg) center 0 repeat-x;}
+.weather #T_weather_img #cloudy .child-0{background:url({IMGDIR}/cloudy_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/cloudy_0.png")}
+.weather .wtimg #cloudy{background:url({IMGDIR}/cloudy.jpg) center 0 repeat-x;}
+.weather #T_weather_img #mist .child-0{background:url({IMGDIR}/mist_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/mist_0.png")}
+.weather .wtimg #mist{background:url({IMGDIR}/overcast.jpg) center 0 repeat-x;}
+.weather #T_weather_img #thundershower .child-0{background:url({IMGDIR}/thundershower_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/thundershower_0.png")}
+.weather .wtimg #thundershower{background:url({IMGDIR}/thundershower.jpg) center 0 repeat-x;}
+.weather #T_weather_img #lightsnow .child-0{background:url({IMGDIR}/lightsnow_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/lightsnow_0.png")}
+.weather .wtimg #lightsnow{background:url({IMGDIR}/snow.jpg) center 0 repeat-x;}
+.weather #T_weather_img #heavysnow .child-0{background:url({IMGDIR}/heavysnow_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/heavysnow_0.png")}
+.weather .wtimg #heavysnow{background:url({IMGDIR}/snow.jpg) center 0 repeat-x;}
+.weather #T_weather_img #sandstorm .child-0{background:url({IMGDIR}/sandstorm_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sandstorm_0.png")}
+.weather .wtimg #sandstorm{background:url({IMGDIR}/overcast.jpg) center 0 repeat-x;}
+.weather #T_weather_img #overcast .child-0{background:url({IMGDIR}/overcast_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/overcast_0.png")}
+.weather .wtimg #overcast{background:url({IMGDIR}/overcast.jpg) center 0 repeat-x;}
+.weather #T_weather_img #sprinkle .child-0{background:url({IMGDIR}/sprinkle_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sprinkle_0.png")}
+.weather .wtimg #sprinkle{background:url({IMGDIR}/rainy.jpg) center 0 repeat-x;}
+.weather #T_weather_img #hailstone .child-0{background:url({IMGDIR}/hailstone_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/hailstone_0.png")}
+.weather .wtimg #hailstone{background:url({IMGDIR}/hailstone.jpg) center 0 repeat-x;}
+.weather #T_weather_img #moderaterain .child-0{background:url({IMGDIR}/moderaterain_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/moderaterain_0.png")}
+.weather .wtimg #moderaterain{background:url({IMGDIR}/rainy.jpg) center 0 repeat-x;}
+.weather #T_weather_img #sleet .child-0{background:url({IMGDIR}/sleet_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sleet_0.png")}
+.weather .wtimg #sleet{background:url({IMGDIR}/sleet.jpg) center 0 repeat-x;}
+.weather #T_weather_img #snow .child-0{background:url({IMGDIR}/snow_0.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/snow_0.png")}
+.weather .wtimg #snow{background:url({IMGDIR}/snow.jpg) center 0 repeat-x;}
+/* 浮动窗口-切换风格专用 by ENET 插件easyDialog v2.0 by Stylechen.com */
+.easyDialog_wrapper{width:508px;color:#444;box-shadow: 0 1px 10px #666;display:none}
+.easyDialog_wrapper .easyDialog_content{background:#fff;border:1px solid #e5e5e5;}
+.easyDialog_wrapper .easyDialog_title{height:30px;line-height:30px;overflow:hidden;color:#666;padding:0 10px;font-size:14px;border-bottom:1px solid #e5e5e5;background:#f7f7f7;border-radius:4px 4px 0 0;}
+.easyDialog_wrapper .close_btn{font-family:arial;font-size:18px;_font-size:12px;font-weight:700;color:#999;text-decoration:none;float:right;}
+.easyDialog_wrapper .easyDialog_text{padding:0 6px 10px 10px;display:block;}
+.easyDialog_wrapper .easyDialog_footer{padding:0 10px;*zoom:1;}
+.easyDialog_wrapper .easyDialog_footer:after{display:block;height:0;overflow:hidden;visibility:hidden;clear:both;}
+.easyDialog_wrapper .btn_highlight,.easyDialog_wrapper .btn_normal{border:1px solid;border-radius:2px;cursor:pointer;float:right;font-size:12px;padding:0 12px;height:24px;line-height:24px;margin-bottom:10px;}
+.login_text{background:url({IMGDIR}/login_q.png) no-repeat;width:506px;height:25px;margin-top:-10px;margin-bottom:5px;margin-left:-10px;position:relative;z-index:9;display:block;margin-right:-10px}
+/* Because of the specific factors the following additional CSS failed to classification,hope to understand by ENET */
+.fl_icn_g{float:left;width:70px !important;}
+.tdats .tfxf{width:435px !important;}
+#td_timeoffset select{padding:2px 2px 2px 1px;width:92%;height:25px}
+#chart{padding:10px}
+#newspecial_menu li,#sti .wx{display:block;background:url({IMGDIR}/folder_new.gif) no-repeat 8px 50%;zoom:1;padding:2px;}
+.flw_article .c img{display:block;margin:10px 0;max-width:583px !important;}
+.bm_c{padding:10px;}
+.area textarea{height:100px;}
+.scbar_txt_td input{color:#999 !important}
+#g_guide span{color:#999 !important}
+.bbsname .pipe{color:#868686 !important}
+.exfm .pn{line-height:30px !important;font-size:14px !important;height:30px !important}
+.pbg{height:16px !important}
+.focus .bm_h h2{position:relative !Important}
+#umnav_menu a{line-height:2.2}
+#um .avt img,.membercard .avt img{padding:0px;width:52px;height:52px;background:transparent;border:0;border-color:#F2F2F2 {COMMONBORDER} {COMMONBORDER} #F2F2F2;border-radius:30px !Important}
+#um .avt a,.um_hear #background_avt{display:block;padding:2px;background:white ;width:52px;height:52px;border:1px solid;border-color:#F2F2F2;border-radius:30px !important;}
+.cmt .tri{background:none !important}
+.cmt{border:0 !important}
+.tbmu .a{color:white !Important;font-weight:700;background:#0A8CD2;border-radius:5px}
+.tbmu a{color:#198BCC;padding:4px 8px}
+.tbmu .pipe{display:none}
+.tbmu{border-bottom:0;padding-left:10px}
+#bbda-bottom a span{color:{HIGHLIGHTLINK}}
+.bf{background:#fff !Important}
+.xg1 em{color:#666}
+.zeen a{color:#fff}
+#sg{background:#FFF;width:456px;border:1px solid #B2C7DA;}
+.scbar_narrow #sg{width:316px;}
+#sg li{padding:0 8px;line-height:30px;font-size:14px;}
+#sg li span{color:#999;}
+.sml{background:#FFF;cursor:default;}
+.smo{background:#E5EDF2;cursor:default;}
+.my_flw_stats{width:100px;}
+#fastpostform{width:100% !important;}
+#moodfm textarea{width:540px;height:56px;border:1px solid;border-color:#848484 #E0E0E0 #E0E0E0 #848484;overflow-y:auto;}
+#moodfm{margin-bottom:10px;}
+.bw0{background:transparent;}
+#um .avt{display:inline;margin-right:-50px;position:relative;float:right;z-index:100;}
+#main_message .flb{background:transparent;margin:0;padding:0;border:0;height:25px}
+#pm_ntc.new{background:none;padding-left:0px;}
+#myprompt.new{background:none;padding-left:0px;}
+#fastlg_ls{position:absolute;color:#fff;padding-left:245px;width:70px;padding-top:60px;border-right:0px;}
+#um{padding-top:3px;padding-right:50px;line-height:2.3;width:auto;float:right;}
+#qmenu{float:right;display:inline;width:23px;height:23px;background:url({IMGDIR}/daohang.png) no-repeat 0 0;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/daohang.png");line-height:23px;text-align:center;color:#198BCC;margin-right:0px;font-weight:700;margin-top:12px;overflow:hidden;text-indent:-9999px;margin-top:9px;padding-right:0px !important}
+#qmenu.a{position:relative;z-index:302;background-position:0px;}
+#qmenu_menu{margin-top:5px;padding:0px 5px 10px;width:610px;border-color:#DCE4EB;}
+#so{background:url({IMGDIR}/so.png) no-repeat 0 0;line-height:23px;text-align:center;padding:0px;font-weight:700;overflow:hidden;text-indent:-9999px;width:23px;margin-top:9px;float:right;margin-right:10px;padding-right:0px !important;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/so.png");}
+#mn_userapp_menu{z-index:300 !important}
+#newspecial_menu{border-radius:0px}
+#sg{background:#FFF;width:456px;border:1px solid #B2C7DA;}
+.scbar_narrow #sg{width:316px;}
+#sg li{padding:0 8px;line-height:30px;font-size:14px;}
+#sg li span{color:#999;}
+.sml{background:#FFF;cursor:default;}
+.smo{background:#E5EDF2;cursor:default;}
+.top30{line-height:30px;float:right;border:1px solid #fff;border-radius:5px 0 0 5px;padding-left:10px;height:30px;margin-top:13px;padding-right:15px;margin-right:-8px}
+.mn #bbda-bottom{padding-left:15px;padding-right:15px;padding-bottom:10px;padding-top:10px;margin:0px;border-radius:0 0 5px 5px !important;border:0;border-top:1px solid #1CB4D1}
+.mn #shareform,#borderbox,#bbda-bottom{background:#fff;padding:15px;border-radius:5px;border:1px solid #27A5EC;border-width:1px 1px 2px 1px}
+.p_avt img{width:35px;height:35px;border-radius:5px}
+.p_avt{width:35px;height:35px;position:absolute}
+.p_textarea{border-radius:0;width:100%;height:50px !important;border:0;padding:0}
+.p_div_text{padding:5px;margin-bottom:5px}
+.f_l{float:left;}
+.f_r{float:right;}
+.loggingbox .avt img{margin-right:10px !important}
+#loggingbox .tb{margin-bottom:0}
+.ts a{color:#444}
+.date_pic span{text-align:left}
+#diy-tg_menu a{color:#0A8CD2!important}
+.pn,.pnpost .pn{height:28px}
+.waterfall li{padding: 0 0 3px !important}
+.bm .mls li {padding: 0 0 5px;}
+.wp .tl .threadpre .threadpretd{border:0 !Important;background:none !important;padding-top:0 !Important}
+.wp .tl .threadpre .threadpretd .xw0 a{color:{HIGHLIGHTLINK}}
+.wp #threadlist td div .icon_preview{left: 60px;top: -8px;}
+.ct7_a .tl .by,.ct2_a .tl .by{text-align:left !Important}
+.fastpreview{margin-left:15px;margin-right:15px;background:#FCFCFC;border:1px solid #C2D5E3;border-radius:5px;padding-top:10px;padding-bottom:10px}
+.showhide{margin-right:15px !Important}
+.flb span a, .flb strong{padding-top:5px;color:#fff !Important}
+.flb span .flbc{padding-top:0}
+.px, .pt, .ps, select{background:#fff}
+.rfm table,.rfm th, .rfm td{line-height:29px;font-size:13px}
+.rfm .px ,.rfm .txt{height: 25px;font-size:13px}
+.rfm th{padding-right:15px !Important}
+.rfm .ps,.rfm select {height: 31px;font-size:13px}
+.rfm{border-bottom:0}
+.rfm .px,.rfm .txt{width:220px !important}
+.dpbtn{border:none;margin-left:5px;border-radius:5px}
+.filebtn{width:73px !important}
+#postbox .mbn, #psd .mbn {height: 3em;line-height: 3em;}
+.sinf p, .sadd p {height: 31px !important;}
+#e_simple, #e_fullswitcher{height:20px !important;line-height:20px !important}
+.tbms{background-color:#fff}
+#fj .p_fre{height: 16px !Important;font-size:12px !important}
+.d span,.d{font-size:12px}
+.showmenu{padding-right:16px !important}
+.pgbtn a{display:block;margin-bottom:10px;border-color:#dfdfdf;border-radius:3px;text-align:center;background: whiteSmoke url({IMGDIR}/bg_pgbtn.png) repeat-x 0 0 !Important}
+.pgbtn a:hover{text-decoration:none;border-color:#bababa}
+.MainNav{display:none}
+/* 应用列表*/
+.appl li{display:block;height:28px;line-height:28px;white-space:nowrap;word-wrap:normal;font-size:13px;text-overflow:ellipsis;overflow:hidden;float:none !important}
+.tbn li{margin:0 10px;height:33px;}
+.tbn li.a{margin:0 !important;padding:0 10px 0 9px;border-top:1px solid {COMMONBORDER};border-bottom-style:solid;background:{WRAPBG};margin-top:-1px !Important}
+
+.lk{padding-top:10px}
+.ct2 .mn{width:770px}
