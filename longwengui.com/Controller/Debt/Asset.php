@@ -35,7 +35,7 @@ class Asset
             $MysqlWhere .= ' and Title like \'%' . $Keywords . '%\'';
         }
         //分页查询开始-------------------------------------------------
-        $MysqlWhere .= ' order by AddTime desc';
+        $MysqlWhere .= ' and ProductStatus =1 order by AddTime desc';
         //关键字
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
         $Page=intval($_GET['p'])?intval($_GET['p']):0;

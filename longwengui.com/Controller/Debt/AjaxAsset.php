@@ -89,12 +89,12 @@ class AjaxAsset
                         $InsertImage = $MemberAssetImageModule->InsertInfo(array('AssetID'=>$ID,'ImageUrl'=>$value,'IsDefault'=>$IsDefault));
                     }
                     if (!$InsertImage){
-                        $result_json = array('ResultCode'=>105,'Message'=>'修改失败！');
+                        $result_json = array('ResultCode'=>105,'Message'=>'修改失败！','Url'=>'/member/assetlist/');
                     }else{
-                        $result_json = array('ResultCode'=>200,'Message'=>'修改成功！');
+                        $result_json = array('ResultCode'=>200,'Message'=>'修改成功！','Url'=>'/member/assetlist/');
                     }
                 }else{
-                    $result_json = array('ResultCode'=>104,'Message'=>'修改失败！');
+                    $result_json = array('ResultCode'=>104,'Message'=>'修改失败！','Url'=>'/member/assetlist/');
                 }
             }else{
                 $AssetID = $MemberAssetInfoModule->InsertInfo($Data);

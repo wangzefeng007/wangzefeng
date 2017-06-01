@@ -140,4 +140,23 @@ class AjaxImage
         exit;
     }
 
+    /**
+     * @desc 退款退货凭证图片上传
+     */
+    public function AddReturnImage(){
+        $this->IsLogin();
+        //上传图片
+        $ImgBaseData = $_POST['ImgBaseData'];
+        $savePath = '/Uploads/ReturnImage/'.date('Ymd').'/';
+        $ImageUrl = SendToImgServ($savePath,$ImgBaseData);
+        $Data['ImageUrl'] = $ImageUrl ? $ImageUrl : '';
+        if ($Data['ImageUrl'] !==''){
+            $result_json = array('ResultCode'=>200,'Message'=>'上传成功！','url'=>$Data['ImageUrl']);
+        }else{
+            $result_json = array('ResultCode'=>102,'Message'=>'上传失败！');
+        }
+        EchoResult($result_json);
+        exit;
+    }
+
 }
