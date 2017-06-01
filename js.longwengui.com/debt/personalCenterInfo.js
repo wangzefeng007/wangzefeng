@@ -157,9 +157,9 @@ function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/Templates/Debt/data/imageUpload.json",
+        url: "/ajaximage",
         data: {
-            "Intention":"AddRewardImage",
+            "Intention":"AddCardImage",
             "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {

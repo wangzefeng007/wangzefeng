@@ -186,7 +186,7 @@ function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
       type: "post",
       dataType: "json",
-      url: "/loginajax.html",
+      url: "/ajaximage",
       data: {
           "Intention":"AddHeadImage",
           "ImgBaseData": ImgBaseData,
@@ -217,9 +217,9 @@ function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/ajax.html",
+        url: "/ajaximage",
         data: {
-            "Intention":"AddRewardImage",
+            "Intention":"AddCardImage",
             "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {

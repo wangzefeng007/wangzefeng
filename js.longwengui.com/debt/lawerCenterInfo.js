@@ -143,9 +143,9 @@ function changeHeadImg(tar, ImgBaseData, index){
   $.ajax({
       type: "get",
       dataType: "json",
-      url: "/Templates/Debt/data/imageUpload.json",
+      url: "/ajaximage",
       data: {
-          "Intention":"AddRewardImage",
+          "Intention":"AddHeadImage",
           "ImgBaseData": ImgBaseData,
       },
       beforeSend: function () {
@@ -174,9 +174,9 @@ function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "get",
         dataType: "json",
-        url: "/Templates/Debt/data/imageUpload.json",
+        url: "/ajaximage",
         data: {
-            "Intention":"AddRewardImage",
+            "Intention":"AddCardImage",
             "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {

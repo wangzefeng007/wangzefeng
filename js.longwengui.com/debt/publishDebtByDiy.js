@@ -482,9 +482,9 @@ function imagesInput(tar, ImgBaseData, index) {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/ajax.html",
+        url: "/ajaximage",
         data: {
-          "Intention":"AddBorrowImage",
+          "Intention":"AddDebtImage",
           "ImgBaseData": ImgBaseData,
         },
         beforeSend: function () {
