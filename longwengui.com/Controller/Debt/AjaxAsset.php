@@ -49,7 +49,7 @@ class AjaxAsset
         $MemberAssetImageModule = new MemberAssetImageModule();
         $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
         $Data['AssetMember'] = 'L'.date("Ymd").rand(100, 999);//资产单号
-        $Data['Content'] = addslashes($AjaxData['transDetail']);//内容
+        $Data['Content'] = stripslashes($AjaxData['transDetail']);//内容
         $Data['Title'] = addslashes($AjaxData['_transTitle']);//标题
         $Data['Price'] = trim($AjaxData['_trans_money']);//单价
         $Data['MarketPrice'] = trim($AjaxData['_public_money']);//市场单价
@@ -66,15 +66,17 @@ class AjaxAsset
         $ID = intval($_POST['ID']);
             $ImageArr=array();
             $savePath = '/Uploads/Debt/'.date('Ymd').'/';
-            preg_match_all('/<img.*src="(.*)".*>/is',$AjaxData['transDetail'],$ImageArr);
-            if(count($ImageArr[1])){
-                $NewImgArr=array();
-                foreach($ImageArr[1] as $key=>$ImgUrl){
-                    $NewImgArr[$key] = SendToImgServ($savePath,$ImgUrl);
-                    $NewImgTagArr[$key]="<img src=\"{$NewImgArr[$key]}\">";
+            if (strstr($AjaxData['transDetail'], 'data:image')){
+                preg_match_all('/<img src="data:image(.*)".*>/is',$AjaxData['transDetail'],$ImageArr);
+                if(count($ImageArr[1])){
+                    $NewImgArr=array();
+                    foreach($ImageArr[1] as $key=>$ImgUrl){
+                        $NewImgArr[$key] = SendToImgServ($savePath,$ImgUrl);
+                        $NewImgTagArr[$key]="<img src=\"{$NewImgArr[$key]}\">";
+                    }
                 }
-            }var_dump($Data['Content']);exit;
-            $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
+                $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
+            }
             $Data['Content']= addslashes($Data['Content']);
             if (!empty($ID)){
                 $Result = $MemberAssetInfoModule->UpdateInfoByKeyID($Data,$ID);
