@@ -45,6 +45,10 @@ class Ajax
 
        if (trim($_POST['help_area'])!=''){
         $AreaID = intval($_POST['help_area']);
+          $AreaInfo = $MemberAreaModule->GetInfoByKeyID($AreaID);
+          if ($AreaInfo['Level']==3){
+              $AreaID =  $AreaInfo['ParentID'];
+          }
            $MysqlWhere .= ' and  Area like \'%'.$AreaID.'%\'';
         }
         if (trim($_POST['case_type'])!=''){
