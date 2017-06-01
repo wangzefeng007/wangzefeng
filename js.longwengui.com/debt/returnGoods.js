@@ -9,7 +9,7 @@ function imagesInput(tar, ImgBaseData, index) {
         dataType: "json",
         url: "/ajaximage/",
         data: {
-            "Intention":"AddImage",
+            "Intention":"AddReturnImage",
             "ImgBaseData": ImgBaseData
         },
         beforeSend: function () {
