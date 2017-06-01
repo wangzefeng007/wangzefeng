@@ -219,6 +219,7 @@ function validatePublishForm(){
 * 发布资产转让*/
 $(function(){
 	$("#publish").on("click",function(){
+	    var assetID=$(this).attr("data-id")||"";
         var paramObj={
             _trans_money : $("input[name='trans_money']").val(),
             _public_money : $("input[name='public_money']").val(),
@@ -250,7 +251,8 @@ $(function(){
             dataType: "json",
 			data:{
                 "Intention":"Publish",
-                "AjaxJSON":JSON.stringify(paramObj)
+                "AjaxJSON":JSON.stringify(paramObj),
+                "ID":assetID
 			},
             beforeSend:　function(){
                 showLoading();
@@ -280,7 +282,7 @@ function imagesInput(tar, ImgBaseData, index) {
         dataType: "json",
         url: "/ajaximage/",
         data: {
-            "Intention":"AddImage",
+            "Intention":"AddAssetImage",
             "ImgBaseData": ImgBaseData
         },
         beforeSend: function () {
