@@ -1,5 +1,5 @@
 .icon-tri_arrow_down_b {
-  background-image: url("http://www.longwengui.net/Uploads/Debt/imgs/spriteIcon.png");
+  background-image: url("images/spriteIcon.png");
   background-position: -141px -107px;
   width: 14px;
   height: 9px;
@@ -103,7 +103,7 @@
   padding: 2px 20px 2px 5px;
   cursor: pointer;
   color: #666;
-  background: url('http://www.longwengui.net/Uploads/Debt/imgs/close.png') 94% center no-repeat;
+  background: url('images/close.png') 94% center no-repeat;
   background-color: #e6e6e6;
 }
 .collection .wrap .table .m-c {
