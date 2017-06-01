@@ -73,7 +73,7 @@ class AjaxAsset
                     $NewImgArr[$key] = SendToImgServ($savePath,$ImgUrl);
                     $NewImgTagArr[$key]="<img src=\"{$NewImgArr[$key]}\">";
                 }
-            }
+            }var_dump($Data['Content']);exit;
             $Data['Content']=str_replace(array_reverse($ImageArr[0]),array_reverse($NewImgTagArr),$AjaxData['transDetail']);
             $Data['Content']= addslashes($Data['Content']);
             if (!empty($ID)){
