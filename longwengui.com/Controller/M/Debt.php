@@ -9,7 +9,7 @@
 class Debt
 {
     public function Index(){
-        echo 111;exit;
+        echo 'Debt';exit;
     }
 
 }

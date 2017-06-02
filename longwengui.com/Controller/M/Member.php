@@ -9,7 +9,7 @@
 class Member
 {
     public function Index(){
-        echo 111;exit;
+        echo 'Member';exit;
     }
 
 }

@@ -11,7 +11,7 @@ class Asset
      * @desc  资产转让列表
      */
     public function Index(){
-        echo 111;exit;
+        echo 'asset';exit;
     }
     /**
      * @desc  发布资产转让
