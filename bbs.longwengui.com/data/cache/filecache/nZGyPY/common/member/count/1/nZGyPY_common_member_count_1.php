@@ -5,7 +5,7 @@ $data = array (
   array (
     'uid' => '1',
     'extcredits1' => '0',
-    'extcredits2' => 5,
+    'extcredits2' => 7,
     'extcredits3' => '0',
     'extcredits4' => '0',
     'extcredits5' => '0',
@@ -22,7 +22,7 @@ $data = array (
     'sharings' => '0',
     'attachsize' => '0',
     'views' => '0',
-    'oltime' => '0',
+    'oltime' => 2,
     'todayattachs' => '0',
     'todayattachsize' => '0',
     'feeds' => '0',

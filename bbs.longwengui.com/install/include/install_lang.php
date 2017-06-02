@@ -243,8 +243,8 @@ $lang = array(
 	'init_dataformat' => 'Y-n-j',
 	'init_modreasons' => '广告/SPAM\r\n恶意灌水\r\n违规内容\r\n文不对题\r\n重复发帖\r\n\r\n我很赞同\r\n精品文章\r\n原创内容',
 	'init_userreasons' => '很给力!\r\n神马都是浮云\r\n赞一个!\r\n山寨\r\n淡定',
-	'init_link' => 'Discuz! 官方论坛',
-	'init_link_note' => '提供最新 Discuz! 产品新闻、软件下载与技术交流',
+	'init_link' => '隆文贵官方论坛',
+	'init_link_note' => '提供最便捷的债务交流平台',
 
 	'init_promotion_task' => '网站推广任务',
 	'init_gift_task' => '红包类任务',

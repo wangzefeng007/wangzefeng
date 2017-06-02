@@ -95,3 +95,13 @@
 <?PHP exit;?>	1496316399	admin	1	127.0.0.1	cloudaddons	GET={id=enet_no1.template; }; POST={};
 <?PHP exit;?>	1496316463	admin	1	127.0.0.1	setting	GET={operation=styles; }; POST={};
 <?PHP exit;?>	1496316470	admin	1	127.0.0.1	setting	GET={operation=styles; anchor=index; }; POST={};
+<?PHP exit;?>	1496381953	admin	1	127.0.0.1		GET={}; POST={};
+<?PHP exit;?>	1496381953	admin	1	127.0.0.1	index	GET={}; POST={};
+<?PHP exit;?>	1496381956	admin	1	127.0.0.1	forums	GET={}; POST={};
+<?PHP exit;?>	1496381999	admin	1	127.0.0.1	forums	GET={order={}; name={1=隆文贵债务交流; 2=律师咨询; }; neworder={1={}; }; newforum={1={0=债务催收交流; 1=线索悬赏交流; 2=寻找处置方; 3=曝光老赖; }; }; newinherited={1={}; }; editsubmit=提交; }; POST={order={}; name={1=隆文贵债务交流; 2=律师咨询; }; neworder={1={}; }; newforum={1={0=债务催收交流; 1=线索悬赏交流; 2=寻找处置方; 3=曝光老赖; }; }; newinherited={1={}; }; editsubmit=提交; };
+<?PHP exit;?>	1496382002	admin	1	127.0.0.1	forums	GET={}; POST={};
+<?PHP exit;?>	1496382012	admin	1	127.0.0.1	forums	GET={order={2=1; 36=2; 37=3; 38=4; 39=5; }; name={1=隆文贵债务交流; 2=律师咨询; 36=债务催收交流; 37=线索悬赏交流; 38=寻找处置方; 39=曝光老赖; }; editsubmit=提交; }; POST={order={2=1; 36=2; 37=3; 38=4; 39=5; }; name={1=隆文贵债务交流; 2=律师咨询; 36=债务催收交流; 37=线索悬赏交流; 38=寻找处置方; 39=曝光老赖; }; editsubmit=提交; };
+<?PHP exit;?>	1496382018	admin	1	127.0.0.1	forums	GET={}; POST={};
+<?PHP exit;?>	1496382239	admin	1	127.0.0.1	moderate	GET={}; POST={};
+<?PHP exit;?>	1496382240	admin	1	127.0.0.1	nav	GET={}; POST={};
+<?PHP exit;?>	1496382242	admin	1	127.0.0.1	styles	GET={}; POST={};
