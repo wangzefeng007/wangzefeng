@@ -1,6 +1,6 @@
 <?php
 $data = array (
-  'exp' => 1496386608,
+  'exp' => 1496403053,
   'data' => 
   array (
     'catlist' => 
@@ -173,7 +173,7 @@ $data = array (
         'commoncredits' => '0',
         'archive' => '0',
         'recommend' => '0',
-        'favtimes' => '0',
+        'favtimes' => '1',
         'sharetimes' => '0',
         'disablethumb' => '0',
         'disablecollect' => '0',
@@ -645,7 +645,7 @@ $data = array (
     array (
       0 => 
       array (
-        'sid' => 'ICjyJH',
+        'sid' => 'Kqpbtd',
         'ip1' => '127',
         'ip2' => '0',
         'ip3' => '0',
@@ -655,14 +655,14 @@ $data = array (
         'groupid' => '1',
         'invisible' => '0',
         'action' => '2',
-        'lastactivity' => '14:56',
-        'lastolupdate' => '1496386575',
+        'lastactivity' => '19:28',
+        'lastolupdate' => '1496402908',
         'fid' => '0',
         'tid' => '0',
         'icon' => 'online_admin.gif',
       ),
     ),
-    'onlinenum' => '1',
+    'onlinenum' => 1,
     'membercount' => 1,
     'guestcount' => 0,
     'grids' => 
@@ -687,7 +687,7 @@ $data = array (
           'dateline' => '昨天&nbsp;15:51',
           'lastpost' => '昨天&nbsp;16:01',
           'lastposter' => 'admin',
-          'views' => '3',
+          'views' => '5',
           'replies' => '1',
           'displayorder' => '0',
           'highlight' => '',
@@ -736,7 +736,7 @@ $data = array (
           'dateline' => '昨天&nbsp;15:51',
           'lastpost' => '昨天&nbsp;16:01',
           'lastposter' => 'admin',
-          'views' => '3',
+          'views' => '5',
           'replies' => '1',
           'displayorder' => '0',
           'highlight' => '',
@@ -772,7 +772,7 @@ $data = array (
       array (
       ),
       'focus' => 'config=5|0xffffff|0x0099ff|50|0xffffff|0x0099ff|0x000000',
-      'cachetime' => 1496386578,
+      'cachetime' => 1496402934,
     ),
     'announcements' => '',
     'threads' => 1,
@@ -780,8 +780,8 @@ $data = array (
     'todayposts' => 0,
     'onlineinfo' => 
     array (
-      0 => '1',
-      1 => '2017-6-1',
+      0 => '2',
+      1 => '2017-6-2',
     ),
     'announcepm' => 0,
   ),

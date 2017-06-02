@@ -5,7 +5,15 @@ $data = array (
   array (
     'hot' => 
     array (
-      'cachetime' => 1496386579,
+      'cachetime' => 1496402298,
+      'data' => 
+      array (
+        0 => '1',
+      ),
+    ),
+    'new' => 
+    array (
+      'cachetime' => 1496393202,
       'data' => 
       array (
         0 => '1',
