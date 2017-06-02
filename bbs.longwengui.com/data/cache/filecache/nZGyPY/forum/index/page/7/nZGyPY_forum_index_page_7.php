@@ -1,6 +1,6 @@
 <?php
 $data = array (
-  'exp' => 1496306287,
+  'exp' => 1496312615,
   'data' => 
   array (
     'catlist' => 
@@ -134,7 +134,7 @@ $data = array (
           2 => '',
           3 => '',
           'author' => '<a href="home.php?mod=space&username=admin">admin</a>',
-          'dateline' => '<span title="2017-6-1 16:01">半小时前</span>',
+          'dateline' => '<span title="2017-6-1 16:01">2&nbsp;小时前</span>',
           'subject' => '的返回三德科技傅雷家书',
           'tid' => '1',
           'authorusername' => 'admin',
@@ -232,7 +232,7 @@ $data = array (
     'whosonline' => 
     array (
     ),
-    'onlinenum' => 1,
+    'onlinenum' => '1',
     'membercount' => 0,
     'guestcount' => 1,
     'grids' => 

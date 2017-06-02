@@ -51,15 +51,8 @@ var focusautoshow = window.setInterval('showfocus(\'next\', 1);', 5000);
 <?php if(!empty($_G['setting']['pluginhooks']['global_footerlink'])) echo $_G['setting']['pluginhooks']['global_footerlink'];?>
 <?php if($_G['setting']['statcode']) { ?><?php echo $_G['setting']['statcode'];?><?php } ?>
 </div>
-<div class="xs0" id="time">
-GMT<?php echo $_G['timenow']['offset'];?>, <?php echo $_G['timenow']['time'];?>
-<span id="debuginfo">
-<?php if(debuginfo()) { ?>, Processed in <?php echo $_G['debuginfo']['time'];?> second(s), <?php echo $_G['debuginfo']['queries'];?> queries
-<?php if($_G['gzipcompress']) { ?>, Gzip On<?php } if(C::memory()->type) { ?>, <?php echo ucwords(C::memory()->type); ?> On<?php } ?>.
-<?php } ?>
-</span>
-</div>
-   <div class="discuzby">Powered by <strong><a href="http://www.adminbuy.cn" target="_blank">Discuz模板</a></strong> <em><?php echo $_G['setting']['version'];?></em><?php if(!empty($_G['setting']['boardlicensed'])) { ?> <a href="http://license.comsenz.com/?pid=1&amp;host=<?php echo $_SERVER['HTTP_HOST'];?>" target="_blank">Licensed</a><?php } ?> Style by <strong><a href="http://eduenet.com" target="_blank">ENET</a> </strong><em> v1.2</em></p><?php updatesession();?><?php if($_G['uid'] && $_G['group']['allowinvisible']) { ?>
+
+   <div class="discuzby">Copyright © 2017 武夷山隆文贵互联网信息咨询有限公司 All rights reserved. 闽ICP备16032488号-1</><?php if(!empty($_G['setting']['boardlicensed'])) { ?> <a href="http://license.comsenz.com/?pid=1&amp;host=<?php echo $_SERVER['HTTP_HOST'];?>" target="_blank">Licensed</a><?php } ?><?php updatesession();?><?php if($_G['uid'] && $_G['group']['allowinvisible']) { ?>
 <script type="text/javascript">
 var invisiblestatus = '<?php if($_G['session']['invisible']) { ?>隐身<?php } else { ?>在线<?php } ?>';
 var loginstatusobj = $('loginstatusid');
@@ -67,8 +60,6 @@ if(loginstatusobj != undefined && loginstatusobj != null) loginstatusobj.innerHT
 </script>
 <?php } ?>
        </div>
-  <div class="xs0" id="banquan">&copy; 2001-2013 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a></p></div>
-    </div>
 </div>
 
 <?php if(!$_G['setting']['bbclosed'] && !$_G['member']['freeze'] && !$_G['member']['groupexpiry']) { if($_G['uid'] && !isset($_G['cookie']['checkpm'])) { ?>
