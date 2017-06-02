@@ -67,6 +67,6 @@ $data = array (
     'menubgcode' => 'background: #2B7ACD url("template/enet_no1/images/nv.png") no-repeat 0 0',
     'boardlogo' => '<img src="template/enet_no1/images/logo.png" alt="Discuz! Board" border="0" />',
     'bold' => 'bold',
-    'verhash' => 'jgr',
+    'verhash' => 'dH7',
   ),
 );
