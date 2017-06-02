@@ -4,19 +4,12 @@
  * Created by PhpStorm.
  * User: admin
  * Date: 2017/6/2
- * Time: 9:41
+ * Time: 9:50
  */
-class M
+class Member
 {
-    public function __construct(){
-
-    }
-    /**
-     * 首页
-     */
     public function Index(){
         echo 111;exit;
     }
-
 
 }
