@@ -86,7 +86,7 @@
 													<!--{/if}-->
 												<!--{/if}-->
 											<!--{else}-->
-												<a href="javascript:;" onclick="showWindow('medal', 'home.php?mod=medal&action=confirm&medalid=$medal[medalid]')" class="xi2" style="background: #0ad;color: #fff;padding: 10px;padding-top: 5px;padding-bottom: 7px;">
+												<a href="javascript:;" onclick="showWindow('medal', 'home.php?mod=medal&action=confirm&medalid=$medal[medalid]')" class="xi2" style="background: #59cbc7;color: #fff;padding: 10px;padding-top: 5px;padding-bottom: 7px;">
 													<!--{if $medal['price']}-->
 														{lang space_medal_buy}
 													<!--{else}-->

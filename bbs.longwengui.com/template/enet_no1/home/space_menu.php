@@ -7,7 +7,7 @@
 .fow_ad{display:none}
 .tl .th {background:none}
 .flw_hd{width:auto !Important}
-#moodfm textarea {width: 554px;height: 76px;margin-right:0px;border: 2px solid #0ad;overflow-y: hidden;font-size: 13px;padding: 10px;}
+#moodfm textarea {width: 554px;height: 76px;margin-right:0px;border: 2px solid #59cbc7;overflow-y: hidden;font-size: 13px;padding: 10px;}
 .moodfm_btn button {padding-left: 0px;margin-left:0;background: url(template/enet_no1/images/fow.png) no-repeat !important;width:100px;height:100px;opacity: 10;filter: alpha(opacity=100);border:0}
 .moodfm_btn{padding-left:0;width:100px;height:100px;background:none}
 .moodfm_btn button:hover{background: url(template/enet_no1/images/fow.png) 0 100px !Important;}

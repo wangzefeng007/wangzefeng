@@ -11,7 +11,7 @@
 </div>
 <div class="boardnav">
     <div style="background:#fff;border-radius:5px;margin-bottom: 10px">
-		<div id="borderbox" class="xs2 bm_h bm" style="margin-top:10px;height:auto;background:#fff;padding:10px;padding-bottom:10px;border-bottom:2px dashed #0ad;border-width:2px;border-color:#0ad;margin-bottom:0;border-radius:5px 5px 0 0 !Important">
+		<div id="borderbox" class="xs2 bm_h bm" style="margin-top:10px;height:auto;background:#fff;padding:10px;padding-bottom:10px;border-bottom:2px dashed #59cbc7;border-width:2px;border-color:#59cbc7;margin-bottom:0;border-radius:5px 5px 0 0 !Important">
 						<!--{if $_G['page'] == 1 && $_G['forum']['rules']}--><span class="o y"><img id="forum_rules_{$_G[fid]}_img" src="{IMGDIR}/collapsed_{$collapse[forum_rulesimg]}.gif" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('forum_rules_{$_G[fid]}')"/></span><!--{/if}-->
 						<a href="forum.php?mod=forumdisplay&fid=$_G[fid]" class="forumtitle" style="text-decoration: none;float: left;margin-right: 10px;font-size:45px;line-height:55px">$_G['forum'][name]</a>
 					<div class="xs1 xw0 i" style="padding-bottom: 5px;padding-top:10px">
@@ -42,7 +42,7 @@
             <div style="clear:both"></div>        
 		</div>
 		<div class="wp">
-			<div id="borderbox" class="bm bml pbn" style="height:auto;margin-bottom: 0;padding-right:0;border-top:none !Important;border-width:2px;border-color:#0ad;border-radius:0 0 5px 5px;padding:0">
+			<div id="borderbox" class="bm bml pbn" style="height:auto;margin-bottom: 0;padding-right:0;border-top:none !Important;border-width:2px;border-color:#59cbc7;border-radius:0 0 5px 5px;padding:0">
 				<!--{if $_G[forum][banner] && !$subforumonly}--><img src="$_G[forum][banner]" alt="$_G['forum'][name]" /><!--{/if}-->
 				   	<!--{if (!empty($_G[forum][domain]) && !empty($_G['setting']['domain']['root']['forum'])) || $moderatedby || ($_G['page'] == 1 && $_G['forum']['rules'])}-->
 					<div class="bm_c bm_h cl pbn" id="forum_rules_{$_G[fid]}" style="height:auto;margin-bottom:0;padding:0 10px !Important;$collapse['forum_rules'];">
@@ -323,7 +323,7 @@
 						}
 
 						function livecontentfacemove() {
-							//note ´Ó¶ÓÁÐÖÐÈ¡³öÊý¾Ý
+							//note ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 							var reply = '';
 							for(i in addreplylist) {
 								reply = replycontentlist[i] = addreplylist[i];

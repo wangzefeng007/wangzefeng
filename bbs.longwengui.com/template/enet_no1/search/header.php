@@ -7,7 +7,7 @@
 		<div class="z">
 			<a href="./" id="navs" class="showmenu xi2" onmouseover="showMenu(this.id)">{lang return_homepage}</a>
 		</div>
-		<style>#toptb .y a,#toptb .z a {color: #369}</style>
+		<style>#toptb .y a,#toptb .z a {color: #59cbc7}</style>
 		<div class="y">
 			<!--{if $_G['uid']}-->
 				<strong><a href="home.php?mod=space" target="_blank" title="{lang visit_my_space}">{$_G[member][username]}</a></strong>

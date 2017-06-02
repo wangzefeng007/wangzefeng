@@ -35,7 +35,7 @@
 .wp{width:960px !important}
 .appl{margin-right:0 !important;margin-left:0 !Important}
 .ct2_a {margin-right:0 !important}
-.tb .a a, .tb .current a {font-weight: 700;border-bottom: 2px solid #0ad !important;padding-bottom:0}
+.tb .a a, .tb .current a {font-weight: 700;border-bottom: 2px solid #59cbc7 !important;padding-bottom:0}
 .wp #tct .mn .tbmu a,.wp #tct .mn .tb a{display: block;padding: 0 10px;font-size: 12px;border-radius: 0;border-top: 0;border-bottom: 2px solid #d0d0d0;border-left: 0;border-right: 0;background: transparent !important;color:#333 !important}
 #sslct{float: right;margin-top: -20px;margin-right: -20px;margin-bottom: -10px;border-radius: 0 5px 0 0;position:relative;z-index:99}
 </style>

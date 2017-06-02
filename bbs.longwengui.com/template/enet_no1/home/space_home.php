@@ -30,7 +30,7 @@
 .xlda dl {padding-left: 65px !important;padding-top: 10px}
 .bbda{border-bottom: 1px dotted #E4E4E4}
 .tbmu .a {color: white;font-weight: 700;background: #0A8CD2;border-radius:5px}
-.tbmu a {color: #369;padding: 4px 8px}
+.tbmu a {color: #59cbc7;padding: 4px 8px}
 .tbmu .pipe{display:none}
 .tbmu{border-bottom:0;padding-left:10px}
 .appl{float:left;background:transparent;border:0 !Important;}

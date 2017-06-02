@@ -95,7 +95,7 @@ if (empty($_GET['op'])) {
 
 				.icons a{width:20px;height:20px;background-repeat:no-repeat;display:block;float:left;border:1px solid #F2F2F2;}
 				*:lang(zh) .icons a{margin-right:1px}
-				.icons a:hover{border-color: #369 #CCC;background-color:#FFF}
+				.icons a:hover{border-color: #59cbc7 #CCC;background-color:#FFF}
 				a.icoCut{background-position:-140px -60px;}
 				a.icoCpy{background-position:-160px -60px;}
 				a.icoPse{background-position:-40px -60px}

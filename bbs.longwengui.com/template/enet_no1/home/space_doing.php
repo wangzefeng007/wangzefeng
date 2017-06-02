@@ -5,7 +5,7 @@
 <style>
 #toptb a#sslct, .switchwidth, #toptb a.switchblind {display: none;}
 .ct2_a .mn {float: left;}
-#moodfm textarea {width: 554px;height: 76px;margin-right:0px;border: 2px solid #0ad;overflow-y: hidden;font-size: 13px;padding: 10px;}
+#moodfm textarea {width: 554px;height: 76px;margin-right:0px;border: 2px solid #59cbc7;overflow-y: hidden;font-size: 13px;padding: 10px;}
 .moodfm_btn button {padding-left: 0px;margin-left:0;background: url(template/enet_no1/images/fow.png) no-repeat !important;width:100px;height:100px;opacity: 10;filter: alpha(opacity=100);border:0}
 .moodfm_btn{padding-left:0;width:100px;height:100px;background:none}
 .moodfm_btn button:hover{background: url(template/enet_no1/images/fow.png) 0 100px !Important;}
@@ -58,7 +58,7 @@
 <style>
 #toptb a#sslct, .switchwidth, #toptb a.switchblind {display: none;}
 .ct2_a .mn {float: left;}
-#moodfm textarea {width: 554px;height: 76px;margin-right:0px;border: 2px solid #0ad;overflow-y: hidden;font-size: 13px;padding: 10px;}
+#moodfm textarea {width: 554px;height: 76px;margin-right:0px;border: 2px solid #59cbc7;overflow-y: hidden;font-size: 13px;padding: 10px;}
 .moodfm_btn button {padding-left: 0px;margin-left:0;background: url(template/enet_no1/images/fow.png) no-repeat !important;width:100px;height:100px;opacity: 10;filter: alpha(opacity=100);border:0}
 .moodfm_btn{padding-left:0;width:100px;height:100px;background:none}
 .moodfm_btn button:hover{background: url(template/enet_no1/images/fow.png) 0 100px !Important;}
@@ -92,12 +92,12 @@
 			<style>
 			.tb {border-bottom:0}
 			.tb a {display: block;padding: 0 10px;font-size: 14px;margin-bottom: 0;border-radius: 0;border-top:0;color:#1881BD;border-bottom:0;border-left:0;border-right:0;background: transparent !important;}
-			.tb .a a, .tb .current a {font-weight: 700;border-bottom: 0px solid #0ad;color:#333;border-radius: 0;margin-bottom: 0;padding-bottom: 0;}
+			.tb .a a, .tb .current a {font-weight: 700;border-bottom: 0px solid #59cbc7;color:#333;border-radius: 0;margin-bottom: 0;padding-bottom: 0;}
 			#ct{background:transparent !important;border:0 !important;border-radius: 0px;}
             .ct2_a .mn {margin-right: 0px;background: transparent;margin-left: 0 !important;width: 710px;float:left;padding:0px !important;border: #ccc solid 0px;border-radius: 0px;}
             .ct2_a .appl {margin-bottom: 0px;width: 280px !important;float:right !important;border: #ccc solid 0px;border-left: 0px solid #DFDFDF;background: transparent;padding: 0px;border-radius: 0 5px 5px 0;left:0;top:0;height:auto !Important}
 			.ct2_a .appl li{float:none !Important}
-			#border-bottom {border-top:1px solid #27A5EC}
+			#border-bottom {border-top:1px solid #59cbc7}
 			.tbmu a {color: #1881BD;}
 			.tbmu {padding: 8px 10px 8px 20px;border-bottom: 0px dashed #DFDFDF;}
 			.xlda .m {margin:0}
