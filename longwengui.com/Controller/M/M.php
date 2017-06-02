@@ -15,6 +15,7 @@ class M
      * 首页
      */
     public function Index(){
+        echo 111;exit;
     }
 
 
