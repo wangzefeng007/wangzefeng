@@ -15,7 +15,7 @@ class Reword
      * @desc  线索悬赏列表
      */
     public function Index(){
-
+        echo 111;exit;
     }
     /**
      * @desc  发布悬赏
