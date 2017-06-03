@@ -56,7 +56,7 @@ Re-develop
 #threadlist .bm_c th{padding-left:5px;padding-right:0}
 #threadlist .bm_c .new{padding-left:5px;padding-right:0}
 #threadlist .xst{font-size:15px}
-#threadlist th a:hover,#threadlist td.fn a:hover{text-decoration:none;color:#198BCC !important}
+#threadlist th a:hover,#threadlist td.fn a:hover{text-decoration:none;color:#59cbc7 !important}
 #threadlist td,#threadlist th{border-bottom:1px dotted #e9e9e9}
 #threadlist .tf  a{line-height: 20px;padding: 3px 10px 5px;margin-top: -3px;border: 1px solid #399DE0;background-color: #F5F9FB;color: #399DE0;border-radius: 5px;text-decoration: none !important;}
 #threadlist .tf .showmenu {padding-right:16px}
@@ -103,7 +103,7 @@ Re-develop
 
 /** forum::forumdisplay,group::forumdisplay **/
 .mlt li{display:inline;margin:0 4px 10px;padding-top:5px;border:1px solid {SPECIALBG};border-bottom-color:{SPECIALBORDER};text-align:left;}
-.wp .mn .ttp .a a {background:none !Important;color:#198BCC !Important;border-left:1px solid #dfdfdf !Important}
+.wp .mn .ttp .a a {background:none !Important;color:#59cbc7 !Important;border-left:1px solid #dfdfdf !Important}
 .wp .mn .ttp a,.wp .mn  .ttp strong{border:0 !Important;border-radius:0 !Important;border-left:1px solid #dfdfdf !Important;margin-right:0 !Important}
 .wp .mn .ttp #ttp_all a {border-left:none !Important}
 /** end **/
@@ -161,7 +161,7 @@ Re-develop
 /** forum::viewthread,portal::view,portal::comment,home::space **/
 .pic_h .h{border-bottom:1px dashed #DFDFDF;margin-left:0 !important;margin-right:0 !important;padding-left:15px;padding-right:15px;}
 .albumback #ct{border-color:#DFDFDF;}
-.el a {color: #198BCC!Important}
+.el a {color: #59cbc7!Important}
 /** end **/
 
 /** portal::view **/
@@ -220,7 +220,7 @@ Re-develop
 .ctag2{background:#EEE;color:#666 !important;}
 .flw_avt img{float:left;margin-left:0;border-radius:5px;width:55px;}
 
-.flw_author, .flw_author a{color: #198BCC}
+.flw_author, .flw_author a{color: #59cbc7}
 .flw_article{margin:0 0 10px 70px;padding:5px 68px 15px;border-bottom:1px solid #DBDBDB;}
 .flw_image li{float:left;width:120px;max-height:400px;}
 .flw_readfull{padding:3px 5px;border:1px solid #DDD;border-radius:3px;}
@@ -436,7 +436,7 @@ frame,.frame-tab{border-radius:5px;}
 #category_lk{border:0;box-shadow:none;padding:0 15px;margin-top:0;padding-top:0 !important}
 .fl{border:1px solid #dfdfdf;border-radius:5px;padding-top:5px}
 .bm_h{padding:0 15px}
-.chart em{font-size:16px;color:#198BCC}
+.chart em{font-size:16px;color:#59cbc7}
 #chart{margin-bottom:10px !Important}
 .move-span{border-radius:5px}
 .frame-2-1-r{width:210px !important;margin-right:-219px;float:left}

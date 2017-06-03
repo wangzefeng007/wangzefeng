@@ -35,7 +35,7 @@
 			<item id="dropmenubgcolor"><![CDATA[#FEFEFE]]></item>
 			<item id="floatbgcolor"><![CDATA[#FFF]]></item>
 			<item id="lightlink"><![CDATA[#FFF]]></item>
-			<item id="menuhoverbgcolor"><![CDATA[#005AB4 nv_a.png no-repeat 50% -33px]]></item>
+			<item id="menuhoverbgcolor"><![CDATA[#59cbc7 nv_a.png no-repeat 50% -33px]]></item>
 			<item id="titlebgcolor"><![CDATA[#E5EDF2 titlebg.png repeat-x 0 0]]></item>
 			<item id="fontsize"><![CDATA[12px/1.5]]></item>
 			<item id="font"><![CDATA[Tahoma,'Microsoft Yahei','Simsun']]></item>
