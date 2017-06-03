@@ -9,7 +9,7 @@
 class Find
 {
     public function Index(){
-        echo 111;exit;
+        include template('FindIndex');
     }
 
 }

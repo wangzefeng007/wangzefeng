@@ -1,0 +1,143 @@
+{template Head}
+<body>
+<div class="page">
+    <header class="common-header">
+        <a class="header-left icon-back" href="#">
+        </a>
+        <section class="header-title">
+            用户信息
+        </section>
+    </header>
+    <div class="tab-nav">
+        <a class="active" href="#">催客（个人）<span class="pop"></span></a>
+        <a href="#">催收公司<span class="pop"></span></a>
+    </div>
+
+    <div class="content mt02">
+        <div class="form-fieldset">
+            <div class="form-legend common-box">
+                <div>
+                    <i class="icon icon-usermsg"></i>
+                    催客信息
+                </div>
+            </div>
+            <div class="form-box mt01">
+                <div class="row">
+                    <p class="form-lab">
+                        昵&emsp;&emsp;&emsp;称:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入昵称" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        真 实 姓 名:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的真实姓名" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        身&emsp;份&emsp;证:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的身份证号" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        &emsp;Q&emsp;Q&emsp;:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的QQ号码" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        邮&emsp;&emsp;&emsp;箱:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的邮箱" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        地&emsp;&emsp;&emsp;址:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请选择您的所在位置" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        详 细 地 址:
+                    </p>
+                    <div class="form-grid">
+                        <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-fieldset">
+            <div class="form-legend common-box">
+                <div>
+                    <i class="icon-photo"></i>
+                    照片上传
+                </div>
+            </div>
+            <div class="form-box">
+                <div class="row">
+                    <div class="form-grid">
+                        <p class="form-lab">
+                            身份证正面:
+                        </p>
+                    </div>
+                    <div class="form-grid" style="margin-left:.36rem;">
+                        <p class="form-lab">
+                            身份证反面:
+                        </p>
+                    </div>
+                </div>
+                <div class="row upload-row col-2">
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        手持身份证:
+                    </p>
+                </div>
+                <div class="row upload-row col-2">
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+                    <div class="form-grid" style="margin-left:.36rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-btn">
+        <a class="btn" href="#">确定</a>
+    </div>
+</div>
+</body>
+</html>

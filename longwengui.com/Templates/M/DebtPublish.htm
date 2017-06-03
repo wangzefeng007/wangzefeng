@@ -1,1 +1,101 @@
 {template Head}
+<body>
+<div class="page">
+    <header class="common-header">
+        <a class="header-left icon-back" href="#">
+        </a>
+        <section class="header-title">
+            发布债务
+        </section>
+    </header>
+    <div class="tab-nav">
+        <a href="#">自助催收 <span class="pop"></span></a>
+        <a  href="#">律师团队<span class="pop"></span></a>
+        <a class="active" href="#">催收公司 <span class="pop"></span></a>
+    </div>
+    <div class="content mt02">
+        <div class="form-fieldset">
+            <div class="form-legend common-box">
+                <div>
+                    <i class="icon icon-usermsg"></i>
+                    债权人信息
+                </div>
+                <i class="icon-add"></i>
+            </div>
+            <div class="form-box mt01">
+                <div class="row">
+                    <p class="form-lab">
+                        姓&emsp;&emsp;&emsp;名:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的姓名" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        手&emsp;&emsp;&emsp;机:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的手机号" type="tel">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        身&emsp;份&emsp;证:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的身份证号" type="tel">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        债权金额（元):
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入您的债权金额" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        地&emsp;&emsp;&emsp;址:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请选择您的所在位置" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        &emsp;详细地址:
+                    </p>
+                    <div class="form-grid">
+                        <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        是否有前期费用:
+                    </p>
+                    <div class="form-grid">
+                        <div class="radio-inline">
+                            <label class="radio" type="radio">
+                                <input type="radio" name="fee" value="0" checked>
+                                <i></i>是
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label class="radio" type="radio">
+                                <input type="radio" name="fee" value="0" >
+                                <i></i>否
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-btn">
+        <a class="btn" href="#">下一步</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,15 +1,10 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: admin
- * Date: 2017/6/2
- * Time: 9:50
+ * @desc  会员中心
  */
 class Member
 {
-    public function Index(){
-        echo 'Member';exit;
+    public function __construct() {
     }
     /**
      * @desc  退出登录
@@ -34,7 +29,7 @@ class Member
      */
     public function Register()
     {
-        include template('MemberRegister');
+        include template('MemberRegisterOne');
     }
     /**
      * @desc 用户选择会员类型
