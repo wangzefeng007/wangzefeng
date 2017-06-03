@@ -20,6 +20,7 @@ class Reword
     /**
      * @desc  发布悬赏
      */
-    public function RewordPublish(){
+    public function Publish(){
+        include template('RewardPublish');
     }
 }

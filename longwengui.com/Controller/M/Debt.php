@@ -8,8 +8,23 @@
  */
 class Debt
 {
+    /**
+     * @desc  债务催收列表
+     */
     public function Index(){
-        echo 'Debt';exit;
+        include template('DebtIndex');
     }
-
+    /**
+     * @desc  债务详情
+     */
+    public function Details(){
+        include template('DebtDetails');
+    }
+    /**
+     * @desc  发布债务
+     */
+    public function Publish()
+    {
+        include template('DebtPublish');
+    }
 }
