@@ -23,6 +23,6 @@ class MemberAssetInfoModule extends CommonModule
             return false;
         }
         global $DB;
-        return $DB->Update("update ".$this->TableName." set Inventory=Inventory-$Num where AssetID=$AssetID");
+        return $DB->update("update ".$this->TableName." set Inventory=Inventory-$Num where AssetID=$AssetID");
     }
 }
