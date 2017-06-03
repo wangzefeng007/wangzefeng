@@ -696,7 +696,7 @@ INSERT INTO pre_common_statuser VALUES ('1','0','login');
 
 INSERT INTO pre_common_style VALUES ('1','默认风格','1','1', 't1	t2	t3	t4	t5|');
 
-INSERT INTO `pre_common_stylevar` (`styleid`, `variable`, `substitute`) VALUES (1, 'menuhoverbgcolor', '#005AB4 nv_a.png no-repeat 50% -33px');
+INSERT INTO `pre_common_stylevar` (`styleid`, `variable`, `substitute`) VALUES (1, 'menuhoverbgcolor', '#59cbc7 nv_a.png no-repeat 50% -33px');
 INSERT INTO `pre_common_stylevar` (`styleid`, `variable`, `substitute`) VALUES (1, 'lightlink', '#FFF');
 INSERT INTO `pre_common_stylevar` (`styleid`, `variable`, `substitute`) VALUES (1, 'floatbgcolor', '#FFF');
 INSERT INTO `pre_common_stylevar` (`styleid`, `variable`, `substitute`) VALUES (1, 'dropmenubgcolor', '#FEFEFE');

@@ -63,7 +63,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 #toptb{min-width:1000px;height:28px;line-height:28px;background:transparent}
 .common_toptb{border-bottom:0 !important}
 #toptb .common_i a{color:#fff}
-#toptb .y li a{color:#198BCC}
+#toptb .y li a{color:#59cbc7}
 #toptb .z{z-index:35;position:relative}
 #toptb .y{z-index:35;position:relative}
 #hear-box{margin-bottom:10px;margin-top:10px}
@@ -104,7 +104,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 #scbar_type_menu a{line-height:25px}
 .allnv{width:100% !important;z-index:1}
 #nv .nvtext li a{color:#FFF}
-.nvbg{background:#005AB4 url({IMGDIR}/nvbg.png) repeat-x}
+.nvbg{background:#59cbc7 url({IMGDIR}/nvbg.png) repeat-x}
 .nvbgl{background:url({IMGDIR}/nvbgl.png) repeat;width:50%;height:50px;position:absolute;left:0px}
 #nv{height:auto;}
 #nvtext{height:50px;background:url({IMGDIR}/nv.png) no-repeat;padding-top:5px;position:relative;z-index:30;min-width:1000px}
@@ -114,12 +114,12 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 #nv .nvtext li a{color: {MENUTEXT};}
 #nv .nvtext li span{display:none;}
 #nv .nvtext li.a a{color: {MENUHOVERTEXT};text-shadow:#555 2px 2px 2px;}
-#nv .nvtext li.a, #nv .nvtext li a:hover{background:#005AB4;text-decoration:none}
+#nv .nvtext li.a, #nv .nvtext li a:hover{background:#59cbc7;text-decoration:none}
 #mu{position:relative;z-index:1;z-index:2;width:100%;box-shadow:0 3px 3px #e4e4e4;line-height:0}
 #mu ul{line-height:22px;z-index:2;font-size:12px;border-top:0;background:#F1F8FC;}
-#mu a:hover{background:none !important;border-color:#198BCC}
+#mu a:hover{background:none !important;border-color:#59cbc7}
 #mu ul li{background:none !Important}
-#mu ul li a{float:left;display:inline;margin:5px 6px;padding:0 10px;white-space:nowrap;color:#198BCC;border-radius:5px;height:22px;font-size:12px;font-weight:100;line-height:22px}
+#mu ul li a{float:left;display:inline;margin:5px 6px;padding:0 10px;white-space:nowrap;color:#59cbc7;border-radius:5px;height:22px;font-size:12px;font-weight:100;line-height:22px}
 .floatmu{position:absolute;left:0;top:0;background:#F1F8FC;box-shadow:0 3px 3px #CFCFCF}
 #um,#um a{color:#fff;}
 #qmenu{float:right;display:inline;margin:7px 15px 0;padding-right:10px;width:103px;height:24px;background:url({IMGDIR}/qmenu.png) no-repeat 0 0;line-height:24px;text-align:center;color:{HIGHLIGHTLINK};font-weight:700;overflow:hidden;}
@@ -415,7 +415,7 @@ a.returnboard:hover{background-position:-65px -198px !important;}
 .cmt .tri{background:none !important}
 .cmt{border:0 !important}
 .tbmu .a{color:white !Important;font-weight:700;background:#0A8CD2;border-radius:5px}
-.tbmu a{color:#198BCC;padding:4px 8px}
+.tbmu a{color:#59cbc7;padding:4px 8px}
 .tbmu .pipe{display:none}
 .tbmu{border-bottom:0;padding-left:10px}
 #bbda-bottom a span{color:{HIGHLIGHTLINK}}
@@ -439,7 +439,7 @@ a.returnboard:hover{background-position:-65px -198px !important;}
 #myprompt.new{background:none;padding-left:0px;}
 #fastlg_ls{position:absolute;color:#fff;padding-left:245px;width:70px;padding-top:60px;border-right:0px;}
 #um{padding-top:3px;padding-right:50px;line-height:2.3;width:auto;float:right;}
-#qmenu{float:right;display:inline;width:23px;height:23px;background:url({IMGDIR}/daohang.png) no-repeat 0 0;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/daohang.png");line-height:23px;text-align:center;color:#198BCC;margin-right:0px;font-weight:700;margin-top:12px;overflow:hidden;text-indent:-9999px;margin-top:9px;padding-right:0px !important}
+#qmenu{float:right;display:inline;width:23px;height:23px;background:url({IMGDIR}/daohang.png) no-repeat 0 0;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/daohang.png");line-height:23px;text-align:center;color:#59cbc7;margin-right:0px;font-weight:700;margin-top:12px;overflow:hidden;text-indent:-9999px;margin-top:9px;padding-right:0px !important}
 #qmenu.a{position:relative;z-index:302;background-position:0px;}
 #qmenu_menu{margin-top:5px;padding:0px 5px 10px;width:610px;border-color:#DCE4EB;}
 #so{background:url({IMGDIR}/so.png) no-repeat 0 0;line-height:23px;text-align:center;padding:0px;font-weight:700;overflow:hidden;text-indent:-9999px;width:23px;margin-top:9px;float:right;margin-right:10px;padding-right:0px !important;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/so.png");}
