@@ -15,7 +15,7 @@ class M
      * 首页
      */
     public function Index(){
-        echo 'M';exit;
+        include template('Index');
     }
 
 
