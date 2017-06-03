@@ -8,7 +8,7 @@ RewriteRule ^code/pic.jpg$ /Plugins/Code/Class.DoCode.php [QSA]
 RewriteRule ^test(|\/)$ /index.php?Module=Debt&Action=Test [QSA,L]
 #债务催收
 RewriteRule ^debtlists(|\/)$ /index.php?Module=Debt&Action=DebtLists [QSA]
-RewriteRule ^debt/([0-9]+).html$ /index.php?Module=Debt&Action=DebtDetails&ID=$1 [QSA]
+RewriteRule ^debt/([0-9]+).html$ /index.php?Module=Debt&Action=Detail&ID=$1 [QSA]
 RewriteRule ^debt/publish/([0-9]+)(|\/)$ /index.php?Module=Debt&Action=DebtPublish&T=$1 [QSA]
 
 #资产转让

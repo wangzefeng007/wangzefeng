@@ -5,7 +5,7 @@ $data = array (
   array (
     'uid' => '1',
     'extcredits1' => '0',
-    'extcredits2' => 7,
+    'extcredits2' => 8,
     'extcredits3' => '0',
     'extcredits4' => '0',
     'extcredits5' => '0',
@@ -13,7 +13,7 @@ $data = array (
     'extcredits7' => '0',
     'extcredits8' => '0',
     'friends' => '0',
-    'posts' => 2,
+    'posts' => 3,
     'threads' => 1,
     'digestposts' => '0',
     'doings' => '0',

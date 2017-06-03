@@ -30,7 +30,7 @@ class AjaxLogin
     private function IsLogin()
     {
         if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_M_URL.'/member/login/');
             EchoResult($result_json);
             exit;
         }
@@ -77,20 +77,20 @@ class AjaxLogin
                 $UserInfo=$UserInfoModule->GetInfoByUserID($UserID);
                 if($UserInfo){
                     if($UserInfo['Identity']==1){
-                        $Url = WEB_MAIN_URL.'/memberperson/';
+                        $Url = WEB_M_URL.'/memberperson/';
                     } elseif($UserInfo['Identity']==2){
-                        $Url=WEB_MAIN_URL.'/memberperson/';
+                        $Url=WEB_M_URL.'/memberperson/';
                     } elseif($UserInfo['Identity']==3){
-                        $Url=WEB_MAIN_URL.'/memberfirm/';
+                        $Url=WEB_M_URL.'/memberfirm/';
                     }elseif($UserInfo['Identity']==4){
-                        $Url=WEB_MAIN_URL.'/memberlawyer/';
+                        $Url=WEB_M_URL.'/memberlawyer/';
                     }elseif($UserInfo['Identity']==5){
-                        $Url=WEB_MAIN_URL.'/membercompany/';
+                        $Url=WEB_M_URL.'/membercompany/';
                     }elseif($UserInfo['Identity']==6){
-                        $Url=WEB_MAIN_URL.'/memberlawfirm/';
+                        $Url=WEB_M_URL.'/memberlawfirm/';
                     }
                 }else{
-                    $Url = WEB_MAIN_URL.'/memberperson/';
+                    $Url = WEB_M_URL.'/memberperson/';
                 }
                 $json_result = array('ResultCode' => 200, 'Message' => '登录成功','Url'=>$Url);
             }
@@ -120,7 +120,7 @@ class AjaxLogin
         setcookie("Account", '', time() - 1, "/", WEB_HOST_URL);
         setcookie("session_id", session_id(), time() - 1, "/", WEB_HOST_URL);
         session_destroy();
-        header("location:" . WEB_MAIN_URL);
+        header("location:" . WEB_M_URL);
     }
     /**
      * @desc  发送注册验证码
@@ -171,7 +171,7 @@ class AjaxLogin
                 $UserInfo = $MemberUserModule->GetInfoByWhere(' and Mobile ='.$Account);
                 $Result = $MemberUserModule->UpdateInfoByWhere(array('PassWord'=>$PassWord), ' UserID ='.$UserInfo['UserID']);
                 if($Result || $Result === 0){
-                    $json_result = array('ResultCode' => 200, 'Message' => '重置成功', 'Url' =>WEB_MAIN_URL);
+                    $json_result = array('ResultCode' => 200, 'Message' => '重置成功', 'Url' =>WEB_M_URL);
                 }else{
                     $json_result = array('ResultCode' => 103, 'Message' => '重置失败');
                 }
@@ -200,16 +200,16 @@ class AjaxLogin
             $MemberUserInfoModule = new MemberUserInfoModule();
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID']);
             if($UserInfo['Identity']==3){
-                $Url =WEB_MAIN_URL.'/memberfirm/';
+                $Url =WEB_M_URL.'/memberfirm/';
 
             }elseif($UserInfo['Identity']==4){
-                $Url =WEB_MAIN_URL.'/memberlawyer/';
+                $Url =WEB_M_URL.'/memberlawyer/';
             }elseif($UserInfo['Identity']==5){
-                $Url=WEB_MAIN_URL.'/membercompany/';
+                $Url=WEB_M_URL.'/membercompany/';
             }elseif($UserInfo['Identity']==6) {
-                $Url = WEB_MAIN_URL . '/memberlawfirm/';
+                $Url = WEB_M_URL . '/memberlawfirm/';
             }else{
-                $Url =WEB_MAIN_URL.'/memberperson/';
+                $Url =WEB_M_URL.'/memberperson/';
             }
             $UpdatePassWord = $MemberUserModule->UpdateInfoByWhere(array('PassWord'=>$NewPassword),' UserID ='.$_SESSION['UserID']);
             if ($UpdatePassWord){
@@ -408,7 +408,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']);//邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $Url =WEB_MAIN_URL.'/memberperson/';//个人会员
+            $Url =WEB_M_URL.'/memberperson/';//个人会员
         }elseif ($AjaxData['type']==2){
             $Data['NickName'] = trim($AjaxData['nickName']); //昵称
             $Data['RealName'] = trim($AjaxData['name']); //姓名
@@ -423,7 +423,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']); //类型
-            $Url =WEB_MAIN_URL.'/memberperson/';//个人催收会员
+            $Url =WEB_M_URL.'/memberperson/';//个人催收会员
         }elseif ($AjaxData['type']==3){
             $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
             $Data['RealName'] = trim($AjaxData['registrantName']);//公司注册人姓名
@@ -439,7 +439,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $Url =WEB_MAIN_URL.'/memberfirm/';//催收公司会员
+            $Url =WEB_M_URL.'/memberfirm/';//催收公司会员
         }elseif ($AjaxData['type']==4){
             $Data['RealName'] = trim($AjaxData['name']);//姓名
             $Data['CardNum'] = trim($AjaxData['idNum']);//身份证号
@@ -455,7 +455,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']);//类型
-            $Url =WEB_MAIN_URL.'/memberlawyer/';//律师个人会员
+            $Url =WEB_M_URL.'/memberlawyer/';//律师个人会员
         }elseif ($AjaxData['type']==5){
             $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
             $Data['RealName'] = trim($AjaxData['lawPerson']);//公司注册人姓名
@@ -468,7 +468,7 @@ class AjaxLogin
             $Data['BusinessImage'] = $AjaxData['license'];//营业执照照片
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Data['PublicAgent'] = json_encode($AjaxData['agentInfo'],JSON_UNESCAPED_UNICODE);//代理人信息
-            $Url =WEB_MAIN_URL.'/membercompany/';//企业会员
+            $Url =WEB_M_URL.'/membercompany/';//企业会员
         }elseif ($AjaxData['type']==6){
             $Data['CompanyName'] = trim($AjaxData['name']);//事务所名称
             $Data['RealName'] = trim($AjaxData['lawPerson']);//法定代表人
@@ -486,7 +486,7 @@ class AjaxLogin
             $AjaxData['Agent']['IdNum'] = trim($AjaxData['agentIdNum']);
             $AjaxData['Agent']['Phone'] = trim($AjaxData['agentPhone']);
             $Data['Agent'] = json_encode($AjaxData['Agent'],JSON_UNESCAPED_UNICODE);//代理人
-            $Url =WEB_MAIN_URL.'/memberlawfirm/';//律师事务所
+            $Url =WEB_M_URL.'/memberlawfirm/';//律师事务所
         }else{
             $result_json = array('ResultCode'=>102,'Message'=>'数据出错！');
             EchoResult($result_json);
