@@ -18,7 +18,7 @@ RewriteRule ^orderdetail/([A-Z0-9_]+).html$ /index.php?Module=Member&Action=BuyO
 RewriteRule ^sellorderdetail/([A-Z0-9_]+).html$ /index.php?Module=Member&Action=SellOrderDetail&OrderNumber=$1 [QSA]
 #线索悬赏
 RewriteRule ^reword(|\/)$ /index.php?Module=Reword&Action=Index [QSA]
-RewriteRule ^reword/publish(|\/)$ /index.php?Module=Reword&Action=RewordPublish [QSA]
+RewriteRule ^reword/publish(|\/)$ /index.php?Module=Reword&Action=Publish [QSA]
 RewriteRule ^reword/([a-z0-9]+)(|\/)$ /index.php?Module=Reword&Action=Index&SoUrl=$1 [QSA]
 
 #寻找处置方

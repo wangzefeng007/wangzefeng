@@ -79,7 +79,7 @@ class Reword
     /**
      * @desc  发布悬赏
      */
-    public function RewordPublish(){
+    public function Publish(){
         $Title="发布悬赏-隆文贵债务处置";
         $Nav = 'rewordlists';
     include template('RewordPublish');
