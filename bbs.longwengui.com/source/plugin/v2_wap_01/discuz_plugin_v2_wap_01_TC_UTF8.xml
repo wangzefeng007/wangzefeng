@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3,X3.1]]></item>
+	<item id="Time"><![CDATA[2013-09-24 10:28]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://127.0.0.1:8888/301/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[威兔wap門戶模板管理插件]]></item>
+			<item id="identifier"><![CDATA[v2_wap_01]]></item>
+			<item id="description"><![CDATA[威兔網版權所有]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[v2_wap_01/]]></item>
+			<item id="copyright"><![CDATA[源码来自：站长社区www.zzqsq.net]]></item>
+			<item id="modules"><![CDATA[b:0;]]></item>
+			<item id="version"><![CDATA[1.1]]></item>
+		</item>
+		<item id="version"><![CDATA[X3,X3.1]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[模板key]]></item>
+				<item id="description"><![CDATA[請聯繫QQ 32-77558-32 提供網站地址等相關資料, 索取模板key]]></item>
+				<item id="variable"><![CDATA[tplkey]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[0000000000]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[模板配色]]></item>
+				<item id="description"><![CDATA[模板共4種配色, 在此選擇]]></item>
+				<item id="variable"><![CDATA[wapcolor]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1=藍色
+2=橙色
+3=黑色
+4=綠色]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[是否啟用自定義首頁]]></item>
+				<item id="description"><![CDATA[啟用自定義首頁功能]]></item>
+				<item id="variable"><![CDATA[wapindexdiy]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[選擇自定義默認首頁]]></item>
+				<item id="description"><![CDATA[設置wap網站的默認首頁, 啟用自定首頁功能後, 此設置才有效, 同時只對開啟頁面有效]]></item>
+				<item id="variable"><![CDATA[wapindex]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[1=門戶頁
+2=論壇
+3=導讀
+4=九宮格
+5=圖牆(美圖)]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[開啟wap門戶diy]]></item>
+				<item id="description"><![CDATA[diy時打開此功能, diy完畢後請關閉此功能]]></item>
+				<item id="variable"><![CDATA[wapdiys]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[6]]></item>
+				<item id="title"><![CDATA[是否啟用wap門戶]]></item>
+				<item id="description"><![CDATA[開啟wap門戶頁面]]></item>
+				<item id="variable"><![CDATA[wapportal]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="6">
+				<item id="displayorder"><![CDATA[7]]></item>
+				<item id="title"><![CDATA[門戶頁面代碼]]></item>
+				<item id="description"><![CDATA[在此填入門戶頁面代碼]]></item>
+				<item id="variable"><![CDATA[portal_index]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="7">
+				<item id="displayorder"><![CDATA[8]]></item>
+				<item id="title"><![CDATA[是否啟用九宮格]]></item>
+				<item id="description"><![CDATA[開啟九宮格頁面]]></item>
+				<item id="variable"><![CDATA[waplattice]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="8">
+				<item id="displayorder"><![CDATA[9]]></item>
+				<item id="title"><![CDATA[九宮格頁面代碼]]></item>
+				<item id="description"><![CDATA[在此填入九宮格頁面代碼, 非必須]]></item>
+				<item id="variable"><![CDATA[portal_lattice]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="9">
+				<item id="displayorder"><![CDATA[10]]></item>
+				<item id="title"><![CDATA[是否啟用無刷新翻頁]]></item>
+				<item id="description"><![CDATA[啟用此功能後, 將使用ajax的方式替代傳統的分頁功能, 節省上網流量]]></item>
+				<item id="variable"><![CDATA[wappages]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="10">
+				<item id="displayorder"><![CDATA[11]]></item>
+				<item id="title"><![CDATA[子版塊是否默認展開]]></item>
+				<item id="description"><![CDATA[設置子版塊展開顯示]]></item>
+				<item id="variable"><![CDATA[wapsubopen]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="11">
+				<item id="displayorder"><![CDATA[12]]></item>
+				<item id="title"><![CDATA[默認搜索]]></item>
+				<item id="description"><![CDATA[如開啟了文章搜索功能, 可在此設置為默認搜索]]></item>
+				<item id="variable"><![CDATA[wapsearchs]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1=帖子搜索
+0=文章搜索]]></item>
+			</item>
+			<item id="12">
+				<item id="displayorder"><![CDATA[13]]></item>
+				<item id="title"><![CDATA[貼內相關帖子顯示數量]]></item>
+				<item id="description"><![CDATA[貼內相關帖子的顯示數量]]></item>
+				<item id="variable"><![CDATA[waprelateitems]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[4]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="13">
+				<item id="displayorder"><![CDATA[14]]></item>
+				<item id="title"><![CDATA[廣播版塊 fid]]></item>
+				<item id="description"><![CDATA[無廣播功能可忽略]]></item>
+				<item id="variable"><![CDATA[wapfollows]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[10000]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="14">
+				<item id="displayorder"><![CDATA[15]]></item>
+				<item id="title"><![CDATA[側欄導航菜單自定義代碼]]></item>
+				<item id="description"><![CDATA[按格式增加或替換代碼即可]]></item>
+				<item id="variable"><![CDATA[wapmenus]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[<li><a href="forum.php?mod=portal"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_1.png" />門戶</a></li>
+<!--//<li><a href="forum.php?mod=lattice"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_1.png" />九宮格</a></li> -->
+<li><a href="forum.php"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_2.png" />論壇</a></li>
+<li><a href="forum.php?mod=photo"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_3.png" />美圖</a></li>
+<li><a href="forum.php?mod=guide&view=newthread"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_4.png" />導讀</a></li>
+<li><a href="misc.php?mod=tag"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_5.png" />標籤</a></li>
+<li><a href="home.php?mod=follow"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_6.png" />廣播</a></li>
+<li><a href="portal.php?mod=list&catid=1"><img src="template/v2_mbl20121009/mobile_plus/img/nv_ico_7.png" />頻道</a></li>]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="15">
+				<item id="displayorder"><![CDATA[16]]></item>
+				<item id="title"><![CDATA[是否啟用圖牆 ( 美圖 )]]></item>
+				<item id="description"><![CDATA[如不啟用圖牆, 下面所有與圖牆有關的設置可以忽略]]></item>
+				<item id="variable"><![CDATA[wapphoto]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="16">
+				<item id="displayorder"><![CDATA[17]]></item>
+				<item id="title"><![CDATA[圖牆調用的版塊 fid]]></item>
+				<item id="description"><![CDATA[必須是圖片模式的板塊, 多個用半角逗號分開, 如:'2,3,4,5']]></item>
+				<item id="variable"><![CDATA[ifids]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="17">
+				<item id="displayorder"><![CDATA[18]]></item>
+				<item id="title"><![CDATA[圖牆圖片排序方式]]></item>
+				<item id="description"><![CDATA[圖片主題的排序方式]]></item>
+				<item id="variable"><![CDATA[iorder]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[dateline]]></item>
+				<item id="extra"><![CDATA[dateline=發帖時間
+lastpost=回復時間
+views=查看數
+replies=回複數]]></item>
+			</item>
+			<item id="18">
+				<item id="displayorder"><![CDATA[19]]></item>
+				<item id="title"><![CDATA[圖牆每頁圖片數量]]></item>
+				<item id="description"><![CDATA[每頁顯示調用的圖片主題數量]]></item>
+				<item id="variable"><![CDATA[inum]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[16]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="19">
+				<item id="displayorder"><![CDATA[20]]></item>
+				<item id="title"><![CDATA[圖牆調用圖片的時間範圍]]></item>
+				<item id="description"><![CDATA[單位為天, 超過這個時間發佈的圖片主題不予調用]]></item>
+				<item id="variable"><![CDATA[iday]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[360]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="20">
+				<item id="displayorder"><![CDATA[21]]></item>
+				<item id="title"><![CDATA[圖牆頁面緩存時間]]></item>
+				<item id="description"><![CDATA[單位為秒, 每頁圖片主題調用的間隔緩存時間]]></item>
+				<item id="variable"><![CDATA[icachetime]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="21">
+				<item id="displayorder"><![CDATA[22]]></item>
+				<item id="title"><![CDATA[圖牆主題分類 id]]></item>
+				<item id="description"><![CDATA[設置調用某個或多個分類下的主題, 如 '1,2,3', 如留空的話, 將調用板塊內的所有符合條件的圖片主題]]></item>
+				<item id="variable"><![CDATA[itypeids]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="22">
+				<item id="displayorder"><![CDATA[23]]></item>
+				<item id="title"><![CDATA[圖牆圖片高度]]></item>
+				<item id="description"><![CDATA[設置圖片高度, 單位px]]></item>
+				<item id="variable"><![CDATA[photo_height]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[110]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="23">
+				<item id="displayorder"><![CDATA[24]]></item>
+				<item id="title"><![CDATA[全站頁眉廣告位]]></item>
+				<item id="description"><![CDATA[在此填入廣告代碼]]></item>
+				<item id="variable"><![CDATA[adheader]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="24">
+				<item id="displayorder"><![CDATA[25]]></item>
+				<item id="title"><![CDATA[全站頁腳廣告位]]></item>
+				<item id="description"><![CDATA[在此填入廣告代碼]]></item>
+				<item id="variable"><![CDATA[adfooter]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="25">
+				<item id="displayorder"><![CDATA[26]]></item>
+				<item id="title"><![CDATA[貼內廣告位]]></item>
+				<item id="description"><![CDATA[在此填入廣告代碼]]></item>
+				<item id="variable"><![CDATA[adviewt]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="26">
+				<item id="displayorder"><![CDATA[27]]></item>
+				<item id="title"><![CDATA[文章廣告位]]></item>
+				<item id="description"><![CDATA[在此填入廣告代碼]]></item>
+				<item id="variable"><![CDATA[adviewp]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="27">
+				<item id="displayorder"><![CDATA[28]]></item>
+				<item id="title"><![CDATA[站外分享代碼]]></item>
+				<item id="description"><![CDATA[在此填入分享代碼]]></item>
+				<item id="variable"><![CDATA[mshare]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+
+			<item id="28">
+				<item id="displayorder"><![CDATA[29]]></item>
+				<item id="title"><![CDATA[是否啟用用戶提示代碼]]></item>
+				<item id="description"><![CDATA[用戶首次訪問網站是否提示]]></item>
+				<item id="variable"><![CDATA[ckstyle]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="29">
+				<item id="displayorder"><![CDATA[30]]></item>
+				<item id="title"><![CDATA[用戶提示代碼]]></item>
+				<item id="description"><![CDATA[用戶首次訪問wap網站, 將看到此提示]]></item>
+				<item id="variable"><![CDATA[userrd]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[
+<p style="color:#39C; line-height:25px; font-size:25px; padding:15px 5px 5px;">歡迎訪問</p>
+<p style="color:#555; line-height:16px; font-size:16px; padding:5px 5px 15px;">圖示能讓您輕鬆的訪問使用本站</p>
+<p style=" background: url(template/v2_mbl20121009/mobile_plus/img/rd.png) no-repeat 50% 0; height:260px;" ></p>]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="intro"><![CDATA[使用此插件表示您同意作者免責協議。否則請停止使用此插件。]]></item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>

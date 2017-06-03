@@ -1,0 +1,208 @@
+/*
+Author:NVBING5
+Website:www.nvbing5.net
+QQ:2474414433
+*/
+
+.bg {background: #f2f2f2;}
+.n5-dnbts {border-radius: 5px;line-height: 40px;color: #fff;font-size: 14px;margin:100px 30px 0 30px;text-align: center;}
+.n5-dnbts a {color: #fff;}
+.jump_c {padding: 100px 25px;}
+.button {border-radius:5px;}
+.button2 {border-radius:5px;}
+
+/* 百变颜色：将颜色代码粘贴至下方，手机模板整体变色！ */
+
+.n5-header,.n5-ksft .n5-fq,.focus .hd ul .on,.sub_forum li .num,.n5-dnbts,.n5-lbftan,.n5-flsx .a,.n5-ztfl .a,.button,.button2,.btn_pn_blue,.btn_exit a,.n5-wdxx li .num ,.n5-grsyzl,.btn_login .pn, .btn_register .pn{background: #37cf92;} /* 头部背景、快速发帖按钮颜色、幻灯高亮、新帖数背景、跳转背景、论坛列表内容按钮、分类按钮、我的消息、登陆注册 */
+.sidebar,.n5-ejdh {background:#208960;} /* 侧边栏背景、二级导航背景 */
+.n5-cblxm li {border-bottom: 1px solid #3c9873;} /* 侧边栏风格线 */
+.n5-bbs .n5-fqbt {border: 1px solid #EDEDED;border-top: 2px solid #37cf92;} /* 论坛分区顶部 */
+.n5-bbslb,.nav {border-top: 2px solid #37cf92;} /* 顶部 */
+.n5-name {border-right: 1px solid #3c9873;} /* 用户信息右边框 */
+.n5-ksft .pbls a,.pbls a:hover,.n5-bbmk .n5-bbmkbt,.n5-mhtt .n5-title,a.blue:link, a.blue:visited, a.blue:hover,.n5-wdxx li .time,.user_avatar .name,.user_box li span,.threadlist .thread_tit {color:#37cf92;} /* 快速发帖文字颜色、模块标题、头条颜色、我的消息、搜索文字 */
+
+/* 头部 */
+.n5-header {height: 45px;position: relative;text-align:center;}
+.n5-header .n5-cebianlan {border-radius: 0;height: 45px;position: absolute;left: 0;text-align: center;top: 8px;width: 43px;}
+.n5-header .n5-cebianlan .n5-ico {background: url(n5-cbltb.png);background-size: 25px auto;display: block;height: 25px;margin: 2px auto 2px;width: 25px;}
+.n5-header .n5-logo {display: inline-block;margin-top: 10px;height: 26px;width: 100px;}
+.n5-header .n5-fatie {border-radius: 0;height: 45px;position: absolute;right: 0;text-align: center;top: 8px;width: 43px;}
+.n5-header .n5-fatie .n5-ico {background: url(n5-ksft.png);background-size: 25px auto;display: block;height: 25px;margin: 2px auto 2px;width: 25px;}
+
+/* 侧边栏 */
+.sidebar {margin: 0;padding-top: 1em;color: white;}
+.n5-cbl {padding:20px}
+.n5-cbltx {}
+.n5-cbltx .n5-tx {float: left;}
+.n5-cbltx .n5-tx img{width:50px;height:50px;-webkit-border-radius: 50%;border-radius: 50%;}
+.n5-cbltx .n5-hym {float: left;margin-left: 10px;font-size:14px;color:#FFF;line-height:50px;}
+.n5-cblxm {margin-top: 70px;padding:0 10px}
+.n5-cblxm li {}
+.n5-cblxm a {font-size:14px;color:#FFF;line-height:45px;padding-left: 35px;}
+.n5-cblxm .shouye {background: url(n5-clsyico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .luntan{background: url(n5-clltico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .geren{background: url(n5-clgrico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .sousuo{background: url(n5-clssico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .shoucang{background: url(n5-clscico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .zhuti{background: url(n5-clztico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .xiaoxi{background: url(n5-clxxico.png) no-repeat 0 10px;background-size: 25px auto;}
+.n5-cblxm .ziliao{background: url(n5-clzlico.png) no-repeat 2px 10px;background-size: 25px auto;}
+
+/* 首页 */
+.n5-sybg {background: #FFF;padding-bottom: 1px;}
+.focus{ width:100%; height:200px;  margin:0 auto; position:relative; overflow:hidden;   }
+.focus .hd{ width:100%; height:5px;  position:absolute; z-index:1; bottom:0; text-align:center;  }
+.focus .hd ul{ overflow:hidden; display:-moz-box; display:-webkit-box; display:box; height:5px; background-color:rgba(51,51,51,0.5);   }
+.focus .hd ul li{ -moz-box-flex:1; -webkit-box-flex:1; box-flex:1; }
+.focus .bd{ position:relative; z-index:0; }
+.focus .bd li img{ width:100%;  height: auto!important; }
+.focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+
+/* 二级导航 */
+.n5-ejdh { height:60px; padding-top: 7px;}
+.n5-ejdh li {width:20%;float: left;text-align: center;line-height: 25px;}
+.n5-ejdh a {font-size:16px;color:#FFF;}
+
+/* 模块标题 */
+.n5-bbmk {width:95%;margin: 10px auto;}
+.n5-bbmk .n5-bbmkbt {height: 28px;font-size:16px;border-bottom: 1px solid #ebebeb;}
+.n5-bbmk .n5-gengduo a {font-size:12px;color:#c9cac9;}
+
+/* 头条 */
+.n5-mhtt .n5-mhttl {padding:10px;}
+.n5-mhtt .n5-title {font-size: 18px;font-weight:700;display: block;text-align: center;height: 20px;line-height: 20px;overflow: hidden;}
+.n5-mhtt .n5-info {margin-top: 3px;height: 44px;text-indent: 2em;line-height: 21px;font-size: 12px;color: #888;overflow: hidden;display: block;}
+
+/* 图文推荐 */
+.n5-twtj li {padding: 10px 0;}
+.n5-twtj li img{float: left;margin-right: 10px;width: 90px;height: 70px;}
+.n5-twtj li h3 {height: 28px;line-height: 28px;font-weight: normal;overflow: hidden;font-size: 14px;}
+.n5-twtj li p {height: 36px;line-height: 19px;overflow: hidden;color: #999;}
+
+/* 图说天下 */
+.n5-tstx {padding: 10px 0;}
+.n5-tstx img {width:32.4%;height:24.6%;margin-bottom:5px;}
+.n5-tstx a {position: relative;color: #FFF;}
+.n5-tstx .n5-tstxbj {margin-right:5px;}
+.n5-tstx li span {width: 100%;}
+.n5-tstx span {background-color: #000;opacity: .3;filter: alpha(opacity=30);}
+.n5-tstx span, .n5-tstx em {position: absolute;left: 0;bottom: 9px;width: 100%;height: 25px;line-height: 25px;overflow: hidden;text-align:center;}
+
+/* 论坛首页 */
+.n5-bbs {margin: 10px 10px 0 10px;}
+.n5-bbs .n5-fqbt {height: 45px;line-height: 45px;font-size: 18px;background: #FFF;padding-left:10px;}
+.sub_forum li {height: 50px; line-height: 20px; padding:10px 0; border-bottom: 1px dashed #EDEDED;font-size: 16px;}
+.sub_forum li img {height: 50px; border-radius: 5px;margin-right: 10px;}
+.sub_forum li a {padding:0;}
+.sub_forum li .btdb {margin-top:4px;}
+.sub_forum li i {font-size: 12px; line-height: 30px; color:#a7a7a7;}
+.sub_forum li .num {font-size: 12px;}
+
+/* 论坛列表 */
+.n5-bbslb {background: #FFF; height: 52px;padding: 8px 10px 8px 10px;text-align:left;}
+.n5-bbslb img {height: 50px;border-radius: 5px;margin-right: 10px;}
+.n5-bbslb h3 {line-height: 10px;font-weight: normal;font-size: 16px;margin-top:9px;}
+.n5-bbslb i {font-size: 12px;line-height: 40px; color:#a7a7a7;}
+.n5-lbftan {height: 35px; line-height: 35px; margin-top:7px; padding: 0px 10px;border-radius: 5px;}
+.n5-lbftan a {color: #FFF;font-size: 12px;}
+.n5-ztlb {margin: 10px;}
+.n5-ztlb li {background-color: #fff;border-bottom: 0;box-shadow: 0 1px 2px #cacaca;margin-bottom: 8px;border-radius: 5px;}
+.n5-ztlb .z img {height: 40px;margin: 12px 10px 0 10px;border-radius: 25px;}
+.n5-ztlb li a {font-size: 14px;}
+.n5-ztlb .num {background: url(icon_num.png) no-repeat 0 4px;}
+
+.n5-fljs {margin:10px 10px 0 10px;}
+.n5-flsx th {padding-bottom: 5px;font-size: 12px;}
+.n5-flsx li {float: left;margin: 0px 6px 8px 0px;padding: 5px 0;background: #fff;box-shadow: 0 1px 2px #cacaca;font-size: 12px;text-align: center;border-radius: 3px;white-space: nowrap;width: 23%;overflow: hidden;text-overflow: ellipsis;}
+.n5-flsx .a a {color: #fff;}
+.n5-ztfl {margin:10px 10px 0 10px;}
+.n5-ztfl a{line-height: 32px; padding: 5px 7px;background: #fff;box-shadow: 0 1px 2px #cacaca;text-align: center;border-radius: 3px;}
+.n5-ztfl .a{color: #fff;}
+
+.n5-lbydb {padding-bottom:50px;width: 100%;float: right;}
+
+/* 瀑布流 */
+.n5-pbl {width: 100%;}
+.n5-pbldg {background: #FFF;margin:10px 0 0 10px; padding: 5px;box-shadow: 0 1px 2px #cacaca;width: 43.6%;height: 200px;float: left;}
+.n5-pbldg img {width: 100%;height: 170px;}
+.n5-pblnr {padding-top:10px; }
+.n5-pblnr h2 {font-weight: 400;font-size:12px;height: 20px;overflow: hidden;}
+.n5-pblhf {margin-left:10px;}
+
+/* 论坛内容 */
+.n5-anzj {margin-left:5px;}
+.n5-bbsnr .plc .pi .message img, .plc .pi .img_one img {margin: 0;max-width: none;max-height: none;}
+.n5-bbsnr h2 {background-color: #fff;padding:10px;}
+.n5-bbsnr .plc {background-color: #fff;margin: 0 10px 8px 10px;border-bottom:0;}
+.n5-bbsnr .plc .pi {margin-left: 0;}
+.n5-bbsnr .plc .pi .authi {margin-left: 55px; padding-bottom: 10px;}
+.n5-bbsnr .plc .avatar img {border: 0;padding: 0;border-radius: 25px;}
+.n5-bbsnr .plc .pi .message {padding-left:15px;}
+.n5-bbsnr .fastpost .input {width: 84%;margin: 2px 0 0 55px;}
+.btn_pn_blue {border-radius: 5px;}
+
+.n5-flxx {margin-bottom:10px;}
+.n5-flxx h4 {background-color: #f2f2f2;padding:5px;}
+.n5-flxx p {padding: 5px;border-bottom: 1px dashed #EEE;}
+.n5-flxx p i {color: #8d8d8d;font-size: 12px;}
+
+/* 个人中心 */
+.n5-header .n5-logo b {font-size:16px;color:#FFF;font-weight: 400;}
+.n5-grsyzl {height: 160px;margin:0 0 20px 0;box-shadow: 0 1px 2px #cacaca;}
+.n5-grsyzl img {width: 78px;height: 78px;border-radius: 45px;margin-top:5px;}
+.avatar_m {text-align: center;}
+.n5-name {width:33.1%;text-align: center;margin-top:12px;color:#FFF;font-weight: 400;font-size:14px;float: left;}
+.n5-grbl {border:none;}
+.myinfo_list {width: 98%;}
+.myinfo_list li {background:#FFF;border-radius: 5px;box-shadow: 0 1px 2px #cacaca; width: 48%;}
+.tit_msg img {position: absolute;left: 135px;top: 28px;}
+.nav {background:#FFF;}
+.n5-wdzt {background:#FFF;margin:10px;padding: 10px;border-radius: 5px;border: 1px solid #DDD;}
+.n5-wdzt li {border-bottom: 1px dashed #D9D8D8;font-size: 14px;}
+.n5-wdzt li a {width: 90%;font-size: 14px;padding: 10px;}
+.n5-wdzt .num {background: url(icon_num.png) no-repeat 0 4px;}
+.n5-scbk li ,.n5-sczt li,.n5-wdxx li,.user_box li{border-bottom: 1px dashed #D9D8D8;}
+.n5-sczt {background:#FFF;margin:10px;padding: 10px 10px 50px 10px;border-radius: 5px;border: 1px solid #DDD;}
+.n5-wdxx {background:#FFF;margin:10px;padding: 10px;border-radius: 5px;border: 1px solid #DDD;}
+.n5-wdxx li {height: 80px;}
+.n5-wdxx li .avatar_img img {background: #FFF;border: 0;border-radius: 45px;left:0px;}
+.n5-wdxx li .num {font-size: 12px;height: 15px;line-height: 15px;padding: 0 4px;}
+.n5-wdxx li a {padding: 5px 2px 5px 45px;}
+.n5-wdxx li .time {font-size: 12px;padding-left: 10px;}
+.btn_exit a {width: 130px;border-radius: 5px;line-height: 40px;color: #fff;font-size: 14px;padding:0 0 0 80px;}
+
+/* 快速发帖 */
+.n5-xs{display:none!important;}
+.n5-ksft{width:97%;padding:0 5px;}
+.n5-ksft .pbnv{float:left;white-space:nowrap;overflow:hidden;width:400px;padding:7px 0;}
+.n5-ksft .pbl{overflow:hidden;border-radius:5px;margin:10px 0 20px 0;width:100%;border:solid;border-color:#ddd;border-width:1px 1px 1px 0;background:#fff;}
+.n5-ksft .pbl li{float:left;overflow-x:hidden;overflow-y:auto;padding:5px 1.5%;width:30%;height:300px;border-left:1px solid #CCC;}
+.n5-ksft .pbl p{height:30px;line-height:30px;}
+.n5-ksft .pbl a{display:block;white-space:nowrap;overflow:hidden;padding:0 4px;text-decoration:none;color:{HIGHLIGHTLINK};border:solid{WRAPBG};border-width:1px 0;}
+.n5-ksft .pbl a:hover{text-decoration:none;background-color:#F3F3F3;}
+.n5-ksft .pbl .highlightlink{color:#08C;}
+.n5-ksft .pbls a,.pbls a:hover{background-color:#EEE;font-weight:700;}
+.n5-ksft .n5-fq{margin-bottom:20px;color:#fff; border:0px outset buttonface!important;text-align:center;height:30px;width:50%;line-height:30px;}
+.n5-ksft .n5-bk{margin-bottom:20px;background-color:#cbcbcb;border:0px outset buttonface!important;text-align:center;height:30px;width:50%;line-height:30px;}
+
+/* 搜索 */
+.n5-ssnr {background: #FFF;border: 1px solid #EDEDED;border-radius:5px;margin: 10px 10px 0 10px;}
+.n5-ssnr .threadlist .thread_tit {font-weight: 400;font-size:14px;border-bottom: 0px;}
+.n5-ssnr .threadlist ul {margin-bottom: 15px;}
+.n5-ssnr .threadlist li {border-bottom: 1px dashed #D9D8D8;}
+.n5-ssnr .threadlist li a {font-size: 14px;}
+
+/* 底部 */
+.footer {padding-bottom:50px;}
+#contactbar {width: 100%;height: 38px;background: #FFF;border-top: 1px solid #ddd;position: fixed;bottom:0px;z-index:2; margin:0; padding:0}
+#contactbar .bottom_index {background: url(bottom_index.png) no-repeat; }
+#contactbar .bottom_index_on {background: url(bottom_index_hover.png) no-repeat;}
+#contactbar .bottom_history{background: url(bottom_history.png) no-repeat;}
+#contactbar .bottom_history_on{background: url(bottom_history_hover.png) no-repeat;}
+#contactbar .bottom_member {background: url(bottom_member.png) 0 0 no-repeat;}
+#contactbar .bottom_member_on{background: url(bottom_member_hover.png) 0 0 no-repeat;}
+#contactbar .bottom_post {background: url(bottom_post.png) 0 0 no-repeat;}
+#contactbar .bottom_post_on {background: url(bottom_post_hover.png) no-repeat;}
+#contactbar .bottom_index,#contactbar .bottom_index_on,#contactbar .bottom_history,#contactbar .bottom_history_on,#contactbar .bottom_member,#contactbar .bottom_member_on,#contactbar .bottom_post,#contactbar .bottom_post_on{background-position:center 6px;background-size: 26px auto;}
+#contactbar a{width:25%; height:100%; line-height:78px; text-align:center; background-color: #FFF; float:left;color: #777;font-size: 10px;}
+
