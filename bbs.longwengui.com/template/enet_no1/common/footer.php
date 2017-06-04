@@ -78,7 +78,7 @@
 				<!--{/if}-->
 				</span>
 			</div>
-		   <div class="discuzby">Powered by <strong><a href="http://www.adminbuy.cn" target="_blank">Discuz模板</a></strong> <em>$_G['setting']['version']</em><!--{if !empty($_G['setting']['boardlicensed'])}--> <a href="http://license.comsenz.com/?pid=1&host=$_SERVER[HTTP_HOST]" target="_blank">Licensed</a><!--{/if}--> Style by <strong><a href="http://eduenet.com" target="_blank">ENET</a> </strong><em> v1.2</em></p>
+		 <strong><a href="http://www.longwengui.com" target="_blank">Copyright © 2017 武夷山隆文贵互联网信息咨询有限公司 All rights reserved. 闽ICP备16032488号-1</a></strong>
 		<!--{eval updatesession();}-->
 		<!--{if $_G['uid'] && $_G['group']['allowinvisible']}-->
 			<script type="text/javascript">
@@ -87,7 +87,6 @@
 			if(loginstatusobj != undefined && loginstatusobj != null) loginstatusobj.innerHTML = invisiblestatus;
 			</script>
 		<!--{/if}-->
-	       </div>
 		  <div class="xs0" id="banquan">&copy; 2001-2013 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a></p></div>
 	    </div>
 </div>

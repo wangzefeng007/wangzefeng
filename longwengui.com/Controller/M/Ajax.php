@@ -29,7 +29,7 @@ class Ajax
     private function IsLogin()
     {
         if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_M_URL.'/member/login/');
             EchoResult($result_json);
             exit;
         }
@@ -532,13 +532,13 @@ class Ajax
                                 $DB->query("COMMIT");//执行事务
                                 ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在审核，请您耐心等待，如有不便请见谅');
                                 ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时审核');
-                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
+                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_M_URL.'/debt/'.$DebtID.'.html');
                             }
                         }else{
                             $DB->query("COMMIT");//执行事务
                             ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在审核，请您耐心等待，如有不便请见谅');
                             ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时审核');
-                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
+                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_M_URL.'/debt/'.$DebtID.'.html');
                         }
                     }else{
                         $result_json = array('ResultCode' => 106, 'Message' => '录入债务人信息失败');
@@ -617,11 +617,11 @@ class Ajax
                     $result_json = array('ResultCode'=>102,'Message'=>'添加悬赏图片失败');
                 }else{
                     $DB->query("COMMIT");//执行事务
-                    $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！','Url'=>WEB_MAIN_URL.'/member/login');
+                    $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！','Url'=>WEB_M_URL.'/member/login');
                 }
             }else{
                 $DB->query("COMMIT");//执行事务
-                $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！','Url'=>WEB_MAIN_URL.'/member/login');
+                $result_json = array('ResultCode'=>200,'Message'=>'请等待审核！','Url'=>WEB_M_URL.'/member/login');
             }
 
         }

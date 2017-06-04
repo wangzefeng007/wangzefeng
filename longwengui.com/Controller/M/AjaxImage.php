@@ -29,7 +29,7 @@ class AjaxImage
     private function IsLogin()
     {
         if (!isset($_SESSION['UserID']) || empty($_SESSION['UserID'])) {
-            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_MAIN_URL.'/member/login/');
+            $result_json = array('ResultCode' => 101, 'Message' => '请先登录', 'Url' => WEB_M_URL.'/member/login/');
             EchoResult($result_json);
             exit;
         }

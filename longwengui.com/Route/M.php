@@ -3,4 +3,32 @@
         'm@index'=>'M@Index',
         
         //'控制器小写@方法小写'=>'真实控制器名@真实方法名'
+        //法律援助
+        'legalaid@index'=>'LegalAid@Index',
+        //债务催收
+        'debt@index'=>'Debt@Index',
+        'debt@detail'=>'Debt@Detail',
+        'debt@publish'=>'Debt@Publish',
+        //线索悬赏
+        'reword@index'=>'Reword@Index',
+        'reword@publish'=>'Reword@Publish',
+        //资产转让
+        'asset@index'=>'Asset@Index',
+        'asset@publish'=>'Asset@Publish',
+        'asset@detail'=>'Asset@Detail',
+        //寻找处置方
+        'find@index'=>'Find@Index',
+        //搜索老赖
+        'deadbeat@index'=>'DeadBeat@Index',
+        //会员中心
+        'member@login'=>'Member@Login',
+        'member@signout'=>'Member@SignOut',
+        'member@registerone'=>'Member@RegisterOne',
+        'member@registertwo'=>'Member@RegisterTwo',
+        'member@registerthree'=>'Member@RegisterThree',
+        'member@registerfour'=>'Member@RegisterFour',
+        //Ajax
+        'ajaximage@index'=>'AjaxImage@Index',
+        'ajaxasset@index'=>'AjaxAsset@Index',
+        'ajaxorder@index'=>'AjaxOrder@Index',
     );

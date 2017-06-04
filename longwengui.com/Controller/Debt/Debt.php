@@ -107,7 +107,7 @@ class Debt
         $Description="债权人在隆文贵债务处置平台发布单笔或多笔债权信息后，债务信息展现在隆文贵债务处置债务催收栏目版块，执业律师或催收公司在此页面可根据地域分布和佣金比例等因素选择接单，进行催收，从而赚取佣金。";
         include template('DebtLists');
     }
-    public function DebtDetails(){
+    public function Detail(){
         $Nav='debt';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
@@ -151,6 +151,7 @@ class Debt
             $DebtorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
             $DebtorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
             $DebtorsInfo[$key]['Card'] = strlen($value['Card']) ? substr_replace($value['Card'], '****', 10, 4) : '';
+            $DebtorsInfo[$key]['Phone'] = strlen($value['Phone']) ? substr_replace($value['Phone'], '****', 4, 4) : '';
         }
         //债务人图片
         $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$ID,true);
@@ -195,7 +196,7 @@ class Debt
     /**
      * @desc  发布债务
      */
-    public function DebtPublish()
+    public function Publish()
     {
         $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();

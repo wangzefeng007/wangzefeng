@@ -1,0 +1,155 @@
+{template Head}
+<body>
+<div class="page">
+    <header class="common-header">
+        <a class="header-left icon-back" href="#">
+        </a>
+        <section class="header-title">
+            发布悬赏
+        </section>
+    </header>
+    <div class="tab-nav">
+        <a class="active" href="#">找人<span class="pop"></span></a>
+        <a href="#">找财产<span class="pop"></span></a>
+        <a href="#">其他 <span class="pop"></span></a>
+    </div>
+
+    <div class="content mt02">
+        <div class="form-fieldset">
+            <div class="form-legend common-box">
+                <div>
+                    <i class="icon icon-usermsg"></i>
+                    寻人信息
+                </div>
+            </div>
+            <div class="form-box mt01">
+                <div class="row">
+                    <p class="form-lab">
+                        姓&emsp;&emsp;&emsp;名:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入姓名" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        性&emsp;&emsp;&emsp;别:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入性别" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        年&emsp;&emsp;&emsp;龄:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入年龄" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        身&emsp;&emsp;&emsp;高:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请输入身高（cm）" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        &emsp;失联时间:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp" placeholder="请选择失联时间" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        &emsp;详细内容:
+                    </p>
+                    <div class="form-grid">
+                        <textarea class="textarea" maxlength="150" placeholder="最多可输入150字" name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="form-lab">
+                        如有目击或<br/>知情者请拨<br/>打联系电话:
+                    </p>
+                    <div class="form-grid">
+                        <input class="inp mt04" placeholder="请输入联系电话" type="tel">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-fieldset">
+            <div class="form-legend common-box">
+                <div>
+                    <i class="icon-photo"></i>
+                    照片上传
+                </div>
+            </div>
+            <div class="form-box">
+                <div class="row">
+                    <p class="form-lab">
+                        上传照片:
+                    </p>
+                </div>
+                <div class="row upload-row">
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+                </div>
+                <div class="row upload-row">
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+
+                    <div class="form-grid bx">
+                        <div class="img-wrap">
+                        </div>
+                        <label>
+                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-btn">
+        <a class="btn" href="#">发布</a>
+    </div>
+</div>
+</body>
+</html>

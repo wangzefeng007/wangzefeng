@@ -57,14 +57,23 @@
                             <label>详细地址:</label>
                             {if $lists[Address]} {$lists[Address]} {else} 无 {/if}
                         </div>
-
+                    </div>
+                    <div class="line clearfix">
+                        <div class="l">
+                            <label>债务人电话:</label>
+                            {if $lists[Phone]} {$lists[Phone]} {else} 无 {/if}
+                        </div>
+                        <div class="r">
+                            <label>债务金额:</label>
+                            {$lists[Money]}
+                        </div>
                     </div>
                 </div>
                 {/loop}
                 <div class="bx">
                     <div class="line">
                         <div class="l">
-                            <label>债务金额(元):</label>
+                            <label>债务总金额(元):</label>
                             ￥{$DebtInfo[DebtAmount]}
                         </div>
                         <label>逾期时间:</label>
