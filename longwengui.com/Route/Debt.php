@@ -8,10 +8,10 @@ $RouteArr=array(
     'debt@index'=>'Debt@Index',
     'debt@debtlists'=>'Debt@DebtLists',
     'debt@debtdetails'=>'Debt@DebtDetails',
-    'debt@publish'=>'Debt@DebtPublish',
+    'debt@publish'=>'Debt@Publish',
     //线索悬赏
     'reword@index'=>'Reword@Index',
-    'reword@publish'=>'Reword@RewordPublish',
+    'reword@publish'=>'Reword@Publish',
     //资产转让
     'asset@publish'=>'Asset@Publish',
     'asset@lists'=>'Asset@Lists',

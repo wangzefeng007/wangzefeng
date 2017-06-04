@@ -8,7 +8,7 @@
         //债务催收
         'debt@index'=>'Debt@Index',
         'debt@detail'=>'Debt@Detail',
-        'debt@publish'=>'Debt@DebtPublish',
+        'debt@publish'=>'Debt@Publish',
         //线索悬赏
         'reword@index'=>'Reword@Index',
         'reword@publish'=>'Reword@Publish',

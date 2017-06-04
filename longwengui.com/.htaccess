@@ -9,7 +9,7 @@ RewriteRule ^test(|\/)$ /index.php?Module=Debt&Action=Test [QSA,L]
 #债务催收
 RewriteRule ^debtlists(|\/)$ /index.php?Module=Debt&Action=DebtLists [QSA]
 RewriteRule ^debt/([0-9]+).html$ /index.php?Module=Debt&Action=Detail&ID=$1 [QSA]
-RewriteRule ^debt/publish/([0-9]+)(|\/)$ /index.php?Module=Debt&Action=DebtPublish&T=$1 [QSA]
+RewriteRule ^debt/publish/([0-9]+)(|\/)$ /index.php?Module=Debt&Action=Publish&T=$1 [QSA]
 
 #资产转让
 RewriteRule ^assetdetails/([0-9]+).html$ /index.php?Module=Asset&Action=Details&ID=$1 [QSA]

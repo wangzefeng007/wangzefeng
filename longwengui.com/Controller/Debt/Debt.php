@@ -196,7 +196,7 @@ class Debt
     /**
      * @desc  发布债务
      */
-    public function DebtPublish()
+    public function Publish()
     {
         $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
