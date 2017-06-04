@@ -7,7 +7,7 @@ html {
     font-size: 50px;
 }
 body {
-    background-color: #000;
+    background-color: rgba(0,0,0,.2);
     font: .24rem microsoft yahei, arial, verdana, helvetica, sans-serif;
     color: #626d78;
 }
@@ -115,7 +115,7 @@ a.c-hui,
 .c-red{
     color: #ff4e00;
 }
-.c-blue{ color: #007eff!important }
+.c-blue{ color: #59cbc7!important }
 .c-orange{ color: #ff7800!important }
 
 a.link-hei,
@@ -313,6 +313,14 @@ a.btn-s,
 .tab-nav.tab-line .active{
     border-bottom: solid 2px #59cbc7;
 }
+.tab-nav.tab-big a{
+    height: .75rem;
+    padding-top: .2rem;
+}
+.tab-nav.tab-big a::after{
+    display: none;
+}
+
 .tab-nav a.active .pop{
     position: absolute;
     left: 50%;
@@ -428,6 +436,26 @@ a.btn-s,
     -ms-flex: 1;
     flex: 1;
 }
+.item .option-text{
+    display: block;
+    text-align: right;
+    padding-top: .13rem;
+    padding-bottom: .13rem;
+    line-height: .62rem;
+}
+.item .item-con .h3{
+    font-size: .26rem;
+    color: #6b6b6b;
+}
+.item .item-con .h3 .long{
+    display: inline-block;
+    max-width: 4.5rem;
+    vertical-align: top;
+}
+.item .item-con .h5{
+    font-size: .24rem;
+    color: #8a959d;
+}
 .item  .icon-arrow {
     display: block;
     width: .2rem;
@@ -448,7 +476,7 @@ a.btn-s,
     display: block;
     width: 100%;
     height: .98rem;
-    font-size: .3rem;
+    font-size: .26rem;
     line-height: normal;
     color: #333;
     background: none;
@@ -532,6 +560,12 @@ a.btn-s,
     background: url(../images/icon-search2.png) no-repeat center;
     background-size: .36rem;
 }
+.icon-add2{
+    width: .4rem;
+    height: .4rem;
+    background: url(../images/icon-add2.png) no-repeat center;
+    background-size: .36rem;
+}
 .common-header .header-search .icon-search{
     position: absolute;
     left: .2rem;
@@ -546,7 +580,7 @@ a.btn-s,
     position: absolute;
     right: 0;
     top: 0;
-    min-width: 1.4rem;
+    min-width: 1rem;
     height: .86rem;
     margin-right: .3rem;
     text-align: center;
@@ -565,6 +599,19 @@ a.btn-s,
     background-position: 0 0;
 }
 .favo-ed{
+    background-position: 0 -.4rem;
+}
+.icon-follow{
+    width: .4rem;
+    height: .4rem;
+    background-image: url(../images/icon-follow.png);
+    background-repeat: no-repeat;
+    background-size: .4rem;
+}
+.follow-will{
+    background-position: 0 0;
+}
+.follow-ed{
     background-position: 0 -.4rem;
 }
 .common-header .header-right>i{
@@ -925,6 +972,7 @@ a.btn-s,
 .form-lab{
     display: inline-block;
     min-width: 1.5rem;
+    text-align: right;
     margin-right: .2rem;
     padding: .1rem 0;
     line-height: .4rem;
@@ -937,6 +985,9 @@ a.btn-s,
     -webkit-flex: 1;
     flex: 1;
     -ms-flex: 1;
+}
+.form-view .form-lab{
+    color: #6b6b6b;
 }
 .form-view .form-grid{
     line-height: .6rem;
@@ -1003,11 +1054,17 @@ a.btn-s,
     background: url(../images/icon-help.png) no-repeat center;
     background-size: .34rem;
 }
-.icon-del{
+.icon-del,.icon-del2{
     width: .34rem;
     height: .34rem;
     background: url(../images/icon-del2.png) no-repeat center;
-    background-size: .26rem;
+    background-size: .34rem;
+}
+.icon-edit{
+    width: .34rem;
+    height: .34rem;
+    background: url(../images/icon-edit.png) no-repeat center;
+    background-size: .3rem;
 }
 .form-fieldset .icon-del{
     background-image: url(../images/icon-del.png);
@@ -1096,7 +1153,7 @@ a.btn-s,
 .checkbox i {
   display: inline-block;
   vertical-align: top;
-  margin-right: .05rem;
+  margin-right: .1rem;
   margin-top: .03rem;
   background-image: url("../images/form-checkbox.png");
   background-position: 0 -.03rem;
@@ -1394,6 +1451,9 @@ a.btn-s,
     background: url(../images/daijiedan.png);
     background-size: 100%;
 }
+.content-view .waiting.status-2{
+    background: url(../images/cuishouzhong.png);
+}
 .content-view .paragraph{
     padding: .18rem .3rem .18rem 0;
     margin-left: .3rem;
@@ -1420,7 +1480,7 @@ a.btn-s,
 }
 
 .image-view a{
-    width: 2.04rem;
+    width: 2.05rem;
     height: 1.46rem;
 }
 .image-view a img{
@@ -1528,6 +1588,12 @@ a.btn-s,
     height: .34rem;
     background: url(../images/icon-address.png) no-repeat center;
     background-size: .34rem;
+}
+.icon-address3 {
+    width: .34rem;
+    height: .34rem;
+    background: url(../images/icon-address3.png) no-repeat center;
+    background-size: .28rem;
 }
 .icon-ratio {
     width: .34rem;
@@ -1942,6 +2008,12 @@ a.btn-s,
 .icon-gzsc{
     background-image: url(../images/icon-gzsc.png);
 }
+.icon-ckqy{
+    background-image: url(../images/icon-ckqy.png);
+}
+.icon-jdyq{
+    background-image: url(../images/icon-jdyq.png);
+}
 .form-tips{
     padding: .1rem 0;
     text-align: center;
@@ -2057,6 +2129,9 @@ a.btn-s,
 .item-list .status-1{
     background-image: url(../images/daijiedan.png);
 }
+.item-list .status-1-1{
+    background-image: url(../images/shenqingjiedan.png);
+}
 .item-list .status-2{
     background-image: url(../images/cuishouzhong.png);
 }
@@ -2101,4 +2176,161 @@ a.btn-s,
 } 
 .item-list .item-detail .form-grid{
     padding: .1rem 0;
+}
+
+.page-member .header-right{
+    font-size: .3rem;
+    color: #fff;
+}
+.page-member .icon-back{
+    background: url(../images/icon-back2.png) no-repeat center;
+    background-size: .21rem;
+}
+.page-member .wallet-top{
+    height: 3rem;
+    color: #fff;
+}
+.page-member .wallet-top .content{
+    padding-top: 1.3rem;
+}
+.page-member .wallet-top .h6{
+    font-size: .22rem;
+}
+.page-member .wallet-top .h3{
+    font-size: .8rem;
+}
+.wallet-tips{
+    padding: .1rem .3rem;
+    padding-bottom: .5rem;
+}
+.my-clue li{
+    border-radius: .05rem;
+}
+.my-clue .status{
+    padding: .03rem .13rem;
+    color: #fff;
+    font-size: .22rem;
+    border-radius: .05rem;
+}
+.my-clue .status-1{
+    background: #59cbc7;
+}
+.my-clue .status-2{
+    background: #ff635d;
+}
+.my-clue .clue-top .h3{
+    max-width: 3.5rem;
+}
+.my-clue .long{
+    max-width: 3.5rem;
+    display: inline-block;
+    vertical-align: top;
+}
+.address-list .default{
+    height: .36rem;
+    width: 1.18rem;
+    text-align: center;
+    line-height: .34rem;
+    margin-top: .06rem;
+    color: #68cfcb;
+    font-size: .22rem;
+    border: solid 1px #68cfcb;
+    box-sizing:border-box;
+    border-radius: .36rem;
+}
+.address-list .default.active{
+    background: #68cfcb;
+    color: #fff;
+}
+.address-list .form-view .form-lab,
+.lawyer-list .form-view .form-lab,
+.mini-list .form-view .form-lab{
+    padding: .05rem 0;
+    line-height: .3rem;
+}
+.address-list .form-view .form-grid,
+.lawyer-list .form-view .form-grid,
+.mini-list .form-view .form-grid {
+    line-height: .4rem;
+}
+.form-view .form-grid .image-view{
+    width: 2.05rem;
+    float: right;
+    text-align: center;
+}
+.form-view .form-grid .image-view+.image-view{
+    margin-right: .2rem;
+}
+.lai-query{
+    padding: .3rem;
+    background: #fff;
+}
+.lai-query.form-box .row{
+    padding-right: 0;
+}
+.lai-query .query-btn{
+    width: 1.86rem;
+}
+.lai-query .query-btn .btn{
+    height: .6rem;
+    line-height: .6rem;
+    font-size: .28rem;
+}
+
+/* 老赖 */
+.list-lai{
+    margin-bottom: 1rem;
+}
+.list-lai li {
+    margin-top: .2rem;
+    padding: .15rem 0 .15rem .45rem;
+    background: #fff;
+    color: #8a959d;
+}
+
+.item-lai .lai-hd{
+    padding-bottom: .3rem;
+    padding-right: .2rem;
+    border-bottom: dashed 1px #e5e5e5;
+}
+.item-lai .lai-hd .icon{
+    margin-top: .2rem;
+    margin-right: .12rem;
+}
+.item-lai .lai-hd>div{
+    padding-top: .15rem;
+}
+.item-lai .lai-hd .h3{
+    display: inline-block;
+    max-width: 5rem;
+    color: #626d78;
+    font-size: .3rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.item-lai .lai-msg{
+    padding-right: .3rem;
+}
+.item-lai .lai-msg>p{
+    font-size: .26rem;
+    margin-top: .1rem;
+}
+.icon-case{
+    width: .34rem;
+    height: .34rem;
+    background: url(../images/icon-case.png) no-repeat center;
+    background-size: .26rem;
+}
+.icon-company{
+    width: .34rem;
+    height: .34rem;
+    background: url(../images/icon-company.png) no-repeat center;
+    background-size: .34rem;
+}
+.lai-hd-case{
+    margin-top: .15rem;
+    padding-top: .2rem;
+    border-top: solid 1px #e5e5e5;
 }
