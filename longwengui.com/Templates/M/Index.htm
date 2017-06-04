@@ -100,81 +100,33 @@
             热门资产 <a class="fr" href="#">查看更多&gt;</a>
         </div>
         <ul>
+            {loop $Data['Data'] $lists}
             <li>
-                <a href="#">
+                <a href="/assetdetails/{$lists['AssetID']}.html">
                     <div class="common-box">
                         <p class="pic">
-                            <img src="temp/goods-1.jpg" height="140" width="140" alt="">
+                            <img src="{$lists['ImageUrl']}" height="140" width="140" alt="{$lists['Title']}">
                         </p>
                         <div class="msg">
                             <div class="h3">
                                 <p class="title ellipsis">
-                                    上品武夷山大红袍
+                                    {$lists['Title']}
                                 </p>
-                                <span class="date fr">2017-02-25</span>
+                                <span class="date fr">{$lists['AddTime']}</span>
                             </div>
                             <p>
-                                <span>共3646份 </span>
-                                <span class="fr">已卖646份</span>
+                                <span>共{$lists['Amount']}份 </span>
+                                <span class="fr">已卖{$lists['Number']}份</span>
                             </p>
                             <p>
-                                <span class="line-through">市价：¥1200/份</span>
-                                <span class="fr"><b>¥1000</b>/份</span>
+                                <span class="line-through">市价：¥{$lists['MarketPrice']}/份</span>
+                                <span class="fr"><b>¥{$lists['Price']}</b>/份</span>
                             </p>
                         </div>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <div class="common-box">
-                        <p class="pic">
-                            <img src="temp/goods-1.jpg" height="140" width="140" alt="">
-                        </p>
-                        <div class="msg">
-                            <div class="h3">
-                                <p class="title ellipsis">
-                                    上品武夷山大红袍
-                                </p>
-                                <span class="date fr">2017-02-25</span>
-                            </div>
-                            <p>
-                                <span>共3646份 </span>
-                                <span class="fr">已卖646份</span>
-                            </p>
-                            <p>
-                                <span class="line-through">市价：¥1200/份</span>
-                                <span class="fr"><b>¥1000</b>/份</span>
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="common-box">
-                        <p class="pic">
-                            <img src="temp/goods-1.jpg" height="140" width="140" alt="">
-                        </p>
-                        <div class="msg">
-                            <div class="h3">
-                                <p class="title ellipsis">
-                                    上品武夷山大红袍
-                                </p>
-                                <span class="date fr">2017-02-25</span>
-                            </div>
-                            <p>
-                                <span>共3646份 </span>
-                                <span class="fr">已卖646份</span>
-                            </p>
-                            <p>
-                                <span class="line-through">市价：¥1200/份</span>
-                                <span class="fr"><b>¥1000</b>/份</span>
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </li>
+            {/loop}
         </ul>
     </div>
     <div class="fixed-height"></div>

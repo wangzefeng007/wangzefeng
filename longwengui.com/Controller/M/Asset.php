@@ -28,6 +28,7 @@ class Asset
      * @desc  资产转让详情页
      */
     public function Details(){
+        include template('AssetDetails');
     }
     /**
      * 选择支付页

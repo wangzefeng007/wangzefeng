@@ -15,6 +15,16 @@ class M
      * 首页
      */
     public function Index(){
+
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $Data['Data'] = $MemberAssetInfoModule->GetLists(' and `Status` = 2  and `S1` =1', 0,3);
+        foreach ($Data['Data'] as $key=>$value){
+            $Data['Data'][$key]['Number'] = intval($value['Amount'])-intval($value['Inventory']);//已买量
+            $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$value['AssetID'].' and IsDefault = 1');
+            $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+            $Data['Data'][$key]['AddTime'] = date("Y-m-d",$value['AddTime']);
+        }
         include template('Index');
     }
 

@@ -55,8 +55,9 @@ class Debt
     /**
      * @desc  债务详情
      */
-    public function Detail(){
-        include template('DebtDetail');
+    public function Details(){
+
+        include template('DebtDetails');
     }
     /**
      * @desc  发布债务
