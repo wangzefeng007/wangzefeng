@@ -8,6 +8,31 @@ $(function(){
     });
 
 });
+//失去焦点校验
+function validateForm(type, tar){
+    var text = $(tar).val();
+    if(text == ''){
+        showTip(tar, '请输入');
+        return;
+    }
+    switch (type) {
+        case "money":
+            if(!validate("+money", text)){
+                showTip(tar, '请输入正确金额');
+                return;
+            }
+            break;
+        case "rate":
+            if(!validate('+number', text) || !(text > 0 && text <= 100)){
+                showTip(tar, '请输入0-100整数');
+                return;
+            }
+            break;
+        default:
+            return;
+    }
+}
+
 function ajax(){
   var percent_money = $('#percent_money').val();
   var detail_info = $('#detail_info').val();
