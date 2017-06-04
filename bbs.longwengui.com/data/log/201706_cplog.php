@@ -277,3 +277,7 @@
 <?PHP exit;?>	1496403206	admin	1	127.0.0.1	styles	GET={updatecsscache=1; namenew={1=默认风格; 2=ENET_v1.1; 8=zhikai_baibiansj; }; defaultnew1=1; defaultnew3=1; defaultnew=2; defaultnew2=8; stylesubmit=更新 CSS 缓存; }; POST={updatecsscache=1; namenew={1=默认风格; 2=ENET_v1.1; 8=zhikai_baibiansj; }; defaultnew1=1; defaultnew3=1; defaultnew=2; defaultnew2=8; stylesubmit=更新 CSS 缓存; };
 <?PHP exit;?>	1496405273	admin	1	127.0.0.1		GET={}; POST={};
 <?PHP exit;?>	1496405274	admin	1	127.0.0.1	index	GET={}; POST={};
+<?PHP exit;?>	1496547773	admin	1	127.0.0.1		GET={}; POST={};
+<?PHP exit;?>	1496547776	admin	1	127.0.0.1	index	GET={}; POST={};
+<?PHP exit;?>	1496547777	admin	1	127.0.0.1	nav	GET={}; POST={};
+<?PHP exit;?>	1496547779	admin	1	127.0.0.1	styles	GET={}; POST={};

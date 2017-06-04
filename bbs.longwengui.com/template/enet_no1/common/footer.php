@@ -87,7 +87,7 @@
 			if(loginstatusobj != undefined && loginstatusobj != null) loginstatusobj.innerHTML = invisiblestatus;
 			</script>
 		<!--{/if}-->
-		  <div class="xs0" id="banquan">&copy; 2001-2013 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a></p></div>
+<!--		  <div class="xs0" id="banquan">&copy; 2001-2013 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a></p></div>-->
 	    </div>
 </div>
 

@@ -1,6 +1,6 @@
 <?php
 $data = array (
-  'exp' => 1496384651,
+  'exp' => 1496545773,
   'data' => 
   array (
     0 => 
@@ -16,10 +16,10 @@ $data = array (
       'authorid' => '1',
       'subject' => '的返回三德科技傅雷家书',
       'dateline' => '1496303491',
-      'lastpost' => '1496304083',
+      'lastpost' => '1496471016',
       'lastposter' => 'admin',
-      'views' => '3',
-      'replies' => '1',
+      'views' => '6',
+      'replies' => '2',
       'displayorder' => '0',
       'highlight' => '0',
       'digest' => '0',
@@ -43,7 +43,7 @@ $data = array (
       'cover' => '0',
       'replycredit' => '0',
       'relatebytag' => '0',
-      'maxposition' => '2',
+      'maxposition' => '3',
       'bgcolor' => '',
       'comments' => '0',
       'hidden' => '0',
