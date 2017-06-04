@@ -294,6 +294,7 @@ class uc_note {
 			if(preg_match('/^https?:\/\//is', $UC_API)) {
 				$configfile = trim(file_get_contents(DISCUZ_ROOT.'./config/config_ucenter.php'));
 				$configfile = substr($configfile, -2) == '?>' ? substr($configfile, 0, -2) : $configfile;
+                $configfile = preg_replace("/define\('UC_API',\s*'.*?'\);/i", "define('UC_API', '".addslashes($UC_API)."');", $configfile);
 				$configfile = preg_replace("/define\('UC_API',\s*'.*?'\);/i", "define('UC_API', '".addslashes($UC_API)."');", $configfile);
 				if($fp = @fopen(DISCUZ_ROOT.'./config/config_ucenter.php', 'w')) {
 					@fwrite($fp, trim($configfile));

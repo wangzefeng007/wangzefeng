@@ -7,7 +7,7 @@
         'legalaid@index'=>'LegalAid@Index',
         //债务催收
         'debt@index'=>'Debt@Index',
-        'debt@detail'=>'Debt@Detail',
+        'debt@details'=>'Debt@Details',
         'debt@publish'=>'Debt@Publish',
         //线索悬赏
         'reword@index'=>'Reword@Index',
@@ -15,7 +15,7 @@
         //资产转让
         'asset@index'=>'Asset@Index',
         'asset@publish'=>'Asset@Publish',
-        'asset@detail'=>'Asset@Detail',
+        'asset@details'=>'Asset@Details',
         //寻找处置方
         'find@index'=>'Find@Index',
         //搜索老赖

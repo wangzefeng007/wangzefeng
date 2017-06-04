@@ -15,6 +15,9 @@ class Reword
      * @desc  线索悬赏列表
      */
     public function Index(){
+        $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
+        $MemberAreaModule = new MemberAreaModule();
          include template('RewardIndex');
     }
     /**

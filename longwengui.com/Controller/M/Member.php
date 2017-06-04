@@ -43,6 +43,7 @@ class Member
      * @desc  会员注册完善资料(企业或者个人)
      */
     public function RegisterTwo(){
+        $MemberUserInfoModule = new MemberUserInfoModule();
         include template('MemberRegisterTwo');
     }
     /**

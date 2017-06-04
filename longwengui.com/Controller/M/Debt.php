@@ -56,7 +56,12 @@ class Debt
      * @desc  债务详情
      */
     public function Details(){
-
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberDebtImageModule = new MemberDebtImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
         include template('DebtDetails');
     }
     /**
