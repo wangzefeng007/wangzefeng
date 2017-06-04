@@ -79,15 +79,15 @@ $(function(){
   function dataSuccess(data){
     $('#result').empty();
     $('#search_result').tmpl(data).appendTo('#result');
-    $('.result .tbl-wrap .i-5 img').click(function(){
+    $('.result .tbl-wrap .i-5 span').click(function(){
       if($(this).attr('data-show') == 1){
-        $(this).attr('src', "/Uploads/Debt/imgs/db_arrow_right.png");
+        $(this).children("img").attr('src', "/Uploads/Debt/imgs/db_arrow_right.png");
         $(this).attr('data-show', 0);
         $(this).parents('.hd-wrap').removeClass('act');
         $(this).parents('.hd-wrap').siblings('.cont').hide();
       }else{
         $(this).attr('data-show', 1);
-        $(this).attr('src', "/Uploads/Debt/imgs/db_arrow_down.png");
+        $(this).children("img").attr('src', "/Uploads/Debt/imgs/db_arrow_down.png");
         $(this).parents('.hd-wrap').addClass('act');
         $(this).parents('.hd-wrap').siblings('.cont').show();
       }
