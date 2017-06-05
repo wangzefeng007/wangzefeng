@@ -116,7 +116,7 @@ class Asset
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         $MemberUser = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
         $UserInfo['Mobile'] =$MemberUser['Mobile'];
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and ProductID = '.$AssetInfo['AssetID'],true);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and `Status` > 1 and ProductID = '.$AssetInfo['AssetID'],true);
         $TotalAmount =0;
         foreach ($OrderInfo as $value){
             $TotalAmount =$TotalAmount+ $value['TotalAmount'];
