@@ -189,10 +189,6 @@ class Asset
                 $OrderLogModule = new MemberOrderLogModule();
                 if ($_SESSION['UserID'] && ! empty($_SESSION['UserID'])) {
                     $UserID = $_SESSION['UserID'];
-                } else {
-                    $MemberUserModule = new MemberUserModule();
-                    $UserInfo = $MemberUserModule->GetUserIDbyMobile($OrderInfo['Tel']);
-                    $UserID = $UserInfo['UserID'];
                 }
                 $LogData = array(
                     'OrderNumber' => $OrderNumber,
