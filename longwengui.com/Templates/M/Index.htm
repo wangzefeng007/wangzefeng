@@ -1,174 +1,178 @@
 {template Head}
 <body>
-<div class="page">
-    <header class="common-header">
-        <section class="header-title">
-            <img class="logo" src="{echo CssURL}/m/images/logo.png" alt="">
-        </section>
-        <a class="header-right" href="#">
-            <i class="icon-remind"></i></a>
-    </header>
-    <section class="banner">
-        <a href="#">
-            <img src="{echo CssURL}/m/images/banner-1.jpg" alt="">
-        </a>
-    </section>
-    <section class="nav-list clearfix">
-        <div class="flex">
-            <div class="nav nav-1">
+<div class="page-group">
+    <div class="page">
+        <div class="content">
+            <header class="common-header">
+                <section class="header-title">
+                    <img class="logo" src="{echo CssURL}/m/images/logo.png" alt="">
+                </section>
+                <a class="header-right" href="#">
+                    <i class="icon-remind"></i></a>
+            </header>
+            <section class="banner">
                 <a href="#">
-                    <i class="icon"></i>
-                    <h3>
-                        资产商城
-                    </h3>
-                    <h5>
-                        资产抵消债务低价出售
-                    </h5>
+                    <img src="{echo CssURL}/m/images/banner-1.jpg" alt="">
                 </a>
-            </div>
-            <div class="flex1">
-                <div class="nav nav-2">
-                    <a href="/find/">
-                        <h3>
-                            <i class="icon"></i>寻找处置方
-                        </h3>
-                    </a>
-                </div>
-                <div class="common-box">
-                    <div class="nav nav-3">
-                        <a href="javascript:void (0)">
-                            <i class="icon"></i>
-                            <h3>
-                                债权转让
-                            </h3>
-                            <h5>
-                                快速回笼资金
-                            </h5>
-                        </a>
-                    </div>
-                    <div class="nav nav-4">
+            </section>
+            <section class="nav-list clearfix">
+                <div class="flex">
+                    <div class="nav nav-1">
                         <a href="#">
                             <i class="icon"></i>
                             <h3>
-                                查询老赖
+                                资产商城
                             </h3>
                             <h5>
-                                查询黑名单信息
+                                资产抵消债务低价出售
+                            </h5>
+                        </a>
+                    </div>
+                    <div class="flex1">
+                        <div class="nav nav-2">
+                            <a href="/find/">
+                                <h3>
+                                    <i class="icon"></i>寻找处置方
+                                </h3>
+                            </a>
+                        </div>
+                        <div class="common-box">
+                            <div class="nav nav-3">
+                                <a href="javascript:void (0)">
+                                    <i class="icon"></i>
+                                    <h3>
+                                        债权转让
+                                    </h3>
+                                    <h5>
+                                        快速回笼资金
+                                    </h5>
+                                </a>
+                            </div>
+                            <div class="nav nav-4">
+                                <a href="#">
+                                    <i class="icon"></i>
+                                    <h3>
+                                        查询老赖
+                                    </h3>
+                                    <h5>
+                                        查询黑名单信息
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex mt01">
+                    <div class="flex1">
+                        <div class="nav nav-5">
+                            <a href="/reword/">
+                                <h3>
+                                    <i class="icon"></i>线索悬赏
+                                </h3>
+                            </a>
+                        </div>
+                        <div class="nav nav-6">
+                            <a href="/legalaid/">
+                                <i class="icon"></i>
+                                <h3>
+                                    法律援助
+                                </h3>
+                                <h5>
+                                    快速寻找事务所
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nav nav-7">
+                        <a href="/debt/">
+                            <i class="icon"></i>
+                            <h3>
+                                债务催收
+                            </h3>
+                            <h5>
+                                提供自助催收和委托催收等服务
                             </h5>
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="flex mt01">
-            <div class="flex1">
-                <div class="nav nav-5">
-                    <a href="/reword/">
-                        <h3>
-                            <i class="icon"></i>线索悬赏
-                        </h3>
-                    </a>
-                </div>
-                <div class="nav nav-6">
-                    <a href="/legalaid/">
-                        <i class="icon"></i>
-                        <h3>
-                            法律援助
-                        </h3>
-                        <h5>
-                            快速寻找事务所
-                        </h5>
-                    </a>
-                </div>
-            </div>
-            <div class="nav nav-7">
-                <a href="/debt/">
-                    <i class="icon"></i>
-                    <h3>
-                        债务催收
-                    </h3>
-                    <h5>
-                        提供自助催收和委托催收等服务
-                    </h5>
-                </a>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <div class="assets-hot">
-        <div class="hd">
-            热门资产 <a class="fr" href="#">查看更多&gt;</a>
-        </div>
-        <ul>
-            {loop $Data['Data'] $lists}
-            <li>
-                <a href="/assetdetails/{$lists['AssetID']}.html">
-                    <div class="common-box">
-                        <p class="pic">
-                            <img src="{$lists['ImageUrl']}" height="140" width="140" alt="{$lists['Title']}">
-                        </p>
-                        <div class="msg">
-                            <div class="h3">
-                                <p class="title ellipsis">
-                                    {$lists['Title']}
-                                </p>
-                                <span class="date fr">{$lists['AddTime']}</span>
-                            </div>
-                            <p>
-                                <span>共{$lists['Amount']}份 </span>
-                                <span class="fr">已卖{$lists['Number']}份</span>
-                            </p>
-                            <p>
-                                <span class="line-through">市价：¥{$lists['MarketPrice']}/份</span>
-                                <span class="fr"><b>¥{$lists['Price']}</b>/份</span>
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            {/loop}
-        </ul>
-    </div>
-    <div class="fixed-height"></div>
-    <div class="fixed-bottom">
-        <footer class="footer-menu common-box">
-            <section class="nav home active">
-                <a href="#">
-                    <i></i>
-                    <p>隆文贵</p>
-                </a>
-            </section>
-            <div class="center">
-                <i class="icon-nav-add">
-                </i>
-                <div class="publish-box">
-                    <ul>
-                        <li class="publish-1">
-                            <a href="/asset/publish/">
-                            发布资产
-                            </a>
-                        </li>
-                        <li class="publish-2">
-                            <a href="/debt/publish/">
-                            发布债务
-                            </a>
-                        </li>
-                        <li class="publish-3">
-                            <a href="/reword/publish/">
-                            发布悬赏
-                            </a>
-                        </li>
-                    </ul>
+            <div class="assets-hot">
+                <div class="hd">
+                    热门资产 <a class="fr" href="#">查看更多&gt;</a>
                 </div>
+                <ul>
+                    {loop $Data['Data'] $lists}
+                    <li>
+                        <a href="/assetdetails/{$lists['AssetID']}.html">
+                            <div class="common-box">
+                                <p class="pic">
+                                    <img src="{$lists['ImageUrl']}" height="140" width="140" alt="{$lists['Title']}">
+                                </p>
+                                <div class="msg">
+                                    <div class="h3">
+                                        <p class="title ellipsis">
+                                            {$lists['Title']}
+                                        </p>
+                                        <span class="date fr">{$lists['AddTime']}</span>
+                                    </div>
+                                    <p>
+                                        <span>共{$lists['Amount']}份 </span>
+                                        <span class="fr">已卖{$lists['Number']}份</span>
+                                    </p>
+                                    <p>
+                                        <span class="line-through">市价：¥{$lists['MarketPrice']}/份</span>
+                                        <span class="fr"><b>¥{$lists['Price']}</b>/份</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {/loop}
+                </ul>
             </div>
-            <section class="nav my">
-                <a href="/member/login/">
-                    <i></i>
-                    <p>我的</p>
-                </a>
-            </section>
-        </footer>
+            <div class="fixed-height"></div>
+        </div>
+        <div class="fixed-bottom">
+            <footer class="footer-menu common-box">
+                <section class="nav home active">
+                    <a href="#">
+                        <i></i>
+                        <p>隆文贵</p>
+                    </a>
+                </section>
+                <div class="center">
+                    <i class="icon-nav-add">
+                    </i>
+                    <div class="publish-box">
+                        <ul>
+                            <li class="publish-1">
+                                <a href="/asset/publish/">
+                                发布资产
+                                </a>
+                            </li>
+                            <li class="publish-2">
+                                <a href="/debt/publish/">
+                                发布债务
+                                </a>
+                            </li>
+                            <li class="publish-3">
+                                <a href="/reword/publish/">
+                                发布悬赏
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <section class="nav my">
+                    <a href="/member/login/">
+                        <i></i>
+                        <p>我的</p>
+                    </a>
+                </section>
+            </footer>
+        </div>
     </div>
-</div>
+</div><!--page-group end-->
 </body>
 </html>

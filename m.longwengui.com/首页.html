@@ -201,7 +201,7 @@
           </a>
         </section>
         <div class="center">
-          <i class="icon-nav-add">
+          <i class="icon-nav-add alert-text">
           </i>
           <div class="publish-box">
             <ul>
@@ -228,5 +228,10 @@
   </div>
 <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+<script>
+  $(document).on('click','.alert-text',function () {
+        $.alert('Here goes alert text');
+     });
+</script>
 </body>
 </html>
