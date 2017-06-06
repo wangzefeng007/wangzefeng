@@ -27,7 +27,7 @@
                         </tr>
                         <tr>
                             <td>订单编号：{$OrderInfo[OrderNumber]}</td>
-                            <td>产品名称：{$AssetInfo['Title']}</td>
+                            <td>产品名称：<a href="/index.php?Module=Asset&Action=Detail&AssetID={$OrderInfo[ProductID]}" target="_blank">{$AssetInfo['Title']}</a></td>
                             <td>订单金额：{$OrderInfo[TotalAmount]}元</td>
                         </tr>
                         <tr>
