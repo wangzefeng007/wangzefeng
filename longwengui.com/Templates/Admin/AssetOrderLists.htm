@@ -25,7 +25,7 @@
                     <span style="float: left;line-height: 36px;margin-left: -10px;padding-right: 10px">搜索：</span>
                     <form class="form-inline" role="form" action="/index.php?Module=AssetOrder&Action=Lists" method="GET">
                         <input type="text" class="form-control" name="Title" placeholder="用户ID/订单ID/订单编号" value="{$Title}" style="width:300px;">
-                        <input type="hidden" name="Module" value="Asset">
+                        <input type="hidden" name="Module" value="AssetOrder">
                         <input type="hidden" name="Action" value="Lists">
                         审核状态：
                         <select name="Status" id="Status"  class="form-control">
@@ -61,9 +61,9 @@
                             <td>{$lists[UserID]}</td>
                             <td>{$lists[Contacts]}</td>
                             <td>{$lists[AddTime]}</td>
-                            <td>{$lists[PaymentMethod]}</td>
+                            <td>{$PaymentMethod[$lists[PaymentMethod]]}</td>
                             <td>{$lists[TotalAmount]}</td>
-                            <td>{$lists[Status]}</td>
+                            <td>{$StatusInfo[$lists[Status]]}</td>
                             <td><a href="/index.php?Module=AssetOrder&Action=Detail&OrderID={$lists[OrderID]}">详情</a>
                         </tr>
                         {/loop}

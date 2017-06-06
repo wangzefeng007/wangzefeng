@@ -5,7 +5,7 @@
 class MemberService
 {
     /**
-     * @desc  判断是否登录并返回登录页面
+     * @desc  判断登录返回相应会员中心
      */
     public static function IsLogin(){
 
@@ -23,7 +23,14 @@ class MemberService
             }
         }
     }
-
+    /**
+     * @desc  判断是否登录返回登录页
+     */
+    public static function IsNoLogin(){
+        if (!isset ($_SESSION ['UserID']) || empty ($_SESSION ['UserID'])) {
+            header('Location:' . WEB_MAIN_URL . '/member/login/');
+        }
+    }
     /**
      * @desc  发送手机验证码，验证手机
      * @param $Mobile 手机号码

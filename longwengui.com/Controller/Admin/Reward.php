@@ -60,6 +60,7 @@ class Reward
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         $StatusInfo = $MemberRewardInfoModule->NStatus;
+        $Type = $MemberRewardInfoModule->Type;
         $SqlWhere = '';
         // 搜索条件
         $PageUrl = '';
@@ -116,10 +117,12 @@ class Reward
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
+        $StatusInfo = $MemberRewardInfoModule->NStatus;
+        $Type = $MemberRewardInfoModule->Type;
         if ($_POST['ID']) {
             $Data['Status'] = intval($_POST['Status']);
             $ID = intval($_POST['ID']);
-            $result = $MemberRewardInfoModule->UpdateInfoByWhere($Data, ' ID= ' . $ID);
+            $result = $MemberRewardInfoModule->UpdateInfoByKeyID($Data,$ID);
             if ($result) {
                 alertandgotopage('操作成功!', '/index.php?Module=Reward&Action=RewardDetail&ID=' . $ID);
             } elseif ($result === 0) {
@@ -130,14 +133,9 @@ class Reward
         }
         if ($_GET['ID']) {
             $ID = $_GET['ID'];
-            $RewardInfo = $MemberRewardInfoModule->GetInfoByWhere(' and ID = '.$ID);
-            if ($RewardInfo['Province'])
-            $RewardInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Province']);
-            if ($RewardInfo['City'])
-            $RewardInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['City']);
-            if ($RewardInfo['Area'])
-            $RewardInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Area']);
-            $RewardImg = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID,true);
+            $RewardInfo = $MemberRewardInfoModule->GetInfoByKeyID($ID);
+            $RewardInfo['Message'] = json_decode($RewardInfo['Message'],true);
+            $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID,true);
             $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
         }
         include template('RewardDetail');

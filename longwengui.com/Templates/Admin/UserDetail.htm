@@ -92,10 +92,9 @@
                                 <td class="t-r" width="150">审核状态：</td>
                                 <td>
                                     <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
-                                        <option value="1" {if $UserInfo[IdentityState] == 1}selected="selected"{/if}>未提交审核</option>
-                                        <option value="2" {if $UserInfo[IdentityState] == 2}selected="selected"{/if}>审核中</option>
-                                        <option value="3" {if $UserInfo[IdentityState] == 3}selected="selected"{/if}>审核通过</option>
-                                        <option value="4" {if $UserInfo[IdentityState] == 4}selected="selected"{/if}>审核不通过</option>
+                                        {loop $IdentityStatus $key $value}
+                                        <option  value="{$key}" {if $UserInfo[IdentityState] == $key}selected="selected"{/if}>{$value}</option>
+                                        {/loop}
                                     </select>
                                     <input type="hidden" name="UserID" value="{$UserID}" />
                                     <input class="btn btn-danger" type="submit" name="submit" value="修改">

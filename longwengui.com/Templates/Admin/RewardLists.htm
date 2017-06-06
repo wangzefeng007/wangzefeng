@@ -33,7 +33,7 @@
 							{/loop}
 						</select>
 						<button class="btn btn-info">搜索</button>
-						<input onclick="location.href='/index.php?Module=Reward&Action=Publish'" value="发布悬赏" class="btn btn-danger" style="margin-left: 10px" type="button">
+						<!--<input onclick="location.href='/index.php?Module=Reward&Action=Publish'" value="发布悬赏" class="btn btn-danger" style="margin-left: 10px" type="button">-->
 					</form>
 				</div>
 				<section id="unseen">
@@ -42,9 +42,7 @@
 						<tr>
 							<th>ID</th>
 							<th>悬赏编号</th>
-							<th>债务人姓名</th>
-							<th class="numeric">债务人地区</th>
-							<th class="numeric">债务人电话</th>
+							<th>寻找类型</th>
 							<th class="numeric">发布时间</th>
 							<th class="numeric">悬赏状态</th>
 							<th class="numeric">操作</th>
@@ -53,16 +51,14 @@
 						<tbody>
 						{loop $Data[Data] $lists}
 						<tr height="35" align="center">
-							<td nowrap="nowrap">{$lists[ID]}</td>
+							<td nowrap="nowrap">{$lists[RewardID]}</td>
 							<td nowrap="nowrap">{$lists[RewardNum]}</td>
-							<td nowrap="nowrap">{$lists[DebtName]}</td>
-							<td nowrap="nowrap">{$lists[Province]}-{$lists[City]}-{$lists[Area]}</td>
-							<td nowrap="nowrap">{$lists[DebtPhone]}</td>
+							<td nowrap="nowrap">{$Type[$lists[Type]]}</td>
 							<td nowrap="nowrap">{$lists[AddTime]}</td>
 							<td nowrap="nowrap">{$StatusInfo[$lists[Status]]}</td>
 							<td>
-								<a class="getinfo" href="/index.php?Module=Reward&Action=RewardDetail&ID={$lists[ID]}">查看详情</a>
-								<a href="javascript:void(0)" class="del" data-id="{$lists[ID]}"data-num="{$lists[RewardNum]}" >删除</a>
+								<a class="getinfo" href="/index.php?Module=Reward&Action=RewardDetail&ID={$lists[RewardID]}">查看详情</a>
+								<a href="javascript:void(0)" class="del" data-id="{$lists[RewardID]}"data-num="{$lists[RewardNum]}" >删除</a>
 							</td>
 						</tr>
 						{/loop}

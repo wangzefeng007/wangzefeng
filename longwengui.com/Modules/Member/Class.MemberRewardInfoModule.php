@@ -19,4 +19,13 @@ class MemberRewardInfoModule extends CommonModule {
         '3' => '悬赏中',
         '4' => '已完成',
     );
+    /**
+     * @desc 寻找类型
+     * @var array
+     */
+    public $Type = array(
+        '1' => '找人',
+        '2' => '找财产',
+        '3' => '其他',
+    );
 }

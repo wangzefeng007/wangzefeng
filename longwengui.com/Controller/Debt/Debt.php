@@ -198,7 +198,7 @@ class Debt
      */
     public function Publish()
     {
-        $this->IsLogin();
+        MemberService::IsNoLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
 //        if ($UserInfo['IdentityState']!=3)

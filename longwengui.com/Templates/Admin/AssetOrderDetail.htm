@@ -1,0 +1,76 @@
+{template Head}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#">资产转让管理</a>
+                </li>
+                <li class="active position">资产订单列表</li>
+
+                <li class="active" id="modify">订单详情</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <td colspan="3" class="t-h">订单详情：</td>
+                        </tr>
+                        <tr>
+                            <td>订单编号：{$OrderInfo[OrderNumber]}</td>
+                            <td>产品名称：{$AssetInfo['Title']}</td>
+                            <td>订单金额：{$OrderInfo[TotalAmount]}元</td>
+                        </tr>
+                        <tr>
+                            <td>数量：{$OrderInfo[Num]}</td>
+                            <td>单价：{$OrderInfo[UnitPrice]}</td>
+                            <td>用户ID：{$OrderInfo[UserID]}</td>
+                        </tr>
+                        <tr>
+                            <td>联系人：{$OrderInfo[Contacts]}</td>
+                            <td>联系电话：{$OrderInfo[Tel]}</td>
+                            <td>详细地址：{$OrderInfo[Address]}</td>
+                        </tr>
+                        <tr>
+                            <td>下单时间：{echo date("Y-m-d",$OrderInfo[AddTime])}</td>
+                            <td>订单状态：{$StatusInfo[$OrderInfo[Status]]}</td>
+                            <td>付款方式：{$PaymentMethod[$OrderInfo[PaymentMethod]]}</td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-striped table-hover">
+                        <form action='/index.php?Module=AssetOrder&Action=Detail'  method='post'  enctype="multipart/form-data">
+                            <tbody>
+                            <tr>
+                                <td class="t-r" width="150">订单状态：</td>
+                                <td>
+                                    <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
+                                        {loop $StatusInfo $key $value}
+                                        <option  value="{$key}" {if $OrderInfo[Status] == $key}selected="selected"{/if}>{$value}</option>
+                                        {/loop}
+                                    </select>
+                                    <input type="hidden" name="OrderID" value="{$OrderID}" />
+                                    <input class="btn btn-danger" type="submit" name="submit" value="修改">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                    <tr>
+                        <td><a class="right" href="/index.php?Module=User&Action=UserLists">返回列表</a></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+{template Foot}

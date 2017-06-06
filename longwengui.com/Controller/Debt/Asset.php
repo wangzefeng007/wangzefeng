@@ -73,7 +73,7 @@ class Asset
      */
     public function Publish(){
         $Title ='隆文贵债务处置-发布资产';
-        $this->IsLogin();
+        MemberService::IsNoLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         if ($UserInfo['Identity']!=1 && $UserInfo['Identity']!=2){

@@ -42,4 +42,13 @@ class MemberProductOrderModule extends CommonModule {
         '10' => '交易关闭(用户关闭)',
         '11' => '退款（退货中）',
     );
+    /**
+     * @desc 后台支付方式
+     * @var array
+     */
+    public $PaymentMethod = array(
+        '1' => '支付宝',
+        '2' => '微信',
+        '3' => '网银',
+    );
 }

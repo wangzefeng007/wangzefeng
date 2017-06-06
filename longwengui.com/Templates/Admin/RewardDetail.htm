@@ -28,31 +28,55 @@
                             <td colspan="3" class="t-h">悬赏详情：</td>
                         </tr>
                         <tr>
-                            <td>悬赏ID：{$RewardInfo[ID]}</td>
+                            <td>悬赏ID：{$RewardInfo[RewardID]}</td>
                             <td>悬赏编号：{$RewardInfo[RewardNum]}</td>
-                            <td>用户ID：{$RewardInfo[UserID]}</td>
+                            <td>用户ID：<a href="/index.php?Module=User&Action=UserDetail&UserID={$RewardInfo[UserID]}" target="_blank">{$RewardInfo[UserID]}</a></td>
                         </tr>
+                        {if $RewardInfo[Type]==1}
                         <tr>
-                            <td>发布时间：{$RewardInfo['AddTime']}</td>
-                            <td>债权人电话：{$RewardInfo[CreditorsPhone]}</td>
-                            <td>类型：{if $RewardInfo[Type]==0}找人{elseif $RewardInfo[Type]==1}找财产{/if}</td>
-                        </tr>
-                        <tr>
-                            <td>债务人姓名：{$RewardInfo[DebtName]}</td>
-                            <td>债务人身份证：{$RewardInfo[DebtCard]}</td>
-                            <td>债务人电话：{$RewardInfo[DebtPhone]}</td>
-                        </tr>
-                        <tr>
-                            <td>债务人地区：{$RewardInfo[Province]}-{$RewardInfo[City]}-{$RewardInfo[Area]}</td>
-                            <td>详细地址：{$RewardInfo[Address]}</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="3" class="t-h">债务人照片：</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {elseif $RewardInfo[Type]==2}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {elseif $RewardInfo[Type]==3}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {/if}
+                        <tr>
+                            <td>发布时间：{$RewardInfo['AddTime']}</td>
+                            <td>类型：{$Type[$RewardInfo[Type]]}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="t-h">悬赏图片：</td>
                         </tr>
                         <tr>
                             <td>
-                            {loop $RewardImg $lists}
+                            {loop $RewardImage $lists}
                             <a href="{$lists[ImageUrl]}" target="_blank"><img src="{$lists[ImageUrl]}" height="100px" width="100px" title="点击显示大图"></a>
                             {/loop}
                             </td>
@@ -67,10 +91,9 @@
                                 <td class="t-r" width="150">审核状态：</td>
                                 <td>
                                     <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px">
-                                        <option value="1" {if $UserInfo[Status] == 1}selected="selected"{/if}>未提交审核</option>
-                                        <option value="2" {if $UserInfo[Status] == 2}selected="selected"{/if}>审核中</option>
-                                        <option value="3" {if $UserInfo[Status] == 3}selected="selected"{/if}>悬赏中</option>
-                                        <option value="4" {if $UserInfo[Status] == 4}selected="selected"{/if}>已完成</option>
+                                        {loop $StatusInfo $key $value}
+                                        <option  value="{$key}" {if $UserInfo[Status] == $key}selected="selected"{/if}>{$value}</option>
+                                        {/loop}
                                     </select>
                                     <input type="hidden" name="ID" value="{$ID}" />
                                     <input class="btn btn-danger" type="submit" name="submit" value="修改">
