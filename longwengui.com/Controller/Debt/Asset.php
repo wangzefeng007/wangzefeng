@@ -109,8 +109,10 @@ class Asset
         $MemberUserModule = new MemberUserModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
-        if ($AssetInfo['Status']!=2){
-            alertandback("该资产未审核通过！");
+        if (!strstr($_SERVER['HTTP_REFERER'], WEB_ADMIN_URL)){
+            if ($AssetInfo['Status']!=2 || empty($_SESSION['AdminID'])){
+                alertandback("该资产未审核通过！");
+            }
         }
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
