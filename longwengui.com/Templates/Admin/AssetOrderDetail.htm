@@ -33,7 +33,7 @@
                         <tr>
                             <td>数量：{$OrderInfo[Num]}</td>
                             <td>单价：{$OrderInfo[UnitPrice]}</td>
-                            <td>用户ID：{$OrderInfo[UserID]}</td>
+                            <td>用户ID：<a href="/index.php?Module=User&Action=UserDetail&UserID={$OrderInfo[UserID]}" target="_blank">{$OrderInfo[UserID]}</a></td>
                         </tr>
                         <tr>
                             <td>联系人：{$OrderInfo[Contacts]}</td>

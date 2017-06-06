@@ -32,45 +32,60 @@
                             <td>悬赏编号：{$RewardInfo[RewardNum]}</td>
                             <td>用户ID：<a href="/index.php?Module=User&Action=UserDetail&UserID={$RewardInfo[UserID]}" target="_blank">{$RewardInfo[UserID]}</a></td>
                         </tr>
-                        {if $RewardInfo[Type]==1}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        {elseif $RewardInfo[Type]==2}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        {elseif $RewardInfo[Type]==3}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        {/if}
                         <tr>
                             <td>发布时间：{$RewardInfo['AddTime']}</td>
                             <td>类型：{$Type[$RewardInfo[Type]]}</td>
                             <td></td>
                         </tr>
+                        {if $RewardInfo[Type]==1}
+                        <tr>
+                            <td colspan="3" class="t-h">寻人信息：</td>
+                        </tr>
+                        <tr>
+                            <td>姓名：{$RewardInfo['Message'][find_name]}</td>
+                            <td>性别：{$RewardInfo['Message'][find_sex]}</td>
+                            <td>年龄：{$RewardInfo['Message'][find_age]}</td>
+                        </tr>
+                        <tr>
+                            <td>身高：{$RewardInfo['Message'][find_height]}</td>
+                            <td>身份证：{$RewardInfo['Message'][find_idCard]}</td>
+                            <td>失联时间：{$RewardInfo['Message'][last_time]}</td>
+                        </tr>
+                        <tr>
+                            <td>详细内容：{$RewardInfo['Message'][find_detail]}</td>
+                            <td>联系电话：{$RewardInfo['Message'][contact_phone]}</td>
+                            <td></td>
+                        </tr>
+                        {elseif $RewardInfo[Type]==2}
+                        <tr>
+                            <td colspan="3" class="t-h">财产信息：</td>
+                        </tr>
+                        <tr>
+                            <td>地区：{$RewardInfo['Message'][Province]}-{$RewardInfo['Message'][City]}-{$RewardInfo['Message'][Area]}</td>
+                            <td>姓名：{$RewardInfo['Message'][name]}</td>
+                            <td>身份证：{$RewardInfo['Message'][idNum]}</td>
+                        </tr>
+                        <tr>
+                            <td>地址：{$RewardInfo['Message'][detail_address]}</td>
+                            <td>详细内容：{$RewardInfo['Message'][find_detail]}</td>
+                            <td>联系电话：{$RewardInfo['Message'][contact_phone]}</td>
+                        </tr>
+                        {elseif $RewardInfo[Type]==3}
+                        <tr>
+                            <td colspan="3" class="t-h">其他信息：</td>
+                        </tr>
+                        <tr>
+                            <td>地区：{$RewardInfo['Message'][Province]}-{$RewardInfo['Message'][City]}-{$RewardInfo['Message'][Area]}</td>
+                            <td>物品名称：{$RewardInfo['Message'][lost_name]}</td>
+                            <td>丢失时间：{$RewardInfo['Message'][lost_time]}</td>
+                        </tr>
+                        <tr>
+                            <td>丢失地址：{$RewardInfo['Message'][detail_address]}</td>
+                            <td>详细内容：{$RewardInfo['Message'][find_detail]}</td>
+                            <td>联系电话：{$RewardInfo['Message'][contact_phone]}</td>
+                        </tr>
+                        {/if}
+
                         <tr>
                             <td colspan="3" class="t-h">悬赏图片：</td>
                         </tr>

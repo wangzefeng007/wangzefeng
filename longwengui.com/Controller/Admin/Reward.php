@@ -135,6 +135,12 @@ class Reward
             $ID = $_GET['ID'];
             $RewardInfo = $MemberRewardInfoModule->GetInfoByKeyID($ID);
             $RewardInfo['Message'] = json_decode($RewardInfo['Message'],true);
+            if ($RewardInfo['Message']['dd_province'])
+                $RewardInfo['Message']['Province'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Message']['dd_province']);
+            if ($RewardInfo['Message']['dd_city'])
+                $RewardInfo['Message']['City'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Message']['dd_city']);
+            if ($RewardInfo['Message']['dd_area'])
+                $RewardInfo['Message']['Area'] = $MemberAreaModule->GetCnNameByKeyID($RewardInfo['Message']['dd_area']);
             $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$ID,true);
             $UserInfo['AddTime'] = !empty($UserInfo['AddTime']) ? date('Y-m-d H:i:s', $UserInfo['AddTime']) : '';
         }
