@@ -1,3 +1,29 @@
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+@-webkit-keyframes myRotate {
+    0% {
+        -webkit-transform: rotate(-180deg);;
+        transform: rotate(-180deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotate(0);;
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+.myRotate {
+    -webkit-animation-name: myRotate;
+    animation-name: myRotate;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom
+}
 html,body,h1,h2,h3,h4,h5,p,span,a,div,ol,ul,li,dl,dt,dd,table,tbody,tfoot,thead,tr,th,td,input,textarea,form {
     margin: 0;
     padding: 0;
@@ -192,7 +218,7 @@ input::-webkit-input-placeholder{ color: #b3b3b3; }
     border: solid 1px #68cfcb;
     border-radius: .15rem;
 }
-.btn.touch,.btn.touch { background-color: #6c98f2; }
+.btn.touch,.btn.touch { background-color: #54c1bd; }
 .btn+.btn{
     margin-top: .75rem;
 }
@@ -504,6 +530,7 @@ a.btn-s,
 
 .common-header{
     position: relative;
+    z-index: 2;
     height: 2.2rem;
     padding: .475rem 0;
     background: #49515a;
@@ -906,12 +933,22 @@ a.btn-s,
 .publish-box{
     position: absolute;
     width: 9.1rem;
+    height:6rem;
     left: 50%;
     margin-left: -4.55rem;
     top: -4.25rem;
-    opacity: 0;
     z-index: -1;
-    display: none;
+    opacity: 0;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    transition:transform .5s;
+}
+.publish-box.open{
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    opacity: 1;
 }
 .publish-box li{
     float: left;
@@ -1740,11 +1777,14 @@ a.btn-s,
     background-size: 100% 100%;
     text-align: center;
 }
+.login-page .common-header{
+    background: transparent;
+}
 .login-page .content{
     padding: 0 3.5rem;
 }
 .login-page .logo{
-    margin-top: 3.4rem;
+    margin-top: 4rem;
     height: 3.2rem;
 }
 .login-page .logo img{

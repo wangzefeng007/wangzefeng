@@ -13,5 +13,11 @@
     <link href="{echo CssURL}/m/css/sm.css" rel="stylesheet">
     <link href="{echo CssURL}/m/css/base.css" rel="stylesheet">
     <script type='text/javascript' src='{echo JsURL}/m/lib/zepto/zepto.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='{echo JsURL}/m/lib/msui/sm.min.js' charset='utf-8'></script>
+    <script>
+        $.config = {
+            router: false  //关闭路由
+        }
+    </script>
+    <script type='text/javascript' src='{echo JsURL}/m/lib/msui/sm.js' charset='utf-8'></script>
+    <script type='text/javascript' src='{echo JsURL}/m/common/common.js' charset='utf-8'></script>
 </head>
