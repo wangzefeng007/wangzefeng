@@ -17,6 +17,14 @@ class MemberAssetInfoModule extends CommonModule
         '3' => '审核失败',
         '4' => '过期自动关闭',
     ];
+    /**
+     * @desc 产品上架状态
+     * @var array
+     */
+    public $ProductStatus = [
+        '0' => '下架',
+        '1' => '上架',
+    ];
     //库存减少
     public function SetInventory($AssetID,$Num){
         if($AssetID=='' || !is_numeric($AssetID)){

@@ -27,7 +27,7 @@ class Asset
         $MysqlWhere = '';
         $PageSize = 10;
         $PageUrl = '';
-        $Title = $_GET['Title'];
+        $Title = trim($_GET['Title']);
         if ($Title) {
             //"标题/资产ID/资产单号
             $MysqlWhere .= ' and (AssetMember=\'' . $Title . '\' or AssetID like \'%' . $Title . '%\' or concat(Title) like \'%' . $Title . '%\')';
@@ -68,22 +68,25 @@ class Asset
      * @desc  资产订单详情
      */
     public function Detail(){
-        $AssetID = intval($_GET['AssetID']);
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
+        $StatusInfo = $MemberAssetInfoModule->NStatus;
+        $ProductStatus = $MemberAssetInfoModule->ProductStatus;
         if ($_POST['AssetID']) {
+            $Data['ProductStatus'] = intval($_POST['ProductStatus']);
             $Data['Status'] = intval($_POST['Status']);
             $AssetID = intval($_POST['AssetID']);
             $result = $MemberAssetInfoModule->UpdateInfoByWhere($Data, ' AssetID= ' . $AssetID);
             if ($result) {
-                alertandback('操作成功!', '/index.php?Module=Asset&Action=Detail&AssetID='.$AssetID);
+                alertandgotopage('操作成功!', '/index.php?Module=Asset&Action=Detail&AssetID='.$AssetID);
             } elseif ($result === 0) {
                 alertandback('状态未发生改变!');
             } else {
                 alertandback('操作失败!');
             }
         }
+        $AssetID = intval($_GET['AssetID']);
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($AssetID);
         $AssetImage = $MemberAssetImageModule->UpdateInfoByWhere(' and AssetID = '.$AssetID,true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);

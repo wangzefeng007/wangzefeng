@@ -27,26 +27,26 @@
                         <tr>
                             <td colspan="3" class="t-h">资产详情：</td>
                         </tr>
-                        <!--<tr>-->
-                            <!--<td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>-->
-                            <!--<td>身份：{$Identity[$UserInfo[Identity]]}</td>-->
-                            <!--<td>QQ：{$UserInfo[QQ]}</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<td>QQ：{$AssetInfo[QQ]}</td>-->
-                            <!--<td>QQ：{$AssetInfo[QQ]}</td>-->
-                            <!--<td>QQ：{$AssetInfo[QQ]}</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>-->
-                            <!--<td>身份：{$Identity[$UserInfo[Identity]]}</td>-->
-                            <!--<td>QQ：{$UserInfo[QQ]}</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<td>审核状态：{$IdentityStatus[$UserInfo[IdentityState]]}</td>-->
-                            <!--<td>身份：{$Identity[$UserInfo[Identity]]}</td>-->
-                            <!--<td>QQ：{$UserInfo[QQ]}</td>-->
-                        <!--</tr>-->
+                        <tr>
+                            <td>资产名称：{$AssetInfo[Title]}</td>
+                            <td>资产类别：{$AssetInfo[Category]}</td>
+                            <td>用户ID：{$AssetInfo[UserID]}</td>
+                        </tr>
+                        <tr>
+                            <td>售后电话：{$AssetInfo[AfterPhone]}</td>
+                            <td>截止日期：{echo date("Y-m-d",$AssetInfo[ExpirationDate])}</td>
+                            <td>添加时间：{echo date("Y-m-d",$AssetInfo[AddTime])}</td>
+                        </tr>
+                        <tr>
+                            <td>总数量：{$AssetInfo[Amount]}</td>
+                            <td>库存量：{$AssetInfo[Inventory]}</td>
+                            <td>资产总金额：{$AssetInfo[AssetsAmount]}</td>
+                        </tr>
+                        <tr>
+                            <td>单价：{$AssetInfo[Price]}</td>
+                            <td>市场价：{$AssetInfo[MarketPrice]}</td>
+                            <td>产品状态：{$StatusInfo[$AssetInfo[Status]]}</td>
+                        </tr>
                     </table>
                     <table class="table table-bordered table-striped table-hover">
                         <form action='/index.php?Module=Asset&Action=Detail'  method='post'  enctype="multipart/form-data">
@@ -55,10 +55,21 @@
                                 <td class="t-r" width="150">审核状态：</td>
                                 <td>
                                     <select name="Status" id="Status" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
-                                        <option value="1" {if $AssetInfo[Status] == 1}selected="selected"{/if}>待审核</option>
-                                        <option value="2" {if $AssetInfo[Status] == 2}selected="selected"{/if}>审核通过</option>
-                                        <option value="3" {if $AssetInfo[Status] == 3}selected="selected"{/if}>审核失败</option>
-                                        <option value="4" {if $AssetInfo[Status] == 4}selected="selected"{/if}>过期自动关闭</option>
+                                        {loop $StatusInfo $key $value}
+                                        <option  value="{$key}" {if $AssetInfo[Status] == $key}selected="selected"{/if}>{$value}</option>
+                                        {/loop}
+                                    </select>
+                                    <input type="hidden" name="AssetID" value="{$AssetID}" />
+                                    <input class="btn btn-danger" type="submit" name="submit" value="修改">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="t-r" width="150">产品上下架：</td>
+                                <td>
+                                    <select name="ProductStatus" id="ProductStatus" class="form-control" style="width:200px;float:left;margin-right: 10px" onchange="GetNewTourAreaID(this.value)" >
+                                        {loop $ProductStatus $key $value}
+                                        <option  value="{$key}" {if $AssetInfo[ProductStatus] == $key}selected="selected"{/if}>{$value}</option>
+                                        {/loop}
                                     </select>
                                     <input type="hidden" name="AssetID" value="{$AssetID}" />
                                     <input class="btn btn-danger" type="submit" name="submit" value="修改">
