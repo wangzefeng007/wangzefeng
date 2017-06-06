@@ -1,3 +1,29 @@
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+@-webkit-keyframes myRotate {
+    0% {
+        -webkit-transform: rotate(-180deg);;
+        transform: rotate(-180deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotate(0);;
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+.myRotate {
+    -webkit-animation-name: myRotate;
+    animation-name: myRotate;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom
+}
 html,body,h1,h2,h3,h4,h5,p,span,a,div,ol,ul,li,dl,dt,dd,table,tbody,tfoot,thead,tr,th,td,input,textarea,form {
     margin: 0;
     padding: 0;
@@ -7,8 +33,8 @@ html {
     font-size: 20px;
 }
 body {
-    background-color: rgba(0,0,0,.2);
-    font: .24rem microsoft yahei, arial, verdana, helvetica, sans-serif;
+    background: rgba(0,0,0,.2);
+    font: .6rem microsoft yahei, arial, verdana, helvetica, sans-serif;
     color: #626d78;
 }
 a{
@@ -21,7 +47,7 @@ a{
     margin-left: auto;
     margin-right: auto;
     overflow-x:hidden;
-    background-color: #f0f0f0;
+    background: #f0f0f0;
 }
 .bg-gray{
     background-color: #eeeded;
@@ -192,7 +218,7 @@ input::-webkit-input-placeholder{ color: #b3b3b3; }
     border: solid 1px #68cfcb;
     border-radius: .15rem;
 }
-.btn.touch,.btn.touch { background-color: #6c98f2; }
+.btn.touch,.btn.touch { background-color: #54c1bd; }
 .btn+.btn{
     margin-top: .75rem;
 }
@@ -358,6 +384,13 @@ a.btn-s,
 .tab-bd { display: none; }
 .tab-bd.active { display: block; }
 
+.tab-con>div{
+    display: none;
+}
+.tab-con>div.active{
+    display: block;
+}
+
 .tab-table{
     display: table;
     height: 2.2rem;
@@ -504,6 +537,7 @@ a.btn-s,
 
 .common-header{
     position: relative;
+    z-index: 2;
     height: 2.2rem;
     padding: .475rem 0;
     background: #49515a;
@@ -863,7 +897,7 @@ a.btn-s,
     font-size: .7rem;
 }
 .footer-menu .home{
-    width: 2.1rem;
+    width: 5.5rem;
 }
 .footer-menu .home i{
     width: 1.3rem;
@@ -875,7 +909,7 @@ a.btn-s,
 }
 
 .footer-menu .my{
-    width: 2.1rem;
+    width: 5.5rem;
 }
 .footer-menu .my i{
     width: 1.3rem;
@@ -906,12 +940,22 @@ a.btn-s,
 .publish-box{
     position: absolute;
     width: 9.1rem;
+    height:6rem;
     left: 50%;
     margin-left: -4.55rem;
     top: -4.25rem;
-    opacity: 0;
     z-index: -1;
-    display: none;
+    opacity: 0;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    transition:transform .5s;
+}
+.publish-box.open{
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    opacity: 1;
 }
 .publish-box li{
     float: left;
@@ -942,20 +986,17 @@ a.btn-s,
     height: 3.25rem;
 }
 .fixed-bottom{
-    position: fixed;
+    position: absolute;
+    right: 0;
     left: 0;
+    z-index: 10;
     bottom: 0;
     width: 100%;
+    padding: 0;
+    table-layout: fixed;
 }
 .fixed-bottom>.btn{
     border-radius: 0;
-}
-.page .fixed-bottom>*{
-    width: 18.75rem;
-    position: relative;
-    left: 50%;
-    margin-left: -9.375rem;
-    box-sizing:border-box;
 }
 .row{
     display: -webkit-box;
@@ -1239,7 +1280,7 @@ a.btn-s,
     border: solid 1px #e3edff;
     text-align: center;
 }
-.content{
+.content-pd{
     padding: 0 .75rem;
 }
 .list-debt{
@@ -1459,6 +1500,9 @@ a.btn-s,
     margin-left: .75rem;
     color: #414951;
     border-bottom: dashed 1px #dfdfdf;
+}
+.content-view .paragraph:last-child{
+    border-bottom:none;
 }
 .paragraph .photo{
     display: block;
@@ -1743,11 +1787,14 @@ a.btn-s,
     background-size: 100% 100%;
     text-align: center;
 }
+.login-page .common-header{
+    background: transparent;
+}
 .login-page .content{
     padding: 0 3.5rem;
 }
 .login-page .logo{
-    margin-top: 3.4rem;
+    margin-top: 4rem;
     height: 3.2rem;
 }
 .login-page .logo img{
@@ -2333,4 +2380,13 @@ a.btn-s,
     margin-top: .375rem;
     padding-top: .5rem;
     border-top: solid 1px #e5e5e5;
+}
+.top-hd{
+    background: #59cbc7;
+    color: #fff;
+}
+.tab-con .content-view{
+    margin:.5rem .75rem;
+    background: #fff;
+    border-radius: .25rem;
 }

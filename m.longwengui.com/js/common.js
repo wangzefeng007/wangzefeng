@@ -5,11 +5,11 @@ window.onload=function(){
     $.init();
 }
 Zepto(function($){
-    /*触摸添加样式 touch*/
+	/*触摸添加样式 touch*/
     $(".index-top .bottom-btn,.index-nav a,.btn,.btn-blue,.btn-red").on("touchstart",function(){
         $(this).addClass("touch");
     });
-    /*触摸结束删除样式 touch*/
+	/*触摸结束删除样式 touch*/
     $(".index-top .bottom-btn,.index-nav a,.btn,.btn-blue,.btn-red").on("touchend touchmove touchcancel",function(){
         $(this).removeClass("touch");
     });
@@ -33,7 +33,7 @@ $(function(){
         }
     });
     /**
-     * tab 切换
+	 * tab 切换
      */
     $(".tab-nav a").on("click",function(e){
         e.preventDefault();

@@ -384,6 +384,13 @@ a.btn-s,
 .tab-bd { display: none; }
 .tab-bd.active { display: block; }
 
+.tab-con>div{
+    display: none;
+}
+.tab-con>div.active{
+    display: block;
+}
+
 .tab-table{
     display: table;
     height: 2.2rem;
@@ -1494,6 +1501,9 @@ a.btn-s,
     color: #414951;
     border-bottom: dashed 1px #dfdfdf;
 }
+.content-view .paragraph:last-child{
+    border-bottom:none;
+}
 .paragraph .photo{
     display: block;
     width: 2.4rem;
@@ -2370,4 +2380,13 @@ a.btn-s,
     margin-top: .375rem;
     padding-top: .5rem;
     border-top: solid 1px #e5e5e5;
+}
+.top-hd{
+    background: #59cbc7;
+    color: #fff;
+}
+.tab-con .content-view{
+    margin:.5rem .75rem;
+    background: #fff;
+    border-radius: .25rem;
 }
