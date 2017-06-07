@@ -19,7 +19,7 @@
                         <div>
                             <input type="text" name="code" class="inp" placeholder="验证码">
                         </div>
-                        <p class="btn-code">
+                        <p class="btn-code" onclick="pageObj.getCode(this)">
                             获取验证码
                         </p>
                     </div>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="box-btn mt05">
-                <a class="btn dis" href="#MemberRegisterNext">下一步</a>
+                <a class="btn active-router" onclick="pageObj.registerNext()" href="#">下一步</a>
             </div>
         </div>
     </div>
