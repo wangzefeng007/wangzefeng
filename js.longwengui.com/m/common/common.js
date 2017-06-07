@@ -58,6 +58,13 @@ function getCookie(name){
     else
         return null;
 }
+
+//获取url参数
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var result = window.location.search.substr(1).match(reg);
+    return result ? decodeURIComponent(result[2]) : null;
+}
 //验证方法
 function validate(type, text){
     switch (type) {

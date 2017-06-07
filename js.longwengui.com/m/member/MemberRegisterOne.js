@@ -46,8 +46,9 @@ var pageObj=$.extend({},pageObj,{
             data: formData,
             success: function(data){
                 if(data.ResultCode == 200){
-                    $.router.load('#MemberRegisterNext', true);
-                    //pageObj.registerPhone=formData.phoneNumber;
+                    //$.router.load('#MemberRegisterNext', true);
+                    $("#MemberRegisterOne").removeClass("page-current");
+                    $("#MemberRegisterNext").addClass("page-current");
                 }else{
                     $.toast(data.Message);
                 }
