@@ -79,7 +79,7 @@ class AjaxLogin
                     if($UserInfo['Identity']==1){
                         $Url = WEB_M_URL.'/memberperson/';
                     } elseif($UserInfo['Identity']==2){
-                        $Url=WEB_M_URL.'/memberperson/';
+                        $Url=WEB_M_URL.'/memberpushguest/';
                     } elseif($UserInfo['Identity']==3){
                         $Url=WEB_M_URL.'/memberfirm/';
                     }elseif($UserInfo['Identity']==4){
@@ -199,9 +199,12 @@ class AjaxLogin
         }else{
             $MemberUserInfoModule = new MemberUserInfoModule();
             $UserInfo = $MemberUserInfoModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID']);
-            if($UserInfo['Identity']==3){
+            if($UserInfo['Identity']==1){
+                $Url =WEB_M_URL.'/memberperson/';
+            }elseif($UserInfo['Identity']==2){
+                $Url =WEB_M_URL.'/memberpushguest/';
+            }elseif($UserInfo['Identity']==3){
                 $Url =WEB_M_URL.'/memberfirm/';
-
             }elseif($UserInfo['Identity']==4){
                 $Url =WEB_M_URL.'/memberlawyer/';
             }elseif($UserInfo['Identity']==5){
@@ -423,7 +426,7 @@ class AjaxLogin
             $Data['QQ'] = trim($AjaxData['qq']);//qq
             $Data['E-Mail'] = trim($AjaxData['email']); //邮箱
             $Data['Identity'] = intval($AjaxData['type']); //类型
-            $Url =WEB_M_URL.'/memberperson/';//个人催收会员
+            $Url =WEB_M_URL.'/memberpushguest/';//个人催收会员
         }elseif ($AjaxData['type']==3){
             $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
             $Data['RealName'] = trim($AjaxData['registrantName']);//公司注册人姓名
