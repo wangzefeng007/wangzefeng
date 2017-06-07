@@ -21,7 +21,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
-
+        include template('AssetPublish');
     }
     /**
      * @desc  发布资产转让成功待审核页面
