@@ -43,21 +43,21 @@
             <div class="content-pd content-form mt04">
                 <div class="form-box">
                     <div class="form-li">
-                        <input type="password" class="inp" placeholder="6位以上数字或字母">
+                        <input type="password" name="pass" class="inp" placeholder="6位以上数字或字母">
                     </div>
                     <div class="form-li">
-                        <input type="password" class="inp" placeholder="再次输入密码">
+                        <input type="password" name="confirmPass" class="inp" placeholder="再次输入密码">
                     </div>
                 </div>
             </div>
 
             <div class="box-btn mt05">
-                <a class="btn dis" href="#">完成</a>
+                <a class="btn" href="javascript:void(0);" onclick="pageObj.reg();">完成</a>
             </div>
             <div class="content-pd">
                 <p class="agree-line">
                     <label class="checkbox" type="checkbox">
-                        <input type="checkbox" name="agree" value="0" checked>
+                        <input type="checkbox" name="agreement" value="0" checked>
                         <i></i>我已阅读并接受版权声明和隐私保护条款
                     </label>
                 </p>
