@@ -4,7 +4,7 @@
     <div class="page page-member">
         <div class="content">
             <header class="common-header">
-                <a class="header-left" href="#">
+                <a class="header-left" href="/member/setting/">
                     <i class="icon-setting"></i>
                 </a>
                 <a class="header-right" href="#">
@@ -15,16 +15,16 @@
                 <div class="user-msg">
                     <div class="photo-box">
                         <p class="photo">
-                            <img src="../../temp/photo-2.jpg" alt="">
+                            <img src="{$UserInfo['Avatar']}" alt="{$UserInfo['NickName']}">
                         </p>
-                        <span class="status">待认证</span>
+                        <span class="status">{$IdentityStatus[$UserInfo['IdentityState']]}</span>
                     </div>
-                    <p class="name">我的昵称<span class="type">催收公司</span></p>
+                    <p class="name">{$UserInfo['NickName']}<span class="type">{$Identity[$UserInfo['Identity']]}</span></p>
                 </div>
             </div>
 
             <div class="member-nav item">
-                <a href="#" class="item-con">
+                <a href="/memberfirm/information/" class="item-con">
                     <i class="icon icon-user"></i>
                     <div class="option">
                         企业信息

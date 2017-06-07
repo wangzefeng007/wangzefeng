@@ -10,7 +10,7 @@ class MService
     public static function IsLogin(){
 
         if (isset($_SESSION['UserID']) && !empty($_SESSION['UserID'])) {
-            if ($_SESSION['Identity'] ==1){
+            if ($_SESSION['Identity'] <=1){
                 header('Location:' . WEB_M_URL.'/memberperson/');
             }elseif($_SESSION['Identity'] ==2){
                 header('Location:' . WEB_M_URL.'/memberpushguest/');

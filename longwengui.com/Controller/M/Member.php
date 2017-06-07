@@ -233,4 +233,12 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberWallet');
     }
+    /**
+     * @desc 我的设置
+     */
+    public function  Setting(){
+        MService::IsNoLogin();
+        $Title = '会员-我的设置';
+        include template('MemberSetting');
+    }
 }
