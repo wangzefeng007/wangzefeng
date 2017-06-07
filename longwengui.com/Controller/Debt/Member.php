@@ -18,7 +18,7 @@ class Member
     public function  Login(){
         $Title = '会员登录';
         //如果已登陆，直接跳转到会员中心
-        MemberService::IsLogin();
+        MService::IsLogin();
         include template('MemberLogin');
     }
     /**
