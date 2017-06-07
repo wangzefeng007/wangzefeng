@@ -55,6 +55,15 @@ class Asset
         include template('AssetDetails');
     }
     /**
+     * @desc  订单填写页
+     */
+    public function  Order(){
+        if ($_SESSION ['Identity']!=1 && $_SESSION['Identity']!=2){
+            alertandback("个人会员和催客方可购买商品！");
+        }
+        include template('AssetOrder');
+    }
+    /**
      * 选择支付页
      */
     public function ChoicePay()
