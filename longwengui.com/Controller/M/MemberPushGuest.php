@@ -31,6 +31,7 @@ class MemberPushGuest
         $MemberAreaModule = new MemberAreaModule();
         $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
         $Identity = $MemberUserInfoModule->Identity;
+        //会员基本信息
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         if ($UserInfo['Province'])

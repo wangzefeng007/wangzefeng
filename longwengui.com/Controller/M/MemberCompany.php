@@ -26,6 +26,21 @@ class MemberCompany
     public function Information()
     {
         MService::IsNoLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
+        $Identity = $MemberUserInfoModule->Identity;
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $UserInfo['PublicAgent'] = json_decode($UserInfo['PublicAgent'],true);
+        if ($UserInfo['Province'])
+            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberCompanyInformation');
     }
 }
