@@ -43,4 +43,10 @@ class MemberPerson
             $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberPersonInformation');
     }
+    /**
+     * @desc 编辑信息
+     */
+    public function EditInfo(){
+        include template('MemberPersonEditInfo');
+    }
 }

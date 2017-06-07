@@ -108,13 +108,12 @@ class Member
     /**
      * @desc 修改密码
      */
-    public function EditPassWord(){
+    public function ChangePassWord(){
         MService::IsNoLogin();
         $Title = '会员-修改密码';
-        $Nav = 'editpassword';
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        include template('MemberEditPassWord');
+        include template('ChangePassWord');
     }
     /**
      * @desc 关于我们

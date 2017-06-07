@@ -46,4 +46,10 @@ class MemberLawFirm
             $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberLawFirmInformation');
     }
+    /**
+     * @desc 编辑信息
+     */
+    public function EditInfo(){
+        include template('MemberLawFirmEditInfo');
+    }
 }

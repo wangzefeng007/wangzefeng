@@ -42,5 +42,11 @@ class MemberPushGuest
             $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberPushGuestInformation');
     }
+    /**
+     * @desc 编辑信息
+     */
+    public function EditInfo(){
+        include template('MemberPushGuestEditInfo');
+    }
 
 }
