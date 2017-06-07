@@ -46,13 +46,18 @@ var pageObj=$.extend({},pageObj,{
             data: formData,
             success: function(data){
                 if(data.ResultCode == 200){
-                    go("#MemberRegisterNext");
+                    $.router.load('#MemberRegisterNext', true);
+                    //pageObj.registerPhone=formData.phoneNumber;
                 }else{
                     $.toast(data.Message);
                 }
             }
         });
     },
+    /**
+     * 注册第一步手机号码验证
+     * @returns {*}
+     */
     validateForm:function(){
         var _phoneNumber = $("input[name='phoneNumber']").val();
         var _code = $("input[name='code']").val();
@@ -76,6 +81,70 @@ var pageObj=$.extend({},pageObj,{
             "phoneNumber":_phoneNumber,
             "code":_code
         };
+    },
+    /**
+     * 注册第二步设置密码
+     * @returns {*}
+     */
+    validateForm2:function(){
+        var _phoneNumber = $("input[name='phoneNumber']").val();
+        var _pass = $("input[name='pass']").val();
+        var _confirmPass = $("input[name='confirmPass']").val();
+        var _agreement = $("input[name='agreement']")[0].checked;
+        if(!_agreement){
+            $.toast('您还没有同意服务协议');
+            return false;
+        }
+        if(_pass==""){
+            $.toast("请设置密码！");
+            return false;
+        }
+
+        if(_pass.length < 6){
+            $.toast("密码不能少于6位！");
+            return false;
+        }
+
+        if(!validate('password', _pass)){
+            $.toast("密码格式有误！");
+            return false;
+        }
+
+        if(_confirmPass != _pass){
+            $.toast("两次密码不一致！");
+            return false;
+        }
+        return {
+            "phoneNumber": _phoneNumber, //手机号
+            "password": _pass, //密码
+            "agreement": _agreement //同意协议
+        };
+    },
+    /**
+     * 注册提交
+     */
+    reg:function(){
+        var formData = this.validateForm2();
+        if(!formData){
+            return;
+        }
+        formData.Intention='Register'; //设置Intention
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/loginajax.html',
+            data: formData,
+            success: function(data){
+                if(data.ResultCode == 200){//member/choosetype/
+                    $.toast(data.Message);
+                    setTimeout(function(){
+                        go("/member/choosetype/");
+                    },500);
+                }else{
+                    $.toast(data.Message);
+                }
+            }
+        });
     },
     /**
      *初始化方法
