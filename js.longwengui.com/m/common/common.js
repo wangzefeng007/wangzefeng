@@ -46,7 +46,10 @@ $(function(){
 })
 
 
-
+//跳转事件
+function go(url){
+    window.location.href = url;
+};
 //获得cookie
 function getCookie(name){
     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
@@ -271,18 +274,18 @@ function validateNeed(tar){
 
 //发送验证码倒计时 60秒不能重复提交 tar为button
 function codeTimedown(tar){
-    var pre_text = $(tar).html();
+    var pre_text = $(tar).text();
     var totalTime = 60;
-    $(tar)[0].disabled = true;
-    $(tar).html(totalTime + 's');
+    $(tar).addClass("dis");
+    $(tar).text(totalTime + 's');
     var inr = setInterval(function(){
         totalTime--;
         var html = totalTime + 's';
         $(tar).html(html);
         if(totalTime == 0){
-            $(tar).html(pre_text);
+            $(tar).text(pre_text);
             clearInterval(inr);
-            $(tar)[0].disabled = false;
+            $(tar).removeClass("dis");
         }
     }, 1000);
 }
