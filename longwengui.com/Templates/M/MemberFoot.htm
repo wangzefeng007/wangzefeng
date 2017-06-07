@@ -1,6 +1,6 @@
 <div class="fixed-bottom">
     <footer class="footer-menu common-box">
-        <section class="nav home active">
+        <section class="nav home {if $Nav =='index'}active{/if}">
             <a href="{echo WEB_M_URL}">
                 <i></i>
                 <p>隆文贵</p>
@@ -29,7 +29,7 @@
                 </ul>
             </div>
         </div>
-        <section class="nav my">
+        <section class="nav my {if $Nav =='member'}active{/if}">
             <a href="/member/login/">
                 <i></i>
                 <p>我的</p>

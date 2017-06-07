@@ -21,7 +21,7 @@
                                 手 机 号 码:
                             </p>
                             <div class="form-grid">
-                                13960326355
+                                {$User[Mobile]}
                             </div>
                         </div>
                         <div class="row">
@@ -29,7 +29,7 @@
                                 昵&emsp;&emsp;&emsp;称:
                             </p>
                             <div class="form-grid">
-                                刘备
+                                {if !empty($UserInfo[NickName])}{$UserInfo[NickName]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -37,7 +37,7 @@
                                 真 实 姓 名:
                             </p>
                             <div class="form-grid">
-                                王思聪
+                                {if !empty($UserInfo[RealName])}{$UserInfo[RealName]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -45,7 +45,7 @@
                                 身&emsp;份&emsp;证:
                             </p>
                             <div class="form-grid">
-                                432612198503045689
+                                {if !empty($UserInfo[CardNum])}{$UserInfo[CardNum]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -55,13 +55,13 @@
                             <div class="form-grid">
                                 <div class="image-view">
                                     <a href="">
-                                        <img src="http://placeholder.qiniudn.com/205x146" alt="">
+                                        <img src="{$UserInfo[CardNegative]}" alt="">
                                     </a>
                                     <p>身份证反面照</p>
                                 </div>
                                 <div class="image-view">
                                     <a href="">
-                                        <img src="http://placeholder.qiniudn.com/205x146" alt="">
+                                        <img src="{$UserInfo[CardPositive]}" alt="">
                                     </a>
                                     <p>身份证正面照</p>
                                 </div>
@@ -75,7 +75,7 @@
 
                                 <div class="image-view">
                                     <a href="">
-                                        <img src="http://placeholder.qiniudn.com/205x146" alt="">
+                                        <img src="{$UserInfo[CardHold]}" alt="">
                                     </a>
                                     <p>手持身份证</p>
                                 </div>
@@ -90,7 +90,7 @@
                                 &emsp;Q&emsp;Q&emsp;:
                             </p>
                             <div class="form-grid">
-                                563248756
+                                {if !empty($UserInfo[QQ])}{$UserInfo[QQ]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -98,7 +98,7 @@
                                 邮&emsp;&emsp;&emsp;箱:
                             </p>
                             <div class="form-grid">
-                                563248756@qq.com
+                                {if !empty($UserInfo['E-Mail'])}{$UserInfo['E-Mail']}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -106,7 +106,7 @@
                                 所 在 地 区:
                             </p>
                             <div class="form-grid">
-                                福建省-厦门市-思明区
+                                {$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}
                             </div>
                         </div>
                         <div class="row">
@@ -114,7 +114,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid">
-                                和山大道150号
+                                {if !empty($UserInfo[Address])}{$UserInfo[Address]}{else}无{/if}
                             </div>
                         </div>
                     </div>

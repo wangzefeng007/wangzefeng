@@ -15,7 +15,7 @@ class M
      * 首页
      */
     public function Index(){
-
+        $Nav ='index';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $Data['Data'] = $MemberAssetInfoModule->GetLists(' and `Status` = 2  and `S1` =1', 0,3);

@@ -21,7 +21,7 @@
                                 机 构 名 称:
                             </p>
                             <div class="form-grid">
-                                华荣资产管理有限公司
+                                {if !empty($UserInfo[CompanyName])}{$UserInfo[CompanyName]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -29,7 +29,7 @@
                                 法定代表人:
                             </p>
                             <div class="form-grid">
-                                王思聪
+                                {if !empty($UserInfo[RealName])}{$UserInfo[RealName]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -37,7 +37,7 @@
                                 固 定 电 话:
                             </p>
                             <div class="form-grid">
-                                13960326355
+                                {if !empty($UserInfo[FixedPhone])}{$UserInfo[FixedPhone]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -45,7 +45,7 @@
                                 信 用 代 码:
                             </p>
                             <div class="form-grid">
-                                432612198503045689
+                                {if !empty($UserInfo[CreditCode])}{$UserInfo[CreditCode]}{else}无{/if} {$UserInfo[CreditCode]}
                             </div>
                         </div>
                         <div class="row">
@@ -55,7 +55,7 @@
                             <div class="form-grid">
                                 <div class="image-view">
                                     <a href="">
-                                        <img src="http://placeholder.qiniudn.com/205x146" alt="">
+                                        <img src="{$UserInfo[BusinessImage]}" alt="">
                                     </a>
                                     <p>营业执照副本</p>
                                 </div>
@@ -70,7 +70,7 @@
                                 代理人姓名:
                             </p>
                             <div class="form-grid">
-                                刘能
+                                {if !empty($UserInfo[PublicAgent][agentName])}{$UserInfo[PublicAgent][agentName]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -78,7 +78,7 @@
                                 身&emsp;份&emsp;证:
                             </p>
                             <div class="form-grid">
-                                432612198503045689
+                                {if !empty($UserInfo[PublicAgent][agentIdNum])}{$UserInfo[PublicAgent][agentIdNum]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -86,7 +86,7 @@
                                 手 机 号 码:
                             </p>
                             <div class="form-grid">
-                                15684758923
+                                {$User[Mobile]}
                             </div>
                         </div>
                         <div class="row">
@@ -94,7 +94,7 @@
                                 所 在 地 区:
                             </p>
                             <div class="form-grid">
-                                福建省-厦门市-思明区
+                                {$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}
                             </div>
                         </div>
                         <div class="row">
@@ -102,7 +102,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid">
-                                和山大道150号
+                                {if !empty($UserInfo[Address])}{$UserInfo[Address]}{else}无{/if}
                             </div>
                         </div>
                         <div class="row">
@@ -112,13 +112,13 @@
                             <div class="form-grid">
                                 <div class="image-view">
                                     <a href="">
-                                        <img src="http://placeholder.qiniudn.com/205x146" alt="">
+                                        <img src="{$UserInfo[PublicAgent][registrantImages][1]}" alt="">
                                     </a>
                                     <p>身份证反面照</p>
                                 </div>
                                 <div class="image-view">
                                     <a href="">
-                                        <img src="http://placeholder.qiniudn.com/205x146" alt="">
+                                        <img src="{$UserInfo[PublicAgent][registrantImages][0]}" alt="">
                                     </a>
                                     <p>身份证正面照</p>
                                 </div>

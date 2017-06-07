@@ -11,6 +11,7 @@ class MemberFirm
     public function Index()
     {
         MService::IsNoLogin();
+        $Nav ='member';
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
