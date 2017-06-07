@@ -128,7 +128,7 @@ var pageObj=$.extend({},pageObj,{
         if(!formData){
             return;
         }
-        formData.Intention='Register'; //设置Intention
+        formData.Intention='RegisterTwo'; //设置Intention
         $.ajax({
             type: 'post',
             dataType: 'json',

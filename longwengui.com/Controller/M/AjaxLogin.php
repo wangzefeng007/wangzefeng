@@ -281,7 +281,7 @@ class AjaxLogin
         echo json_encode($json_result);exit;
     }
     /**
-     * @desc  注册
+     * @desc  注册第一步（验证短信验证码）
      */
     private function RegisterOne()
     {
@@ -306,7 +306,58 @@ class AjaxLogin
         }
         echo json_encode($json_result);exit;
     }
-
+    /**
+     * @desc  注册第二步
+     */
+    private function RegisterTwo()
+    {
+        $Agreement = trim($_POST['agreement']);
+        if ($Agreement === 'true') {
+            $Account = trim($_POST['phoneNumber']);
+            $UserModule = new MemberUserModule();
+            $Data['Mobile'] = $Account;
+            $Data['AddTime'] = time();
+            $Data['AddIP'] = GetIP();
+            $Data['State'] = 1;
+            $Data['PassWord'] = md5(trim($_POST['password']));
+            //开始事务
+            global $DB;
+            $DB->query("BEGIN");
+            $insert_result = $UserModule->InsertInfo($Data);
+            if ($insert_result) {
+                $AccountInfo = $UserModule->AccountExists($Account);
+                $UserInfo = new MemberUserInfoModule();
+                $InfoData['UserID'] = $AccountInfo['UserID'];
+                $InfoData['NickName'] = 'LWG_' . date('i') . mt_rand(100, 999);
+                $InfoData['LastLogin'] = $Data['AddTime'];
+                $InfoData['Identity'] = 0;
+                $InfoData['IdentityState'] = 1;
+                $InfoData['IP'] = GetIP();
+                $InfoData['Avatar'] = '/Uploads/Debt/imgs/head_img.png';
+                $InsertInfo = $UserInfo->InsertInfo($InfoData);
+                if (!$InsertInfo) {
+                    $DB->query("ROLLBACK");//判断当执行失败时回滚
+                    $json_result = array('ResultCode' => 105, 'Message' => '注册失败',);
+                    echo json_encode($json_result);
+                    exit;
+                }
+                // 同步SESSIONID
+                setcookie("session_id", session_id(), time() + 3600 * 24, "/", WEB_HOST_URL);
+                $_SESSION['UserID'] = $InfoData['UserID'];
+                $_SESSION['NickName'] = $InfoData['NickName'];
+                $_SESSION['Account'] = $Account;
+                $_SESSION['Identity'] = $InfoData['Identity'];
+                setcookie("UserID", $_SESSION['UserID'], time() + 3600 * 24, "/", WEB_HOST_URL);
+                $DB->query("COMMIT");//执行事务
+                ToolService::SendSMSNotice(18039847468, '站内客服，有用户注册，请及时审核');//发送短信给内部客服人员
+                $json_result = array('ResultCode' => 200, 'Message' => '注册成功',);
+            } else {
+                $DB->query("ROLLBACK");//判断当执行失败时回滚
+                $json_result = array('ResultCode' => 102, 'Message' => '注册失败',);
+            }
+        }
+        echo json_encode($json_result);exit;
+    }
     /**
      * @desc 添加图片
      */
