@@ -117,6 +117,34 @@ class Member
         include template('MemberEditPassWord');
     }
     /**
+     * @desc 关于我们
+     */
+    public function AboutUs(){
+        MService::IsNoLogin();
+        $Title = '会员-关于我们';
+        include template('MemberAboutUs');
+    }
+    /**
+     * @desc 用户协议
+     */
+    public function Agreement(){
+        MService::IsNoLogin();
+        $Title = '会员-用户协议';
+        include template('MemberAgreement');
+    }
+    /**
+     * @desc 投诉建议
+     */
+    public function Advice(){
+        MService::IsNoLogin();
+        $Title = '会员-投诉建议';
+        $Nav = 'advice';
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        include template('MemberAdvice');
+    }
+    /**
      * @desc 收货地址
      */
     public function Address(){
@@ -210,18 +238,7 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('MemberSystemMessage');
     }
-    /**
-     * @desc 投诉建议
-     */
-    public function Advice(){
-        MService::IsNoLogin();
-        $Title = '会员-投诉建议';
-        $Nav = 'advice';
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
-        include template('MemberAdvice');
-    }
+
     /**
      * @desc 我的钱包
      */
