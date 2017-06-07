@@ -9,23 +9,33 @@
             <p class="logo">
                 <img src="{echo CssURL}/m/images/logo2.png" alt="">
             </p>
-            <div class="login-box mt05">
+            <div class="login-box mt05" id="login">
                 <div class="form-li common-box">
                     <i class="icon icon-phone"></i>
                     <div>
-                        <input class="inp" type="tel" placeholder="请输入您的手机号" value="18980592432" />
+                        <input class="inp" type="tel" name="phoneNumber" placeholder="请输入您的手机号" value="" />
                     </div>
                 </div>
                 <div class="form-li common-box">
                     <i class="icon icon-pwd"></i>
                     <div>
-                        <input class="inp" type="password" placeholder="请输入密码" value="123456" />
+                        <input class="inp" type="password" name="pass" placeholder="请输入密码" value="" />
+                    </div>
+                </div>
+                <div id="code" data-show="0">
+                    <div class="form-li common-box">
+                        <div>
+                            <input type="text" name="code" class="inp" maxlength="4" onblur="validateErr('code', this)"  placeholder="验证码">
+                        </div>
+                        <p class="code-img">
+                            <img src="/code/pic.jpg" onclick="this.src='/code/pic.jpg?'+Math.random();" class="v-code" alt="">
+                        </p>
                     </div>
                 </div>
                 <p class="tr mt01"><a class="link" href="#">忘记密码？</a></p>
 
                 <div class="btn-box mt05">
-                    <a class="btn" href="JavaScript:void (0)">
+                    <a class="btn" href="JavaScript:void (0)" onclick="login()">
                         登录
                     </a>
                     <a class="btn btn-empty" href="/member/register/">
@@ -49,5 +59,6 @@
         </div>
     </div>
 </div>
+<script type='text/javascript' src='{echo JsURL}/m/member/MemberLogin.js' charset='utf-8'></script>
 </body>
 </html>
