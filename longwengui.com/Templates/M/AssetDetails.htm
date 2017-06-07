@@ -15,15 +15,16 @@
             </header>
             <div class="swiper-container" data-space-between='10'>
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="../temp/index3.jpg" alt=""></div>
-                    <div class="swiper-slide"><img src="../temp/index7.jpg" alt=""></div>
+                    {loop $AssetImage $lists}
+                    <div class="swiper-slide"><img src="{$lists[ImageUrl]}"></div>
+                    {/loop}
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
 
             <div class="tab-nav tab-big">
                 <a class="active" href="#tab1">
-                    商品详情
+                    基本信息
                 </a>
                 <a href="#tab2">
                     商品介绍
@@ -34,20 +35,20 @@
                     <div class="goods-detail">
                         <div class="item-con">
                             <div class="h3">
-                                <span class="long">上品武夷山大红袍</span>
-                                <span class="fr date">发布日期：2017-05-16</span>
+                                <span class="long">{$AssetInfo['Title']}</span>
+                                <span class="fr date">发布日期：{echo date("Y-m-d",$AssetInfo['AddTime'])}</span>
                             </div>
                             <p class="c-red">
-                                ¥1899.00
+                                ¥{$AssetInfo['Price']}
                             </p>
                             <p class="mt01">
-                                <span class="line-through">¥ 2899.00</span>
-                                <span class="fr ems-money">运费：¥10.00元</span>
+                                <span class="line-through">¥ {$AssetInfo['MarketPrice']}</span>
+                                <span class="fr ems-money">运费：¥{$AssetInfo['Freight']}元</span>
                             </p>
                         </div>
                         <div class="item-buy">
                             <p>
-                                剩余（份数）：25
+                                剩余（份数）：{$AssetInfo['Inventory']}
                             </p>
                             <div class="count-li">
                                 份数：<span class="input-number">
@@ -56,25 +57,17 @@
                 <i class="ra">+</i></span>
                             </div>
                             <p>
-                                合计金额（元）：1909
+                                合计金额（元）：{$AssetInfo['Price']}
                             </p>
                             <p>
-                                售后电话：13960333222
+                                售后电话：{$UserInfo[Mobile]}
                             </p>
                         </div>
                     </div>
                 </div>
                 <div id="tab2">
                     <div class="goods-introduce">
-                        大红袍茶是武夷岩茶中品质最优异者。“大红袍茶”茶树现
-                        经武夷山市茶叶研究所的试验，采取无性繁殖的技术已获
-                        成功，经繁育种植，已大红袍能批量生产。 “大红袍”茶的
-                        采制技术与其他岩茶相类似，只不过更加精细而已。每年
-                        春天，采摘3—4叶开面新梢，经晒青、凉青、做青、炒青、
-                        初揉、复炒、复揉、走水焙、簸拣、摊凉、拣剔、复焙、
-                        再簸拣、补火而制成。品质特征是:外形条索紧结，色泽绿
-                        褐鲜润，冲泡后汤色橙黄明亮，叶片红绿相间，典型的叶
-                        片有绿叶红镶边之美感。
+                        {$AssetInfo['Content']}
                     </div>
                 </div>
             </div>

@@ -33,11 +33,25 @@ class Asset
      * @desc  资产转让详情页
      */
     public function Details(){
+        $ID = $_GET['ID'];
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        if ($AssetInfo['Status']!=2){
+            alertandback("该资产未审核通过！");
+        }
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $MemberUser = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        $UserInfo['Mobile'] =$MemberUser['Mobile'];
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and `Status` > 1 and ProductID = '.$AssetInfo['AssetID'],true);
+        $TotalAmount =0;
+        foreach ($OrderInfo as $value){
+            $TotalAmount =$TotalAmount+ $value['TotalAmount'];
+        }
         include template('AssetDetails');
     }
     /**
