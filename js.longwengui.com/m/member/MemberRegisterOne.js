@@ -38,7 +38,7 @@ var pageObj=$.extend({},pageObj,{
         if(!formData){
             return;
         }
-        formData.Intention=''; //设置Intention
+        formData.Intention='RegisterOne'; //设置Intention
         $.ajax({
             type: 'post',
             dataType: 'json',
