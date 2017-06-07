@@ -276,9 +276,10 @@ select,
 button {
   outline: 0;
 }
-p {
+/*modify lvpan*/
+/*p {
   margin: 1em 0;
-}
+}*/
 a {
   color: #0894ec;
   text-decoration: none;

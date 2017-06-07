@@ -276,9 +276,10 @@ select,
 button {
   outline: 0;
 }
-p {
+/*modify lvpan*/
+/*p {
   margin: 1em 0;
-}
+}*/
 a {
   color: #0894ec;
   text-decoration: none;
@@ -4399,9 +4400,10 @@ body.panel-closing .page {
 .icon-check:before {
   content: "\e608";
 }
-.icon-search:before {
+/*modify lvpan*/
+/* .icon-search:before {
   content: "\e61d";
-}
+} */
 .icon-new:before {
   content: "\e61e";
 }
