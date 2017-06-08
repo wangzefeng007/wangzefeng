@@ -15,7 +15,7 @@ class Reword
      * @desc  线索悬赏列表
      */
     public function Index(){
-        $Title="线索悬赏-隆文贵债务处置";
+        $Title="线索悬赏-文贵网";
         $Nav = 'rewordlists';
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
@@ -81,7 +81,7 @@ class Reword
      */
     public function Publish(){
         MemberService::IsNoLogin();
-        $Title="发布悬赏-隆文贵债务处置";
+        $Title="发布悬赏-文贵网";
         $Nav = 'rewordlists';
     include template('RewordPublish');
     }

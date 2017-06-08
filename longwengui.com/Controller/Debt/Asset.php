@@ -20,7 +20,7 @@ class Asset
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
-        $Title ='隆文贵债务处置-资产商城';
+        $Title ='资产商城-文贵网';
         $Nav='asset';
         $S = intval($_GET['S']);
         $Keywords = trim($_GET['K']);
@@ -72,7 +72,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
-        $Title ='隆文贵债务处置-发布资产';
+        $Title ='发布资产-文贵网';
         MemberService::IsNoLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
@@ -121,7 +121,7 @@ class Asset
         foreach ($OrderInfo as $value){
             $TotalAmount =$TotalAmount+ $value['TotalAmount'];
         }
-        $Title ='隆文贵债务处置-'.$AssetInfo['Title'];
+        $Title ='文贵网-'.$AssetInfo['Title'];
         include template('AssetDetails');
     }
     /**

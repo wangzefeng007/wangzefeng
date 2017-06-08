@@ -19,7 +19,7 @@ class Find
      * @desc  寻找处置方
      */
     public function ChoiceFind(){
-        $Title="寻找处置方-隆文贵债务处置";
+        $Title="寻找处置方-文贵网";
         $Nav ='find';
         $MemberOrderDemandModule = new MemberOrderDemandModule();
         $MemberAreaModule = new MemberAreaModule();

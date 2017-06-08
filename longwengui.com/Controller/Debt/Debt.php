@@ -16,9 +16,9 @@ class Debt
         }
     }
     public function Index(){
-        $Title ='隆文贵债务处置';
+        $Title ='文贵网';
         $Keywords=" 追讨债务，怎样追讨债务，个人债务追讨，催收跟踪，催收管理，信用卡催收，话费催收，水电费催收，物业费催收";
-        $Description="隆文贵债务处置是福建首家安全、诚信、免费的催收服务平台，平台旨在拓宽债权人追回欠款的渠道，运用互联网、大数据构建不良资产服务平台。隆文贵债务处置致力于打造诚信社会，让债权人无忧追债，催客事成领赏；我们建立全国催客大本营，实现精准便捷的催收服务，让全民参与构建社会诚信，促进社会诚信的发展。";
+        $Description="文贵网是福建首家安全、诚信、免费的催收服务平台，平台旨在拓宽债权人追回欠款的渠道，运用互联网、大数据构建不良资产服务平台。文贵网致力于打造诚信社会，让债权人无忧追债，催客事成领赏；我们建立全国催客大本营，实现精准便捷的催收服务，让全民参与构建社会诚信，促进社会诚信的发展。";
         $Nav='index';
         include template('Index');
     }
@@ -102,9 +102,9 @@ class Debt
             $ClassPage = new Page($Rscount['Num'], $PageSize,3);
             $ShowPage = $ClassPage->showpage();
         }
-        $Title="债务催收|债务追讨-隆文贵债务处置";
+        $Title="债务催收|债务追讨-文贵网";
         $Keywords=" 追讨债务，怎样追讨债务，个人债务追讨";
-        $Description="债权人在隆文贵债务处置平台发布单笔或多笔债权信息后，债务信息展现在隆文贵债务处置债务催收栏目版块，执业律师或催收公司在此页面可根据地域分布和佣金比例等因素选择接单，进行催收，从而赚取佣金。";
+        $Description="债权人在文贵网平台发布单笔或多笔债权信息后，债务信息展现在文贵网债务催收栏目版块，执业律师或催收公司在此页面可根据地域分布和佣金比例等因素选择接单，进行催收，从而赚取佣金。";
         include template('DebtLists');
     }
     public function Details(){
@@ -177,7 +177,7 @@ class Debt
                 $AssociatedDebtors[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
             }
         }
-        $Title="债务详情-隆文贵债务处置";
+        $Title="债务详情-文贵网";
         //处置方接单申请
         if ($DebtInfo['UserID']==$_SESSION['UserID']){
             $MemberClaimsDisposalModule = new MemberClaimsDisposalModule();
@@ -205,7 +205,7 @@ class Debt
 //            alertandgotopage("请等待审核通过方可发布债务！", WEB_MAIN_URL.'/debtlists/');
         $Nav='debt';
         $Type = intval($_GET['T']);
-        $Title="发布债务-隆文贵债务处置";
+        $Title="发布债务-文贵网";
         if ($Type===1){
             include template('DebtPublishLawer');
         }elseif ($Type===2){

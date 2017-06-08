@@ -5,6 +5,7 @@
 class LegalAid
 {
     public function Index(){
+        $Title="寻找处置方-文贵网";
         $Nav='legalaid';
         $MemberLawfirmAidModule = new MemberLawfirmAidModule();
         $MemberAreaModule = new MemberAreaModule();
