@@ -64,16 +64,24 @@ class MemberPerson
             $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberPersonEditInfo');
     }
-    /**
-     * @desc 关注/收藏
-     */
-    public function Focus(){
-        include template('MemberPersonFocus');
-    }
+
     /**
      * @desc 债权管理
      */
     public function DebtManagement(){
         include template('MemberPersonDebtManagement');
+    }
+    /**
+     * @desc 我的资产
+     */
+    public function Asset(){
+        include template('MemberPersonAsset');
+    }
+
+    /**
+     * @desc 关注/收藏
+     */
+    public function Focus(){
+        include template('MemberPersonFocus');
     }
 }
