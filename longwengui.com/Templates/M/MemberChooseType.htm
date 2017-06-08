@@ -4,12 +4,18 @@
     <div class="page">
         <div class="content">
             <header class="common-header">
+                {if $Type==='true'}
+                <a class="header-left icon-back" href="javascript:void (0)">
+                </a>
+                {/if}
                 <section class="header-title">
                     用户类型选择
                 </section>
+                {if $Type!=='true'}
                 <a class="header-right tr" href="/memberperson/">
                     跳过
                 </a>
+                {/if}
             </header>
             <div class="content-pd">
                 <ul class="user-type-list">

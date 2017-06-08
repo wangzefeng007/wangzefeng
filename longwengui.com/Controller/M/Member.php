@@ -37,6 +37,7 @@ class Member
      */
     public function ChooseType(){
         MService::IsNoLogin();
+        $Type = trim($_GET['T']);//判断进页面
         $Title = '会员-选择类型';
         include template('MemberChooseType');
     }

@@ -31,13 +31,16 @@
                     </div>
                     <i class="icon-arrow"></i>
                 </a>
-                <a href="/memberperson/information/" class="item-con">
+                {if $UserInfo['Identity']==0}
+                <a href="/member/choosetype/?T=true" class="item-con">
                     <i class="icon icon-auth"></i>
                     <div class="option">
                         会员认证
                     </div>
                     <i class="icon-arrow"></i>
                 </a>
+                {/if}
+                {if $UserInfo['Identity']==1}
                 <a href="/member/wallet/" class="item-con">
                     <i class="icon icon-wallet"></i>
                     <div class="option">
@@ -52,7 +55,6 @@
                     </div>
                     <i class="icon-arrow"></i>
                 </a>
-                {if $UserInfo['Identity']==1}
                 <a href="/member/upgrade/" class="item-con">
                     <i class="icon icon-ck"></i>
                     <div class="option">
@@ -71,14 +73,14 @@
                     </div>
                     <i class="icon-arrow"></i>
                 </a>
-                <a href="#" class="item-con">
+                <a href="/memberperson/asset/" class="item-con">
                     <i class="icon icon-zc"></i>
                     <div class="option">
                         我的资产
                     </div>
                     <i class="icon-arrow"></i>
                 </a>
-                <a href="#" class="item-con">
+                <a href="/member/reword/" class="item-con">
                     <i class="icon icon-xs"></i>
                     <div class="option">
                         我的悬赏
