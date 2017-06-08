@@ -54,6 +54,12 @@ class MemberCompany
      */
     public function DebtManagement(){
         MService::IsNoLogin();
-        include template('MemberFirmDebtManagement');
+        include template('MemberCompanyDebtManagement');
+    }
+    /**
+     * @desc 我的关注
+     */
+    public function Focus(){
+        include template('MemberCompanyFocus');
     }
 }

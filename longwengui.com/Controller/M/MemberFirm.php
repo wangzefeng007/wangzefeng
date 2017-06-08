@@ -72,7 +72,7 @@ class MemberFirm
         include template('MemberFirmSetDemand');
     }
     /**
-     * @desc 关注/收藏
+     * @desc 我的关注
      */
     public function Focus(){
         include template('MemberFirmFocus');
