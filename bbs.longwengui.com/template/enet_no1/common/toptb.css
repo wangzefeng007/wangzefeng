@@ -21,7 +21,7 @@
 #um {padding-top: 10px;padding-right: 50px;_padding-right: 54px;line-height: 2.3;zoom: 1;width: 480px !important;float: right;}
 .scbar_icon_td {width: 20px;background:none}
 .scbar_txt_td, .scbar_type_td {background:none}
-#scbar_txt {width: 400px;border: 2px solid #0ad;padding: 4px 5px 5px 5px;height: 15px;margin-top: 0px;background:#fff}
+#scbar_txt {width: 400px;border: 2px solid #59cbc7;padding: 4px 5px 5px 5px;height: 15px;margin-top: 0px;background:#fff}
 .scbar_type_td {width: 61px;background: url(../images/search.png) no-repeat 0 -193px;display: none;}
 #scbar{background:#f8f8f8;height: 45px;line-height: 45px;border-bottom: #DFDFDF 2px solid !important;}
 #qmenu {float: right;display: inline;width: 23px;height: 23px;background: url(../images/daohang.png) no-repeat 0 0;line-height: 23px;text-align: center;color: #369;margin-right: 15px;font-weight: 700;margin-top: 12px;overflow: hidden;text-indent: -9999px;margin-top: 9px;}
@@ -29,7 +29,7 @@
 #qmenu_menu {margin-top: 5px;padding: 20px 5px 10px;width: 610px;border-color: #DCE4EB;}
 .bm_h .o img {float: right;margin-top: 9px;cursor: pointer;}
 hr.da {border-top: 1px dotted #e3e3e3}
-#nv {overflow: hidden;height: 36px !important;border-radius: 5px 5px 0px 0px;box-shadow: 0px 0px 0px #0ad;border-radius: 0px;background: transparent;padding-top: 0px;min-width:100px}
+#nv {overflow: hidden;height: 36px !important;border-radius: 5px 5px 0px 0px;box-shadow: 0px 0px 0px #59cbc7;border-radius: 0px;background: transparent;padding-top: 0px;min-width:100px}
 #nv li a {float: left;text-shadow: #555 0px 0px 0px;border-radius:0px;height: 30px;font-weight: 100;line-height: 36px;font: 14px/1.75 Tahoma,Arial,\5B8B\4F53;padding-top:5px !important}
 #nv li{height:36px;padding:0;background:none}
 #diy-tg{float:left !important}

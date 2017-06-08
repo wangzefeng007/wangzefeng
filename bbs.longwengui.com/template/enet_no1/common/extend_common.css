@@ -76,7 +76,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 /* �������� */
 #scbar{overflow:visible;position:relative;}
 .sobg{background:url({IMGDIR}/sobg.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sobg.png");width:384px;height:104px;position:absolute;margin-top:-80px;margin-left:-20px}
-#panel{border:1px solid #0AD;border-radius:5px;height:200px;display:none;width:879px;margin:auto;margin-top:10px;margin-bottom:0}
+#panel{border:1px solid #59cbc7;border-radius:5px;height:200px;display:none;width:879px;margin:auto;margin-top:10px;margin-bottom:0}
 .slide{margin:0 auto}
 .btn-slide{background:url({IMGDIR}/sos.png) no-repeat;width:100px;height:30px;text-align:center;margin:0 auto;display:block;text-decoration:none;padding:0 !Important;border:0 !important}
 .active{background:url({IMGDIR}/sog.png) no-repeat;}
@@ -94,11 +94,11 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 #scbar_hot .tags8{background:#F93;font-weight:bold;font-size:15px}
 #scbar_hot .tags9{background:#888;font-weight:bold;font-size:16px;}
 #scbar_hot a:hover{text-decoration:none !important;}
-#scbar_txt{width:723px !Important;border:2px solid #0ad;padding:4px 5px 5px 5px;height:31px;margin-top:0px;background:#fff;border-radius:5px 0 0 5px;font-size:15px !Important}
+#scbar_txt{width:723px !Important;border:2px solid #59cbc7;padding:4px 5px 5px 5px;height:31px;margin-top:0px;background:#fff;border-radius:5px 0 0 5px;font-size:15px !Important}
 .scbar_btn_td{width:83px;background:url({IMGDIR}/search_pn.png) no-repeat;border-radius:0 5px 5px 0}
 .scbar_icon_td{width:20px;background:none}
 .scbar_txt_td,.scbar_type_td{background:none}
-.scbar_type_td a{height:31px;padding: 4px 5px 5px 5px;border-top:2px solid #0ad;border-bottom:2px solid #0ad;border-right:2px solid #0ad;margin-top:0;line-height: 32px;font-size: 14px;color: #999 !important;background: url({IMGDIR}/arrwd.gif) no-repeat 100% 50%;cursor: pointer;white-space: nowrap;}
+.scbar_type_td a{height:31px;padding: 4px 5px 5px 5px;border-top:2px solid #59cbc7;border-bottom:2px solid #59cbc7;border-right:2px solid #59cbc7;margin-top:0;line-height: 32px;font-size: 14px;color: #999 !important;background: url({IMGDIR}/arrwd.gif) no-repeat 100% 50%;cursor: pointer;white-space: nowrap;}
 #so_close{width:15px;height:15px;background:url({IMGDIR}/so_close.png) no-repeat;z-index:99;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/so_close.png");text-indent: -9999px;position: absolute;top: 15px;right: -7px}
 #scbar_type_menu {margin-top:0px;right: 100px !Important;top: 61px !Important;left:auto !Important}
 #scbar_type_menu a{line-height:25px}
@@ -137,7 +137,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 .apps li,.ct2_a .appl li{border-bottom:0px;float:left !Important;line-height:33px;}
 .apps,.ct2_a .appl{border: 0;padding: 0;border-bottom: 2px solid #E7E7E7;width: 968px !Important;height: 74px !important;z-index: 9;position: absolute;font-size: 14px;left:15px;top: 10px;border-radius: 0;float: none;min-height: 0;margin-bottom: 0;overflow: visible;}
 .ct2_a .bbda{border:0}
-.apps a:hover,.ct2_a .appl a:hover{color:#0ad;text-decoration:none}
+.apps a:hover,.ct2_a .appl a:hover{color:#59cbc7;text-decoration:none}
 .apps .bbda,ct2_a .appl .bbda{border:0px}
 .apps .tbn,.ct2_a .appl .tbn{margin:0}
 .ct2_a,.ct3_a{border:1px solid #CCC;width:1000px;padding-left:0}
@@ -146,18 +146,18 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 /* ������ҳ����� by ENET */
 .ct7_a,.ct2_a{margin-top:10px;border-radius:5px;border:1px solid {COMMONBORDER} !important;background:#fff;width:968px !Important;padding:15px;padding-top:10px;padding-bottom:86px;margin-right:auto;position:relative}
 .ct7_a .mn,.ct2_a .mn{width: 938px;padding:15px;top:76px;position:relative}
-.ct7_a .apps .tbn li.a,.ct2_a .appl .tbn li.a{margin:0;padding:0 10px 0 9px;border-top:0px;border-bottom:2px solid #0ad;border-bottom-style:solid;}
+.ct7_a .apps .tbn li.a,.ct2_a .appl .tbn li.a{margin:0;padding:0 10px 0 9px;border-top:0px;border-bottom:2px solid #59cbc7;border-bottom-style:solid;}
 .ct7_a .apps .tbmu,.ct2_a .appl .tbmu{padding:15px 10px 8px 10px;border-bottom:0}
 .ct7_a .apps .tip_3,.ct7_a .apps .tip_4,.ct2_a .appl .tip_3,.ct2_a .appl .tip_4{margin-top:20px;margin-left:35px;}
 .ct7_a .apps .tbn ul a,.ct2_a .appl .tbn ul a{display:block;height:33px;float:left;line-height:33px;}
 .ct7_a .mn .mt,.ct2_a .mn .mt{display:none}
 .ct7_a .apps .tbn li em,.ct2_a .appl .tbn li em{display:none}
-.ct7_a .apps .tbn li.a a,.ct2_a .appl .tbn li.a a{color:#0ad}
+.ct7_a .apps .tbn li.a a,.ct2_a .appl .tbn li.a a{color:#59cbc7}
 /* �ڰ���ҳ����� by ENET */
 .ct8_a .mn{width:730px;float:right;padding-top:4px;margin-top:5px}
 .ct8_a .sd{margin-right:0;width:240px;float:left !important;overflow:hidden;_overflow-y:visible;}
 /* ҳβ */
-#footer{padding:10px 0 50px;margin-top:20px;border-top:2px solid #0ad;background:#333438;padding-top:15px;padding-bottom:30px;line-height:1.8 !important;color:#888886;width:100% !important;height:auto !important}
+#footer{padding:10px 0 50px;margin-top:20px;border-top:2px solid #59cbc7;background:#333438;padding-top:15px;padding-bottom:30px;line-height:1.8 !important;color:#888886;width:100% !important;height:auto !important}
 #ft{border:0 !important;padding:0}
 .ltwmes{background:url({IMGDIR}/footbg.png) no-repeat 0 0;width:192px;height:55px;margin:auto;margin-bottom:5px}
 #footer #footertext{text-align:center;overflow:hidden;clear:both;margin:0 auto;}
@@ -275,7 +275,7 @@ a.returnboard:hover{background-position:-65px -198px !important;}
 .pm .flbc:hover {background-position: 0 -20px;}
 .rfm .px:focus{border-color:{HIGHLIGHTLINK};}
 .rfm .p_chk{position:absolute;z-index:1;padding-left:10px;width:390px;color:red;font-family:{FONT};}
-.fastlg_fm{margin-right:5px;padding-right:5px;border-right:1px dashed #0ad !important;margin-right:5px !Important;padding-right:13px !Important;}
+.fastlg_fm{margin-right:5px;padding-right:5px;border-right:1px dashed #59cbc7 !important;margin-right:5px !Important;padding-right:13px !Important;}
 .pg a,.pg strong,.pgb a,.pg label{float:left;border-radius:6px;display:inline;margin-left:4px;padding:0 9px;height:26px;border:1px solid;border-color:{COMMONBORDER};background:url({IMGDIR}/forum_num.png);color:{LINK};overflow:hidden;text-decoration:none;}
 .pg a.nxt{padding-right:25px;background-image:url({IMGDIR}/arw_r.gif);background-position:90% 50%;background-repeat:no-repeat;background-color:white}
 .pg a.prev{background-image:url({IMGDIR}/arw_l.gif);background-position:50% 50%;background-repeat:no-repeat;background-color:white}

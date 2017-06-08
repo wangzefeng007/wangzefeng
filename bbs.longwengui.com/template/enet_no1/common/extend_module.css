@@ -420,12 +420,12 @@ frame,.frame-tab{border-radius:5px;}
 .list h2{font-size:14px;line-height:23px}
 .fl .bm_c{margin:0 10px;padding:0 5px;border:0 !Important;margin-bottom:-15px !important}
 .fl .bm{border:none;border:1px solid #ccc;border-radius:5px;padding-top:0px;}
-.mn .fl .list .bm_h{height: 32px;border-radius:0 !Important;padding:0 5px !important;margin: 0 10px;padding-top: 7px !Important;border-bottom: 2px solid #0AD !Important;}
+.mn .fl .list .bm_h{height: 32px;border-radius:0 !Important;padding:0 5px !important;margin: 0 10px;padding-top: 7px !Important;border-bottom: 2px solid #59cbc7 !Important;}
 .list{padding-bottom:1px !Important;margin-top:10px !Important}
 .xi2 .jinri, .list .jinri{font-size:12px !Important}
 .fl{padding-top:0 !important}
 .fl .bm_h{border-width:1px 0;height:auto;border:none;padding-top:0px;background:transparent !important;border-color:#C2D5E3;border-radius:5px 5px 0 0;background:none;padding:0 15px}
-.list .bm_h a:hover{color:#0ad}
+.list .bm_h a:hover{color:#59cbc7}
 .list .bm_h a{font-size:16px;text-decoration:none !important;text-shadow:#fffeff 0 1px 0;color:#555;font-weight:normal;color:#555;line-height: 28px;}
 .mtm .bm{border-radius:5px;border:0}
 .list .bm_h{border-width:0 0;background:none;border:0px !important;height:34px !Important}
@@ -445,7 +445,7 @@ frame,.frame-tab{border-radius:5px;}
 .frame-1-2-l {width: 320px;margin-left:-320px;float: left;overflow: hidden}
 .frame-1-2-r{width:100%}
 #diy1{padding-left:320px}
-.avt_view{height:305px;width:203px;overflow: hidden;margin-left:10px;border-top: #0AD 2px solid;margin: 0px !important;border-radius:5px;margin-left:10px !important}
+.avt_view{height:305px;width:203px;overflow: hidden;margin-left:10px;border-top: #59cbc7 2px solid;margin: 0px !important;border-radius:5px;margin-left:10px !important}
 .li_1{width:100%;height:18px;overflow: hidden;word-break: break-all;}
 .li_2{margin-bottom:10px;height: 114px;position:relative;z-index:8;margin-top:1px}
 .li_3{width: 100%; height: 307px;}
@@ -468,7 +468,7 @@ frame,.frame-tab{border-radius:5px;}
 .dd_4{word-break: break-all;margin-top: 5px;height: 48px;margin-right: 10px;overflow: hidden;}
 .slidebox{border-radius:5px;height:307px;overflow: hidden}
 .slidebar li {float: left;margin-top:281px;border-radius:4px;margin-left:5px;width: 12px;height: 12px;overflow: hidden;text-align: center;font: 700 12px/15px;background:#fff !important;color: white;z-index:99;line-height: 60px;}
-.slidebar li.on {text-decoration: none;color: #0AD !important;background: #0AD !important;}
+.slidebar li.on {text-decoration: none;color: #59cbc7 !important;background: #59cbc7 !important;}
 .slideshow span.title {position: absolute;border-radius:0 0 5px 5px;bottom: 0;left: 0;margin-bottom: 0;width: 100%;height: 80px;line-height: 25px;font-size: 12px;text-indent: 10px;font-weight: 100;margin-left: 0px;padding:0px;background: url({IMGDIR}/move-span.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/move-span.png");}
 .slidebar {left: 245px !important;z-index: 99;}
 .category_l1 {line-height: normal !important}
@@ -483,7 +483,7 @@ frame,.frame-tab{border-radius:5px;}
 .apps li{border-bottom:0px;float:left;line-height:33px;}
 .apps{width:950px;height:74px;z-index:9;position:relative;font-size:14px;}
 .ct2_a,.ct3_a{border:none !important;border-radius:5px;padding:0 !important;border:1px solid #DFDFDF !important;background:#fff !important;width:938px !important;padding:10px !important;}
-.apps a:hover{color:#0ad;text-decoration:none}
+.apps a:hover{color:#59cbc7;text-decoration:none}
 .ct2_a{margin-right:auto}
 .tb{margin-top:10px !important;}
 /** end **/

@@ -58,6 +58,13 @@ class MemberFirm
         include template('MemberFirmDebtManagement');
     }
     /**
+     * @desc 接单要求
+     */
+    public function Demand(){
+        MService::IsNoLogin();
+        include template('MemberFirmDemand');
+    }
+    /**
      * @desc 关注/收藏
      */
     public function Focus(){
