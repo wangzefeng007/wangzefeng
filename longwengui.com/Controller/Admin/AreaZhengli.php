@@ -95,4 +95,36 @@ class AreaZhengli
 //          $MemberLawyerDirectionModule->InsertInfo($Date);
 //        }
 //    }
+    public function MCity(){
+        $MemberAreaModule = new MemberAreaModule();
+        $Data =array();
+        $province = $MemberAreaModule->GetInfoByWhere(' and Level=1',true);
+        foreach ($province as $Key=>$Value)
+        {
+            $Data[$Key]['name'] = $Value['CnName'];
+            $Data[$Key]['id'] = $Value['AreaID'];
+            $city = $MemberAreaModule->GetInfoByWhere(' and ParentID='.$Value['AreaID'],true);
+            if ($city){
+                foreach ($city  as $Ke=>$Val){
+                    $Data[$Key]['sub'][$Ke]['name'] = $Val['CnName'];
+                    $Data[$Key]['sub'][$Ke]['id']= $Value['AreaID'];
+                    $area = $MemberAreaModule->GetInfoByWhere(' and ParentID='.$Val['AreaID'],true);
+                    if ($area){
+                        foreach ($area  as $K=>$V){
+                            $Data[$Key]['sub'][$Ke]['sub'][$Ke]['name'] = $V['CnName'];
+                            $Data[$Key]['sub'][$Ke]['sub'][$Ke]['id']= $V['AreaID'];
+                        }
+                    }
+                    $Data[$Key]['sub'][$Ke]['type']=0;
+                }
+            }
+            $Data[$Key]['type']=1;
+        }
+        $Data = json_encode($Data,JSON_UNESCAPED_UNICODE);
+        file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/MCity.json',$Data);
+        print_r($Data);exit;
+        $provinceJsonString = json_encode($province,JSON_UNESCAPED_UNICODE);
+        //$provinceJsonString = json_encode($provinceJson,JSON_UNESCAPED_UNICODE);var_dump($provinceJsonString);exit;
+        //file_put_contents(SYSTEM_ROOTPATH.'/Templates/Debt/data/MCity.json',$provinceJsonString);
+    }
 }
