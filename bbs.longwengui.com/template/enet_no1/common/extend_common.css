@@ -40,8 +40,8 @@ div.pt{height:100px;line-height:80px;}
 .pn:hover{background:#f4f4f4}
 .pn em,.pn strong{font-weight:100;font-size:13px}
 .pn p{color:#fff}
-.pnc,a.pnc{color:#ffffff !important;background: #59cbc7;border-bottom: 4px solid #0669B8}
-.pnc:hover{background:#48A2E9}
+.pnc,a.pnc{color:#ffffff !important;background: #59cbc7;border-bottom: 4px solid #1f9894}
+.pnc:hover{background:#18c1bb}
 .pn, .pnpost .pn {height: 35px !Important;}
 a.rig{height:35px;line-height:35px;color:#777 !Important}
 /*Name:mod_float_typeidLevel:GlobalSample:<div class="ftid"><select><option>Option</option></select></div>Explain:ģ�������˵���ʽLast Modify:Pony*/
@@ -75,7 +75,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 #scbar_hot{padding-left:8px;}
 /* �������� */
 #scbar{overflow:visible;position:relative;}
-.sobg{background:url({IMGDIR}/sobg.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sobg.png");width:384px;height:104px;position:absolute;margin-top:-80px;margin-left:-20px}
+.sobg{background:url({IMGDIR}/sobg.png) no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{IMGDIR}/sobg.png");width:445px;height:104px;position:absolute;margin-top:-120px;margin-left:240px}
 #panel{border:1px solid #59cbc7;border-radius:5px;height:200px;display:none;width:879px;margin:auto;margin-top:10px;margin-bottom:0}
 .slide{margin:0 auto}
 .btn-slide{background:url({IMGDIR}/sos.png) no-repeat;width:100px;height:30px;text-align:center;margin:0 auto;display:block;text-decoration:none;padding:0 !Important;border:0 !important}
@@ -105,7 +105,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 .allnv{width:100% !important;z-index:1}
 #nv .nvtext li a{color:#FFF}
 .nvbg{background:#59cbc7 url({IMGDIR}/nvbg.png) repeat-x}
-.nvbgl{background:url({IMGDIR}/nvbgl.png) repeat;width:50%;height:50px;position:absolute;left:0px}
+.nvbgl{background:url({IMGDIR}/nvbgl.png) repeat;width:100%;height:50px;position:absolute;left:0px}
 #nv{height:auto;}
 #nvtext{height:50px;background:url({IMGDIR}/nv.png) no-repeat;padding-top:5px;position:relative;z-index:30;min-width:1000px}
 #nv .nvtext li{float:left;padding-right:1px;margin-left:2px;margin-right:2px;height:40px;font-weight:700;border-radius:5px 5px 0 0;font-size:14px;padding:0px 0px 5px 0px;background:none}
@@ -157,7 +157,7 @@ a.rig{height:35px;line-height:35px;color:#777 !Important}
 .ct8_a .mn{width:730px;float:right;padding-top:4px;margin-top:5px}
 .ct8_a .sd{margin-right:0;width:240px;float:left !important;overflow:hidden;_overflow-y:visible;}
 /* ҳβ */
-#footer{padding:10px 0 50px;margin-top:20px;border-top:2px solid #59cbc7;background:#333438;padding-top:15px;padding-bottom:30px;line-height:1.8 !important;color:#888886;width:100% !important;height:auto !important}
+#footer{padding:10px 0 50px;margin-top:117px;border-top:2px solid #59cbc7;background:#333438;padding-top:15px;padding-bottom:30px;line-height:1.8 !important;color:#888886;width:100% !important;height:auto !important}
 #ft{border:0 !important;padding:0}
 .ltwmes{background:url({IMGDIR}/footbg.png) no-repeat 0 0;width:192px;height:55px;margin:auto;margin-bottom:5px}
 #footer #footertext{text-align:center;overflow:hidden;clear:both;margin:0 auto;}

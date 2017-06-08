@@ -13,19 +13,19 @@ QQ:2474414433
 
 /* 百变颜色：将颜色代码粘贴至下方，手机模板整体变色！ */
 
-.n5-header,.n5-ksft .n5-fq,.focus .hd ul .on,.sub_forum li .num,.n5-dnbts,.n5-lbftan,.n5-flsx .a,.n5-ztfl .a,.button,.button2,.btn_pn_blue,.btn_exit a,.n5-wdxx li .num ,.n5-grsyzl,.btn_login .pn, .btn_register .pn{background: #37cf92;} /* 头部背景、快速发帖按钮颜色、幻灯高亮、新帖数背景、跳转背景、论坛列表内容按钮、分类按钮、我的消息、登陆注册 */
-.sidebar,.n5-ejdh {background:#208960;} /* 侧边栏背景、二级导航背景 */
+.n5-header,.n5-ksft .n5-fq,.focus .hd ul .on,.sub_forum li .num,.n5-dnbts,.n5-lbftan,.n5-flsx .a,.n5-ztfl .a,.button,.button2,.btn_pn_blue,.btn_exit a,.n5-wdxx li .num ,.n5-grsyzl,.btn_login .pn, .btn_register .pn{background: #59cbc7;} /* 头部背景、快速发帖按钮颜色、幻灯高亮、新帖数背景、跳转背景、论坛列表内容按钮、分类按钮、我的消息、登陆注册 */
+.sidebar,.n5-ejdh {background:#ffffff;} /* 侧边栏背景、二级导航背景 */
 .n5-cblxm li {border-bottom: 1px solid #3c9873;} /* 侧边栏风格线 */
-.n5-bbs .n5-fqbt {border: 1px solid #EDEDED;border-top: 2px solid #37cf92;} /* 论坛分区顶部 */
-.n5-bbslb,.nav {border-top: 2px solid #37cf92;} /* 顶部 */
+.n5-bbs .n5-fqbt {border: 1px solid #EDEDED;border-top: 2px solid #59cbc7;} /* 论坛分区顶部 */
+.n5-bbslb,.nav {border-top: 2px solid #59cbc7;} /* 顶部 */
 .n5-name {border-right: 1px solid #3c9873;} /* 用户信息右边框 */
-.n5-ksft .pbls a,.pbls a:hover,.n5-bbmk .n5-bbmkbt,.n5-mhtt .n5-title,a.blue:link, a.blue:visited, a.blue:hover,.n5-wdxx li .time,.user_avatar .name,.user_box li span,.threadlist .thread_tit {color:#37cf92;} /* 快速发帖文字颜色、模块标题、头条颜色、我的消息、搜索文字 */
+.n5-ksft .pbls a,.pbls a:hover,.n5-bbmk .n5-bbmkbt,.n5-mhtt .n5-title,a.blue:link, a.blue:visited, a.blue:hover,.n5-wdxx li .time,.user_avatar .name,.user_box li span,.threadlist .thread_tit {color:#59cbc7;} /* 快速发帖文字颜色、模块标题、头条颜色、我的消息、搜索文字 */
 
 /* 头部 */
 .n5-header {height: 45px;position: relative;text-align:center;}
 .n5-header .n5-cebianlan {border-radius: 0;height: 45px;position: absolute;left: 0;text-align: center;top: 8px;width: 43px;}
 .n5-header .n5-cebianlan .n5-ico {background: url(n5-cbltb.png);background-size: 25px auto;display: block;height: 25px;margin: 2px auto 2px;width: 25px;}
-.n5-header .n5-logo {display: inline-block;margin-top: 10px;height: 26px;width: 100px;}
+.n5-header .n5-logo {display: inline-block;margin-top: 10px;height: 26px;width: 100px;color: #4C4C4C}
 .n5-header .n5-fatie {border-radius: 0;height: 45px;position: absolute;right: 0;text-align: center;top: 8px;width: 43px;}
 .n5-header .n5-fatie .n5-ico {background: url(n5-ksft.png);background-size: 25px auto;display: block;height: 25px;margin: 2px auto 2px;width: 25px;}
 
@@ -38,7 +38,7 @@ QQ:2474414433
 .n5-cbltx .n5-hym {float: left;margin-left: 10px;font-size:14px;color:#FFF;line-height:50px;}
 .n5-cblxm {margin-top: 70px;padding:0 10px}
 .n5-cblxm li {}
-.n5-cblxm a {font-size:14px;color:#FFF;line-height:45px;padding-left: 35px;}
+.n5-cblxm a {font-size:14px;color:#6b6b6b;line-height:45px;padding-left: 35px;}
 .n5-cblxm .shouye {background: url(n5-clsyico.png) no-repeat 0 10px;background-size: 25px auto;}
 .n5-cblxm .luntan{background: url(n5-clltico.png) no-repeat 0 10px;background-size: 25px auto;}
 .n5-cblxm .geren{background: url(n5-clgrico.png) no-repeat 0 10px;background-size: 25px auto;}
