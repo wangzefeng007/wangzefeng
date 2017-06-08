@@ -49,4 +49,19 @@ class MemberFirm
     public function EditInfo(){
         include template('MemberFirmEditInfo');
     }
+
+    /**
+     * @desc 债权管理
+     */
+    public function DebtManagement(){
+        MService::IsNoLogin();
+        include template('MemberFirmDebtManagement');
+    }
+    /**
+     * @desc 关注/收藏
+     */
+    public function Focus(){
+        include template('MemberFirmFocus');
+    }
+
 }
