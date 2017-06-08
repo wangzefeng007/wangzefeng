@@ -70,4 +70,10 @@ class MemberPerson
     public function Focus(){
         include template('MemberPersonFocus');
     }
+    /**
+     * @desc 债权管理
+     */
+    public function DebtManagement(){
+        include template('MemberPersonDebtManagement');
+    }
 }

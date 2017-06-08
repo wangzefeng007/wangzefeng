@@ -50,4 +50,12 @@ class MemberLawyer
     public function EditInfo(){
         include template('MemberLawyerEditInfo');
     }
+    /**
+     * @desc 债权管理
+     */
+    public function DebtManagement(){
+
+
+        include template('MemberLawyerDebtManagement');
+    }
 }

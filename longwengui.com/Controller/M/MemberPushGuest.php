@@ -46,7 +46,15 @@ class MemberPushGuest
      * @desc 编辑信息
      */
     public function EditInfo(){
+        MService::IsNoLogin();
         include template('MemberPushGuestEditInfo');
+    }
+    /**
+     * @desc 债权管理
+     */
+    public function DebtManagement(){
+        MService::IsNoLogin();
+        include template('MemberPushGuestDebtManagement');
     }
 
 }
