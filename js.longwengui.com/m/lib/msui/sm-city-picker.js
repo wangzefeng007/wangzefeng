@@ -10,15 +10,19 @@
 $.smConfig.rawCitiesData = [
     {
         "name":"北京",
+        "id":"01",
         "sub":[
             {
-                "name":"请选择"
+                "name":"请选择",
+                "id":"0"
             },
             {
-                "name":"东城区"
+                "name":"东城区",
+                "id":"001"
             },
             {
-                "name":"西城区"
+                "name":"西城区",
+                "id":"002"
             },
             {
                 "name":"崇文区"
@@ -13328,6 +13332,9 @@ $.smConfig.rawCitiesData = [
     var provinces = raw.map(function(d) {
         return d.name;
     });
+    var provincesIds = raw.map(function(d) {
+        return d.id;
+    });
     var initCities = sub(raw[0]);
     var initDistricts = [""];
 
@@ -13371,7 +13378,8 @@ $.smConfig.rawCitiesData = [
         cols: [
         {
             textAlign: 'center',
-            values: provinces,
+            values: provincesIds,
+            displayValues:provinces,
             cssClass: "col-province"
         },
         {

@@ -2044,6 +2044,9 @@ a.btn-s,
 .icon-user{
     background-image: url(../images/icon-user.png);
 }
+.icon-auth{
+    background-image: url(../images/icon-auth.png);
+}
 .icon-wallet{
     background-image: url(../images/icon-wallet.png);
 }

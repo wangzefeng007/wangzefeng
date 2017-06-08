@@ -602,9 +602,10 @@ a:active {
   margin: 0;
 }
 @media all and (min-width: 768px) {
-  .row {
+  /*modify lvpan*/
+  /*.row {
     margin-left: -2%;
-  }
+  }*/
   .row .col-100 {
     width: 98%;
     margin-left: 2%;
@@ -889,6 +890,7 @@ a:active {
   left: 0;
   z-index: 10;
   height: 2.2rem;
+  line-height:2.2rem;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   background-color: #f7f7f8;
@@ -4072,7 +4074,7 @@ body.panel-closing .page {
   justify-content: center;
   padding: 0;
   text-align: right;
-  font-size: 1.2rem;
+  font-size: .75rem;
   -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
   -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
 }
@@ -4286,6 +4288,7 @@ body.panel-closing .page {
 }
 .picker-modal .bar .title {
   color: #5f646e;
+  font-size: .75rem;
   font-weight: normal;
 }
 .city-picker .col-province {
