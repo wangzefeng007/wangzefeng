@@ -50,6 +50,28 @@ class MemberLawFirm
      * @desc 编辑信息
      */
     public function EditInfo(){
+        MService::IsNoLogin();
         include template('MemberLawFirmEditInfo');
+    }
+    /**
+     * @desc 法律援助
+     */
+    public function Aid(){
+        MService::IsNoLogin();
+        include template('MemberLawFirmAid');
+    }
+    /**
+     * @desc 设置法律援助
+     */
+    public function SetAid(){
+        MService::IsNoLogin();
+        include template('MemberLawFirmSetAid');
+    }
+    /**
+     * @desc 我的关注
+     */
+    public function Focus(){
+        MService::IsNoLogin();
+        include template('MemberLawFirmFocus');
     }
 }
