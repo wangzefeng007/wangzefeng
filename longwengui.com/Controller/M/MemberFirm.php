@@ -64,6 +64,10 @@ class MemberFirm
         MService::IsNoLogin();
         include template('MemberFirmDemand');
     }
+    public function SetDemand(){
+        MService::IsNoLogin();
+        include template('MemberFirmSetDemand');
+    }
     /**
      * @desc 关注/收藏
      */
