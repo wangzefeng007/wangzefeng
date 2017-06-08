@@ -64,6 +64,9 @@ class MemberFirm
         MService::IsNoLogin();
         include template('MemberFirmDemand');
     }
+    /**
+     * @desc 设置接单要求
+     */
     public function SetDemand(){
         MService::IsNoLogin();
         include template('MemberFirmSetDemand');
