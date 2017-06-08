@@ -3324,7 +3324,7 @@ Device/OS Detection
             }
             else {
                 for (var j = 0; j < col.values.length; j++) {
-                    columnItemsHTML += '<div class="picker-item" data-picker-value="' + col.values[j] + '1">' + (col.displayValues ? col.displayValues[j] : col.values[j]) + '</div>';
+                    columnItemsHTML += '<div class="picker-item" data-picker-value="' + col.values[j] + '">' + (col.displayValues ? col.displayValues[j] : col.values[j]) + '</div>';
                 }
 
                 columnHTML += '<div class="picker-items-col ' + (col.textAlign ? 'picker-items-col-' + col.textAlign : '') + ' ' + (col.cssClass || '') + '"><div class="picker-items-col-wrapper">' + columnItemsHTML + '</div></div>';

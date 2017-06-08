@@ -1,7 +1,7 @@
 {template Head}
 <body>
 <div class="page-group">
-    <div class="page">
+    <div class="page" id="information">
         <div class="content">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
@@ -176,21 +176,17 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row upload-row col-2">
-                                    <div class="form-grid bx">
+                                <div class="row upload-row col-2" id="agent_pic" >
+                                    <div class="form-grid bx imageUploadBox">
+                                        <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                         <div class="img-wrap">
                                         </div>
-                                        <label>
-                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                        </label>
                                     </div>
 
-                                    <div class="form-grid bx">
+                                    <div class="form-grid bx imageUploadBox">
+                                        <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                         <div class="img-wrap">
                                         </div>
-                                        <label>
-                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                        </label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -198,13 +194,11 @@
                                         营业执照副本:
                                     </p>
                                 </div>
-                                <div class="row upload-row col-2">
-                                    <div class="form-grid bx">
+                                <div class="row upload-row col-2" id="license">
+                                    <div class="form-grid bx imageUploadBox">
+                                        <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                         <div class="img-wrap">
                                         </div>
-                                        <label>
-                                            <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                        </label>
                                     </div>
                                     <div class="form-grid" style="margin-left:.36rem;"></div>
                                 </div>
