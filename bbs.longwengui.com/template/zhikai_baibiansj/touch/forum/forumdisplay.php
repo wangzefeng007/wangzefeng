@@ -5,7 +5,7 @@
     <div class="n5-bbslb">
 		<div class="n5-lbftan n5-anzj y"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]" title="{lang send_threads}">{lang send_threads}</a></div>
 		<div class="n5-lbftan y"><a href="forum.php?forumlist=1">返回</a></div>
-        <img class="z" alt="$_G['forum'][name]" src="<!--{if $_G['forum'][icon]}-->data/attachment/common/$_G['forum'][icon]<!--{else}-->template/zhikai_baibiansj/touch/style/forum.png<!--{/if}-->">
+        <img class="z" alt="$_G['forum'][name]" src="<!--{if $_G['forum'][icon]}-->data/attachment/common/$_G['forum'][icon]<!--{else}-->template/zhikai_baibiansj/touch/style/forum$_G[fid].png<!--{/if}-->">
 		<h3><a href="forum.php?mod=forumdisplay&fid=$_G[fid]">$_G['forum'][name]</a></h3>
 		<i>主题：$_G[forum][threads] 新帖：$_G[forum][todayposts]</i>
     </div>
@@ -115,7 +115,6 @@ $multipage
 
 <!--底部菜单-->
 <div id="contactbar">
-	<a href="forum.php?mod=guide&view=hot" class="bottom_index"></a>
 	<a href="forum.php?forumlist=1" class="bottom_history_on"></a>
 	<a href="forum.php?mod=misc&action=nav" class="bottom_post"></a>
 	<a href="<!--{if $_G[uid]}-->home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1<!--{else}-->member.php?mod=logging&action=login<!--{/if}-->" class="bottom_member"></a>

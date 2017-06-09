@@ -70,7 +70,6 @@
 
 <!--底部菜单-->
 <div id="contactbar">
-	<a href="forum.php?mod=guide&view=hot" class="bottom_index"></a>
 	<a href="forum.php?forumlist=1" class="bottom_history"></a>
 	<a href="forum.php?mod=misc&action=nav" class="bottom_post"></a>
 	<a href="<!--{if $_G[uid]}-->home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1<!--{else}-->member.php?mod=logging&action=login<!--{/if}-->" class="bottom_member_on"></a>

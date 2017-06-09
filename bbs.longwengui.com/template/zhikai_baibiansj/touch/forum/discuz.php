@@ -66,7 +66,7 @@
 				<!--{if $forum[icon]}-->
                 $forum[icon]
                 <!--{else}-->
-                <a href="forum.php?mod=forumdisplay&fid={$forum['fid']}"><img src="template/zhikai_baibiansj/touch/style/forum.png" align="left" alt="$forum[name]" /></a>
+                <a href="forum.php?mod=forumdisplay&fid={$forum['fid']}"><img src="template/zhikai_baibiansj/touch/style/forum{$forum['fid']}.png" align="left" alt="$forum[name]" /></a>
                 <!--{/if}-->
 				
 				<a href="forum.php?mod=forumdisplay&fid={$forum['fid']}" class="btdb"><!--{if $forum[todayposts] > 0}--><span class="num">$forum[todayposts]</span><!--{/if}-->{$forum[name]}</a>
@@ -105,7 +105,6 @@
 
 <!--底部菜单-->
 <div id="contactbar">
-	<a href="forum.php?mod=guide&view=hot" class="bottom_index"></a>
 	<a href="forum.php?forumlist=1" class="bottom_history_on"></a>
 	<a href="forum.php?mod=misc&action=nav" class="bottom_post"></a>
 	<a href="<!--{if $_G[uid]}-->home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1<!--{else}-->member.php?mod=logging&action=login<!--{/if}-->" class="bottom_member"></a>
