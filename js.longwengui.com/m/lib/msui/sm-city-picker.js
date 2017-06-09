@@ -4029,58 +4029,83 @@ $.smConfig.rawCitiesData = [
 // jshint ignore: end
 
 /* jshint unused:false*/
-
-+ function($) {
-    "use strict";
-    var format = function(data) {
-        var result = [];
-        for(var i=0;i<data.length;i++) {
-            var d = data[i];
-            if(d.name === "请选择") continue;
-            result.push({values:d.id,displayValues:d.name});
+/**
+ * 获取省数据
+ * @returns {Array}
+ */
+function getProvince(){
+    var provinceData=[];
+    $.ajax({
+        type: 'get',
+        async:false,
+        dataType: 'json',
+        url: '/Templates/Debt/data/Province.json',
+        success: function(data){
+            provinceData=data;
         }
-        if(result.length) return result;
-        return [""];
-    };
+    });
+    return provinceData;
+}
 
-    var sub = function(data) {
-        if(!data.sub) return [""];
-        return format(data.sub);
-    };
-
-    var getCities = function(d) {
-        for(var i=0;i< raw.length;i++) {
-            if(raw[i].id === d) return sub(raw[i]);
-        }
-        return [""];
-    };
-
-    var getDistricts = function(p, c) {
-        for(var i=0;i< raw.length;i++) {
-            if(raw[i].id === p) {
-                for(var j=0;j< raw[i].sub.length;j++) {
-                    if(raw[i].sub[j].id === c) {
-                        return sub(raw[i].sub[j]);
-                    }
+/**
+ * 根据省ID获取市数据
+ * @param pId
+ * @returns {Array}
+ */
+function getCity(pId){
+    var cityData=[];
+    $.ajax({
+        type: 'get',
+        async:false,
+        dataType: 'json',
+        url: '/Templates/Debt/data/City.json',
+        success: function(data){
+            for(var i=0;i<data.length;i++){
+                if(pId==data[i].ParentID){
+                    cityData.push(data[i]);
                 }
             }
         }
-        return [""];
-    };
+    });
+    return cityData;
+}
 
-    var raw = $.smConfig.rawCitiesData;
-    var provinces = raw.map(function(d) {
-        return d.name;
+/**
+ * 根据市ID获取区县
+ * @param pId
+ * @returns {Array}
+ */
+function getArea(pId){
+    var areaData=[];
+    $.ajax({
+        type: 'get',
+        async:false,
+        dataType: 'json',
+        url: '/Templates/Debt/data/Area.json',
+        success: function(data){
+            for(var i=0;i<data.length;i++){
+                if(pId==data[i].ParentID){
+                    areaData.push(data[i]);
+                }
+            }
+        }
     });
-    var provincesIds = raw.map(function(d) {
-        return d.id;
+    return areaData;
+}
+
++ function($) {
+    "use strict";
+    var provinces = getProvince().map(function(d) {
+        return d.CnName;
     });
-    var initCities = sub(raw[0].id);
-    var initCitiesDisplay = sub(raw[0].name);
+    var provincesIds = getProvince().map(function(d) {
+        return d.AreaID;
+    });
+    var initCities = getCity(getProvince()[0].AreaID);
     var initDistricts = [""];
 
     var currentProvince = provinces[0];
-    var currentCity = initCities[0];
+    var currentCity = initCities[0].AreaID;
     var currentDistrict = initDistricts[0];
 
     var t;
@@ -4093,27 +4118,45 @@ $.smConfig.rawCitiesData = [
             var newProvince = picker.cols[0].value;
             var newCity=[];
             var newCityDisplay=[];
+            var newDistrict=[];
+            var newDistrictDisplay=[];
             if(newProvince !== currentProvince) {
                 // 如果Province变化，节流以提高reRender性能
                 clearTimeout(t);
 
                 t = setTimeout(function(){
-                    var newCities = getCities(newProvince);
-                    newCity[0] = newCities[0].values;
-                    newCityDisplay[0] = newCities[0].displayValues;
-                    var newDistricts = getDistricts(newProvince, newCity[0]);
-                    console.log(newDistricts);
+                    var newCitiesObj = getCity(newProvince);
+                    for(var i=0;i<newCitiesObj.length;i++){
+                        newCity.push(newCitiesObj[i].AreaID);
+                    }
+                    for(var i=0;i<newCitiesObj.length;i++){
+                        newCityDisplay.push(newCitiesObj[i].CnName);
+                    }
+                    var newDistrictsObj = getArea(newCity[0]);
+                    for(var i=0;i<newDistrictsObj.length;i++){
+                        newDistrict.push(newDistrictsObj[i].AreaID);
+                    }
+                    for(var i=0;i<newDistrictsObj.length;i++){
+                        newDistrictDisplay.push(newDistrictsObj[i].CnName);
+                    }
                     picker.cols[1].replaceValues(newCity,newCityDisplay);
-                    picker.cols[2].replaceValues(newDistricts);
+                    picker.cols[2].replaceValues(newDistrict,newDistrictDisplay);
                     currentProvince = newProvince;
-                    currentCity = newCity;
+                    currentCity = newCity[0];
                     picker.updateValue();
                 }, 200);
                 return;
             }
             newCity = picker.cols[1].value;
             if(newCity !== currentCity) {
-                picker.cols[2].replaceValues(getDistricts(newProvince, newCity));
+                var newDistrictsObj = getArea(newCity);
+                for(var i=0;i<newDistrictsObj.length;i++){
+                    newDistrict.push(newDistrictsObj[i].AreaID);
+                }
+                for(var i=0;i<newDistrictsObj.length;i++){
+                    newDistrictDisplay.push(newDistrictsObj[i].CnName);
+                }
+                picker.cols[2].replaceValues(newDistrict,newDistrictDisplay);
                 currentCity = newCity;
                 picker.updateValue();
             }
@@ -4129,13 +4172,13 @@ $.smConfig.rawCitiesData = [
         {
             textAlign: 'center',
             values: initCities,
-            displayValues:initCitiesDisplay,
+            displayValues:[],
             cssClass: "col-city"
         },
         {
             textAlign: 'center',
             values: initDistricts,
-            //displayValues:initDistricts,
+            displayValues:[],
             cssClass: "col-district"
         }
         ]
@@ -4161,9 +4204,9 @@ $.smConfig.rawCitiesData = [
                 }
                 if(p.value[1]) {
                     currentCity = p.value[1];
-                    p.cols[2].values = getDistricts(p.value[0], p.value[1]);
+                    p.cols[2].values = getArea(p.value[1]);
                 } else {
-                    p.cols[2].values = getDistricts(p.value[0], p.cols[1].values[0]);
+                    p.cols[2].values = getArea(p.cols[1].values[0]);
                 }
                 !p.value[2] && (p.value[2] = '');
                 currentDistrict = p.value[2];

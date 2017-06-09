@@ -7,7 +7,10 @@ var pageObj=$.extend({},pageObj,{
         var idNum = $('.tab-lawer input[name="idNum"]').val();
         var jobNo = $('.tab-lawer input[name="jobNo"]').val();
         var office = $('.tab-lawer input[name="office"]').val();
-        var address = $('.tab-lawer input[name="address"]').val();
+        var address = $('.tab-lawer input[name="address"]').attr("data-value")||"";
+        var province = address.split(" ")[0];
+        var city = address.split(" ")[1];
+        var area = address.split(" ")[2];
         var city = $('.tab-lawer input[name="dd_city"]').siblings('span').attr('data-id');
         var area = $('.tab-lawer input[name="dd_area"]').siblings('span').attr('data-id');
         var lawer_images = []; //证明图片
@@ -77,7 +80,10 @@ var pageObj=$.extend({},pageObj,{
             $('.tab-lawer input[name="email"]').focus();
             return;
         }
-
+        if(address==''){
+            $.toast('请选择您的地址信息');
+            return;
+        }
         $('.tab-lawer .imageUploadBox').each(function(){
             if($(this).find('img').attr('src')){
                 lawer_images.push($(this).find('img').attr('src'));
@@ -96,13 +102,13 @@ var pageObj=$.extend({},pageObj,{
         }*/
 
 
-        this.ajax(4, {
+        this.ajax({
             "name": name, //姓名
             "idNum": idNum, //身份证号
             "jobNo": jobNo, //执业证号
             "office": office, //所属律师事务所
             "inspectionDate": inspection_date, //年检时间
-            "address": address, //省
+            "province": province, //省
             "city": city, //市
             "area": area, //县
             "images": lawer_images, //照片
@@ -120,9 +126,10 @@ var pageObj=$.extend({},pageObj,{
         var phone = $('.tab-lawers input[name="phone"]').val();
         var lawPerson = $('.tab-lawers input[name="lawPerson"]').val();
         var creditNum = $('.tab-lawers input[name="creditNum"]').val();
-        var province = $('.tab-lawers input[name="dd_province"]').siblings('span').attr('data-id');
-        var city = $('.tab-lawers input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-lawers input[name="dd_area"]').siblings('span').attr('data-id');
+        var address = $('.tab-lawers input[name="address"]').attr("data-value")||"";
+        var province = address.split(" ")[0];
+        var city = address.split(" ")[1];
+        var area = address.split(" ")[2];
         var agentName = $('.tab-lawers input[name="agentName"]').val();
         var agentIdNum = $('.tab-lawers input[name="agentIdNum"]').val();
         var agentPhone = $('.tab-lawers input[name="agentPhone"]').val();
@@ -201,6 +208,10 @@ var pageObj=$.extend({},pageObj,{
             $('.tab-lawers input[name="agentIdNum"]').focus();
             return;
         }
+        if(address==''){
+            $.toast('请选择您的地址信息');
+            return;
+        }
         /*if(agentPhone == ''){
             $.toast('请输入代理人手机号');
             $('.tab-lawers input[name="agentPhone"]').focus();
@@ -229,7 +240,7 @@ var pageObj=$.extend({},pageObj,{
         }
 
         var area_detail = $('.tab-lawers textarea[name="areaDetail"]').val();
-        this.ajax(6, {
+        this.ajax({
             "name": name, //事务所名称
             "phone": phone, //手机电话
             "lawPerson": lawPerson, //法定代表人
@@ -263,9 +274,9 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast('保存成功');
                     //路由跳转
-                    /*setTimeout(function() {
+                    setTimeout(function() {
                         window.location = data.Url;
-                    }, 10);*/
+                    }, 10);
                 }else{
                     $.toast(data.Message);
                 }
@@ -286,7 +297,7 @@ var pageObj=$.extend({},pageObj,{
             imgClipper(this);
         });
         /*地址初始化*/
-        //$("input[name='address']").cityPicker();
+        $("input[name='address']").cityPicker();
         //个人用户点击保存
         $('#person_role_auth_save').on("click",function(){
             _this.personRoleAuth();

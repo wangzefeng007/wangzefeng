@@ -6,9 +6,10 @@ var pageObj=$.extend({},pageObj,{
         var nick_name = $('.tab-person input[name="nickName"]').val();
         var name = $('.tab-person input[name="name"]').val();
         var idNum = $('.tab-person input[name="idNum"]').val();
-        var address = $('.tab-person input[name="address"]').val()
-        var city = $('.tab-person input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-person input[name="dd_area"]').siblings('span').attr('data-id');
+        var address = $('.tab-person input[name="address"]').attr("data-value")||"";
+        var province = address.split(" ")[0];
+        var city = address.split(" ")[1];
+        var area = address.split(" ")[2];
         var images = []; //证明图片
 
         if(name == ''){
@@ -51,6 +52,10 @@ var pageObj=$.extend({},pageObj,{
             $('.tab-person input[name="email"]').focus();
             return;
         }
+        if(address==''){
+            $.toast('请选择您的地址信息');
+            return;
+        }
         $('.tab-person .imageUploadBox').each(function(){
             if($(this).find('img').attr('src')){
                 images.push($(this).find('img').attr('src'));
@@ -61,12 +66,8 @@ var pageObj=$.extend({},pageObj,{
             return;
         }
 
-        /*if(!province || !city || !area){
-            $.toast('请输入您的地址信息');
-            return;
-        }*/
 
-        this.ajax(2, {
+        this.ajax({
             "nickName": nick_name, //昵称
             "name": name, //姓名
             "idNum": idNum, //身份证号
@@ -88,9 +89,10 @@ var pageObj=$.extend({},pageObj,{
         var registrant_name = $('.tab-company input[name="registrantName"]').val();
         var idNum = $('.tab-company input[name="idNum"]').val();
         var credit_num = $('.tab-company input[name="creditNum"]').val();
-        var address = $('.tab-company input[name="address"]').val();
-        var city = $('.tab-company input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-company input[name="dd_area"]').siblings('span').attr('data-id');
+        var address = $('.tab-company input[name="address"]').attr("data-value")||"";
+        var province = address.split(" ")[0];
+        var city = address.split(" ")[1];
+        var area = address.split(" ")[2];
         var registrant_images = []; //证明图片
         var license;
 
@@ -156,7 +158,10 @@ var pageObj=$.extend({},pageObj,{
                 registrant_images.push($(this).find('img').attr('src'));
             }
         });
-
+        if(address==''){
+            $.toast('请选择您的地址信息');
+            return;
+        }
         if(registrant_images.length != 2){
             $.toast('请上传所需的身份证照片');
             return;
@@ -175,7 +180,7 @@ var pageObj=$.extend({},pageObj,{
             return;
         }
 
-        this.ajax(3, {
+        this.ajax({
             "companyName": company_name, //催收公司名称
             "registrantName": registrant_name, //公司注册人姓名
             "idNum": idNum, //注册人身份证号
@@ -207,9 +212,9 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast('保存成功');
                     //路由跳转
-                    /*setTimeout(function() {
+                    setTimeout(function() {
                         window.location = data.Url;
-                    }, 10);*/
+                    }, 10);
                 }else{
                     $.toast(data.Message);
                 }
@@ -230,7 +235,7 @@ var pageObj=$.extend({},pageObj,{
             imgClipper(this);
         });
         /*地址初始化*/
-        //$("input[name='address']").cityPicker();
+        $("input[name='address']").cityPicker();
         //个人用户点击保存
         $('#person_role_auth_save').on("click",function(){
             _this.personRoleAuth();

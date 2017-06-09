@@ -5,7 +5,10 @@ var pageObj=$.extend({},pageObj,{
         var nick_name = $('.tab-person input[name="nickName"]').val();
         var name = $('.tab-person input[name="name"]').val();
         var idNum = $('.tab-person input[name="idNum"]').val();
-        var address = $('.tab-person input[name="address"]').val();
+        var address = $('.tab-person input[name="address"]').attr("data-value")||"";
+        var province = address.split(" ")[0];
+        var city = address.split(" ")[1];
+        var area = address.split(" ")[2];
         var area_detail = $('.tab-person textarea[name="areaDetail"]').val();
         var qq = $('.tab-person input[name="qq"]').val();
         var email = $('.tab-person input[name="email"]').val();
@@ -57,7 +60,9 @@ var pageObj=$.extend({},pageObj,{
             "nickName": nick_name, //昵称
             "name": name, //姓名
             "idNum": idNum, //身份证号
-            "address":address, //地址
+            "province": province, //省
+            "city": city, //市
+            "area": area, //县
             "areaDetail": area_detail, //详细地址
             "qq": qq, //qq
             "email": email, //邮箱
@@ -70,9 +75,10 @@ var pageObj=$.extend({},pageObj,{
         var law_person = $('.tab-company input[name="lawPerson"]').val();
         var fixed_phone = $('.tab-company input[name="fixedPhone"]').val();
         var credit_num = $('.tab-company input[name="creditNum"]').val();
-        var province = $('.tab-company input[name="dd_province"]').siblings('span').attr('data-id');
-        var city = $('.tab-company input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-company input[name="dd_area"]').siblings('span').attr('data-id');
+        var address = $('.tab-company input[name="address"]').attr("data-value")||"";
+        var province = address.split(" ")[0];
+        var city = address.split(" ")[1];
+        var area = address.split(" ")[2];
         var area_detail = $('.tab-company textarea[name="areaDetail"]').val();
         var agent_name = $('.tab-company input[name="agentName"]').val();
         var agent_id_num = $('.tab-company input[name="agentIdNum"]').val();
@@ -151,6 +157,10 @@ var pageObj=$.extend({},pageObj,{
                 registrant_images.push($(this).find('img').attr('src'));
             }
         });
+        if(address==''){
+            $.toast('请选择您的地址信息');
+            return;
+        }
         if(registrant_images.length<2){
             $.toast("请上传代理人身份证照");
             return;
@@ -162,11 +172,6 @@ var pageObj=$.extend({},pageObj,{
             $.toast('请上传所需的营业执照');
             return;
         }
-        //省市县信息
-        /*if(!province || !city || !area){
-            $.toast('请输入机构的地址信息');
-            return;
-        }*/
         this.ajax({
             "companyName": company_name, //机构名称
             "lawPerson": law_person, //法定代表人
@@ -201,9 +206,9 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast('保存成功');
                     //路由跳转
-                    /*setTimeout(function() {
+                    setTimeout(function() {
                         window.location = data.Url;
-                    }, 10);*/
+                    }, 10);
                 }else{
                     $.toast(data.Message);
                 }
@@ -224,7 +229,7 @@ var pageObj=$.extend({},pageObj,{
             imgClipper(this);
         });
         /*地址初始化*/
-        //$("input[name='address']").cityPicker();
+        $("input[name='address']").cityPicker();
         //个人用户点击保存
         $('#person_role_auth_save').on("click",function(){
             _this.personRoleAuth();
