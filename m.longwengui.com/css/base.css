@@ -1403,6 +1403,22 @@ a.btn-s,
     height: 3.75rem;
     background: #f3f3f3;
 }
+.imageUploadBox input[type='file']{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.imageUploadBox.fill::before,
+.imageUploadBox.fill::after{
+    display: none;
+}
+.bx .img-wrap img{
+    width:100%;
+    height:100%;
+}
 .col-2 .bx .img-wrap{
     height: 5.45rem;
 }
@@ -2044,6 +2060,9 @@ a.btn-s,
 .icon-user{
     background-image: url(../images/icon-user.png);
 }
+.icon-auth{
+    background-image: url(../images/icon-auth.png);
+}
 .icon-wallet{
     background-image: url(../images/icon-wallet.png);
 }
@@ -2268,7 +2287,7 @@ a.btn-s,
     border-radius: .125rem;
 }
 .my-clue .status{
-    padding: .075rem .3.25rem;
+    padding: .075rem .325rem;
     color: #fff;
     font-size: .55rem;
     border-radius: .125rem;
@@ -2477,6 +2496,9 @@ a.btn-s,
 }
 .item-goods .item-oparate .btn+.btn{
     margin-left: 1rem;
+}
+.btn-box .btn+.btn{
+    margin-top:.5rem;
 }
 .line-through{
     text-decoration: line-through;
@@ -2706,3 +2728,23 @@ a.btn-s,
     font-size: .7rem;
     border-bottom: solid 1px #e6e6e6;
 }
+
+/* 功能需要*/
+#code {
+    display: none;
+}
+.code-img{
+    height:1.05rem;
+}
+.code-img img{
+    height:100%;
+}
+#clipArea{
+    height:100%;
+}
+/*图片裁剪*/
+.clipMask{width: 100%;height: 100%;background: rgba(0,0,0,0.5);position: absolute;top: 0;left: 0;z-index:50;padding-bottom: 2.6rem;box-sizing: border-box;display: none;}
+.clipBtn{ background:rgba(0, 0, 0, 0.498039); text-align: center;width:100%;position: absolute;bottom: 0;left: 0;padding: 0.5rem 0;}
+.clipBtn .button{ width:4rem ; height: 1.6rem; line-height: 1.6rem; display: inline-block; margin: 0 0.3rem;}
+.clipBtn .button.sureClip{background: #f77754;}
+.clipBtn .button.canceClip{background: #efefef;color: #666;}
