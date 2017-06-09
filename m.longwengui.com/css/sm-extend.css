@@ -681,4 +681,5 @@ body > .photo-browser .toolbar {
 }
 .swiper-slide img {
   display: block;
+  width:100%;
 }
