@@ -58,6 +58,7 @@ class Asset
      * @desc  订单填写页
      */
     public function  Order(){
+        MService::IsNoLogin();
         if ($_SESSION ['Identity']!=1 && $_SESSION['Identity']!=2){
             alertandback("个人会员和催客方可购买商品！");
         }
