@@ -34,7 +34,7 @@ html {
 }
 body {
     background: rgba(0,0,0,.2);
-    font: .6rem microsoft yahei, arial, verdana, helvetica, sans-serif;
+    font: .65rem microsoft yahei, arial, verdana, helvetica, sans-serif;
     color: #626d78;
 }
 a{
@@ -109,7 +109,7 @@ em,i { font-style: normal;display: inline-block; }
 .mt0{ margin-top: 0!important; }
 .mt01{ margin-top: .25rem!important; }
 .mt015{ margin-top: .375rem; }
-.mt02{ margin-top: .5rem; }
+.mt02{ margin-top: .5rem!important; }
 .mt03{ margin-top: .75rem; }
 .mt04{ margin-top: 1rem; }
 .mt005 { margin-top: .125rem; }
@@ -489,6 +489,7 @@ a.btn-s,
     padding-top: .325rem;
     padding-bottom: .325rem;
     line-height: 1.55rem;
+    color: #8a959d;
 }
 .item .item-con .h3{
     font-size: .65rem;
@@ -518,6 +519,7 @@ a.btn-s,
     height: 2.2rem;
     line-height: 2.2rem;
     text-align: right;
+    color: #6b6b6b;
 }
 .item .inp {
     display: block;
@@ -2270,7 +2272,7 @@ a.btn-s,
     height: 7.5rem;
     color: #fff;
 }
-.page-member .wallet-top .content{
+.page-member .wallet-top .content-pd{
     padding-top: 3.25rem;
 }
 .page-member .wallet-top .h6{
@@ -2708,6 +2710,7 @@ a.btn-s,
     padding: 0 0 1rem .75rem; 
 }
 .order-result .h3{
+    padding-right: .75rem;
     line-height: 1.65rem;
     font-size: .7rem;
     border-bottom: dashed 1px #e6e6e6;
@@ -2728,6 +2731,129 @@ a.btn-s,
     font-size: .7rem;
     border-bottom: solid 1px #e6e6e6;
 }
+.form-need{
+    color: #f16245;
+}
+.result-tips{
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-size: .55rem;
+    color: #f16245;
+}
+.upload-tips{
+    line-height: .75rem;
+    font-size: .55rem;
+    color: #6b6b6b;
+}
+.icon-tips{
+    width: .6rem;
+    height: .75rem;
+    background: url(../images/icon-tips.png) no-repeat center;
+    background-size: 100%;
+}
+.upload-tips .icon-tips{
+    vertical-align: top;
+    margin-right: .25rem;
+}
+
+.form-box .address-list{
+    padding: 0 0 0 .75rem;
+    line-height: 1.65rem;
+    font-size: .7rem;
+    border-top: solid 1px #e6e6e6;
+    border-bottom: solid 1px #e6e6e6;
+}
+
+.form-box .address-list .empty{
+    height: 1.65rem;
+}
+.item-goods .item-address .item-con{
+    padding: 0;
+    margin: 0;
+    background: #fff;
+}
+.item-goods .item-address .item-con .radio-inline{
+    margin-top: 1rem;
+    margin-right: .5rem;
+}
+
+.apply-list .form-view .form-grid{
+    text-align: left;
+}
+.apply-list .operate .btn-s{
+    border-radius: 1.1rem;
+    float: left;
+    font-size: .6rem;
+}
+.apply-list .operate .btn-s+.btn-s{
+    margin-left: .75rem;
+}
+.apply-list .operate .btn-s.btn-cancel{
+    background: #fff;
+    border: solid 1px #ccc;
+    color: #6b6b6b;
+}
+.apply-list .result .agree{
+    color: #68cfcb;
+}
+.apply-list .result .refuse{
+    color: #f16245;
+}
+
+.sys-message-list .item .item-con{
+    border-bottom: dashed 1px #e6e6e6;
+}
+.sys-message-list .item .item-con:last-child{
+    border-bottom: none;
+}
+.icon-message{
+    width: 1.25rem;
+    height: 1.25rem;
+    background: url(../images/icon-message.png) no-repeat;
+    background-size: 100%;
+}
+.sys-message-list .icon-message{
+    margin-top: .4rem;
+    margin-right: .5rem;
+}
+.icon-message.open{
+    background-position: 0 -1.25rem;
+}
+.sys-message-box{
+    background: #fff;
+    padding: .5rem .75rem 1.6rem;
+}
+.sys-message-box .title{
+    padding: .25rem 0;
+    font-size: .7rem;
+    color: #6b6b6b;
+    text-align: center;
+    font-weight: bold;
+}
+.sys-message-box  .publish-msg{
+    padding: .25rem 0 .5rem;
+    text-align: center;
+    color: #999;
+    font-size: .55rem;
+}
+
+.sys-message-box .con{
+    text-indent: 2em;
+    color: #8a959d;
+}
+
+.icon-exchange{
+    width: .85rem;
+    height: .85rem;
+    background: url(../images/icon-exchange.png) no-repeat center;
+    background-size: .85rem;
+}
+
+.goods-img-upload .bx .img-wrap{
+    height: 5.5rem;
+}
+
+
 
 /* 功能需要*/
 #code {
