@@ -489,6 +489,7 @@ a.btn-s,
     padding-top: .325rem;
     padding-bottom: .325rem;
     line-height: 1.55rem;
+    color: #8a959d;
 }
 .item .item-con .h3{
     font-size: .65rem;
@@ -518,6 +519,7 @@ a.btn-s,
     height: 2.2rem;
     line-height: 2.2rem;
     text-align: right;
+    color: #6b6b6b;
 }
 .item .inp {
     display: block;
@@ -2797,6 +2799,51 @@ a.btn-s,
 .apply-list .result .refuse{
     color: #f16245;
 }
+
+.sys-message-list .item .item-con{
+    border-bottom: dashed 1px #e6e6e6;
+}
+.sys-message-list .item .item-con:last-child{
+    border-bottom: none;
+}
+.icon-message{
+    width: 1.25rem;
+    height: 1.25rem;
+    background: url(../images/icon-message.png) no-repeat;
+    background-size: 100%;
+}
+.sys-message-list .icon-message{
+    margin-top: .4rem;
+    margin-right: .5rem;
+}
+.icon-message.open{
+    background-position: 0 -1.25rem;
+}
+.sys-message-box{
+    background: #fff;
+    padding: .5rem .75rem 1.6rem;
+}
+.sys-message-box .title{
+    padding: .25rem 0;
+    font-size: .7rem;
+    color: #6b6b6b;
+    text-align: center;
+    font-weight: bold;
+}
+.sys-message-box  .publish-msg{
+    padding: .25rem 0 .5rem;
+    text-align: center;
+    color: #999;
+    font-size: .55rem;
+}
+
+.sys-message-box .con{
+    text-indent: 2em;
+    color: #8a959d;
+}
+
+
+
 
 
 /* 功能需要*/

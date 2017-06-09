@@ -4367,9 +4367,9 @@ body.panel-closing .page {
 .icon-menu:before {
   content: "\e60d";
 }
-.icon-message:before {
+/* .icon-message:before {
   content: "\e617";
-}
+} */
 .icon-me:before {
   content: "\e603";
 }
