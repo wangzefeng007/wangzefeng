@@ -2842,7 +2842,16 @@ a.btn-s,
     color: #8a959d;
 }
 
+.icon-exchange{
+    width: .85rem;
+    height: .85rem;
+    background: url(../images/icon-exchange.png) no-repeat center;
+    background-size: .85rem;
+}
 
+.goods-img-upload .bx .img-wrap{
+    height: 5.5rem;
+}
 
 
 
