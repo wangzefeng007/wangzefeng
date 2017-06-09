@@ -2450,7 +2450,7 @@ input[type="button"].button {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #efeff4;
+  background: rgba(0,0,0,.3);
   display: none;
   overflow: hidden;
 }

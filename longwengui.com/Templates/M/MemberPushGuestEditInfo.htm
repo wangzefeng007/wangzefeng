@@ -1,7 +1,7 @@
 {template Head}
 <body>
 <div class="page-group">
-    <div class="page">
+    <div class="page" id="information">
         <div class="content">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
@@ -10,7 +10,7 @@
                     修改用户信息
                 </section>
             </header>
-            <div class="content-pd mt02">
+            <div class="content-pd mt02 tab-person">
                 <div class="form-fieldset">
                     <div class="form-legend common-box">
                         <div>
@@ -24,7 +24,7 @@
                                 昵&emsp;&emsp;&emsp;称:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" placeholder="请输入昵称" type="text">
+                                <input class="inp" name="nickName" maxlength="5" placeholder="请输入昵称" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -32,7 +32,7 @@
                                 真 实 姓 名:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的真实姓名" type="text">
+                                <input class="inp" name="name" maxlength="12" placeholder="请输入您的真实姓名" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -40,7 +40,7 @@
                                 身&emsp;份&emsp;证:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的身份证号" type="text">
+                                <input class="inp" name="idNum" placeholder="请输入您的身份证号" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                 &emsp;Q&emsp;Q&emsp;:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的QQ号码" type="text">
+                                <input class="inp" name="qq" placeholder="请输入您的QQ号码" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -56,7 +56,7 @@
                                 邮&emsp;&emsp;&emsp;箱:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的邮箱" type="text">
+                                <input class="inp" name="email" placeholder="请输入您的邮箱" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -64,7 +64,7 @@
                                 地&emsp;&emsp;&emsp;址:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" placeholder="请选择您的所在位置" type="text">
+                                <input class="inp" name="address" placeholder="请选择您的所在位置" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -72,7 +72,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid">
-                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="" id="" cols="30" rows="10"></textarea>
+                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
@@ -98,20 +98,16 @@
                             </div>
                         </div>
                         <div class="row upload-row col-2">
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
 
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
                         </div>
                         <div class="row">
@@ -120,12 +116,10 @@
                             </p>
                         </div>
                         <div class="row upload-row col-2">
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
                             <div class="form-grid" style="margin-left:.36rem;"></div>
                         </div>
@@ -133,10 +127,15 @@
                 </div>
             </div>
             <div class="box-btn">
-                <a class="btn" href="#">确定</a>
+                <a class="btn" href="javascript:void(0)" id="person_role_auth_save">确定</a>
             </div>
         </div>
     </div>
 </div>
+<script src="{echo JsURL}/m/lib/photoclip/iscroll-zoom.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/hammer.min.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/lrz.all.bundle.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/PhotoClip.js"></script>
+<script type='text/javascript' src='{echo JsURL}/m/member/MemberPushGuestEditInfo.js' charset='utf-8'></script>
 </body>
 </html>
