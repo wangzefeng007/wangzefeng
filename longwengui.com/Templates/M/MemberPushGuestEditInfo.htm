@@ -24,7 +24,7 @@
                                 昵&emsp;&emsp;&emsp;称:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="nickName" maxlength="5" placeholder="请输入昵称" type="text">
+                                <input class="inp" name="nickName" value="{$UserInfo[NickName]}" maxlength="5" placeholder="请输入昵称" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -32,7 +32,7 @@
                                 真 实 姓 名:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="name" maxlength="12" placeholder="请输入您的真实姓名" type="text">
+                                <input class="inp" name="name" value="{$UserInfo[RealName]}" maxlength="12" placeholder="请输入您的真实姓名" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -40,7 +40,7 @@
                                 身&emsp;份&emsp;证:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="idNum" placeholder="请输入您的身份证号" type="text">
+                                <input class="inp" name="idNum" value="{$UserInfo[CardNum]}" placeholder="请输入您的身份证号" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                 &emsp;Q&emsp;Q&emsp;:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="qq" placeholder="请输入您的QQ号码" type="text">
+                                <input class="inp" name="qq" value="{$UserInfo[QQ]}" placeholder="请输入您的QQ号码" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -56,7 +56,7 @@
                                 邮&emsp;&emsp;&emsp;箱:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="email" placeholder="请输入您的邮箱" type="text">
+                                <input class="inp" name="email" value="{$UserInfo['E-Mail']}" placeholder="请输入您的邮箱" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -64,7 +64,7 @@
                                 地&emsp;&emsp;&emsp;址:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="address" placeholder="请选择您的所在位置" type="text">
+                                <input class="inp" name="address" value="{$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}" placeholder="请选择您的所在位置" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -72,7 +72,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid">
-                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10">{$UserInfo[Address]}</textarea>
                             </div>
                         </div>
                     </div>
@@ -87,11 +87,17 @@
                     <div class="form-box">
                         <div class="row">
                             <div class="form-grid">
+                                <a href="">
+                                    <img src="{$UserInfo[CardPositive]}" alt="">
+                                </a>
                                 <p class="form-lab">
                                     身份证正面:
                                 </p>
                             </div>
                             <div class="form-grid" style="margin-left:.36rem;">
+                                <a href="">
+                                    <img src="{$UserInfo[CardNegative]}" alt="">
+                                </a>
                                 <p class="form-lab">
                                     身份证反面:
                                 </p>
@@ -111,6 +117,9 @@
                             </div>
                         </div>
                         <div class="row">
+                            <a href="">
+                                <img src="{$UserInfo[CardHold]}" alt="">
+                            </a>
                             <p class="form-lab">
                                 手持身份证:
                             </p>

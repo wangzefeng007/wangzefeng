@@ -47,6 +47,21 @@ class MemberFirm
      * @desc 编辑信息
      */
     public function EditInfo(){
+        MService::IsNoLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $IdentityStatus = $MemberUserInfoModule->IdentityStatus;
+        $Identity = $MemberUserInfoModule->Identity;
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        if ($UserInfo['Province'])
+            $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberFirmEditInfo');
     }
 
