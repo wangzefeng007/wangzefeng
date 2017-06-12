@@ -1,7 +1,7 @@
 {template Head}
 <body>
 <div class="page-group">
-    <div class="page">
+    <div class="page page-current" id="firstStep">
         <div class="content">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
@@ -13,13 +13,13 @@
             <div class="content-pd content-form mt04">
                 <div class="form-box">
                     <div class="form-li">
-                        <input type="tel" class="inp" placeholder="请输入您的手机号码">
+                        <input type="tel" class="inp" name="phoneNumber" placeholder="请输入您的手机号码">
                     </div>
                     <div class="form-li common-box">
                         <div>
-                            <input type="text" class="inp" placeholder="验证码">
+                            <input type="text" name="code" class="inp" placeholder="验证码">
                         </div>
-                        <p class="btn-code">
+                        <p class="btn-code" onclick="pageObj.getCode(this,'phoneNumber')">
                             获取验证码
                         </p>
                     </div>
@@ -27,10 +27,44 @@
             </div>
 
             <div class="box-btn mt05">
-                <a class="btn dis" href="#">下一步</a>
+                <a class="btn" href="javascript:void(0)" id="goStep">下一步</a>
+            </div>
+        </div>
+    </div>
+    <div class="page" id="nextStep">
+        <div class="content">
+            <header class="common-header">
+                <a class="header-left icon-back" href="javascript:void (0)">
+                </a>
+                <section class="header-title">
+                    设置密码
+                </section>
+            </header>
+            <div class="content-pd content-form mt04">
+                <div class="form-box">
+                    <div class="form-li">
+                        <input type="password" class="inp" name="pass" placeholder="请输入新密码">
+                    </div>
+                    <div class="form-li">
+                        <input type="password" class="inp" name="confirmPass" placeholder="再次输入密码">
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-btn mt05">
+                <a class="btn" href="javascript:void(0)" id="goStepOver">完成</a>
+            </div>
+            <div class="content-pd">
+                <p class="agree-line">
+                    <label class="checkbox" type="checkbox">
+                        <input type="checkbox" name="agreement" value="0" checked>
+                        <i></i>我已阅读并接受版权声明和隐私保护条款
+                    </label>
+                </p>
             </div>
         </div>
     </div>
 </div>
+<script type='text/javascript' src='{echo JsURL}/m/member/MemberFindPasswd.js' charset='utf-8'></script>
 </body>
 </html>

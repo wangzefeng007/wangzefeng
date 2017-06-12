@@ -1,12 +1,11 @@
-var ran;
 var pageObj=$.extend({},pageObj,{
     /**
      * 第一步原手机号码验证
      * @returns {*}
      */
     validateForm:function(){
-        var _phoneNumber = $("input[name='oldPhoneNumber']").val();
-        var _code = $("input[name='code1']").val();
+        var _phoneNumber = $("input[name='phoneNumber']").val();
+        var _code = $("input[name='code']").val();
         if(_phoneNumber == ''){
             $.toast('请先填写手机号');
             return false;
@@ -28,23 +27,9 @@ var pageObj=$.extend({},pageObj,{
             "code":_code
         };
     },
-
-    /**
-     * 第一步点击更换手机号
-     */
-    goStepTwo:function(){
-        $("#stepOne").removeClass("page-current");
-        $("#stepTwo").addClass("page-current");
-    },
     //获取验证码
     getCode:function(tar, inp){
         var _phoneNumber = $("input[name='" + inp + "']").val();
-        if(inp == 'newPhoneNumber'){
-            if(!ran){
-                $.toast('验证手机失败，请重新验证');
-                return;
-            }
-        }
         if(_phoneNumber == ''){
             $.toast('请先填写手机号');
             return;
@@ -73,9 +58,9 @@ var pageObj=$.extend({},pageObj,{
     },
 
     /**
-     * 第二步点下一步
+     * 点击下一步
      */
-    goStepThree:function(){
+    goStep:function(){
         var formData = this.validateForm();
         if(!formData){
             return;
@@ -89,56 +74,72 @@ var pageObj=$.extend({},pageObj,{
             success: function(data){
                 if(data.ResultCode == 200){
                     //后端返回一个随机数
-                    ran = data.Random;
-                    $("#stepTwo").removeClass("page-current");
-                    $("#stepThree").addClass("page-current");
+                    $("#firstStep").removeClass("page-current");
+                    $("#nextStep").addClass("page-current");
                 }else{
                     $.toast(data.Message);
                 }
             }
         });
     },
+    /**
+     * 注册第二步设置密码
+     * @returns {*}
+     */
+    validateForm2:function(){
+        var _phoneNumber = $("input[name='phoneNumber']").val();
+        var _pass = $("input[name='pass']").val();
+        var _confirmPass = $("input[name='confirmPass']").val();
+        var _agreement = $("input[name='agreement']")[0].checked;
+        if(!_agreement){
+            $.toast('您还没有同意服务协议');
+            return false;
+        }
+        if(_pass==""){
+            $.toast("请设置密码！");
+            return false;
+        }
+
+        if(_pass.length < 6){
+            $.toast("密码不能少于6位！");
+            return false;
+        }
+
+        if(!validate('password', _pass)){
+            $.toast("密码格式有误！");
+            return false;
+        }
+
+        if(_confirmPass != _pass){
+            $.toast("两次密码不一致！");
+            return false;
+        }
+        return {
+            "phoneNumber": _phoneNumber, //手机号
+            "password": _pass, //密码
+            "agreement": _agreement //同意协议
+        };
+    },
 
     /**
-     * 第三步点击完成
+     * 第二步点击完成
      */
     goStepOver:function(){
-        var phoneNumber = $('input[name="newPhoneNumber"]').val();
-        var code = $('input[name="code2"]').val();
-        //后端返回随机数验证
-        if(!ran){
-            $.toast('验证手机失败，请重新验证');
+        var formData = this.validateForm2();
+        if(!formData){
             return;
         }
-        //新手机号
-        if(phoneNumber == ''){
-            $.toast('请输入手机号');
-            return;
-        }
-            $.toast('请输入正确的号码');
-            if(!validate("mobilePhone", phoneNumber)){
-            return;
-        }
-        //验证码
-        if(code.length < 4 || !validate("+number", code)){
-            $.toast('验证码为4位数字');
-            return;
-        }
+        formData.Intention="RetrievePassword";
         $.ajax({
             type: 'post',
             dataType: 'json',
             url: '/loginajax.html',
-            data: {
-                "Intention":"ChangeMobileSecond",//修改绑定手机
-                "phoneNumber": phoneNumber,
-                "code": code,
-                "random": ran
-            },
+            data: formData,
             success: function(data){
                 if(data.ResultCode == 200){
                     $.toast(data.Message);
                     setTimeout(function(){
-                        go("/member/setting/");
+                        go("/member/login/");
                     },500);
                 }else{
                     $.toast(data.Message);
@@ -152,16 +153,10 @@ var pageObj=$.extend({},pageObj,{
      */
     init:function(){
         var _this=this;
-        //隐藏手机号
-        $(".phone").mobileHide();
-        //更换手机到第二步
-        $("#goStepTwo").on("click",function(){
-            _this.goStepTwo();
-        });
 
-        //下一步到第三步
-        $("#goStepThree").on("click",function(){
-            _this.goStepThree();
+        //下一步
+        $("#goStep").on("click",function(){
+            _this.goStep();
         });
         //新手机绑定完成
         $("#goStepOver").on("click",function(){
