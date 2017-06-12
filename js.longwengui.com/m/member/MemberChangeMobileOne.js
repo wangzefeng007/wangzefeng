@@ -115,8 +115,8 @@ var pageObj=$.extend({},pageObj,{
             $.toast('请输入手机号');
             return;
         }
-        if(!validate("mobilePhone", phoneNumber)){
             $.toast('请输入正确的号码');
+            if(!validate("mobilePhone", phoneNumber)){
             return;
         }
         //验证码
