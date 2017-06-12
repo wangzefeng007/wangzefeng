@@ -58,11 +58,11 @@ class MemberLawyer
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         if ($UserInfo['Province'])
-            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+            $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
         if ($UserInfo['City'])
-            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+            $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
         if ($UserInfo['Area'])
-            $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+            $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberLawyerEditInfo');
     }
     /**

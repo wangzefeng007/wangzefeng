@@ -61,11 +61,11 @@ class MemberLawFirm
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $UserInfo['Agent'] = json_decode($UserInfo['Agent'],true);
         if ($UserInfo['Province'])
-            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+            $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
         if ($UserInfo['City'])
-            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+            $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
         if ($UserInfo['Area'])
-            $UserInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+            $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberLawFirmEditInfo');
     }
     /**
