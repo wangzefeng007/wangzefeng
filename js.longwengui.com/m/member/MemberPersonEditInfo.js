@@ -142,7 +142,7 @@ function imgSubmit(tar,dataURL) {
                 $.toast(data.Message);
                 $(tar).siblings(".img-wrap").empty();
                 $(tar).parents(".imageUploadBox").addClass("fill");
-                $(tar).siblings(".img-wrap").append("<img src='"+dataURL+"' />");
+                $(tar).siblings(".img-wrap").append("<img src='"+data.url+"' />");
                 //$("#portrait").find('img').attr('src',dataURL);
             }else{
                 $.toast(data.Message);
