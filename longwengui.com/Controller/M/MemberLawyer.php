@@ -48,6 +48,7 @@ class MemberLawyer
      * @desc 编辑信息
      */
     public function EditInfo(){
+        MService::IsNoLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAreaModule = new MemberAreaModule();
