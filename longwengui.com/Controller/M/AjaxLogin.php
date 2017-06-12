@@ -156,28 +156,15 @@ class AjaxLogin
      * @desc  注册页忘记密码
      */
     private function RetrievePassword(){
-        $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-        $Account = $AjaxData['phoneNumber'];
-        $PassWord = md5($AjaxData ['password']);
-        $VerifyCode = $AjaxData['Code'];
-        $Authentication = new MemberAuthenticationModule ();
-        $TempUserInfo = $Authentication->GetAccountInfo($Account, $VerifyCode, 0);
-        if ($TempUserInfo) {
-            $CurrentTime = time();
-            if ($CurrentTime > $TempUserInfo['XpirationDate']) {
-                $json_result = array('ResultCode' => 103, 'Message' => '短信验证码过期');
-            }else{
-                $MemberUserModule = new MemberUserModule ();
-                $UserInfo = $MemberUserModule->GetInfoByWhere(' and Mobile ='.$Account);
-                $Result = $MemberUserModule->UpdateInfoByWhere(array('PassWord'=>$PassWord), ' UserID ='.$UserInfo['UserID']);
-                if($Result || $Result === 0){
-                    $json_result = array('ResultCode' => 200, 'Message' => '重置成功', 'Url' =>WEB_M_URL);
-                }else{
-                    $json_result = array('ResultCode' => 103, 'Message' => '重置失败');
-                }
-            }
+        $Account = $_POST['phoneNumber'];
+        $PassWord = md5($_POST ['password']);
+        $MemberUserModule = new MemberUserModule ();
+        $UserInfo = $MemberUserModule->GetInfoByWhere(' and Mobile ='.$Account);
+        $Result = $MemberUserModule->UpdateInfoByWhere(array('PassWord'=>$PassWord), ' UserID ='.$UserInfo['UserID']);
+        if($Result || $Result === 0){
+            $json_result = array('ResultCode' => 200, 'Message' => '重置成功', 'Url' =>WEB_M_URL);
         }else{
-            $json_result = array('ResultCode' => 104, 'Message' => '短信验证码输入错误',);
+            $json_result = array('ResultCode' => 103, 'Message' => '重置失败');
         }
         echo json_encode($json_result);
     }
