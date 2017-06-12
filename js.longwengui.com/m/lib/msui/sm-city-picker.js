@@ -4192,7 +4192,7 @@ function getArea(pId){
             if (p.value) {
                 $(this).val(p.value.join(' '));
             } else {
-                var val = $(this).val();
+                var val = $(this).attr("data-value");
                 val && (p.value = val.split(' '));
             }
 
@@ -4200,11 +4200,31 @@ function getArea(pId){
                 //p.value = val.split(" ");
                 if(p.value[0]) {
                     currentProvince = p.value[0];
-                    p.cols[1].values = getCities(p.value[0]);
+                    var cityValues=[];
+                    var cityDisplayValues=[];
+                    var citysObj=getCity(p.value[0]);
+                    $.each(citysObj,function(i,v){
+                        cityValues.push(v.AreaID);
+                    });
+                    $.each(citysObj,function(i,v){
+                        cityDisplayValues.push(v.CnName);
+                    });
+                    p.cols[1].values = cityValues;
+                    p.cols[1].displayValues = cityDisplayValues;
                 }
                 if(p.value[1]) {
                     currentCity = p.value[1];
-                    p.cols[2].values = getArea(p.value[1]);
+                    var areaValues=[];
+                    var areaDisplayValues=[];
+                    var areasObj=getArea(p.value[1]);
+                    $.each(areasObj,function(i,v){
+                        areaValues.push(v.AreaID);
+                    });
+                    $.each(areasObj,function(i,v){
+                        areaDisplayValues.push(v.CnName);
+                    });
+                    p.cols[2].values = areaValues;
+                    p.cols[2].displayValues = areaDisplayValues;
                 } else {
                     p.cols[2].values = getArea(p.cols[1].values[0]);
                 }
