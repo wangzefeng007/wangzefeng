@@ -90,7 +90,7 @@ class Member
         include template('MemberFindPasswd');
     }
     /**
-     * @desc 更改/绑定手机
+     * @desc 更改/绑定手机第一步
      */
     public function ChangeMobile()
     {
@@ -101,7 +101,7 @@ class Member
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $Nav = 'changemobile';
         $Title = '会员_更改绑定手机';
-        include template('MemberChangeMobile');
+        include template('MemberChangeMobileOne');
     }
     /**
      * @desc 修改密码
