@@ -165,10 +165,10 @@ class Ajax
         if ($Intention=='GetDebtList'){
             $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
-            $Type = trim($_POST['col_way']); //催收方式
-            if($Type!='all'){
-                $MysqlWhere .=" and CollectionType = $Type";
-            }
+//            $Type = trim($_POST['col_way']); //催收方式
+//            if($Type!='all'){
+//                $MysqlWhere .=" and CollectionType = $Type";
+//            }
             $Area =trim($_POST['col_area']); //催收地区
             $City =trim($_POST['col_city']); //催收地区
             if(!empty($Area) && $Area!='all'){

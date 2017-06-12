@@ -29,7 +29,8 @@
                 {else}
                 <button type="button" onclick="concernDebt('{$DebtInfo[DebtID]}')" name="concern">关注</button>
                 {/if}
-                债务编号:&nbsp;&nbsp;{$DebtInfo[DebtNum]}--处置方偏向:&nbsp;&nbsp;{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{elseif $DebtInfo[CollectionType]==3}自助催收{/if}
+                债务编号:&nbsp;&nbsp;{$DebtInfo[DebtNum]}
+                <!--&#45;&#45;处置方偏向:&nbsp;&nbsp;{if $DebtInfo[CollectionType]==1}律师团队{elseif $DebtInfo[CollectionType]==2}催收团队{elseif $DebtInfo[CollectionType]==3}自助催收{/if}-->
             </div>
             <div class="pubman-info">
                 <span>发布人:&nbsp;&nbsp;{$UserInfo[RealName]}</span>
@@ -82,12 +83,11 @@
                 </div>
 
                 <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            <label>是否有前期费用:</label>
-                            {if $DebtInfo[EarlyCost]==1}有{else}无{/if}
-                        </div>
-                    </div>
+                    <!--<div class="line">-->
+                        <!--<div class="l">-->
+                            <!--<label>是否有前期费用:</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="line">
                         <div class="l">
                             <label>是否有亲友:</label>
@@ -99,51 +99,35 @@
                             {/if}
                         </div>
                     </div>
-                    <div class="line">
-                        <div class="l">
-                            <label>是否有保证人:</label>
-                            {if $DebtInfo[Warrantor]==1}有{else}无{/if}
-                            {if $DebtInfo[Warrantor]==1}
-                            {loop $WarrantorInfo $lists}
-                            <span>{$lists[type]}</span><span>{$lists[name]}</span><span>{$lists[card]}</span><span>{$lists[phone]}</span>
-                            {/loop}
-                            {/if}
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="l">
-                            <label>是否有抵押物:</label>
-                            {if $DebtInfo[Guarantee]==1}有{else}无{/if}
-                            {if $DebtInfo[Guarantee]==1}
-                            {loop $GuaranteeInfo $lists}
-                            <span>{$lists[name]}</span><span>{$lists[content]}</span>
-                            {/loop}
-                            {/if}
-                        </div>
-                    </div>
+                    <!--<div class="line">-->
+                        <!--<div class="l">-->
+                            <!--<label>是否有保证人:</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="line">-->
+                        <!--<div class="l">-->
+                            <!--<label>是否有抵押物:</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
                 <div class="bx">
-                    <div class="line">
-                        <div class="l">
-                            <label>债务人是否随时能寻找到</label>
-                            {if $DebtInfo[FindDebtor]==1}是{else}否{/if}
-                        </div>
-                        <label>债务人是否有还款能力:</label>
-                        {if $DebtInfo[RepaymentDebtor]==1}是{else}否{/if}
-                    </div>
-                    <div class="line">
-                        <div class="">
-                            <label>借款原因:</label>
-                            {if $DebtInfo[ReasonsBorrowing]} {$DebtInfo[ReasonsBorrowing]} {else} 无 {/if}
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="">
-                            <label>债务近况:</label>
-                            {if $DebtInfo[DebtRecent]} {$DebtInfo[DebtRecent]} {else} 无 {/if}
-                        </div>
-                    </div>
+                    <!--<div class="line">-->
+                        <!--<div class="l">-->
+                            <!--<label>债务人是否随时能寻找到</label>-->
+                        <!--</div>-->
+                        <!--<label>债务人是否有还款能力:</label>-->
+                    <!--</div>-->
+                    <!--<div class="line">-->
+                        <!--<div class="">-->
+                            <!--<label>借款原因:</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="line">-->
+                        <!--<div class="">-->
+                            <!--<label>债务近况:</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="line-img" id="debt_imgs">
                         <span>借款凭证:</span>
                         {if $DebtImage}
