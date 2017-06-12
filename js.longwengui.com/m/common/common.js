@@ -14,6 +14,19 @@ Zepto(function($){
         $(this).removeClass("touch");
     });
 });
+!(function($){
+    $.fn.mobileHide=function(){
+        var phoneNumber=$(this).val()||$(this).text();
+        var trimNumber=$.trim(phoneNumber);
+        var hiddenMobile=trimNumber.substr(0,3)+"****"+trimNumber.substr(7);
+        if($(this).is("input textarea")){
+            $(this).val(hiddenMobile);
+        }else{
+            $(this).text(hiddenMobile);
+        }
+        return this;
+    }
+})(Zepto);
 
 $(function(){
     /**
