@@ -24,7 +24,7 @@
                                 机 构 名 称:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="companyName" placeholder="请输入机构名称" type="text">
+                                <input class="inp" name="companyName" value="{$UserInfo[CompanyName]}" placeholder="请输入机构名称" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -32,7 +32,7 @@
                                 法定代表人:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="lawPerson" maxlength="12" placeholder="请输入法定代表人" type="text">
+                                <input class="inp" name="lawPerson" value="{$UserInfo[RealName]}" maxlength="12" placeholder="请输入法定代表人" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -40,7 +40,7 @@
                                 固 定 电 话:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="fixedPhone" placeholder="请输入固定电话" type="text">
+                                <input class="inp" name="fixedPhone" value="{$UserInfo[FixedPhone]}" placeholder="请输入固定电话" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                 代理人姓名:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="agentName" maxlength="12" placeholder="请输入代理人姓名" type="text">
+                                <input class="inp" name="agentName" value="{$UserInfo[PublicAgent][agentName]}" maxlength="12" placeholder="请输入代理人姓名" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -56,7 +56,7 @@
                                 代理人身份证:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="agentIdNum" placeholder="请输入代理人身份证" type="text">
+                                <input class="inp" name="agentIdNum" value="{$UserInfo[PublicAgent][agentIdNum]}"  placeholder="请输入代理人身份证" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -64,7 +64,7 @@
                                 地&emsp;&emsp;&emsp;址:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="address" placeholder="请选择您的所在位置" type="text">
+                                <input class="inp" name="address" value="{$UserInfo[Province]}-{$UserInfo[City]}-{$UserInfo[Area]}" placeholder="请选择您的所在位置" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -72,7 +72,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid">
-                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10">{$UserInfo[Address]}</textarea>
                             </div>
                         </div>
                     </div>
@@ -87,11 +87,17 @@
                     <div class="form-box">
                         <div class="row">
                             <div class="form-grid">
+                                <a href="">
+                                    <img src="{$UserInfo[PublicAgent][registrantImages][0]}" alt="">
+                                </a>
                                 <p class="form-lab">
                                     代理人身份证正面:
                                 </p>
                             </div>
                             <div class="form-grid" style="margin-left:.36rem;">
+                                <a href="">
+                                    <img src="{$UserInfo[PublicAgent][registrantImages][1]}" alt="">
+                                </a>
                                 <p class="form-lab">
                                     代理人身份证反面:
                                 </p>
@@ -111,6 +117,9 @@
                             </div>
                         </div>
                         <div class="row">
+                            <a href="">
+                                <img src="{$UserInfo[BusinessImage]}" alt="">
+                            </a>
                             <p class="form-lab">
                                 营业执照副本:
                             </p>
