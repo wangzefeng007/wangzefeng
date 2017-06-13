@@ -352,3 +352,13 @@ function imgClipper(tar){
 function clipperClose(){
     $("#portraitHtml").remove();
 }
+
+//添加指定模板到指定dom中
+function addRenderDom(targetID, tempID,tempData,callback){
+    var data=tempData||{};
+    var _html=template(tempID,data);
+    $("#"+targetID).append(_html);
+    if(typeof callback == "function"){
+        callback(_html);
+    }
+}

@@ -982,6 +982,9 @@ a.btn-s,
     color: #fff;
     box-sizing:border-box;
 }
+.publish-box li a{
+    color: #fff;
+}
 .publish-box li.publish-1{
     margin-right: 1rem;
     margin-top: 1rem;
@@ -1093,6 +1096,17 @@ a.btn-s,
 .form-fieldset.no-fieldset .form-legend{
     border-bottom: none;
 }
+.form-fieldset.no-fieldset .form-legend .icon-add{
+    display: none;
+}
+.form-fieldset .form-box+.form-box{
+    margin-top: .9rem!important;
+    padding-top:.8rem;
+    border-top:solid 1px #e6e6e6;
+}
+.form-fieldset .form-box:first-child .del-line{
+    display: none;
+}
 .icon-usermsg{
     width: .85rem;
     height: .85rem;
@@ -1139,6 +1153,9 @@ a.btn-s,
 .form-fieldset .icon-del{
     margin-right: .5rem;
     float: right;
+}
+.warp-fieldset .form-fieldset:first-child .icon-del{
+    display: none;
 }
 .inp{
     width: 100%;
@@ -1199,7 +1216,8 @@ a.btn-s,
 .radio input[type="radio"] {
   display: none;
 }
-.radio input[type="radio"]:checked + i {
+.radio input[type="radio"]:checked + i,
+.radio.active i{
   background-position: -0 -.8rem;
 }
 
