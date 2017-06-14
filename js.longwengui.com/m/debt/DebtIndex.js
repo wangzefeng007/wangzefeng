@@ -1,37 +1,50 @@
 var pageObj=$.extend({},pageObj,{
-    ajaxData:{},
+    loading:false,  //是否正在加载
+    pageCount:0,
+    //ajax参数
+    ajaxData:{
+        'Intention': 'GetDebtList',//提交方法
+        'col_area':0, //地区
+        'col_money':0,        //催收金额
+        'col_day':0,            //逾期时间
+        'Page':1,         //当前页
+        'Keyword':"all"        //搜索关键字
+    },
     /**
      * 搜索
+     * type add为滚动新增追加 update为条件筛选更新
      */
-    search:function(){
+    search:function(type){
         var _this=this;
-        _this.ajaxData={
-            'Intention': 'GetDebtList',//提交方法
+        var getParams={
             'col_area':!$("#city").attr("data-value")==true?0:$("#city").attr("data-value").split(" ")[1], //地区
             'col_money':$("#money").attr("data-value")||0,        //催收金额
             'col_day':$("#day").attr("data-value")||0,            //逾期时间
-            'page':1,         //当前页
             'Keyword':$("input[name='keyword']").val()||"all"        //搜索关键字
-        };
+        }
+        _this.ajaxData=$.extend({},_this.ajaxData,getParams);
+        console.log(_this.ajaxData);
         $.ajax({
             type: "post",	//提交类型
             dataType: "json",	//提交数据类型
             url: '/ajax.html',  //提交地址
             data: _this.ajaxData,
-            beforeSend: function () { //加载过程效果
-                $.showIndicator();
-            },
             success: function (data) {	//函数回调
                 if (data.ResultCode == "200") {
+                    $(".list-debt,.infinite-scroll-preloader").show();
+                    $(".common-empty").hide();
                     var _html=template('debt_temp', data);
-                    $(".list-debt").empty();
-                    $(".list-debt").append(_html);
+                    if(type=="update"){
+                        _this.pageCount=data.PageCount;
+                        $(".list-debt").empty(); //追加之前先清空
+                    }
+                    $(".list-debt").append(_html); //添加数据
+                    _this.loading=false;
                 }else {
+                    $(".list-debt,.infinite-scroll-preloader").hide();
+                    $(".common-empty").show();
                     $.toast(data.Message);
                 }
-            },
-            complete: function () { //加载完成提示
-                $.hideIndicator();
             }
         });
     },
@@ -43,7 +56,7 @@ var pageObj=$.extend({},pageObj,{
         //选择地区
         $("#city").cityPicker();
         //进入页面搜索
-        _this.search();
+        _this.search("update");
         var toolbarTemplate= '<header class="bar bar-nav">\
                 <button class="button button-link pull-right close-picker picker-indeed">确定</button>\
                 <h1 class="title">请选择</h1>\
@@ -77,7 +90,21 @@ var pageObj=$.extend({},pageObj,{
             },
         });
         $(document).on("click",".picker-indeed",function(){
-            _this.search();
+            _this.search("update");
+        });
+        _this.loading = false;
+        $(document).on('infinite', '.infinite-scroll',function() {
+            // 如果正在加载，则退出
+            if (_this.loading) return;
+            if(_this.ajaxData.Page>=_this.pageCount){
+                $(".infinite-scroll-preloader").hide();
+                $(".infinite-scroll-noData").show();
+                return;
+            }
+            // 设置flag
+            _this.loading = true;
+            _this.ajaxData.Page++;
+            _this.search("add");
         });
     }
 })
