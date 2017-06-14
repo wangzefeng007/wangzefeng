@@ -15,10 +15,10 @@
             <div class="item mt0">
                 <div class="item-con">
                     <div class="option">
-                        债务编号：201702280001
+                        债务编号：{$DebtInfo[DebtNum]}
                     </div>
                     <p class="lab fs022">
-                        2017-02-05
+                        &nbsp;{echo date("Y-m-d",$DebtInfo[AddTime])}
                     </p>
                 </div>
             </div>
@@ -28,119 +28,77 @@
             <span class="photo">
               <img src="http://placeholder.qiniudn.com/96x96" alt="">
             </span>
+                    {loop $CreditorsInfo $lists}
                     <div>
                         <p class="fs028">
-                            债权人姓名：刘德
+                            债权人姓名：{$lists[Name]}
                         </p>
                         <p>
-                            债权人电话：15679832675
+                            债权人电话：{$lists[Phone]}
                         </p>
                     </div>
+                    {/loop}
                 </div>
+                {loop $DebtorsInfo $lists}
                 <div class="paragraph">
                     <p>
-                        债务人姓名：孙某某
+                        债务人姓名： {$lists[Name]}
                     </p>
                     <p>
-                        债务人电话：15367829564
+                        债务人电话： {if $lists[Phone]} {$lists[Phone]} {else} 无 {/if}
                     </p>
                     <p>
-                        债务人身份证：360515198587632145
+                        债务人身份证：{if $lists[Card]} {$lists[Card]} {else} 无 {/if}
                     </p>
                     <p>
-                        债务人地区：福建省-厦门市-思明区
+                        债务人地区： {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
                     </p>
                     <p class="ellipsis">
-                        详细地址：莲前街道莲前东路107号
+                        详细地址：{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
                     </p>
                 </div>
+                {/loop}
                 <div class="paragraph">
                     <p>
-                        债务金额（元）：¥50000.00
+                        债务金额（元）：¥{$DebtInfo[DebtAmount]}
                     </p>
                     <p>
-                        逾期时间（天）：18
+                        逾期时间（天）：  {$DebtInfo[Overduetime]}
                     </p>
                 </div>
+                {if $DebtInfo[DebtFamily]==1}
+                {loop $DebtFamilyInfo $lists}
                 <div class="paragraph">
                     <p>
-                        债务人亲友：王思聪
+                        债务人亲友：{$lists[name]}
                     </p>
                     <p>
-                        关系：父亲
+                        关系：{$lists[relationship]}
                     </p>
                     <p>
-                        债务人亲友电话：13960326388
+                        债务人亲友电话：{$lists[phoneNumber]}
                     </p>
                 </div>
-                <div class="paragraph">
-                    <p>
-                        保证人类型：个人或公司
-                    </p>
-                    <p>
-                        保证人姓名：项乾堪
-                    </p>
-                    <p>
-                        保证人身份证号：3526486275****4653
-                    </p>
-                    <p>
-                        保证人电话：15698624570
-                    </p>
-                </div>
-                <div class="paragraph">
-                    <p>
-                        抵押物信息：房产
-                    </p>
-                    <p>
-                        抵押物详情：今年成绩是经典款巴萨空间蝴蝶卡
-                    </p>
-                </div>
-                <div class="paragraph">
-                    <p>
-                        是否有前期费用（元）：无
-                    </p>
-                    <p>
-                        债务人是否能随时找到：是
-                    </p>
-                    <p>
-                        债务人是否有能力还款：是
-                    </p>
-                    <div class="common-box mt01">
-                        <label for="" class="lab">借款原因：</label>
-                        <div>公司运营资金周转不开，向本人借款用作公式运转</div>
-                    </div>
-                    <div class="common-box mt01">
-                        <label for="" class="lab">债务近况：</label>
-                        <div>公司已经倒闭，但是公司资产还能用于抵押，有偿还能力</div>
-                    </div>
-                </div>
+                {/loop}
+                {/if}
                 <div class="paragraph">
                     <p>借款凭证</p>
                     <div class="image-view mt01 common-box">
+                        {if $DebtImage}
+                        {loop $DebtImage $lists}
                         <div>
-                            <a href="">
-                                <img src="http://placeholder.qiniudn.com/204x146" alt="">
+                            <a href="{$lists[ImageUrl]}">
+                                <img src="{$lists[ImageUrl]}" alt="">
                             </a>
                         </div>
-
-                        <div>
-                            <a href="">
-                                <img src="http://placeholder.qiniudn.com/204x146" alt="">
-                            </a>
-                        </div>
-
-                        <div>
-                            <a href="">
-                                <img src="http://placeholder.qiniudn.com/204x146" alt="">
-                            </a>
-                        </div>
+                        {/loop}
+                        {else}
+                        已隐藏
+                        {/if}
                     </div>
                 </div>
             </div>
             <div class="fixed-height"></div>
-        </div>
-        <div class="fixed-bottom">
-            <a href="#" class="btn btn-primary">申请接单</a>
         </div>
     </div>
 </div>
