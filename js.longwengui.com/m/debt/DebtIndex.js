@@ -23,7 +23,6 @@ var pageObj=$.extend({},pageObj,{
             'Keyword':$("input[name='keyword']").val()||"all"        //搜索关键字
         }
         _this.ajaxData=$.extend({},_this.ajaxData,getParams);
-        console.log(_this.ajaxData);
         $.ajax({
             type: "post",	//提交类型
             dataType: "json",	//提交数据类型
