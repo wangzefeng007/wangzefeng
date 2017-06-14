@@ -159,7 +159,7 @@ class Ajax
         }
     }
     /**
-     * @desc 债务催收信息
+     * @desc 寻赏信息
      */
     public function GetRewardList(){
         $MemberRewardInfoModule = new MemberRewardInfoModule();
@@ -215,6 +215,8 @@ class Ajax
     public function GetDebtList(){
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberUserInfoModule = new MemberUserInfoModule ();
         $MemberAreaModule = new MemberAreaModule();
         $NStatus = $MemberDebtInfoModule->NStatus;
         if (!$_POST) {
@@ -243,13 +245,21 @@ class Ajax
             if ($Page > $Data['PageCount']) {
                 $Page = $Data['PageCount'];
             }
-            $Lists = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
-            foreach ($Lists as $key=>$value){
+            $List = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($List as $key=>$value){
                 $Data['Data'][$key]['DebtNum'] = $value['DebtNum'];
                 $Data['Data'][$key]['DebtAmount'] = $value['DebtAmount'];
-                $Data['Data'][$key]['Overduetime'] = $value['Overduetime'];
+                $Data['Data'][$key]['Overduetime'] = round((time()-$value['Overduetime'])/ 86400);
+                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
-                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['CreditorsName'] = $CreditorsInfo['Name'];
+                if ($UserInfo['Identity']==1 || $UserInfo['Identity']==2){
+                    $Data['Data'][$key]['CreditorsType'] = '个人';
+                }else{
+                    $Data['Data'][$key]['CreditorsType'] = '企业';
+                }
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
@@ -257,7 +267,7 @@ class Ajax
                     $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
                 if ($DebtorsInfo['Area'])
                     $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
+                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
                 $Data['Data'][$key]['Status'] = $value['Status'];
                 $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];
                 $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
@@ -278,12 +288,7 @@ class Ajax
         if ($Intention=='GetDebtList'){
             $MysqlWhere ='';
             $Keyword = trim($_POST['Keyword']); // 搜索关键字
-            $Type = trim($_POST['col_way']); //催收方式
-            if($Type!='all'){
-                $MysqlWhere .=" and CollectionType = $Type";
-            }
             $Area =trim($_POST['col_area']); //催收地区
-            $City =trim($_POST['col_city']); //催收地区
             if(!empty($Area) && $Area!='all'){
                 $Areas = $MemberAreaModule->GetInfoByKeyID($Area);
                 if ($Areas['Level']==1){
@@ -295,26 +300,6 @@ class Ajax
                 }
 
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($AreaWhere,true);
-                if ($DebtorsInfo){
-                    foreach ($DebtorsInfo  as $key=>$value){
-                        $data[]=$value['DebtID'];
-                    }
-                    $data=implode(',',array_unique($data));
-                    $MysqlWhere .= " and DebtID IN ($data)";
-                }else{
-                    $MysqlWhere .= " and DebtID<0";
-                }
-            }
-            if(!empty($City) && $City!='all'){
-                $AreaInfo = $MemberAreaModule->GetInfoByKeyID($City);
-                if ($AreaInfo['Level']==1){
-                    $CityWhere = " and Province = $City";
-                }elseif($AreaInfo['Level']==2){
-                    $CityWhere = " and City = $City";
-                }elseif($AreaInfo['Level']==3){
-                    $CityWhere = " and Area = $City";
-                }
-                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere($CityWhere,true);
                 if ($DebtorsInfo){
                     foreach ($DebtorsInfo  as $key=>$value){
                         $data[]=$value['DebtID'];
@@ -367,6 +352,7 @@ class Ajax
                     $MysqlWhere .= " and DebtID IN ($KeywordData)";
                 }
             }
+
             return $MysqlWhere;
         }
     }
