@@ -36,7 +36,47 @@ class AjaxAsset
     /**
      * @desc 资产列表获取
      */
-    public function Lists(){
+    public function GetAssetList(){
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MysqlWhere = '';
+        //关键字
+        $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
+        $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=5;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $List= $MemberAssetInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($List as $key=>$value){
+                $Data['Data'][$key]['Number'] = intval($value['Amount'])-intval($value['Inventory']);//已买量
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$value['AssetID'].' and IsDefault = 1');
+                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+                $Data['Data'][$key]['RealName'] = $UserInfo['RealName'];
+                $Data['Data'][$key]['NickName'] = $UserInfo['NickName'];
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
+                $Data['Data'][$key]['AddTime'] = date('m'.'月'.'d'.'日',$value['AddTime']);
+            }
+            MultiPage($Data, 5);
+            $Data['Message'] = '返回成功';
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的律师援助信息';
+            EchoResult($Data);exit;
+        }
+        EchoResult($Data);exit;
 
     }
     /**
