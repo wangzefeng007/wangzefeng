@@ -2,7 +2,7 @@
 <body>
 <div class="page-group">
     <div class="page">
-        <div class="content">
+        <div class="content infinite-scroll">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
                 </a>
@@ -19,10 +19,21 @@
                 <a href="#" id="money">催收金额</a>
                 <a href="#" id="day">逾期时间</a>
             </div>
-            <div class="content-pd infinite-scroll">
+            <div class="content-pd">
                 <ul class="list-debt">
 
                 </ul>
+                <!-- 加载提示符 -->
+                <div class="infinite-scroll-preloader">
+                    <div class="preloader"></div>
+                </div>
+                <div class="infinite-scroll-noData">
+                    没有更多数据！
+                </div>
+            </div>
+            <div class="common-empty">
+                <img src="{echo CssURL}/m/images/empty-img.png" alt="">
+                <p>很抱歉，暂时无法找到符合您要求的债务。</p>
             </div>
         </div>
     </div>
