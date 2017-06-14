@@ -2662,7 +2662,7 @@ input[type="button"].button {
           transform: rotate(180deg) translate3d(0, 0, 0);
 }
 .pull-to-refresh-content {
-  top: -2.2rem;
+  top: 0;
 }
 .pull-to-refresh-content.refreshing {
   -webkit-transform: translate3d(0, 2.2rem, 0);

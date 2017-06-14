@@ -1,8 +1,8 @@
 {template Head}
 <body>
 <div class="page-group">
-    <div class="page">
-        <div class="content infinite-scroll">
+    <div class="page"><!--pull-to-refresh-content-->
+        <div class="content infinite-scroll pull-to-refresh-content infinite-scroll-bottom">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
                 </a>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="common-empty">
-                <img src="{echo CssURL}/m/images/empty-img.png" alt="">
+                <img src="{echo CssURL}/m/images/empty-img.jpg" alt="">
                 <p>很抱歉，暂时无法找到符合您要求的债务。</p>
             </div>
         </div>
