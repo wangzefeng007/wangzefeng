@@ -1,7 +1,7 @@
 {template Head}
 <body>
 <div class="page-group">
-    <div class="page">
+    <div class="page page-current" id="publish-step1">
         <div class="content">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
@@ -10,85 +10,142 @@
                     发布债务
                 </section>
             </header>
-            <div class="tab-nav">
-                <a href="#">自助催收 <span class="pop"></span></a>
-                <a  href="#">律师团队<span class="pop"></span></a>
-                <a class="active" href="#">催收公司 <span class="pop"></span></a>
-            </div>
             <div class="content-pd mt02">
-                <div class="form-fieldset">
-                    <div class="form-legend common-box">
-                        <div>
-                            <i class="icon icon-usermsg"></i>
-                            债权人信息
-                        </div>
-                        <i class="icon-add"></i>
-                    </div>
-                    <div class="form-box mt01">
-                        <div class="row">
-                            <p class="form-lab">
-                                姓&emsp;&emsp;&emsp;名:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的姓名" type="text">
+                <div class="warp-fieldset" id="debtor_owner_info">
+                    <div class="form-fieldset">
+                        <div class="form-legend common-box">
+                            <div>
+                                <i class="icon icon-usermsg"></i>
+                                债权人信息
                             </div>
+                            <i class="icon-add" onclick="pageObj.addDom('debtor_owner_info','debtor_owner_info_temp');"></i>
                         </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                手&emsp;&emsp;&emsp;机:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的手机号" type="tel">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                身&emsp;份&emsp;证:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的身份证号" type="tel">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                债权金额（元):
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入您的债权金额" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                地&emsp;&emsp;&emsp;址:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请选择您的所在位置" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                &emsp;详细地址:
-                            </p>
-                            <div class="form-grid">
-                                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="" id="" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                是否有前期费用:
-                            </p>
-                            <div class="form-grid">
-                                <div class="radio-inline">
-                                    <label class="radio" type="radio">
-                                        <input type="radio" name="fee" value="0" checked>
-                                        <i></i>是
-                                    </label>
+                        <div class="form-box mt01">
+                            <div class="row">
+                                <p class="form-lab">
+                                    姓&emsp;&emsp;&emsp;名:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="name" placeholder="请输入您的姓名" type="text">
                                 </div>
-                                <div class="radio-inline">
-                                    <label class="radio" type="radio">
-                                        <input type="radio" name="fee" value="0" >
-                                        <i></i>否
-                                    </label>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    手&emsp;&emsp;&emsp;机:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="phoneNumber" placeholder="请输入您的手机号" type="tel">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    身&emsp;份&emsp;证:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="idNum" placeholder="请输入您的身份证号" type="tel">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    债权金额（元):
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="debt_money" placeholder="请输入您的债权金额" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    地&emsp;&emsp;&emsp;址:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="address" placeholder="请选择您的所在位置" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    详 细 地 址:
+                                </p>
+                                <div class="form-grid">
+                                    <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="icon-del"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="box-btn">
+                <a class="btn" href="javascript:void(0)" id="goStep2">下一步</a>
+            </div>
+        </div>
+    </div>
+    <div class="page" id="publish-step2">
+        <div class="content">
+            <header class="common-header">
+                <!--<a class="header-left icon-back" href="javascript:void (0)">
+                </a>
+                <a href="javascript:window.history.go(-1);" class="go-prev-step">返回上一步</a>-->
+                <section class="header-title">
+                    发布债务
+                </section>
+            </header>
+            <div class="content-pd mt02">
+                <div class="wrap-fieldset" id="debtor_info">
+                    <div class="form-fieldset">
+                        <div class="form-legend common-box">
+                            <div>
+                                <i class="icon icon-usermsg"></i>
+                                债务人信息
+                            </div>
+                            <i class="icon-add" onclick="pageObj.addDom('debtor_info','debtor_info_temp');"></i>
+                        </div>
+                        <div class="form-box mt01">
+                            <div class="row">
+                                <p class="form-lab">
+                                    姓&emsp;&emsp;&emsp;名:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="name" placeholder="请输入姓名" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    手&emsp;&emsp;&emsp;机:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="phoneNumber" placeholder="请输入手机号" type="tel">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    身&emsp;份&emsp;证:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="idNum" placeholder="请输入身份证号" type="tel">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    债权金额（元):
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="debt_money" placeholder="请输入债权金额" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    地&emsp;&emsp;&emsp;址:
+                                </p>
+                                <div class="form-grid">
+                                    <input class="inp" name="address" placeholder="请选择所在位置" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">
+                                    详 细 地 址:
+                                </p>
+                                <div class="form-grid">
+                                    <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -96,10 +153,291 @@
                 </div>
             </div>
             <div class="box-btn">
-                <a class="btn" href="#">下一步</a>
+                <a class="btn" href="javascript:void(0)" id="goStep3">下一步</a>
+            </div>
+        </div>
+    </div>
+    <div class="page" id="publish-step3">
+        <div class="content">
+            <header class="common-header">
+                <!--<a class="header-left icon-back" href="javascript:void (0)">
+                </a>
+                <a href="#" class="go-prev-step">返回上一步</a>-->
+                <section class="header-title">
+                    发布债务
+                </section>
+            </header>
+            <div class="content-pd mt02">
+                <div class="form-fieldset no-fieldset">
+                    <div class="form-legend common-box">
+                        <div>
+                            <div class="radio-inline">
+                                <label class="radio" id="if_family" type="radio">
+                                    <i></i>是否有债务人亲友
+                                </label>
+                            </div>
+                        </div>
+                        <i class="icon-add" onclick="pageObj.addDebtFamily()"></i>
+                    </div>
+                    <div id="debt_family_info" style="display: none;">
+                        <div class="form-box mt01">
+                            <div class="row">
+                                <p class="form-lab">姓   名:</p>
+                                <div class="form-grid">
+                                    <input class="inp" name="name" type="text" placeholder="请输入姓名">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">关   系:</p>
+                                <div class="form-grid">
+                                    <input class="inp" name="relationship" type="text" placeholder="请输入与债务人关系">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="form-lab">联 系 方 式:</p>
+                                <div class="form-grid">
+                                    <input class="inp" name="phoneNumber" type="tel" placeholder="请输入手机号">
+                                </div>
+                            </div>
+                            <div class="del-line clearfix mt03">
+                                <i class="icon-del" onclick="pageObj.delDom2(this)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-fieldset">
+                    <div class="form-legend common-box">
+                        <div>
+                            <i class="icon icon-usermsg"></i>
+                            其它信息
+                        </div>
+                    </div>
+                    <div class="form-box mt01">
+                        <div class="row">
+                            <p class="form-lab">
+                                逾 期 时 间:
+                            </p>
+                            <div class="form-grid">
+                                <input class="inp" name="overDay" placeholder="请输入逾期时间" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-fieldset" id="voucher">
+                    <div class="form-legend common-box">
+                        <div>
+                            <i class="icon-voucher"></i>
+                            借款凭证
+                        </div>
+                    </div>
+                    <div class="form-box">
+                        <div class="row">
+                            <p class="form-lab">
+                                上传借款凭证:
+                            </p>
+                        </div>
+                        <div class="row upload-row">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
+                                <div class="img-wrap">
+                                </div>
+                            </div>
+
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
+                                <div class="img-wrap">
+                                </div>
+                            </div>
+
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
+                                <div class="img-wrap">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row upload-row">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
+                                <div class="img-wrap">
+                                </div>
+                            </div>
+
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
+                                <div class="img-wrap">
+                                </div>
+                            </div>
+
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
+                                <div class="img-wrap">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-btn">
+                <a class="btn" href="javascript:void(0)" id="subDebt">完成</a>
             </div>
         </div>
     </div>
 </div>
+<!--债权人模板-->
+<script type="text/html" id="debtor_owner_info_temp">
+<div class="form-fieldset {{addDomClass}}">
+    <div class="form-legend common-box">
+        <div>
+            <i class="icon icon-usermsg"></i>
+            债权人信息
+        </div>
+        <i class="icon-add" onclick="pageObj.addDom('debtor_owner_info','debtor_owner_info_temp');"></i>
+    </div>
+    <div class="form-box mt01">
+        <div class="row">
+            <p class="form-lab">
+                姓&emsp;&emsp;&emsp;名:
+            </p>
+            <div class="form-grid">
+                <input class="inp" name="name" placeholder="请输入您的姓名" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">
+                手&emsp;&emsp;&emsp;机:
+            </p>
+            <div class="form-grid">
+                <input class="inp" name="phoneNumber" placeholder="请输入您的手机号" type="tel">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">
+                身&emsp;份&emsp;证:
+            </p>
+            <div class="form-grid">
+                <input class="inp" name="idNum" placeholder="请输入您的身份证号" type="tel">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">
+                债权金额（元):
+            </p>
+            <div class="form-grid">
+                <input class="inp" name="debt_money" placeholder="请输入您的债权金额" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">
+                地&emsp;&emsp;&emsp;址:
+            </p>
+            <div class="form-grid">
+                <input class="inp" name="address" placeholder="请选择您的所在位置" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">
+                详 细 地 址:
+            </p>
+            <div class="form-grid">
+                <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    <i class="icon-del" onclick="pageObj.delDom(this)"></i>
+</div>
+</script>
+<!--债务人模板-->
+<script type="text/html" id="debtor_info_temp">
+    <div class="form-fieldset {{addDomClass}}">
+        <div class="form-legend common-box">
+            <div>
+                <i class="icon icon-usermsg"></i>
+                债务人信息
+            </div>
+            <i class="icon-add" onclick="pageObj.addDom('debtor_info','debtor_info_temp');"></i>
+        </div>
+        <div class="form-box mt01">
+            <div class="row">
+                <p class="form-lab">
+                    姓&emsp;&emsp;&emsp;名:
+                </p>
+                <div class="form-grid">
+                    <input class="inp" name="name" placeholder="请输入姓名" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <p class="form-lab">
+                    手&emsp;&emsp;&emsp;机:
+                </p>
+                <div class="form-grid">
+                    <input class="inp" name="phoneNumber" placeholder="请输入手机号" type="tel">
+                </div>
+            </div>
+            <div class="row">
+                <p class="form-lab">
+                    身&emsp;份&emsp;证:
+                </p>
+                <div class="form-grid">
+                    <input class="inp" name="idNum" placeholder="请输入身份证号" type="tel">
+                </div>
+            </div>
+            <div class="row">
+                <p class="form-lab">
+                    债权金额（元):
+                </p>
+                <div class="form-grid">
+                    <input class="inp" name="debt_money" placeholder="请输入债权金额" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <p class="form-lab">
+                    地&emsp;&emsp;&emsp;址:
+                </p>
+                <div class="form-grid">
+                    <input class="inp" name="address" placeholder="请选择所在位置" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <p class="form-lab">
+                    详 细 地 址:
+                </p>
+                <div class="form-grid">
+                    <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<!--债务人亲友模板-->
+<script type="text/html" id="debt_family_tmpl">
+    <div class="form-box mt01">
+        <div class="row">
+            <p class="form-lab">姓   名:</p>
+            <div class="form-grid">
+                <input class="inp" name="name" type="text" placeholder="请输入姓名">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">关   系:</p>
+            <div class="form-grid">
+                <input class="inp" name="relationship" type="text" placeholder="请输入与债务人关系">
+            </div>
+        </div>
+        <div class="row">
+            <p class="form-lab">联 系 方 式:</p>
+            <div class="form-grid">
+                <input class="inp" name="phoneNumber" type="tel" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="del-line clearfix mt03">
+            <i class="icon-del" onclick="pageObj.delDom2(this)"></i>
+        </div>
+    </div>
+</script>
+<script src="{echo JsURL}/m/lib/photoclip/iscroll-zoom.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/hammer.min.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/lrz.all.bundle.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/PhotoClip.js"></script>
+<script type='text/javascript' src='{echo JsURL}/m/debt/DebtPublish.js' charset='utf-8'></script>
 </body>
 </html>

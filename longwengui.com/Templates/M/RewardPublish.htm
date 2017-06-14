@@ -1,7 +1,7 @@
 {template Head}
 <body>
 <div class="page-group">
-    <div class="page">
+    <div class="page" id="rewardInformation">
         <div class="content">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
@@ -11,149 +11,279 @@
                 </section>
             </header>
             <div class="tab-nav">
-                <a class="active" href="#">找人<span class="pop"></span></a>
-                <a href="#">找财产<span class="pop"></span></a>
-                <a href="#">其他 <span class="pop"></span></a>
+                <a class="active" href="#tab1" rewordType="1">找人<span class="pop"></span></a>
+                <a href="#tab2" rewordType="2">找财产<span class="pop"></span></a>
+                <a href="#tab3" rewordType="3">其他 <span class="pop"></span></a>
             </div>
-
-            <div class="content-pd mt02">
-                <div class="form-fieldset">
-                    <div class="form-legend common-box">
-                        <div>
-                            <i class="icon icon-usermsg"></i>
-                            寻人信息
-                        </div>
-                    </div>
-                    <div class="form-box mt01">
-                        <div class="row">
-                            <p class="form-lab">
-                                姓&emsp;&emsp;&emsp;名:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入姓名" type="text">
+            <div class="tab-con">
+                <div id="tab1" class="active">
+                    <div class="content-pd mt02">
+                        <div class="form-fieldset">
+                            <div class="form-legend common-box">
+                                <div>
+                                    <i class="icon icon-usermsg"></i>
+                                    寻人信息
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                性&emsp;&emsp;&emsp;别:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入性别" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                年&emsp;&emsp;&emsp;龄:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入年龄" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                身&emsp;&emsp;&emsp;高:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请输入身高（cm）" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                &emsp;失联时间:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp" placeholder="请选择失联时间" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                &emsp;详细内容:
-                            </p>
-                            <div class="form-grid">
-                                <textarea class="textarea" maxlength="150" placeholder="最多可输入150字" name="" id="" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="form-lab">
-                                如有目击或<br/>知情者请拨<br/>打联系电话:
-                            </p>
-                            <div class="form-grid">
-                                <input class="inp mt04" placeholder="请输入联系电话" type="tel">
+                            <div class="form-box mt01">
+                                <div class="row">
+                                    <p class="form-lab">
+                                        姓&emsp;&emsp;&emsp;名:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="name" placeholder="请输入姓名" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        性&emsp;&emsp;&emsp;别:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="sex" placeholder="请输入性别" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        年&emsp;&emsp;&emsp;龄:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="age" placeholder="请输入年龄" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        身&emsp;&emsp;&emsp;高:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="height" placeholder="请输入身高（cm）" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        身 份 证 号:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="idNum" placeholder="请输入身份证号" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        失 联 时 间:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="lastTime" data-toggle='date' placeholder="请选择失联时间" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        详 细 内 容:
+                                    </p>
+                                    <div class="form-grid">
+                                        <textarea class="textarea" maxlength="150" placeholder="最多可输入150字" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        如有目击或<br/>知情者请拨<br/>打联系电话:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp mt04" name="contactPhone" placeholder="请输入联系电话" type="tel">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-fieldset">
+                <div id="tab2">
+                    <div class="content-pd mt02">
+                        <div class="form-fieldset">
+                            <div class="form-legend common-box">
+                                <div>
+                                    <i class="icon icon-money"></i>
+                                    财产信息
+                                </div>
+                            </div>
+                            <div class="form-box mt01">
+                                <div class="row">
+                                    <p class="form-lab">
+                                        所 在 地 区:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="address" placeholder="请选择地区" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        姓&emsp;&emsp;&emsp;名:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="name" placeholder="请输入姓名" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        身 份 证 号:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="idNum" placeholder="请输入身份证号" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        详 细 地 址:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="detailAddress" placeholder="请输入详细地址" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        详 细 内 容:
+                                    </p>
+                                    <div class="form-grid">
+                                        <textarea class="textarea" maxlength="150" placeholder="最多可输入150字" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        如有知情者<br/>请拨打联系<br/>电话:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp mt04" name="contactPhone" placeholder="请输入联系电话" type="tel">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab3">
+                    <div class="content-pd mt02">
+                        <div class="form-fieldset">
+                            <div class="form-legend common-box">
+                                <div>
+                                    <i class="icon icon-goods"></i>
+                                    物品信息
+                                </div>
+                            </div>
+                            <div class="form-box mt01">
+                                <div class="row">
+                                    <p class="form-lab">
+                                        所 在 地 区:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="address" placeholder="请选择地区" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        丢失物品名称:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="name" placeholder="请输入物品名称" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        丢 失 时 间:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="lastTime" data-toggle='date' placeholder="请输入丢失时间" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        丢 失 地 址:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp" name="detailAddress" placeholder="请输入详细地址" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        详 细 内 容:
+                                    </p>
+                                    <div class="form-grid">
+                                        <textarea class="textarea" maxlength="150" placeholder="最多可输入150字" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="form-lab">
+                                        如有目击或<br/>知情者请拨<br/>打联系电话:
+                                    </p>
+                                    <div class="form-grid">
+                                        <input class="inp mt04" name="contactPhone" placeholder="请输入联系电话" type="tel">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-pd">
+                <div class="form-fieldset mt02">
                     <div class="form-legend common-box">
                         <div>
                             <i class="icon-photo"></i>
                             照片上传
                         </div>
                     </div>
-                    <div class="form-box">
+                    <div class="form-box" id="pics">
                         <div class="row">
                             <p class="form-lab">
                                 上传照片:
                             </p>
                         </div>
                         <div class="row upload-row">
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
 
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
 
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
                         </div>
                         <div class="row upload-row">
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
 
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
 
-                            <div class="form-grid bx">
+                            <div class="form-grid bx imageUploadBox">
+                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                 </div>
-                                <label>
-                                    <input type="file" onchange="imageUpload(this)" name="avatar_file" data-size="100" data-msg="100kb" data-ratio="1.45" style="display:none;" value="">
-                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="box-btn">
-                <a class="btn" href="#">发布</a>
+                <div class="box-btn">
+                    <a class="btn" href="javascript:void(0)" id="publish">发布</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script src="{echo JsURL}/m/lib/photoclip/iscroll-zoom.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/hammer.min.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/lrz.all.bundle.js"></script>
+<script src="{echo JsURL}/m/lib/photoclip/PhotoClip.js"></script>
+<script type='text/javascript' src='{echo JsURL}/m/reward/RewardPublish.js' charset='utf-8'></script>
 </body>
 </html>
