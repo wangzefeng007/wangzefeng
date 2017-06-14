@@ -39,22 +39,22 @@ function addSelectEvent(id_array){
 }
 
 //ajax请求数据
-function ajax(Page, isSearched){
-  resetChoices();
+function ajax(Page, isSearched) {
+    resetChoices();
 
-  var col_way = $('#way .sel').attr('data-id'); //催收方式
-  var col_city = $('#area .sel').attr('data-id'); //催收地区
-  var col_area = $('#other_city').attr('data-id'); //其他城市
-  var col_money = $('#money .sel').attr('data-id'); //催收金额
-  var col_day = $('#day .sel').attr('data-id'); //逾期时间
-  var Keyword = $('#keyword').val(); //搜索关键词
+    var col_way = $('#way .sel').attr('data-id'); //催收方式
+    var col_city = $('#area .sel').attr('data-id'); //催收地区
+    var col_area = $('#other_city').attr('data-id'); //其他城市
+    var col_money = $('#money .sel').attr('data-id'); //催收金额
+    var col_day = $('#day .sel').attr('data-id'); //逾期时间
+    var Keyword = $('#keyword').val(); //搜索关键词
 
-  $.ajax({
+    $.ajax({
         type: "post",	//提交类型
         dataType: "json",	//提交数据类型
         url: '/ajax.html',  //提交地址
         data: {
-            'Intention':'GetDebtList',//提交方法
+            'Intention': 'GetDebtList',//提交方法
             'col_way': col_way == 0 ? 'all' : col_way, //催收方式 1-选择律师债权 2-选择催收团队债权
             'col_city': col_city == 0 ? 'all' : col_city, //催收地区 1-北京市 2-上海市 3-深圳市 4-广州市 5-厦门市
             'col_area': col_area == 0 ? 'all' : col_area, //催收地区 其他城市
@@ -66,25 +66,25 @@ function ajax(Page, isSearched){
         beforeSend: function () { //加载过程效果
             showLoading();
         },
-        success: function(data) {	//函数回调
-            if(data.ResultCode == "200"){
-                 $('.no-data').hide();
-                 $('#collection_info').show();
-                 $('#collection_page_pagination').show();
-                 dataSuccess(data.Data); //搜索结果数据注入
-                 //获得当前页
-                 cur_page = data.Page;
+        success: function (data) {	//函数回调
+            if (data.ResultCode == "200") {
+                $('.no-data').hide();
+                $('#collection_info').show();
+                $('#collection_page_pagination').show();
+                dataSuccess(data.Data); //搜索结果数据注入
+                //获得当前页
+                cur_page = data.Page;
 
-                 //注入分页
-                 injectPagination('#collection_page_pagination', cur_page, data.PageCount, function(){
-                   $('#collection_page_pagination').find('.b').click(function(){
-                     var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
-                     if(changeTo){
-                       ajax(changeTo);
-                     }
-                   });
-                 });
-            }else{
+                //注入分页
+                injectPagination('#collection_page_pagination', cur_page, data.PageCount, function () {
+                    $('#collection_page_pagination').find('.b').click(function () {
+                        var changeTo = pageChange($(this).attr('data-id'), cur_page, data.PageCount);
+                        if (changeTo) {
+                            ajax(changeTo);
+                        }
+                    });
+                });
+            } else {
                 layer.msg(data.Message);
                 $('#collection_info').hide();
                 $('#collection_page_pagination').hide();
@@ -95,7 +95,6 @@ function ajax(Page, isSearched){
             closeLoading();
         }
     });
-
 };
 
 //筛选成功执行;data.Status---- 1:未接单；2:催收中；3-未收回；4-部分收回；5-全部收回；6:未曝光；7-已曝光

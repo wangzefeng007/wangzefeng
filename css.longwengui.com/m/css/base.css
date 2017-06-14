@@ -390,6 +390,7 @@ a.btn-s,
     width: 0; 
     height: 0; 
     margin-left: .25rem;
+    margin-top: -.1rem;
     vertical-align: middle;
     border-left: .175rem solid transparent;
     border-right: .175rem solid transparent;
@@ -1510,7 +1511,7 @@ a.btn-s,
     vertical-align: top;
 }
 .city li .icon-location{
-    margin: .25rem .25rem 0 0;
+    margin: .3rem .25rem 0 0;
 }
 .city li:nth-child(4n){
     margin-right: 0;

@@ -8,19 +8,17 @@
                 </a>
                 <section class="header-search">
                     <i class="icon-search"></i>
-                    <input class="inp" type="search" placeholder="请输入姓名或身份证号" />
+                    <input class="inp" name="keyword" type="search" placeholder="请输入姓名或身份证号" />
                 </section>
                 <a class="header-right" href="/debt/publish/">
                     发布债务
                 </a>
             </header>
             <div class="tab-nav">
-                <a href="#">选择地区</a>
-                <a href="#">催收方式<i></i></a>
-                <a href="#">催收金额<i></i></a>
-                <a href="#">逾期日期<i></i></a>
+                <a href="#" id="city">选择地区</a>
+                <a href="#" id="money">催收金额</a>
+                <a href="#" id="day">逾期日期</a>
             </div>
-
             <div class="content-pd">
                 <ul class="list-debt">
                     <li>
@@ -147,5 +145,6 @@
         </div>
     </div>
 </div>
+<script src='{echo JsURL}/m/debt/DebtIndex.js'></script>
 </body>
 </html>

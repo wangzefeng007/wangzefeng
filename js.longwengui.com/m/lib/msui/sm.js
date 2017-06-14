@@ -3007,7 +3007,11 @@ Device/OS Detection
                 p.params.onChange(p, p.value, p.displayValue);
             }
             if (p.input && p.input.length > 0) {
-                $(p.input).val(p.params.formatValue ? p.params.formatValue(p, p.value, p.displayValue) : p.displayValue.join(' '));
+                if($(p.input).is("input,select,textarea")){
+                    $(p.input).val(p.params.formatValue ? p.params.formatValue(p, p.value, p.displayValue) : p.displayValue.join(' '));
+                }else{
+                    $(p.input).text(p.params.formatValue ? p.params.formatValue(p, p.value, p.displayValue) : p.displayValue.join(' '));
+                }
                 $(p.input).attr("data-value",p.params.formatValue ? p.params.formatValue(p, p.value, p.displayValue) : p.value.join(' '));
                 $(p.input).trigger('change');
             }

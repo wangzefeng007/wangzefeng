@@ -2720,7 +2720,7 @@ input[type="button"].button {
   opacity: 1;
 }
 .popup-overlay {
-  z-index: 10200;
+  z-index: 1020;
 }
 .modal {
   width: 13.5rem;
