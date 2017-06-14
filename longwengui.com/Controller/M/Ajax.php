@@ -311,7 +311,7 @@ class Ajax
                 }
             }
 
-            $DebtAmount = $_POST['col_money'];//债务金额
+            $DebtAmount = trim($_POST['col_money']);//债务金额
             if($DebtAmount!='all'){
                 if ($DebtAmount=='1'){
                     $MysqlWhere .= ' and DebtAmount <= 30000 ';
