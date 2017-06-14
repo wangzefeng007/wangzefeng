@@ -28,6 +28,7 @@ class Debt
         $ID = intval($_GET['ID']);
         //债务信息
         $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($ID);
+        $DebtInfo['Overduetime'] = round((time()-$DebtInfo['Overduetime'])/ 86400);
         //债权人信息
         $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(" and DebtID = ".$ID,true);
         foreach ($CreditorsInfo as $key=>$value){

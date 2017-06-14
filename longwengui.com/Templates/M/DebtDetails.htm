@@ -10,95 +10,135 @@
                     债务详情
                 </section>
                 <a class="header-right" href="#">
-                    <i class="icon-favo favo-ed"></i></a>
+                    <i class="icon-follow follow-will"></i></a>
             </header>
-            <div class="item mt0">
+            <div class="item mt0 top-hd">
                 <div class="item-con">
                     <div class="option">
                         债务编号：{$DebtInfo[DebtNum]}
                     </div>
                     <p class="lab fs022">
-                        &nbsp;{echo date("Y-m-d",$DebtInfo[AddTime])}
+                        {echo date("Y-m-d",$DebtInfo[AddTime])}
                     </p>
                 </div>
             </div>
-            <div class="content-view">
-                <i class="waiting"></i>
-                <div class="paragraph common-box">
-            <span class="photo">
-              <img src="http://placeholder.qiniudn.com/96x96" alt="">
-            </span>
-                    {loop $CreditorsInfo $lists}
-                    <div>
-                        <p class="fs028">
-                            债权人姓名：{$lists[Name]}
-                        </p>
-                        <p>
-                            债权人电话：{$lists[Phone]}
-                        </p>
-                    </div>
-                    {/loop}
-                </div>
-                {loop $DebtorsInfo $lists}
-                <div class="paragraph">
-                    <p>
-                        债务人姓名： {$lists[Name]}
-                    </p>
-                    <p>
-                        债务人电话： {if $lists[Phone]} {$lists[Phone]} {else} 无 {/if}
-                    </p>
-                    <p>
-                        债务人身份证：{if $lists[Card]} {$lists[Card]} {else} 无 {/if}
-                    </p>
-                    <p>
-                        债务人地区： {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
-                    </p>
-                    <p class="ellipsis">
-                        详细地址：{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
-                    </p>
-                </div>
-                {/loop}
-                <div class="paragraph">
-                    <p>
-                        债务金额（元）：¥{$DebtInfo[DebtAmount]}
-                    </p>
-                    <p>
-                        逾期时间（天）：  {$DebtInfo[Overduetime]}
-                    </p>
-                </div>
-                {if $DebtInfo[DebtFamily]==1}
-                {loop $DebtFamilyInfo $lists}
-                <div class="paragraph">
-                    <p>
-                        债务人亲友：{$lists[name]}
-                    </p>
-                    <p>
-                        关系：{$lists[relationship]}
-                    </p>
-                    <p>
-                        债务人亲友电话：{$lists[phoneNumber]}
-                    </p>
-                </div>
-                {/loop}
-                {/if}
-                <div class="paragraph">
-                    <p>借款凭证</p>
-                    <div class="image-view mt01 common-box">
-                        {if $DebtImage}
-                        {loop $DebtImage $lists}
-                        <div>
-                            <a href="{$lists[ImageUrl]}">
-                                <img src="{$lists[ImageUrl]}" alt="">
-                            </a>
+            <div class="tab-nav">
+                <a class="active" href="#tab1">
+                    债权人信息 <span class="pop"></span>
+                </a>
+                <a class="" href="#tab2">
+                    债务人信息 <span class="pop"></span>
+                </a>
+                <a class="" href="#tab4">
+                    其他信息 <span class="pop"></span>
+                </a>
+                <a class="" href="#tab5">
+                    借款凭证 <span class="pop"></span>
+                </a>
+            </div>
+            <div class="tab-con">
+                <div id="tab1" class="active">
+                    <div class="content-view">
+                        {loop $CreditorsInfo $lists}
+                        <div class="paragraph">
+                            <p>
+                                债权人姓名：{$lists[Name]}
+                            </p>
+                            <p>
+                                债权人电话：{$lists[Phone]}
+                            </p>
+                            <p>
+                                债权人身份证：{$lists[Card]}
+                            </p>
+                            <p>
+                                债权人地区： {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
+                            </p>
+                            <p class="ellipsis">
+                                详细地址：{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
+                            </p>
+                            <p>
+                                债务金额（元）：¥{$lists[Money]}
+                            </p>
                         </div>
                         {/loop}
-                        {else}
-                        已隐藏
+                    </div>
+                </div>
+                <div id="tab2">
+                    <div class="content-view">
+                        {loop $DebtorsInfo $lists}
+                        <div class="paragraph">
+                            <p>
+                                债务人姓名： {$lists[Name]}
+                            </p>
+                            <p>
+                                债务人电话： {if $lists[Phone]} {$lists[Phone]} {else} 无 {/if}
+                            </p>
+                            <p>
+                                债务人身份证：{if $lists[Card]} {$lists[Card]} {else} 无 {/if}
+                            </p>
+                            <p>
+                                债务人地区： {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
+                            </p>
+                            <p class="ellipsis">
+                                详细地址：{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
+                            </p>
+                            <p>
+                                债务金额（元）：¥{$lists[Money]}
+                            </p>
+                        </div>
+                        {/loop}
+                    </div>
+                </div>
+                <div id="tab4">
+                    <div class="content-view">
+                        <div class="paragraph">
+                        <p>
+                            逾期时间（天）：{$DebtInfo[Overduetime]}
+                        </p>
+                        </div>
+                        {if $DebtInfo[DebtFamily]==1}
+                        {loop $DebtFamilyInfo $lists}
+                        <div class="paragraph">
+                            <p>
+                                债务人亲友：{$lists[name]}
+                            </p>
+                            <p>
+                                关系：{$lists[relationship]}
+                            </p>
+                            <p>
+                                债务人亲友电话：{$lists[phoneNumber]}
+                            </p>
+                        </div>
+                        {/loop}
                         {/if}
                     </div>
                 </div>
+                <div id="tab5">
+                    <div class="content-view">
+                        <div class="paragraph">
+                            <p>借款凭证</p>
+                            <div class="image-view mt03 common-box">
+                                {if $DebtImage}
+                                {loop $DebtImage $lists}
+                                <div>
+                                    <a href="{$lists[ImageUrl]}">
+                                        <img src="{$lists[ImageUrl]}" alt="">
+                                    </a>
+                                </div>
+                                {/loop}
+                                {else}
+                                已隐藏
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="fixed-height"></div>
+        </div>
+        <div class="fixed-bottom">
+            <a href="#" class="btn btn-primary">申请接单</a>
         </div>
     </div>
 </div>
