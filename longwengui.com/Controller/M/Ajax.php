@@ -91,7 +91,120 @@ class Ajax
             $Data['ResultCode'] = 200;
         }else{
             $Data['ResultCode'] = 101;
-            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的律师援助信息';
+            $Data['Message'] = '很抱歉，暂时无法找到相应数据';
+            EchoResult($Data);exit;
+        }
+        EchoResult($Data);exit;
+    }
+    /**
+     * @desc 寻找处置方信息
+     */
+    public function GetFindList(){
+        $MemberOrderDemandModule = new MemberOrderDemandModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //分页查询开始-------------------------------------------------
+        $MysqlWhere = ' ';
+        //关键字
+        $Province = trim($_POST['dd_province']);
+        if ($Province!=''){
+            $MysqlWhere .= ' and  Area like \'%'.$Province.'%\'';
+        }
+        $City = trim($_POST['dd_city']);
+        if ($City!=''){
+            $MysqlWhere .= ' and  Area like \'%'.$City.'%\'';
+        }
+        $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
+        $Page=intval($_POST['p'])?intval($_POST['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberOrderDemandModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AreaInfo = json_decode($value['Area'],true);
+                foreach($AreaInfo as $K=>$V){
+                    $AreaInfo[$K]['province'] = $MemberAreaModule->GetCnNameByKeyID($V['province']);
+                    $AreaInfo[$K]['city'] = $MemberAreaModule->GetCnNameByKeyID($V['city']);
+                    $AreaInfo[$K]['area'] = $MemberAreaModule->GetCnNameByKeyID($V['area']);
+                }
+                $Data['Data'][$key]['Area'] = $AreaInfo;
+                $FeeRateInfo = json_decode($value['FeeRate'],true);
+                $Data['Data'][$key]['FeeRate'] = $FeeRateInfo;
+                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $Data['Data'][$key]['Identity'] = $UserInfo['Identity'];
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
+                if ($UserInfo['Identity']==2){
+                    $Data['Data'][$key]['Name'] = $UserInfo['RealName'];
+                }elseif ($UserInfo['Identity']==3){
+                    $Data['Data'][$key]['Name'] = $UserInfo['CompanyName'];
+                }
+            }
+            MultiPage($Data, 5);
+            $Data['Message'] = '返回成功';
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到相应数据';
+            EchoResult($Data);exit;
+        }
+    }
+    /**
+     * @desc 债务催收信息
+     */
+    public function GetRewardList(){
+        $MemberRewardInfoModule = new MemberRewardInfoModule();
+        $MemberRewardImageModule = new MemberRewardImageModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MysqlWhere ='';
+        //分页查询开始-------------------------------------------------
+        $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
+        $Page=intval($_POST['p'])?intval($_POST['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize = 4;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberRewardInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Data['Data'] as $key => $value) {
+                $Message = json_decode($value['Message'], true);
+                if ($Message['dd_province'])
+                    $Message['province'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_province']);
+                if ($Message['dd_city'])
+                    $Message['city'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_city']);
+                if ($Message['dd_area'])
+                    $Message['area'] = $MemberAreaModule->GetCnNameByKeyID($Message['dd_area']);
+                if ($Message['idNum'])
+                    $Message['idNum'] = strlen($Message['idNum']) ? substr_replace($Message['idNum'], '****', 10, 4) : '';
+                if ($Message['find_idCard'])
+                    $Message['find_idCard'] = strlen($Message['find_idCard']) ? substr_replace($Message['find_idCard'], '****', 10, 4) : '';
+                $Data['Data'][$key]['Message'] = $Message;
+                $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = ' . $value['RewardID'], true);
+                $Data['Data'][$key]['Image'] = $RewardImage;
+            }
+            MultiPage($Data, 5);
+            $Data['Message'] = '返回成功';
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到相应数据';
             EchoResult($Data);exit;
         }
         EchoResult($Data);exit;

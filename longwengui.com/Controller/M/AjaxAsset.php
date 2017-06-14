@@ -73,7 +73,7 @@ class AjaxAsset
             $Data['ResultCode'] = 200;
         }else{
             $Data['ResultCode'] = 101;
-            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的律师援助信息';
+            $Data['Message'] = '很抱歉，暂时无法找到相应数据';
             EchoResult($Data);exit;
         }
         EchoResult($Data);exit;
