@@ -17,134 +17,50 @@
             <div class="tab-nav">
                 <a href="#" id="city">选择地区</a>
                 <a href="#" id="money">催收金额</a>
-                <a href="#" id="day">逾期日期</a>
+                <a href="#" id="day">逾期时间</a>
             </div>
-            <div class="content-pd">
+            <div class="content-pd infinite-scroll">
                 <ul class="list-debt">
-                    <li>
-                        <a href="#">
-                            <div class="item-debt">
-                                <div class="common-box debt-top">
-                                    <p class="photo">
-                                        <img src="../temp/photo-1.jpg" alt="">
-                                    </p>
-                                    <div>
-                                        <span class="h3">债权人：刘德</span><span class="type">个人</span>
-                                        <span class="link">未接单
-                        <i class="icon-arrow"></i>
-                      </span>
-                                    </div>
-                                </div>
-                                <div class="common-box debt-msg">
-                                    <div>
-                                        <p>债务人：张三</p>
-                                        <p>催收金额：<span class="c-red fs028">¥800000.00</span></p>
-                                        <p class="ellipsis">催收地址：福州鼓楼西湖路135号</p>
-                                    </div>
-                                    <p class="tr">
-                                        <br>
-                                        <span>逾期 <span class="c-red">38</span> 天</span><br>
-                                        <span class="fs022">2017-04-06</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
 
-                    <li>
-                        <a href="#">
-                            <div class="item-debt">
-                                <div class="common-box debt-top">
-                                    <p class="photo">
-                                        <img src="../temp/photo-1.jpg" alt="">
-                                    </p>
-                                    <div>
-                                        <span class="h3">债权人：刘德</span><span class="type">个人</span>
-                                        <span class="link">未接单
-                        <i class="icon-arrow"></i>
-                      </span>
-                                    </div>
-                                </div>
-                                <div class="common-box debt-msg">
-                                    <div>
-                                        <p>债务人：张三</p>
-                                        <p>催收金额：<span class="c-red fs028">¥800000.00</span></p>
-                                        <p class="ellipsis">催收地址：福州鼓楼西湖路135号</p>
-                                    </div>
-                                    <p class="tr">
-                                        <br>
-                                        <span>逾期 <span class="c-red">38</span> 天</span><br>
-                                        <span class="fs022">2017-04-06</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <div class="item-debt">
-                                <div class="common-box debt-top">
-                                    <p class="photo">
-                                        <img src="../temp/photo-1.jpg" alt="">
-                                    </p>
-                                    <div>
-                                        <span class="h3">债权人：刘德</span><span class="type">个人</span>
-                                        <span class="link">未接单
-                        <i class="icon-arrow"></i>
-                      </span>
-                                    </div>
-                                </div>
-                                <div class="common-box debt-msg">
-                                    <div>
-                                        <p>债务人：张三</p>
-                                        <p>催收金额：<span class="c-red fs028">¥800000.00</span></p>
-                                        <p class="ellipsis">催收地址：福州鼓楼西湖路135号</p>
-                                    </div>
-                                    <p class="tr">
-                                        <br>
-                                        <span>逾期 <span class="c-red">38</span> 天</span><br>
-                                        <span class="fs022">2017-04-06</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <div class="item-debt">
-                                <div class="common-box debt-top">
-                                    <p class="photo">
-                                        <img src="../temp/photo-1.jpg" alt="">
-                                    </p>
-                                    <div>
-                                        <span class="h3">债权人：刘德</span><span class="type">个人</span>
-                                        <span class="link">未接单
-                        <i class="icon-arrow"></i>
-                      </span>
-                                    </div>
-                                </div>
-                                <div class="common-box debt-msg">
-                                    <div>
-                                        <p>债务人：张三</p>
-                                        <p>催收金额：<span class="c-red fs028">¥800000.00</span></p>
-                                        <p class="ellipsis">催收地址：福州鼓楼西湖路135号</p>
-                                    </div>
-                                    <p class="tr">
-                                        <br>
-                                        <span>逾期 <span class="c-red">38</span> 天</span><br>
-                                        <span class="fs022">2017-04-06</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<!--债务模板-->
+<script type="text/html" id="debt_temp">
+    {{each Data as debt}}
+    <li>
+        <a href="{{debt.Url}}">
+            <div class="item-debt">
+                <div class="common-box debt-top">
+                    <p class="photo">
+                        <img src="{{debt.Avatar}}" alt="">
+                    </p>
+                    <div>
+                        <span class="h3">债权人：{{debt.CreditorsName}}</span><span class="type">{{debt.CreditorsType}}</span>
+                        <span class="link">{{debt.StatusName}}
+                        <i class="icon-arrow"></i>
+                      </span>
+                    </div>
+                </div>
+                <div class="common-box debt-msg">
+                    <div>
+                        <p>债务人：{{debt.Name}}</p>
+                        <p>催收金额：<span class="c-red fs028">¥{{debt.DebtAmount}}</span></p>
+                        <p class="ellipsis">催收地址：{{debt.Province}}{{debt.City}}{{debt.Area}}</p>
+                    </div>
+                    <p class="tr">
+                        <br>
+                        <span>逾期 <span class="c-red">{{debt.Overduetime}}</span> 天</span><br>
+                        <span class="fs022">{{debt.AddTime}}</span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
 <script src='{echo JsURL}/m/debt/DebtIndex.js'></script>
 </body>
 </html>

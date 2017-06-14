@@ -22,11 +22,12 @@ var pageObj=$.extend({},pageObj,{
                 $.showIndicator();
             },
             success: function (data) {	//函数回调
-                console.log(data);
                 if (data.ResultCode == "200") {
-
-                } else {
-
+                    var _html=template('debt_temp', data);
+                    $(".list-debt").empty();
+                    $(".list-debt").append(_html);
+                }else {
+                    $.toast(data.Message);
                 }
             },
             complete: function () { //加载完成提示
@@ -41,6 +42,8 @@ var pageObj=$.extend({},pageObj,{
         var _this = this;
         //选择地区
         $("#city").cityPicker();
+        //进入页面搜索
+        _this.search();
         var toolbarTemplate= '<header class="bar bar-nav">\
                 <button class="button button-link pull-right close-picker picker-indeed">确定</button>\
                 <h1 class="title">请选择</h1>\
