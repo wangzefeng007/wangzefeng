@@ -326,18 +326,27 @@ class Ajax
                 }
             }
 
-            $Overduetime = $_POST['col_day'];//逾期时间
+            $Overduetime = trim($_POST['col_day']);//逾期时间
+
             if($Overduetime!='all'){
                 if ($Overduetime=='1'){
-                    $MysqlWhere .= ' and Overduetime <= 60 ';
+                    $time = time()-60*86400;
+                    $MysqlWhere .= ' and Overduetime >= '.$time;
                 }elseif ($Overduetime=='2'){
-                    $MysqlWhere .= ' and Overduetime >= 61 and Overduetime <=180 ';
+                    $time1 = time()-61*86400;
+                    $time2 = time()-180*86400;
+                    $MysqlWhere .= ' and Overduetime >= '.$time2 .' and Overduetime <= '.$time1 ;
                 }elseif ($Overduetime=='3'){
-                    $MysqlWhere .= ' and Overduetime >= 181 and Overduetime <=365 ';
+                    $time3 = time()-181*86400;
+                    $time4 = time()-365*86400;
+                    $MysqlWhere .= ' and Overduetime >= '.$time4.' and Overduetime <= '.$time3 ;
                 }elseif ($Overduetime=='4'){
-                    $MysqlWhere .= ' and Overduetime >= 366 and Overduetime <=1095 ';
+                    $time5 = time()-366*86400;
+                    $time6 = time()-1095*86400;
+                    $MysqlWhere .= ' and Overduetime >= '.$time6 .' and Overduetime <= '.$time5 ;
                 }elseif ($Overduetime=='5'){
-                    $MysqlWhere .= ' and Overduetime >= 1096 ';
+                    $time7 = time()-1096*86400;
+                    $MysqlWhere .= ' and Overduetime <=  '.$time7;
                 }
             }
             $Page = trim($_POST['Page']);
