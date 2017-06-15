@@ -104,16 +104,16 @@ class Ajax
         $MemberAreaModule = new MemberAreaModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' ';
+        $MysqlWhere = '';
         //关键字
-        $Province = trim($_POST['dd_province']);
-        if ($Province!=''){
-            $MysqlWhere .= ' and  Area like \'%'.$Province.'%\'';
-        }
-        $City = trim($_POST['dd_city']);
-        if ($City!=''){
-            $MysqlWhere .= ' and  Area like \'%'.$City.'%\'';
-        }
+//        $Province = trim($_POST['dd_province']);
+//        if ($Province!=''){
+//            $MysqlWhere .= ' and  Area like \'%'.$Province.'%\'';
+//        }
+//        $City = trim($_POST['dd_city']);
+//        if ($City!=''){
+//            $MysqlWhere .= ' and  Area like \'%'.$City.'%\'';
+//        }
         $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
         $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         if ($Page < 1) {
@@ -155,8 +155,8 @@ class Ajax
         }else{
             $Data['ResultCode'] = 101;
             $Data['Message'] = '很抱歉，暂时无法找到相应数据';
-            EchoResult($Data);exit;
         }
+        EchoResult($Data);exit;
     }
     /**
      * @desc 寻赏信息
