@@ -2388,6 +2388,9 @@ a.btn-s,
     background: #fff;
     color: #8a959d;
 }
+.list-lai li a{
+    color: #8a959d;
+}
 
 .item-lai .lai-hd{
     padding-bottom: .75rem;
@@ -2410,6 +2413,15 @@ a.btn-s,
     white-space: nowrap;
     text-overflow: ellipsis;
     vertical-align: middle;
+}
+.item-lai .lai-hd .link{
+    float: right;
+}
+.item-lai .lai-hd .link .icon-arrow {
+    width: .5rem;
+    height: .5rem;
+    background: url(../images/link-arrow.png) no-repeat center;
+    background-size: .25rem;
 }
 .item-lai .lai-msg{
     padding-right: .75rem;

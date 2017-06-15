@@ -2,7 +2,7 @@
 <body>
 <div class="page-group">
     <div class="page">
-        <div class="content">
+        <div class="content infinite-scroll pull-to-refresh-content infinite-scroll-bottom">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
                 </a>
@@ -13,23 +13,77 @@
             <div class="form-box lai-query">
                 <div class="row flex">
                     <div class="form-grid flex2 mr03">
-                        <input class="inp" type="text" placeholder="请输入查询的姓名/名称" />
+                        <input class="inp" name="iname" type="text" placeholder="*请输入查询的姓名/名称" />
                     </div>
                     <div class="form-grid">
-                        <input class="inp" type="text" placeholder="请选择查询的地区" />
+                        <input class="inp" name="areaName" type="text" placeholder="地区" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-grid mr03">
-                        <input class="inp" type="text" placeholder="请输入身份证号/组织机构代码" />
+                        <input class="inp" name="cardNum" type="text" placeholder="*请输入身份证号/组织机构代码" />
                     </div>
                     <div class="query-btn">
-                        <a href="#" class="btn">查询</a>
+                        <a href="javascript:void(0)" id="query" class="btn">查询</a>
                     </div>
                 </div>
+            </div>
+            <div class="mt02">
+                <ul class="list-lai">
+
+                </ul>
+                <!-- 加载提示符 -->
+                <div class="infinite-scroll-preloader">
+                    <div class="preloader"></div>
+                </div>
+                <div class="infinite-scroll-noData">
+                    没有更多数据！
+                </div>
+            </div>
+            <div class="common-empty">
+                <img src="{echo CssURL}/m/images/empty-img.jpg" alt="">
+                <p>很抱歉，暂时无法找到符合您要求的老赖。</p>
             </div>
         </div>
     </div>
 </div>
+<script type="text/html" id="lai_temp">
+    {{each Data as item }}
+    <li>
+        <a href="#">
+            <div class="item-lai">
+                <div class="common-box lai-hd">
+                    <i class="icon icon-usermsg"></i>
+                    <div>
+                        <% if (item.partyTypeName=="0") { %>
+                        <span class="h3">姓名：{{item.iname}}</span>
+                        <% } %>
+                        <% if (item.partyTypeName=="1") { %>
+                        <span class="h3">企业名称：{{item.iname}}</span>
+                        <% } %>
+                        <span class="link">查看详情
+                                            <i class="icon-arrow"></i>
+                                          </span>
+                    </div>
+                </div>
+                <div class="lai-msg">
+                    <p>
+                        地区：{{item.areaName}}
+                    </p>
+                    <p>
+                        <% if (item.partyTypeName=="0") { %>
+                        <span>身份证号：{{item.cardNum}}</span><span class="fr fs020"> {{item.publishDate}}</span>
+                        <% } %>
+                        <% if (item.partyTypeName=="1") { %>
+                        <span>组织机构代码：{{item.cardNum}}</span><span class="fr fs020"> {{item.publishDate}}</span>
+                        <% } %>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script src='{echo JsURL}/m/lai/DeadBeatIndex.js'></script>
 </body>
 </html>

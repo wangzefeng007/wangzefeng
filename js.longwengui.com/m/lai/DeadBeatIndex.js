@@ -3,10 +3,10 @@ var pageObj=$.extend({},pageObj,{
     pageCount:0,       //总页数
     //ajax参数
     ajaxData:{
-        'Intention': 'GetFindList',//提交方法
-        "dd_province":"",       //省
-        "dd_city":"",           //市
-        "dd_area":"",           //区
+        'Intention': 'debtorSearch',//提交方法
+        "iname":"",       //名字名称
+        "cardNum":"",           //身份证号/组织机构代码
+        "areaName":"",           //地区
         'Page':1         //当前页
     },
     /**
@@ -14,15 +14,20 @@ var pageObj=$.extend({},pageObj,{
      * type add为滚动新增追加 update为条件筛选更新
      */
     search:function(type){
+        $(".infinite-scroll-preloader").show();
         var _this=this;
-        var addressValue=$("input[name='address']").attr("data-value"); //获取选择地区id
-        var getParams={};
-        if(addressValue){
-            getParams={
-                'dd_province':addressValue.split(" ")[0],      //省
-                'dd_city':addressValue.split(" ")[1],      //市
-                'dd_area':addressValue.split(" ")[2]      //区
-            }
+        var iname=$.trim($("input[name='iname']").val());
+        var cardNum=$.trim($("input[name='cardNum']").val());
+        var areaName=$.trim($("input[name='areaName']").attr("data-value"));
+        if(iname==""&&cardNum==""){
+            $.toast("请输入必填");
+            $(".infinite-scroll-preloader").hide();
+            return;
+        }
+        var getParams={
+            'iname':iname,      //名字名称
+            'cardNum':cardNum,      //身份证号/组织机构代码
+            'areaName':areaName      //地区
         }
         _this.ajaxData=$.extend({},_this.ajaxData,getParams);
         $.ajax({
@@ -32,17 +37,17 @@ var pageObj=$.extend({},pageObj,{
             data: _this.ajaxData,
             success: function (data) {	//函数回调
                 if (data.ResultCode == "200") {
-                    $(".disposal-list,.infinite-scroll-preloader").show();
+                    $(".list-lai,.infinite-scroll-preloader").show();
                     $(".common-empty").hide();
-                    var _html=template('disposal_temp', data);
+                    var _html=template('lai_temp', data);
                     if(type=="update"){
                         _this.pageCount=data.PageCount;
                         $(".infinite-scroll-noData").hide();
-                        $(".disposal-list>ul").empty(); //追加之前先清空
+                        $(".list-lai").empty(); //追加之前先清空
                     }
-                    $(".disposal-list>ul").append(_html); //添加数据
+                    $(".list-lai").append(_html); //添加数据
                 }else {
-                    $(".disposal-list,.infinite-scroll-preloader,.infinite-scroll-noData").hide();
+                    $(".list-lai,.infinite-scroll-preloader,.infinite-scroll-noData").hide();
                     $(".common-empty").show();
                     $.toast(data.Message);
                 }
@@ -56,16 +61,18 @@ var pageObj=$.extend({},pageObj,{
      */
     init:function() {
         var _this = this;
-        //进入页面搜索
-        _this.search("update");
         //地区初始化
-        $("input[name='address']").cityPicker();
-        //选择地区确定后进行搜索
-        $(document).on("click",".close-picker",function(){
-            _this.ajaxData.Page=1; //每次筛选page变为1
-            _this.search("update");
+        $("input[name='areaName']").picker({
+            cols: [
+                {
+                    textAlign: 'center',
+                    values:['全国', '北京', '天津', '河北', '山西', '内蒙古', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河北', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '香港', '澳门', '台湾'],
+                    displayValues:['全国', '北京', '天津', '河北', '山西', '内蒙古', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河北', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '香港', '澳门', '台湾']
+                }
+            ]
         });
         //滚动加载
+        $(".infinite-scroll-preloader").hide();
         _this.loading = false;
         $(document).on('infinite', '.infinite-scroll-bottom',function() {
             // 如果正在加载，则退出
@@ -91,18 +98,10 @@ var pageObj=$.extend({},pageObj,{
                 $.pullToRefreshDone('.pull-to-refresh-content');
             }, 1000);
         });
-        //输入框输入
-        $("input[name='address']").on("keyup",function(e){
-           if(e.keyCode==13){
-               var val=$.trim($(this).val());
-               if(val==""){
-                   $.toast("请选择地区搜索");
-               }else{
-                   _this.ajaxData.Keyword=val;
-                   _this.search("update");
-               }
-           }
-        });
+        //点击查询搜索
+        $("#query").on("click",function(){
+            _this.search("update");
+        })
     }
 })
 $(document).ready(function(){

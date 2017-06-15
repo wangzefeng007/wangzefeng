@@ -21,11 +21,6 @@ $(function(){
     var area_sel = $("#area_sel").text();
     var id_num = $("#id_num").val();
 
-    if(key == ''){
-      $("#keyword").focus();
-      showMsg('请输入必填');
-      return;
-    }
 
     $.ajax({
           type: "post",	//提交类型
