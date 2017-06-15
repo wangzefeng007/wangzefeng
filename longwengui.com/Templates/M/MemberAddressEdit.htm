@@ -7,24 +7,18 @@
                 <a class="header-left icon-back" href="javascript:void (0)">
                 </a>
                 <section class="header-title">
-                    收货地址
+                    管理收货地址
                 </section>
-                <a href="/member/addressedit/" class="header-right">
-                    管理
-                </a>
             </header>
-            <div class="content-pd address-list mt02">
+            <div class="content-pd mt02 address-list">
                 {loop $AddressList $lists}
                 <div class="form-fieldset">
                     <div class="form-legend common-box">
                         <div>
                             <i class="icon icon-address3"></i>
                             收货地址信息
-                            {if $lists['IsDefault']==1}
-                            <span class="default fr active">默认地址</span>
-                            {else}
-                            <span class="default fr">设为默认</span>
-                            {/if}
+                            <i class="icon icon-del2 fr"></i>
+                            <i class="icon icon-edit fr mr03"><a href="/member/addressadd"></a></i>
                         </div>
                     </div>
                     <div class="form-box form-view mt01">
@@ -66,9 +60,6 @@
                 <div class="form-tips">
                     <span>请填写正确收货地址，避免经济损失</span>
                 </div>
-            </div>
-            <div class="box-btn mt05">
-                <a class="btn" href="/member/addressadd/">添加收货地址</a>
             </div>
         </div>
     </div>

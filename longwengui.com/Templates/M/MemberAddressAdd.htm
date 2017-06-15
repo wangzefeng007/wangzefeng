@@ -7,33 +7,25 @@
                 <a class="header-left icon-back" href="javascript:void (0)">
                 </a>
                 <section class="header-title">
-                    收货地址
+                    编辑收货地址
                 </section>
-                <a href="/member/addressedit/" class="header-right">
-                    管理
-                </a>
             </header>
             <div class="content-pd address-list mt02">
-                {loop $AddressList $lists}
                 <div class="form-fieldset">
                     <div class="form-legend common-box">
                         <div>
                             <i class="icon icon-address3"></i>
                             收货地址信息
-                            {if $lists['IsDefault']==1}
-                            <span class="default fr active">默认地址</span>
-                            {else}
                             <span class="default fr">设为默认</span>
-                            {/if}
                         </div>
                     </div>
-                    <div class="form-box form-view mt01">
+                    <div class="form-box mt01">
                         <div class="row">
                             <p class="form-lab">
                                 收&emsp;货&emsp;人:
                             </p>
                             <div class="form-grid">
-                                {$lists['Name']}
+                                <input class="inp" type="text" placeholder="请输入收货人姓名">
                             </div>
                         </div>
                         <div class="row">
@@ -41,7 +33,7 @@
                                 手 机 号 码:
                             </p>
                             <div class="form-grid">
-                                {$lists['Mobile']}
+                                <input class="inp" type="tel" placeholder="请输入收货人的手机号码">
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +41,7 @@
                                 收 货 地 址:
                             </p>
                             <div class="form-grid">
-                                {$lists['Province']}- {$lists['City']}- {$lists['Area']}
+                                <input class="inp" type="text" placeholder="请选择收货的地址">
                             </div>
                         </div>
                         <div class="row">
@@ -57,18 +49,19 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid ellipsis">
-                                {$lists['Address']}
+                                <textarea class="textarea" name="" id="" cols="30" maxlength="50" rows="10" placeholder="请输入街道门牌信息（最多50个字）"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/loop}
                 <div class="form-tips">
                     <span>请填写正确收货地址，避免经济损失</span>
                 </div>
             </div>
-            <div class="box-btn mt05">
-                <a class="btn" href="/member/addressadd/">添加收货地址</a>
+            <div class="fixed-bottom">
+                <div class="box-btn mt05">
+                    <a class="btn" href="#">保存</a>
+                </div>
             </div>
         </div>
     </div>
