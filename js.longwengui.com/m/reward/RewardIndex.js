@@ -4,7 +4,7 @@ var pageObj=$.extend({},pageObj,{
     //ajax参数
     ajaxData:{
         'Intention': 'GetRewardList',//提交方法
-        'Type':1,            //悬赏类型 1、找人 2、找财产 3、其他
+        'Type':0,            //悬赏类型 1、找人 2、找财产 3、其他
         'Page':1,         //当前页
         'Keyword':"all"        //搜索关键字
     },
