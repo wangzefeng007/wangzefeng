@@ -2,13 +2,13 @@
 <body>
 <div class="page-group">
     <div class="page">
-        <div class="content">
+        <div class="content infinite-scroll pull-to-refresh-content infinite-scroll-bottom">
             <header class="common-header">
                 <a class="header-left icon-back" href="javascript:void (0)">
                 </a>
                 <section class="header-search">
                     <i class="icon-search"></i>
-                    <input class="inp" type="search" placeholder="请输入姓名或身份证号" />
+                    <input class="inp" name="keyword" type="search" placeholder="请输入姓名或身份证号" />
                 </section>
                 <a class="header-right" href="#">
                     发布悬赏
@@ -17,69 +17,213 @@
             <div class="tips">
                 平台警告：平台不承担任何线索担保，请用户自己核实提供的信息是否属实！！！
             </div>
-            <div class="tab-nav">
-                <a href="#">悬赏地区</a>
-                <a href="#">悬赏方式<i></i></a>
-            </div>
-
             <div class="content-pd">
+                <div class="tab-nav tab-radius mt02">
+                    <a class="active" href="#tab1" data-type="1">
+                        找人
+                    </a>
+                    <a href="#tab2" data-type="2">
+                        找财产
+                    </a>
+                    <a href="#tab3" data-type="3">
+                        其他
+                    </a>
+                </div>
                 <ul class="list-clue">
-                    <li>
-                        <div class="item-clue">
-                            <div class="common-box clue-top">
-                                <p class="photo">
-                                    <img src="../temp/photo-1.jpg" alt="">
-                                </p>
-                                <div>
-                                    <span class="h3">姓名：刘备</span><span class="type">找人</span>
-                                </div>
-                            </div>
-                            <div class="clue-msg">
-                                <p>
-                                    性别：男&emsp;&emsp;年龄：26&emsp;&emsp;身高：174cm
-                                </p>
-                                <p>
-                                    身份证号：3303501752****2541
-                                </p>
-                                <p>
-                                    失联时间：2017-04-23
-                                </p>
-                                <div class="common-box mt01">
-                                    <p>详细内容：</p>
-                                    <div>
-                                        出单时间发货我黑回复出单时间发货我黑回复出
-                                        出单时间发货我黑回复出单时间发货我黑回复出
-                                        出单时间发货我黑回复出单时间发货我黑回复出
-                                        出单时间发货我黑回复出单时间发货我黑回复出
-                                        出单时间发货我黑回复出单时间发货我黑回复出
-                                        出单时间发货我黑回复出单时间发货我黑回复出
-                                    </div>
-                                </div>
-                                <p>资料提供：</p>
-                                <div class="common-box">
-                                    <div>
-                                        <a href="#">
-                                            <img src="http://placeholder.qiniudn.com/204x164" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <img src="http://placeholder.qiniudn.com/204x164" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <img src="http://placeholder.qiniudn.com/204x164" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
+                <!-- 加载提示符 -->
+                <div class="infinite-scroll-preloader">
+                    <div class="preloader"></div>
+                </div>
+                <div class="infinite-scroll-noData">
+                    没有更多数据！
+                </div>
+            </div>
+            <div class="common-empty">
+                <img src="{echo CssURL}/m/images/empty-img.jpg" alt="">
+                <p>很抱歉，暂时无法找到符合您要求的债务。</p>
             </div>
         </div>
     </div>
 </div>
+<script type="text/html" id="clue_temp">
+    {{each Data as reward}}
+    <% if (reward.Type=="1") { %>
+    <li>
+        <div class="item-clue">
+            <div class="common-box clue-top">
+                <p class="photo">
+
+                </p>
+                <div>
+                    <span class="h3">姓名：{{reward.Message.find_name}}</span>
+                    <span class="type">
+                            找人
+                    </span>
+                </div>
+            </div>
+            <div class="clue-msg">
+                <p>
+                    性别：{{reward.Message.find_sex}}&emsp;&emsp;年龄：{{reward.Message.find_age}}&emsp;&emsp;身高：{{reward.Message.find_height}}cm
+                </p>
+                <p>
+                    身份证号：{{reward.Message.find_idCard}}
+                </p>
+                <p>
+                    失联时间：{{reward.Message.last_time}}
+                </p>
+                <div class="common-box mt01">
+                    <p>详细内容：</p>
+                    <div>
+                        {{reward.Message.find_detail}}
+                    </div>
+                </div>
+                <p>资料提供：</p>
+                <div class="common-box image-float">
+                    {{each reward.Image as img i}}
+                    <% if (i<3) { %>
+                    <div>
+                        <a href="#">
+                            <img src="{{img.ImageUrl}}" alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                    {{/each}}
+                </div>
+                <div class="common-box image-float">
+                    {{each reward.Image as img i}}
+                    <% if (i>3) { %>
+                    <div>
+                        <a href="#">
+                            <img src="{{img.ImageUrl}}" alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <% } %>
+
+    <% if (reward.Type=="2") { %>
+    <li>
+        <div class="item-clue">
+            <div class="common-box clue-top">
+                <p class="photo">
+                    <img src="" alt="">
+                </p>
+                <div>
+                    <span class="h3">所在地区：{{reward.Message.province}}-{{reward.Message.city}}-{{reward.Message.area}}</span><span class="type">找财产</span>
+                </div>
+            </div>
+            <div class="clue-msg">
+                <p>
+                    姓名：{{reward.Message.name}}
+                </p>
+                <p>
+                    身份证号：{{reward.Message.idNum}}
+                </p>
+                <p class="ellipsis">
+                    地址：{{reward.Message.detail_address}}
+                </p>
+                <div class="common-box mt01">
+                    <p>详细内容：</p>
+                    <div>
+                        {{reward.Message.find_detail}}
+                    </div>
+                </div>
+                <p>资料提供：</p>
+                <div class="common-box image-float">
+                    {{each reward.Image as img i}}
+                    <% if (i<3) { %>
+                    <div>
+                        <a href="#">
+                            <img src="{{img.ImageUrl}}" alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                    {{/each}}
+                </div>
+                <div class="common-box image-float">
+                    {{each reward.Image as img i}}
+                    <% if (i>3) { %>
+                    <div>
+                        <a href="#">
+                            <img src="{{img.ImageUrl}}" alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="contact">
+                如有知情者请拨打联系电话：
+                <span class="bold c-red">{{reward.Message.contact_phone}}</span>
+            </div>
+        </div>
+    </li>
+    <% } %>
+    <% if (reward.Type=="3") { %>
+    <li>
+        <div class="item-clue">
+            <div class="common-box clue-top">
+                <p class="photo">
+                    <img src="" alt="">
+                </p>
+                <div>
+                    <span class="h3">所在地区：{{reward.Message.province}}-{{reward.Message.city}}-{{reward.Message.area}}</span><span class="type">找物品</span>
+                </div>
+            </div>
+            <div class="clue-msg">
+                <p>
+                    丢失物品名称：{{reward.Message.lost_name}}
+                </p>
+                <p>
+                    丢失时间：{{reward.Message.lost_time}}
+                </p>
+                <p class="ellipsis">
+                    丢失地址：{{reward.Message.detail_address}}
+                </p>
+                <div class="common-box mt01">
+                    <p>详细内容：</p>
+                    <div>
+                        {{reward.Message.find_detail}}
+                    </div>
+                </div>
+                <p>资料提供：</p>
+                <div class="common-box image-float">
+                    {{each reward.Image as img i}}
+                    <% if (i<3) { %>
+                    <div>
+                        <a href="#">
+                            <img src="{{img.ImageUrl}}" alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                    {{/each}}
+                </div>
+                <div class="common-box image-float">
+                    {{each reward.Image as img i}}
+                    <% if (i>3) { %>
+                    <div>
+                        <a href="#">
+                            <img src="{{img.ImageUrl}}" alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="contact">
+                如有知情者请拨打联系电话：
+                <span class="bold c-red">13520465230</span>
+            </div>
+        </div>
+    </li>
+    <% } %>
+    {{/each}}
+</script>
+<script src='{echo JsURL}/m/reward/RewardIndex.js'></script>
 </body>
 </html>

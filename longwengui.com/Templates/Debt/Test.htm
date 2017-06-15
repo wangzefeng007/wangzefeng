@@ -1,1 +1,33 @@
-testsss111
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>basic-demo</title>
+    <script type='text/javascript' src='{echo JsURL}/m/lib/art-template-master/lib/template-web.js' charset='utf-8'></script>
+</head>
+
+<body>
+<div id="content"></div>
+<script id="test" type="text/html">
+    {{each Data as item}}
+    <% if (item.type=="1") { %>
+        找人
+    <% } %>
+    <% if (item.type=="2") { %>
+    找财产
+    <% } %>
+    <% if (item.type=="3") { %>
+    其他
+    <% } %>
+    {{/each}}
+</script>
+
+<script>
+
+
+    var data ={Data:[{type:"1"},{type:"2"},{type:"3"}]};
+    var html = template('test', data);
+    document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>
