@@ -85,6 +85,8 @@ class Ajax
                 $Data['Data'][$key]['CompanyName'] = $UserInfo['CompanyName'];
                 $Data['Data'][$key]['ChargeMobile'] = $value['ChargeMobile'];
                 $Data['Data'][$key]['Content'] = $value['Content'];
+                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
             }
             MultiPage($Data, 5);
             $Data['Message'] = '返回成功';
@@ -130,23 +132,23 @@ class Ajax
             $Data['Page'] = min($Page, $Data['PageCount']);
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberOrderDemandModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
-            foreach ($Data['Data'] as $key=>$value){
-                $AreaInfo = json_decode($value['Area'],true);
-                foreach($AreaInfo as $K=>$V){
+            foreach ($Data['Data'] as $key=>$value) {
+                $AreaInfo = json_decode($value['Area'], true);
+                foreach ($AreaInfo as $K => $V) {
                     $AreaInfo[$K]['province'] = $MemberAreaModule->GetCnNameByKeyID($V['province']);
                     $AreaInfo[$K]['city'] = $MemberAreaModule->GetCnNameByKeyID($V['city']);
                     $AreaInfo[$K]['area'] = $MemberAreaModule->GetCnNameByKeyID($V['area']);
                 }
                 $Data['Data'][$key]['Area'] = $AreaInfo;
-                $FeeRateInfo = json_decode($value['FeeRate'],true);
+                $FeeRateInfo = json_decode($value['FeeRate'], true);
                 $Data['Data'][$key]['FeeRate'] = $FeeRateInfo;
                 $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
                 $Data['Data'][$key]['Identity'] = $UserInfo['Identity'];
                 $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
-                if ($UserInfo['Identity']==2){
-                    $Data['Data'][$key]['Name'] = $UserInfo['RealName'];
-                }elseif ($UserInfo['Identity']==3){
-                    $Data['Data'][$key]['Name'] = $UserInfo['CompanyName'];
+                if ($UserInfo['Identity']==1 || $UserInfo['Identity']==2){
+                    $Data['Data'][$key]['CreditorsType'] = '个人';
+                }else{
+                    $Data['Data'][$key]['CreditorsType'] = '企业';
                 }
             }
             MultiPage($Data, 5);
