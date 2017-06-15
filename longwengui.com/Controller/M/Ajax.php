@@ -115,7 +115,7 @@ class Ajax
             $MysqlWhere .= ' and  Area like \'%'.$City.'%\'';
         }
         $Rscount = $MemberOrderDemandModule->GetListsNum($MysqlWhere);
-        $Page=intval($_POST['p'])?intval($_POST['p']):0;
+        $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         if ($Page < 1) {
             $Page = 1;
         }
@@ -166,9 +166,17 @@ class Ajax
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
         $MysqlWhere ='';
+        $Type = $_POST['Type'];
+        if ($Type==1){
+            $MysqlWhere .= ' and Type =1 ';
+        }elseif ($Type==2){
+            $MysqlWhere .= ' and Type =2 ';
+        }elseif ($Type==3){
+            $MysqlWhere .= ' and Type =3 ';
+        }
         //分页查询开始-------------------------------------------------
         $Rscount = $MemberRewardInfoModule->GetListsNum($MysqlWhere);
-        $Page=intval($_POST['p'])?intval($_POST['p']):0;
+        $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         if ($Page < 1) {
             $Page = 1;
         }
