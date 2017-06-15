@@ -42,13 +42,25 @@ class AjaxAsset
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MysqlWhere = '';
         //关键字
+        $S = intval($_POST['Type']);
+        $Keywords = trim($_GET['Keyword']);
+        if ($S ==1){
+            $MysqlWhere = ' and `Status` = 2 and `S1` =1 ';
+        }elseif($S ==2){
+            $MysqlWhere = ' and `Status` = 2 and `S2` =1 ';
+        }else{
+            $MysqlWhere = ' and `Status` = 2 ';
+        }
+        if ($Keywords!=''){
+            $MysqlWhere .= ' and Title like \'%' . $Keywords . '%\'';
+        }
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
         $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
         if ($Page < 1) {
             $Page = 1;
         }
         if ($Rscount['Num']) {
-            $PageSize=5;
+            $PageSize=6;
             $Data = array();
             $Data['RecordCount'] = $Rscount['Num'];
             $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
@@ -59,14 +71,12 @@ class AjaxAsset
             $Offset = ($Page - 1) * $Data['PageSize'];
             $List= $MemberAssetInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($List as $key=>$value){
-                $Data['Data'][$key]['Number'] = intval($value['Amount'])-intval($value['Inventory']);//已买量
                 $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$value['AssetID'].' and IsDefault = 1');
-                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
                 $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
-                $Data['Data'][$key]['RealName'] = $UserInfo['RealName'];
-                $Data['Data'][$key]['NickName'] = $UserInfo['NickName'];
-                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
-                $Data['Data'][$key]['AddTime'] = date('m'.'月'.'d'.'日',$value['AddTime']);
+                $Data['Data'][$key]['Url'] = '/assetdetails/'.$value['AssetID'].'.html';
+                $Data['Data'][$key]['MarketPrice'] = $value['MarketPrice'];
+                $Data['Data'][$key]['Price'] = $value['Price'];
+                $Data['Data'][$key]['Title'] = $value['Title'];
             }
             MultiPage($Data, 5);
             $Data['Message'] = '返回成功';
