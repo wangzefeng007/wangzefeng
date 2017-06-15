@@ -69,6 +69,25 @@ class MemberPerson
      * @desc 债权管理
      */
     public function DebtManagement(){
+        MService::IsNoLogin();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberDebtInfoModule->NStatus;
+        $Data['Data'] = $MemberDebtInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
+        foreach ($Data['Data'] as $key=>$value){
+            $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
+            $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+            $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+            if ($DebtorsInfo['Province'])
+                $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+            if ($DebtorsInfo['City'])
+                $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+            if ($DebtorsInfo['Area'])
+                $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+        }
         include template('MemberPersonDebtManagement');
     }
     /**

@@ -12,85 +12,27 @@
             </header>
             <div class="content-pd mt02">
                 <ul class="item-list">
+                    {loop $Data['Data'] $lists}
                     <li>
-                        <a href="#">
-                            <i class="status status-1"></i>
+                        <a href="/debt/{$lists[DebtID]}.html">
+                            <i class="status status-{$lists[Status]}"></i>
                             <div class="item-hd">
-                                债务编号：201702280001
+                                债务编号：{$lists[DebtNum]}
                             </div>
                             <div class="item-main">
                                 <p class="h4">
-                                    债务人：刘德
+                                    债务人：{$lists[Name]}
                                 </p>
                                 <p class="h5">
-                                    债务人地区：福建省-厦门市-思明区
+                                    债务人地区：{$lists[Province]}-{$lists[City]}-{$lists[Area]}
                                 </p>
                             </div>
                             <div class="item-detail">
-                                债务金额：<span class="c-red">¥10000.00</span>
+                                债务金额：<span class="c-red">¥{$lists[DebtAmount]}</span>
                             </div>
                         </a>
                     </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="status status-2"></i>
-                            <div class="item-hd">
-                                债务编号：201702280001
-                            </div>
-                            <div class="item-main">
-                                <p class="h4">
-                                    债务人：刘德
-                                </p>
-                                <p class="h5">
-                                    债务人地区：福建省-厦门市-思明区
-                                </p>
-                            </div>
-                            <div class="item-detail">
-                                债务金额：<span class="c-red">¥10000.00</span>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="status status-3"></i>
-                            <div class="item-hd">
-                                债务编号：201702280001
-                            </div>
-                            <div class="item-main">
-                                <p class="h4">
-                                    债务人：刘德
-                                </p>
-                                <p class="h5">
-                                    债务人地区：福建省-厦门市-思明区
-                                </p>
-                            </div>
-                            <div class="item-detail">
-                                债务金额：<span class="c-red">¥10000.00</span>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="status status-4"></i>
-                            <div class="item-hd">
-                                债务编号：201702280001
-                            </div>
-                            <div class="item-main">
-                                <p class="h4">
-                                    债务人：刘德
-                                </p>
-                                <p class="h5">
-                                    债务人地区：福建省-厦门市-思明区
-                                </p>
-                            </div>
-                            <div class="item-detail">
-                                债务金额：<span class="c-red">¥10000.00</span>
-                            </div>
-                        </a>
-                    </li>
+                    {/loop}
                 </ul>
             </div>
         </div>
