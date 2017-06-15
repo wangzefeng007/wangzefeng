@@ -4,8 +4,10 @@ var pageObj=$.extend({},pageObj,{
     //ajax参数
     ajaxData:{
         'Intention': 'GetFindList',//提交方法
-        'Page':1,         //当前页
-        'Keyword':"all"        //搜索关键字
+        "dd_province":"",       //省
+        "dd_city":"",           //市
+        "dd_area":"",           //区
+        'Page':1         //当前页
     },
     /**
      * 搜索
@@ -13,8 +15,14 @@ var pageObj=$.extend({},pageObj,{
      */
     search:function(type){
         var _this=this;
-        var getParams={
-            'Keyword':$("input[name='keyword']").val()||"all"        //搜索关键字
+        var addressValue=$("input[name='address']").attr("data-value"); //获取选择地区id
+        var getParams={};
+        if(addressValue){
+            getParams={
+                'dd_province':addressValue.split(" ")[0],      //省
+                'dd_city':addressValue.split(" ")[1],      //市
+                'dd_area':addressValue.split(" ")[2]      //区
+            }
         }
         _this.ajaxData=$.extend({},_this.ajaxData,getParams);
         $.ajax({
@@ -50,6 +58,13 @@ var pageObj=$.extend({},pageObj,{
         var _this = this;
         //进入页面搜索
         _this.search("update");
+        //地区初始化
+        $("input[name='address']").cityPicker();
+        //选择地区确定后进行搜索
+        $(document).on("click",".close-picker",function(){
+            _this.ajaxData.Page=1; //每次筛选page变为1
+            _this.search("update");
+        });
         //滚动加载
         _this.loading = false;
         $(document).on('infinite', '.infinite-scroll-bottom',function() {
@@ -77,11 +92,11 @@ var pageObj=$.extend({},pageObj,{
             }, 1000);
         });
         //输入框输入
-        $("input[name='keyword']").on("keyup",function(e){
+        $("input[name='address']").on("keyup",function(e){
            if(e.keyCode==13){
                var val=$.trim($(this).val());
                if(val==""){
-                   $.toast("请输入姓名或身份证号搜索");
+                   $.toast("请选择地区搜索");
                }else{
                    _this.ajaxData.Keyword=val;
                    _this.search("update");
