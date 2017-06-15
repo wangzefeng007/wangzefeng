@@ -14,9 +14,6 @@
                     发布悬赏
                 </a>
             </header>
-            <div class="tips">
-                平台警告：平台不承担任何线索担保，请用户自己核实提供的信息是否属实！！！
-            </div>
             <div class="content-pd">
                 <div class="tab-nav tab-radius mt02">
                     <a class="active" href="#tab1" data-type="1">
@@ -53,7 +50,7 @@
         <div class="item-clue">
             <div class="common-box clue-top">
                 <p class="photo">
-
+                    <img src="{{reward.Avatar}}">
                 </p>
                 <div>
                     <span class="h3">姓名：{{reward.Message.find_name}}</span>
@@ -111,7 +108,7 @@
         <div class="item-clue">
             <div class="common-box clue-top">
                 <p class="photo">
-                    <img src="" alt="">
+                    <img src="{{reward.Avatar}}">
                 </p>
                 <div>
                     <span class="h3">所在地区：{{reward.Message.province}}-{{reward.Message.city}}-{{reward.Message.area}}</span><span class="type">找财产</span>
@@ -169,7 +166,7 @@
         <div class="item-clue">
             <div class="common-box clue-top">
                 <p class="photo">
-                    <img src="" alt="">
+                    <img src="{{reward.Avatar}}">
                 </p>
                 <div>
                     <span class="h3">所在地区：{{reward.Message.province}}-{{reward.Message.city}}-{{reward.Message.area}}</span><span class="type">找物品</span>

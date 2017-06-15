@@ -165,6 +165,7 @@ class Ajax
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
         $MemberAreaModule = new MemberAreaModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
         $MysqlWhere ='';
         $Type = $_POST['Type'];
         if ($Type==1){
@@ -206,6 +207,8 @@ class Ajax
                 $Data['Data'][$key]['Message'] = $Message;
                 $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = ' . $value['RewardID'], true);
                 $Data['Data'][$key]['Image'] = $RewardImage;
+                $UserInfo = $MemberUserInfoModule->GetInfoByUserID($value['UserID']);
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
             }
             MultiPage($Data, 5);
             $Data['Message'] = '返回成功';
