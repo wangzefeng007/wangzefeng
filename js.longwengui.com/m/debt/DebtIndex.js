@@ -1,6 +1,6 @@
 var pageObj=$.extend({},pageObj,{
     loading:false,  //是否正在加载
-    pageCount:0,
+    pageCount:0,       //总页数
     //ajax参数
     ajaxData:{
         'Intention': 'GetDebtList',//提交方法
