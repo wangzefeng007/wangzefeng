@@ -9,27 +9,21 @@
 <body>
 <div id="content"></div>
 <script id="test" type="text/html">
-{{if isAdmin}}
-
-<h1>{{title}}</h1>
-<ul>
-    {{each list value i}}
-        <li>索引 {{i + 1}} ：{{value}}</li>
-    {{/each}}
-</ul>
-
-{{/if}}
-{{$data}}
+{{each Data as item}}
+    {{if item.type=="1"}}
+    找人
+    {{else if item.type=="2"}}
+    找财产
+    {{else}}
+    其他
+    {{/if}}
+{{/each}}
 </script>
 
 <script>
 
 
-var data = {
-	title: '基本例子',
-	isAdmin: true,
-	list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
-};
+var data ={Data:[{type:"1"},{type:"2"},{type:"3"}]};
 var html = template('test', data);
 document.getElementById('content').innerHTML = html;
 </script>
