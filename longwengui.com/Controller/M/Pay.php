@@ -13,7 +13,7 @@ class Pay
         include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
         $aop = new AopClient();
         $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
-        $aop->appId = '2088912584072026';
+        $aop->appId = '2017051107204639';
         $aop->rsaPrivateKeyFilePath = SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_private_key.pem';
         $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
         $aop->apiVersion = '1.0';
@@ -73,8 +73,8 @@ class Pay
                     $JsonData['out_trade_no']=$out_trade_no;
                     $JsonData['total_amount']=$total_fee;
                     $JsonData['product_code']="QUICK_WAP_PAY";
-                    $request->setReturnUrl(WEB_M_URL . '/pay/wapalipayreturn/');
-                    $request->setNotifyUrl(WEB_M_URL . '/pay/wapalipaynotify/');
+                    $request->setReturnUrl(WEB_M_URL . '/pay/alipaynotify/');
+                    $request->setNotifyUrl(WEB_M_URL . '/pay/alipaynotify/');
                     $request->setBizContent(json_encode($JsonData));
                     $result = $aop->pageExecute ( $request);
                     echo $result;

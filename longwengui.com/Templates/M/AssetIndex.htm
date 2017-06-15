@@ -48,17 +48,17 @@
 <script type="text/html" id="assets_temp">
     {{each Data as asset}}
     <li>
-        <a href="{{}}">
+        <a href="{{asset.Url}}">
             <p class="pic">
                 <img src="{{asset.ImageUrl}}" alt="">
             </p>
             <div class="msg">
                 <div class="assets-money">
-                    <span class="c-red">¥1899.00</span>
-                    <span class="line-through">¥ 2899.00</span>
+                    <span class="c-red">¥{{asset.Price}}</span>
+                    <span class="line-through">¥ {{asset.MarketPrice}}</span>
                 </div>
                 <p class="assets-title ellipsis">
-                    泰国旅游债权转让
+                    {{asset.Title}}
                 </p>
             </div>
         </a>

@@ -147,25 +147,42 @@ class Member
     public function Address(){
         MService::IsNoLogin();
         $Title = '会员-收货地址';
-        $Nav = 'address';
-        $ID = intval($_GET['ID']);
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $MemberAreaModule = new MemberAreaModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $Rscount = $MemberShippingAddressModule->GetListsNum(' and UserID = '.$_SESSION['UserID']);
-        $Number = 10-$Rscount['Num'];//剩余保存条数
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
         foreach ($AddressList as $key=>$value){
             $AddressList[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
             $AddressList[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
             $AddressList[$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($value['Area']);
         }
-        if (!empty($ID)){
-            $AddressInfo = $MemberShippingAddressModule->GetInfoByKeyID($ID);
-        }
         include template('MemberAddress');
     }
+    /**
+     * @desc 管理收货地址
+     */
+    public function AddressEdit(){
+        MService::IsNoLogin();
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
+        foreach ($AddressList as $key=>$value){
+            $AddressList[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $AddressList[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $AddressList[$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+        }
+        include template('MemberAddressEdit');
+    }
+    /**
+     * @desc 添加收货地址
+     */
+    public function AddressAdd(){
+        MService::IsNoLogin();
+        include template('MemberAddressAdd');
+    }
+
     /**
      * @desc 我的悬赏
      */

@@ -87,17 +87,11 @@
                     <div class="form-box">
                         <div class="row">
                             <div class="form-grid">
-                                <a href="">
-                                    <img src="{$UserInfo[CardPositive]}" alt="">
-                                </a>
                                 <p class="form-lab">
                                     身份证正面:
                                 </p>
                             </div>
                             <div class="form-grid" style="margin-left:.36rem;">
-                                <a href="">
-                                    <img src="{$UserInfo[CardNegative]}" alt="">
-                                </a>
                                 <p class="form-lab">
                                     身份证反面:
                                 </p>
@@ -107,19 +101,17 @@
                             <div class="form-grid bx imageUploadBox">
                                 <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
+                                    <img src="{$UserInfo[CardPositive]}" alt="">
                                 </div>
                             </div>
-
                             <div class="form-grid bx imageUploadBox">
                                 <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
+                                    <img src="{$UserInfo[CardNegative]}" alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <a href="">
-                                <img src="{$UserInfo[CardHold]}" alt="">
-                            </a>
                             <p class="form-lab">
                                 手持身份证:
                             </p>
@@ -128,6 +120,7 @@
                             <div class="form-grid bx imageUploadBox">
                                 <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
+                                        <img src="{$UserInfo[CardHold]}" alt="">
                                 </div>
                             </div>
                             <div class="form-grid" style="margin-left:.36rem;"></div>

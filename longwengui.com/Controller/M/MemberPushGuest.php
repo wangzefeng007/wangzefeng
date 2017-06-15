@@ -70,5 +70,12 @@ class MemberPushGuest
         MService::IsNoLogin();
         include template('MemberPushGuestDebtManagement');
     }
+    /**
+     * @desc 资产管理
+     */
+    public function Asset(){
+        MService::IsNoLogin();
+        include template('MemberPushGuestAsset');
+    }
 
 }
