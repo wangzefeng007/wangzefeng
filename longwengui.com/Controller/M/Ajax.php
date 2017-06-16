@@ -146,8 +146,10 @@ class Ajax
                 $Data['Data'][$key]['Identity'] = $UserInfo['Identity'];
                 $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
                 if ($UserInfo['Identity']==1 || $UserInfo['Identity']==2){
+                    $Data['Data'][$key]['Name'] = $UserInfo['RealName'];
                     $Data['Data'][$key]['CreditorsType'] = '个人';
                 }else{
+                    $Data['Data'][$key]['Name'] = $UserInfo['CompanyName'];
                     $Data['Data'][$key]['CreditorsType'] = '企业';
                 }
             }
