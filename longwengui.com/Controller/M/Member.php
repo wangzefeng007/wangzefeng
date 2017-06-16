@@ -169,8 +169,11 @@ class Member
         $MemberAreaModule = new MemberAreaModule();
         $AddressList = $MemberShippingAddressModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
         foreach ($AddressList as $key=>$value){
+            if ($value['Province'])
             $AddressList[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            if ($value['City'])
             $AddressList[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            if ($value['Area'])
             $AddressList[$key]['Area']= $MemberAreaModule->GetCnNameByKeyID($value['Area']);
         }
         include template('MemberAddressEdit');
@@ -180,6 +183,18 @@ class Member
      */
     public function AddressAdd(){
         MService::IsNoLogin();
+        $ID = intval($_GET['ID']);
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $MemberAreaModule = new MemberAreaModule();
+        if (!empty($ID)){
+            $AddressInfo = $MemberShippingAddressModule->GetInfoByKeyID($ID);
+            if ($AddressInfo['Province'])
+            $AddressInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Province']);
+            if ($AddressInfo['City'])
+            $AddressInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['City']);
+            if ($AddressInfo['Area'])
+            $AddressInfo['area']= $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Area']);
+        }
         include template('MemberAddressAdd');
     }
 

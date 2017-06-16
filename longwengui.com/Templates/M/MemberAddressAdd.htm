@@ -16,7 +16,7 @@
                         <div>
                             <i class="icon icon-address3"></i>
                             收货地址信息
-                            <span class="default fr active">设为默认</span>
+                            <span class="default fr {if $AddressInfo[IsDefault]==1}active{/if}">{if $AddressInfo[IsDefault]==1}默认地址{else}设为默认{/if}</span>
                         </div>
                     </div>
                     <div class="form-box mt01">
@@ -26,7 +26,7 @@
                                 收&emsp;货&emsp;人:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="to_name" maxlength="12" type="text" placeholder="请输入收货人姓名">
+                                <input class="inp" value="{$AddressInfo[Name]}" name="to_name" maxlength="12" type="text" placeholder="请输入收货人姓名">
                             </div>
                         </div>
                         <div class="row">
@@ -34,7 +34,7 @@
                                 手 机 号 码:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" type="tel" name="to_phone" placeholder="请输入收货人的手机号码">
+                                <input class="inp" type="tel" value="{$AddressInfo[Mobile]}" name="to_phone" placeholder="请输入收货人的手机号码">
                             </div>
                         </div>
                         <div class="row">
@@ -42,7 +42,7 @@
                                 收 货 地 址:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="address" type="text" placeholder="请选择收货的地址">
+                                <input class="inp" name="address" value="{$AddressInfo[province]} {$AddressInfo[city]} {$AddressInfo[area]}" data-value="{$AddressInfo[Province]} {$AddressInfo[City]} {$AddressInfo[Area]}" type="text" placeholder="请选择收货的地址">
                             </div>
                         </div>
                         <div class="row">
@@ -50,7 +50,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid ellipsis">
-                                <textarea class="textarea" name="detail_area" id="" cols="30" maxlength="50" rows="10" placeholder="请输入街道门牌信息（最多50个字）"></textarea>
+                                <textarea class="textarea" name="detail_area" id="" cols="30" maxlength="50" rows="10" placeholder="请输入街道门牌信息（最多50个字）">{$AddressInfo[Address]}</textarea>
                             </div>
                         </div>
                     </div>
