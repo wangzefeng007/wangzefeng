@@ -1,16 +1,15 @@
 var pageObj=$.extend({},pageObj,{
     /**
-     * 设为默认地址
+     * 删除地址
      * @param addressId
      */
-    setDefaultAddress:function(tar,addressId){
-        //var addressId=$(tar).attr("data-id");
+    delAddress:function(tar,addressId){
         $.ajax({
             type:"post",
             url:"/loginajax.html",
             dataType: "json",
             data:{
-                "Intention":"DefaultAddress",
+                "Intention":"DeleteAddress",
                 "id":addressId
             },
             beforeSend:　function(){
@@ -18,11 +17,7 @@ var pageObj=$.extend({},pageObj,{
             },success: function(data){
                 if(data.ResultCode == 200){
                     $.toast(data.Message);
-                    /*$(tar).parent().addClass("default").removeClass("set-default");
-                    $(tar).text("默认地址");
-                    $(tar).parents("tr").siblings("tr").find(".default").addClass("set-default").removeClass("default");
-                    $(tar).parents("tr").siblings("tr").find(".set-default").find("span").text("设为默认")*/
-                    location.reload();
+                    $(tar).parents(".form-fieldset").remove();
                 }else{
                     $.toast(data.Message);
                 }

@@ -42,7 +42,11 @@
                                 收 货 地 址:
                             </p>
                             <div class="form-grid">
+                                {if $AddressInfo[province]!=""}
                                 <input class="inp" name="address" value="{$AddressInfo[province]} {$AddressInfo[city]} {$AddressInfo[area]}" data-value="{$AddressInfo[Province]} {$AddressInfo[City]} {$AddressInfo[Area]}" type="text" placeholder="请选择收货的地址">
+                                {else}
+                                <input class="inp" name="address" value="" type="text" placeholder="请选择收货的地址">
+                                {/if}
                             </div>
                         </div>
                         <div class="row">

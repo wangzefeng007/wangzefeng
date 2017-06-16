@@ -2245,6 +2245,24 @@ a.btn-s,
 .item-list .status-4{
     background-image: url(../images/yiwancheng.png);
 }
+.item-list .status-5{
+    background-image: url(../images/bufenwancheng.png);
+}
+.item-list .status-6{
+    background-image: url(../images/weibaoguang.png);
+}
+.item-list .status-7{
+    background-image: url(../images/yibaoguang.png);
+}
+.item-list .status-8{
+    background-image: url(../images/shenhezhong.png);
+}
+.item-list .status-9{
+    background-image: url(../images/quxiaofabu.png);
+}
+.item-list .status-10{
+    background-image: url(../images/shenheweitongguo.png);
+}
 .item-list a{
     color: #626d78;
 }
@@ -2927,4 +2945,7 @@ a.btn-s,
 }
 .swiper-container{
     padding-bottom:0;
+}
+.common-img>div{
+    margin:0 .25rem;
 }

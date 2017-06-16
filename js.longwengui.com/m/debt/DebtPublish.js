@@ -294,6 +294,7 @@ var pageObj=$.extend({},pageObj,{
         $("#publish-step2").removeClass("page-current");
         $("#publish-step3").addClass("page-current");
         $("input[name='overDay']").calendar({
+            maxDate:$("input[name='overDay']").attr("maxDate")
             //value: ['2015-12-05']
         });
     },
