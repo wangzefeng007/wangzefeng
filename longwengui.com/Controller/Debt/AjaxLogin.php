@@ -1017,9 +1017,7 @@ class AjaxLogin
             foreach ($Lists as $key=>$value){
                 $Data['Data'][$key]['DebtNum'] = $value['DebtNum'];
                 $Data['Data'][$key]['DebtAmount'] = $value['DebtAmount'];
-                $Data['Data'][$key]['Overduetime'] = $value['Overduetime'];
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
-                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
@@ -1027,7 +1025,6 @@ class AjaxLogin
                     $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
                 if ($DebtorsInfo['Area'])
                     $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
                 $Data['Data'][$key]['Status'] = $value['Status'];
                 $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];
                 $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
