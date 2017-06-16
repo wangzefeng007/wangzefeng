@@ -781,16 +781,20 @@ class AjaxLogin
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['Type'] = intval($_POST['Type']);
         $Data['AddTime'] = time();
-        $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and Type = '.$Data['Type'].' and UserID = '.$_SESSION['UserID']);
-        if ($FocusDebt){
-            $result_json = array('ResultCode'=>102,'Message'=>'您已关注！');
-        }else{
-            $InsertFocu = $MemberFocusDebtModule->InsertInfo($Data);
-            if ($InsertFocu){
-                $result_json = array('ResultCode'=>200,'Message'=>'关注成功！');
+        if (!empty($Data['DebtID']) && !empty($Data['Type'])){
+            $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and Type = '.$Data['Type'].' and UserID = '.$_SESSION['UserID']);
+            if ($FocusDebt){
+                $result_json = array('ResultCode'=>102,'Message'=>'您已关注！');
             }else{
-                $result_json = array('ResultCode'=>103,'Message'=>'关注失败！');
+                $InsertFocu = $MemberFocusDebtModule->InsertInfo($Data);
+                if ($InsertFocu){
+                    $result_json = array('ResultCode'=>200,'Message'=>'关注成功！');
+                }else{
+                    $result_json = array('ResultCode'=>103,'Message'=>'关注失败！');
+                }
             }
+        }else{
+            $result_json = array('ResultCode'=>104,'Message'=>'关注失败！');
         }
         EchoResult($result_json);
         exit;

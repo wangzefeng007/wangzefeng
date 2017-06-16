@@ -646,9 +646,10 @@ class Ajax
                                 }else{
                                     $Date['IsDefault']= 0;
                                 }
-                                $UpdateDebtImage = $MemberDebtImageModule->UpdateInfoByWhere($Date,' `ImageUrl` = \'' . $value . '\'');
+                                $Date['ImageUrl']= $value;
+                                $InsertDebtImage = $MemberDebtImageModule->InsertInfo($Date);
                             }
-                            if (!$UpdateDebtImage){
+                            if (!$InsertDebtImage){
                                 $DB->query("ROLLBACK");//判断当执行失败时回滚
                                 $result_json = array('ResultCode'=>102,'Message'=>'添加借款凭证失败');
                             }else{
