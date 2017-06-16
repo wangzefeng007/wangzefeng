@@ -10,7 +10,7 @@
                     商品详情
                 </section>
                 <a class="header-right" href="#">
-                    <i class="icon-favo favo-will" onclick="pageObj.favoFun(this)" data-id="{$AssetInfo['AssetID']}"></i>
+                    <i class="icon-favo favo-will {if !empty($Focus)}follow-ed{/if}" onclick="pageObj.favoFun(this)" data-id="{$AssetInfo['AssetID']}"></i>
                 </a>
             </header>
             <div class="swiper-container" data-space-between='10' style="height: 10rem;">

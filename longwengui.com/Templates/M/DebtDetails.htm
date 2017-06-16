@@ -10,7 +10,7 @@
                     债务详情
                 </section>
                 <a class="header-right" href="#">
-                    <i class="icon-follow follow-will" data-id="{$DebtInfo[DebtID]}"></i></a>
+                    <i class="icon-follow follow-will {if !empty($FocusDebt)}follow-ed{/if}" data-id="{$DebtInfo[DebtID]}"></i></a>
             </header>
             <div class="item mt0 top-hd">
                 <div class="item-con">

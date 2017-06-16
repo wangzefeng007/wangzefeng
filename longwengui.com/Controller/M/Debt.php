@@ -24,6 +24,7 @@ class Debt
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
         $NStatus = $MemberDebtInfoModule->NStatus;
         $ID = intval($_GET['ID']);
         //债务信息
@@ -55,6 +56,10 @@ class Debt
         }
         //债务人图片
         $DebtImage = $MemberDebtImageModule->GetInfoByWhere(" and DebtID = ".$ID,true);
+        //债务关注
+        if (!empty ($_SESSION ['UserID'])){
+            $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
+        }
         include template('DebtDetails');
     }
     /**

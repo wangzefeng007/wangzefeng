@@ -124,7 +124,7 @@ class Debt
         }
         //债务关注
         if (!empty ($_SESSION ['UserID'])){
-            $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
+            $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and Type=1 and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
         }
         //亲友信息
         if ($DebtInfo['DebtFamily']){

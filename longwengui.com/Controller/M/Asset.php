@@ -38,6 +38,7 @@ class Asset
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberProductOrderModule = new MemberProductOrderModule();
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
         if ($AssetInfo['Status']!=2){
             alertandback("该资产未审核通过！");
@@ -50,6 +51,10 @@ class Asset
         $TotalAmount =0;
         foreach ($OrderInfo as $value){
             $TotalAmount =$TotalAmount+ $value['TotalAmount'];
+        }
+        //债务关注
+        if (!empty ($_SESSION ['UserID'])){
+            $Focus = $MemberFocusDebtModule->GetInfoByWhere(' and Type=2 and DebtID = '.$ID.' and UserID= '.$_SESSION['UserID']);
         }
         include template('AssetDetails');
     }
