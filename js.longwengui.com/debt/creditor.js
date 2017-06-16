@@ -95,9 +95,9 @@ var pageObj=$.extend({},pageObj,{
                 showLoading();
             },success: function(data){
                 if(data.ResultCode == 200){
-                    showMsg("收藏成功！");
+                    showMsg(data.Message);
                 }else{
-                    showMsg("您已收藏！");
+                    showMsg(data.Message);
                 }
             },complete: function(){
                 closeLoading();

@@ -10,10 +10,10 @@
                     商品详情
                 </section>
                 <a class="header-right" href="#">
-                    <i class="icon-favo favoing"></i>
+                    <i class="icon-favo favo-will" onclick="pageObj.favoFun(this)" data-id="{$AssetInfo['AssetID']}"></i>
                 </a>
             </header>
-            <div class="swiper-container" data-space-between='10'>
+            <div class="swiper-container" data-space-between='10' style="height: 10rem;">
                 <div class="swiper-wrapper">
                     {loop $AssetImage $lists}
                     <div class="swiper-slide"><img src="{$lists[ImageUrl]}"></div>
@@ -39,25 +39,26 @@
                                 <span class="fr date">发布日期：{echo date("Y-m-d",$AssetInfo['AddTime'])}</span>
                             </div>
                             <p class="c-red">
-                                ¥{$AssetInfo['Price']}
+                                ¥<span id="price">{$AssetInfo['Price']}</span>
                             </p>
                             <p class="mt01">
                                 <span class="line-through">¥ {$AssetInfo['MarketPrice']}</span>
-                                <span class="fr ems-money">运费：¥{$AssetInfo['Freight']}元</span>
+                                <span class="fr ems-money">运费：¥<span id="ems-money">{$AssetInfo['Freight']}</span>元</span>
                             </p>
                         </div>
                         <div class="item-buy">
                             <p>
-                                剩余（份数）：{$AssetInfo['Inventory']}
+                                剩余（份数）：<span id="totalCount">{$AssetInfo['Inventory']}</span>
                             </p>
                             <div class="count-li">
                                 份数：<span class="input-number">
-                <i class="ra">-</i>
-                <input type="text" value="0">
-                <i class="ra">+</i></span>
+                                        <i class="ra" onclick="pageObj.numberInp(this,'-')">-</i>
+                                        <input type="text" name="num" onchange="pageObj.calcMoney(this)" value="1">
+                                        <i class="ra" onclick="pageObj.numberInp(this,'+')">+</i>
+                                </span>
                             </div>
                             <p>
-                                合计金额（元）：{$AssetInfo['Price']}
+                                合计金额（元）：<span id="totalMoney">{echo $AssetInfo['Price']+$AssetInfo['Freight']}</span>
                             </p>
                             <p>
                                 售后电话：{$UserInfo[Mobile]}
@@ -75,11 +76,11 @@
         </div>
         <div class="fixed-bottom">
             <div class="box-btn">
-                <a class="btn" href="/asset/order/?id=2&num=1&money=100.00">立即购买</a>
+                <a class="btn" href="javascript:void(0)" onclick="pageObj.buyFun(this)" data-userid="{$_SESSION[UserID]}" data-id="{$AssetInfo[AssetID]}">立即购买</a>
             </div>
         </div>
     </div>
 </div>
-
+<script src='{echo JsURL}/m/asset/AssetDetails.js'></script>
 </body>
 </html>
