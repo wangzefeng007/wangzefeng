@@ -16,16 +16,17 @@
                         <div>
                             <i class="icon icon-address3"></i>
                             收货地址信息
-                            <span class="default fr">设为默认</span>
+                            <span class="default fr active">设为默认</span>
                         </div>
                     </div>
                     <div class="form-box mt01">
+                        <input type="hidden" name="addressId" value="">
                         <div class="row">
                             <p class="form-lab">
                                 收&emsp;货&emsp;人:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" type="text" placeholder="请输入收货人姓名">
+                                <input class="inp" name="to_name" maxlength="12" type="text" placeholder="请输入收货人姓名">
                             </div>
                         </div>
                         <div class="row">
@@ -33,7 +34,7 @@
                                 手 机 号 码:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" type="tel" placeholder="请输入收货人的手机号码">
+                                <input class="inp" type="tel" name="to_phone" placeholder="请输入收货人的手机号码">
                             </div>
                         </div>
                         <div class="row">
@@ -41,7 +42,7 @@
                                 收 货 地 址:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" type="text" placeholder="请选择收货的地址">
+                                <input class="inp" name="address" type="text" placeholder="请选择收货的地址">
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +50,7 @@
                                 详 细 地 址:
                             </p>
                             <div class="form-grid ellipsis">
-                                <textarea class="textarea" name="" id="" cols="30" maxlength="50" rows="10" placeholder="请输入街道门牌信息（最多50个字）"></textarea>
+                                <textarea class="textarea" name="detail_area" id="" cols="30" maxlength="50" rows="10" placeholder="请输入街道门牌信息（最多50个字）"></textarea>
                             </div>
                         </div>
                     </div>
@@ -60,11 +61,12 @@
             </div>
             <div class="fixed-bottom">
                 <div class="box-btn mt05">
-                    <a class="btn" href="#">保存</a>
+                    <a class="btn" href="javascript:void(0)" onclick="pageObj.saveAddress(this)">保存</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src='{echo JsURL}/m/member/MemberAddressAdd.js'></script>
 </body>
 </html>
