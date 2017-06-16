@@ -996,11 +996,12 @@ class AjaxLogin
      * @desc 会员中心债权管理
      */
     public function GetDebtList(){
+        $this->IsLogin();
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         $NStatus = $MemberDebtInfoModule->NStatus;
-        $MysqlWhere ='';
+        $MysqlWhere =' and UserID = '.$_SESSION['UserID'];
         if (!$_POST) {
             $Data['ResultCode'] = 100;
             EchoResult($Data);exit;
