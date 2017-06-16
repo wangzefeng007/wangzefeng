@@ -48,9 +48,9 @@
                     </div>
                     <p class="disposal-phone fs026">联系电话：<span class="mobile" data-phone="{{item.ChargeMobile}}">{{item.ChargeMobile}}</span></p>
                 </div>
-                <p class="disposal-view"><a class="btn btn-s" title="查看" href="javascript:void(0)">查看</a></p>
+                <p class="disposal-view"><a class="btn btn-s" onclick="pageObj.detailShow(this);" title="查看" href="javascript:void(0)">查看</a></p>
             </div>
-            <div class="disposal-con clearfix">
+            <div class="disposal-con clearfix hide">
                 <div class="big common-box">
                     <p>催收地区：</p>
                     <div>
@@ -85,7 +85,6 @@
                 <div class="more-detail">
                     {{item.Content}}
                 </div>
-                <p onclick="pageObj.suggestion();" class="btn btn-s btn-red">投诉/建议</p>
             </div>
         </div>
     </li>

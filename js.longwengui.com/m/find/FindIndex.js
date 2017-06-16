@@ -10,6 +10,13 @@ var pageObj=$.extend({},pageObj,{
         'Page':1         //当前页
     },
     /**
+     * 查看
+     */
+    detailShow:function(tar){
+        $(tar).parents("li").toggleClass("active");
+        $(tar).parents("li").find(".disposal-con").toggleClass("hide");
+    },
+    /**
      * 搜索
      * type add为滚动新增追加 update为条件筛选更新
      */
