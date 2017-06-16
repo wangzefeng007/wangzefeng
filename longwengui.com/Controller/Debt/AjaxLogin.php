@@ -986,4 +986,60 @@ class AjaxLogin
             EchoResult($Data);exit;
         }
     }
+    public function GetDebtList(){
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $NStatus = $MemberDebtInfoModule->NStatus;
+        $MysqlWhere ='';
+        if (!$_POST) {
+            $Data['ResultCode'] = 100;
+            EchoResult($Data);exit;
+        }
+        $MysqlWhere .= ' order by Status asc , AddTime desc';
+        $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']); // 页码 可能是空
+        $PageSize = 7;
+        $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
+        if ($Rscount['Num']) {
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            if ($Data['Page'] < $Data['PageCount']) {
+                $Data['NextPage'] = $Data['Page'] + 1;
+            }
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            if ($Page > $Data['PageCount']) {
+                $Page = $Data['PageCount'];
+            }
+            $Lists = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Lists as $key=>$value){
+                $Data['Data'][$key]['DebtNum'] = $value['DebtNum'];
+                $Data['Data'][$key]['DebtAmount'] = $value['DebtAmount'];
+                $Data['Data'][$key]['Overduetime'] = $value['Overduetime'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d H:i:s',$value['AddTime']): '';
+                $Data['Data'][$key]['Status'] = $value['Status'];
+                $Data['Data'][$key]['StatusName'] = $NStatus[$value['Status']];
+                $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
+            }
+            MultiPage($Data, 5);
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '很抱歉，暂时无法找到符合您要求的债务。';
+            EchoResult($Data);exit;
+        }
+        unset($Lists);
+        EchoResult($Data);exit;
+    }
 }
