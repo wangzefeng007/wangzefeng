@@ -32,6 +32,10 @@ class Debt
         //债权人信息
         $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(" and DebtID = ".$ID,true);
         foreach ($CreditorsInfo as $key=>$value){
+            $CreditorsInfo[$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($value['Province']);
+            $CreditorsInfo[$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($value['City']);
+            $CreditorsInfo[$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($value['Area']);
+            $CreditorsInfo[$key]['Card'] = strlen($value['Card']) ? substr_replace($value['Card'], '****', 10, 4) : '';
             $CreditorsInfo[$key]['Phone'] = strlen($value['Phone']) ? substr_replace($value['Phone'], '****', 4, 4) : '';
         }
         //亲友信息
