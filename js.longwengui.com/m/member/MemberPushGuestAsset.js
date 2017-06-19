@@ -15,7 +15,7 @@ var pageObj=$.extend({},pageObj,{
     search:function(type){
         var _this=this;
         var getParams={
-            'S':$("#status").attr("data-value"),
+            'S':$("#status"+_this.assetType).attr("data-value"),
             'Intention':_this.ajaxData.Intention[_this.assetType]
         }
         var ajaxParams=$.extend({},_this.ajaxData,getParams);
@@ -76,9 +76,17 @@ var pageObj=$.extend({},pageObj,{
                displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','售后完成']
            }
        ];
-        $("#status").picker({
+        $("#status0").picker({
             toolbarTemplate:toolbarTemplate,
-            cols: [colsArray[_this.assetType]]
+            cols: [colsArray[0]]
+        });
+        $("#status1").picker({
+            toolbarTemplate:toolbarTemplate,
+            cols: [colsArray[1]]
+        });
+        $("#status2").picker({
+            toolbarTemplate:toolbarTemplate,
+            cols: [colsArray[2]]
         });
         //筛选选择
         $(document).on("click",".picker-indeed",function(){
@@ -91,9 +99,8 @@ var pageObj=$.extend({},pageObj,{
             _this.assetType=$(this).attr("data-type");
             _this.ajaxData.Page=1; //每次筛选page变为1
             _this.search("update");
-            $("#status").picker({
-                cols: [colsArray[_this.assetType]]
-            });
+            $("#status"+_this.assetType).show();
+            $("#status"+_this.assetType).siblings(".header-right").hide();
         });
         //滚动加载
         _this.loading = false;
