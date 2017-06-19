@@ -13,43 +13,43 @@
             <div class="view-box">
                 <div class="form-box">
                     <div class="row">
-                        卖家：张伟
+                        卖家：{$UserInfo[RealName]}
                     </div>
                     <div class="row">
-                        联系电话：13960333222
+                        联系电话：{$UserInfo[Mobile]}
                     </div>
                 </div>
             </div>
             <div class="item-goods mt02">
                 <div class="hd">
-                    订单编号：201702280001 <span class="fr">已付款</span>
+                    订单编号：{$OrderInfo[OrderNumber]} <span class="fr">{$NStatus[$OrderInfo[Status]]}</span>
                 </div>
                 <div class="common-box item-con">
                     <p class="pic">
-                        <img src="../temp/goods-1.jpg" alt="">
+                        <img src="{$AssetImage[ImageUrl]}" alt="">
                     </p>
                     <div>
                         <p class="h3">
-                            <span class="long ellipsis">上品武夷山大红袍</span> <span class="fr fs026">x1</span>
+                            <span class="long ellipsis">{$AssetInfo[Title]}</span> <span class="fr fs026">x1</span>
                         </p>
                         <p class="mt03">
-                            <span class="bold">¥ 1899.00</span><br>
-                            <span class="line-through">¥ 2899.00</span>
+                            <span class="bold">¥ {$AssetInfo[Price]}</span><br>
+                            <span class="line-through">¥ {$AssetInfo[MarketPrice]}</span>
                         </p>
                     </div>
                 </div>
                 <div class="order-form-view">
                     <p>
-                        商品总价：<span class="fr">¥ 1899.00</span>
+                        商品总价：<span class="fr">¥ {$OrderInfo[TotalAmount]}</span>
                     </p>
                     <p>
-                        运费（快递）：<span class="fr">¥ 10.00</span>
+                        运费（快递）：<span class="fr">¥ {$AssetInfo[Freight]}</span>
                     </p>
                     <p class="bold bor-b">
-                        订单总价：<span class="fr">¥ 1909.00</span>
+                        订单总价：<span class="fr">¥  {$AssetInfo[TotalAmount]}</span>
                     </p>
                     <p class="bold">
-                        实付款：<span class="fr">¥ 1909.00</span>
+                        实付款：<span class="fr">¥ {$AssetInfo[TotalAmount]}</span>
                     </p>
                 </div>
             </div>
@@ -58,11 +58,11 @@
         <div class="fixed-bottom">
             <div class="box-btn common-box">
                 <div>
-                    <a class="btn btn-default" href="#">返回订单列表</a>
+                    <a class="btn btn-default" href="javascript:void (0)">返回订单列表</a>
                 </div>
                 <p class="w-100"></p>
                 <div>
-                    <a class="btn" href="#">提醒发货</a>
+                    <a class="btn" href="javascript:void (0)">提醒发货</a>
                 </div>
             </div>
         </div>
