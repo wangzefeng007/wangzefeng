@@ -1223,10 +1223,10 @@ class AjaxLogin
      * @desc  会员-我的悬赏
      */
     public function GetRewordList(){
+        $this->IsLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberAreaModule = new MemberAreaModule();
-        $MemberRewardImageModule = new MemberRewardImageModule();
         $NStatus = $MemberRewardInfoModule->NStatus;
         $Type = $MemberRewardInfoModule->Type;
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
@@ -1285,6 +1285,7 @@ class AjaxLogin
      * @desc  会员-我的关注
      */
     public function GetFocusList(){
+        $this->IsLogin();
         $MemberFocusDebtModule = new MemberFocusDebtModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberDebtInfoModule = new MemberDebtInfoModule();
@@ -1318,10 +1319,8 @@ class AjaxLogin
                 $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
                 $Data['Data'][$key]['DebtNum'] = $DebtInfo['DebtNum'];
                 $Data['Data'][$key]['DebtAmount'] = $DebtInfo['DebtAmount'];
-                $Data['Data'][$key]['Overduetime'] = $DebtInfo['Overduetime'];
                 $Data['Data'][$key]['Status'] = $DebtInfo['Status'];
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
-                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
                 $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
                 if ($DebtorsInfo['Province'])
                     $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
@@ -1329,7 +1328,51 @@ class AjaxLogin
                     $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
                 if ($DebtorsInfo['Area'])
                     $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
-                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+            }
+            MultiPage($Data, 5);
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '暂无数据';
+        }
+        EchoResult($Data);exit;
+    }
+    /**
+     * @desc  会员-我的收藏
+     */
+    public function GetCollectionList(){
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        //分页查询开始-------------------------------------------------
+        $MysqlWhere = ' and Type = 1 and UserID='.$_SESSION ['UserID'];
+        //关键字
+        $Rscount = $MemberFocusDebtModule->GetListsNum($MysqlWhere);
+        $Page=intval($_POST['Page'])?intval($_POST['Page']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberFocusDebtModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ID']);
+                $Data['Data'][$key]['AssetMember'] = $AssetInfo['AssetMember'];
+                $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
+                $Data['Data'][$key]['Content'] = $AssetInfo['Content'];
+                $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
             }
             MultiPage($Data, 5);
             $Data['ResultCode'] = 200;
