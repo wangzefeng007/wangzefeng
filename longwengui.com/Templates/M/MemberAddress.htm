@@ -23,7 +23,7 @@
                             {if $lists['IsDefault']==1}
                             <span class="default fr active">默认地址</span>
                             {else}
-                            <span class="default fr">设为默认</span>
+                            <span class="default fr" onclick="pageObj.setDefaultAddress(this,'{$lists[ShippingAddressID]}')">设为默认</span>
                             {/if}
                         </div>
                     </div>
@@ -73,5 +73,6 @@
         </div>
     </div>
 </div>
+<script src='{echo JsURL}/m/member/MemberAddress.js'></script>
 </body>
 </html>

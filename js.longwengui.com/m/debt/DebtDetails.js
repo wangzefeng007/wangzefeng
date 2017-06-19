@@ -19,7 +19,7 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast(data.Message);
                     $(tar).addClass("follow-ed");
-                    window.location.reload();
+                    //window.location.reload();
                 }else if(data.ResultCode == 101){
                     $.toast(data.Message);
                 }else{
