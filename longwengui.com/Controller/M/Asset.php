@@ -40,9 +40,9 @@ class Asset
         $MemberProductOrderModule = new MemberProductOrderModule();
         $MemberFocusDebtModule = new MemberFocusDebtModule();
         $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
-        if ($AssetInfo['Status']!=2){
+/*        if ($AssetInfo['Status']!=2){
             alertandback("该资产未审核通过！");
-        }
+        }*/
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$AssetInfo['AssetID'],true);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
         $MemberUser = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);

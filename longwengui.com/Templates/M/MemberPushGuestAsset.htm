@@ -42,9 +42,9 @@
     <li>
         <div class="item-goods">
             <div class="hd">
-                资产编号：{{asset.AssetMember}} <span class="fr"><%if(asset.Status=="1"){%>待审核<%}%></span>
+                资产编号：{{asset.AssetMember}} <span class="fr"><%if(asset.Status=="1"){%>待审核<%}%> <%if(asset.Status=="2"){%>审核通过<%}%> <%if(asset.Status=="3"){%>审核失败<%}%></span>
             </div>
-            <div class="common-box item-con">
+            <div class="common-box item-con" onclick="go('/assetdetails/{{asset.AssetID}}.html')">
                 <p class="pic">
                     <img src="{{asset.ImageUrl}}" alt="">
                 </p>
@@ -59,13 +59,15 @@
                 </div>
             </div>
             <div class="item-total">
-                共{{asset.Amount}}件商品 合计：¥ <span class="bold">{{asset.AssetsAmount}}</span>（含运费 ¥ 10.00）
+                共{{asset.Amount}}件商品 合计：¥ <span class="bold">{{asset.AssetsAmount}}</span>（含运费 ¥ {{asset.Freight}}）
             </div>
             <div class="item-oparate clearfix">
                 <div class="fr">
-                    <a href="#" class="btn">
+                    <a href="#{{asset.AssetID}}" class="btn">
                         编辑
                     </a>
+                    <% if(asset.Status=="2"&&asset.ProductStatus=="1"){ %> <a href="#{{asset.AssetID}}" class="btn">立即下架</a> <% } %>
+                    <% if(asset.Status=="2"&&asset.ProductStatus=="0"){ %> <a href="#{{asset.AssetID}}" class="btn">立即上架</a> <% } %>
                 </div>
             </div>
         </div>

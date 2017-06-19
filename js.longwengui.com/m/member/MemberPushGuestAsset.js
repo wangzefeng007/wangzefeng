@@ -58,6 +58,8 @@ var pageObj=$.extend({},pageObj,{
             $("#buy_assets").text("已买到的");
             $("#sale_assets").text("已卖出的");
             _this.assetType=$(this).attr("data-type");
+            _this.ajaxData.Page=1; //每次筛选page变为1
+            _this.search("update");
         })
         //进入页面搜索"
         _this.search("update");
@@ -65,7 +67,7 @@ var pageObj=$.extend({},pageObj,{
                 <button class="button button-link pull-right close-picker picker-indeed">确定</button>\
                 <h1 class="title">请选择</h1>\
                 </header>';
-        //我发布的选择
+       /* //我发布的选择
         $("#my_assets").picker({
             toolbarTemplate:toolbarTemplate,
             cols: [
@@ -98,10 +100,9 @@ var pageObj=$.extend({},pageObj,{
                     displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','售后完成']
                 }
             ]
-        });
+        });*/
         $(document).on("click",".picker-indeed",function(){
             _this.ajaxData.Page=1; //每次筛选page变为1
-
             _this.search("update");
         });
         //滚动加载
