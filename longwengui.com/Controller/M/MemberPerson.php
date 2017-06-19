@@ -97,8 +97,35 @@ class MemberPerson
         MService::IsNoLogin();
         include template('MemberPersonAsset');
     }
+    /**
+     * @desc 资产订单详情（已买到的）
+     */
     public function OrderDetails(){
         MService::IsNoLogin();
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderNumber = trim($_GET['OrderNumber']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
+        //发布人信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $User = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        $UserInfo['Mobile'] = $User['Mobile'];
+        if ($UserInfo['Province'])
+            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberPersonOrderDetails');
     }
     /**
