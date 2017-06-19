@@ -162,9 +162,9 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast(data.Message);
                     //路由跳转
-                    /*setTimeout(function() {
+                    setTimeout(function() {
                         window.location = data.Url;
-                    }, 10);*/
+                    }, 10);
 
                 }else{
                     $.toast(data.Message);
