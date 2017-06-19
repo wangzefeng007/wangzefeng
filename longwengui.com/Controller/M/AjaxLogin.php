@@ -1136,7 +1136,7 @@ class AjaxLogin
                 $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
                 $Data['Data'][$key]['Freight'] = $AssetInfo['Freight'];
                 $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
-                $Data['Data'][$key]['Url'] = ' /orderdetail/'.$value['OrderNumber'].'.html';
+                $Data['Data'][$key]['Url'] = ' /orderdetails/'.$value['OrderNumber'].'.html';
             }
             MultiPage($Data, 5);
             $Data['ResultCode'] = 200;
@@ -1207,7 +1207,7 @@ class AjaxLogin
                     $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
                     $Data['Data'][$key]['Freight'] = $AssetInfo['Freight'];
                     $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
-                    $Data['Data'][$key]['Url'] = ' /orderdetail/'.$value['OrderNumber'].'.html';
+                    $Data['Data'][$key]['Url'] = ' /orderdetails/'.$value['OrderNumber'].'.html';
                 }
                 MultiPage($Data, 5);
                 $Data['ResultCode'] = 200;

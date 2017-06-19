@@ -33,6 +33,10 @@ RewriteRule ^loginajax.html$ /index.php?Module=AjaxLogin&Action=Index [QSA]
 RewriteRule ^firmdemanddetails/([0-9]+).html$ /index.php?Module=MemberFirm&Action=DemandDetails&ID=$1 [QSA]
 RewriteRule ^lawyerdemanddetails/([0-9]+).html$ /index.php?Module=MemberLawyer&Action=DemandDetails&ID=$1 [QSA]
 
+#M站
+RewriteRule ^orderdetails/([A-Z0-9_]+).html$ /index.php?Module=MemberPerson&Action=OrderDetails&OrderNumber=$1 [QSA]
+
+
 
 #通用地址
 RewriteRule ^([a-z]+)(|\/)$ /index.php?Module=$1 [QSA]

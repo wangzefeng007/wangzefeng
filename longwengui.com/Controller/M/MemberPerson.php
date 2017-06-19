@@ -97,7 +97,10 @@ class MemberPerson
         MService::IsNoLogin();
         include template('MemberPersonAsset');
     }
-
+    public function OrderDetails(){
+        MService::IsNoLogin();
+        include template('MemberPersonOrderDetails');
+    }
     /**
      * @desc 关注/收藏
      */
