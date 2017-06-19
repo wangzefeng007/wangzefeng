@@ -1058,11 +1058,11 @@ class AjaxLogin
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
         $NStatus =$MemberAssetInfoModule->NStatus;
-        $Status=  intval($_GET['S']);
+        $Status=  intval($_POST['S']);
         if ($Status){
             $MysqlWhere .= ' and Status = '.$Status;
         }
-        $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
+        $Page = intval($_POST['Page'])<1?1:intval($_POST['Page']);
         $pageSize = 5;
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
         if ($Rscount['Num']) {
@@ -1088,5 +1088,130 @@ class AjaxLogin
         }
         unset($Lists);
         EchoResult($Data);exit;
+    }
+    /**
+     * @desc  会员-已买到的资产
+     */
+    public function GetBuyOrderList(){
+        $this->IsLogin();
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $Status=  intval($_POST['S']);
+        $CurrentTime = time()+1296000;//当前时间后的15天
+        if ($Status=='1'){
+            $MysqlWhere .= ' and `Status` = 1';
+        }elseif ($Status=='2'){
+            $MysqlWhere .= ' and `Status` in (2,3)';
+        }elseif ($Status=='3'){
+            $MysqlWhere .= ' and `Status` =4';
+        }elseif ($Status=='4'){
+            $MysqlWhere .= ' and `Status` in (5,6,7,8,11)';
+        }elseif ($Status=='5'){
+            $MysqlWhere .= ' and `Status` in (9,10)';
+        }
+        $Page = intval($_POST['Page'])<1?1:intval($_POST['Page']);
+        $pageSize = 4;
+        $MysqlWhere .= ' order by AddTime desc';
+        $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
+        if ($Rscount['Num']) {
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            if ($Page > $Data['PageCount'])
+                $page = $Data['PageCount'];
+            $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ProductID']);//通过产品ID获取
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['ProductID']);//通过产品ID获取
+                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+                $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+                $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
+                $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
+                $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
+            }
+            MultiPage($Data, 5);
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '暂无数据';
+            EchoResult($Data);exit;
+        }
+        unset($Lists);
+        EchoResult($Data);exit;
+    }
+    /**
+     * @desc  会员-已卖出的资产
+     */
+    public function GetSellOrderList()
+    {
+        $this->IsLogin();
+        $Nav = 'sellorderlist';
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByWhere(' and UserID = ' . $_SESSION['UserID'], true);
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $arr = '';
+        $MysqlWhere = '';
+        $Status = intval($_POST['S']);
+        if ($Status == '1') {
+            $MysqlWhere .= ' and `Status` = 2 ';
+        } elseif ($Status == '2') {
+            $MysqlWhere .= ' and `Status` = 3 ';
+        } elseif ($Status == '3') {
+            $MysqlWhere .= ' and `Status` in (4,5) ';
+        } elseif ($Status == '4') {
+            $MysqlWhere .= ' and `Status` in (6,7,11) ';
+        } elseif ($Status == '5') {
+            $MysqlWhere .= ' and `Status` = 8 ';
+        } else {
+            $MysqlWhere .= ' and `Status` > 1 and `Status` <9 ';
+        }
+        foreach ($AssetInfo as $key => $value) {
+            $arr[] .= $value['AssetID'];
+        }
+        $arr = implode(',', array_unique($arr));
+        if (!empty($arr)) {
+            $MysqlWhere .= " and ProductID IN ($arr)";
+            $Page = intval($_POST['Page']) < 1 ? 1 : intval($_POST['Page']);
+            $pageSize = 5;
+            $MysqlWhere .= ' order by AddTime desc';
+            $Rscount = $MemberProductOrderModule->GetListsNum($MysqlWhere);
+            if ($Rscount['Num']) {
+                $Data = array();
+                $Data['RecordCount'] = $Rscount['Num'];
+                $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+                $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+                $Data['Page'] = min($Page, $Data['PageCount']);
+                $Offset = ($Page - 1) * $Data['PageSize'];
+                if ($Page > $Data['PageCount'])
+                    $page = $Data['PageCount'];
+                $Data['Data'] = $MemberProductOrderModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+                foreach ($Data['Data'] as $key => $value) {
+                    $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ProductID']);//通过产品ID获取
+                    $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = ' . $value['ProductID']);//通过产品ID获取
+                    $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+                    $Data['Data'][$key]['Title'] = $AssetInfo['Title'];
+                    $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
+                    $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
+                    $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
+                }
+                MultiPage($Data, 5);
+                $Data['ResultCode'] = 200;
+            }else{
+                $Data['ResultCode'] = 101;
+                $Data['Message'] = '暂无数据';
+                EchoResult($Data);exit;
+            }
+        }
     }
 }

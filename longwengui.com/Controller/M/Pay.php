@@ -62,7 +62,7 @@ class Pay
     /**
      * @desc  支付宝手机支付回调
      */
-    public function WapAliPayReturn(){
+    public function AliPayReturn(){
         include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
         $aop = new AopClient();
         $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
@@ -93,63 +93,41 @@ class Pay
     /**
      * @desc  支付宝手机支付异步
      */
-    public function WapAliPayNotify(){
+    public function AliPayNotify(){
         include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
         $aop = new AopClient();
         $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
         //公钥
-        if($aop->rsaCheckV1($_POST,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
+        if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==true){
+            var_dump($_GET);exit;
             //验证通过
             if($_POST['trade_status']=='TRADE_SUCCESS'){
-                $MemberOrderTempModule = new MemberOrderTempModule();
-                $Data['ResultCode'] = 1;
-                $Data['Money'] = trim($_POST['total_amount']);
-                $Result=$MemberOrderTempModule->UpdateData($Data, trim($_POST['out_trade_no']));
-                if($Result){
-                    $OrderInfo = $MemberOrderTempModule->GetOrderByID(trim($_POST['out_trade_no']));
-                    if ($OrderInfo) {
-                        $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
-                        $VerifyData['Money'] = $OrderInfo['Money'];
-                        $VerifyData['PayType'] = "支付宝";
-                        $VerifyData['ResultCode'] = 'SUCCESS';
-                        $VerifyData['RunTime'] = time();
-                        $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                        $NotifyUrl = rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData);
-                        @file_get_contents($NotifyUrl);
-                    }
+                //验证通过
+                //更新订单状态
+                $Data['PaymentMethod'] = '1';
+                $Data['Status'] = '2';
+                $MemberProductOrderModule = new MemberProductOrderModule();
+                $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                if ($Result) {
+                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                    $VerifyData['Money'] = $OrderInfo['Money'];
+                    $VerifyData['PayType'] = "支付宝";
+                    $VerifyData['ResultCode'] = 'SUCCESS';
+                    $VerifyData['RunTime'] = time();
+                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+                }else{
+                    header("Location:/pay/result/");
                 }
+            }else{
+                header("Location:/pay/result/");
             }
+        }else{
+            header("Location:/pay/result/");
         }
     }
 
-    /**
-     * @desc 微信支付
-     */
-    public function WXPay()
-    {
-            include SYSTEM_ROOTPATH . '/Include/WXPayTwo/WxPay.NativePay.php';
-            $notify = new NativePay();
-            $input = new WxPayUnifiedOrder();
-            $input->SetBody('测试订单'); //必填
-            $input->SetDetail('测试订单');
-            $input->SetOut_trade_no('db2342342334234'); //必填
-            $input->SetTotal_fee(1*100); //必填
-            $input->SetNotify_url(WEB_M_URL . '/pay/wxpaynotify/'); //必填
-            $input->SetTrade_type("NATIVE");
-            $input->SetSpbill_create_ip(GetIP());
-            $input->SetProduct_id('db2342342334234');
-            $result = $notify->GetPayUrl($input);var_dump($result);exit;
-            if ($result['code_img_url']) {
-//                    $WXPayUrl= $result['code_url'];
-//                    $WXPayUrl = "http://paysdk.weixin.qq.com/example/qrcode.php?data=" . urlencode($WXPayUrl);
-                $ImageUrl = $result["code_img_url"];
-                $result_json = array('ResultCode'=>200,'Message'=>'返回成功','ImageUrl'=>$ImageUrl);
-            } else {
-                $result_json = array('ResultCode'=>102,'Message'=>'订单异常','Url'=>WEB_M_URL);
-                alertandgotopage('订单异常', WEB_M_URL);
-            }
-        EchoResult($result_json);exit;
-    }
     //支付成功提示
     public function Result()
     {
@@ -170,20 +148,7 @@ class Pay
             include template('PayResultFAIL');
         }
     }
-    //支付成功提示
-    public function WxResult()
-    {
-        $OrderNumber = $_GET['OrderNo'];
-        $MemberProductOrderModule = new MemberProductOrderModule();
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
-        if ($OrderInfo && $OrderInfo['Status']==2) {
-            $Money = $OrderInfo['TotalAmount'];
-            $RedirectUrl = WEB_M_URL . '/orderdetail/'.$OrderNumber.'.html';
-            include template('PayResultSUCCESS');
-        } else {
-            include template('PayResultFAIL');
-        }
-    }
+
     /*
  * 识别是不是手机端
  */
