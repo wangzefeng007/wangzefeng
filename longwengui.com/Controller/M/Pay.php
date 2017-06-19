@@ -2,34 +2,12 @@
 
 class Pay
 {
-
-    //支付宝
     /**
      * @desc  支付宝
      * @throws Exception
      */
     public function AliPay()
     {
-        include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
-        $aop = new AopClient();
-        $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
-        $aop->appId = '2017051007197146';
-        $aop->rsaPrivateKeyFilePath = SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_private_key.pem';
-        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
-        $aop->apiVersion = '1.0';
-        $aop->postCharset='utf-8';
-        $aop->format='json';
-        $request = new AlipayTradeWapPayRequest ();
-        $JsonData['body']='测试订单';
-        $JsonData['subject']='测试订单';
-        $JsonData['out_trade_no']='ceshi3423423';
-        $JsonData['total_amount']='0.01';
-        $JsonData['product_code']="QUICK_WAP_PAY";
-        $request->setReturnUrl(WEB_M_URL . '/pay/wapalipayreturn/');
-        $request->setNotifyUrl(WEB_M_URL . '/pay/wapalipaynotify/');
-        $request->setBizContent(json_encode($JsonData));
-        $result = $aop->pageExecute ( $request);
-        echo $result;exit;
         $Sign = $_POST['Sign'];
         unset($_POST['Sign']);
         if ($Sign == ToolService::VerifyData($_POST)) {
@@ -40,28 +18,17 @@ class Pay
             $total_fee = $_POST['Money']; //必填
             $body = stripslashes($_POST['Body']);
             $show_url = $_POST['ProductUrl'];
-            $MemberOrderTempModule = new MemberOrderTempModule();
-            $Data['OrderID'] = $out_trade_no;
-            $Data['NotifyUrl'] = $_POST['ReturnUrl'];
-            $Data['PayType'] = 0;
-            $Data['CreateTime'] = time();
-            $Data['ResultCode'] = 0;
-            $OrderExists = $MemberOrderTempModule->GetOrderByID($Data['OrderID']);
-            if (!$OrderExists) {
-                $InsertResult = $MemberOrderTempModule->InsertInfo($Data);
-            } else {
-                if ($OrderExists['ResultCode'] == 1) {
+            $MemberProductOrderModule = new MemberProductOrderModule;
+            $Result = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$out_trade_no.'\'');
+                if ($Result['ResultCode'] == 1) {
                     alertandgotopage("该订单已支付完成!", WEB_M_URL);
-                } else {
-                    $InsertResult = $MemberOrderTempModule->UpdateData($Data, $Data['OrderID']);
                 }
-            }
-            if ($InsertResult) {
+            if ($Result) {
                 if($this->IsOrNotMobile()){
                     include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
                     $aop = new AopClient();
                     $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
-                    $aop->appId = '2088912584072026';
+                    $aop->appId = '2017051007197146';
                     $aop->rsaPrivateKeyFilePath = SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_private_key.pem';
                     $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
                     $aop->apiVersion = '1.0';
@@ -92,93 +59,69 @@ class Pay
 
     }
 
-    //支付宝回调
-    public function AliPayNotify()
-    {
-        $MemberProductOrderModule = new MemberProductOrderModule;
-        include SYSTEM_ROOTPATH.'/Include/AliPay/AliPay.php';
-        $AliPay = new AliPay();
-        $ResultUrl = WEB_M_URL . '/pay/result/';
-        if (count($_POST)) {
-            if ($AliPay->GetPayStatus($_POST) === 'true') {
-                $OrderNumber = trim($_POST['out_trade_no']);
-                $OrderInfo = $MemberProductOrderModule ->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
-                if ($OrderInfo) {
-                    //更新库存
-                    $MemberAssetInfoModule = new MemberAssetInfoModule();
-                    $MemberAssetInfoModule->SetInventory($OrderInfo['ProductID'],$OrderInfo['Num']);
-                    //添加订单日志
-                    $OrderLogModule = new MemberOrderLogModule();
-                    $LogMessage ='买家已付款，付款方式支付宝';
-                    $LogData = array(
-                        'OrderNumber' =>$OrderInfo['OrderNumber'],
-                        'UserID' => $_SESSION['UserID'],
-                        'OldStatus' => 1,
-                        'NewStatus' => 2,
-                        'OperateTime' => date("Y-m-d H:i:s", time()),
-                        'IP' => GetIP(),
-                        'Remarks' => $LogMessage,
-                        'Type' => 1
-                    );
-                    $LogResult = $OrderLogModule->InsertInfo($LogData);
-                    //更新订单状态
-                    $Data['PaymentMethod'] = '1';
-                    $Data['Status'] = '2';
-                    $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');
-                    $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
-                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
-                    $VerifyData['ResultCode'] = 'SUCCESS';
-                    $VerifyData['RunTime'] = time();
-                    $VerifyData['RedirectUrl'] = WEB_M_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
-                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    echo ToolService::PostForm($ResultUrl, $VerifyData);
-                } else {
-                    header("Location:/pay/result/");
-                }
-            } else {
-                header("Location:/pay/result/");
-            }
-        } else {
-            if ($AliPay->GetPayStatus($_GET) === 'true') {
-                $OrderNumber = trim($_GET['out_trade_no']);
-                $OrderInfo = $MemberProductOrderModule ->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
-                if ($OrderInfo) {
-                    //更新库存
-                    $MemberAssetInfoModule = new MemberAssetInfoModule();
-                    $MemberAssetInfoModule->SetInventory($OrderInfo['ProductID'],$OrderInfo['Num']);
-                    //添加订单日志
-                    $OrderLogModule = new MemberOrderLogModule();
-                    $LogMessage ='买家已付款，付款方式支付宝';
-                    $LogData = array(
-                        'OrderNumber' =>$OrderInfo['OrderNumber'],
-                        'UserID' => $_SESSION['UserID'],
-                        'OldStatus' => 1,
-                        'NewStatus' => 2,
-                        'OperateTime' => date("Y-m-d H:i:s", time()),
-                        'IP' => GetIP(),
-                        'Remarks' => $LogMessage,
-                        'Type' => 1
-                    );
-                    $LogResult = $OrderLogModule->InsertInfo($LogData);
-                    //更新订单状态
-                    $Data['PaymentMethod'] = '1';
-                    $Data['Status'] = '2';
-                    $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.$OrderNumber.'\'');
+    /**
+     * @desc  支付宝手机支付回调
+     */
+    public function WapAliPayReturn(){
+        include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
+        $aop = new AopClient();
+        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
+        if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
+            //验证通过
+            //更新订单状态
+            $Data['PaymentMethod'] = '1';
+            $Data['Status'] = '2';
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+            $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                if ($Result) {
                     $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
-                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                    $VerifyData['Money'] = $OrderInfo['Money'];
+                    $VerifyData['PayType'] = "支付宝";
                     $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
-                    $VerifyData['RedirectUrl'] = WEB_M_URL . '/orderdetail/'.$VerifyData['OrderNo'].'.html';
                     $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    echo ToolService::PostForm($ResultUrl, $VerifyData);
-                } else {
+                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+                }else{
                     header("Location:/pay/result/");
                 }
-            } else {
-                header("Location:/pay/result/");
+        }else{
+            header("Location:/pay/result/");
+        }
+    }
+
+    /**
+     * @desc  支付宝手机支付异步
+     */
+    public function WapAliPayNotify(){
+        include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
+        $aop = new AopClient();
+        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
+        //公钥
+        if($aop->rsaCheckV1($_POST,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
+            //验证通过
+            if($_POST['trade_status']=='TRADE_SUCCESS'){
+                $MemberOrderTempModule = new MemberOrderTempModule();
+                $Data['ResultCode'] = 1;
+                $Data['Money'] = trim($_POST['total_amount']);
+                $Result=$MemberOrderTempModule->UpdateData($Data, trim($_POST['out_trade_no']));
+                if($Result){
+                    $OrderInfo = $MemberOrderTempModule->GetOrderByID(trim($_POST['out_trade_no']));
+                    if ($OrderInfo) {
+                        $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
+                        $VerifyData['Money'] = $OrderInfo['Money'];
+                        $VerifyData['PayType'] = "支付宝";
+                        $VerifyData['ResultCode'] = 'SUCCESS';
+                        $VerifyData['RunTime'] = time();
+                        $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                        $NotifyUrl = rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData);
+                        @file_get_contents($NotifyUrl);
+                    }
+                }
             }
         }
     }
+
     /**
      * @desc 微信支付
      */
@@ -240,5 +183,75 @@ class Pay
         } else {
             include template('PayResultFAIL');
         }
+    }
+    /*
+ * 识别是不是手机端
+ */
+    function IsOrNotMobile()
+    {
+        // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
+        if (isset ($_SERVER['HTTP_X_WAP_PROFILE']))
+        {
+            return true;
+        }
+        // 如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息
+        if (isset ($_SERVER['HTTP_VIA']))
+        {
+            // 找不到为flase,否则为true
+            return stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
+        }
+        // 脑残法，判断手机发送的客户端标志,兼容性有待提高
+        if (isset ($_SERVER['HTTP_USER_AGENT']))
+        {
+            $clientkeywords = array ('nokia',
+                'sony',
+                'ericsson',
+                'mot',
+                'samsung',
+                'htc',
+                'sgh',
+                'lg',
+                'sharp',
+                'sie-',
+                'philips',
+                'panasonic',
+                'alcatel',
+                'lenovo',
+                'iphone',
+                'ipod',
+                'blackberry',
+                'meizu',
+                'android',
+                'netfront',
+                'symbian',
+                'ucweb',
+                'windowsce',
+                'palm',
+                'operamini',
+                'operamobi',
+                'openwave',
+                'nexusone',
+                'cldc',
+                'midp',
+                'wap',
+                'mobile'
+            );
+            // 从HTTP_USER_AGENT中查找手机浏览器的关键字
+            if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT'])))
+            {
+                return true;
+            }
+        }
+        // 协议法，因为有可能不准确，放到最后判断
+        if (isset ($_SERVER['HTTP_ACCEPT']))
+        {
+            // 如果只支持wml并且不支持html那一定是移动设备
+            // 如果支持wml和html但是wml在html之前则是移动设备
+            if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html'))))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
