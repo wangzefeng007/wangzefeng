@@ -237,7 +237,7 @@ class AjaxAsset
                     $Data['UnitPrice'] = $AssetInfo['Price'];//单价
                     $InsertInfo = $MemberProductOrderModule->InsertInfo($Data);
                     if ($InsertInfo){
-                        $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！', 'Url' => WEB_M_URL . '/assetorder/' . $Data['OrderNumber'] . '.html');
+                        $result_json = array('ResultCode'=>200,'Message'=>'订单提交成功！', 'Url' => WEB_M_URL . '/asset/pay/?id='.$InsertInfo.'&type=alipay');
                     }else{
                         $result_json = array('ResultCode'=>103,'Message'=>'订单提交失败！');
                     }
