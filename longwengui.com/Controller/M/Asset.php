@@ -20,6 +20,15 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
+        $EndTime = time()+ 2592000;
+        if ($_GET['id']){
+            $ID = intval($_GET['id']);
+            $MemberAssetInfoModule = new MemberAssetInfoModule();
+            $MemberAssetImageModule = new MemberAssetImageModule();
+            $AssetInfo = $MemberAssetInfoModule->GetInfoByWhere(' and AssetID = '.$ID.' and UserID = '.$_SESSION ['UserID']);
+            $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$ID,true);
+
+        }
         include template('AssetPublish');
     }
     /**

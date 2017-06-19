@@ -1218,6 +1218,9 @@ class AjaxLogin
             }
         }
     }
+    /**
+     * @desc  会员-我的悬赏
+     */
     public function GetRewordList(){
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberRewardInfoModule = new MemberRewardInfoModule();
@@ -1272,5 +1275,63 @@ class AjaxLogin
             $Data['Message'] = '暂无数据';
             EchoResult($Data);exit;
         }
+    }
+    /**
+     * @desc  会员-我的关注
+     */
+    public function GetFocusList(){
+        $MemberFocusDebtModule = new MemberFocusDebtModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        //会员基本信息
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
+        $NStatus = $MemberDebtInfoModule->NStatus;
+        //分页查询开始-------------------------------------------------
+        $MysqlWhere = ' and Type = 1 and UserID='.$_SESSION ['UserID'];
+        //关键字
+        $Rscount = $MemberFocusDebtModule->GetListsNum($MysqlWhere);
+        $Page=intval($_POST['Page'])?intval($_POST['Page']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberFocusDebtModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $DebtInfo = $MemberDebtInfoModule->GetInfoByKeyID($value['DebtID']);
+                $Data['Data'][$key]['DebtNum'] = $DebtInfo['DebtNum'];
+                $Data['Data'][$key]['DebtAmount'] = $DebtInfo['DebtAmount'];
+                $Data['Data'][$key]['Overduetime'] = $DebtInfo['Overduetime'];
+                $Data['Data'][$key]['Status'] = $DebtInfo['Status'];
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['AddTime']= !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+            }
+            MultiPage($Data, 5);
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '暂无数据';
+        }
+        EchoResult($Data);exit;
     }
 }
