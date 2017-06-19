@@ -20,9 +20,9 @@ class Pay
             $show_url = $_POST['ProductUrl'];
             $MemberProductOrderModule = new MemberProductOrderModule;
             $Result = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$out_trade_no.'\'');
-                if ($Result['ResultCode'] == 1) {
-                    alertandgotopage("该订单已支付完成!", WEB_M_URL);
-                }
+            if ($Result['ResultCode'] == 1) {
+                alertandgotopage("该订单已支付完成!", WEB_M_URL);
+            }
             if ($Result) {
                 if($this->IsOrNotMobile()){
                     include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
@@ -74,17 +74,18 @@ class Pay
             $MemberProductOrderModule = new MemberProductOrderModule();
             $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
             $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-                if ($Result) {
-                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
-                    $VerifyData['Money'] = $OrderInfo['Money'];
-                    $VerifyData['PayType'] = "支付宝";
-                    $VerifyData['ResultCode'] = 'SUCCESS';
-                    $VerifyData['RunTime'] = time();
-                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
-                }else{
-                    header("Location:/pay/result/");
-                }
+            if ($Result) {
+                $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                $VerifyData['PayType'] = "支付宝";
+                $VerifyData['ResultCode'] = 'SUCCESS';
+                $VerifyData['RunTime'] = time();
+                $VerifyData['RedirectUrl'] = '/assetdetails/2.html';
+                $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+            }else{
+                header("Location:/pay/result/");
+            }
         }else{
             header("Location:/pay/result/");
         }
@@ -99,27 +100,21 @@ class Pay
         $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
         //公钥
         if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==true){
-            var_dump($_GET);exit;
-            //验证通过
-            if($_POST['trade_status']=='TRADE_SUCCESS'){
-                //验证通过
-                //更新订单状态
-                $Data['PaymentMethod'] = '1';
-                $Data['Status'] = '2';
-                $MemberProductOrderModule = new MemberProductOrderModule();
-                $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-                $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-                if ($Result) {
-                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
-                    $VerifyData['Money'] = $OrderInfo['Money'];
-                    $VerifyData['PayType'] = "支付宝";
-                    $VerifyData['ResultCode'] = 'SUCCESS';
-                    $VerifyData['RunTime'] = time();
-                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
-                }else{
-                    header("Location:/pay/result/");
-                }
+            //更新订单状态
+            $Data['PaymentMethod'] = '1';
+            $Data['Status'] = '2';
+            $MemberProductOrderModule = new MemberProductOrderModule();
+            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+            $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+            if ($Result) {
+                $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                $VerifyData['PayType'] = "支付宝";
+                $VerifyData['ResultCode'] = 'SUCCESS';
+                $VerifyData['RunTime'] = time();
+                $VerifyData['RedirectUrl'] = '/assetdetails/2.html';
+                $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                header("Location:" . rtrim('/pay/result', '/') . '/?' . http_build_query($VerifyData));
             }else{
                 header("Location:/pay/result/");
             }
@@ -131,15 +126,21 @@ class Pay
     //支付成功提示
     public function Result()
     {
-        $sign = $_POST['Sign'];
-        unset($_POST['Sign']);
-        $VerifySign = ToolService::VerifyData($_POST);
+        $sign = $_GET['Sign'];
+        unset($_GET['Sign']);
+        $VerifySign = ToolService::VerifyData($_GET);
         if ($VerifySign == $sign) {
-            $PayResult = $_POST['ResultCode'];
+            $PayResult = $_GET['ResultCode'];
             if ($PayResult == 'SUCCESS') {
-                $OrderNumber = $_POST['OrderNo'];
-                $Money = $_POST['Money'];
-                $RedirectUrl = $_POST['RedirectUrl'];
+                $OrderNumber = $_GET['OrderNo'];
+                $Money = $_GET['Money'];
+                $RedirectUrl = $_GET['RedirectUrl'];
+                $MemberProductOrderModule = new MemberProductOrderModule();
+                $MemberAssetImageModule = new MemberAssetImageModule();
+                $MemberAssetInfoModule = new MemberAssetInfoModule();
+                $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$OrderInfo['ProductID'].' and IsDefault = 1');
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);
                 include template('PayResultSUCCESS');
             } else {
                 include template('PayResultFAIL');
