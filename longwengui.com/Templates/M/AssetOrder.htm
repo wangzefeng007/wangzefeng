@@ -11,6 +11,7 @@
                 </section>
             </header>
             <div class="item item-address mt0">
+                {if !empty($AddressInfo)}
                 <a href="/member/address/" class="item-con">
                     <i class="icon-address"></i>
                     <div class="option">
@@ -21,6 +22,16 @@
                     </div>
                     <i class="icon-arrow"></i>
                 </a>
+                {else}
+                <a href="/member/address/" class="item-con">
+                    <i class="icon-address"></i>
+                    <div class="option">
+                        <p style="padding:.5rem 0 .5rem">暂无收货地址</p>
+                    </div>
+                    <i class="icon-arrow"></i>
+                </a>
+                {/if}
+                <input type="hidden" name="addressId" value="{$AddressInfo[ShippingAddressID]}">
             </div>
             <div class="item-goods mt02">
                 <div class="hd hd-white">
@@ -40,6 +51,7 @@
                         </p>
                     </div>
                 </div>
+                <input type="hidden" name="addressId" value="{$AddressInfo[ShippingAddressID]}">
                 <div class="item-total">
                     共1件商品 合计：¥ <span class="bold">{$Money}</span>（含运费 ¥ {$AssetInfo[Freight]}）
                 </div>
@@ -51,18 +63,16 @@
                         <i class="icon icon-wx2"></i>
                         <div class="option">微信支付</div>
                         <p class="radio-inline">
-                            <label class="radio" type="radio">
-                                <input type="radio" name="buy" value="0" checked>
+                            <label class="radio active" type="radio">
                                 <i></i>
                             </label>
                         </p>
                     </div>
-                    <div class="item-con">
+                    <div class="item-con" data-type="alipay">
                         <i class="icon icon-zfb"></i>
                         <div class="option">支付宝支付</div>
                         <p class="radio-inline">
                             <label class="radio" type="radio">
-                                <input type="radio" name="buy" value="0">
                                 <i></i>
                             </label>
                         </p>
@@ -73,11 +83,11 @@
         </div>
         <div class="fixed-bottom">
             <div class="box-btn">
-                <a class="btn" href="#">立即付款</a>
+                <a class="btn" href="javascript:void(0)" onclick="pageObj.subOrder();">立即付款</a>
             </div>
         </div>
     </div>
 </div>
-
+<script src='{echo JsURL}/m/asset/AssetOrder.js'></script>
 </body>
 </html>

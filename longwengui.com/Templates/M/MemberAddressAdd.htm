@@ -16,7 +16,11 @@
                         <div>
                             <i class="icon icon-address3"></i>
                             收货地址信息
+                            {if !empty($AddressInfo)}
                             <span class="default fr {if $AddressInfo[IsDefault]==1}active{/if}">{if $AddressInfo[IsDefault]==1}默认地址{else}设为默认{/if}</span>
+                            {else}
+                            <span class="default fr active">默认地址</span>
+                            {/if}
                         </div>
                     </div>
                     <div class="form-box mt01">

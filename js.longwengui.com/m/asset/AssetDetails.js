@@ -94,6 +94,9 @@ var pageObj=$.extend({},pageObj,{
      */
     init:function() {
         var _this = this;
+        //进入页面计算money
+        var $inp=$(".input-number").find("input[name='num']");
+        _this.calcMoney($inp);
     }
 })
 $(document).ready(function(){
