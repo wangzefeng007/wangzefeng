@@ -1214,8 +1214,9 @@ class AjaxLogin
             }else{
                 $Data['ResultCode'] = 101;
                 $Data['Message'] = '暂无数据';
-                EchoResult($Data);exit;
             }
+            unset($Lists);
+            EchoResult($Data);exit;
         }
     }
     public function GetRewordList(){
@@ -1223,6 +1224,8 @@ class AjaxLogin
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         $MemberRewardImageModule = new MemberRewardImageModule();
+        $NStatus = $MemberRewardInfoModule->NStatus;
+        $Type = $MemberRewardInfoModule->Type;
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $Nav = 'reword';
         $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
@@ -1262,15 +1265,17 @@ class AjaxLogin
                 if ($Message['find_idCard'])
                     $Message['find_idCard'] = strlen($Message['find_idCard']) ? substr_replace($Message['find_idCard'], '****', 10, 4) : '';
                 $Data['Data'][$key]['Message'] = $Message;
-                $RewardImage = $MemberRewardImageModule->GetInfoByWhere(' and RewardID = '.$value['RewardID'],true);
-                $Data['Data'][$key]['Image'] = $RewardImage;
+                $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
+                $Data['Data'][$key]['Type'] = $Type[$value['Type']];
+                $Data['Data'][$key]['Avatar'] = $UserInfo['Avatar'];
+                $Data['Data'][$key]['AddTime'] = date("Y-m-d",$value['AddTime']);
             }
             MultiPage($Data, 5);
             $Data['ResultCode'] = 200;
         }else{
             $Data['ResultCode'] = 101;
             $Data['Message'] = '暂无数据';
-            EchoResult($Data);exit;
         }
+        EchoResult($Data);exit;
     }
 }
