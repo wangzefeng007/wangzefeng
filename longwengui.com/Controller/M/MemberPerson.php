@@ -94,6 +94,7 @@ class MemberPerson
      * @desc 我的资产
      */
     public function Asset(){
+        MService::IsNoLogin();
         include template('MemberPersonAsset');
     }
 
@@ -101,6 +102,7 @@ class MemberPerson
      * @desc 关注/收藏
      */
     public function Focus(){
+        MService::IsNoLogin();
         include template('MemberPersonFocus');
     }
 }

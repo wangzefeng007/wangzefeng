@@ -1049,4 +1049,44 @@ class AjaxLogin
         unset($Lists);
         EchoResult($Data);exit;
     }
+    /**
+     * @desc  会员-发布的资产
+     */
+    public function GetAssetList(){
+        $this->IsLogin();
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MysqlWhere = ' and UserID = '.$_SESSION['UserID'];
+        $NStatus =$MemberAssetInfoModule->NStatus;
+        $Status=  intval($_GET['S']);
+        if ($Status){
+            $MysqlWhere .= ' and Status = '.$Status;
+        }
+        $Page = intval($_GET['p'])<1?1:intval($_GET['p']);
+        $pageSize = 5;
+        $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);
+        if ($Rscount['Num']) {
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($pageSize ? $pageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $pageSize);
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            if ($Page > $Data['PageCount'])
+                $page = $Data['PageCount'];
+            $Data['Data'] = $MemberAssetInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$value['AssetID']);
+                $Data['Data'][$key]['ImageUrl'] = $AssetImage['ImageUrl'];
+            }
+            MultiPage($Data, 5);
+            $Data['ResultCode'] = 200;
+        }else{
+            $Data['ResultCode'] = 101;
+            $Data['Message'] = '暂无数据';
+            EchoResult($Data);exit;
+        }
+        unset($Lists);
+        EchoResult($Data);exit;
+    }
 }

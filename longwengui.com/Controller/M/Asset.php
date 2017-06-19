@@ -63,9 +63,27 @@ class Asset
      */
     public function  Order(){
         MService::IsNoLogin();
-//        if ($_SESSION ['Identity']!=1 && $_SESSION['Identity']!=2){
-//            alertandback("个人会员和催客方可购买商品！");
-//        }
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberShippingAddressModule = new MemberShippingAddressModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $Nav='asset';
+        $ID = $_GET['id'];
+        $Num = $_GET['num'];
+        $Money = $_GET['money'];
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($ID);
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $ExpirationDate = ceil(($AssetInfo['ExpirationDate'] -time())/(3600*24));
+        $AmountMoney =number_format($AssetInfo['Price']*$AssetInfo['Inventory'], 2);//剩余资产金额
+        $TotalAmount =number_format($Money+$AssetInfo['Freight'], 2);//合计金额
+        $AddressInfo = $MemberShippingAddressModule->GetInfoByWhere(' and UserID ='.$_SESSION['UserID'].' and IsDefault = 1');
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(" and AssetID = ".$AssetInfo['AssetID'].' and IsDefault = 1');
+        if (!empty($AddressInfo)){
+            $MemberAreaModule = new MemberAreaModule();
+            $AddressInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Province']);
+            $AddressInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['City']);
+            $AddressInfo['Area'] = $MemberAreaModule->GetCnNameByKeyID($AddressInfo['Area']);
+        }
         include template('AssetOrder');
     }
     /**
