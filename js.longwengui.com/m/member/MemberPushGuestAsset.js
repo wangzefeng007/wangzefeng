@@ -15,7 +15,7 @@ var pageObj=$.extend({},pageObj,{
     search:function(type){
         var _this=this;
         var getParams={
-            'S':$(".tab-nav a.active").attr("data-value"),
+            'S':$("#status").attr("data-value"),
             'Intention':_this.ajaxData.Intention[_this.assetType]
         }
         var ajaxParams=$.extend({},_this.ajaxData,getParams);
@@ -52,58 +52,48 @@ var pageObj=$.extend({},pageObj,{
      */
     init:function() {
         var _this = this;
-        //资产类型
-        $(".tab-nav a").on("click",function(){
-            $("#my_assets").text("我发布的");
-            $("#buy_assets").text("已买到的");
-            $("#sale_assets").text("已卖出的");
-            _this.assetType=$(this).attr("data-type");
-            _this.ajaxData.Page=1; //每次筛选page变为1
-            _this.search("update");
-        })
         //进入页面搜索"
         _this.search("update");
         var toolbarTemplate= '<header class="bar bar-nav">\
                 <button class="button button-link pull-right close-picker picker-indeed">确定</button>\
                 <h1 class="title">请选择</h1>\
                 </header>';
-       /* //我发布的选择
-        $("#my_assets").picker({
-            toolbarTemplate:toolbarTemplate,
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['0','1', '2', '3'],
-                    displayValues: ['全部','待审核', '审核通过', '审核未通过']
-                }
-            ]
-        });
-        //已买到的选择
-        $("#buy_assets").picker({
-            toolbarTemplate:toolbarTemplate,
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['0','1', '2', '3', '4 ','5'],
-                    displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','交易关闭']
-                }
-            ]
-        });
 
-        //已卖出的选择
-        $("#sale_assets").picker({
+       var colsArray=[
+           {
+               textAlign: 'center',
+               values: ['0','1', '2', '3'],
+               displayValues: ['全部','待审核', '审核通过', '审核未通过']
+           },
+           {
+               textAlign: 'center',
+               values: ['0','1', '2', '3', '4 ','5'],
+               displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','交易关闭']
+           },
+           {
+               textAlign: 'center',
+               values: ['0','1', '2', '3', '4 ','5'],
+               displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','售后完成']
+           }
+       ];
+        $("#status").picker({
             toolbarTemplate:toolbarTemplate,
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['0','1', '2', '3', '4 ','5'],
-                    displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','售后完成']
-                }
-            ]
-        });*/
+            cols: [colsArray[_this.assetType]]
+        });
+        //筛选选择
         $(document).on("click",".picker-indeed",function(){
             _this.ajaxData.Page=1; //每次筛选page变为1
             _this.search("update");
+        });
+        //资产类型
+        $(".tab-nav a").on("click",function(){
+            $("#status").attr("data-value","0").text("筛选");
+            _this.assetType=$(this).attr("data-type");
+            _this.ajaxData.Page=1; //每次筛选page变为1
+            _this.search("update");
+            $("#status").picker({
+                cols: [colsArray[_this.assetType]]
+            });
         });
         //滚动加载
         _this.loading = false;
