@@ -20,6 +20,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
+        MService::IsNoLogin();
         $EndTime = time()+ 2592000;
         if ($_GET['id']){
             $ID = intval($_GET['id']);

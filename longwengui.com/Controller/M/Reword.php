@@ -26,6 +26,7 @@ class Reword
 
     public function Publish()
     {
+        MService::IsNoLogin();
        include template('RewardPublish');
     }
 }

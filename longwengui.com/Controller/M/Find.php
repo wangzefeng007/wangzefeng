@@ -11,5 +11,4 @@ class Find
     public function Index(){
         include template('FindIndex');
     }
-
 }

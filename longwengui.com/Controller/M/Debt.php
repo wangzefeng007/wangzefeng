@@ -66,6 +66,7 @@ class Debt
      * @desc  发布债务
      */
     public function Publish(){
+        MService::IsNoLogin();
         include template('DebtPublish');
     }
 }
