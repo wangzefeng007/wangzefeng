@@ -1349,7 +1349,7 @@ class AjaxLogin
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         //分页查询开始-------------------------------------------------
-        $MysqlWhere = ' and Type = 1 and UserID='.$_SESSION ['UserID'];
+        $MysqlWhere = ' and Type = 2 and UserID='.$_SESSION ['UserID'];
         //关键字
         $Rscount = $MemberFocusDebtModule->GetListsNum($MysqlWhere);
         $Page=intval($_POST['Page'])?intval($_POST['Page']):0;
@@ -1368,7 +1368,7 @@ class AjaxLogin
             $Offset = ($Page - 1) * $Data['PageSize'];
             $Data['Data'] = $MemberFocusDebtModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
             foreach ($Data['Data'] as $key=>$value){
-                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['ID']);
+                $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($value['DebtID']);
                 $Data['Data'][$key]['AssetMember'] = $AssetInfo['AssetMember'];
                 $Data['Data'][$key]['Price'] = $AssetInfo['Price'];
                 $Data['Data'][$key]['Content'] = $AssetInfo['Content'];
