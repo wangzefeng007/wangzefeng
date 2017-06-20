@@ -280,6 +280,30 @@ class Member
         include template('MemberWallet');
     }
     /**
+     * @desc 提现银行卡
+     */
+    public function WithdrawalsBank(){
+        MService::IsNoLogin();
+        $Title = '会员-提现银行卡';
+        include template('MemberWithdrawalsBank');
+    }
+    /**
+     * @desc 提现支付宝
+     */
+    public function WithdrawalsAlipay(){
+        MService::IsNoLogin();
+        $Title = '会员-提现支付宝';
+        include template('MemberWithdrawalsAlipay');
+    }
+    /**
+     * @desc 提现协议
+     */
+    public function WithdrawalAgreement(){
+        MService::IsNoLogin();
+        $Title = '会员-提现协议';
+        include template('MemberWithdrawalAgreement');
+    }
+    /**
      * @desc 我的设置
      */
     public function  Setting(){

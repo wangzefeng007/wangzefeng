@@ -1,0 +1,54 @@
+{template Head}
+<body>
+<div class="page-group">
+    <div class="page">
+        <div class="content">
+            <header class="common-header">
+                <a class="header-left icon-back" href="javascript:void (0)">
+                </a>
+                <section class="header-title">
+                    提现
+                </section>
+            </header>
+            <div class="tab-nav tab-line tab-big">
+                <a class="active" href="#">提现到银行</a>
+                <a class="" href="#">提现到支付宝</a>
+            </div>
+
+            <div class="item mt0">
+                <div class="item-con">
+                    <div class="option">
+                        <input class="inp" type="text" placeholder="持卡人姓名">
+                    </div>
+                </div>
+                <div class="item-con">
+                    <div class="option">
+                        <input class="inp" type="text" placeholder="到账银行卡号">
+                    </div>
+                </div>
+                <p class="content-pd mt03">提现金额</p>
+                <div class="item-con">
+                    <p class="option-text mr02">¥</p>
+                    <div class="option">
+                        <input class="inp" style="font-size: .8rem" type="text" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="wallet-tips">钱包余额¥10000.11, <span class="c-blue">全部提现</span></div>
+            </div>
+
+            <div class="box-btn mt05">
+                <a class="btn" href="#">提现</a>
+            </div>
+            <div class="content-pd">
+                <p class="agree-line">
+                    <label class="checkbox" type="checkbox">
+                        <input type="checkbox" name="agree" value="0" checked>
+                        <i></i>我已阅读并同意<span class="c-red" onclick="go('/member/withdrawalagreement/')">《用户协议》</span>
+                    </label>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
