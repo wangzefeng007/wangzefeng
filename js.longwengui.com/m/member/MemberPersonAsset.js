@@ -138,7 +138,7 @@ var pageObj=$.extend({},pageObj,{
            {
                textAlign: 'center',
                values: ['0','1', '2', '3', '4 ','5'],
-               displayValues: ['全部','未付款', '已付款', '交易完成', '申请售后 ','售后完成']
+               displayValues: ['全部','已付款', '已发货', '交易完成', '售后中 ','售后完成']
            }
        ];
         $("#status0").picker({
@@ -160,7 +160,7 @@ var pageObj=$.extend({},pageObj,{
         });
         //资产类型
         $(".tab-nav a").on("click",function(){
-            $("#status").attr("data-value","0").text("筛选");
+            $(".header-right").attr("data-value","0").text("筛选");
             _this.assetType=$(this).attr("data-type");
             _this.ajaxData.Page=1; //每次筛选page变为1
             _this.search("update");
