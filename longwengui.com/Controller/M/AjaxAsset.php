@@ -112,7 +112,7 @@ class AjaxAsset
         $Data['ExpirationDate'] = strtotime($AjaxData['_end_time']);//截止时间
         $Data['UserID'] =  $_SESSION['UserID'];
         $Data['AddTime'] = time();
-        $Data['Status'] =1;
+        $Data['Status'] =2;
         $ID = intval($_POST['ID']);
             $ImageArr=array();
             if (strstr($AjaxData['transDetail'], 'data:image')){
@@ -140,12 +140,12 @@ class AjaxAsset
                         $InsertImage = $MemberAssetImageModule->InsertInfo(array('AssetID'=>$ID,'ImageUrl'=>$value,'IsDefault'=>$IsDefault));
                     }
                     if (!$InsertImage){
-                        $result_json = array('ResultCode'=>105,'Message'=>'修改失败！','Url'=>'/member/assetlist/');
+                        $result_json = array('ResultCode'=>105,'Message'=>'修改失败！','Url'=>'/member/asset/');
                     }else{
-                        $result_json = array('ResultCode'=>200,'Message'=>'修改成功！','Url'=>'/member/assetlist/');
+                        $result_json = array('ResultCode'=>200,'Message'=>'修改成功！','Url'=>'/member/asset/');
                     }
                 }else{
-                    $result_json = array('ResultCode'=>104,'Message'=>'修改失败！','Url'=>'/member/assetlist/');
+                    $result_json = array('ResultCode'=>104,'Message'=>'修改失败！','Url'=>'/member/asset/');
                 }
             }else{
                 $AssetID = $MemberAssetInfoModule->InsertInfo($Data);
@@ -161,7 +161,7 @@ class AjaxAsset
                     if (!$InsertImage){
                         $result_json = array('ResultCode'=>102,'Message'=>'图片上传失败！');
                     }else{
-                        $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','Url'=>'/asset/audit');
+                        $result_json = array('ResultCode'=>200,'Message'=>'发布成功,请等待审核！','Url'=>'/member/asset/');
                     }
                 }else{
                     $result_json = array('ResultCode'=>103,'Message'=>'发布失败！');
