@@ -47,6 +47,72 @@ var pageObj=$.extend({},pageObj,{
         });
     },
     /**
+     * 商品上架
+     */
+    GoodsShelf:function(assetId){
+        $.confirm('请确认是否上架此商品？',
+            function () {
+                $.ajax({
+                    type:"post",
+                    url:"/ajaxasset/",
+                    dataType: "json",
+                    data:{
+                        "Intention":"ProductShelves",
+                        "AssetID":assetId
+                    },
+                    beforeSend:　function(){
+                        $.showIndicator();
+                    },success: function(data){
+                        if(data.ResultCode == 200){
+                            $.toast(data.Message);
+                            location.reload();
+                        }else{
+                            $.toast(data.Message);
+                        }
+                    },complete: function(){
+                        $.hideIndicator();
+                    }
+                })
+            },
+            function () {
+                //$.alert('You clicked Cancel button');
+            }
+        );
+    },
+    /**
+     * 商品下架
+     */
+    GoodsShelf2:function(assetId){
+        $.confirm('请确认是否下架此商品？',
+            function () {
+                $.ajax({
+                    type:"post",
+                    url:"/ajaxasset/",
+                    dataType: "json",
+                    data:{
+                        "Intention":"ProductShelves",
+                        "AssetID":assetId
+                    },
+                    beforeSend:　function(){
+                        $.showIndicator();
+                    },success: function(data){
+                        if(data.ResultCode == 200){
+                            $.toast(data.Message);
+                            location.reload();
+                        }else{
+                            $.toast(data.Message);
+                        }
+                    },complete: function(){
+                        $.hideIndicator();
+                    }
+                })
+            },
+            function () {
+                //$.alert('You clicked Cancel button');
+            }
+        );
+    },
+    /**
      * 初始化方法
      */
     init:function() {
