@@ -24,7 +24,7 @@
                                 转让单价（元）:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="trans_money" placeholder="请输入您转让的单价" type="text">
+                                <input class="inp" name="trans_money" value="{$AssetInfo[Price]}" placeholder="请输入您转让的单价" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -32,7 +32,7 @@
                                 份额数量（份）:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="trans_count" placeholder="请输入您的份额数量" type="text">
+                                <input class="inp" name="trans_count" value="{$AssetInfo[Inventory]}" placeholder="请输入您的份额数量" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -40,7 +40,7 @@
                                 市场价格（元）:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="public_money" placeholder="请输入市场的价格" type="text">
+                                <input class="inp" name="public_money" value="{$AssetInfo[MarketPrice]}" placeholder="请输入市场的价格" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                 运&emsp;&emsp;费（元）:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="emsMoney" placeholder="请输入您所收的运费" value="0" type="text">
+                                <input class="inp" name="emsMoney" placeholder="请输入您所收的运费" value="{if $AssetInfo[Freight]>0}{$AssetInfo[Freight]}{else}0{/if}" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -56,7 +56,7 @@
                                 资 产 种 类:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="trans_type" placeholder="请选择您要发布资产的种类" type="text">
+                                <input class="inp" name="trans_type" value="{$AssetInfo[Category]}" placeholder="请选择您要发布资产的种类" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -72,7 +72,7 @@
                                 售 后 电 话:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="sell_phone" placeholder="请输入您的售后电话" type="tel">
+                                <input class="inp" name="sell_phone" value="{$AssetInfo[AfterPhone]}" placeholder="请输入您的售后电话" type="tel">
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                 资 产 标 题:
                             </p>
                             <div class="form-grid">
-                                <input class="inp" name="transTitle" placeholder="请输入您的资产标题" maxlength="20" type="text">
+                                <input class="inp" name="transTitle" value='{$AssetInfo[Title]}' placeholder="请输入您的资产标题" maxlength="20" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -114,7 +114,7 @@
                                 资 产 详 情:
                             </p>
                             <div class="form-grid">
-                                <textarea class="textarea" style="height: 6rem" name="edi" id="" cols="30" maxlength="150" placeholder="请输入资产的介绍内容（最多150个字）" rows="10"></textarea>
+                                <textarea class="textarea" style="height: 6rem" name="edi" id="" cols="30" maxlength="150" placeholder="请输入资产的介绍内容（最多150个字）" rows="10">{$AssetInfo['Content']}</textarea>
                             </div>
                         </div>
                     </div>
