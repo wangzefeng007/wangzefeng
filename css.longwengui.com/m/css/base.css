@@ -2551,6 +2551,10 @@ a.btn-s,
     box-sizing:border-box;
     font-size:.6rem;
 }
+.item-goods .item-oparate .btn.full{
+    background: #59cbc7;
+    color: #fff;
+}
 .item-goods .item-oparate .btn+.btn{
     margin-left: 1rem;
 }

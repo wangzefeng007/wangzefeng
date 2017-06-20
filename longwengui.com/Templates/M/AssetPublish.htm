@@ -128,45 +128,40 @@
                     </div>
                     <div class="form-box mt01">
                         <div class="row upload-row">
-                            {loop $AssetImage $lists}
+                            {loop $AssetImage $key $lists}
+                            {if $key<2}
                             <div class="form-grid bx imageUploadBox">
                                 <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
                                     <img src="{$lists['ImageUrl']}" alt="">
                                 </div>
                             </div>
+                            {/if}
                             {/loop}
-                            <div class="form-grid bx imageUploadBox">
-                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
-                                <div class="img-wrap">
-                                </div>
-                            </div>
                         </div>
                         <div class="row upload-row">
+                            {loop $AssetImage $key $lists}
+                            {if $key>1&&$key<4}
                             <div class="form-grid bx imageUploadBox">
                                 <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
+                                    <img src="{$lists['ImageUrl']}" alt="">
                                 </div>
                             </div>
-
-                            <div class="form-grid bx imageUploadBox">
-                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
-                                <div class="img-wrap">
-                                </div>
-                            </div>
+                            {/if}
+                            {/loop}
                         </div>
                         <div class="row upload-row">
+                            {loop $AssetImage $key $lists}
+                            {if $key>3&&$key<6}
                             <div class="form-grid bx imageUploadBox">
                                 <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
                                 <div class="img-wrap">
+                                    <img src="{$lists['ImageUrl']}" alt="">
                                 </div>
                             </div>
-
-                            <div class="form-grid bx imageUploadBox">
-                                <input class="portrait" type="file" name="avatar_file"  accept="image/jpeg, image/x-png, image/gif">
-                                <div class="img-wrap">
-                                </div>
-                            </div>
+                            {/if}
+                            {/loop}
                         </div>
                     </div>
                 </div>
