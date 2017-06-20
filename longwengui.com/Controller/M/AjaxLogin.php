@@ -808,9 +808,9 @@ class AjaxLogin
         $ID = $_POST['id'];
         $Delete = $MemberFocusDebtModule->DeleteByKeyID($ID);
         if ($Delete){
-            $result_json = array('ResultCode'=>200,'Message'=>'取消关注成功！');
+            $result_json = array('ResultCode'=>200,'Message'=>'取消成功！');
         }else{
-            $result_json = array('ResultCode'=>103,'Message'=>'取消关注失败！');
+            $result_json = array('ResultCode'=>103,'Message'=>'取消失败！');
         }
         EchoResult($result_json);
         exit;

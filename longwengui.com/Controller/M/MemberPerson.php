@@ -128,11 +128,5 @@ class MemberPerson
             $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         include template('MemberPersonOrderDetails');
     }
-    /**
-     * @desc 关注/收藏
-     */
-    public function Focus(){
-        MService::IsNoLogin();
-        include template('MemberPersonFocus');
-    }
+
 }

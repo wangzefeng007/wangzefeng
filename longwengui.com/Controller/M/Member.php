@@ -311,4 +311,18 @@ class Member
         $Title = '会员-我的设置';
         include template('MemberSetting');
     }
+    /**
+     * @desc 关注/收藏
+     */
+    public function Focus(){
+        MService::IsNoLogin();
+        include template('MemberPersonFocus');
+    }
+    /**
+     * @desc 我的资产
+     */
+    public function Asset(){
+        MService::IsNoLogin();
+        include template('MemberPersonAsset');
+    }
 }
