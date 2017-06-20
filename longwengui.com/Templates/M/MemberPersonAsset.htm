@@ -69,8 +69,8 @@
                     <a href="/asset/publish/?id={{asset.AssetID}}" class="btn">
                         编辑
                     </a>
-                    <% if(asset.Status=="2"&&asset.ProductStatus=="1"){ %> <a href="#{{asset.AssetID}}" class="btn">立即下架</a> <% } %>
-                    <% if(asset.Status=="2"&&asset.ProductStatus=="0"){ %> <a href="#{{asset.AssetID}}" class="btn">立即上架</a> <% } %>
+                    <% if(asset.Status=="2"&&asset.ProductStatus=="1"){ %> <a href="javascript:void(0)" onclick="pageObj.GoodsShelf2('{{asset.AssetID}}')" class="btn">立即下架</a> <% } %>
+                    <% if(asset.Status=="2"&&asset.ProductStatus=="0"){ %> <a href="javascript:void(0)" onclick="pageObj.GoodsShelf('{{asset.AssetID}}')" class="btn">立即上架</a> <% } %>
                 </div>
             </div>
         </div>

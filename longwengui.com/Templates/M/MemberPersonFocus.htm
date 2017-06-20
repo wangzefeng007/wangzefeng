@@ -40,11 +40,11 @@
 <% if(foucusType==0){%>
 {{each Data as item}}
 <li>
-    <a href="/debt/{{item.ID}}.html">
-        <div class="item-hd">
-            债务编号：{{item.DebtNum}}
-            <i class="icon-follow fr follow-ed"></i>
-        </div>
+    <div class="item-hd">
+        债务编号：{{item.DebtNum}}
+        <i class="icon-follow fr follow-ed" onclick="pageObj.cancelConcern('{{item.ID}}')"></i>
+    </div>
+    <a href="/debt/{{item.DebtID}}.html">
         <div class="item-main">
             <p class="h4">
                 债务人：{{item.Name}}
@@ -66,7 +66,7 @@
     <a href="#">
         <div class="item-hd">
             资产单号：{{item.AssetMember}}
-            <i class="icon-favo fr favo-ed"></i>
+            <i class="icon-favo fr favo-ed" onclick="pageObj.cancelConcern('{{item.ID}}')"></i>
         </div>
         <div class="item-main">
             <p class="h4 ellipsis">

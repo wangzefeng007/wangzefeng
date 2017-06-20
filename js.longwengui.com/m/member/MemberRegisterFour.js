@@ -11,8 +11,6 @@ var pageObj=$.extend({},pageObj,{
         var province = address.split(" ")[0];
         var city = address.split(" ")[1];
         var area = address.split(" ")[2];
-        var city = $('.tab-lawer input[name="dd_city"]').siblings('span').attr('data-id');
-        var area = $('.tab-lawer input[name="dd_area"]').siblings('span').attr('data-id');
         var lawer_images = []; //证明图片
         var inspection_date =$('.tab-lawer input[name="checkDate"]').val();
 

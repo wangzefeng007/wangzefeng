@@ -45,6 +45,34 @@ var pageObj=$.extend({},pageObj,{
         });
     },
     /**
+     * 债务取消关注收藏
+     */
+    cancelConcern:function(id){
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/loginajax.html',
+            data: {
+                "Intention": 'CancelConcern',
+                "id": id
+            },
+            beforeSend: function(){
+                $.showIndicator();
+            },
+            success: function(data){
+                if(data.ResultCode == 200){
+                    $.toast(data.Message);
+                    window.location.reload();
+                }else{
+                    $.toast(data.Message);
+                }
+            },
+            complete: function(){
+                $.hideIndicator();
+            }
+        });
+    },
+    /**
      * 初始化方法
      */
     init:function() {

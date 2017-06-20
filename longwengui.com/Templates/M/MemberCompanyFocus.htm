@@ -43,7 +43,7 @@
         <a href="/debt/{{item.DebtID}}.html">
             <div class="item-hd">
                 债务编号：{{item.DebtNum}}
-                <i class="icon-follow fr follow-ed"></i>
+                <i class="icon-follow fr follow-ed" onclick="pageObj.cancelConcern(event,'{{item.DebtID}}')"></i>
             </div>
             <div class="item-main">
                 <p class="h4">
