@@ -50,37 +50,63 @@
 <script type="text/html" id="lai_temp">
     {{each Data as item }}
     <li>
-        <a href="#">
-            <div class="item-lai">
-                <div class="common-box lai-hd">
-                    <i class="icon icon-usermsg"></i>
+        <div class="item-lai">
+            <div class="common-box lai-hd">
+                <i class="icon icon-usermsg"></i>
+                <div>
+                    <% if (item.partyTypeName=="0") { %>
+                    <span class="h3">姓名：{{item.iname}}</span>
+                    <% } %>
+                    <% if (item.partyTypeName=="1") { %>
+                    <span class="h3">企业名称：{{item.iname}}</span>
+                    <% } %>
+                    <span class="link">查看详情
+                                        <i class="icon-arrow"></i>
+                                      </span>
+                </div>
+            </div>
+            <div class="lai-msg">
+                <p>
+                    地区：{{item.areaName}}
+                </p>
+                <p>
+                    <% if (item.partyTypeName=="0") { %>
+                    <span>身份证号：{{item.cardNum}}</span><span class="fr fs020"> {{item.publishDate}}</span>
+                    <% } %>
+                    <% if (item.partyTypeName=="1") { %>
+                    <span>组织机构代码：{{item.cardNum}}</span><span class="fr fs020"> {{item.publishDate}}</span>
+                    <% } %>
+                </p>
+            </div>
+            <div class="hide-case">
+                <div class="common-box lai-hd lai-hd-case">
+                    <i class="icon icon-case"></i>
                     <div>
-                        <% if (item.partyTypeName=="0") { %>
-                        <span class="h3">姓名：{{item.iname}}</span>
-                        <% } %>
-                        <% if (item.partyTypeName=="1") { %>
-                        <span class="h3">企业名称：{{item.iname}}</span>
-                        <% } %>
-                        <span class="link">查看详情
-                                            <i class="icon-arrow"></i>
-                                          </span>
+                        <span class="h3">未履行案件</span>
                     </div>
                 </div>
                 <div class="lai-msg">
                     <p>
-                        地区：{{item.areaName}}
+                        执行法院：{{item.courtName}}
                     </p>
                     <p>
-                        <% if (item.partyTypeName=="0") { %>
-                        <span>身份证号：{{item.cardNum}}</span><span class="fr fs020"> {{item.publishDate}}</span>
-                        <% } %>
-                        <% if (item.partyTypeName=="1") { %>
-                        <span>组织机构代码：{{item.cardNum}}</span><span class="fr fs020"> {{item.publishDate}}</span>
-                        <% } %>
+                        案号：{{item.caseCode}}
                     </p>
+                    <p>
+                        被执行人的履行情况：{{item.performance}}
+                    </p>
+                    <p>
+                        {{item.disruptTypeName}}
+                    </p>
+                    <p class="more-bar">生效法律文书确定的义务：<i class="icon-more"></i></p>
+                    <div class="more mt01">
+                        <div>
+                            {{item.duty}}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </a>
+        </div>
     </li>
     {{/each}}
 </script>

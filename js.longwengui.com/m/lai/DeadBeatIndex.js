@@ -101,7 +101,11 @@ var pageObj=$.extend({},pageObj,{
         //点击查询搜索
         $("#query").on("click",function(){
             _this.search("update");
-        })
+        });
+        //点击查看
+        $(document).on("click",".link",function(){
+           $(this).parents("li").find(".hide-case").toggle();
+        });
     }
 })
 $(document).ready(function(){
