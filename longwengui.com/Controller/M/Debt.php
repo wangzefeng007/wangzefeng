@@ -67,6 +67,18 @@ class Debt
      */
     public function Publish(){
         MService::IsNoLogin();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
+        if ($UserInfo['Province'])
+        $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+        $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+        $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        $User = $MemberUserModule->GetInfoByKeyID($_SESSION ['UserID']);
+        $UserInfo['Mobile'] = $User['Mobile'];
         include template('DebtPublish');
     }
 }

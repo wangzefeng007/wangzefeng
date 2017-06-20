@@ -26,7 +26,7 @@
                                     姓&emsp;&emsp;&emsp;名:
                                 </p>
                                 <div class="form-grid">
-                                    <input class="inp" name="name" placeholder="请输入您的姓名" type="text">
+                                    <input class="inp" name="name" value="{$UserInfo[RealName]}" placeholder="请输入您的姓名" type="text">
                                 </div>
                             </div>
                             <div class="row">
@@ -34,7 +34,7 @@
                                     手&emsp;&emsp;&emsp;机:
                                 </p>
                                 <div class="form-grid">
-                                    <input class="inp" name="phoneNumber" placeholder="请输入您的手机号" type="tel">
+                                    <input class="inp" name="phoneNumber" value="{$UserInfo[Mobile]}" placeholder="请输入您的手机号" type="tel">
                                 </div>
                             </div>
                             <div class="row">
@@ -42,7 +42,7 @@
                                     身&emsp;份&emsp;证:
                                 </p>
                                 <div class="form-grid">
-                                    <input class="inp" name="idNum" placeholder="请输入您的身份证号" type="tel">
+                                    <input class="inp" name="idNum" value="{$UserInfo[CardNum]}" placeholder="请输入您的身份证号" type="tel">
                                 </div>
                             </div>
                             <div class="row">
@@ -58,7 +58,7 @@
                                     地&emsp;&emsp;&emsp;址:
                                 </p>
                                 <div class="form-grid">
-                                    <input class="inp" name="address" placeholder="请选择您的所在位置" type="text">
+                                    <input class="inp" name="address" value="{$UserInfo[province]} {$UserInfo[city]} {$UserInfo[area]}" data-value="{$UserInfo[Province]} {$UserInfo[City]} {$UserInfo[Area]}" placeholder="请选择您的所在位置" type="text">
                                 </div>
                             </div>
                             <div class="row">
@@ -66,7 +66,7 @@
                                     详 细 地 址:
                                 </p>
                                 <div class="form-grid">
-                                    <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10"></textarea>
+                                    <textarea class="textarea" maxlength="50" placeholder="请输入街道门牌信息（最多50个字）" name="areaDetail" id="" cols="30" rows="10">{$UserInfo[Address]}</textarea>
                                 </div>
                             </div>
                         </div>
