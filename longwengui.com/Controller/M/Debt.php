@@ -67,6 +67,7 @@ class Debt
      */
     public function Publish(){
         MService::IsNoLogin();
+        $type = intval($_GET['T']);
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
@@ -84,7 +85,7 @@ class Debt
     /**
      * @desc  发布债务
      */
-    public function DebtPublish1(){
+    public function PublishOne(){
         MService::IsNoLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();
@@ -98,7 +99,7 @@ class Debt
             $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION ['UserID']);
         $UserInfo['Mobile'] = $User['Mobile'];
-        include template('DebtPublish1');
+       include template('DebtPublishOne');
     }
 
 }

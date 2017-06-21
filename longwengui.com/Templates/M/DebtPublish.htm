@@ -12,8 +12,8 @@
             </header>
             <div class="content-pd mt02">
                 <div class="tab-nav tab-radius">
-                    <a class="active" href="#debtor_owner_info">个人债务</a>
-                    <a href="#debtor_owner_info2">企业债务</a>
+                    <a {if $type==1}class="active"{/if} href="#debtor_owner_info">个人债务</a>
+                    <a onclick="go('/debt/publishone/')">企业债务</a>
                 </div>
                 <div class="tab-con">
                     <div class="warp-fieldset mt02 active" id="debtor_owner_info">
