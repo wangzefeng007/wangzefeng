@@ -10,7 +10,19 @@
                     商品详情
                 </section>
             </header>
+            {if  $OrderInfo[Status]==3}
             <div class="view-box">
+                <div class="form-box">
+                    <div class="row">
+                        物流公司：{$OrderInfo[LogisticsCompany]}
+                    </div>
+                    <div class="row">
+                        物流单号：{$OrderInfo[WaybillNumber]}
+                    </div>
+                </div>
+            </div>
+            {/if}
+            <div class="view-box {if $OrderInfo[Status]==3}mt02{/if}">
                 <div class="form-box">
                     <div class="row">
                         卖家：{$UserInfo[RealName]}
@@ -79,12 +91,10 @@
                 </div>
                 <p class="w-100"></p>
                 <div>
-                    <a class="btn" href="#">申请售后</a>
+                    <a class="btn" href="javascript:void(0)" onclick="pageObj.indeedReceipt('{$OrderInfo[OrderID]}')">确认收货</a>
                 </div>
                 {elseif $OrderInfo[Status]==4}
-                <div class="box-btn">
                     <a class="btn" href="/member/asset/">返回订单列表</a>
-                </div>
                 {/if}
             </div>
         </div>

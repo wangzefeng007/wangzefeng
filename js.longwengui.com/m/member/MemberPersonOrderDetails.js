@@ -58,6 +58,36 @@ var pageObj=$.extend({},pageObj,{
         })
     },
     /**
+     * 确认签收
+     * @param tar
+     */
+    indeedReceipt:function(orderId){
+        var _this=this;
+        $.confirm('是否确认签收？', function () {
+            $.ajax({
+                type:"post",
+                url:"/ajaxorder",
+                dataType: "json",
+                data:{
+                    "Intention":'ConfirmReceipt',
+                    "orderId":orderId
+                },
+                beforeSend:　function(){
+                    $.showIndicator();
+                },success: function(data){
+                    if(data.ResultCode == 200){
+                        $.toast(data.Message);
+                        window.location.reload();
+                    }else{
+                        $.toast(data.Message);
+                    }
+                },complete: function(){
+                    $.hideIndicator();
+                }
+            })
+        });
+    },
+    /**
      * 初始化方法
      */
     init:function(){
