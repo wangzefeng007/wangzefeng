@@ -59,7 +59,7 @@
             <div class="box-btn common-box">
                 {if $OrderInfo[Status]==1}
                 <div>
-                    <a class="btn btn-default" href="javascript:void (0)">取消订单</a>
+                    <a class="btn btn-default" onclick="pageObj.cancelOrder('{$OrderInfo[OrderID]}')" href="javascript:void (0)">取消订单</a>
                 </div>
                 <p class="w-100"></p>
                 <div>
@@ -71,7 +71,7 @@
                 </div>
                 <p class="w-100"></p>
                 <div>
-                    <a class="btn" href="javascript:void (0)">提醒发货</a>
+                    <a class="btn" onclick="pageObj.remind('{$OrderInfo[OrderID]}')" href="javascript:void (0)">提醒发货</a>
                 </div>
                 {elseif $OrderInfo[Status]==3}
                 <div>
@@ -90,6 +90,6 @@
         </div>
     </div>
 </div>
-
+<script src='{echo JsURL}/m/member/MemberPersonOrderDetails.js'></script>
 </body>
 </html>
