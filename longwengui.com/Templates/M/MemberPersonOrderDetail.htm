@@ -60,23 +60,60 @@
         </div>
         <div class="fixed-bottom">
             <div class="box-btn common-box">
-                {if $OrderInfo[Status]==2}
                 <div>
                     <a class="btn btn-default" href="/member/asset/">返回订单列表</a>
                 </div>
                 <p class="w-100"></p>
                 <div>
-                    <a class="btn" href="javascript:void (0)">立即发货</a>
+                    <a class="btn" href="javascript:void (0)" id="immediate">立即发货</a>
                 </div>
-                {elseif $OrderInfo[Status]>2}
+            </div>
+        </div>
+        <!-- 发货信息确认 Popup -->
+        <div class="popup popup-logistics">
+            <header class="common-header">
+                <section class="header-title">
+                    确认物流信息
+                </section>
+                <a href="javascript:void(0)" id="cancel" class="header-right close-popup">取消</a>
+            </header>
+            <div class="view-box">
+                <div class="form-box">
+                    <div class="row">
+                        收货人：{$OrderInfo[Contacts]}
+                    </div>
+                    <div class="row">
+                        手机号码：{$OrderInfo[Tel]}
+                    </div>
+                    <div class="row">
+                        收货地址：{$OrderInfo[Address]}
+                    </div>
+                    <div class="row">
+                        <label for="" class="form-lab">
+                            物流公司：
+                        </label>
+                        <div class="form-grid">
+                            <input class="inp" name="logisticsName" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="form-lab">
+                            物流单号：
+                        </label>
+                        <div class="form-grid">
+                            <input class="inp" name="logisticsNo" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fixed-bottom">
                 <div class="box-btn">
-                    <a class="btn" href="/member/asset/">返回订单列表</a>
+                    <a class="btn" href="javascript:void (0)" onclick="pageObj.immediateDelivery('{$OrderInfo[Tel]}');">确认发货</a>
                 </div>
-                {/if}
             </div>
         </div>
     </div>
 </div>
-
+<script src='{echo JsURL}/m/member/MemberPersonOrderDetail.js'></script>
 </body>
 </html>
