@@ -9,14 +9,14 @@
                 <section class="header-title">
                     我的钱包
                 </section>
-                <a class="header-right" href="/member/withdrawalsbank/">
+                <a class="header-right" id="getCash" href="/member/withdrawalsbank/">
                     提现
                 </a>
             </header>
             <div class="member-top wallet-top">
                 <div class="content-pd">
                     <p class="h6">账户余额（元）</p>
-                    <p class="h3 mt015">10000.11</p>
+                    <p class="h3 mt015" id="money">0.00</p>
                 </div>
             </div>
 
@@ -24,6 +24,10 @@
                 <a class="active" href="#">全部</a>
                 <a class="" href="#">收入</a>
                 <a class="" href="#">支出</a>
+            </div>
+            <div class="common-empty" style="display: block">
+                <img src="{echo CssURL}/m/images/empty-img.jpg" alt="">
+                <p>暂无数据</p>
             </div>
 
             <!--<div class="item mt0">-->
@@ -61,5 +65,6 @@
         </div>
     </div>
 </div>
+<script type='text/javascript' src='{echo JsURL}/m/member/MemberWallet.js' charset='utf-8'></script>
 </body>
 </html>
