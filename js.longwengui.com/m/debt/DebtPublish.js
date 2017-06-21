@@ -18,7 +18,9 @@ var pageObj=$.extend({},pageObj,{
         if($('#' + targetID).children('.form-fieldset').length < 3){
             addRenderDom(targetID, tempID,addData,function(){
                 //地址初始化
-                $('#' + targetID).children(".form-fieldset"+dom_index).find("input[name='address']").cityPicker();
+                $('#' + targetID).children(".form-fieldset"+dom_index).find("input[name='address']").cityPicker({
+                    value:false
+                });
             });
         }
     },
@@ -282,6 +284,9 @@ var pageObj=$.extend({},pageObj,{
         }
         $("#publish-step1").removeClass("page-current");
         $("#publish-step2").addClass("page-current");
+        $("#publish-step2 input[name='address']").cityPicker({
+            value:false
+        });
     },
     /**
      * 下一步去第三步
@@ -358,7 +363,7 @@ var pageObj=$.extend({},pageObj,{
     init:function() {
         var _this = this;
         //地址初始化
-        $("input[name='address']").cityPicker();
+        $("#publish-step1 #debtor_owner_info input[name='address']").cityPicker();
         //去第二步
         $("#goStep2").on("click", function () {
             _this.goStep2();
