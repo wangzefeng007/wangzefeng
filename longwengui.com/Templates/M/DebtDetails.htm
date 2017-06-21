@@ -39,6 +39,7 @@
             <div class="tab-con">
                 <div id="tab1" class="active">
                     <div class="content-view">
+                        {if $DebtInfo[DebtType]==1}
                         {loop $CreditorsInfo $lists}
                         <div class="paragraph">
                             <p>
@@ -61,10 +62,38 @@
                             </p>
                         </div>
                         {/loop}
+                        {elseif $DebtInfo[DebtType]==2}
+                        {loop $CreditorsInfo $lists}
+                        <div class="paragraph">
+                            <p>
+                                公司名称：{$lists[CompanyName]}
+                            </p>
+                            <p>
+                                法人姓名：{$lists[Name]}
+                            </p>
+                            <p>
+                                固定电话：{$lists[Phone]}
+                            </p>
+                            <p>
+                                信用代码证：{$lists[Card]}
+                            </p>
+                            <p>
+                                公司地区： {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
+                            </p>
+                            <p class="ellipsis">
+                                公司地址：{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
+                            </p>
+                            <p>
+                                债务金额（元）：¥{$lists[Money]}
+                            </p>
+                        </div>
+                        {/loop}
+                        {/if}
                     </div>
                 </div>
                 <div id="tab2">
                     <div class="content-view">
+                        {if $DebtInfo[DebtType]==1}
                         {loop $DebtorsInfo $lists}
                         <div class="paragraph">
                             <p>
@@ -87,6 +116,33 @@
                             </p>
                         </div>
                         {/loop}
+                        {elseif $DebtInfo[DebtType]==2}
+                        {loop $DebtorsInfo $lists}
+                        <div class="paragraph">
+                            <p>
+                                公司名称：{$lists[CompanyName]}
+                            </p>
+                            <p>
+                                法人姓名：{$lists[Name]}
+                            </p>
+                            <p>
+                                固定电话：{$lists[Phone]}
+                            </p>
+                            <p>
+                                信用代码证：{$lists[Card]}
+                            </p>
+                            <p>
+                                公司地区： {if $lists[Province]!=''}{$lists[Province]}-{$lists[City]}-{$lists[Area]}{/if}
+                            </p>
+                            <p class="ellipsis">
+                                公司地址：{if $lists[Address]} {$lists[Address]} {else} 无 {/if}
+                            </p>
+                            <p>
+                                债务金额（元）：¥{$lists[Money]}
+                            </p>
+                        </div>
+                        {/loop}
+                        {/if}
                     </div>
                 </div>
                 <div id="tab4">

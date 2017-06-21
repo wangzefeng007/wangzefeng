@@ -504,8 +504,8 @@ class Ajax
             $Data['UpdateTime'] = $Data['AddTime'];
             $Data['Status'] = 8;//发布待审核
             $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-            //1律师团队，2催收公司,3自助催收
-            $Data['CollectionType'] = intval($_POST['Type']);
+            //1个人债务，2企业债务
+            $Data['DebtType'] = intval($_POST['Type']);
             //是否有前期费用
             $Data['EarlyCost'] = $AjaxData['preFee'];
             //是否随时能找到
@@ -598,6 +598,7 @@ class Ajax
                 $Datb['AddTime'] = $Data['AddTime'];
                 $Datb['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key => $value) {
+                    $Datb['CompanyName'] = trim($value['cname']);
                     $Datb['Name'] = trim($value['name']);
                     $Datb['Card'] = trim($value['idNum']);
                     $Datb['Money'] = trim($value['debt_money']);
@@ -620,6 +621,7 @@ class Ajax
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
                     foreach ($debtorInfos as $key => $value) {
+                        $Datb['CompanyName'] = trim($value['cname']);
                         $Datc['Name'] = trim($value['name']);
                         $Datc['Card'] = trim($value['idNum']);
                         $Datc['Money'] = trim($value['debt_money']);
