@@ -79,12 +79,10 @@
                 </div>
                 <p class="w-100"></p>
                 <div>
-                    <a class="btn" href="#">申请售后</a>
+                    <a class="btn" href="javascript:void(0)" onclick="pageObj.indeedReceipt('{$OrderInfo[OrderID]}')">确认收货</a>
                 </div>
                 {elseif $OrderInfo[Status]==4}
-                <div class="box-btn">
                     <a class="btn" href="/member/asset/">返回订单列表</a>
-                </div>
                 {/if}
             </div>
         </div>
