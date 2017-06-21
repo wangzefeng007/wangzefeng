@@ -325,4 +325,26 @@ class Member
         MService::IsNoLogin();
         include template('MemberPersonAsset');
     }
+    /**
+     * @desc 资产订单详情（已卖出的）
+     */
+    public function OrderDetail(){
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderID = trim($_GET['id']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
+        $OrderInfo['Amount'] = $OrderInfo['TotalAmount']- $AssetInfo['Freight'];
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
+        include template('MemberPersonOrderDetail');
+    }
+
 }

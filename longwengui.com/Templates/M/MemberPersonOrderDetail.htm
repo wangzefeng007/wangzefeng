@@ -1,0 +1,76 @@
+{template Head}
+<body>
+<div class="page-group">
+    <div class="page">
+        <div class="content">
+            <header class="common-header">
+                <a class="header-left icon-back" href="javascript:void (0)">
+                </a>
+                <section class="header-title">
+                    商品详情
+                </section>
+            </header>
+            <div class="view-box">
+                <div class="form-box">
+                    <div class="row">
+                        买家：{$OrderInfo[Contacts]}
+                    </div>
+                    <div class="row">
+                        联系电话：{$OrderInfo[Tel]}
+                    </div>
+                    <div class="row">
+                        收货地址：{$OrderInfo[Address]}
+                    </div>
+                </div>
+            </div>
+            <div class="item-goods mt02">
+                <div class="hd">
+                    订单编号：{$OrderInfo[OrderNumber]} <span class="fr">{$NStatus[$OrderInfo[Status]]}</span>
+                </div>
+                <div class="common-box item-con">
+                    <p class="pic">
+                        <img src="{$AssetImage[ImageUrl]}" alt="">
+                    </p>
+                    <div>
+                        <p class="h3">
+                            <span class="long ellipsis">{$AssetInfo[Title]}</span> <span class="fr fs026">x{$OrderInfo[Num]}</span>
+                        </p>
+                        <p class="mt03">
+                            <span class="bold">¥ {$AssetInfo[Price]}</span><br>
+                            <span class="line-through">¥ {$AssetInfo[MarketPrice]}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="order-form-view">
+                    <p>
+                        商品总价：<span class="fr">¥ {$OrderInfo[Amount]}</span>
+                    </p>
+                    <p>
+                        运费（快递）：<span class="fr">¥ {$AssetInfo[Freight]}</span>
+                    </p>
+                    <p class="bold bor-b">
+                        订单总价：<span class="fr">¥ {$OrderInfo[TotalAmount]}</span>
+                    </p>
+                    <p class="bold">
+                        实付款：<span class="fr">¥ {$OrderInfo[TotalAmount]}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="fixed-height"></div>
+        </div>
+        <div class="fixed-bottom">
+            <div class="box-btn common-box">
+                <div>
+                    <a class="btn btn-default" href="/member/asset/">返回订单列表</a>
+                </div>
+                <p class="w-100"></p>
+                <div>
+                    <a class="btn" href="javascript:void (0)">立即发货</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

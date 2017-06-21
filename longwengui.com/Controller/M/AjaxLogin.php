@@ -808,9 +808,9 @@ class AjaxLogin
         $ID = $_POST['id'];
         $Delete = $MemberFocusDebtModule->DeleteByKeyID($ID);
         if ($Delete){
-            $result_json = array('ResultCode'=>200,'Message'=>'取消成功！');
+            $result_json = array('ResultCode'=>200,'Message'=>'取消关注成功！');
         }else{
-            $result_json = array('ResultCode'=>103,'Message'=>'取消失败！');
+            $result_json = array('ResultCode'=>103,'Message'=>'取消关注失败！');
         }
         EchoResult($result_json);
         exit;
@@ -1136,7 +1136,7 @@ class AjaxLogin
                 $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
                 $Data['Data'][$key]['Freight'] = $AssetInfo['Freight'];
                 $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
-                $Data['Data'][$key]['Url'] = ' /orderdetails/'.$value['OrderNumber'].'.html';
+                $Data['Data'][$key]['Url'] = '/orderdetails/'.$value['OrderNumber'].'.html';
             }
             MultiPage($Data, 5);
             $Data['ResultCode'] = 200;
@@ -1207,7 +1207,7 @@ class AjaxLogin
                     $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
                     $Data['Data'][$key]['Freight'] = $AssetInfo['Freight'];
                     $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
-                    $Data['Data'][$key]['Url'] = ' /orderdetails/'.$value['OrderNumber'].'.html';
+                    $Data['Data'][$key]['Url'] = ' /member/orderdetail/?id='.$value['OrderID'];
                 }
                 MultiPage($Data, 5);
                 $Data['ResultCode'] = 200;

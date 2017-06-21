@@ -40,8 +40,8 @@ class Pay
                     $JsonData['out_trade_no']=$out_trade_no;
                     $JsonData['total_amount']=$total_fee;
                     $JsonData['product_code']="QUICK_WAP_PAY";
-                    $request->setReturnUrl(WEB_M_URL . '/pay/alipaynotify/');
-                    $request->setNotifyUrl(WEB_M_URL . '/pay/alipaynotify/');
+                    $request->setReturnUrl(WEB_M_URL . '/pay/wapalipayreturn/');
+                    $request->setNotifyUrl(WEB_M_URL . '/pay/wapalipaynotify/');
                     $request->setBizContent(json_encode($JsonData));
                     $result = $aop->pageExecute ( $request);
                     echo $result;
@@ -62,27 +62,29 @@ class Pay
     /**
      * @desc  支付宝手机支付回调
      */
-    public function AliPayReturn(){
+    public function WapAliPayReturn(){
         include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
         $aop = new AopClient();
         $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
         if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
             //验证通过
-            //更新订单状态
-            $Data['PaymentMethod'] = '1';
-            $Data['Status'] = '2';
-            $MemberProductOrderModule = new MemberProductOrderModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-            $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-            if ($Result) {
-                $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
-                $VerifyData['Money'] = $OrderInfo['TotalAmount'];
-                $VerifyData['PayType'] = "支付宝";
-                $VerifyData['ResultCode'] = 'SUCCESS';
-                $VerifyData['RunTime'] = time();
-                $VerifyData['RedirectUrl'] = '/assetdetails/2.html';
-                $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+            $MemberProductOrderModule = new MemberProductOrderModule;
+            $Data['PaymentMethod'] = 1;
+            $Data['Status'] = 2;
+            $Result=$MemberProductOrderModule->UpdateInfoByWhere($Data, ' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+            if($Result){
+                $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                if ($OrderInfo) {
+                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                    $VerifyData['PayType'] = "支付宝";
+                    $VerifyData['ResultCode'] = 'SUCCESS';
+                    $VerifyData['RunTime'] = time();
+                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+                }else{
+                    header("Location:/pay/result/");
+                }
             }else{
                 header("Location:/pay/result/");
             }
@@ -94,32 +96,85 @@ class Pay
     /**
      * @desc  支付宝手机支付异步
      */
-    public function AliPayNotify(){
+    public function WapAliPayNotify(){
         include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
         $aop = new AopClient();
         $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
         //公钥
-        if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==true){
-            //更新订单状态
-            $Data['PaymentMethod'] = '1';
-            $Data['Status'] = '2';
-            $MemberProductOrderModule = new MemberProductOrderModule();
-            $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-            $Result= $MemberProductOrderModule->UpdateInfoByWhere($Data,' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
-            if ($Result) {
-                $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
-                $VerifyData['Money'] = $OrderInfo['TotalAmount'];
-                $VerifyData['PayType'] = "支付宝";
-                $VerifyData['ResultCode'] = 'SUCCESS';
-                $VerifyData['RunTime'] = time();
-                $VerifyData['RedirectUrl'] = '/assetdetails/2.html';
-                $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                header("Location:" . rtrim('/pay/result', '/') . '/?' . http_build_query($VerifyData));
-            }else{
+        if($aop->rsaCheckV1($_POST,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
+            //验证通过
+            if($_POST['trade_status']=='TRADE_SUCCESS'){
+                $MemberProductOrderModule = new MemberProductOrderModule;
+                $Data['PaymentMethod'] = 1;
+                $Data['Status'] = 2;
+                $Result=$MemberProductOrderModule->UpdateInfoByWhere($Data, ' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                if($Result){
+                    $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.trim($_POST['out_trade_no']).'\'');
+                    if ($OrderInfo) {
+                        $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
+                        $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                        $VerifyData['PayType'] = "支付宝";
+                        $VerifyData['ResultCode'] = 'SUCCESS';
+                        $VerifyData['RunTime'] = time();
+                        $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                        $NotifyUrl = rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData);
+                        @file_get_contents($NotifyUrl);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @desc 支付宝回调
+     */
+    public function AliPayNotify()
+    {
+        include SYSTEM_ROOTPATH.'/Include/Alipay/AliPay.php';
+        $AliPay = new AliPay();
+        if (count($_POST)) {
+            if ($AliPay->GetPayStatus($_POST) === 'true') {
+                $MemberProductOrderModule = new MemberProductOrderModule;
+                $Data['PaymentMethod'] = 1;
+                $Data['Status'] = 2;
+                $MemberProductOrderModule->UpdateInfoByWhere($Data, ' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.trim($_POST['out_trade_no']).'\'');
+                if ($OrderInfo) {
+                    $VerifyData['OrderNo'] = trim($_POST['out_trade_no']);
+                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                    $VerifyData['PayType'] = "支付宝";
+                    $VerifyData['ResultCode'] = 'SUCCESS';
+                    $VerifyData['RunTime'] = time();
+                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                    $NotifyUrl = rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData);
+                    @file_get_contents($NotifyUrl);
+                } else {
+                    header("Location:/pay/result/");
+                }
+            } else {
                 header("Location:/pay/result/");
             }
-        }else{
-            header("Location:/pay/result/");
+        } else {
+            if ($AliPay->GetPayStatus($_GET) === 'true') {
+                $MemberProductOrderModule = new MemberProductOrderModule;
+                $Data['PaymentMethod'] = 1;
+                $Data['Status'] = 2;
+                $MemberProductOrderModule->UpdateInfoByWhere($Data, ' OrderNumber = \''.trim($_GET['out_trade_no']).'\'');
+                $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.trim($_POST['out_trade_no']).'\'');
+                if ($OrderInfo) {
+                    $VerifyData['OrderNo'] = trim($_GET['out_trade_no']);
+                    $VerifyData['Money'] = $OrderInfo['TotalAmount'];
+                    $VerifyData['PayType'] = "支付宝";
+                    $VerifyData['ResultCode'] = 'SUCCESS';
+                    $VerifyData['RunTime'] = time();
+                    $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
+                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+                } else {
+                    header("Location:/pay/result/");
+                }
+            } else {
+                header("Location:/pay/result/");
+            }
         }
     }
 
