@@ -78,7 +78,7 @@
 				<!--{/if}-->
 				</span>
 			</div>
-		 <strong><a href="http://www.longwengui.com" target="_blank">Copyright © 2017 武夷山隆文贵互联网信息咨询有限公司 All rights reserved. 闽ICP备16032488号-1</a></strong>
+		 <strong><a href="http://www.longwengui.net" target="_blank">Copyright © 2017 武夷山隆文贵互联网信息咨询有限公司 All rights reserved. 闽ICP备16032488号-1</a></strong>
 		<!--{eval updatesession();}-->
 		<!--{if $_G['uid'] && $_G['group']['allowinvisible']}-->
 			<script type="text/javascript">

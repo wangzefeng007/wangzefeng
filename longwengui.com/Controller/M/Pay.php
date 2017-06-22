@@ -20,7 +20,7 @@ class Pay
             $show_url = $_POST['ProductUrl'];
             $MemberProductOrderModule = new MemberProductOrderModule;
             $Result = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$out_trade_no.'\'');
-            if ($Result['ResultCode'] == 1) {
+            if ($Result['Status'] == 2) {
                 alertandgotopage("该订单已支付完成!", WEB_M_URL);
             }
             if ($Result) {

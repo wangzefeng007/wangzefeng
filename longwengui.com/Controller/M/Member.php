@@ -22,6 +22,7 @@ class Member
      * @desc 登入页或登录操作
      */
     public function  Login(){
+        $Title = '登录-文贵网';
         MService::IsLogin();
         include template('MemberLogin');
     }
@@ -30,6 +31,7 @@ class Member
      */
     public function Register()
     {
+        $Title = '注册-文贵网';
         include template('MemberRegisterOne');
     }
     /**
@@ -38,7 +40,7 @@ class Member
     public function ChooseType(){
         MService::IsNoLogin();
         $Type = trim($_GET['T']);//判断进页面
-        $Title = '会员-选择类型';
+        $Title = '选择会员类型-文贵网';
         include template('MemberChooseType');
     }
 
@@ -46,6 +48,7 @@ class Member
      * @desc  会员注册完善资料(企业或者个人)
      */
     public function RegisterTwo(){
+        $Title = '完善资料-文贵网';
         MService::IsNoLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         include template('MemberRegisterTwo');
@@ -54,6 +57,7 @@ class Member
      * @desc  会员注册完善资料(催收公司和催客)
      */
     public function RegisterThree(){
+        $Title = '完善资料-文贵网';
         MService::IsNoLogin();
         include template('MemberRegisterThree');
     }
@@ -61,6 +65,7 @@ class Member
      * @desc  会员注册完善资料(律师事务所和律师)
      */
     public function RegisterFour(){
+        $Title = '完善资料-文贵网';
         MService::IsNoLogin();
         include template('MemberRegisterFour');
     }
@@ -86,7 +91,7 @@ class Member
      */
     public function FindPasswd()
     {
-        $Title = '会员登录_找回密码';
+        $Title = '找回密码-文贵网';
         include template('MemberFindPasswd');
     }
     /**
@@ -100,7 +105,7 @@ class Member
         $User = $MemberUserModule->GetInfoByKeyID($_SESSION['UserID']);
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         $Nav = 'changemobile';
-        $Title = '会员_更改绑定手机';
+        $Title = '更改绑定手机-文贵网';
         include template('MemberChangeMobileOne');
     }
     /**
@@ -108,7 +113,7 @@ class Member
      */
     public function ChangePassWord(){
         MService::IsNoLogin();
-        $Title = '会员-修改密码';
+        $Title = '修改密码-文贵网';
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
         include template('ChangePassWord');
@@ -118,7 +123,7 @@ class Member
      */
     public function AboutUs(){
         MService::IsNoLogin();
-        $Title = '会员-关于我们';
+        $Title = '关于我们-文贵网';
         include template('MemberAboutUs');
     }
     /**
@@ -126,7 +131,7 @@ class Member
      */
     public function Agreement(){
         MService::IsNoLogin();
-        $Title = '会员-用户协议';
+        $Title = '用户协议-文贵网';
         include template('MemberAgreement');
     }
     /**
@@ -134,7 +139,7 @@ class Member
      */
     public function Advice(){
         MService::IsNoLogin();
-        $Title = '会员-投诉建议';
+        $Title = '投诉建议-文贵网';
         $Nav = 'advice';
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberComplaintAdviceModule = new MemberComplaintAdviceModule();
@@ -146,7 +151,7 @@ class Member
      */
     public function Address(){
         MService::IsNoLogin();
-        $Title = '会员-收货地址';
+        $Title = '收货地址-文贵网';
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $MemberAreaModule = new MemberAreaModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -164,6 +169,7 @@ class Member
      * @desc 管理收货地址
      */
     public function AddressEdit(){
+        $Title = '管理收货地址-文贵网';
         MService::IsNoLogin();
         $MemberShippingAddressModule = new MemberShippingAddressModule();
         $MemberAreaModule = new MemberAreaModule();
@@ -182,6 +188,7 @@ class Member
      * @desc 添加收货地址
      */
     public function AddressAdd(){
+        $Title = '添加收货地址-文贵网';
         MService::IsNoLogin();
         $ID = intval($_GET['ID']);
         $MemberShippingAddressModule = new MemberShippingAddressModule();
@@ -203,7 +210,7 @@ class Member
      */
     public function Reword(){
         MService::IsNoLogin();
-        $Title = '会员-我的悬赏';
+        $Title = '我的悬赏-文贵网';
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberRewardInfoModule = new MemberRewardInfoModule();
         $MemberAreaModule = new MemberAreaModule();
@@ -261,7 +268,7 @@ class Member
      */
     public function SystemMessage(){
         MService::IsNoLogin();
-        $Title = '会员-系统消息';
+        $Title = '系统消息-文贵网';
         $Nav = 'systemmessage';
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
@@ -273,7 +280,7 @@ class Member
      */
     public function Wallet(){
         MService::IsNoLogin();
-        $Title = '会员-我的钱包';
+        $Title = '我的钱包-文贵网';
         $Nav = 'wallet';
         $MemberUserInfoModule = new MemberUserInfoModule();
         $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION['UserID']);
@@ -284,7 +291,7 @@ class Member
      */
     public function WithdrawalsBank(){
         MService::IsNoLogin();
-        $Title = '会员-提现银行卡';
+        $Title = '提现银行卡-文贵网';
         include template('MemberWithdrawalsBank');
     }
     /**
@@ -292,7 +299,7 @@ class Member
      */
     public function WithdrawalsAlipay(){
         MService::IsNoLogin();
-        $Title = '会员-提现支付宝';
+        $Title = '提现支付宝-文贵网';
         include template('MemberWithdrawalsAlipay');
     }
     /**
@@ -300,7 +307,7 @@ class Member
      */
     public function WithdrawalAgreement(){
         MService::IsNoLogin();
-        $Title = '会员-提现协议';
+        $Title = '提现协议-文贵网';
         include template('MemberWithdrawalAgreement');
     }
     /**
@@ -308,13 +315,14 @@ class Member
      */
     public function  Setting(){
         MService::IsNoLogin();
-        $Title = '会员-我的设置';
+        $Title = '我的设置-文贵网';
         include template('MemberSetting');
     }
     /**
      * @desc 关注/收藏
      */
     public function Focus(){
+        $Title = '关注/收藏-文贵网';
         MService::IsNoLogin();
         include template('MemberPersonFocus');
     }
@@ -322,13 +330,15 @@ class Member
      * @desc 我的资产
      */
     public function Asset(){
+        $Title = '我的资产-文贵网';
         MService::IsNoLogin();
         include template('MemberPersonAsset');
     }
     /**
      * @desc 资产订单详情（已卖出的）
      */
-    public function OrderDetail(){
+    public function SellOrderDetail(){
+        $Title = '资产订单详情-文贵网';
         $MemberProductOrderModule = new MemberProductOrderModule();
         $OrderID = trim($_GET['id']);
         $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
@@ -345,6 +355,38 @@ class Member
         $OrderInfo['Amount'] = $OrderInfo['TotalAmount']- $AssetInfo['Freight'];
         $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
         include template('MemberPersonOrderDetail');
+    }
+    /**
+     * @desc 资产订单详情（已买到的）
+     */
+    public function BuyOrderDetail(){
+        $Title = '资产订单详情-文贵网';
+        MService::IsNoLogin();
+        $MemberProductOrderModule = new MemberProductOrderModule();
+        $OrderNumber = trim($_GET['OrderNumber']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
+        if (!$OrderInfo){
+            alertandback("不存在该订单！");
+        }
+        $NStatus = $MemberProductOrderModule->NStatus;
+        $MemberAssetInfoModule = new MemberAssetInfoModule();
+        $MemberAssetImageModule = new MemberAssetImageModule();
+        $MemberUserInfoModule = new MemberUserInfoModule();
+        $MemberUserModule = new MemberUserModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
+        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
+        //发布人信息
+        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
+        $User = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
+        $UserInfo['Mobile'] = $User['Mobile'];
+        if ($UserInfo['Province'])
+            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
+        if ($UserInfo['City'])
+            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
+        if ($UserInfo['Area'])
+            $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
+        include template('MemberPersonOrderDetails');
     }
 
 }

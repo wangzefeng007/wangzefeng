@@ -780,15 +780,25 @@ class AjaxLogin
         $Data['DebtID'] = intval($_POST['Id']);
         $Data['UserID'] = $_SESSION['UserID'];
         $Data['Type'] = intval($_POST['Type']);
+
         $Data['AddTime'] = time();
         if (!empty($Data['DebtID']) && !empty($Data['Type'])){
             $FocusDebt = $MemberFocusDebtModule->GetInfoByWhere(' and DebtID = '.$Data['DebtID'].' and Type = '.$Data['Type'].' and UserID = '.$_SESSION['UserID']);
             if ($FocusDebt){
-                $result_json = array('ResultCode'=>102,'Message'=>'您已关注！');
+                if ($Data['Type']==1){
+                    $result_json = array('ResultCode'=>102,'Message'=>'您已关注！');
+                }else{
+                    $result_json = array('ResultCode'=>102,'Message'=>'您已收藏！');
+                }
+
             }else{
                 $InsertFocu = $MemberFocusDebtModule->InsertInfo($Data);
                 if ($InsertFocu){
-                    $result_json = array('ResultCode'=>200,'Message'=>'关注成功！');
+                    if ($Data['Type']==1){
+                        $result_json = array('ResultCode'=>200,'Message'=>'关注成功！');
+                    }else{
+                        $result_json = array('ResultCode'=>200,'Message'=>'收藏成功！');
+                    }
                 }else{
                     $result_json = array('ResultCode'=>103,'Message'=>'关注失败！');
                 }
@@ -1136,7 +1146,7 @@ class AjaxLogin
                 $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
                 $Data['Data'][$key]['Freight'] = $AssetInfo['Freight'];
                 $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
-                $Data['Data'][$key]['Url'] = '/orderdetails/'.$value['OrderNumber'].'.html';
+                $Data['Data'][$key]['Url'] = '/orderdetail/'.$value['OrderNumber'].'.html';
             }
             MultiPage($Data, 5);
             $Data['ResultCode'] = 200;
@@ -1207,7 +1217,7 @@ class AjaxLogin
                     $Data['Data'][$key]['MarketPrice'] = $AssetInfo['MarketPrice'];
                     $Data['Data'][$key]['Freight'] = $AssetInfo['Freight'];
                     $Data['Data'][$key]['NStatus'] = $NStatus[$value['Status']];
-                    $Data['Data'][$key]['Url'] = ' /member/orderdetail/?id='.$value['OrderID'];
+                    $Data['Data'][$key]['Url'] = '/sellorderdetail/'.$value['OrderNumber'].'.html';
                 }
                 MultiPage($Data, 5);
                 $Data['ResultCode'] = 200;

@@ -11,6 +11,7 @@ class MemberLawyer
      */
     public function Index()
     {
+        $Title = '律师个人中心-文贵网';
         MService::IsNoLogin();
         $Nav ='member';
         $MemberUserModule = new MemberUserModule();
@@ -27,6 +28,7 @@ class MemberLawyer
      */
     public function Information()
     {
+        $Title = '我的信息-文贵网';
         MService::IsNoLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -48,6 +50,7 @@ class MemberLawyer
      * @desc 编辑信息
      */
     public function EditInfo(){
+        $Title = '编辑信息-文贵网';
         MService::IsNoLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -69,8 +72,7 @@ class MemberLawyer
      * @desc 债权管理
      */
     public function DebtManagement(){
-
-
+        $Title = '债权管理-文贵网';
         include template('MemberLawyerDebtManagement');
     }
 }

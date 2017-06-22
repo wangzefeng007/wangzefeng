@@ -9,6 +9,7 @@ class MemberPerson
      */
     public function Index()
     {
+        $Title = '个人用户中心-文贵网';
         MService::IsNoLogin();
         $Nav ='member';
         $MemberUserModule = new MemberUserModule();
@@ -26,6 +27,7 @@ class MemberPerson
      */
     public function Information()
     {
+        $Title = '我的信息-文贵网';
         MService::IsNoLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -47,6 +49,7 @@ class MemberPerson
      * @desc 编辑信息
      */
     public function EditInfo(){
+        $Title = '编辑信息-文贵网';
         MService::IsNoLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -69,6 +72,7 @@ class MemberPerson
      * @desc 债权管理
      */
     public function DebtManagement(){
+        $Title = '债权管理-文贵网';
         MService::IsNoLogin();
         $MemberUserModule = new MemberUserModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -94,39 +98,10 @@ class MemberPerson
      * @desc 我的资产
      */
     public function Asset(){
+        $Title = '我的资产-文贵网';
         MService::IsNoLogin();
         include template('MemberPersonAsset');
     }
-    /**
-     * @desc 资产订单详情（已买到的）
-     */
-    public function OrderDetails(){
-        MService::IsNoLogin();
-        $MemberProductOrderModule = new MemberProductOrderModule();
-        $OrderNumber = trim($_GET['OrderNumber']);
-        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
-        if (!$OrderInfo){
-            alertandback("不存在该订单！");
-        }
-        $NStatus = $MemberProductOrderModule->NStatus;
-        $MemberAssetInfoModule = new MemberAssetInfoModule();
-        $MemberAssetImageModule = new MemberAssetImageModule();
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberUserModule = new MemberUserModule();
-        $MemberAreaModule = new MemberAreaModule();
-        $AssetInfo = $MemberAssetInfoModule->GetInfoByKeyID($OrderInfo['ProductID']);//通过产品ID获取
-        $AssetImage = $MemberAssetImageModule->GetInfoByWhere(' and AssetID = '.$OrderInfo['ProductID'].' and IsDefault=1');
-        //发布人信息
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($AssetInfo['UserID']);
-        $User = $MemberUserModule->GetInfoByKeyID($AssetInfo['UserID']);
-        $UserInfo['Mobile'] = $User['Mobile'];
-        if ($UserInfo['Province'])
-            $UserInfo['Province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
-        if ($UserInfo['City'])
-            $UserInfo['City'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
-        if ($UserInfo['Area'])
-            $UserInfo['Area']= $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
-        include template('MemberPersonOrderDetails');
-    }
+
 
 }

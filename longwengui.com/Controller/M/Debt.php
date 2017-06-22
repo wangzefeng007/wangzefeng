@@ -12,12 +12,15 @@ class Debt
      * @desc  债务催收列表
      */
     public function Index(){
+        $Title ='债务催收-文贵网';
+        $Keywords="催收平台,催收系统，债务清算,债务追讨,欠款催收,债务案源,老赖曝光";
         include template('DebtIndex');
     }
     /**
      * @desc  债务详情
      */
     public function Details(){
+        $Title ='债务详情-文贵网';
         $MemberDebtInfoModule = new MemberDebtInfoModule();
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberDebtImageModule = new MemberDebtImageModule();
@@ -66,6 +69,7 @@ class Debt
      * @desc  发布债务
      */
     public function Publish(){
+        $Title ='发布债务-文贵网';
         MService::IsNoLogin();
         $type = intval($_GET['T']);
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -86,6 +90,7 @@ class Debt
      * @desc  发布债务
      */
     public function PublishOne(){
+        $Title ='发布债务-文贵网';
         MService::IsNoLogin();
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberUserModule = new MemberUserModule();

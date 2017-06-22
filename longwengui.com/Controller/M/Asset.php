@@ -11,6 +11,7 @@ class Asset
      * @desc  资产转让列表
      */
     public function Index(){
+        $Title ='资产商城-文贵网';
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -20,6 +21,7 @@ class Asset
      * @desc  发布资产转让
      */
     public function Publish(){
+        $Title ='发布资产-文贵网';
         MService::IsNoLogin();
         $EndTime = time()+ 2592000;
         if ($_GET['id']){
@@ -42,6 +44,7 @@ class Asset
      * @desc  资产转让详情页
      */
     public function Details(){
+        $Title ='资产详情-文贵网';
         $ID = $_GET['ID'];
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberAssetImageModule = new MemberAssetImageModule();
@@ -72,6 +75,7 @@ class Asset
      * @desc  订单填写页
      */
     public function  Order(){
+        $Title = '订单填写-文贵网';
         MService::IsNoLogin();
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberUserInfoModule = new MemberUserInfoModule();
@@ -101,7 +105,7 @@ class Asset
      */
     public function ChoicePay()
     {
-        $Title = '订单支付';
+        $Title = '订单支付-文贵网';
         $OrderNumber = $_GET['OrderNumber'];
         $MemberUserInfoModule = new MemberUserInfoModule();
         $MemberAssetInfoModule = new MemberAssetInfoModule();

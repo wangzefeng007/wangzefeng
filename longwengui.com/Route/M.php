@@ -3,12 +3,11 @@
         'm@index'=>'M@Index',
         
         //'控制器小写@方法小写'=>'真实控制器名@真实方法名'
-        //法律援助
-        'legalaid@index'=>'LegalAid@Index',
         //债务催收
         'debt@index'=>'Debt@Index',
         'debt@details'=>'Debt@Details',
         'debt@publish'=>'Debt@Publish',
+        'debt@publishone'=>'Debt@PublishOne',
         //线索悬赏
         'reword@index'=>'Reword@Index',
         'reword@publish'=>'Reword@Publish',
@@ -16,17 +15,58 @@
         'asset@index'=>'Asset@Index',
         'asset@publish'=>'Asset@Publish',
         'asset@details'=>'Asset@Details',
-        //寻找处置方
-        'find@index'=>'Find@Index',
+        'asset@order'=>'Asset@Order',
+        'asset@choicepay'=>'Asset@ChoicePay',
+        'asset@pay'=>'Asset@Pay',
+
         //搜索老赖
         'deadbeat@index'=>'DeadBeat@Index',
         //会员中心
         'member@login'=>'Member@Login',
         'member@signout'=>'Member@SignOut',
+        'member@register'=>'Member@Register',
         'member@registerone'=>'Member@RegisterOne',
         'member@registertwo'=>'Member@RegisterTwo',
         'member@registerthree'=>'Member@RegisterThree',
         'member@registerfour'=>'Member@RegisterFour',
+        'member@choosetype'=>'Member@ChooseType',
+        'member@findpasswd'=>'Member@FindPasswd',
+        'member@changemobile'=>'Member@ChangeMobile',
+        'member@aboutus'=>'Member@AboutUs',
+        'member@agreement'=>'Member@Agreement',
+        'member@advice'=>'Member@Advice',
+        'member@address'=>'Member@Address',
+        'member@addressedit'=>'Member@AddressEdit',
+        'member@addressadd'=>'Member@AddressAdd',
+        'member@reword'=>'Member@Reword',
+        'member@systemmessage'=>'Member@SystemMessage',
+        'member@wallet'=>'Member@Wallet',
+        'Member@withdrawalsbank'=>'Member@WithdrawalsBank',
+        'Member@withdrawalsalipay'=>'Member@WithdrawalsAlipay',
+        'Member@withdrawalagreement'=>'Member@WithdrawalAgreement',
+        'member@setting'=>'Member@Setting',
+        'member@focus'=>'Member@Focus',
+        'member@asset'=>'Member@Asset',
+        'member@SellOrderDetail'=>'Member@SellOrderDetail',
+        'member@buyorderdetail'=>'Member@BuyOrderDetail',
+        //普通会员中心
+        'memberperson@index'=>'MemberPerson@Index',
+        'memberperson@asset'=>'MemberPerson@Asset',
+        'memberperson@debtmanagement'=>'MemberPerson@DebtManagement',
+        'memberperson@editinfo'=>'MemberPerson@EditInfo',
+        'memberperson@information'=>'MemberPerson@Information',
+        //律师会员中心
+        'memberlawyer@index'=>'MemberLawyer@Index',
+        'memberlawyer@editinfo'=>'MemberLawyer@EditInfo',
+        'memberlawyer@information'=>'MemberLawyer@Information',
+        'memberlawyer@debtmanagement'=>'MemberLawyer@DebtManagement',
+        //订单支付
+        'pay@alipay'=>'Pay@AliPay',
+        'pay@alipaynotify'=>'Pay@AliPayNotify',
+        'pay@wapalipaynotify'=>'Pay@WapAliPayNotify',
+        'pay@wapalipayreturn'=>'Pay@WapAliPayReturn',
+        'pay@result'=>'Pay@Result',
+
         //Ajax
         'ajaximage@index'=>'AjaxImage@Index',
         'ajaxasset@index'=>'AjaxAsset@Index',
