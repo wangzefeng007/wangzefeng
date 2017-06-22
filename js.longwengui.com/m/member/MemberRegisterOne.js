@@ -3,6 +3,9 @@ var pageObj=$.extend({},pageObj,{
      * 获取验证码
      */
     getCode:function(tar){
+        if($(tar).hasClass("dis")){
+            return;
+        }
         var _phoneNumber = $("input[name='phoneNumber']").val();
         if(_phoneNumber == ''){
             $.toast('请先填写手机号');
