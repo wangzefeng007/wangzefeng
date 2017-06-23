@@ -4192,7 +4192,10 @@ function getArea(pId){
             if (p.value) {
                 $(this).val(p.value.join(' '));
             } else {
-                var val = $(this).attr("data-value");
+                var val = $.trim($(this).attr("data-value"));
+                if(val.length==0){
+                    return;
+                }
                 val && (p.value = val.split(' '));
             }
 
