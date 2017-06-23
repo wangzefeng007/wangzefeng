@@ -63,24 +63,18 @@
 <% if(foucusType==1){%>
 {{each Data as item}}
 <li>
-    <a href="#">
+    <a href="/assetdetails/{{item.DebtID}}.html">
         <div class="item-hd">
             资产单号：{{item.AssetMember}}
             <i class="icon-favo fr favo-ed" onclick="pageObj.cancelConcern('{{item.ID}}')"></i>
         </div>
-        <div class="item-main">
+        <div class="item-main" style="border-bottom: 0">
             <p class="h4 ellipsis">
                 资产名称：{{item.Title}}
             </p>
             <p class="h5">
                 成交价：¥{{item.Price}}
             </p>
-        </div>
-        <div class="item-detail">
-            <p class="lab">商品详情:</p>
-            <div class="form-grid">
-                {{item.Content}}
-            </div>
         </div>
     </a>
 </li>
