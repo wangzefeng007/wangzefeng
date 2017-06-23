@@ -25,12 +25,12 @@ class Pay
             }
             if ($Result) {
                 if($this->IsOrNotMobile()){
-                    include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
+                    include SYSTEM_ROOTPATH.'/Include/AliPay/wap/AopSdk.php';
                     $aop = new AopClient();
                     $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
                     $aop->appId = '2017051007197146';
-                    $aop->rsaPrivateKeyFilePath = SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_private_key.pem';
-                    $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
+                    $aop->rsaPrivateKeyFilePath = SYSTEM_ROOTPATH.'/Include/AliPay/wap/rsa_private_key.pem';
+                    $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/AliPay/wap/rsa_public_key.pem';
                     $aop->apiVersion = '1.0';
                     $aop->postCharset='utf-8';
                     $aop->format='json';
@@ -63,10 +63,10 @@ class Pay
      * @desc  支付宝手机支付回调
      */
     public function WapAliPayReturn(){
-        include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
+        include SYSTEM_ROOTPATH.'/Include/AliPay/wap/AopSdk.php';
         $aop = new AopClient();
-        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
-        if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
+        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/AliPay/wap/rsa_public_key.pem';
+        if($aop->rsaCheckV1($_GET,SYSTEM_ROOTPATH.'/Include/AliPay/wap/rsa_public_key.pem')==1){
             //验证通过
             $MemberProductOrderModule = new MemberProductOrderModule;
             $Data['PaymentMethod'] = 1;
@@ -81,7 +81,7 @@ class Pay
                     $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
                     $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+                    header("Location:" . rtrim(WEB_M_URL.'/pay/result/', '/') . '/?' . http_build_query($VerifyData));
                 }else{
                     header("Location:/pay/result/");
                 }
@@ -97,11 +97,11 @@ class Pay
      * @desc  支付宝手机支付异步
      */
     public function WapAliPayNotify(){
-        include SYSTEM_ROOTPATH.'/Include/Alipay/wap/AopSdk.php';
+        include SYSTEM_ROOTPATH.'/Include/AliPay/wap/AopSdk.php';
         $aop = new AopClient();
-        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem';
+        $aop->alipayPublicKey=SYSTEM_ROOTPATH.'/Include/AliPay/wap/rsa_public_key.pem';
         //公钥
-        if($aop->rsaCheckV1($_POST,SYSTEM_ROOTPATH.'/Include/Alipay/wap/rsa_public_key.pem')==1){
+        if($aop->rsaCheckV1($_POST,SYSTEM_ROOTPATH.'/Include/AliPay/wap/rsa_public_key.pem')==1){
             //验证通过
             if($_POST['trade_status']=='TRADE_SUCCESS'){
                 $MemberProductOrderModule = new MemberProductOrderModule;
@@ -117,7 +117,7 @@ class Pay
                         $VerifyData['ResultCode'] = 'SUCCESS';
                         $VerifyData['RunTime'] = time();
                         $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                        $NotifyUrl = rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData);
+                        $NotifyUrl = rtrim(WEB_M_URL.'/pay/result/', '/') . '/?' . http_build_query($VerifyData);
                         @file_get_contents($NotifyUrl);
                     }
                 }
@@ -130,7 +130,7 @@ class Pay
      */
     public function AliPayNotify()
     {
-        include SYSTEM_ROOTPATH.'/Include/Alipay/AliPay.php';
+        include SYSTEM_ROOTPATH.'/Include/AliPay/AliPay.php';
         $AliPay = new AliPay();
         if (count($_POST)) {
             if ($AliPay->GetPayStatus($_POST) === 'true') {
@@ -146,7 +146,7 @@ class Pay
                     $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
                     $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    $NotifyUrl = rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData);
+                    $NotifyUrl = rtrim(WEB_M_URL.'/pay/result/', '/') . '/?' . http_build_query($VerifyData);
                     @file_get_contents($NotifyUrl);
                 } else {
                     header("Location:/pay/result/");
@@ -168,7 +168,7 @@ class Pay
                     $VerifyData['ResultCode'] = 'SUCCESS';
                     $VerifyData['RunTime'] = time();
                     $VerifyData['Sign'] = ToolService::VerifyData($VerifyData);
-                    header("Location:" . rtrim($OrderInfo['NotifyUrl'], '/') . '/?' . http_build_query($VerifyData));
+                    header("Location:" . rtrim(WEB_M_URL.'/pay/result/', '/') . '/?' . http_build_query($VerifyData));
                 } else {
                     header("Location:/pay/result/");
                 }

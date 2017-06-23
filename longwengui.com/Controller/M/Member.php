@@ -340,8 +340,8 @@ class Member
     public function SellOrderDetail(){
         $Title = '资产订单详情-文贵网';
         $MemberProductOrderModule = new MemberProductOrderModule();
-        $OrderID = trim($_GET['id']);
-        $OrderInfo = $MemberProductOrderModule->GetInfoByKeyID($OrderID);
+        $OrderNumber = trim($_GET['OrderNumber']);
+        $OrderInfo = $MemberProductOrderModule->GetInfoByWhere(' and OrderNumber = \''.$OrderNumber.'\'');
         if (!$OrderInfo){
             alertandback("不存在该订单！");
         }

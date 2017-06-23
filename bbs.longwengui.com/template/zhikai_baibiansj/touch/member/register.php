@@ -4,7 +4,7 @@
 <!-- header start -->
 <div class="n5-header">
     <a class="n5-cebianlan" id="open-sb"><i class="n5-ico"></i></a>
-	<a class="n5-logo" href="forum.php?mod=guide&view=hot"><img src="$_G['style']['logo地址']" alt="$_G['setting']['sitename']" width="100%"></a>
+	<a class="n5-logo" href="forum.php?mod=guide&view=hot"><img src="/template/zhikai_baibiansj/touch/style/logo.png" alt="$_G['setting']['sitename']" width="100%"></a>
 	<a class="n5-fatie" href="forum.php?mod=misc&action=nav" rel="nofollow"><i class="n5-ico"></i></a>
 </div>
 <!--{template common/n5-cbl}-->

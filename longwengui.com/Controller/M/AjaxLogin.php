@@ -1186,7 +1186,7 @@ class AjaxLogin
         } elseif ($Status == '5') {
             $MysqlWhere .= ' and `Status` = 8 ';
         } else {
-            $MysqlWhere .= ' and `Status` > 1 and `Status` <9 ';
+            $MysqlWhere .= ' and `Status` < 9 ';
         }
         foreach ($AssetInfo as $key => $value) {
             $arr[] .= $value['AssetID'];
