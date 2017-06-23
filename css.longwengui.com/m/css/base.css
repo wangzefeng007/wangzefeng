@@ -595,13 +595,13 @@ a.btn-s,
     position: relative;
     margin: 0 4.5rem 0 2.5rem;
     height: 1.25rem;
-    padding-left: 1.25rem;
+    padding-left: .25rem;
     background: #fff;
     border-radius: .25rem;
 }
 .icon-search{
-    width: .7rem;
-    height: .7rem;
+    width: 1.25rem;
+    height: 1.25rem;
     background: url(../images/icon-search.png) no-repeat center;
     background-size: .675rem;
 }
@@ -619,8 +619,8 @@ a.btn-s,
 }
 .common-header .header-search .icon-search{
     position: absolute;
-    left: .5rem;
-    top: .275rem;
+    right: -0.5rem;
+    top: 0;
 }
 .common-header .header-search .inp{
     height: 1.25rem;
@@ -1363,7 +1363,7 @@ a.btn-s,
     height: .75rem;
     margin-left: .25rem;
     text-align: center;
-    line-height: .6rem;
+    line-height: .75rem;
     color: #59cbc7;
     border: solid 1px #59cbc7;
     font-size: .45rem;

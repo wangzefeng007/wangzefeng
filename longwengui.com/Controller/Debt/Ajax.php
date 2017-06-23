@@ -379,7 +379,7 @@ class Ajax
             $Data['UserID'] = $_SESSION ['UserID'];
             $Data['AddTime'] = time();
             $Data['UpdateTime'] = $Data['AddTime'];
-            $Data['Status'] = 8;//发布待审核
+            $Data['Status'] = 2;//发布待审核
             $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
             //1律师团队，2催收公司,3自助催收
             $Data['CollectionType'] = intval($_POST['Type']);
@@ -531,14 +531,14 @@ class Ajax
                                 $result_json = array('ResultCode'=>102,'Message'=>'添加借款凭证失败');
                             }else{
                                 $DB->query("COMMIT");//执行事务
-                                ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在审核，请您耐心等待，如有不便请见谅');
+                                ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在努力催收中，请您耐心等待，如有不便请见谅');
                                 ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时审核');
                                 $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
                             }
                         }else{
                             $DB->query("COMMIT");//执行事务
-                            ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在审核，请您耐心等待，如有不便请见谅');
-                            ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时审核');
+                            ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在努力催收中，请您耐心等待，如有不便请见谅');
+                            ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时查看！');
                             $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
                         }
                     }else{

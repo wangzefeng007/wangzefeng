@@ -43,7 +43,7 @@ class AjaxAsset
         $MysqlWhere = '';
         //关键字
         $S = intval($_POST['Type']);
-        $Keywords = trim($_GET['Keyword']);
+        $Keywords = trim($_POST['Keyword']);
         if ($S ==1){
             $MysqlWhere = ' and `Status` = 2 and `S1` =1 ';
         }elseif($S ==2){
@@ -51,7 +51,7 @@ class AjaxAsset
         }else{
             $MysqlWhere = ' and `Status` = 2 ';
         }
-        if ($Keywords!=''){
+        if ($Keywords!='all'){
             $MysqlWhere .= ' and Title like \'%' . $Keywords . '%\'';
         }
         $Rscount = $MemberAssetInfoModule->GetListsNum($MysqlWhere);

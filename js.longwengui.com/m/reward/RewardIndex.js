@@ -96,6 +96,16 @@ var pageObj=$.extend({},pageObj,{
                }
            }
         });
+        //输入框输入
+        $(".header-search .icon-search").on("click",function(e){
+            var val=$.trim($(this).val());
+            if(val==""){
+                $.toast("请输入姓名或身份证号搜索");
+            }else{
+                _this.ajaxData.Keyword=val;
+                _this.search("update");
+            }
+        });
     }
 })
 $(document).ready(function(){

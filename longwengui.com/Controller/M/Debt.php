@@ -71,19 +71,17 @@ class Debt
     public function Publish(){
         $Title ='发布债务-文贵网';
         MService::IsNoLogin();
-        $type = intval($_GET['T']);
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
-        if ($UserInfo['Province'])
-        $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
-        if ($UserInfo['City'])
-        $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
-        if ($UserInfo['Area'])
-        $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
-        $User = $MemberUserModule->GetInfoByKeyID($_SESSION ['UserID']);
-        $UserInfo['Mobile'] = $User['Mobile'];
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $DebtInfo = $MemberDebtInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(' and DebtID = '.$DebtInfo['DebtID']);
+        if ($CreditorsInfo['Province'])
+            $CreditorsInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Province']);
+        if ($CreditorsInfo['City'])
+            $CreditorsInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['City']);
+        if ($CreditorsInfo['Area'])
+            $CreditorsInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Area']);
         include template('DebtPublish');
     }
     /**
@@ -92,18 +90,17 @@ class Debt
     public function PublishOne(){
         $Title ='发布债务-文贵网';
         MService::IsNoLogin();
-        $MemberUserInfoModule = new MemberUserInfoModule();
-        $MemberUserModule = new MemberUserModule();
         $MemberAreaModule = new MemberAreaModule();
-        $UserInfo = $MemberUserInfoModule->GetInfoByUserID($_SESSION ['UserID']);
-        if ($UserInfo['Province'])
-            $UserInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Province']);
-        if ($UserInfo['City'])
-            $UserInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['City']);
-        if ($UserInfo['Area'])
-            $UserInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($UserInfo['Area']);
-        $User = $MemberUserModule->GetInfoByKeyID($_SESSION ['UserID']);
-        $UserInfo['Mobile'] = $User['Mobile'];
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $DebtInfo = $MemberDebtInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION ['UserID']);
+        $CreditorsInfo = $MemberCreditorsInfoModule->GetInfoByWhere(' and DebtID = '.$DebtInfo['DebtID']);
+        if ($CreditorsInfo['Province'])
+            $CreditorsInfo['province'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Province']);
+        if ($CreditorsInfo['City'])
+            $CreditorsInfo['city'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['City']);
+        if ($CreditorsInfo['Area'])
+            $CreditorsInfo['area'] = $MemberAreaModule->GetCnNameByKeyID($CreditorsInfo['Area']);
        include template('DebtPublishOne');
     }
 
