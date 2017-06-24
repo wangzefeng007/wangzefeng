@@ -70,6 +70,37 @@ var pageObj=$.extend({},pageObj,{
                 $.pullToRefreshDone('.pull-to-refresh-content');
             }, 1000);
         });
-    }
+    },
+
+    /**
+     * 删除债务
+     * @param tar
+     */
+    delDebt:function(tar,DebtId){
+        var _this=this;
+        $.confirm('是否确认删除？', function () {
+            $.ajax({
+                type:"post",
+                url:"/loginajax.html",
+                dataType: "json",
+                data:{
+                    "Intention":"DeleteDebt",
+                    "id":DebtId
+                },
+                beforeSend:　function(){
+                    $.showIndicator();
+                },success: function(data){
+                    if(data.ResultCode == 200){
+                        $.toast(data.Message);
+                        window.location.reload();
+                    }else{
+                        $.toast(data.Message);
+                    }
+                },complete: function(){
+                    $.hideIndicator();
+                }
+            })
+        });
+    },
 });
 pageObj.init();

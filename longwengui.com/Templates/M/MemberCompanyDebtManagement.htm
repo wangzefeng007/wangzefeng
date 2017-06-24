@@ -29,25 +29,28 @@
 </div>
 <script type="text/html" id="debt_temp">
     {{each Data as debt}}
-    <li>
-        <a href="{{debt.Url}}">
+    <div class="form-deldebt">
+        <li>
             <i class="status status-{{debt.Status}}"></i>
             <div class="item-hd">
                 债务编号：{{debt.DebtNum}}
+                <i class="icon icon-del2 fr" onclick="pageObj.delDebt(this,'{{debt.DebtID}}')"></i>
             </div>
-            <div class="item-main">
-                <p class="h4">
-                    债务人：{{debt.Name}}
-                </p>
-                <p class="h5">
-                    债务人地区：{{debt.Province}}-{{debt.City}}-{{debt.Area}}
-                </p>
-            </div>
-            <div class="item-detail">
-                债务金额：<span class="c-red">¥{{debt.DebtAmount}}</span>
-            </div>
-        </a>
-    </li>
+            <a href="{{debt.Url}}">
+                <div class="item-main">
+                    <p class="h4">
+                        债务人：{{debt.Name}}
+                    </p>
+                    <p class="h5">
+                        债务人地区：{{debt.Province}}-{{debt.City}}-{{debt.Area}}
+                    </p>
+                </div>
+                <div class="item-detail">
+                    债务金额：<span class="c-red">¥{{debt.DebtAmount}}</span>
+                </div>
+            </a>
+        </li>
+    </div>
     {{/each}}
 </script>
 <script type='text/javascript' src='{echo JsURL}/m/member/MemberCompanyDebtManagement.js' charset='utf-8'></script>

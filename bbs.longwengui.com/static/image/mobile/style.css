@@ -121,7 +121,7 @@
 	
 /*----- post -----*/
 	.btn_pn { width:44px; height:31px; overflow:hidden; border:0; line-height:31px;}
-	.btn_pn_grey { background:#EFEFEF url(./images/btn_s_bg.png) no-repeat 0 0; color:#999;}
+	.btn_pn_grey { background:#EFEFEF url(./images/btn_s_bg.png) no-repeat 0 0; color:#59cbc7;}
 	.btn_pn_blue { background:#2498D8 url(./images/btn_s_bg.png) no-repeat 0 -31px; color:#FFF; }
 	
 	.post_msg_from li,.post_from li{ line-height:38px; padding:0 10px; font-size:16px; }

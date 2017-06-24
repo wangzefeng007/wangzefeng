@@ -56,7 +56,6 @@
 <div class="wp wm n5-bbs" id="wp">
 	<!--{loop $catlist $key $cat}-->
 	<div class="bm bmw fl">
-		<div class="n5-fqbt">$cat[name]</div>
 		<div id="sub_forum_$cat[fid]" class="sub_forum bm_c">
 			<ul>
 				<!--{loop $cat[forums] $forumid}-->

@@ -80,7 +80,7 @@ class MemberPerson
         $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
         $MemberAreaModule = new MemberAreaModule();
         $NStatus = $MemberDebtInfoModule->NStatus;
-        $Data['Data'] = $MemberDebtInfoModule->GetInfoByWhere(' and UserID = '.$_SESSION['UserID'],true);
+        $Data['Data'] = $MemberDebtInfoModule->GetInfoByWhere(' and Status < 11 and UserID = '.$_SESSION['UserID'],true);
         foreach ($Data['Data'] as $key=>$value){
             $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(' and DebtID = '.$value['DebtID']);
             $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];

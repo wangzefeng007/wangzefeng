@@ -1035,6 +1035,7 @@ class AjaxLogin
             }
             $Lists = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset, $Data['PageSize']);
             foreach ($Lists as $key=>$value){
+                $Data['Data'][$key]['DebtID'] = $value['DebtID'];
                 $Data['Data'][$key]['DebtNum'] = $value['DebtNum'];
                 $Data['Data'][$key]['DebtAmount'] = $value['DebtAmount'];
                 $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
@@ -1351,6 +1352,7 @@ class AjaxLogin
      * @desc  会员-我的收藏
      */
     public function GetCollectionList(){
+        $this->IsLogin();
         $MemberFocusDebtModule = new MemberFocusDebtModule();
         $MemberAssetInfoModule = new MemberAssetInfoModule();
         $MemberUserModule = new MemberUserModule();
@@ -1391,5 +1393,27 @@ class AjaxLogin
             $Data['Message'] = '暂无数据';
         }
         EchoResult($Data);exit;
+    }
+    /**
+     * @desc  会员-删除债权
+     */
+    public function DeleteDebt(){
+        $this->IsLogin();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberCreditorsInfoModule = new MemberCreditorsInfoModule();
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $DebtID = intval($_POST['id']);
+        $DebtInfo = $MemberDebtInfoModule->GetInfoByWhere(' and DebtID = '.$DebtID.' and UserID = '.$_SESSION['UserID']);
+        if ($DebtInfo){
+            $UpdateResult = $MemberDebtInfoModule->UpdateInfoByKeyID( array('Status'=>11),$DebtID);
+            if ($UpdateResult){
+                $Result = array('ResultCode' => '200', 'Message' => '删除成功');
+            }else{
+                $Result = array('ResultCode' => '102', 'Message' => '删除失败');
+            }
+        }else{
+            $Result = array('ResultCode' => '103', 'Message' => '删除失败');
+        }
+        EchoResult($Result);exit;
     }
 }
