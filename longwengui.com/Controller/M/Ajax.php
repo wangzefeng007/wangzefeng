@@ -598,7 +598,7 @@ class Ajax
                 $Datb['AddTime'] = $Data['AddTime'];
                 $Datb['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key => $value) {
-                    $Datb['Type'] = trim($value['type']);
+                    $Datb['Type'] = intval($value['type']);
                     $Datb['CompanyName'] = trim($value['cname']);
                     $Datb['Name'] = trim($value['name']);
                     $Datb['Card'] = trim($value['idNum']);
@@ -622,7 +622,7 @@ class Ajax
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
                     foreach ($debtorInfos as $key => $value) {
-                        $Datb['Type'] = trim($value['type']);
+                        $Datb['Type'] = intval($value['type']);
                         $Datb['CompanyName'] = trim($value['cname']);
                         $Datc['Name'] = trim($value['name']);
                         $Datc['Card'] = trim($value['idNum']);
