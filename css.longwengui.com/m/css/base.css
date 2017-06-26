@@ -573,10 +573,15 @@ a.btn-s,
 }
 .common-header .go-prev-step{
     position: absolute;
-    left: 1.5rem;
-    line-height: 1.25rem;
+    left: 0;
+    top:0;
+    padding-left: 1.8rem;
+    line-height: 2.2rem;
+    height: 2.2rem;
     font-size: .6rem;
     color: #cdcdcd;
+    background: url(../images/icon-back.png) no-repeat 0.9rem center;
+    background-size: .525rem;
 }
 .icon-back{
     background: url(../images/icon-back.png) no-repeat center;
