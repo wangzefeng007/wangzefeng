@@ -1,5 +1,6 @@
 var pageObj=$.extend({},pageObj,{
     ajaxData:{
+        _type:1, // 债务类型 1、个人债务 2、企业债务
         _debtOwnerInfos:[], //债权人信息
         _debtor_owner_money:0, //债权总金额
         _debtInfos:[],  //债务人信息
@@ -33,7 +34,7 @@ var pageObj=$.extend({},pageObj,{
         $(tar).parents(".form-box").remove();
     },
     /**
-     * 债权人信息验证
+     * 债权人信息验证（个人）
      */
     validate1:function(){
         var _this=this;
@@ -101,6 +102,100 @@ var pageObj=$.extend({},pageObj,{
                 }
                 _this.ajaxData._debtor_owner_money += parseFloat(_debt_money); //债权总金额
                 _this.ajaxData._debtOwnerInfos.push({
+                    "name": _name, //债权人姓名
+                    "idNum": _idNum, //债权人身份证
+                    "debt_money": _debt_money, //债权金额
+                    "phoneNumber": _phoneNumber, //债权人电话
+                    "province": province,
+                    "city": city,
+                    "area": area,
+                    "areaDetail": _areaDetail
+                });
+            }
+        });
+        if(!flag){
+            return false;
+        }else{
+            return true;
+        }
+    },
+
+    /**
+     * 债权人信息验证（企业）
+     */
+    validateCompany1:function(){
+        var _this=this;
+        //决定程序是否往下执行
+        var flag = true;
+        _this.ajaxData._debtOwnerInfos=[];
+        //债权人信息
+        $("#debtor_owner_company_info .form-fieldset").each(function(){
+            if(flag){
+                var _cname = $(this).find('input[name="companyName"]').val();
+                var _name = $(this).find('input[name="name"]').val();
+                var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
+                var _idNum = $(this).find('input[name="idNum"]').val();
+                if(_cname == ""){
+                    $.toast('请输入债权人公司名称');
+                    $(this).find('input[name="companyName"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_idNum != '' && !validate('idNum', _idNum)){
+                    $.toast('请输入正确的信用代码');
+                    $(this).find('input[name="idNum"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_name == ""){
+                    $.toast('请输入法人姓名');
+                    $(this).find('input[name="name"]').focus();
+                    flag = false;
+                    return;
+                }
+
+                if(!validate('chinese', _name)){
+                    $.toast('请输入正确的法人姓名');
+                    $(this).find('input[name="name"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+                    $.toast('请输入正确的电话号码');
+                    $(this).find('input[name="phoneNumber"]').focus();
+                    flag = false;
+                    return;
+                }
+
+                //债权金额
+                var _debt_money = $(this).find('input[name="debt_money"]').val();
+                if(_debt_money == ''){
+                    $.toast('请输入债权金额');
+                    $(this).find('input[name="debt_money"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(!validate('+money', _debt_money)){
+                    $.toast('请输入正确的债权金额');
+                    $(this).find('input[name="debt_money"]').focus();
+                    flag = false;
+                    return;
+                }
+                //债权人地区
+                var address = $(this).find('input[name="address"]').attr("data-value")||"";
+                var province = address.split(" ")[0];
+                var city = address.split(" ")[1];
+                var area = address.split(" ")[2];
+                var _areaDetail = $(this).find('textarea[name="areaDetail"]').val();
+
+                if(address==""){
+                    $.toast('请选择公司地址');
+                    flag = false;
+                    return;
+                }
+                _this.ajaxData._debtor_owner_money += parseFloat(_debt_money); //债权总金额
+                _this.ajaxData._debtOwnerInfos.push({
+                    "cname": _cname, //公司名称
                     "name": _name, //债权人姓名
                     "idNum": _idNum, //债权人身份证
                     "debt_money": _debt_money, //债权金额
@@ -210,6 +305,107 @@ var pageObj=$.extend({},pageObj,{
             }
         }
     },
+
+    /**
+     * 债务人信息验证
+     */
+    validateCompany2:function(){
+        var _this=this;
+        //决定程序是否往下执行
+        var flag = true;
+        _this.ajaxData._debtInfos=[];
+        _this.ajaxData._debtor_money=0;
+        //债务人信息
+        $("#debtor_company_info .form-fieldset").each(function(){
+            if(flag){
+                var _cname = $(this).find('input[name="companyName"]').val();
+                var _name = $(this).find('input[name="name"]').val();
+                var _phoneNumber = $(this).find('input[name="phoneNumber"]').val();
+                var _idNum = $(this).find('input[name="idNum"]').val();
+
+                if(_cname == ""){
+                    $.toast('请输入债务人公司名称');
+                    $(this).find('input[name="companyName"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_idNum != '' && !validate('idNum', _idNum)){
+                    $.toast('请输入正确的信用代码');
+                    $(this).find('input[name="idNum"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_name == ""){
+                    $.toast('请输入法人姓名');
+                    $(this).find('input[name="name"]').focus();
+                    flag = false;
+                    return;
+                }
+
+                if(!validate('chinese', _name)){
+                    $.toast('请输入正确的法人姓名');
+                    $(this).find('input[name="name"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(_phoneNumber != '' && !validate('phone', _phoneNumber)){
+                    $.toast('请输入正确的电话号码');
+                    $(this).find('input[name="phoneNumber"]').focus();
+                    flag = false;
+                    return;
+                }
+
+                //债务金额
+                var _debt_money = $(this).find('input[name="debt_money"]').val();
+                if(_debt_money == ''){
+                    $.toast('请输入债务金额');
+                    $(this).find('input[name="debt_money"]').focus();
+                    flag = false;
+                    return;
+                }
+                if(!validate('+money', _debt_money)){
+                    $.toast('请输入正确的债务金额');
+                    $(this).find('input[name="debt_money"]').focus();
+                    flag = false;
+                    return;
+                }
+                //债务人地区
+                var address = $(this).find('input[name="address"]').attr("data-value")||"";
+                var province = address.split(" ")[0];
+                var city = address.split(" ")[1];
+                var area = address.split(" ")[2];
+                var _areaDetail = $(this).find('textarea[name="areaDetail"]').val();
+
+                if(address==""){
+                    $.toast('请选择债务人地址');
+                    flag = false;
+                    return;
+                }
+                _this.ajaxData._debtor_money += parseFloat(_debt_money); //债务总金额
+                _this.ajaxData._debtInfos.push({
+                    "cname": _cname, //公司名称
+                    "name": _name, //债务人姓名
+                    "idNum": _idNum, //债务人身份证
+                    "debt_money": _debt_money, //债务金额
+                    "phoneNumber": _phoneNumber, //债务人电话
+                    "province": province,
+                    "city": city,
+                    "area": area,
+                    "areaDetail": _areaDetail
+                });
+            }
+        });
+        if(!flag){
+            return false;
+        }else{
+            if(_this.ajaxData._debtor_owner_money != _this.ajaxData._debtor_money){
+                $.toast('债务人和债权人金额总和不统一');
+                return false;
+            }else{
+                return true;
+            }
+        }
+    },
     /**
      * 其它信息验证
      */
@@ -278,7 +474,18 @@ var pageObj=$.extend({},pageObj,{
      * 下一步去第二步
      */
     goStep2:function(){
-        var formData=this.validate1();
+        var type=0;
+        $("#publish-step1 .tab-nav a").each(function(i){
+            if($(this).hasClass("active")){
+                type=i;
+            }
+        });
+        //0 债权人为个人 1债权人为企业
+        if(type==0){
+            var formData=this.validate1();
+        }else if(type==1){
+            var formData=this.validateCompany1();
+        }
         if(!formData){
             return;
         }
@@ -292,10 +499,23 @@ var pageObj=$.extend({},pageObj,{
      * 下一步去第三步
      */
     goStep3:function(){
-        var formData=this.validate2();
+        var _this=this;
+        var type=0;
+        $("#publish-step2 .tab-nav a").each(function(i){
+            if($(this).hasClass("active")){
+                type=i;
+            }
+        });
+        //0 债务人为个人 1债务人为企业
+        if(type==0){
+            var formData=this.validate2();
+        }else if(type==1){
+            var formData=this.validateCompany2();
+        }
         if(!formData){
             return;
         }
+        type==0?_this.ajaxData._type=1:_this.ajaxData._type=2
         $("#publish-step2").removeClass("page-current");
         $("#publish-step3").addClass("page-current");
         $("input[name='overDay']").calendar({
@@ -336,7 +556,7 @@ var pageObj=$.extend({},pageObj,{
             data: {
                 "Intention":"ReleaseDebt",
                 "AjaxJSON":JSON.stringify(submitData),
-                "Type":1//债务类型1-个人债务 2-企业债务
+                "Type":_this.ajaxData._type//债务类型1-个人债务 2-企业债务
             },
             beforeSend: function () { //加载过程效果
                 $.showIndicator();
@@ -345,9 +565,9 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast(data.Message);
                     //路由跳转
-                    setTimeout(function() {
+                    /*setTimeout(function() {
                         window.location = data.Url;
-                    }, 10);
+                    }, 10);*/
                 }else{
                     $.toast(data.Message);
                 }
@@ -363,7 +583,12 @@ var pageObj=$.extend({},pageObj,{
     init:function() {
         var _this = this;
         //地址初始化
-        $("#publish-step1 input[name='address']").cityPicker();
+        $("#publish-step1 #debtor_owner_info input[name='address']").cityPicker();
+        $(".tab-nav a").on("click",function(){
+            $($(this).attr("href")).find("input[name='address']").cityPicker({
+                value:false
+            });
+        });
         //去第二步
         $("#goStep2").on("click", function () {
             _this.goStep2();
