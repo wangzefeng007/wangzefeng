@@ -41,6 +41,7 @@ var pageObj=$.extend({},pageObj,{
         //决定程序是否往下执行
         var flag = true;
         _this.ajaxData._debtOwnerInfos=[];
+        _this.ajaxData._debtor_owner_money=0;
         //债权人信息
         $("#debtor_owner_info .form-fieldset").each(function(){
             if(flag){
@@ -102,6 +103,7 @@ var pageObj=$.extend({},pageObj,{
                 }
                 _this.ajaxData._debtor_owner_money += parseFloat(_debt_money); //债权总金额
                 _this.ajaxData._debtOwnerInfos.push({
+                    "type": 1, //债权人类型
                     "name": _name, //债权人姓名
                     "idNum": _idNum, //债权人身份证
                     "debt_money": _debt_money, //债权金额
@@ -128,6 +130,7 @@ var pageObj=$.extend({},pageObj,{
         //决定程序是否往下执行
         var flag = true;
         _this.ajaxData._debtOwnerInfos=[];
+        _this.ajaxData._debtor_owner_money=0;
         //债权人信息
         $("#debtor_owner_company_info .form-fieldset").each(function(){
             if(flag){
@@ -195,6 +198,7 @@ var pageObj=$.extend({},pageObj,{
                 }
                 _this.ajaxData._debtor_owner_money += parseFloat(_debt_money); //债权总金额
                 _this.ajaxData._debtOwnerInfos.push({
+                    "type": 2, //债权人类型
                     "cname": _cname, //公司名称
                     "name": _name, //债权人姓名
                     "idNum": _idNum, //债权人身份证
@@ -283,6 +287,7 @@ var pageObj=$.extend({},pageObj,{
                 }
                 _this.ajaxData._debtor_money += parseFloat(_debt_money); //债务总金额
                 _this.ajaxData._debtInfos.push({
+                    "type": 1, //债务人类型
                     "name": _name, //债务人姓名
                     "idNum": _idNum, //债务人身份证
                     "debt_money": _debt_money, //债务金额
@@ -383,6 +388,7 @@ var pageObj=$.extend({},pageObj,{
                 }
                 _this.ajaxData._debtor_money += parseFloat(_debt_money); //债务总金额
                 _this.ajaxData._debtInfos.push({
+                    "type": 2, //债务人类型
                     "cname": _cname, //公司名称
                     "name": _name, //债务人姓名
                     "idNum": _idNum, //债务人身份证
@@ -496,6 +502,13 @@ var pageObj=$.extend({},pageObj,{
         });
     },
     /**
+     * 返回到第一步
+     */
+    gobackStep1:function(){
+        $("#publish-step2").removeClass("page-current");
+        $("#publish-step1").addClass("page-current");
+    },
+    /**
      * 下一步去第三步
      */
     goStep3:function(){
@@ -518,10 +531,21 @@ var pageObj=$.extend({},pageObj,{
         type==0?_this.ajaxData._type=1:_this.ajaxData._type=2
         $("#publish-step2").removeClass("page-current");
         $("#publish-step3").addClass("page-current");
-        $("input[name='overDay']").calendar({
-            maxDate:$("input[name='overDay']").attr("maxDate")
-            //value: ['2015-12-05']
-        });
+        //初始化日期控件
+        if(!pageObj.isOk){
+            $("input[name='overDay']").calendar({
+                maxDate:$("input[name='overDay']").attr("maxDate")
+                //value: ['2015-12-05']
+            });
+            pageObj.isOk=true;
+        }
+    },
+    /**
+     * 返回到第二步
+     */
+    gobackStep2:function(){
+        $("#publish-step3").removeClass("page-current");
+        $("#publish-step2").addClass("page-current");
     },
     /**
      * 添加债务人亲友
@@ -565,9 +589,9 @@ var pageObj=$.extend({},pageObj,{
                 if(data.ResultCode == 200){
                     $.toast(data.Message);
                     //路由跳转
-                    /*setTimeout(function() {
+                    setTimeout(function() {
                         window.location = data.Url;
-                    }, 10);*/
+                    }, 10);
                 }else{
                     $.toast(data.Message);
                 }
