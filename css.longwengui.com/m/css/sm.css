@@ -4091,6 +4091,7 @@ body.panel-closing .page {
 }
 .picker-items-col.picker-items-col-center {
   text-align: center;
+  width: 100%;
 }
 .picker-items-col.picker-items-col-right {
   text-align: right;
