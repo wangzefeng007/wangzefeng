@@ -98,6 +98,7 @@
   margin-bottom: 100px;
 }
 .public-debt-diy .wrap .form-wrap .box .t {
+  position: relative;
   background-color: #eaf8ff;
   line-height: 50px;
   padding: 0 18px;
@@ -342,4 +343,17 @@
   text-align: center;
   color: #fc4c4c;
   margin-bottom: 40px;
+}
+
+.choose-type{
+  position: absolute;
+  left:50%;
+  top:0;
+  margin-left:-70px;
+}
+.tab-con>div{
+  display: none;
+}
+.tab-con>div.active{
+  display: block;
 }

@@ -13,71 +13,154 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/user.png" alt="">
           <span>债权人信息</span>
-          <div class="opt" onclick="addDebtDom('debtor_owner_info', 'debtor_owner_info_temp')">
+          <div class="choose-type">
+            <div class="m-radio ml-10">
+              <label type="radio">
+                <input type="radio" name="debtor_owner_type" value="1" checked>
+                <i></i>
+                个人
+              </label>
+            </div>
+            <div class="m-radio ml-10">
+              <label type="radio">
+                <input type="radio" name="debtor_owner_type" value="2">
+                <i></i>
+                企业
+              </label>
+            </div>
+          </div>
+          <div class="opt" onclick="addZQR()">
             <img src="/Uploads/Debt/imgs/add_b.png" alt="">
             添加
           </div>
         </div>
-        <div class="c" id="debtor_owner_info">
-          <div class="blo">
-            <div class="to-del" onclick="removeParentDom(this, 'blo')">
-              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
-            <div class="line">
-              <div class="info">
-                债权人信息 :
+        <div class="tab-con">
+          <div class="c active" id="debtor_owner_info">
+            <div class="blo">
+              <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
               </div>
-              <div class="details">
-                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
-                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
-                <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
-              </div>
-            </div>
-            <div class="line">
-              <div class="info">
-                债权人地区 :
-              </div>
-              <div class="details">
-                <div class="p-dropdown">
-                  <label type="checkbox">
-                    <span>*省份</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_province" value="">
-                    <ul></ul>
-                  </label>
+              <div class="line">
+                <div class="info">
+                  债权人信息 :
                 </div>
-                <div class="c-dropdown">
-                  <label type="checkbox">
-                    <span>*城市</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_city" value="">
-                    <ul></ul>
-                  </label>
-                </div>
-                <div class="a-dropdown">
-                  <label type="checkbox">
-                    <span>*区县/市</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_area" value="">
-                    <ul></ul>
-                  </label>
+                <div class="details">
+                  <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+                  <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
                 </div>
               </div>
+              <div class="line">
+                <div class="info">
+                  债权人地区 :
+                </div>
+                <div class="details">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span>*省份</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span>*城市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span>*区县/市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="info">
+                  详细地址 :
+                </div>
+                <div class="details">
+                  <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+                </div>
+              </div>
+              <div class="line">
+                <div class="info">
+                  债权金额 :
+                </div>
+                <div class="details">
+                  <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
+                </div>
+              </div>
             </div>
-            <div class="line">
-              <div class="info">
-                详细地址 :
+          </div>
+          <div class="c" id="debtor_owner_company_info">
+            <div class="blo">
+              <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
               </div>
-              <div class="details">
-                <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+              <div class="line">
+                <div class="info">
+                  债权人信息 :
+                </div>
+                <div class="details">
+                  <input type="text" name="companyName" onblur="validateChinese(this)" placeholder="*请输入公司姓名">
+                  <input type="text" name="idNum" onblur="validateCreditNum(this, false)" placeholder="请输入信用代码">
+                  <input type="text" name="name" onblur="validateChinese(this)" placeholder="*请输入法人姓名">
+                  <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="请输入固定电话">
+                </div>
               </div>
-            </div>
-            <div class="line">
-              <div class="info">
-                债权金额 :
+              <div class="line">
+                <div class="info">
+                  债权人地区 :
+                </div>
+                <div class="details">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span>*省份</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span>*城市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span>*区县/市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div class="details">
-                <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
+              <div class="line">
+                <div class="info">
+                  详细地址 :
+                </div>
+                <div class="details">
+                  <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+                </div>
+              </div>
+              <div class="line">
+                <div class="info">
+                  债权金额 :
+                </div>
+                <div class="details">
+                  <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
+                </div>
               </div>
             </div>
           </div>
@@ -87,71 +170,154 @@
         <div class="t">
           <img src="/Uploads/Debt/imgs/user.png" alt="">
           <span>债务人基本信息</span>
-          <div class="opt" onclick="addDebtDom('debtor_info', 'debtor_info_temp')">
+          <div class="choose-type">
+            <div class="m-radio ml-10">
+              <label type="radio">
+                <input type="radio" name="debtor_type" value="1" checked>
+                <i></i>
+                个人
+              </label>
+            </div>
+            <div class="m-radio ml-10">
+              <label type="radio">
+                <input type="radio" name="debtor_type" value="2">
+                <i></i>
+                企业
+              </label>
+            </div>
+          </div>
+          <div class="opt" onclick="addZWR()">
             <img src="/Uploads/Debt/imgs/add_b.png" alt="">
             添加
           </div>
         </div>
-        <div class="c" id="debtor_info">
-          <div class="blo">
-            <div class="to-del" onclick="removeParentDom(this, 'blo')">
-              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
-            <div class="line">
-              <div class="info">
-                债务人信息 :
+        <div class="tab-con">
+          <div class="c active" id="debtor_info">
+            <div class="blo">
+              <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
               </div>
-              <div class="details">
-                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
-                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
-                <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
-              </div>
-            </div>
-            <div class="line">
-              <div class="info">
-                债务人地区 :
-              </div>
-              <div class="details">
-                <div class="p-dropdown">
-                  <label type="checkbox">
-                    <span>*省份</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_province" value="">
-                    <ul></ul>
-                  </label>
+              <div class="line">
+                <div class="info">
+                  债务人信息 :
                 </div>
-                <div class="c-dropdown">
-                  <label type="checkbox">
-                    <span>*城市</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_city" value="">
-                    <ul></ul>
-                  </label>
-                </div>
-                <div class="a-dropdown">
-                  <label type="checkbox">
-                    <span>*区县/市</span>
-                    <i></i>
-                    <input type="checkbox" name="dd_area" value="">
-                    <ul></ul>
-                  </label>
+                <div class="details">
+                  <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
+                  <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
+                  <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
                 </div>
               </div>
+              <div class="line">
+                <div class="info">
+                  债务人地区 :
+                </div>
+                <div class="details">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span>*省份</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span>*城市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span>*区县/市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="line">
+                <div class="info">
+                  详细地址 :
+                </div>
+                <div class="details">
+                  <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+                </div>
+              </div>
+              <div class="line">
+                <div class="info">
+                  债务金额 :
+                </div>
+                <div class="details">
+                  <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债务金额">元
+                </div>
+              </div>
             </div>
-            <div class="line">
-              <div class="info">
-                详细地址 :
+          </div>
+          <div class="c" id="debtor_company_info">
+            <div class="blo">
+              <div class="to-del" onclick="removeParentDom(this, 'blo')">
+                <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
               </div>
-              <div class="details">
-                <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+              <div class="line">
+                <div class="info">
+                  债权人信息 :
+                </div>
+                <div class="details">
+                  <input type="text" name="companyName" onblur="validateChinese(this)" placeholder="*请输入公司姓名">
+                  <input type="text" name="idNum" onblur="validateCreditNum(this, false)" placeholder="请输入信用代码">
+                  <input type="text" name="name" onblur="validateChinese(this)" placeholder="*请输入法人姓名">
+                  <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="请输入固定电话">
+                </div>
               </div>
-            </div>
-            <div class="line">
-              <div class="info">
-                债务金额 :
+              <div class="line">
+                <div class="info">
+                  债权人地区 :
+                </div>
+                <div class="details">
+                  <div class="p-dropdown">
+                    <label type="checkbox">
+                      <span>*省份</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_province" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="c-dropdown">
+                    <label type="checkbox">
+                      <span>*城市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_city" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                  <div class="a-dropdown">
+                    <label type="checkbox">
+                      <span>*区县/市</span>
+                      <i></i>
+                      <input type="checkbox" name="dd_area" value="">
+                      <ul></ul>
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div class="details">
-                <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债务金额">元
+              <div class="line">
+                <div class="info">
+                  详细地址 :
+                </div>
+                <div class="details">
+                  <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+                </div>
+              </div>
+              <div class="line">
+                <div class="info">
+                  债权金额 :
+                </div>
+                <div class="details">
+                  <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
+                </div>
               </div>
             </div>
           </div>
@@ -160,44 +326,6 @@
           <img src="/Uploads/Debt/imgs/time.png" alt="">
           <span class="mr-10">逾期时间 : </span>
           <input type="text" id="end_time" name="overDay" placeholder="(*必填)" value="">
-        </div>
-        <div class="c"></div>
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
-          <span>债务人是否随时能寻找到 : </span>
-          <div class="m-radio ml-10">
-            <label type="radio">
-              <input type="radio" name="searchedAnytime" value="1">
-              <i></i>
-              是
-            </label>
-          </div>
-          <div class="m-radio ml-10">
-            <label type="radio">
-              <input type="radio" name="searchedAnytime" value="0" checked>
-              <i></i>
-              否
-            </label>
-          </div>
-        </div>
-        <div class="c"></div>
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/to_sel.png" alt="">
-          <span>债务人是否有还款能力 : </span>
-          <div class="m-radio ml-10">
-            <label type="radio">
-              <input type="radio" name="abilityDebt" value="1">
-              <i></i>
-              是
-            </label>
-          </div>
-          <div class="m-radio ml-10">
-            <label type="radio">
-              <input type="radio" name="abilityDebt" value="0" checked>
-              <i></i>
-              否
-            </label>
-          </div>
         </div>
         <div class="c"></div>
         <div class="t">
@@ -221,93 +349,6 @@
                 <input type="text" name="name" onblur="validateChinese(this)" placeholder="*姓名">
                 <input type="text" name="relationship" placeholder="关系">
                 <input type="text" name="phoneNumber" onblur="validatePhone(this, true)" placeholder="联系方式">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/gou_b_off.png" id="bonds_man_info_btn" style="cursor: pointer;" data-checked="0" alt="">
-          <span>有保证人</span>
-          <div class="opt" onclick="addBondsMan()" style="display: none;">
-            <img src="/Uploads/Debt/imgs/add_b.png" alt="">
-            添加
-          </div>
-        </div>
-        <div class="c" id="bonds_man_info">
-          <div class="blo"  style="display: none;">
-            <div class="to-del" onclick="removeParentDom(this, 'blo')">
-              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
-            <div class="line">
-              <div class="info">
-                保证人信息 :
-              </div>
-              <div class="m-dropdown">
-                <label type="checkbox">
-                  <span>个人</span>
-                  <i></i>
-                  <input type="checkbox" name="bonds_man_role" value="">
-                  <ul>
-                    <li data-name="个人">个人</li>
-                    <li data-name="企业">企业</li>
-                  </ul>
-                </label>
-              </div>
-              <div class="details">
-                <input type="text" name="name" onblur="validateChinese(this)" placeholder="*保证人名称">
-                <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
-                <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/gou_b_off.png" id="bonds_good_info_btn" style="cursor: pointer;" data-checked="0" alt="">
-          <span>有抵押物</span>
-          <div class="opt" onclick="addBondsGood()"  style="display: none;">
-            <img src="/Uploads/Debt/imgs/add_b.png" alt="">
-            添加
-          </div>
-        </div>
-        <div class="c" id="bonds_good_info">
-          <div class="blo"  style="display: none;">
-            <div class="to-del" onclick="removeParentDom(this, 'blo')">
-              <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-            </div>
-            <div class="line">
-              <div class="info">
-                抵押物信息 :
-              </div>
-              <div class="details">
-                <input type="text" name="name" onblur="validateNeed(this)" placeholder="*抵押物名称">
-              </div>
-            </div>
-            <div class="line">
-              <div class="info"></div>
-              <div class="details">
-                <textarea name="good_detail" rows="8" cols="80" maxlength="150" placeholder="抵押物详情(最多可输入150字)"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="t">
-          <img src="/Uploads/Debt/imgs/reason_icon.png" alt="">
-          <span>借款原因/债务近况</span>
-        </div>
-        <div class="c">
-          <div class="blo">
-            <div class="line">
-              <div class="info">
-                借款原因 :
-              </div>
-              <div class="details">
-                <textarea name="loan_reason" rows="8" cols="80" maxlength="150" placeholder="借款原因说明(最多可输入150字)"></textarea>
-              </div>
-            </div>
-            <div class="line">
-              <div class="info">债务近况:</div>
-              <div class="details">
-                <textarea name="loan_recent" rows="8" cols="80" maxlength="150" placeholder="债务近况说明(最多可输入150字)"></textarea>
               </div>
             </div>
           </div>
@@ -370,24 +411,12 @@
         <div class="sub-btn">
           <button type="button" id="publish" class="btn-pub" name="button">发布债务</button>
           <button type="button" class="btn-pub" onclick="javascript:window.location.reload();" name="button">重置</button>
-          <span class="change-way">切换催收方式
-            <div class="m-dropdown">
-              <label type="checkbox">
-                <span>自助催收</span>
-                <i></i>
-                <input type="checkbox" value="">
-                <ul>
-                  <li onclick="go('/debt/publish/1/')">律师团队</li>
-                  <li onclick="go('/debt/publish/2/')">催收公司</li>
-                </ul>
-              </label>
-            </div>
-          </span>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!--债权人模板个人-->
 <script type="text/x-jquery-tmpl" id="debtor_owner_info_temp">
   <div class="blo">
     <div class="to-del" onclick="removeParentDom(this, 'blo')">
@@ -452,6 +481,73 @@
     </div>
   </div>
 </script>
+<!--债权人模板企业-->
+<script type="text/x-jquery-tmpl" id="debtor_owner_company_info_temp">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        债权人信息 :
+      </div>
+      <div class="details">
+        <input type="text" name="companyName" onblur="validateChinese(this)" placeholder="*请输入公司姓名">
+        <input type="text" name="idNum" onblur="validateCreditNum(this, false)" placeholder="请输入信用代码">
+        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*请输入法人姓名">
+        <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="请输入固定电话">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债权人地区 :
+      </div>
+      <div class="details">
+        <div class="p-dropdown">
+          <label type="checkbox">
+            <span>*省份</span>
+            <i></i>
+            <input type="checkbox" name="dd_province" value="">
+            <ul></ul>
+          </label>
+        </div>
+        <div class="c-dropdown">
+          <label type="checkbox">
+            <span>*城市</span>
+            <i></i>
+            <input type="checkbox" name="dd_city" value="">
+            <ul></ul>
+          </label>
+        </div>
+        <div class="a-dropdown">
+          <label type="checkbox">
+            <span>*区县/市</span>
+            <i></i>
+            <input type="checkbox" name="dd_area" value="">
+            <ul></ul>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        详细地址 :
+      </div>
+      <div class="details">
+        <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债权金额 :
+      </div>
+      <div class="details">
+        <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
+      </div>
+    </div>
+  </div>
+</script>
+<!--债务人模板个人-->
 <script type="text/x-jquery-tmpl" id="debtor_info_temp">
   <div class="blo">
     <div class="to-del" onclick="removeParentDom(this, 'blo')">
@@ -516,6 +612,72 @@
     </div>
   </div>
 </script>
+<!--债务人模板企业-->
+<script type="text/x-jquery-tmpl" id="debtor_company_info_temp">
+  <div class="blo">
+    <div class="to-del" onclick="removeParentDom(this, 'blo')">
+      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
+    </div>
+    <div class="line">
+      <div class="info">
+        债权人信息 :
+      </div>
+      <div class="details">
+        <input type="text" name="companyName" onblur="validateChinese(this)" placeholder="*请输入公司姓名">
+        <input type="text" name="idNum" onblur="validateCreditNum(this, false)" placeholder="请输入信用代码">
+        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*请输入法人姓名">
+        <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="请输入固定电话">
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债权人地区 :
+      </div>
+      <div class="details">
+        <div class="p-dropdown">
+          <label type="checkbox">
+            <span>*省份</span>
+            <i></i>
+            <input type="checkbox" name="dd_province" value="">
+            <ul></ul>
+          </label>
+        </div>
+        <div class="c-dropdown">
+          <label type="checkbox">
+            <span>*城市</span>
+            <i></i>
+            <input type="checkbox" name="dd_city" value="">
+            <ul></ul>
+          </label>
+        </div>
+        <div class="a-dropdown">
+          <label type="checkbox">
+            <span>*区县/市</span>
+            <i></i>
+            <input type="checkbox" name="dd_area" value="">
+            <ul></ul>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        详细地址 :
+      </div>
+      <div class="details">
+        <textarea name="areaDetail" maxlength="50" rows="2" cols="80" placeholder="请输入详细地址(最多50个字)"></textarea>
+      </div>
+    </div>
+    <div class="line">
+      <div class="info">
+        债权金额 :
+      </div>
+      <div class="details">
+        <input type="text" name="debt_money" onblur="validateMoney(this)" placeholder="*请输入债权金额">元
+      </div>
+    </div>
+  </div>
+</script>
 <script type="text/x-jquery-tmpl" id="debt_family_tmpl">
   <div class="blo">
     <div class="to-del" onclick="removeParentDom(this, 'blo')">
@@ -532,81 +694,6 @@
       </div>
     </div>
   </div>
-</script>
-<script type="text/x-jquery-tmpl" id="bonds_man_tmpl">
-  <div class="blo">
-    <div class="to-del" onclick="removeParentDom(this, 'blo')">
-      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-    </div>
-    <div class="line">
-      <div class="info">
-        保证人信息 :
-      </div>
-      <div class="m-dropdown">
-        <label type="checkbox">
-          <span>个人</span>
-          <i></i>
-          <input type="checkbox" name="bonds_man_role" value="">
-          <ul>
-            <li data-name="个人">个人</li>
-            <li data-name="企业">企业</li>
-          </ul>
-        </label>
-      </div>
-      <div class="details">
-        <input type="text" name="name" onblur="validateChinese(this)" placeholder="*保证人名称">
-        <input type="text" name="idNum" onblur="validateIDNumber(this, false)" placeholder="身份证号">
-        <input type="text" name="phoneNumber" onblur="validatePhone(this, false)" placeholder="联系电话">
-      </div>
-    </div>
-  </div>
-</script>
-<script type="text/x-jquery-tmpl" id="bonds_good_tepl">
-  <div class="blo">
-    <div class="to-del" onclick="removeParentDom(this, 'blo')">
-      <img src="/Uploads/Debt/imgs/close_grey.png" alt="">
-    </div>
-    <div class="line">
-      <div class="info">
-        抵押物信息 :
-      </div>
-      <div class="details">
-        <input type="text" name="name" onblur="validateNeed(this)" placeholder="*抵押物名称">
-      </div>
-    </div>
-    <div class="line">
-      <div class="info"></div>
-      <div class="details">
-        <textarea name="good_detail" rows="8" cols="80" maxlength="150" placeholder="抵押物详情(最多可输入150字)"></textarea>
-      </div>
-    </div>
-  </div>
-</script>
-<script type="text/x-jquery-tmpl" id="result_data_tmpl">
-  <table>
-    <thead>
-      <tr>
-        <th>名称</th>
-        <th>地区</th>
-        <th>佣金(元)</th>
-        <th>联系方式</th>
-        <th>提交申请</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{each(i, v) resData}}
-      <tr>
-        <td>{{= v.CompanyName}}</td>
-        <td>{{= v.province}}-{{= v.city}}-{{= v.area}}</td>
-        <td>￥{{= v.fee}}</td>
-        <td>{{= v.phoneNumber}}</td>
-        <td>
-          <button type="button" onclick="applyToSearch(${v.UserID})" name="button">申请</button>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
 </script>
 {template Footer}
 <script src='{echo JsURL}/debt/lib/dcalendar/dcalendar.picker.js'></script>

@@ -115,7 +115,7 @@ function otherCitySel(){
 function resetChoices(){
   var html = '';
   var array = [
-    'way',
+    //'way',
     'money',
     'day'
   ]
