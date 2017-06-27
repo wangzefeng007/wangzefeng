@@ -144,7 +144,7 @@ var pageObj=$.extend({},pageObj,{
                     flag = false;
                     return;
                 }
-                if(_idNum != '' && !validate('idNum', _idNum)){
+                if(_idNum != '' && !validate('creditNum', _idNum)){
                     $.toast('请输入正确的信用代码');
                     $(this).find('input[name="idNum"]').focus();
                     flag = false;
@@ -334,7 +334,7 @@ var pageObj=$.extend({},pageObj,{
                     flag = false;
                     return;
                 }
-                if(_idNum != '' && !validate('idNum', _idNum)){
+                if(_idNum != '' && !validate('creditNum', _idNum)){
                     $.toast('请输入正确的信用代码');
                     $(this).find('input[name="idNum"]').focus();
                     flag = false;
@@ -481,7 +481,7 @@ var pageObj=$.extend({},pageObj,{
      */
     goStep2:function(){
         var type=0;
-        $("#publish-step1 .tab-nav a").each(function(i){
+        $("#publish-step1 .tab-con").children("div").each(function(i){
             if($(this).hasClass("active")){
                 type=i;
             }
@@ -514,7 +514,7 @@ var pageObj=$.extend({},pageObj,{
     goStep3:function(){
         var _this=this;
         var type=0;
-        $("#publish-step2 .tab-nav a").each(function(i){
+        $("#publish-step2 .tab-con").children("div").each(function(i){
             if($(this).hasClass("active")){
                 type=i;
             }
@@ -607,7 +607,7 @@ var pageObj=$.extend({},pageObj,{
     init:function() {
         var _this = this;
         //地址初始化
-        $("#publish-step1 #debtor_owner_info input[name='address']").cityPicker();
+        $(".tab-con div.active input[name='address']").cityPicker();
         $(".tab-nav a").on("click",function(){
             $($(this).attr("href")).find("input[name='address']").cityPicker({
                 value:false
