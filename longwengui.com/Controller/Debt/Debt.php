@@ -20,42 +20,47 @@ class Debt
         $Keywords=" 追讨债务，怎样追讨债务，个人债务追讨，催收跟踪，催收管理，信用卡催收，话费催收，水电费催收，物业费催收";
         $Description="文贵网是福建首家安全、诚信、免费的催收服务平台，平台旨在拓宽债权人追回欠款的渠道，运用互联网、大数据构建不良资产服务平台。文贵网致力于打造诚信社会，让债权人无忧追债，催客事成领赏；我们建立全国催客大本营，实现精准便捷的催收服务，让全民参与构建社会诚信，促进社会诚信的发展。";
         $Nav='index';
-        include template('Index');
-    }
-    /**
-     * @desc 前端测试静态页
-     */
-    public function Test(){
-//        $notify_url = WEB_MAIN_URL . '/pay/alipaynotify/';
-//        $return_url = WEB_MAIN_URL . '/pay/alipaynotify/'; //必填
-//
-//        $out_trade_no = 'D12312312312153'; //必填
-//        $subject = stripslashes('测试订单名称'); //必填
-//        $total_fee = 0.01; //必填
-//        $body = stripslashes('测试订单描述');
-//        $show_url = WEB_MAIN_URL.'/myorder.html';
-//        $Data['OrderID'] = 23;
-//        $Data['NotifyUrl'] = WEB_MAIN_URL . '/ReturnUrl/';
-//        $Data['PayType'] = 0;
-//        $Data['CreateTime'] = time();
-//        $Data['ResultCode'] = 0;
-//        include SYSTEM_ROOTPATH.'/Include/AliPay/AliPay.php';
-//        $AliPay = new AliPay();
-//        $AliPay->SubmitOrder(1, $notify_url, $return_url, $out_trade_no, $subject, $total_fee, $body, $show_url);
-//        include SYSTEM_ROOTPATH . '/Include/WXPay/WxPay.NativePay.php';
-//        $notify = new NativePay();
-//        $input = new WxPayUnifiedOrder();
-//        $input->SetBody(stripslashes('订单号显示')); //订单描述
-//        $input->SetDetail(stripslashes('订单名称'));
-//        $input->SetOut_trade_no('LWG3453dfgdfg4535453'); //必填
-//        $input->SetTotal_fee(0.01 * 100); //必填
-//        $input->SetNotify_url(WEB_MAIN_URL . '/pay/wxpaynotify/'); //必填
-//        $input->SetTrade_type("NATIVE");
-//        $input->SetSpbill_create_ip(GetIP());
-//        $input->SetProduct_id('LWG3453dfgdfg4535453');
-//        $result = $notify->GetPayUrl($input);
-//        var_dump($result);exit;
-      include template('Test');
+        $MemberDebtInfoModule = new MemberDebtInfoModule();
+        $MemberDebtorsInfoModule = new MemberDebtorsInfoModule();
+        $MemberAreaModule = new MemberAreaModule();
+        $AreaList = $MemberAreaModule->GetInfoByWhere(' and R1 =1 order by S1 asc',true);
+        $NStatus = $MemberDebtInfoModule->NStatus;
+        //分页查询开始-------------------------------------------------
+        $MysqlWhere = ' and `Status` <= 7 order by Status asc , AddTime desc';
+        //关键字
+        $Rscount = $MemberDebtInfoModule->GetListsNum($MysqlWhere);
+        $Page=intval($_GET['p'])?intval($_GET['p']):0;
+        if ($Page < 1) {
+            $Page = 1;
+        }
+        if ($Rscount['Num']) {
+            $PageSize=7;
+            $Data = array();
+            $Data['RecordCount'] = $Rscount['Num'];
+            $Data['PageSize'] = ($PageSize ? $PageSize : $Data['RecordCount']);
+            $Data['PageCount'] = ceil($Data['RecordCount'] / $PageSize);
+            if ($Page > $Data['PageCount'])
+                $Page = $Data['PageCount'];
+            $Data['Page'] = min($Page, $Data['PageCount']);
+            $Offset = ($Page - 1) * $Data['PageSize'];
+            $Data['Data'] = $MemberDebtInfoModule->GetLists($MysqlWhere, $Offset,$Data['PageSize']);
+            foreach ($Data['Data'] as $key=>$value){
+                $DebtorsInfo = $MemberDebtorsInfoModule->GetInfoByWhere(" and DebtID = ".$value['DebtID']);
+                $Data['Data'][$key]['Phone'] = $DebtorsInfo['Phone'];
+                $Data['Data'][$key]['Name'] = $DebtorsInfo['Name'];
+                if ($DebtorsInfo['Province'])
+                    $Data['Data'][$key]['Province'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Province']);
+                if ($DebtorsInfo['City'])
+                    $Data['Data'][$key]['City'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['City']);
+                if ($DebtorsInfo['Area'])
+                    $Data['Data'][$key]['Area'] = $MemberAreaModule->GetCnNameByKeyID($DebtorsInfo['Area']);
+                $Data['Data'][$key]['AddTime'] = !empty($value['AddTime'])? date('Y-m-d',$value['AddTime']): '';
+                $Data['Data'][$key]['Url'] = '/debt/'.$value['DebtID'].'.html';
+            }
+            $ClassPage = new Page($Rscount['Num'], $PageSize,3);
+            $ShowPage = $ClassPage->showpage();
+        }
+        include template('DebtLists');
     }
     /**
      * @desc  债务催收列表
