@@ -39,8 +39,9 @@
             <div class="tab-con">
                 <div id="tab1" class="active">
                     <div class="content-view">
-                        {if $DebtInfo[DebtType]==1}
+
                         {loop $CreditorsInfo $lists}
+                        {if $lists[Type]==1}
                         <div class="paragraph">
                             <p>
                                 债权人姓名：{$lists[Name]}
@@ -61,9 +62,7 @@
                                 债务金额（元）：¥{$lists[Money]}
                             </p>
                         </div>
-                        {/loop}
-                        {elseif $DebtInfo[DebtType]==2}
-                        {loop $CreditorsInfo $lists}
+                        {elseif $lists[Type]==2}
                         <div class="paragraph">
                             <p>
                                 公司名称：{$lists[CompanyName]}
@@ -87,14 +86,14 @@
                                 债务金额（元）：¥{$lists[Money]}
                             </p>
                         </div>
-                        {/loop}
                         {/if}
+                        {/loop}
                     </div>
                 </div>
                 <div id="tab2">
                     <div class="content-view">
-                        {if $DebtInfo[DebtType]==1}
                         {loop $DebtorsInfo $lists}
+                        {if $lists[Type]==1}
                         <div class="paragraph">
                             <p>
                                 债务人姓名： {$lists[Name]}
@@ -115,9 +114,7 @@
                                 债务金额（元）：¥{$lists[Money]}
                             </p>
                         </div>
-                        {/loop}
-                        {elseif $DebtInfo[DebtType]==2}
-                        {loop $DebtorsInfo $lists}
+                        {elseif $lists[Type]==2}
                         <div class="paragraph">
                             <p>
                                 公司名称：{$lists[CompanyName]}
@@ -141,8 +138,8 @@
                                 债务金额（元）：¥{$lists[Money]}
                             </p>
                         </div>
-                        {/loop}
                         {/if}
+                        {/loop}
                     </div>
                 </div>
                 <div id="tab4">
