@@ -459,7 +459,7 @@ class AjaxLogin
             $Data['Identity'] = intval($AjaxData['type']);//类型
             $Url =WEB_M_URL.'/memberlawyer/';//律师个人会员
         }elseif ($AjaxData['type']==5){
-            $Data['CompanyName'] = trim($AjaxData['companyName']);//催收公司名称
+            $Data['CompanyName'] = trim($AjaxData['companyName']);//企业
             $Data['RealName'] = trim($AjaxData['lawPerson']);//公司注册人姓名
             $Data['FixedPhone'] = trim($AjaxData['fixedPhone']);//固定电话
             $Data['CreditCode'] = trim($AjaxData['creditNum']);//信用代码

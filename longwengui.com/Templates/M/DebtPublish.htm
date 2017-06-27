@@ -11,12 +11,12 @@
                 </section>
             </header>
             <div class="content-pd mt02">
-                <div class="tab-nav tab-radius">
-                    <a class="active" href="#person-zqr">个人债务</a>
-                    <a href="#company-zqr">企业债务</a>
-                </div>
+                <!--<div class="tab-nav tab-radius">-->
+                    <!--<a class="active" href="#person-zqr">个人债务</a>-->
+                    <!--<a href="#company-zqr">企业债务</a>-->
+                <!--</div>-->
                 <div class="tab-con">
-                    <div class="active" id="person-zqr">
+                    <div {if $_SESSION[Identity]==1}class="active"{/if} id="person-zqr">
                         <div class="warp-fieldset mt02 active" id="debtor_owner_info">
                             <div class="form-fieldset">
                                 <div class="form-legend common-box">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="company-zqr">
+                    <div {if $_SESSION[Identity]==5}class="active"{/if} id="company-zqr">
                         <div class="warp-fieldset mt02" id="debtor_owner_company_info">
                             <div class="form-fieldset">
                                 <div class="form-legend common-box">
