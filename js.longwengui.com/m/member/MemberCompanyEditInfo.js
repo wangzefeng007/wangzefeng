@@ -71,7 +71,7 @@ var pageObj=$.extend({},pageObj,{
             $('.tab-company input[name="agentIdNum"]').focus();
             return;
         }
-        /*//信用代码
+        //信用代码
         if(credit_num == ''){
             $.toast('请输入统一社会信用代码');
             $('.tab-company input[name="creditNum"]').focus();
@@ -81,7 +81,7 @@ var pageObj=$.extend({},pageObj,{
             $.toast('请输入正确的统一社会信用代码');
             $('.tab-company input[name="creditNum"]').focus();
             return;
-        }*/
+        }
         //代理人身份证照
         $('#agent_pic .imageUploadBox').each(function(){
             if($(this).find('img').attr('src')){
@@ -92,10 +92,10 @@ var pageObj=$.extend({},pageObj,{
             $.toast('请选择您的地址信息');
             return;
         }
-        if(registrant_images.length<2){
+        /*if(registrant_images.length<2){
             $.toast("请上传代理人身份证照");
             return;
-        }
+        }*/
         //营业执照副本
         if($('#license .imageUploadBox').find('img').attr('src')){
             license = $('#license .imageUploadBox').find('img').attr('src');
@@ -111,7 +111,7 @@ var pageObj=$.extend({},pageObj,{
             "city": city, //市
             "area": area, //县
             "areaDetail": area_detail, //详细地址
-            //"creditNum": credit_num, //统一社会信用代码
+            "creditNum": credit_num, //统一社会信用代码
             "license": license, //营业执照
             "agentInfo": {
                 "agentName": agent_name, //代理人姓名
