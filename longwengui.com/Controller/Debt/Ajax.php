@@ -381,8 +381,8 @@ class Ajax
             $Data['UpdateTime'] = $Data['AddTime'];
             $Data['Status'] = 2;//发布待审核
             $AjaxData= json_decode(stripslashes($_POST['AjaxJSON']),true);
-            //1律师团队，2催收公司,3自助催收
-            $Data['CollectionType'] = intval($_POST['Type']);
+            //1个人债务，2企业债务
+            $Data['DebtType'] = intval($_POST['Type']);
             //是否有前期费用
             $Data['EarlyCost'] = $AjaxData['preFee'];
             //是否随时能找到
@@ -475,6 +475,8 @@ class Ajax
                 $Datb['AddTime'] = $Data['AddTime'];
                 $Datb['DebtID'] = $DebtID;
                 foreach ($debtOwnerInfos as $key => $value) {
+                    $Datb['Type'] = intval($value['type']);
+                    $Datb['CompanyName'] = trim($value['cname']);
                     $Datb['Name'] = trim($value['name']);
                     $Datb['Card'] = trim($value['idNum']);
                     $Datb['Money'] = trim($value['debt_money']);
@@ -497,6 +499,8 @@ class Ajax
                     $Datc['AddTime'] = $Data['AddTime'];
                     $Datc['DebtID'] = $DebtID;
                     foreach ($debtorInfos as $key => $value) {
+                        $Datc['Type'] = intval($value['type']);
+                        $Datc['CompanyName'] = trim($value['cname']);
                         $Datc['Name'] = trim($value['name']);
                         $Datc['Card'] = trim($value['idNum']);
                         $Datc['Money'] = trim($value['debt_money']);
@@ -533,13 +537,13 @@ class Ajax
                                 $DB->query("COMMIT");//执行事务
                                 ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在努力催收中，请您耐心等待，如有不便请见谅');
                                 ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时审核');
-                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
+                                $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_M_URL.'/debt/'.$DebtID.'.html');
                             }
                         }else{
                             $DB->query("COMMIT");//执行事务
                             ToolService::SendSMSNotice($_SESSION['Account'], '尊敬的用户，您发布的债务正在努力催收中，请您耐心等待，如有不便请见谅');
-                            ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时查看！');
-                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_MAIN_URL.'/debt/'.$DebtID.'.html');
+                            ToolService::SendSMSNotice(18039847468, '有用户上传债务请及时审核');
+                            $result_json = array('ResultCode'=>200,'Message'=>'债务发布成功，请等待审核！','Url'=>WEB_M_URL.'/debt/'.$DebtID.'.html');
                         }
                     }else{
                         $result_json = array('ResultCode' => 106, 'Message' => '录入债务人信息失败');
